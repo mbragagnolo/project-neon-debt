@@ -79,7 +79,10 @@ revisiting:
 
 | Decision | Value | Why / when to revisit |
 |---|---|---|
-| Base viewport | 640×360, window 1280×720, `canvas_items` stretch | Keeps tuning numbers small and legible. Revisit at the art pass (DESIGN.md §7 leaves pixel vs hi-bit open). |
+| Base viewport | 1920×1080, `canvas_items` stretch, `keep` aspect | The *coordinate space*, not the output resolution — `canvas_items` renders natively at whatever the window is, so 1440p and 4K are already crisp. 1080p keeps world units equal to pixels at the most common display size. |
+| Default window | 1280×720 windowed | Fits any laptop on first launch; fullscreen gives native. A resolution/fullscreen setting is M7. |
+| Texture filter | Linear | Nearest would be a pixel-art commitment, and DESIGN.md §7 hasn't made that call. One-line flip if the art pass goes pixel. |
+| Greybox grid | 60px — 1920×1080 is exactly 32×18 units | Clean divisor for M5 level layout; a 60×90 player is 1×1.5 units. |
 | Room size | One room = one screen at M0 | The M1 gym and M5's district rooms get a following camera and can be any size. |
 | Jump authoring | Height + time-to-apex; gravity is derived | Lets you type "3.5 tiles, snappy" instead of guessing at px/s². |
 | Save format | JSON in `user://saves`, 3 slots, versioned | Corrupt or missing saves degrade to a fresh run, never a crash. |

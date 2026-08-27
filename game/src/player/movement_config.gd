@@ -12,17 +12,17 @@ extends Resource
 
 @export_group("Run")
 ## Top horizontal speed, px/s.
-@export var run_speed: float = 150.0
+@export var run_speed: float = 450.0
 ## px/s². How fast we reach `run_speed` on the ground.
-@export var ground_acceleration: float = 1200.0
+@export var ground_acceleration: float = 3600.0
 ## px/s². How fast we stop on the ground when input is released.
-@export var ground_deceleration: float = 1600.0
-@export var air_acceleration: float = 900.0
-@export var air_deceleration: float = 600.0
+@export var ground_deceleration: float = 4800.0
+@export var air_acceleration: float = 2700.0
+@export var air_deceleration: float = 1800.0
 
 @export_group("Jump")
 ## Peak height of a full-hold jump, px.
-@export var jump_height: float = 56.0
+@export var jump_height: float = 168.0
 ## Seconds from leaving the ground to the top of a full-hold jump.
 @export var jump_time_to_apex: float = 0.36
 ## Falling uses heavier gravity than rising — the single biggest "feels good"
@@ -32,7 +32,7 @@ extends Resource
 ## (variable jump height).
 @export var jump_cut_multiplier: float = 0.45
 ## Terminal velocity, px/s.
-@export var max_fall_speed: float = 400.0
+@export var max_fall_speed: float = 1200.0
 ## Grace period after walking off a ledge where jump still works, seconds.
 @export var coyote_time: float = 0.1
 ## A jump pressed this long before landing still fires on touchdown, seconds.
@@ -40,7 +40,7 @@ extends Resource
 
 @export_group("Dash")
 ## Distance covered by one dash, px.
-@export var dash_distance: float = 96.0
+@export var dash_distance: float = 288.0
 @export var dash_duration: float = 0.16
 @export var dash_cooldown: float = 0.5
 ## Undecided by design — flip it on in playtest and see (DESIGN.md §3.1).
@@ -49,11 +49,11 @@ extends Resource
 
 @export_group("Wall")
 ## Capped downward speed while sliding on a wall, px/s.
-@export var wall_slide_speed: float = 40.0
+@export var wall_slide_speed: float = 120.0
 ## Horizontal kick away from the wall on a wall jump, px/s.
-@export var wall_jump_push: float = 140.0
+@export var wall_jump_push: float = 420.0
 ## Height of a wall jump, px (fed through the same gravity as a normal jump).
-@export var wall_jump_height: float = 48.0
+@export var wall_jump_height: float = 144.0
 ## Seconds the player keeps clinging after pushing away from the wall, so a
 ## turn-and-jump input doesn't drop them.
 @export var wall_stick_time: float = 0.1
