@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GODOT_VERSION: "4.3"
+
+jobs:
+  test:
+    name: Headless tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Godot binary
+        id: cache-godot
+        uses: actions/cache@v4
+        with:
+          path: ~/godot-bin
+          key: godot-${{ env.GODOT_VERSION }}-linux-x86_64
+
+      - name: Install Godot
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          name="Godot_v${GODOT_VERSION}-stable_linux.x86_64"
+          url="https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/${name}.zip"
+          curl -fsSL -o /tmp/godot.zip "$url"
+          unzip -q /tmp/godot.zip -d /tmp
+          mkdir -p ~/godot-bin
+          mv "/tmp/${name}" ~/godot-bin/godot
+          chmod +x ~/godot-bin/godot
+
+      - name: Put Godot on PATH
+        run: echo "$HOME/godot-bin" >> "$GITHUB_PATH"
+
+      - name: Import assets
+        working-directory: game
+        run: |
+          # The first pass populates .godot/. GUT's editor plugin loads before
+          # its own textures are imported and bails on that pass, so it takes a
+          # second one to settle — this is expected, not a failure.
+          godot --headless --path . --import || true
+          godot --headless --path . --import
+
+      - name: Run GUT test suite
+        working-directory: game
+        run: godot --headless --path . -s addons/gut/gut_cmdln.gd -gconfig=.gutconfig.json
+
+      - name: Boot the main scene
+        working-directory: game
+        run: |
+          set -euo pipefail
+          # --quit-after exits 0 even when scripts blew up, so read the log.
+          output=$(godot --headless --path . --quit-after 120 2>&1)
+          echo "$output"
+          if grep -qE "SCRIPT ERROR|ERROR:" <<< "$output"; then
+            echo "::error::the main scene logged errors on boot"
+            exit 1
+          fi
