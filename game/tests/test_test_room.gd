@@ -1,12 +1,10 @@
 extends GutTest
-## Smoke test for the M0 exit criterion: the project's main scene instances,
-## announces itself on the bus and records itself in GameState.
+## Smoke test for the minimal room fixture: it instances, announces itself on
+## the bus and records itself in GameState. Kept player-free and one screen
+## wide so tests that need predictable geometry have something stable to use
+## while the gym is being tuned.
 
 const ROOM_PATH := "res://rooms/test_room.tscn"
-
-
-func test_main_scene_setting_points_at_the_test_room() -> void:
-	assert_eq(ProjectSettings.get_setting("application/run/main_scene"), ROOM_PATH)
 
 
 func test_test_room_instances() -> void:

@@ -12,6 +12,9 @@ extends Node2D
 @export var room_id: StringName = &""
 ## Human-readable name shown on the map screen.
 @export var display_name: String = ""
+## Bounds the player camera clamps to, in room-local pixels. Leave at zero size
+## for rooms that fit one screen and need no clamping.
+@export var camera_limits: Rect2i = Rect2i()
 
 
 func _ready() -> void:
