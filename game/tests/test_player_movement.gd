@@ -47,8 +47,11 @@ func _release(action: String) -> void:
 ## y, since y grows downward).
 func _apex_over(frames: int) -> float:
 	var highest: float = _player.position.y
+	# One GUT wait costs more than one physics frame, so a per-frame sampler
+	# built on it sees roughly every other frame. Anything measuring a count
+	# or a peak reads off the tree's signal instead.
 	for _i: int in frames:
-		await wait_frames(1)
+		await get_tree().physics_frame
 		highest = minf(highest, _player.position.y)
 	return highest
 
@@ -106,7 +109,7 @@ func test_turning_around_is_faster_than_stopping() -> void:
 	_hold("move_left")
 	var frames_to_reverse: int = 0
 	while _player.velocity.x > 0.0 and frames_to_reverse < 60:
-		await wait_frames(1)
+		await get_tree().physics_frame
 		frames_to_reverse += 1
 	var stopping_frames: float = _config.run_speed / _config.ground_deceleration * 60.0
 	assert_lt(float(frames_to_reverse), stopping_frames,
@@ -147,13 +150,19 @@ func test_jump_returns_to_the_floor() -> void:
 func test_cannot_jump_again_while_airborne() -> void:
 	await _standing_start()
 	_hold("jump")
-	await wait_frames(2)
+	await wait_physics_frames(2)
 	_release("jump")
-	await wait_frames(20)
-	var height_before: float = _player.position.y
+	# Wait for the apex rather than a frame count. A cut jump lands around
+	# frame 21, so counting frames put the second press within one frame of
+	# touching down — it read as a double jump the moment timing shifted.
+	while _player.velocity.y < 0.0:
+		await get_tree().physics_frame
+	assert_false(_player.is_on_floor(), "precondition: still airborne")
+	var velocity_before: float = _player.velocity.y
 	_hold("jump")
-	await wait_frames(1)
-	assert_gte(_player.position.y, height_before - 1.0,
+	await get_tree().physics_frame
+	# Gravity may pull it further down; nothing may push it back up.
+	assert_gte(_player.velocity.y, velocity_before,
 		"a second jump press in mid-air must do nothing in V1 — there is no double jump")
 
 
@@ -222,8 +231,11 @@ func _tap_dash_and_count_frames() -> int:
 	Input.action_press("dash")
 	var dash_frames: int = 0
 	var seen: bool = false
+	# Sampled off the tree's own signal rather than wait_frames(1): a per-frame
+	# GUT wait costs more than one physics frame, so the loop would miss half
+	# the dash and read a 0.16s commitment as 0.08s.
 	for _i: int in 60:
-		await wait_frames(1)
+		await get_tree().physics_frame
 		if _player.state_name() == &"Dash":
 			seen = true
 			dash_frames += 1
