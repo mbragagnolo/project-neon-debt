@@ -1,7 +1,7 @@
 # Neon Debt
 
 Cyberpunk 2D metroidvania with Castlevania-style RPG elements, built in
-**Godot 4.3** (GDScript). See [DESIGN.md](DESIGN.md) for the full vertical-slice
+**Godot 4.7** (GDScript). See [DESIGN.md](DESIGN.md) for the full vertical-slice
 design and the milestone plan.
 
 **Status: M0 (Skeleton) complete.** Next up is M1 — the player controller, and
@@ -11,7 +11,7 @@ the milestone the design says to polish obsessively.
 
 ## Getting set up
 
-1. Install [Godot 4.3](https://godotengine.org/download) (standard build, no
+1. Install [Godot 4.7](https://godotengine.org/download) (standard build, no
    .NET needed).
 2. Open `game/project.godot` in the editor, or run from the command line below.
 
@@ -32,10 +32,6 @@ godot --headless --path . --quit-after 120
 # Run the test suite
 godot --headless --path . -s addons/gut/gut_cmdln.gd -gconfig=.gutconfig.json
 ```
-
-On a fresh clone the first `--import` prints errors about GUT's textures and
-asks you to restart Godot. That is expected: run `godot --headless --path .
---import` a second time and it settles.
 
 ## Layout
 
@@ -62,6 +58,10 @@ These are what make the solo-plus-agents model work (DESIGN.md §4):
 
 - **Everything is text.** GDScript, `.tscn` and `.tres` in text format — every
   file is readable and diffable.
+- **`.uid` sidecars are committed.** Godot 4.4+ writes a `.uid` next to every
+  script; it keeps `res://` references stable across renames, so it belongs in
+  git next to the script it names. Never hand-edit one. (`.tscn`/`.tres` get a
+  `uid=` in their own header once 4.4+ re-saves them — same idea, no sidecar.)
 - **Talk over the bus.** Systems emit on `Events` rather than reaching across
   the scene tree. New feature, new signal — not a new node path.
 - **Balance is data.** Movement, items, enemies and the XP curve live in
@@ -79,6 +79,7 @@ revisiting:
 
 | Decision | Value | Why / when to revisit |
 |---|---|---|
+| Engine | Godot 4.7 (standard build) | Started on 4.3; moved to 4.7 before M1 so the movement controller is never written against an engine we then migrate off. CI pins the exact patch (`GODOT_VERSION` in `ci.yml`) — keep the local editor on the same one. |
 | Base viewport | 1920×1080, `canvas_items` stretch, `keep` aspect | The *coordinate space*, not the output resolution — `canvas_items` renders natively at whatever the window is, so 1440p and 4K are already crisp. 1080p keeps world units equal to pixels at the most common display size. |
 | Default window | 1280×720 windowed | Fits any laptop on first launch; fullscreen gives native. A resolution/fullscreen setting is M7. |
 | Texture filter | Linear | Nearest would be a pixel-art commitment, and DESIGN.md §7 hasn't made that call. One-line flip if the art pass goes pixel. |

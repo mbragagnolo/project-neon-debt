@@ -51,11 +51,19 @@ static func load_from_slot(slot: int) -> Dictionary:
 		return {}
 	var text := file.get_as_text()
 	file.close()
-	var parsed: Variant = JSON.parse_string(text)
-	if typeof(parsed) != TYPE_DICTIONARY:
-		push_error("SaveLoad: slot %d is corrupt, ignoring" % slot)
+	# JSON.parse_string() prints an engine-level ERROR on bad input, which would
+	# both dirty the log and trip the boot check in CI. The instance API reports
+	# the same failure quietly and tells us where it went wrong.
+	var json := JSON.new()
+	if json.parse(text) != OK:
+		push_error("SaveLoad: slot %d is corrupt, ignoring (line %d: %s)" % [
+			slot, json.get_error_line(), json.get_error_message()
+		])
 		return {}
-	return parsed
+	if typeof(json.data) != TYPE_DICTIONARY:
+		push_error("SaveLoad: slot %d is not a save object, ignoring" % slot)
+		return {}
+	return json.data
 
 
 static func delete_slot(slot: int) -> bool:

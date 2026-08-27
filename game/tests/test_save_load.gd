@@ -47,15 +47,27 @@ func test_corrupt_save_loads_as_empty_instead_of_crashing() -> void:
 	file.store_string("{ this is not json")
 	file.close()
 
-	# The error push is expected — assert we get a clean empty dict back.
 	var loaded: Dictionary = SaveLoad.load_from_slot(SLOT)
 	assert_eq(loaded, {})
+	assert_push_error("slot 0 is corrupt", "the bad slot is reported, not swallowed")
+
+
+func test_valid_json_that_is_not_an_object_is_refused() -> void:
+	DirAccess.make_dir_recursive_absolute(SaveLoad.SAVE_DIR)
+	var file := FileAccess.open(SaveLoad.slot_path(SLOT), FileAccess.WRITE)
+	file.store_string("[1, 2, 3]")
+	file.close()
+
+	assert_eq(SaveLoad.load_from_slot(SLOT), {})
+	assert_push_error("not a save object")
 
 
 func test_out_of_range_slots_are_refused() -> void:
 	assert_false(SaveLoad.save_to_slot(-1, {"flags": []}))
 	assert_false(SaveLoad.save_to_slot(SaveLoad.SLOT_COUNT, {"flags": []}))
 	assert_eq(SaveLoad.load_from_slot(99), {})
+	assert_push_error("slot -1 out of range")
+	assert_push_error("slot 3 out of range")
 
 
 func test_delete_slot() -> void:

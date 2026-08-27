@@ -11,12 +11,17 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  GODOT_VERSION: "4.3"
+  GODOT_VERSION: "4.7.2"
 
 jobs:
   test:
     name: Headless tests
     runs-on: ubuntu-latest
+    # GitHub's default is 6 HOURS. A Godot run that fails to start hangs rather
+    # than exiting (a bad engine/GUT pairing does exactly this), so an unbounded
+    # job quietly eats the month's free minutes. The whole suite is well under a
+    # minute of real work — 10 is already generous.
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
 
@@ -29,6 +34,7 @@ jobs:
 
       - name: Install Godot
         if: steps.cache-godot.outputs.cache-hit != 'true'
+        timeout-minutes: 5
         run: |
           set -euo pipefail
           name="Godot_v${GODOT_VERSION}-stable_linux.x86_64"
@@ -42,26 +48,54 @@ jobs:
       - name: Put Godot on PATH
         run: echo "$HOME/godot-bin" >> "$GITHUB_PATH"
 
+      # Every step below caps the engine with `timeout` a little under its own
+      # timeout-minutes, so a hang reports itself with a readable message
+      # instead of showing up as a generic cancelled step.
       - name: Import assets
         working-directory: game
+        timeout-minutes: 4
         run: |
-          # The first pass populates .godot/. GUT's editor plugin loads before
-          # its own textures are imported and bails on that pass, so it takes a
-          # second one to settle — this is expected, not a failure.
-          godot --headless --path . --import || true
-          godot --headless --path . --import
+          set -euo pipefail
+          status=0
+          timeout 180 godot --headless --path . --import || status=$?
+          if [ "$status" -eq 124 ]; then
+            echo "::error::asset import hung and was killed after 3 minutes"
+          fi
+          exit "$status"
 
       - name: Run GUT test suite
         working-directory: game
-        run: godot --headless --path . -s addons/gut/gut_cmdln.gd -gconfig=.gutconfig.json
+        timeout-minutes: 5
+        run: |
+          set -euo pipefail
+          status=0
+          timeout 240 godot --headless --path . \
+            -s addons/gut/gut_cmdln.gd -gconfig=.gutconfig.json || status=$?
+          # 124 is `timeout` killing it. GUT that cannot boot — an engine
+          # upgrade, a broken addon — never reaches its own exit path, so this
+          # distinguishes "the runner hung" from "a test failed".
+          if [ "$status" -eq 124 ]; then
+            echo "::error::the GUT runner hung and was killed after 4 minutes"
+          fi
+          exit "$status"
 
       - name: Boot the main scene
         working-directory: game
+        timeout-minutes: 3
         run: |
           set -euo pipefail
-          # --quit-after exits 0 even when scripts blew up, so read the log.
-          output=$(godot --headless --path . --quit-after 120 2>&1)
+          status=0
+          output=$(timeout 120 godot --headless --path . --quit-after 120 2>&1) || status=$?
           echo "$output"
+          if [ "$status" -eq 124 ]; then
+            echo "::error::the main scene hung on boot and was killed after 2 minutes"
+            exit 1
+          fi
+          if [ "$status" -ne 0 ]; then
+            echo "::error::the main scene exited with status $status"
+            exit "$status"
+          fi
+          # --quit-after exits 0 even when scripts blew up, so read the log.
           if grep -qE "SCRIPT ERROR|ERROR:" <<< "$output"; then
             echo "::error::the main scene logged errors on boot"
             exit 1
