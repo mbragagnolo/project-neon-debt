@@ -37,9 +37,13 @@ The slice succeeds if a stranger playing 30–45 minutes says:
 ### Slice content budget
 
 - **1 district** ("The Stacks" — vertical low-income housing towers): ~25–35 connected rooms/screens
-- **Player kit:** run, jump (coyote time + jump buffer), dash (ground ability from start or found early), melee weapon, ranged weapon, 3 hacks
-- **2–3 visible double-jump gates** — ledges/shafts the player can see but never reach in V1 (the metroidvania promise)
-- **1–2 soft gates** the player CAN open (e.g., a hack-locked door found after acquiring a specific hack) so ability-gating is experienced, not just teased
+- **Starting kit:** run, jump (coyote time + jump buffer), ground dash, wall slide, melee weapon
+- **Ability progression (in acquisition order):**
+  1. **Mag-Hook** (gadget, first few screens) → unlocks **wall jump**. First taste of ability-gating, minutes in.
+  2. **Ranged weapon** (early pickup or vendor)
+  3. **Cyberdeck + Breach** (mid-slice) → hacks come online; Breach opens locked doors and stuns mechs. Overload and Static Wall found/bought after.
+  4. **Sidewinder implant** (late) → unlocks **air dash**. Found as an item, must be *installed* at the ripperdoc (the vendor) — makes the hub visit matter and sells the fiction: gadgets are carried, implants are surgery.
+- **2–3 visible double-jump gates** — ledges the player can see but never reach in V1 (the metroidvania promise)
 - **3 regular enemy types** + 1 elite variant
 - **1 boss** at the slice's end
 - **1 hub micro-area:** save point, vendor NPC, quest NPC
@@ -56,9 +60,12 @@ The slice succeeds if a stranger playing 30–45 minutes says:
 - Run with slight acceleration/deceleration; instant turn
 - Jump: variable height (release to cut), **coyote time (~0.1s)**, **jump buffering (~0.15s)**
 - Dash: fixed distance, brief i-frames optional (decide in playtest), cooldown
-- Wall slide: cheap to add, greatly improves platforming texture — include
+- Wall slide from the start (teaches that walls are interactive); **wall jump** exists in the codebase but is gated behind the Mag-Hook
+- **Air dash** exists in the codebase but is gated behind the Sidewinder implant
 - Attack while moving and mid-air; no movement lock on melee
 - Tuning lives in one `movement_config.tres` resource so iteration = editing numbers, not code
+- **Tuning vs possession are separate systems.** `MovementConfig` answers "how does the ability behave"; `GameState` ability flags (`has_wall_jump`, `has_air_dash`, `has_breach`, …) answer "does the player have it". States check the flag before offering the move. The gym grants all flags so everything stays testable; the district grants them via pickups.
+- **Anti-exploit requirement:** a single wall must not be climbable by re-sticking after a wall jump off it (push + lockout must guarantee net height loss on the same wall). Cover with a unit test — the double-jump teases depend on it.
 
 ### 3.2 Combat
 
@@ -83,7 +90,17 @@ Damage pipeline: `damage = attack_stat_scaled × weapon_power − defense`, with
 
 - Rooms are Godot scenes connected by door/transition markers; a lightweight `WorldGraph` resource records connections → drives the in-game **map screen** (explored rooms revealed).
 - **Save points** (cyberdeck terminals): save, full heal, respawn point. 2–3 in the slice.
-- Gate types in slice: double-jump gates (teased, never opened), Breach doors (opened mid-slice), one stat-check-free environmental shortcut loop (unlock a one-way door back to the hub — the genre's signature relief moment).
+- **Gating grammar** — each gate shape maps to exactly one ability, so gates are readable at a glance:
+
+  | Gate shape | Opened by | Notes |
+  |---|---|---|
+  | Two facing walls / shaft | Mag-Hook (wall jump) | Any shaft is climbable post-Hook — so a shaft may NEVER be used as a double-jump tease |
+  | Sealed door with terminal | Breach hack | Also stuns mechanical enemies — one tool, two uses |
+  | Wide flat gap | Sidewinder (air dash) | Gate band comfortably beyond jump+ground-dash reach |
+  | High single-wall ledge, ideally with overhang lip | Double jump — **teased only in V1** | No facing wall nearby; forever out of reach this slice |
+
+- **Movement envelope rule:** with current tuning, max flat jump carries ~290px, a ground dash crosses ~288px (dash holds altitude), and chains reach further. Level design must not hand-guess these: the coder derives reach programmatically from `MovementConfig` (a "movement envelope" helper) and every gate in the district gets an automated test asserting it exceeds the reachable envelope of the kit available at that point by ≥15%. Retuning movement then re-validates every gate for free.
+- One stat-check-free environmental shortcut loop (unlock a one-way door back to the hub — the genre's signature relief moment).
 - Persistent world state: opened doors, collected items, defeated boss stored in one `GameState` singleton, serialized to a save file.
 
 ### 3.5 Enemies + boss
@@ -142,7 +159,7 @@ Each milestone ends in something playable. Never proceed while the previous laye
 | M2 | Combat core | Melee + ranged vs training dummy + Scav enemy; damage pipeline, hitstop, knockback, i-frames, death | Fighting 3 Scavs is legible and satisfying |
 | M3 | RPG layer | Stats, XP/levels, items as resources, inventory + equip screen, pickups, level-up moment | Equipping better gear visibly changes combat math; HUD shows it |
 | M4 | Hacks | RAM resource, 3 hacks, quickslot UI, Breach-locked door | All three combat verbs used naturally in one fight |
-| M5 | The district | 25–35 greybox rooms of The Stacks, doors/transitions, map screen, save points, double-jump teases, shortcut loop, vendor + quest NPC, fetch quest | Can play the loop: explore → find gear → level → open Breach door → complete quest |
+| M5 | The district | 25–35 greybox rooms of The Stacks, doors/transitions, map screen, save points, ability pickups (Mag-Hook → Cyberdeck → Sidewinder), double-jump teases, shortcut loop, vendor/ripperdoc + quest NPC, fetch quest, movement-envelope gate tests | Can play the loop: explore → unlock ability → open what it gates → gear up → level → complete quest |
 | M6 | Enemies + boss | Drone, Riot unit, Elite; boss "The Landlord" 2 phases + arena + slice ending | Boss beatable, demands all verbs, ~3–8 attempts for a decent player |
 | M7 | Slice polish | Balance pass, SFX pass (free packs), screen shake/juice, minimal art pass on hero rooms if time, menus, settings, save/load hardened | External playtesters run it start to finish without guidance |
 
@@ -166,6 +183,7 @@ If the slice is good → V2 planning: 2nd and 3rd district, double jump actually
 ## 7. Open questions (fine to defer, listed so they're not forgotten)
 
 - Death penalty: none / lose unbanked credits (Souls-lite) / return to save with world reset? *(Slice default: respawn at save point, enemies respawn, keep everything — simplest.)*
-- Dash from the start vs. found in the first 10 minutes as a mini ability-gate tutorialization?
+- ~~Dash from the start vs. found early?~~ **Decided:** ground dash from the start; air dash is the Sidewinder implant, late-slice. Wall jump is the Mag-Hook, first pickup.
+- Dash i-frames on/off — still a playtest call (config flag, currently off).
 - Name, tone and narrative hook (why is the protagonist in The Stacks? "Neon Debt" implies: augment debt — you owe the corp for the body you live in).
 - Pixel art vs. hand-drawn vs. hi-bit for the eventual art pass.
