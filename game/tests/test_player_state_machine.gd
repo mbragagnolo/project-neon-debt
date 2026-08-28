@@ -80,6 +80,7 @@ func test_an_unknown_state_name_is_an_error_not_a_silent_no_op() -> void:
 	_machine.setup(null)
 	_machine.transition_to(&"Nonexistent")
 	assert_eq(_machine.current_state_name(), &"Alpha", "should stay put")
+	assert_push_error("No state named", "the bad name is reported, not swallowed")
 
 
 func test_states_are_registered_by_node_name() -> void:

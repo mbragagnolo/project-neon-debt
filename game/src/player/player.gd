@@ -123,7 +123,7 @@ func _find_room() -> Room:
 ## there is no input. Reversing uses `turn_acceleration` so a turn is near
 ## instant without being a discontinuity.
 func apply_horizontal(delta: float, grounded: bool) -> void:
-	if _wall_jump_lockout_timer > 0.0:
+	if horizontal_locked():
 		# The wall kick owns the horizontal axis for a moment; see
 		# MovementConfig.wall_jump_lockout_time for why.
 		return
@@ -214,6 +214,13 @@ func wall_direction() -> int:
 	if not is_on_wall():
 		return 0
 	return -signi(int(signf(get_wall_normal().x)))
+
+
+## True while the wall kick owns the horizontal axis. Both velocity and facing
+## defer to it, so the kick is not cancelled — visually or physically — by a
+## stick still held toward the wall.
+func horizontal_locked() -> bool:
+	return _wall_jump_lockout_timer > 0.0
 
 
 func set_facing(direction: int) -> void:

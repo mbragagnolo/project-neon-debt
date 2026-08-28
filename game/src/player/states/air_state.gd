@@ -12,7 +12,9 @@ extends PlayerState
 func physics_update(delta: float) -> StringName:
 	player.apply_gravity(delta)
 	player.apply_horizontal(delta, false)
-	player.set_facing(player.input_direction)
+	if not player.horizontal_locked():
+		# Mid wall-kick the facing belongs to the kick, not to the stick.
+		player.set_facing(player.input_direction)
 
 	if player.wants_jump_cut():
 		player.cut_jump()
