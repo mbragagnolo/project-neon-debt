@@ -14,7 +14,7 @@
 | RPG layer | Castlevania-style: XP → levels, gear (weapons + clothing) with combat stats |
 | Stats scope | Combat only — no speech checks, no dialogue skills |
 | Quests | Light fetch quests (Hollow Knight / Castlevania style) as extra reasons to explore |
-| Combat | Melee, ranged, and **hacks** (act as magic, consume RAM). No stealth. |
+| Combat | Melee, ranged, and **hacks** (act as magic, consume RAM). No stealth. **V1 is one intertwined kit** — verbs share resource loops and enemies force switching; independent build-your-own systems are the V2 direction (§6). |
 | Engine | **Godot 4.x** (GDScript) — text-based scenes, headless CLI, agent-friendly |
 | Art (V1) | **Greybox first** — shapes + placeholder tiles until movement/combat feel right; art pass on the slice only at the end |
 | Team | Marcos + coding agents |
@@ -62,6 +62,14 @@ The slice succeeds if a stranger playing 30–45 minutes says:
 
 ### 3.2 Combat
 
+**Locked: in V1 the three verbs are one intertwined kit, not three parallel
+builds.** Melee feeds ranged energy, Breach sets up the other two verbs, and
+enemies like the Riot unit force switching. Depth comes from picking the right
+verb moment to moment, not from a character build — build identity is
+deliberately deferred to V2 (§6). Implementation note: the interlocks (ammo
+regen on melee, stun windows) are tuning data, not hard-wired logic, so V2 can
+retune or detach them without a rewrite.
+
 Three verbs, one shared enemy/damage pipeline:
 
 - **Melee** — highest DPS, close range, small commitment window (anim lock ~0.2s max). Scales with **STR**.
@@ -73,7 +81,7 @@ Damage pipeline: `damage = attack_stat_scaled × weapon_power − defense`, with
 
 ### 3.3 RPG layer (Castlevania model)
 
-- **Stats:** HP, RAM, STR (melee), DEX (ranged), INT (hacks), DEF. Level-up auto-allocates a base curve; gear does the differentiation (keeps V1 simple — respec/manual allocation is a V2 question).
+- **Stats:** HP, RAM, STR (melee), DEX (ranged), INT (hacks), DEF. Level-up auto-allocates a base curve; gear does the differentiation (keeps V1 simple — manual allocation and respec arrive in V2 together with the independent-builds rework, §6).
 - **XP:** enemies grant XP; curve tuned so the slice spans ~5 levels. Level-up = full heal (classic, feels great, paces difficulty).
 - **Gear slots:** melee weapon, ranged weapon, head, body, legs, hands. Items carry flat stats + occasionally one modifier ("+10% RAM regen", "dash cooldown −15%").
 - **Inventory/equip screen** + pickup toasts. Loot from chests, hidden rooms, quest reward, vendor.
@@ -159,7 +167,7 @@ Give the slice to 3–5 people who owe you nothing. Continue to full development
 - Testers can articulate why they'd pick melee vs ranged vs hacks (combat depth)
 - Someone asks when they can play more
 
-If the slice is good → V2 planning: 2nd and 3rd district, double jump actually granted (and every tease pays off), more hacks/gear tiers, real art direction pass, narrative layer.
+If the slice is good → V2 planning: 2nd and 3rd district, double jump actually granted (and every tease pays off), more hacks/gear tiers, real art direction pass, narrative layer, and the **combat rework to independent systems**: manual stat allocation + respec, every verb viable as a main verb, every enemy and boss beatable with any verb. V1's mandatory interlocks become optional gear-driven synergies instead of the only loop. This is a real rework with real cost — it is priced into V2 on purpose and must not leak into the slice.
 
 ---
 
