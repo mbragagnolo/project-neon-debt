@@ -44,7 +44,7 @@ The slice succeeds if a stranger playing 30–45 minutes says:
 - **1 boss** at the slice's end
 - **1 hub micro-area:** save point, vendor NPC, quest NPC
 - **1 fetch quest:** NPC asks for an item hidden behind exploration; reward = notable gear piece
-- **Gear:** ~10 items total (3 melee, 3 ranged, 4 clothing pieces)
+- **Gear:** ~10 items total (3 melee, 3 ranged, 4 clothing pieces — one per clothing slot)
 - **Levels:** tuned so a player finishing the slice reaches ~level 5–6
 
 ---
@@ -75,9 +75,9 @@ Damage pipeline: `damage = attack_stat_scaled × weapon_power − defense`, with
 
 - **Stats:** HP, RAM, STR (melee), DEX (ranged), INT (hacks), DEF. Level-up auto-allocates a base curve; gear does the differentiation (keeps V1 simple — respec/manual allocation is a V2 question).
 - **XP:** enemies grant XP; curve tuned so the slice spans ~5 levels. Level-up = full heal (classic, feels great, paces difficulty).
-- **Gear slots:** melee weapon, ranged weapon, head, body, legs. Items carry flat stats + occasionally one modifier ("+10% RAM regen", "dash cooldown −15%").
+- **Gear slots:** melee weapon, ranged weapon, head, body, legs, hands. Items carry flat stats + occasionally one modifier ("+10% RAM regen", "dash cooldown −15%").
 - **Inventory/equip screen** + pickup toasts. Loot from chests, hidden rooms, quest reward, vendor.
-- **Currency:** scrap/credits from enemies; one vendor with a short stock list (a health upgrade, a gear piece, ammo capacity).
+- **Currency:** credits only — V1 has no crafting, so a scrap/material currency would have nothing to buy. Enemies drop credits; one vendor with a short stock list (a health upgrade, a gear piece, ammo capacity).
 
 ### 3.4 World / metroidvania structure
 
