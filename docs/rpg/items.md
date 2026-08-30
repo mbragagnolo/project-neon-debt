@@ -58,11 +58,35 @@ damage falloff; straight lines except the rivet's arc. Feel constraint for
 M2: every ranged weapon must aim upward comfortably — the Watcher drone is a
 vertical threat.
 
+## Clothing — LOCKED (identities & slot personalities), numbers TUNE
+
+**Structural fact: clothing in V1 is progression, not choice.** Four pieces,
+four slots — there is exactly one item per slot in the slice. Each piece is a
+memorable acquisition moment, never a build option. Do not design competing
+pieces for a slot inside the ten-item budget.
+
+**No stat points on clothing.** DEF + one modifier, nothing else. Levels
+raise the five stats, clothing owns DEF, modifiers carry the personality —
+"+2 STR gloves" would muddy all three rules for zero gain when there is no
+build to express. Stat-bearing clothing becomes interesting exactly when V2
+makes builds real; parked there.
+
+Each slot has a fixed personality, expressed through its modifier — together
+the set quietly demonstrates the whole intertwined kit:
+
+| Slot | Identity | DEF | Modifier (slot personality) |
+|---|---|---|---|
+| Body | Utility worker's padded jacket | 2 | +max HP — survival |
+| Legs | Steel-toe work boots | 1 | dash cooldown −15% — mobility |
+| Hands | Insulated linesman's gloves, deck-jacked | 1 | +RAM regen — the hack slot |
+| Head | Scavved hardhat, cracked HUD visor | 1 | +1 energy on melee hit — feeds the combat rhythm |
+
+Full-set DEF totals 5 (`TUNE`): against the locked anchors a light hit drops
+from ~6 to ~1–2, a heavy one from ~12 to ~7 — felt, never trivializing.
+
 ## Open sections (in discussion order)
 
-1. Clothing (4 pieces, DEF + one modifier each; do they also carry stat
-   points?)
-2. The cross-verb modifier table, and which items carry one
-3. Placement (start kit / chest / hidden room / quest reward / vendor) — the
+1. The cross-verb modifier table, and which items carry one
+2. Placement (start kit / chest / hidden room / quest reward / vendor) — the
    district's reward pacing in disguise
 4. Names (blocked on narrative/hook.md)
