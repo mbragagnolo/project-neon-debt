@@ -165,8 +165,29 @@ alternative (drops/vendor only — scavenged-commodity ammo) is recorded for
 V2 consideration: its scarcity-economy flavor fits The Stacks, and stingy
 drop tuning under this model approximates it without deleting the interlock.
 
-## Open sections (in discussion order)
+## Enemy stat block — LOCKED
 
-1. Enemy stat block (proposal: reduced sheet — HP, damage, DEF, XP, credits)
-2. Starting values, per-level increments, XP curve constants (`TUNE`, solved
-   against district XP total once the enemy roster lands)
+Enemies do not run the player's six-stat sheet. Reduced block:
+
+| Field | Notes |
+|---|---|
+| `hp` | |
+| `attack_power` | **Flat** — no stat multiplier on the enemy side. What you author is what it hits for (player DEF and the floor still apply). |
+| `def` | 0–5 across the slice; set last (locked tuning warning) |
+| `xp_reward` | Feeds the XP curve solve |
+| `credit_reward` | Feeds the economy |
+| drop table | Includes the rare ammo drops |
+| resistance tags | **Binary tags, not percentages** — e.g. `immune_ranged_frontal` (Riot unit), `stunned_by_breach` (mechanical). At our number scale a "30% resist" is invisible; tags are what players can read mid-fight. |
+
+- A Scav with an INT score is bookkeeping with no gameplay output.
+- Flat attack keeps threat exactly as authored — no derived math between
+  "I typed 8" and "it hits for 8" — which matters when one person tunes
+  thirty rooms of encounters.
+- V2-safe: independent builds change player scaling, never what a drone
+  hits for.
+
+## Open sections
+
+1. Starting values, per-level increments, XP curve constants (`TUNE`, solved
+   against district XP total once the enemy roster lands — the sole
+   remaining section; everything structural above is locked)
