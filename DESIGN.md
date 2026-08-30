@@ -77,7 +77,7 @@ Three verbs, one shared enemy/damage pipeline:
 - **Hacks (= magic)** — cast from a quickslot, consume **RAM** (mana; regenerates slowly, faster at save points). Scales with **INT**.
   - Slice hacks: **Overload** (single-target burst damage), **Static Wall** (short-lived barrier/zone denial), **Breach** (opens hack-locked doors + briefly stuns mechanical enemies — doubles as the slice's experienced ability gate)
 
-Damage pipeline: `damage = attack_stat_scaled × weapon_power − defense`, with knockback, hitstop (~2–3 frames), and i-frames on player hurt. All combat entities share a `Hurtbox`/`Hitbox` component pair.
+Damage pipeline: `damage = weapon_power × stat_multiplier − defense`, where `stat_multiplier` is a soft-capped saturating curve — locked, spec and constants in [`docs/rpg/stats-and-curves.md`](docs/rpg/stats-and-curves.md), with knockback, hitstop (~2–3 frames), and i-frames on player hurt. All combat entities share a `Hurtbox`/`Hitbox` component pair.
 
 ### 3.3 RPG layer (Castlevania model)
 
