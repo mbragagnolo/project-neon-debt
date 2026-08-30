@@ -84,7 +84,7 @@ Damage pipeline: `damage = max(1, weapon_power × stat_multiplier − defense)`,
 
 - **Stats:** HP, RAM, STR (melee), DEX (ranged), INT (hacks), DEF. Level-up auto-allocates a base curve over HP/RAM/STR/DEX/INT — **DEF comes from gear only**; gear does the differentiation (keeps V1 simple — manual allocation and respec arrive in V2 together with the independent-builds rework, §6).
 - **XP:** enemies grant XP; curve tuned so the slice spans ~5 levels. Level-up = full heal (classic, feels great, paces difficulty).
-- **Gear slots:** melee weapon, ranged weapon, head, body, legs, hands. Items carry flat stats only — the modifier system is deferred past V1 (candidates parked in [`docs/rpg/items.md`](docs/rpg/items.md)).
+- **Gear slots:** melee weapon, ranged weapon, head, body, legs, hands. Weapons carry flat stats only in V1; each clothing piece carries one modifier (table in [`docs/rpg/items.md`](docs/rpg/items.md)).
 - **Inventory/equip screen** + pickup toasts. Loot from chests, hidden rooms, quest reward, vendor.
 - **Currency:** credits only — V1 has no crafting, so a scrap/material currency would have nothing to buy. Enemies drop credits; one vendor with a short stock list (a health upgrade, a gear piece, ammo capacity).
 

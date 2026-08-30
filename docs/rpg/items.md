@@ -58,55 +58,54 @@ damage falloff; straight lines except the rivet's arc. Feel constraint for
 M2: every ranged weapon must aim upward comfortably — the Watcher drone is a
 vertical threat.
 
-## Clothing — LOCKED (identities), numbers TUNE
+## Clothing — LOCKED (identities & slot personalities), numbers TUNE
 
 **Structural fact: clothing in V1 is progression, not choice.** Four pieces,
 four slots — exactly one item per slot in the slice. Each piece is a
 memorable acquisition moment, never a build option. Do not design competing
 pieces for a slot inside the ten-item budget.
 
-**Clothing is pure DEF.** No stat points, and no modifiers (deferred, below).
-This is "DEF is gear-only" (stats-and-curves.md) taken to its conclusion:
-clothing *is* the armor system, nothing else.
+**No stat points on clothing.** DEF + one modifier, nothing else. Levels
+raise the five stats, clothing owns DEF, modifiers carry the personality.
+Stat-bearing clothing becomes interesting exactly when V2 makes builds real;
+parked there.
 
-| Slot | Identity | DEF |
-|---|---|---|
-| Body | Utility worker's padded jacket | 2 |
-| Legs | Steel-toe work boots | 1 |
-| Hands | Insulated linesman's gloves | 1 |
-| Head | Scavved hardhat, cracked HUD visor | 1 |
+Each slot has a fixed personality, expressed through its modifier — together
+the set quietly demonstrates the whole intertwined kit:
+
+| Slot | Identity | DEF | Modifier (slot personality) |
+|---|---|---|---|
+| Body | Utility worker's padded jacket | 2 | +max HP — survival |
+| Legs | Steel-toe work boots | 1 | dash cooldown −15% — mobility |
+| Hands | Insulated linesman's gloves, deck-jacked | 1 | +RAM regen — the hack slot |
+| Head | Scavved hardhat, cracked HUD visor | 1 | +1 energy on melee hit — feeds the combat rhythm |
 
 Full-set DEF totals 5 (`TUNE`): against the locked anchors a light hit drops
 from ~6 to ~1–2, a heavy one from ~12 to ~7 — felt, never trivializing.
-The quest-reward piece's uniqueness is flavor and a higher DEF value, not a
-mechanic.
 
-## Modifiers — DEFERRED past V1
+## Modifier table — LOCKED
 
-No modifier system in the slice. A modifier is an engine hook, not content —
-every effect is code M2–M4 would have to implement and test, and the slice's
-ten items do not need it to differentiate.
+A modifier is an engine hook, not content. Rules:
 
-Consequences applied to earlier locks:
+- **The pool contains exactly the modifiers shipped items use** — no
+  speculative entries. Currently four, one per clothing piece:
 
-- **RAM regen rate is a flat `TUNE` constant in V1.** The "increasable
-  through gear" lever (stats-and-curves.md RAM section) is deferred together
-  with the modifier system that would have carried it.
-- The melee→energy interlock is untouched: it is a core system constant, not
-  a modifier.
+| Modifier | Carried by | Engine hook | Lands in |
+|---|---|---|---|
+| `max_hp_bonus` (flat) | Jacket | Stats reads equipment into max HP | M3 |
+| `dash_cooldown_mult` (−15%) | Boots | Controller reads *effective* dash cooldown via the stats layer, not raw MovementConfig | M3 (touches M1 code) |
+| `ram_regen_mult` (+%) | Gloves | RAM regen consults equipment | M4 |
+| `melee_energy_bonus` (+1/hit) | Hardhat | The melee→energy interlock constant becomes equipment-adjustable | M2 |
 
-Parked candidates for when modifiers return (V1.1/V2) — the former slot
-personalities, one engine hook each:
-
-| Candidate | Natural slot | Engine hook |
-|---|---|---|
-| `max_hp_bonus` | Body | Stats reads equipment into max HP |
-| `dash_cooldown_mult` | Legs | Controller reads effective cooldown via stats layer |
-| `ram_regen_mult` | Hands | Regen consults equipment |
-| `melee_energy_bonus` | Head | Interlock constant becomes equipment-adjustable |
-
-Rule when the system lands: the pool contains exactly the modifiers shipped
-items use — no speculative entries.
+- **Weapons carry no modifiers in V1.** Their personality already lives in
+  damage, attack speed, energy cost and projectile behavior; four more engine
+  hooks would buy flavor the sidegrades already deliver.
+- **Uniqueness is a juiced value, not a new modifier.** The quest-reward
+  piece carries a stronger roll of its slot's modifier — zero new code.
+- No stacking rules needed: each modifier exists on exactly one item. The
+  whole system is one dictionary on the item resource plus four read-sites.
+- Side benefit: `dash_cooldown_mult` forces the effective-stats layer to
+  exist by M3 — the same indirection V2's independent builds need anyway.
 
 ## Open sections (in discussion order)
 

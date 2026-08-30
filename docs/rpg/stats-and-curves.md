@@ -141,9 +141,8 @@ A capped resource, never stat-scaled — INT scales hack damage only.
 - **Cap growth:** the level curve + RAM Max Up pickups (both locked above).
 - **Regen:** slow passive trickle everywhere (`TUNE` rate). **Saving fully
   restores RAM**, alongside the save's full heal.
-- **Regen rate is a flat `TUNE` constant in V1.** (Amended: the original
-  "increasable through gear" lever is deferred together with the whole
-  modifier system — see items.md, Modifiers.)
+- **Regen rate is a gear-modifier axis** — the gloves' `ram_regen_mult`
+  (items.md, Modifier table). Gear is the only way to improve the trickle.
 
 ## Ammo / ranged energy — LOCKED
 
