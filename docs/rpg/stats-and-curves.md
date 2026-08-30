@@ -77,12 +77,66 @@ damage = max(1, damage_raw − DEF)
   DEF 2 vs 4 is a large swing against light weapons. Set enemy DEF last,
   after weapon numbers exist.
 
+## Growth on level-up — LOCKED
+
+The auto-curve raises **HP, RAM, STR, DEX, INT**. **DEF comes from gear
+only** — no level ever grants it.
+
+- Level-ups are the system's background hum (auto-allocated, no decision).
+  Gear is the only place the player expresses anything, so clothing gets a
+  monopoly on survivability: the quest-reward piece is not "+2 of what levels
+  already give," it is the only way to take smaller hits.
+- Grinding levels makes you hit harder but never tank better — the game
+  quietly rewards exploring (find gear) over grinding, the right bias for a
+  metroidvania.
+- All three attack stats rise in lockstep, so the verbs stay balanced by
+  default; differentiation comes from weapons and clothing modifiers only.
+- Reference point: SotN raises defense with level indirectly (CON) under
+  gear's big swings — and can afford to because it abandons difficulty after
+  the first castle. Our boss targets 3–8 attempts, so the damage-taken axis
+  stays on one knob (gear). If gear-only DEF proves too punishing in
+  playtest, the fallback is a token trickle (+1 DEF every other level) —
+  cheap to add, expensive to remove.
+
+## Stat pickups — LOCKED
+
+SotN-style permanent Max Up pickups hidden in exploration spots:
+
+- **2–3 × HP Max Up** and **2–3 × RAM Max Up** in the district (final count
+  set during M5 layout; `TUNE` for the size of each bump).
+- Implementation: a GameState flag + a stat bump — exploration rewards that
+  are not gear, so hidden rooms have something to hold besides the ten items.
+- Ranged energy capacity stays a vendor purchase (ammo capacity, DESIGN.md
+  §3.3), mirroring SotN's split: the casting resource grows by finding, the
+  ammo resource by buying.
+
+## Number scale — LOCKED
+
+Small numbers. Anchor values every stat block is written against (all `TUNE`
+as constants, but the *scale* is locked):
+
+| Anchor | Value |
+|---|---|
+| Player HP, level 1 | ~40 — three big mistakes kill you, not ten |
+| Basic melee hit, early | ~6–8 |
+| Heavy melee hit, early | ~15–20 |
+| Scav HP | ~15–20 — dies in 2–3 melee hits |
+| Enemy DEF across the slice | 0–5 (set last; low-end DEF is swingy vs light weapons) |
+| Boss HP | low hundreds, never four digits |
+
+- Solo tuning happens in a spreadsheet: `max(1, 7×1.4−3)` is mental math.
+  The DEF floor and the heavy-hit bias stay intuitive at this scale.
+- Big numbers buy cosmetic meatiness at the cost of ×10 on every tuning
+  decision. If hits need to *feel* bigger, that is juice (hitstop, shake,
+  SFX) — not zeros.
+- Accepted consequence: granularity is coarse. A 6→8 damage weapon is a +33%
+  upgrade; there is no room for "+3% better" items. For ten items that is a
+  feature — every upgrade is felt. V2's larger pool must differentiate via
+  modifiers, not fine damage steps.
+
 ## Open sections (in discussion order)
 
-1. What grows on level-up (proposal: HP/RAM/STR/DEX/INT on the curve, DEF
-   gear-only)
-3. Number scale (proposal: small — hits 3–25, HP 40–90)
-4. RAM & ammo governance (proposal: resources with caps, not stat-scaled)
-5. Enemy stat block (proposal: reduced sheet — HP, damage, DEF, XP, credits)
-6. Starting values, per-level increments, XP curve constants (`TUNE`, solved
+1. RAM & ammo governance (proposal: resources with caps, not stat-scaled)
+2. Enemy stat block (proposal: reduced sheet — HP, damage, DEF, XP, credits)
+3. Starting values, per-level increments, XP curve constants (`TUNE`, solved
    against district XP total once the enemy roster lands)
