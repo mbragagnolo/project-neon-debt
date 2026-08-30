@@ -53,10 +53,33 @@ Reference values at the placeholder constants:
   If V2 wants it visible, the UI can show this smooth curve's effective
   multiplier instead.
 
+## DEF & the damage floor — LOCKED
+
+```
+damage = max(1, damage_raw − DEF)
+```
+
+- **Floor at 1:** every landed hit does at least 1 damage. DEF can never make
+  a target unhittable with the "wrong" verb (V2's every-verb-viable promise
+  will demand this anyway), and chip-killing a tank 1 hp at a time stays a
+  legitimate desperate tactic instead of a softlock.
+- **Flat subtraction's heavy-hit bias is kept as texture, not fixed.** Flat
+  DEF taxes fast weak hits proportionally harder than slow heavy ones
+  (DEF 4: a 6-damage dagger loses 66%, a 20-damage hammer loses 20%), which
+  naturally pushes players toward heavy hits and hacks against armored
+  enemies — the Riot unit's job description. It needs real playtesting, and
+  it is tuned with **two levers, not one: weapon damage AND attack speed** —
+  DPS through armor is `(raw − DEF) × attacks_per_second`, so a fast weapon
+  can buy its viability back with speed.
+- Consequence for items and the M2 pipeline: **weapons carry `attack_speed`
+  as a first-class tuning field**, not something buried in animation timing.
+- Tuning warning: at small numbers, low-end enemy DEF values are sensitive —
+  DEF 2 vs 4 is a large swing against light weapons. Set enemy DEF last,
+  after weapon numbers exist.
+
 ## Open sections (in discussion order)
 
-1. DEF mechanics & minimum damage floor
-2. What grows on level-up (proposal: HP/RAM/STR/DEX/INT on the curve, DEF
+1. What grows on level-up (proposal: HP/RAM/STR/DEX/INT on the curve, DEF
    gear-only)
 3. Number scale (proposal: small — hits 3–25, HP 40–90)
 4. RAM & ammo governance (proposal: resources with caps, not stat-scaled)
