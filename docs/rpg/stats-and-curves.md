@@ -145,13 +145,28 @@ A capped resource, never stat-scaled — INT scales hack damage only.
   canonical example modifier in DESIGN.md §3.3). Gear is the only way to
   improve the trickle.
 
+## Ammo / ranged energy — LOCKED
+
+A capped resource, never stat-scaled — DEX scales ranged damage only.
+
+Three faucets, one hierarchy:
+
+1. **Melee hits** — the primary in-combat refill (the locked §3.2 interlock;
+   the shoot → close → melee rhythm). Refill per hit `TUNE`.
+2. **Enemy drops** — deliberately **rare** (`TUNE`, erring stingy): a
+   between-fights top-up, never a reliable income. If playtesters stop
+   meleeing because drops keep them stocked, the drop rate is too high.
+3. **Vendor** — sells refills, and is the **only** source of cap upgrades.
+
+Rationale: the melee-regen loop is the mechanical spine of the intertwined
+kit and the thing a 40-minute playtest can demonstrate; drops and vendor
+cover "opened the fight at zero" without competing with it. The rejected
+alternative (drops/vendor only — scavenged-commodity ammo) is recorded for
+V2 consideration: its scarcity-economy flavor fits The Stacks, and stingy
+drop tuning under this model approximates it without deleting the interlock.
+
 ## Open sections (in discussion order)
 
-1. **Ammo refill model — conflict to resolve before locking.** Proposed:
-   refills from enemy drops or vendor purchase, cap grows via vendor only.
-   This collides with the locked §3.2 interlock "ammo regenerates on melee
-   hits" (the shoot → close → melee rhythm named as the intertwined kit's
-   flagship link). Additive or replacement — see discussion.
-2. Enemy stat block (proposal: reduced sheet — HP, damage, DEF, XP, credits)
-3. Starting values, per-level increments, XP curve constants (`TUNE`, solved
+1. Enemy stat block (proposal: reduced sheet — HP, damage, DEF, XP, credits)
+2. Starting values, per-level increments, XP curve constants (`TUNE`, solved
    against district XP total once the enemy roster lands)

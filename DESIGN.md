@@ -74,7 +74,7 @@ retune or detach them without a rewrite.
 Three verbs, one shared enemy/damage pipeline:
 
 - **Melee** — highest DPS, close range, small commitment window (anim lock ~0.2s max). Scales with **STR**.
-- **Ranged** — safe chip damage, limited by ammo/energy that regenerates on melee hits (creates a rhythm: shoot → close in → melee → back out). Scales with **DEX**.
+- **Ranged** — safe chip damage, limited by ammo/energy that regenerates on melee hits (creates a rhythm: shoot → close in → melee → back out); rare enemy drops and vendor refills as secondary faucets, cap upgrades vendor-only. Scales with **DEX**.
 - **Hacks (= magic)** — cast from a quickslot, consume **RAM** (mana; slow passive regen, fully restored on save; regen rate increasable through gear). Scales with **INT**.
   - Slice hacks: **Overload** (single-target burst damage), **Static Wall** (short-lived barrier/zone denial), **Breach** (opens hack-locked doors + briefly stuns mechanical enemies — doubles as the slice's experienced ability gate)
 
