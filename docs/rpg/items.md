@@ -41,13 +41,28 @@ still a felt upgrade. All three stay live: the flat-DEF heavy-hit bias
 | Fast-light (found) | **Powered utility blade** — linesman's vibro-cutter for cable and drywall | 5 | 1.8/s | Best raw DPS; flat DEF eats it against armor |
 | Slow-heavy (found) | **Hydraulic breaker maul** — servo-assisted demolition tool for rebar and concrete | 18 | 0.5/s | Punches through Riot-unit-grade armor |
 
+## Ranged — LOCKED (identities), numbers TUNE
+
+All three draw from the single shared energy/ammo pool (stats-and-curves.md),
+which gives ranged a second sidegrade axis: damage-per-second vs
+damage-per-energy.
+
+| Slot in trio | Identity | dmg | rate | energy/shot | Notes |
+|---|---|---|---|---|---|
+| Balanced (starter) | **Zipgun** — home-made pipe pistol | 6 | 1.5/s | 1 | Dependable, not exciting; the drone gets taught with it |
+| Fast-light (found) | **Modified nailgun** — construction tool, safety filed off | 3 | 4/s | 1 | Best DPS, worst damage-per-energy — sprays the pool away, and flat DEF eats each nail. Equal-cost on purpose: hungry, so its users close in to melee *more*, keeping the regen rhythm central |
+| Slow-heavy (found) | **Rivet gun** — industrial hull-riveter throwing hot slugs | 15 | 0.6/s | 3 | Big hits that shrug off DEF; projectile is visibly slower with a slight arc — a skill-shot, not a hitscan hose |
+
+V1 simplicities (deliberate): single projectiles, no spread, no pierce, no
+damage falloff; straight lines except the rivet's arc. Feel constraint for
+M2: every ranged weapon must aim upward comfortably — the Watcher drone is a
+vertical threat.
+
 ## Open sections (in discussion order)
 
-1. Ranged trio (same doctrine + structure; extra axes: energy cost per shot,
-   projectile behavior)
-2. Clothing (4 pieces, DEF + one modifier each; do they also carry stat
+1. Clothing (4 pieces, DEF + one modifier each; do they also carry stat
    points?)
-3. The cross-verb modifier table, and which items carry one
-4. Placement (start kit / chest / hidden room / quest reward / vendor) — the
+2. The cross-verb modifier table, and which items carry one
+3. Placement (start kit / chest / hidden room / quest reward / vendor) — the
    district's reward pacing in disguise
-5. Names (blocked on narrative/hook.md)
+4. Names (blocked on narrative/hook.md)
