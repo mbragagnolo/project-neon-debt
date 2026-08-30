@@ -75,7 +75,7 @@ Three verbs, one shared enemy/damage pipeline:
 
 - **Melee** — highest DPS, close range, small commitment window (anim lock ~0.2s max). Scales with **STR**.
 - **Ranged** — safe chip damage, limited by ammo/energy that regenerates on melee hits (creates a rhythm: shoot → close in → melee → back out). Scales with **DEX**.
-- **Hacks (= magic)** — cast from a quickslot, consume **RAM** (mana; regenerates slowly, faster at save points). Scales with **INT**.
+- **Hacks (= magic)** — cast from a quickslot, consume **RAM** (mana; slow passive regen, fully restored on save; regen rate increasable through gear). Scales with **INT**.
   - Slice hacks: **Overload** (single-target burst damage), **Static Wall** (short-lived barrier/zone denial), **Breach** (opens hack-locked doors + briefly stuns mechanical enemies — doubles as the slice's experienced ability gate)
 
 Damage pipeline: `damage = max(1, weapon_power × stat_multiplier − defense)`, where `stat_multiplier` is a soft-capped saturating curve — locked, spec and constants in [`docs/rpg/stats-and-curves.md`](docs/rpg/stats-and-curves.md), with knockback, hitstop (~2–3 frames), and i-frames on player hurt. All combat entities share a `Hurtbox`/`Hitbox` component pair.
@@ -91,7 +91,7 @@ Damage pipeline: `damage = max(1, weapon_power × stat_multiplier − defense)`,
 ### 3.4 World / metroidvania structure
 
 - Rooms are Godot scenes connected by door/transition markers; a lightweight `WorldGraph` resource records connections → drives the in-game **map screen** (explored rooms revealed).
-- **Save points** (cyberdeck terminals): save, full heal, respawn point. 2–3 in the slice.
+- **Save points** (cyberdeck terminals): save, full heal + full RAM, respawn point. 2–3 in the slice.
 - Gate types in slice: double-jump gates (teased, never opened), Breach doors (opened mid-slice), one stat-check-free environmental shortcut loop (unlock a one-way door back to the hub — the genre's signature relief moment).
 - Persistent world state: opened doors, collected items, defeated boss stored in one `GameState` singleton, serialized to a save file.
 

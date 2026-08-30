@@ -134,9 +134,24 @@ as constants, but the *scale* is locked):
   feature — every upgrade is felt. V2's larger pool must differentiate via
   modifiers, not fine damage steps.
 
+## RAM — LOCKED
+
+A capped resource, never stat-scaled — INT scales hack damage only.
+
+- **Cap growth:** the level curve + RAM Max Up pickups (both locked above).
+- **Regen:** slow passive trickle everywhere (`TUNE` rate). **Saving fully
+  restores RAM**, alongside the save's full heal.
+- **Regen rate is a gear-modifier axis** — "+X% RAM regen" (already the
+  canonical example modifier in DESIGN.md §3.3). Gear is the only way to
+  improve the trickle.
+
 ## Open sections (in discussion order)
 
-1. RAM & ammo governance (proposal: resources with caps, not stat-scaled)
+1. **Ammo refill model — conflict to resolve before locking.** Proposed:
+   refills from enemy drops or vendor purchase, cap grows via vendor only.
+   This collides with the locked §3.2 interlock "ammo regenerates on melee
+   hits" (the shoot → close → melee rhythm named as the intertwined kit's
+   flagship link). Additive or replacement — see discussion.
 2. Enemy stat block (proposal: reduced sheet — HP, damage, DEF, XP, credits)
 3. Starting values, per-level increments, XP curve constants (`TUNE`, solved
    against district XP total once the enemy roster lands)
