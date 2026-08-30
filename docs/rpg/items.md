@@ -107,8 +107,32 @@ A modifier is an engine hook, not content. Rules:
 - Side benefit: `dash_cooldown_mult` forces the effective-stats layer to
   exist by M3 — the same indirection V2's independent builds need anyway.
 
-## Open sections (in discussion order)
+## Placement — LOCKED
 
-1. Placement (start kit / chest / hidden room / quest reward / vendor) — the
-   district's reward pacing in disguise
-4. Names (blocked on narrative/hook.md)
+Principle: every acquisition method hands out at least one item, and the
+better the item, the more deliberate the acquisition.
+
+| Item | Source | Why there |
+|---|---|---|
+| Pipe wrench + zipgun | Start kit | Locked in §2 player kit |
+| Powered utility blade | Early critical-path chest | First pickup (~10 min in): teaches the equip screen, proves weapons are worth finding |
+| Work boots | Mid-path chest | First DEF, right as the Scav zone starts to hurt |
+| Nailgun | Hidden room, mid | First optional reward — poking corners pays |
+| Linesman's gloves | Hidden room, deeper | Hidden rooms stay generous |
+| Padded jacket | Vendor | Biggest DEF piece is the credit sink, alongside the health/ammo upgrades |
+| Breaker maul | Behind the Breach door | The experienced ability gate pays out the armor-cracker: gate teaches Breach, reward answers the Riot unit, one room |
+| Rivet gun | Deep optional area, hard platforming | The skill-shot weapon behind the skill check |
+| Hardhat (juiced roll: +2 energy/melee hit) | Quest reward | A dead worker's safety helmet recovered from the hazard area his body lies in — writes its own flavor text |
+
+Pacing rules:
+
+- Nothing found in the first ~10 minutes — movement carries the open.
+- Roughly one felt pickup per ~10 minutes after that.
+
+Constraint exported to `level-design/stacks-graph.md`: **Breach must be
+acquirable before the district's midpoint** (the maul sits behind its door).
+
+## Open sections
+
+1. Names (blocked on narrative/hook.md) — every identity above is final,
+   the label on it is not.
