@@ -58,35 +58,58 @@ damage falloff; straight lines except the rivet's arc. Feel constraint for
 M2: every ranged weapon must aim upward comfortably — the Watcher drone is a
 vertical threat.
 
-## Clothing — LOCKED (identities & slot personalities), numbers TUNE
+## Clothing — LOCKED (identities), numbers TUNE
 
 **Structural fact: clothing in V1 is progression, not choice.** Four pieces,
-four slots — there is exactly one item per slot in the slice. Each piece is a
+four slots — exactly one item per slot in the slice. Each piece is a
 memorable acquisition moment, never a build option. Do not design competing
 pieces for a slot inside the ten-item budget.
 
-**No stat points on clothing.** DEF + one modifier, nothing else. Levels
-raise the five stats, clothing owns DEF, modifiers carry the personality —
-"+2 STR gloves" would muddy all three rules for zero gain when there is no
-build to express. Stat-bearing clothing becomes interesting exactly when V2
-makes builds real; parked there.
+**Clothing is pure DEF.** No stat points, and no modifiers (deferred, below).
+This is "DEF is gear-only" (stats-and-curves.md) taken to its conclusion:
+clothing *is* the armor system, nothing else.
 
-Each slot has a fixed personality, expressed through its modifier — together
-the set quietly demonstrates the whole intertwined kit:
-
-| Slot | Identity | DEF | Modifier (slot personality) |
-|---|---|---|---|
-| Body | Utility worker's padded jacket | 2 | +max HP — survival |
-| Legs | Steel-toe work boots | 1 | dash cooldown −15% — mobility |
-| Hands | Insulated linesman's gloves, deck-jacked | 1 | +RAM regen — the hack slot |
-| Head | Scavved hardhat, cracked HUD visor | 1 | +1 energy on melee hit — feeds the combat rhythm |
+| Slot | Identity | DEF |
+|---|---|---|
+| Body | Utility worker's padded jacket | 2 |
+| Legs | Steel-toe work boots | 1 |
+| Hands | Insulated linesman's gloves | 1 |
+| Head | Scavved hardhat, cracked HUD visor | 1 |
 
 Full-set DEF totals 5 (`TUNE`): against the locked anchors a light hit drops
 from ~6 to ~1–2, a heavy one from ~12 to ~7 — felt, never trivializing.
+The quest-reward piece's uniqueness is flavor and a higher DEF value, not a
+mechanic.
+
+## Modifiers — DEFERRED past V1
+
+No modifier system in the slice. A modifier is an engine hook, not content —
+every effect is code M2–M4 would have to implement and test, and the slice's
+ten items do not need it to differentiate.
+
+Consequences applied to earlier locks:
+
+- **RAM regen rate is a flat `TUNE` constant in V1.** The "increasable
+  through gear" lever (stats-and-curves.md RAM section) is deferred together
+  with the modifier system that would have carried it.
+- The melee→energy interlock is untouched: it is a core system constant, not
+  a modifier.
+
+Parked candidates for when modifiers return (V1.1/V2) — the former slot
+personalities, one engine hook each:
+
+| Candidate | Natural slot | Engine hook |
+|---|---|---|
+| `max_hp_bonus` | Body | Stats reads equipment into max HP |
+| `dash_cooldown_mult` | Legs | Controller reads effective cooldown via stats layer |
+| `ram_regen_mult` | Hands | Regen consults equipment |
+| `melee_energy_bonus` | Head | Interlock constant becomes equipment-adjustable |
+
+Rule when the system lands: the pool contains exactly the modifiers shipped
+items use — no speculative entries.
 
 ## Open sections (in discussion order)
 
-1. The cross-verb modifier table, and which items carry one
-2. Placement (start kit / chest / hidden room / quest reward / vendor) — the
+1. Placement (start kit / chest / hidden room / quest reward / vendor) — the
    district's reward pacing in disguise
 4. Names (blocked on narrative/hook.md)
