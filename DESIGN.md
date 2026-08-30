@@ -45,6 +45,7 @@ The slice succeeds if a stranger playing 30–45 minutes says:
 - **1 hub micro-area:** save point, vendor NPC, quest NPC
 - **1 fetch quest:** NPC asks for an item hidden behind exploration; reward = notable gear piece
 - **Gear:** ~10 items total (3 melee, 3 ranged, 4 clothing pieces — one per clothing slot)
+- **Stat pickups:** 2–3 HP Max Up + 2–3 RAM Max Up hidden in exploration spots (SotN-style permanent upgrades)
 - **Levels:** tuned so a player finishing the slice reaches ~level 5–6
 
 ---
@@ -81,7 +82,7 @@ Damage pipeline: `damage = max(1, weapon_power × stat_multiplier − defense)`,
 
 ### 3.3 RPG layer (Castlevania model)
 
-- **Stats:** HP, RAM, STR (melee), DEX (ranged), INT (hacks), DEF. Level-up auto-allocates a base curve; gear does the differentiation (keeps V1 simple — manual allocation and respec arrive in V2 together with the independent-builds rework, §6).
+- **Stats:** HP, RAM, STR (melee), DEX (ranged), INT (hacks), DEF. Level-up auto-allocates a base curve over HP/RAM/STR/DEX/INT — **DEF comes from gear only**; gear does the differentiation (keeps V1 simple — manual allocation and respec arrive in V2 together with the independent-builds rework, §6).
 - **XP:** enemies grant XP; curve tuned so the slice spans ~5 levels. Level-up = full heal (classic, feels great, paces difficulty).
 - **Gear slots:** melee weapon, ranged weapon, head, body, legs, hands. Items carry flat stats + occasionally one modifier ("+10% RAM regen", "dash cooldown −15%").
 - **Inventory/equip screen** + pickup toasts. Loot from chests, hidden rooms, quest reward, vendor.
