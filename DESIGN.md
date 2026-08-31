@@ -76,7 +76,7 @@ Three verbs, one shared enemy/damage pipeline:
 - **Melee** — highest DPS, close range, small commitment window (anim lock ~0.2s max). Scales with **STR**.
 - **Ranged** — safe chip damage, limited by ammo/energy that regenerates on melee hits (creates a rhythm: shoot → close in → melee → back out); rare enemy drops and vendor refills as secondary faucets, cap upgrades vendor-only. Scales with **DEX**.
 - **Hacks (= magic)** — cast from a quickslot, consume **RAM** (mana; slow passive regen, fully restored on save; regen rate increasable through gear). Scales with **INT**.
-  - Slice hacks: **Overload** (single-target burst damage), **Static Wall** (short-lived barrier/zone denial), **Breach** (opens hack-locked doors + briefly stuns mechanical enemies — doubles as the slice's experienced ability gate)
+  - Slice hacks: **Firewall** (brief self-buff halving incoming damage — you hack your own corporate-owned body; the starting hack), **Overload** (single-target burst damage, found in-world), **Breach** (opens hack-locked doors + briefly stuns mechanical enemies — doubles as the slice's experienced ability gate). One answer each: defense / damage / control. Full spec: [`docs/combat/hacks.md`](docs/combat/hacks.md)
 
 Damage pipeline: `damage = max(1, weapon_power × stat_multiplier − defense)`, where `stat_multiplier` is a soft-capped saturating curve — locked, spec and constants in [`docs/rpg/stats-and-curves.md`](docs/rpg/stats-and-curves.md), with knockback, hitstop (~2–3 frames), and i-frames on player hurt. All combat entities share a `Hurtbox`/`Hitbox` component pair.
 
