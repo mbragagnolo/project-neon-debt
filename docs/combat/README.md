@@ -7,5 +7,5 @@ Planned specs:
 - `damage-pipeline.md` — formula constants, hitstop frames, knockback,
   i-frame durations, and the interlock table (all interlocks are tuning data,
   not hard-wired logic — V2 requirement)
-- `hacks.md` — Overload / Static Wall / Breach: RAM costs, cooldowns,
-  numbers, quickslot UX
+- `hacks.md` — **done**: Firewall / Overload / Breach (defense / damage /
+  control), costs, the 1s global cooldown, casting model, acquisition order
