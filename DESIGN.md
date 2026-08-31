@@ -99,7 +99,7 @@ Damage pipeline: `damage = max(1, weapon_power × stat_multiplier − defense)`,
 
 - Shared `Enemy` base: patrol/aggro/attack/stagger states, XP + loot on death.
 - Slice roster: **Scav** (melee rusher, teaches spacing), **Watcher drone** (flying, ranged, teaches vertical threat + ranged verb), **Riot unit** (shielded — frontal ranged immunity, teaches melee positioning or Overload), **Elite Scav** (fetch-quest area guard).
-- **Boss — "The Landlord"** (chromed-up debt enforcer of The Stacks): 2 phases, telegraphed attacks, arena with platforms so movement skills matter; resistant enough that hacks + weapon swapping are rewarded. Boss death = slice end screen + "to be continued" shot of an unreachable double-jump ledge lighting up.
+- **Boss — "The Landlord"** (chromed-up debt enforcer of The Stacks): 2 phases, telegraphed attacks, arena with platforms so movement skills matter; resistant enough that hacks + weapon swapping are rewarded. Boss death = slice end screen + "to be continued" shot of an unreachable double-jump ledge lighting up — the stolen collections override handshaking with your locked firmware (docs/narrative/hook.md).
 
 ### 3.6 Quests (light)
 
@@ -176,5 +176,5 @@ If the slice is good → V2 planning: 2nd and 3rd district, double jump actually
 
 - Death penalty: none / lose unbanked credits (Souls-lite) / return to save with world reset? *(Slice default: respawn at save point, enemies respawn, keep everything — simplest.)*
 - Dash from the start vs. found in the first 10 minutes as a mini ability-gate tutorialization?
-- Name, tone and narrative hook (why is the protagonist in The Stacks? "Neon Debt" implies: augment debt — you owe the corp for the body you live in).
+- ~~Name, tone and narrative hook~~ — **resolved**: augment-debt premise, feature-locked firmware as gate fiction, the Landlord as lockholder; see [`docs/narrative/hook.md`](docs/narrative/hook.md). (Actual names still open inside its conventions.)
 - Pixel art vs. hand-drawn vs. hi-bit for the eventual art pass.
