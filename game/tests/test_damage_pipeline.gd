@@ -169,11 +169,29 @@ func test_the_starting_weapons_hit_for_their_authored_numbers() -> void:
 	assert_eq(Damage.resolve(_attack(zipgun.power), health, _config).damage, 6)
 
 
+## Pins the *relationship*, not the number. `attack_speed` is the tuning lever
+## the whole armour-balance argument rests on, so it moves every playtest — a
+## test that hardcodes it would fail on every session that did its job.
 func test_attack_speed_is_the_authority_on_cooldown() -> void:
+	var weapons: Array[Weapon] = [
+		load("res://src/combat/weapons/wrench.tres"),
+		load("res://src/combat/weapons/zipgun.tres"),
+	]
+	for weapon: Weapon in weapons:
+		assert_gt(weapon.attack_speed, 0.0, "%s cannot be swung" % weapon.display_name)
+		assert_almost_eq(weapon.cooldown(), 1.0 / weapon.attack_speed, 0.0001)
+
+
+func test_a_swing_finishes_before_the_next_one_is_allowed() -> void:
+	# The guard rail on tuning melee speed upward: once the cooldown drops
+	# under the commit time, a second swing becomes legal while the first is
+	# still locking the player, and the state machine starts eating presses.
 	var wrench: MeleeWeapon = load("res://src/combat/weapons/wrench.tres")
-	var zipgun: RangedWeapon = load("res://src/combat/weapons/zipgun.tres")
-	assert_almost_eq(wrench.cooldown(), 1.0, 0.001)
-	assert_almost_eq(zipgun.cooldown(), 1.0 / 1.5, 0.001)
+	assert_lte(
+		wrench.commit_time,
+		wrench.cooldown(),
+		"attack_speed has outrun commit_time — swings would overlap"
+	)
 
 
 func test_the_swing_commits_for_no_longer_than_the_design_budget() -> void:

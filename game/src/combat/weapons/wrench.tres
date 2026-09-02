@@ -6,7 +6,7 @@
 script = ExtResource("1_melee")
 display_name = "Pipe wrench"
 power = 8.0
-attack_speed = 1.0
+attack_speed = 1.6
 knockback = 280.0
 ammo_on_hit = 1
 hitbox_size = Vector2(72, 72)
