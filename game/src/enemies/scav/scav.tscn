@@ -1,0 +1,98 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://src/enemies/enemy_base.gd" id="1_enemy"]
+[ext_resource type="Resource" path="res://src/enemies/scav/scav.tres" id="2_scav"]
+[ext_resource type="Script" path="res://src/combat/health.gd" id="3_health"]
+[ext_resource type="Script" path="res://src/combat/hurtbox.gd" id="4_hurtbox"]
+[ext_resource type="Script" path="res://src/combat/hitbox.gd" id="5_hitbox"]
+[ext_resource type="Resource" path="res://src/combat/combat_config.tres" id="6_combat"]
+[ext_resource type="Script" path="res://src/enemies/states/enemy_state_machine.gd" id="7_machine"]
+[ext_resource type="Script" path="res://src/enemies/states/patrol_state.gd" id="8_patrol"]
+[ext_resource type="Script" path="res://src/enemies/states/chase_state.gd" id="9_chase"]
+[ext_resource type="Script" path="res://src/enemies/states/windup_state.gd" id="10_windup"]
+[ext_resource type="Script" path="res://src/enemies/states/lunge_state.gd" id="11_lunge"]
+[ext_resource type="Script" path="res://src/enemies/states/recover_state.gd" id="12_recover"]
+[ext_resource type="Script" path="res://src/enemies/states/stagger_state.gd" id="13_stagger"]
+[ext_resource type="Script" path="res://src/enemies/states/dead_state.gd" id="14_dead"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scav_body"]
+size = Vector2(44, 80)
+
+[node name="Scav" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 1
+floor_snap_length = 16.0
+script = ExtResource("1_enemy")
+config = ExtResource("2_scav")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_scav_body")
+
+[node name="Visual" type="ColorRect" parent="."]
+offset_left = -22.0
+offset_top = -80.0
+offset_right = 22.0
+mouse_filter = 2
+color = Color(0.72, 0.36, 0.33, 1)
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_health")
+max_hp = 16
+defense = 0
+stagger_threshold = 1
+iframe_time = 0.0
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("4_hurtbox")
+config = ExtResource("6_combat")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_scav_body")
+
+[node name="AttackHitbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 8
+monitoring = false
+monitorable = false
+script = ExtResource("5_hitbox")
+
+[node name="ContactHitbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 8
+monitoring = false
+monitorable = false
+script = ExtResource("5_hitbox")
+continuous = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHitbox"]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_scav_body")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("7_machine")
+initial_state = &"Patrol"
+
+[node name="Patrol" type="Node" parent="StateMachine"]
+script = ExtResource("8_patrol")
+
+[node name="Chase" type="Node" parent="StateMachine"]
+script = ExtResource("9_chase")
+
+[node name="Windup" type="Node" parent="StateMachine"]
+script = ExtResource("10_windup")
+
+[node name="Lunge" type="Node" parent="StateMachine"]
+script = ExtResource("11_lunge")
+
+[node name="Recover" type="Node" parent="StateMachine"]
+script = ExtResource("12_recover")
+
+[node name="Stagger" type="Node" parent="StateMachine"]
+script = ExtResource("13_stagger")
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("14_dead")

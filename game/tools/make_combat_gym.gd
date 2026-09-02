@@ -13,7 +13,7 @@ extends Node
 const SOLID := Color("3a4256")
 const PLATFORM := Color("4b5570")
 const LABEL := Color("6f7da3")
-const ROOM := Vector2i(2560, 1440)
+const ROOM := Vector2i(4096, 1440)
 const FLOOR_TOP := 1380.0
 
 var _root: Node2D
@@ -44,10 +44,14 @@ func _ready() -> void:
 
 	# --- Shell. Flat and enclosed: nothing here should be a platforming
 	# --- challenge, because the thing under test is the swing.
-	_solid("Floor", Vector2(1280, 1410), Vector2(2560, 60), SOLID)
-	_solid("Ceiling", Vector2(1280, 30), Vector2(2560, 60), SOLID)
+	_solid("Floor", Vector2(2048, 1410), Vector2(4096, 60), SOLID)
+	_solid("Ceiling", Vector2(2048, 30), Vector2(4096, 60), SOLID)
 	_solid("WallLeft", Vector2(30, 720), Vector2(60, 1440), SOLID)
-	_solid("WallRight", Vector2(2530, 720), Vector2(60, 1440), SOLID)
+	_solid("WallRight", Vector2(4066, 720), Vector2(60, 1440), SOLID)
+	# Divider between the two halves. The stations answer one question each and
+	# want a still target; the arena is the opposite. Mixing them would mean
+	# tuning hitstop while being chased.
+	_solid("Divider", Vector2(2400, 1200), Vector2(60, 360), SOLID)
 
 	# --- A. Baseline. DEF 0, stagger threshold 1: everything staggers, every
 	# --- number is the weapon's own. This is the dummy the wrench and zipgun
@@ -86,6 +90,22 @@ func _ready() -> void:
 
 	# --- A firing step, so the diagonal shot has somewhere to be taken from.
 	_solid("FiringStep", Vector2(480, 1170), Vector2(300, 60), PLATFORM)
+
+	# --- The arena. Three Scavs, which is the M2 exit test verbatim: "fighting
+	# --- 3 Scavs is legible and satisfying". Flat and open on purpose — the
+	# --- lesson is spacing, and terrain would let the player solve it with
+	# --- geometry instead of with timing. One low platform to break up the
+	# --- floor without offering anywhere to camp.
+	_solid("ArenaStep", Vector2(3300, 1200), Vector2(420, 60), PLATFORM)
+	_encounter("ScavArena", [
+		Vector2(2900, FLOOR_TOP),
+		Vector2(3450, FLOOR_TOP),
+		Vector2(3900, FLOOR_TOP),
+	])
+	_label("SCAV ARENA — THE M2 EXIT TEST", Vector2(2900, 300))
+	_label("YELLOW = WINDUP (BAIT IT)", Vector2(2900, 360))
+	_label("GREY = RECOVERY (PUNISH IT)", Vector2(2900, 410))
+	_label("CLEAR THEM AND THEY COME BACK", Vector2(2900, 460))
 
 	_label("MELEE  J        RANGED  K        DASH  SHIFT", Vector2(760, 180))
 	_label("MELEE HITS REFILL AMMO — WATCH THE COUNTER", Vector2(760, 240))
@@ -136,6 +156,24 @@ func _dummy(
 	dummy.set("stagger_threshold", stagger_threshold)
 	_dummies.add_child(dummy)
 	return dummy
+
+
+## An `Encounter` with one spawn marker per position. The enemies themselves
+## are runtime instances, so the room file stores markers rather than a frozen
+## snapshot of a fight.
+func _encounter(encounter_name: String, positions: Array) -> void:
+	var group := Node2D.new()
+	group.name = encounter_name
+	group.set_script(load("res://src/world/encounter.gd"))
+	group.set("enemy_scene", load("res://src/enemies/scav/scav.tscn"))
+	group.set("respawn_delay", 2.5)
+	_root.add_child(group)
+
+	for i: int in positions.size():
+		var marker := Marker2D.new()
+		marker.name = "Spawn%d" % (i + 1)
+		marker.position = positions[i]
+		group.add_child(marker)
 
 
 func _solid(solid_name: String, center: Vector2, size: Vector2, color: Color) -> void:

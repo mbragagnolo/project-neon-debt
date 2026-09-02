@@ -131,6 +131,36 @@ func test_the_dummies_are_on_the_enemy_layer_and_collide_only_with_world() -> vo
 		assert_eq(body.collision_mask, LAYER_WORLD, "'%s' collides with more than the world" % dummy.name)
 
 
+func test_the_arena_holds_the_three_scavs_the_exit_test_asks_for() -> void:
+	# The M2 exit test is "fighting 3 Scavs is legible and satisfying", so the
+	# count is not decoration — two is a different fight and four is a
+	# different fight.
+	var arena: Node = _gym.get_node_or_null("ScavArena")
+	assert_not_null(arena, "the gym has no Scav arena")
+	assert_is(arena, Encounter)
+
+	var markers: int = 0
+	for child: Node in arena.get_children():
+		if child is Marker2D:
+			markers += 1
+	assert_eq(markers, 3, "the exit test needs exactly three spawn points")
+	assert_not_null((arena as Encounter).enemy_scene)
+
+
+func test_the_arena_repopulates_so_the_fight_can_be_rerun() -> void:
+	# Judging "legible and satisfying" means fighting them more than once, and
+	# restarting the game between attempts is how a tuning session dies.
+	assert_gt((_gym.get_node("ScavArena") as Encounter).respawn_delay, 0.0)
+
+
+func test_the_stations_and_the_arena_are_kept_apart() -> void:
+	# The stations want a still target and one question at a time; the arena is
+	# the opposite. Tuning hitstop while being chased is not a tuning session.
+	var last_station: TrainingDummy = _gym.get_node("Dummies/Contact")
+	var first_spawn: Marker2D = _gym.get_node("ScavArena/Spawn1")
+	assert_gt(first_spawn.position.x, last_station.position.x + 400.0)
+
+
 func test_gym_solids_are_on_the_world_layer() -> void:
 	for solid: Node in _gym.get_node("Geometry").get_children():
 		assert_is(solid, StaticBody2D)

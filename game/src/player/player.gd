@@ -62,6 +62,9 @@ func _ready() -> void:
 		push_error("Player has no MovementConfig — it cannot move.")
 		set_physics_process(false)
 		return
+	# Enemies find the player by group rather than by node path, so a room can
+	# put the player anywhere in its tree.
+	add_to_group(&"player")
 	_state_machine.setup(self)
 	_apply_camera_limits()
 	_setup_combat()

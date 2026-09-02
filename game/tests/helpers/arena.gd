@@ -8,6 +8,7 @@ extends RefCounted
 
 const PLAYER_SCENE := preload("res://src/player/player.tscn")
 const DUMMY_SCENE := preload("res://src/enemies/training_dummy/training_dummy.tscn")
+const SCAV_SCENE := preload("res://src/enemies/scav/scav.tscn")
 
 
 ## A static box. `center` and `size` are in pixels, like everything else.
@@ -55,6 +56,17 @@ static func dummy(
 	instance.show_damage_numbers = false
 	parent.add_child(instance)
 	instance.position = at
+	return instance
+
+
+## A Scav at `at` (origin is at the feet).
+static func scav(parent: Node, at: Vector2) -> Enemy:
+	var instance: Enemy = SCAV_SCENE.instantiate()
+	parent.add_child(instance)
+	instance.position = at
+	# `home` is captured in _ready, before the position above lands, so a Scav
+	# built this way would otherwise patrol around the origin.
+	instance.home = instance.global_position
 	return instance
 
 
