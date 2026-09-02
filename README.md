@@ -4,8 +4,10 @@ Cyberpunk 2D metroidvania with Castlevania-style RPG elements, built in
 **Godot 4.7** (GDScript). See [DESIGN.md](DESIGN.md) for the full vertical-slice
 design and the milestone plan.
 
-**Status: M0 (Skeleton) complete.** Next up is M1 — the player controller, and
-the milestone the design says to polish obsessively.
+**Status: M1 (Movement feel) ready to play.** The controller is in and tested;
+whether it is *fun* is the exit test, and that one is Marcos's to call. Run the
+gym and see — DESIGN.md is explicit that M2 does not start until moving around
+an empty room is enjoyable on its own.
 
 ---
 
@@ -23,7 +25,7 @@ downloading and CI runs offline.
 ```bash
 cd game
 
-# Play it
+# Play it (opens the M1 movement gym)
 godot --path .
 
 # Boot headless (what CI does — must log no errors)
@@ -41,11 +43,12 @@ game/
   icon.svg
   src/
     core/              # Events (signal bus), GameState, SaveLoad
-    player/            # movement_config.tres — the M1 tuning surface
+    player/            # controller, state machine, movement_config.tres
     world/             # room.gd
     combat/ rpg/ enemies/ quests/ ui/    # scaffolded, filled in per milestone
-  rooms/               # one .tscn per room; test_room.tscn is the main scene
+  rooms/               # one .tscn per room; gym.tscn is the main scene
   tests/               # GUT tests, run headless in CI
+  tools/               # greybox room generators (editor-side, not shipped)
   addons/gut/          # vendored test framework
 ```
 

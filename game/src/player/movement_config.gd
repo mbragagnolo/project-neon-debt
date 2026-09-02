@@ -19,6 +19,10 @@ extends Resource
 @export var ground_deceleration: float = 4800.0
 @export var air_acceleration: float = 2700.0
 @export var air_deceleration: float = 1800.0
+## px/s² applied when input opposes current travel. DESIGN.md §3.1 asks for
+## "instant turn"; keeping it a (steep) acceleration rather than a hard snap to
+## zero means a turn still reads as a turn. Raise it to make reversals crisper.
+@export var turn_acceleration: float = 9000.0
 
 @export_group("Jump")
 ## Peak height of a full-hold jump, px.
@@ -46,6 +50,10 @@ extends Resource
 ## Undecided by design — flip it on in playtest and see (DESIGN.md §3.1).
 @export var dash_grants_iframes: bool = false
 @export var dash_iframe_time: float = 0.12
+## One air dash per airborne period, refunded on landing. Off makes dash a
+## purely grounded verb. This changes how far a horizontal gap can be, so it
+## interacts with M5's level design — decide it before the district is laid out.
+@export var can_dash_in_air: bool = true
 
 @export_group("Wall")
 ## Capped downward speed while sliding on a wall, px/s.
@@ -57,6 +65,10 @@ extends Resource
 ## Seconds the player keeps clinging after pushing away from the wall, so a
 ## turn-and-jump input doesn't drop them.
 @export var wall_stick_time: float = 0.1
+## Seconds after a wall jump during which horizontal input is ignored, so the
+## kick away from the wall actually lands instead of being cancelled by the
+## stick the player is already holding toward it.
+@export var wall_jump_lockout_time: float = 0.12
 
 
 ## Downward acceleration while rising, px/s². Derived from the jump shape.
