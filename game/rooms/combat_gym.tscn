@@ -1,0 +1,250 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/world/room.gd" id="1_71rm2"]
+[ext_resource type="PackedScene" path="res://src/enemies/training_dummy/training_dummy.tscn" id="2_csucw"]
+[ext_resource type="Script" path="res://src/enemies/training_dummy/training_dummy.gd" id="3_tuf57"]
+[ext_resource type="PackedScene" path="res://src/player/player.tscn" id="4_jfajp"]
+[ext_resource type="Script" path="res://src/player/player.gd" id="5_j1jpn"]
+[ext_resource type="Resource" path="res://src/player/movement_config.tres" id="6_gvkcr"]
+[ext_resource type="Resource" path="res://src/combat/combat_config.tres" id="7_edwkv"]
+[ext_resource type="Resource" path="res://src/combat/weapons/wrench.tres" id="8_ik1qh"]
+[ext_resource type="Resource" path="res://src/combat/weapons/zipgun.tres" id="9_ouo3u"]
+[ext_resource type="Script" path="res://src/ui/debug_combat_hud.gd" id="10_gkcwm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3x0k7"]
+size = Vector2(2560, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kpk6a"]
+size = Vector2(2560, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8rwj"]
+size = Vector2(60, 1440)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_st3ek"]
+size = Vector2(60, 1440)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47mmv"]
+size = Vector2(360, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4we3"]
+size = Vector2(300, 60)
+
+[node name="CombatGym" type="Node2D" unique_id=951946178]
+script = ExtResource("1_71rm2")
+room_id = &"combat_gym"
+display_name = "Combat Gym"
+camera_limits = Rect2i(0, 0, 2560, 1440)
+
+[node name="Geometry" type="Node2D" parent="." unique_id=1408519905]
+
+[node name="Floor" type="StaticBody2D" parent="Geometry" unique_id=792259275]
+position = Vector2(1280, 1410)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Floor" unique_id=641079087]
+shape = SubResource("RectangleShape2D_3x0k7")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Floor" unique_id=58750614]
+offset_left = -1280.0
+offset_top = -30.0
+offset_right = 1280.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Ceiling" type="StaticBody2D" parent="Geometry" unique_id=1988683170]
+position = Vector2(1280, 30)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Ceiling" unique_id=1860535325]
+shape = SubResource("RectangleShape2D_kpk6a")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Ceiling" unique_id=917419820]
+offset_left = -1280.0
+offset_top = -30.0
+offset_right = 1280.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="WallLeft" type="StaticBody2D" parent="Geometry" unique_id=1046323603]
+position = Vector2(30, 720)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/WallLeft" unique_id=462341662]
+shape = SubResource("RectangleShape2D_u8rwj")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/WallLeft" unique_id=440535108]
+offset_left = -30.0
+offset_top = -720.0
+offset_right = 30.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="WallRight" type="StaticBody2D" parent="Geometry" unique_id=883568854]
+position = Vector2(2530, 720)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/WallRight" unique_id=2112156273]
+shape = SubResource("RectangleShape2D_st3ek")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/WallRight" unique_id=855838424]
+offset_left = -30.0
+offset_top = -720.0
+offset_right = 30.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="HighLedge" type="StaticBody2D" parent="Geometry" unique_id=39836569]
+position = Vector2(1360, 780)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/HighLedge" unique_id=1631978024]
+shape = SubResource("RectangleShape2D_47mmv")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/HighLedge" unique_id=1225619192]
+offset_left = -180.0
+offset_top = -30.0
+offset_right = 180.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.29411766, 0.33333334, 0.4392157, 1)
+
+[node name="FiringStep" type="StaticBody2D" parent="Geometry" unique_id=2023779663]
+position = Vector2(480, 1170)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/FiringStep" unique_id=1721717685]
+shape = SubResource("RectangleShape2D_h4we3")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/FiringStep" unique_id=1755152615]
+offset_left = -150.0
+offset_top = -30.0
+offset_right = 150.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.29411766, 0.33333334, 0.4392157, 1)
+
+[node name="Labels" type="Node2D" parent="." unique_id=1364540489]
+
+[node name="A·Baseline" type="Label" parent="Labels" unique_id=1796168732]
+offset_left = 520.0
+offset_top = 1180.0
+offset_right = 520.0
+offset_bottom = 1180.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "A · BASELINE
+DEF 0 · STAGGER 1"
+
+[node name="B·ArmourD" type="Label" parent="Labels" unique_id=674397004]
+offset_left = 980.0
+offset_top = 1180.0
+offset_right = 980.0
+offset_bottom = 1180.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "B · ARMOUR
+DEF 5 · FLOOR-1 IS SILENT"
+
+[node name="C·HeavySt" type="Label" parent="Labels" unique_id=301037814]
+offset_left = 1420.0
+offset_top = 1180.0
+offset_right = 1420.0
+offset_bottom = 1180.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "C · HEAVY
+STAGGER 12 · WRENCH ONLY FLINCHES"
+
+[node name="D·Contact" type="Label" parent="Labels" unique_id=1535278720]
+offset_left = 1900.0
+offset_top = 1180.0
+offset_right = 1900.0
+offset_bottom = 1180.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "D · CONTACT
+HALF POWER · TESTS I-FRAMES"
+
+[node name="E·Elevated" type="Label" parent="Labels" unique_id=1780002875]
+offset_left = 1120.0
+offset_top = 640.0
+offset_right = 1120.0
+offset_bottom = 640.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "E · ELEVATED
+AIM UP (W) OR DIAGONAL (W + A/D)"
+
+[node name="MeleeJ" type="Label" parent="Labels" unique_id=1752417192]
+offset_left = 760.0
+offset_top = 180.0
+offset_right = 760.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "MELEE  J        RANGED  K        DASH  SHIFT"
+
+[node name="MeleeHitsR" type="Label" parent="Labels" unique_id=2109258783]
+offset_left = 760.0
+offset_top = 240.0
+offset_right = 760.0
+offset_bottom = 240.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "MELEE HITS REFILL AMMO — WATCH THE COUNTER"
+
+[node name="Dummies" type="Node2D" parent="." unique_id=2018851517]
+
+[node name="Baseline" type="CharacterBody2D" parent="Dummies" unique_id=1294925352 instance=ExtResource("2_csucw")]
+position = Vector2(640, 1380)
+collision_layer = 16
+floor_snap_length = 16.0
+script = ExtResource("3_tuf57")
+
+[node name="Armoured" type="CharacterBody2D" parent="Dummies" unique_id=1304357155 instance=ExtResource("2_csucw")]
+position = Vector2(1120, 1380)
+collision_layer = 16
+floor_snap_length = 16.0
+script = ExtResource("3_tuf57")
+defense = 5
+
+[node name="Heavy" type="CharacterBody2D" parent="Dummies" unique_id=344918008 instance=ExtResource("2_csucw")]
+position = Vector2(1600, 1380)
+collision_layer = 16
+floor_snap_length = 16.0
+script = ExtResource("3_tuf57")
+max_hp = 60
+stagger_threshold = 12
+
+[node name="Contact" type="CharacterBody2D" parent="Dummies" unique_id=114274885 instance=ExtResource("2_csucw")]
+position = Vector2(2080, 1380)
+collision_layer = 16
+floor_snap_length = 16.0
+script = ExtResource("3_tuf57")
+hurts_on_contact = true
+
+[node name="Elevated" type="CharacterBody2D" parent="Dummies" unique_id=515877689 instance=ExtResource("2_csucw")]
+position = Vector2(1360, 750)
+collision_layer = 16
+floor_snap_length = 16.0
+script = ExtResource("3_tuf57")
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=576424039]
+position = Vector2(240, 1380)
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1869285296 instance=ExtResource("4_jfajp")]
+position = Vector2(240, 1380)
+collision_layer = 2
+floor_snap_length = 16.0
+script = ExtResource("5_j1jpn")
+config = ExtResource("6_gvkcr")
+combat_config = ExtResource("7_edwkv")
+melee_weapon = ExtResource("8_ik1qh")
+ranged_weapon = ExtResource("9_ouo3u")
+
+[node name="DebugHud" type="CanvasLayer" parent="." unique_id=1519662248]
+script = ExtResource("10_gkcwm")

@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://src/enemies/training_dummy/training_dummy.gd" id="1_dummy"]
+[ext_resource type="Script" path="res://src/combat/health.gd" id="2_health"]
+[ext_resource type="Script" path="res://src/combat/hurtbox.gd" id="3_hurtbox"]
+[ext_resource type="Script" path="res://src/combat/hitbox.gd" id="4_hitbox"]
+[ext_resource type="Resource" path="res://src/combat/combat_config.tres" id="5_combat"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dummy_body"]
+size = Vector2(52, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dummy_hurt"]
+size = Vector2(56, 100)
+
+[node name="TrainingDummy" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 1
+floor_snap_length = 16.0
+script = ExtResource("1_dummy")
+return_speed = 90.0
+respawn_delay = 1.5
+hurts_on_contact = false
+attack_power = 6.0
+show_damage_numbers = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -48)
+shape = SubResource("RectangleShape2D_dummy_body")
+
+[node name="Visual" type="ColorRect" parent="."]
+offset_left = -26.0
+offset_top = -96.0
+offset_right = 26.0
+mouse_filter = 2
+color = Color(0.55, 0.42, 0.32, 1)
+
+[node name="HpLabel" type="Label" parent="."]
+offset_left = -60.0
+offset_top = -140.0
+offset_right = 60.0
+offset_bottom = -110.0
+mouse_filter = 2
+theme_override_font_sizes/font_size = 22
+text = "0 / 0"
+horizontal_alignment = 1
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_health")
+max_hp = 40
+defense = 0
+stagger_threshold = 1
+iframe_time = 0.0
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("3_hurtbox")
+config = ExtResource("5_combat")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -50)
+shape = SubResource("RectangleShape2D_dummy_hurt")
+
+[node name="ContactHitbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 8
+monitoring = false
+monitorable = false
+script = ExtResource("4_hitbox")
+continuous = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHitbox"]
+position = Vector2(0, -50)
+shape = SubResource("RectangleShape2D_dummy_hurt")
