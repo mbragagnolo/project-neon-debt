@@ -37,12 +37,14 @@ The slice succeeds if a stranger playing 30–45 minutes says:
 ### Slice content budget
 
 - **1 district** ("The Stacks" — vertical low-income housing towers): ~25–35 connected rooms/screens
-- **Starting kit:** run, jump (coyote time + jump buffer), ground dash, wall slide, melee weapon
+- **Starting kit:** run, jump (coyote time + jump buffer), ground dash, wall slide, melee weapon, and **Firewall** on a small starting RAM pool — the factory-installed hack, single-slot (no quickslot UI needed yet). The corp protects its collateral; every cast is using the leash.
 - **Ability progression (in acquisition order):**
   1. **Mag-Hook** (gadget, first few screens) → unlocks **wall jump**. First taste of ability-gating, minutes in.
   2. **Ranged weapon** (early pickup or vendor)
-  3. **Cyberdeck + Breach** (mid-slice) → hacks come online; Breach opens locked doors and stuns mechs. Overload and Static Wall found/bought after.
-  4. **Sidewinder implant** (late) → unlocks **air dash**. Found as an item, must be *installed* at the ripperdoc (the vendor) — makes the hub visit matter and sells the fiction: gadgets are carried, implants are surgery.
+  3. **Cyberdeck** (early-mid) → expands the RAM pool and unlocks the **quickslot**, so you can carry more than the one factory hack. The deck is the capacity upgrade, not the first hack.
+  4. **Overload** (found in the world, mid-early) → the first *offensive* program: the moment the player starts repurposing corporate property as a weapon.
+  5. **Breach** (the set-piece gate beat, before the district midpoint) → opens hack-locked doors and briefly stuns mechanical enemies. Acquisition order locked in [`docs/combat/hacks.md`](docs/combat/hacks.md).
+  6. **Sidewinder implant** (late) → unlocks **air dash**. Found as an item, must be *installed* at the ripperdoc (the vendor) — makes the hub visit matter and sells the fiction: gadgets are carried, implants are surgery.
 - **2–3 visible double-jump gates** — ledges the player can see but never reach in V1 (the metroidvania promise)
 - **3 regular enemy types** + 1 elite variant
 - **1 boss** at the slice's end
