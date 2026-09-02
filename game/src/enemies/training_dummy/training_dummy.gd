@@ -55,6 +55,7 @@ var _anchor: Vector2 = Vector2.ZERO
 var _respawn_timer: float = 0.0
 var _gravity: float = 0.0
 var _config: CombatConfig
+var _base_color: Color = Color.WHITE
 
 
 func _ready() -> void:
@@ -68,6 +69,8 @@ func _ready() -> void:
 	# Health._ready has already run (children first), so its hp is sized to the
 	# scene default; restore it against the numbers we just set.
 	health.restore()
+
+	_base_color = _visual.color
 
 	health.damaged.connect(_on_damaged)
 	health.died.connect(_on_died)
@@ -124,8 +127,21 @@ func _tick_respawn(delta: float) -> void:
 
 func _on_damaged(amount: int, _attack: Attack) -> void:
 	_refresh_label()
+	_flash()
 	if show_damage_numbers:
 		_spawn_damage_number(amount)
+
+
+## Confirmation that the hit connected, on the body that took it.
+##
+## Tweened through `color` rather than `modulate`, because `modulate` is
+## already carrying the death dim and the two would fight over the same
+## channel — the corpse would flicker back to full brightness every time a
+## stray projectile landed on it.
+func _flash() -> void:
+	var tween := create_tween()
+	_visual.color = Color(1.0, 1.0, 1.0)
+	tween.tween_property(_visual, "color", _base_color, 0.12)
 
 
 func _on_died() -> void:

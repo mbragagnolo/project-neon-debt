@@ -53,6 +53,7 @@ var _melee_cooldown_timer: float = 0.0
 var _ranged_cooldown_timer: float = 0.0
 var _air_dash_used: bool = false
 var _melee_shape: RectangleShape2D
+var _swing_visual: ColorRect
 var _spawn_position: Vector2 = Vector2.ZERO
 
 
@@ -290,6 +291,14 @@ func _setup_combat() -> void:
 	collider.shape = _melee_shape
 	melee_hitbox.add_child(collider)
 
+	# The swing tell lives inside the hitbox, so it inherits the box's position
+	# and facing mirror for free and cannot drift away from what it is drawing.
+	_swing_visual = ColorRect.new()
+	_swing_visual.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_swing_visual.z_index = 5
+	_swing_visual.visible = false
+	melee_hitbox.add_child(_swing_visual)
+
 	ammo = max_ammo
 	Events.ammo_changed.emit(ammo, max_ammo)
 	Events.hp_changed.emit(health.hp, health.max_hp)
@@ -337,9 +346,31 @@ func start_melee() -> void:
 	melee_hitbox.activate(attack)
 	_melee_cooldown_timer = melee_weapon.cooldown()
 
+	# Drawn at the hitbox's exact size, not an approximation of it. In a
+	# tuning lab the tell has to *be* the truth: a swing arc that is bigger
+	# than its hitbox teaches the player a reach they do not have, and every
+	# whiff after that reads as the game dropping inputs.
+	_swing_visual.size = melee_weapon.hitbox_size
+	_swing_visual.position = -melee_weapon.hitbox_size * 0.5
+	_swing_visual.color = melee_weapon.swing_color
+	_swing_visual.modulate.a = 1.0
+	_swing_visual.visible = true
+
 
 func end_melee() -> void:
 	melee_hitbox.deactivate()
+	_swing_visual.visible = false
+
+
+## Solid while the box is armed, a fading ghost through the recovery tail.
+##
+## The two phases are drawn differently on purpose: the solid frames are the
+## ones that can hit, and the ghost is the window the Scav's overcommit lesson
+## teaches players to punish. One shape, both halves of the swing, no lie in
+## either direction.
+func set_swing_alpha(alpha: float) -> void:
+	if _swing_visual != null:
+		_swing_visual.modulate.a = alpha
 
 
 func can_fire_ranged() -> bool:

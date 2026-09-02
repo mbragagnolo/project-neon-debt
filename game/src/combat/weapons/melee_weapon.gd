@@ -18,6 +18,10 @@ extends Weapon
 ## Seconds the hitbox stays armed. Shorter than `commit_time` so the tail of
 ## the swing is recovery you can be punished during.
 @export var active_time: float = 0.08
+## Colour of the swing tell. Per weapon rather than global: the maul and the
+## blade should not read the same, and the tell is the only thing on screen
+## that says which tool is equipped.
+@export var swing_color: Color = Color(0.85, 0.95, 1.0, 0.75)
 ## Seconds the player is locked into the swing. DESIGN.md §3.2 budgets ~0.2s
 ## max: long enough for the Scav's bait-and-punish lesson to have stakes,
 ## short enough that it never reads as input lag.

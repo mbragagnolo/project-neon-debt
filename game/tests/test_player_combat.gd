@@ -272,3 +272,57 @@ func test_knockback_pushes_away_from_the_attacker_and_stays_horizontal() -> void
 	# Never radial: upward knockback would pop bodies into pits, and upward is
 	# where this game's platforming lives.
 	assert_eq(dummy.velocity.y, 0.0)
+
+
+# --- The swing tell ---------------------------------------------------------
+
+## The tell is found rather than exposed: the player does not need a public
+## accessor just so a test can look at it.
+func _swing_tell() -> ColorRect:
+	for child: Node in _player.melee_hitbox.get_children():
+		if child is ColorRect:
+			return child as ColorRect
+	return null
+
+
+func test_the_swing_is_invisible_until_it_swings() -> void:
+	await _arena()
+	var tell := _swing_tell()
+	assert_not_null(tell, "melee has no visual tell at all")
+	assert_false(tell.visible)
+
+
+func test_the_tell_is_exactly_the_size_of_the_hitbox() -> void:
+	await _arena()
+	await _tap("attack_melee")
+	await _settle(2)
+
+	# In a tuning lab the tell has to *be* the truth. A swing arc drawn bigger
+	# than its hitbox teaches a reach the player does not have, and every whiff
+	# after that reads as the game dropping inputs.
+	assert_eq(_swing_tell().size, _wrench.hitbox_size)
+
+
+func test_the_tell_appears_on_the_swing_and_clears_when_it_ends() -> void:
+	await _arena()
+	await _tap("attack_melee")
+	await _settle(2)
+	assert_true(_swing_tell().visible, "nothing was drawn for the swing")
+
+	# commit_time is 0.16s ~ 10 physics frames; 40 clears it comfortably.
+	await _settle(40)
+	assert_false(_swing_tell().visible, "the tell outlived the swing")
+	assert_eq(_player.state_name(), &"Idle")
+
+
+func test_the_tell_mirrors_with_facing() -> void:
+	await _arena()
+	Input.action_press("move_left")
+	await _settle(4)
+	await _tap("attack_melee")
+	await _settle(2)
+
+	# The box is placed by facing, and the tell is its child, so it cannot
+	# drift away from what it is drawing.
+	assert_lt(_player.melee_hitbox.position.x, 0.0)
+	assert_eq(_player.facing, -1)
