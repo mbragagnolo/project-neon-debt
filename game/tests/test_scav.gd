@@ -223,3 +223,46 @@ func test_the_lunge_hits_harder_than_brushing_past() -> void:
 	var contact: float = _config.contact_power(combat.contact_damage_mult)
 	assert_lt(contact, _config.attack_power)
 	assert_almost_eq(contact, _config.attack_power * 0.5, 0.001, "contact is half power")
+
+
+# --- Knockback travel -------------------------------------------------------
+
+## Peak displacement from one impulse, starting from rest.
+##
+## Peak rather than final, because the training dummy walks back to its anchor
+## once it slows below its return speed — measuring where it ends up conflates
+## "how far the hit threw it" with "how far it has already recovered", which
+## is not what a player reads.
+func _peak_travel(body: Node2D, knockback: float, frames: int) -> float:
+	var hurtbox: Hurtbox = body.get_node("Hurtbox")
+	body.velocity = Vector2.ZERO
+	var start_x: float = body.global_position.x
+	hurtbox.receive(
+		Attack.make(null, body.global_position - Vector2(200.0, 0.0), 8.0, knockback)
+	)
+	var peak: float = 0.0
+	for _i: int in frames:
+		await get_tree().physics_frame
+		peak = maxf(peak, absf(body.global_position.x - start_x))
+	return peak
+
+
+func test_a_staggered_scav_is_not_thrown_further_than_the_dummy() -> void:
+	await _arena(2000.0)
+	var dummy := TestArena.dummy(_root, Vector2(4000.0, FLOOR_TOP), 200, 0, 1)
+	await _settle(3)
+
+	var scav_travel: float = await _peak_travel(_scav, _wrench.knockback, 16)
+	var dummy_travel: float = await _peak_travel(dummy, _wrench.knockback, 16)
+
+	# The knockback numbers were tuned by feel against the training dummy. A
+	# staggered enemy with no friction was the only body in the game that did
+	# not decay the impulse: it slid for the whole stagger and read as the
+	# weapon being wildly overpowered rather than as the enemy being slippery.
+	assert_almost_eq(
+		scav_travel,
+		dummy_travel,
+		18.0,
+		"a Scav is thrown %.0fpx where the dummy goes %.0fpx from the same hit"
+		% [scav_travel, dummy_travel]
+	)

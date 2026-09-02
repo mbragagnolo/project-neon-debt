@@ -62,11 +62,10 @@ static func dummy(
 ## A Scav at `at` (origin is at the feet).
 static func scav(parent: Node, at: Vector2) -> Enemy:
 	var instance: Enemy = SCAV_SCENE.instantiate()
-	parent.add_child(instance)
+	# Positioned before entering the tree, like `Encounter` does: `home` is
+	# captured in `_ready`, so the order is load-bearing rather than stylistic.
 	instance.position = at
-	# `home` is captured in _ready, before the position above lands, so a Scav
-	# built this way would otherwise patrol around the origin.
-	instance.home = instance.global_position
+	parent.add_child(instance)
 	return instance
 
 

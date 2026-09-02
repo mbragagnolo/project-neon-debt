@@ -30,6 +30,7 @@ attack_offset = Vector2(42, -40)
 lunge_knockback = 260.0
 stagger_time = 0.3
 death_time = 0.45
+knockback_friction = 1200.0
 color_idle = Color(0.72, 0.36, 0.33, 1)
 color_chase = Color(0.86, 0.42, 0.36, 1)
 color_windup = Color(1, 0.85, 0.3, 1)

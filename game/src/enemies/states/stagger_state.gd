@@ -3,9 +3,14 @@ extends EnemyState
 ## Interrupted. Entered from anywhere by `Health.staggered`, which fires when a
 ## single hit meets `stagger_threshold`.
 ##
-## Deliberately does not brake: the knockback impulse the pipeline just applied
-## is allowed to carry the body, because being visibly moved is most of what
-## makes a hit feel landed.
+## Bleeds the knockback off at `knockback_friction` rather than holding it.
+##
+## This started out frictionless, on the theory that letting the impulse carry
+## makes a hit feel landed. In the hand it did the opposite: every other body in
+## the game decays knockback, so a staggered enemy slid roughly three times
+## further than the training dummy the numbers were tuned against, and the read
+## was \"this weapon is absurdly overpowered\" rather than \"this enemy has no
+## friction\". The impulse is still visible — it just stops travelling.
 ##
 ## `stagger_time` must stay under the player's fastest weapon cooldown, or
 ## melee becomes a stunlock and the spacing lesson evaporates — there is a test
@@ -24,6 +29,7 @@ func enter(_previous: StringName) -> void:
 
 func physics_update(delta: float) -> StringName:
 	enemy.apply_gravity(delta)
+	enemy.brake(delta, enemy.config.knockback_friction)
 
 	_remaining -= delta
 	if _remaining > 0.0:

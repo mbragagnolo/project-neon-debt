@@ -86,6 +86,12 @@ extends Resource
 ## the player's fastest weapon cooldown or melee becomes a stunlock.
 @export var stagger_time: float = 0.3
 @export var death_time: float = 0.45
+## px/s² bleeding a knockback impulse off during stagger. Without it a staggered
+## body is the only thing in the game with no friction, and it slides several
+## times further than the training dummy the knockback numbers were tuned
+## against — which reads as the hit being wildly overpowered rather than as the
+## enemy being frictionless.
+@export var knockback_friction: float = 1200.0
 
 @export_group("Greybox tells")
 ## Colour per state. These are the entire read until there is art: the player

@@ -61,8 +61,14 @@ func spawn_all() -> void:
 		if not (marker is Marker2D):
 			continue
 		var enemy: Node = enemy_scene.instantiate()
+		# Positioned *before* it enters the tree. `add_child` runs `_ready`,
+		# which is where an enemy captures `home` — so placing it afterwards
+		# leaves everything measured from home broken at once: the patrol beat,
+		# and fatally the aggro leash, which then kicks the enemy straight back
+		# out of Chase on the frame it enters. The enemy and the marker are both
+		# our children, so a local position is the same placement.
+		(enemy as Node2D).position = (marker as Marker2D).position
 		add_child(enemy)
-		(enemy as Node2D).global_position = (marker as Marker2D).global_position
 		_alive_ids.append(enemy.get_instance_id())
 
 	_spawned_once = not _alive_ids.is_empty()

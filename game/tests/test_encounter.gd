@@ -34,7 +34,10 @@ func _build(count: int, respawn_delay: float = 0.0) -> void:
 	for i: int in count:
 		var marker := Marker2D.new()
 		marker.name = "Spawn%d" % (i + 1)
-		marker.position = Vector2(600.0 + 500.0 * float(i), FLOOR_TOP)
+		# Far from the encounter origin, matching the real arena. Spawning near
+		# the origin hides the whole class of home-relative bug, because the
+		# wrong answer is still inside the leash.
+		marker.position = Vector2(2900.0 + 500.0 * float(i), FLOOR_TOP)
 		_encounter.add_child(marker)
 	_root.add_child(_encounter)
 	await wait_frames(3)
@@ -122,3 +125,39 @@ func test_a_zero_delay_encounter_stays_cleared() -> void:
 	await _settle(45)
 
 	assert_eq(_encounter.alive_count(), 0, "a shipped encounter respawned itself")
+
+
+## The spawn ordering bug. `add_child` runs the enemy's `_ready`, which is
+## where `home` is captured — so positioning it afterwards left every enemy
+## believing home was the encounter's origin. Everything measured from home
+## then broke at once: the patrol beat, and fatally the aggro leash, which
+## kicked the enemy straight back out of Chase every frame it entered.
+func test_spawned_enemies_know_where_home_is() -> void:
+	await _build(2)
+	for enemy in _living_enemies():
+		assert_almost_eq(
+			enemy.home.x,
+			enemy.global_position.x,
+			8.0,
+			"%s spawned believing home was somewhere else" % enemy.name
+		)
+
+
+func test_a_spawned_enemy_can_actually_reach_its_attack() -> void:
+	await _build(1)
+	var scav: Enemy = _living_enemies()[0]
+
+	# Stand next to it. A Scav that cannot leave Chase never winds up, never
+	# changes colour, and never attacks — which is exactly what a broken leash
+	# looks like from the player side.
+	var player := TestArena.player(_root, Vector2(scav.global_position.x - 120.0, FLOOR_TOP))
+	await _settle(3)
+	player.global_position = Vector2(scav.global_position.x - 120.0, FLOOR_TOP)
+
+	var reached := false
+	for _i: int in 240:
+		if scav.state_name() == &"Windup":
+			reached = true
+			break
+		await get_tree().physics_frame
+	assert_true(reached, "a spawned Scav never got past Patrol")
