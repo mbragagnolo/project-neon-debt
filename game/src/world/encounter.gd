@@ -12,6 +12,12 @@ extends Node2D
 ## `GameState` (a boss stays dead, a cleared room stays cleared), which is a
 ## different job from "put the fight back so it can be felt again" — so this
 ## deliberately knows nothing about persistence.
+##
+## **Tracks instance ids, not nodes.** A dead enemy `queue_free`s itself, and a
+## freed node left in an `Array[Node]` is a dangling `Object` that no longer
+## satisfies a typed `Node` parameter — so every read of the list threw from
+## the first death onward. An id is a plain int: it cannot dangle, and
+## `is_instance_id_valid` answers the only question this class actually has.
 
 ## Emitted when the last enemy of the group dies.
 signal cleared()
@@ -21,7 +27,7 @@ signal cleared()
 ## is what any shipped room will want.
 @export var respawn_delay: float = 2.5
 
-var _alive: Array[Node] = []
+var _alive_ids: Array[int] = []
 var _respawn_timer: float = 0.0
 var _spawned_once: bool = false
 
@@ -31,8 +37,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	_alive = _alive.filter(func(node: Node) -> bool: return is_instance_valid(node))
-	if not _alive.is_empty():
+	if alive_count() > 0:
 		return
 
 	if _spawned_once:
@@ -51,18 +56,25 @@ func spawn_all() -> void:
 		push_warning("Encounter '%s' has no enemy scene." % name)
 		return
 
+	_alive_ids.clear()
 	for marker: Node in get_children():
 		if not (marker is Marker2D):
 			continue
 		var enemy: Node = enemy_scene.instantiate()
 		add_child(enemy)
 		(enemy as Node2D).global_position = (marker as Marker2D).global_position
-		_alive.append(enemy)
+		_alive_ids.append(enemy.get_instance_id())
 
-	_spawned_once = not _alive.is_empty()
+	_spawned_once = not _alive_ids.is_empty()
 	_respawn_timer = respawn_delay
 
 
+## Living members of the group, pruning any that have been freed since the last
+## call. Ints all the way through, so nothing here can hold a dead reference.
 func alive_count() -> int:
-	_alive = _alive.filter(func(node: Node) -> bool: return is_instance_valid(node))
-	return _alive.size()
+	var living: Array[int] = []
+	for id: int in _alive_ids:
+		if is_instance_id_valid(id):
+			living.append(id)
+	_alive_ids = living
+	return _alive_ids.size()
