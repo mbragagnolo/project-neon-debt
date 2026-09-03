@@ -218,10 +218,20 @@ and would quietly obsolete the drone's whole vertical-threat lesson.
 
 ## Open sections
 
-1. All `TUNE` constants above — hitstop frames, the heavy threshold,
-   knockback magnitudes, i-frame duration, `ammo_on_hit`. These are M2's
-   own tuning pass; the exit test ("fighting 3 Scavs is legible and
-   satisfying") is what closes them.
-2. Whether floor-1 hits should also suppress knockback and hit SFX, not just
+1. ~~All `TUNE` constants above~~ — **closed in M2's tuning pass**, except the
+   heavy threshold below. Hitstop frames, knockback magnitudes and
+   `ammo_on_hit` were kept at their first values after playtest; i-frame
+   duration went to 0.85s, which a three-Scav fight forced and a duel never
+   would have.
+2. **`hitstop_heavy_threshold` cannot be closed in M2 and is deferred to M6.**
+   The hardest hit in the slice is the wrench at 8 (zipgun 6, Scav 6), so
+   nothing reaches 12, `hitstop_heavy_frames` never fires, and every hit in
+   the game takes the light path. There is no way to feel the number that
+   isn't guessing. M6 brings the ≥12 weapons (maul, rivet gun) and the Riot
+   unit's threshold-12 armour, and the branch becomes reachable. Lowering it
+   now to make it fire would only encode "wrench = heavy, everything else =
+   light" — a split between the slice's two weapons, not the weight
+   distinction the constant exists for.
+3. Whether floor-1 hits should also suppress knockback and hit SFX, not just
    hitstop. Deferred until there is an armored enemy to feel it against —
    the Riot unit is M6.
