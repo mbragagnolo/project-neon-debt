@@ -4,6 +4,9 @@ extends GutTest
 ## reverted, a hitbox that masks the wrong layer, an "elevated" dummy that
 ## turns out to be reachable by jumping.
 
+## M2's lab, kept and still tested after M3 took over the main scene: the
+## stations answer one pipeline question each, and none of those questions
+## stopped mattering.
 const GYM_PATH := "res://rooms/combat_gym.tscn"
 const LAYER_WORLD := 1 << 0
 const LAYER_PLAYER_HURTBOX := 1 << 3
@@ -16,13 +19,6 @@ var _gym: Node
 
 func before_each() -> void:
 	_gym = autofree(load(GYM_PATH).instantiate())
-
-
-func test_the_combat_gym_is_the_main_scene() -> void:
-	# The main scene tracks the active milestone: M1 shipped the movement gym
-	# here, M2 ships this one. Pressing play should always land on the thing
-	# currently being judged by feel.
-	assert_eq(ProjectSettings.get_setting("application/run/main_scene"), GYM_PATH)
 
 
 func test_it_instances_with_a_player_and_the_five_stations() -> void:

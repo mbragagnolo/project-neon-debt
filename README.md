@@ -4,10 +4,12 @@ Cyberpunk 2D metroidvania with Castlevania-style RPG elements, built in
 **Godot 4.7** (GDScript). See [DESIGN.md](DESIGN.md) for the full vertical-slice
 design and the milestone plan.
 
-**Status: M1 (Movement feel) ready to play.** The controller is in and tested;
-whether it is *fun* is the exit test, and that one is Marcos's to call. Run the
-gym and see — DESIGN.md is explicit that M2 does not start until moving around
-an empty room is enjoyable on its own.
+**Status: M3 (RPG layer) ready to play.** Stats, levels, the ten items,
+inventory and equip screen, pickups and the level-up moment are in and tested.
+The exit test — "equipping better gear visibly changes combat math; HUD shows
+it" — is Marcos's to call: open a chest in the RPG gym, swap a weapon, hit the
+same dummy and watch the number. The two earlier gyms are still there and
+still tested; each milestone's lab outlives its milestone.
 
 ---
 
@@ -25,7 +27,7 @@ downloading and CI runs offline.
 ```bash
 cd game
 
-# Play it (opens the M1 movement gym)
+# Play it (opens the M3 gear-and-levels gym)
 godot --path .
 
 # Boot headless (what CI does — must log no errors)
