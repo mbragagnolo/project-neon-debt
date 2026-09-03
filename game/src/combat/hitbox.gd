@@ -64,6 +64,12 @@ func _physics_process(_delta: float) -> void:
 	if continuous:
 		_already_hit.clear()
 	for area: Area2D in get_overlapping_areas():
+		# The overlap list is a snapshot, and a single hit can disarm the box
+		# midway through it: a projectile expires on its first resolved
+		# contact and takes its attack with it. Re-ask every step instead of
+		# trusting the check above for the whole sweep.
+		if not _active or attack == null:
+			return
 		if area is Hurtbox:
 			_try_hit(area as Hurtbox)
 

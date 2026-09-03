@@ -165,6 +165,29 @@ func test_a_shot_damages_a_target_it_reaches() -> void:
 	assert_eq(dummy.health.hp, 40 - int(zipgun.power))
 
 
+## Two hurtboxes can land in one shot's overlap list on a single frame — two
+## Scavs crowding the same spot is all it takes in a real fight. The shot ends
+## on its first resolved contact, so the second target is swept against a box
+## whose attack is already gone; the sweep has to notice.
+func test_a_shot_into_two_overlapping_targets_hits_one_and_ends_there() -> void:
+	await _arena()
+	var first := TestArena.dummy(_root, Vector2(500.0, FLOOR_TOP))
+	var second := TestArena.dummy(_root, Vector2(500.0, FLOOR_TOP))
+	await _settle(3)
+
+	await _tap("attack_ranged")
+	await _settle(40)
+
+	# Two assertions in one: no pierce (exactly one of the pair is hurt), and
+	# no error on the landing frame — GUT fails a test on an unexpected script
+	# error, which is the symptom itself.
+	var hurt: int = 0
+	for dummy: TrainingDummy in [first, second] as Array[TrainingDummy]:
+		if dummy.health.hp < 40:
+			hurt += 1
+	assert_eq(hurt, 1, "the shot should stop at the first target it resolves")
+
+
 # --- Eight-way aim ----------------------------------------------------------
 
 func test_neutral_aim_follows_facing() -> void:
