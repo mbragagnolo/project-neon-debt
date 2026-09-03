@@ -15,7 +15,10 @@ signal player_died()
 # --- Combat (M2) ------------------------------------------------------------
 ## Emitted once per resolved hit, after defense is applied.
 signal damage_dealt(target: Node, amount: int, source: Node)
-signal enemy_died(enemy: Node, xp_reward: int)
+## Both rewards ride the death event rather than being fetched off the corpse:
+## the payout is resolved once, by the thing that knows it died, and nothing
+## downstream has to reach into an enemy's config to be paid.
+signal enemy_died(enemy: Node, xp_reward: int, credit_reward: int)
 signal hitstop_requested(frames: int)
 signal camera_shake_requested(strength: float, duration: float)
 
