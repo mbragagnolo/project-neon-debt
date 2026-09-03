@@ -250,8 +250,11 @@ func test_contact_damage_resumes_once_the_window_closes() -> void:
 	await _settle(20)
 
 	var after_first: int = _player.health.hp
-	# The window is 0.7s ≈ 42 physics frames; 70 clears it comfortably.
-	await _settle(70)
+	# Derived, not typed in: this window is an open tuning number, and a
+	# hand-written frame count goes quietly wrong the next time it moves —
+	# the test would still pass, just against the wrong question.
+	var window: int = int(_config.player_iframe_time * Engine.physics_ticks_per_second) + 20
+	await _settle(window)
 
 	assert_lt(_player.health.hp, after_first, "the window never reopened")
 
