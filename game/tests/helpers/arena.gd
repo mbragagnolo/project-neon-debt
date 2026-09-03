@@ -7,6 +7,8 @@ extends RefCounted
 ## they are being tuned. So they build their own.
 
 const PLAYER_SCENE := preload("res://src/player/player.tscn")
+const DUMMY_SCENE := preload("res://src/enemies/training_dummy/training_dummy.tscn")
+const SCAV_SCENE := preload("res://src/enemies/scav/scav.tscn")
 
 
 ## A static box. `center` and `size` are in pixels, like everything else.
@@ -32,8 +34,52 @@ static func player(parent: Node, at: Vector2) -> Player:
 	return instance
 
 
+## A training dummy at `at` (origin is at the feet), configured with the
+## reduced enemy stat block.
+static func dummy(
+	parent: Node,
+	at: Vector2,
+	max_hp: int = 40,
+	defense: int = 0,
+	stagger_threshold: int = 1,
+	hurts_on_contact: bool = false
+) -> TrainingDummy:
+	var instance: TrainingDummy = DUMMY_SCENE.instantiate()
+	instance.max_hp = max_hp
+	instance.defense = defense
+	instance.stagger_threshold = stagger_threshold
+	# Set before the dummy enters the tree: the contact box is armed in
+	# `_ready`, so flipping this afterwards would be silently ignored.
+	instance.hurts_on_contact = hurts_on_contact
+	# Nothing should stand back up mid-assertion.
+	instance.respawn_delay = 0.0
+	instance.show_damage_numbers = false
+	parent.add_child(instance)
+	instance.position = at
+	return instance
+
+
+## A Scav at `at` (origin is at the feet).
+static func scav(parent: Node, at: Vector2) -> Enemy:
+	var instance: Enemy = SCAV_SCENE.instantiate()
+	# Positioned before entering the tree, like `Encounter` does: `home` is
+	# captured in `_ready`, so the order is load-bearing rather than stylistic.
+	instance.position = at
+	parent.add_child(instance)
+	return instance
+
+
 ## Every action the controller reads, so a test can leave no input held.
 static func release_all_input() -> void:
-	for action: String in ["move_left", "move_right", "move_up", "move_down", "jump", "dash"]:
+	for action: String in [
+		"move_left",
+		"move_right",
+		"move_up",
+		"move_down",
+		"jump",
+		"dash",
+		"attack_melee",
+		"attack_ranged",
+	]:
 		if Input.is_action_pressed(action):
 			Input.action_release(action)

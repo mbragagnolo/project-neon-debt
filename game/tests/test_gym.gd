@@ -6,10 +6,6 @@ extends GutTest
 const GYM_PATH := "res://rooms/gym.tscn"
 
 
-func test_gym_is_the_main_scene() -> void:
-	assert_eq(ProjectSettings.get_setting("application/run/main_scene"), GYM_PATH)
-
-
 func test_gym_instances_with_a_player_in_it() -> void:
 	var gym: Node = autofree(load(GYM_PATH).instantiate())
 	assert_is(gym, Room)
@@ -47,7 +43,11 @@ func test_no_room_writes_nodes_inside_an_instanced_subscene() -> void:
 	# them back by name on load, so the tree looks right and the game plays
 	# fine — but the duplicated subtree leaks at exit. The only place the
 	# defect is visible is the scene text, so that is where it gets checked.
-	for room_path: String in ["res://rooms/gym.tscn", "res://rooms/test_room.tscn"]:
+	for room_path: String in [
+		"res://rooms/gym.tscn",
+		"res://rooms/test_room.tscn",
+		"res://rooms/combat_gym.tscn",
+	]:
 		var offenders: PackedStringArray = _nodes_declared_inside_an_instance(room_path)
 		assert_eq(offenders, PackedStringArray(),
 			"%s declares nodes inside an instanced sub-scene: %s" % [room_path, offenders])

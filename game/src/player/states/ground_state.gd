@@ -14,6 +14,9 @@ func physics_update(delta: float) -> StringName:
 		player.start_jump()
 		return &"Air"
 
+	if player.wants_melee() and player.can_melee():
+		return &"MeleeAttack"
+
 	if player.wants_dash() and player.can_dash():
 		return &"Dash"
 

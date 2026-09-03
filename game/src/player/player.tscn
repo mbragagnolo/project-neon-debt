@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_player"]
 [ext_resource type="Resource" path="res://src/player/movement_config.tres" id="2_config"]
@@ -8,9 +8,19 @@
 [ext_resource type="Script" path="res://src/player/states/air_state.gd" id="6_air"]
 [ext_resource type="Script" path="res://src/player/states/dash_state.gd" id="7_dash"]
 [ext_resource type="Script" path="res://src/player/states/wall_slide_state.gd" id="8_wall"]
+[ext_resource type="Script" path="res://src/player/states/melee_attack_state.gd" id="9_melee_state"]
+[ext_resource type="Resource" path="res://src/combat/combat_config.tres" id="10_combat"]
+[ext_resource type="Resource" path="res://src/combat/weapons/wrench.tres" id="11_wrench"]
+[ext_resource type="Resource" path="res://src/combat/weapons/zipgun.tres" id="12_zipgun"]
+[ext_resource type="Script" path="res://src/combat/health.gd" id="13_health"]
+[ext_resource type="Script" path="res://src/combat/hurtbox.gd" id="14_hurtbox"]
+[ext_resource type="Script" path="res://src/combat/hitbox.gd" id="15_hitbox"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
 size = Vector2(48, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
+size = Vector2(44, 84)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -18,6 +28,10 @@ collision_mask = 1
 floor_snap_length = 16.0
 script = ExtResource("1_player")
 config = ExtResource("2_config")
+combat_config = ExtResource("10_combat")
+melee_weapon = ExtResource("11_wrench")
+ranged_weapon = ExtResource("12_zipgun")
+max_ammo = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -44)
@@ -45,6 +59,30 @@ position = Vector2(0, -44)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
+[node name="Health" type="Node" parent="."]
+script = ExtResource("13_health")
+max_hp = 40
+defense = 0
+stagger_threshold = 9999
+iframe_time = 0.7
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("14_hurtbox")
+config = ExtResource("10_combat")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -44)
+shape = SubResource("RectangleShape2D_hurt")
+
+[node name="MeleeHitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 64
+monitoring = false
+monitorable = false
+script = ExtResource("15_hitbox")
+
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_machine")
 
@@ -62,3 +100,6 @@ script = ExtResource("7_dash")
 
 [node name="WallSlide" type="Node" parent="StateMachine"]
 script = ExtResource("8_wall")
+
+[node name="MeleeAttack" type="Node" parent="StateMachine"]
+script = ExtResource("9_melee_state")

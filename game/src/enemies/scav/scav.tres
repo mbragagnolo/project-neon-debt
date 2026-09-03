@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="EnemyConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/enemies/enemy_config.gd" id="1_enemy_config"]
+
+[resource]
+script = ExtResource("1_enemy_config")
+display_name = "Scav"
+teaches = "Spacing. Bait the lunge, step in, punish the recovery. The first fight of the game."
+max_hp = 16
+attack_power = 6.0
+defense = 0
+stagger_threshold = 1
+tags = Array[StringName]([])
+xp_reward = 10
+credit_reward = 5
+patrol_speed = 90.0
+patrol_range = 170.0
+patrol_pause = 0.7
+detection_range = 460.0
+chase_speed = 235.0
+give_up_range = 820.0
+lunge_range = 125.0
+windup_time = 0.48
+lunge_speed = 660.0
+lunge_time = 0.2
+recover_time = 0.75
+lunge_cooldown = 0.55
+attack_size = Vector2(76, 76)
+attack_offset = Vector2(42, -40)
+lunge_knockback = 260.0
+stagger_time = 0.3
+death_time = 0.45
+knockback_friction = 1200.0
+color_idle = Color(0.72, 0.36, 0.33, 1)
+color_chase = Color(0.86, 0.42, 0.36, 1)
+color_windup = Color(1, 0.85, 0.3, 1)
+color_lunge = Color(1, 0.45, 0.25, 1)
+color_recover = Color(0.45, 0.4, 0.5, 1)
+color_stagger = Color(1, 1, 1, 1)

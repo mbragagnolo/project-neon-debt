@@ -37,7 +37,7 @@ still a felt upgrade. All three stay live: the flat-DEF heavy-hit bias
 
 | Slot in trio | Identity | dmg | atk speed | Notes |
 |---|---|---|---|---|
-| Balanced (starter) | **Pipe wrench** — steam-fitter's tool from the towers | 8 | 1.0/s | Chunky, instant-read silhouette |
+| Balanced (starter) | **Pipe wrench** — steam-fitter's tool from the towers | 8 | **1.6/s** | Chunky, instant-read silhouette. Speed playtested in M2 — see below |
 | Fast-light (found) | **Powered utility blade** — linesman's vibro-cutter for cable and drywall | 5 | 1.8/s | Best raw DPS; flat DEF eats it against armor |
 | Slow-heavy (found) | **Hydraulic breaker maul** — servo-assisted demolition tool for rebar and concrete | 18 | 0.5/s | Punches through Riot-unit-grade armor |
 
@@ -52,6 +52,31 @@ damage-per-energy.
 | Balanced (starter) | **Zipgun** — home-made pipe pistol | 6 | 1.5/s | 1 | Dependable, not exciting; the drone gets taught with it |
 | Fast-light (found) | **Modified nailgun** — construction tool, safety filed off | 3 | 4/s | 1 | Best DPS, worst damage-per-energy — sprays the pool away, and flat DEF eats each nail. Equal-cost on purpose: hungry, so its users close in to melee *more*, keeping the regen rhythm central |
 | Slow-heavy (found) | **Rivet gun** — industrial hull-riveter throwing hot slugs | 15 | 0.6/s | 3 | Big hits that shrug off DEF; projectile is visibly slower with a slight arc — a skill-shot, not a hitscan hose |
+
+### Melee speed, after the first M2 playtest
+
+The wrench was authored at 1.0/s and felt dead in the hand: one swing per
+second is 84% dead air, and no amount of visual feedback fixes a verb you can
+only use once a second. **1.6/s is the playtested value** and is what the
+`.tres` now carries.
+
+Two consequences, neither resolved yet because neither weapon exists:
+
+- **The trio's speed spread needs rescaling.** The axis was authored as
+  ratios against a 1.0 balanced weapon — fast ×1.8, slow ×0.5. Against 1.6
+  those become 2.9/s and 0.8/s if the spread is to be preserved; leaving the
+  blade at 1.8 would make it a rounding error away from the starter and
+  collapse the sidegrade into a straight upgrade. Set them when they are built
+  and can be felt, not now.
+- **Armour balance shifted with it.** DPS through DEF is
+  `(raw − DEF) × attacks_per_second`, so the wrench got 60% better against
+  the DEF-5 station too, not just faster. That is the intended second lever
+  (stats-and-curves.md) working as designed, but it means enemy DEF — already
+  scheduled to be set last — must be set against the *tuned* speeds.
+
+The interlock economy is unchanged: `ammo_on_hit` is per landed hit, so a Scav
+still funds the same 2–3 zipgun shots it always did. Only the rate at which
+you can collect it moved.
 
 V1 simplicities (deliberate): single projectiles, no spread, no pierce, no
 damage falloff; straight lines except the rivet's arc. Feel constraint for

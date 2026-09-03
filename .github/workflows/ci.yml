@@ -69,13 +69,23 @@ jobs:
         run: |
           set -euo pipefail
           status=0
-          timeout 240 godot --headless --path . \
-            -s addons/gut/gut_cmdln.gd -gconfig=.gutconfig.json || status=$?
+          output=$(timeout 240 godot --headless --path . \
+            -s addons/gut/gut_cmdln.gd -gconfig=.gutconfig.json 2>&1) || status=$?
+          echo "$output"
           # 124 is `timeout` killing it. GUT that cannot boot — an engine
           # upgrade, a broken addon — never reaches its own exit path, so this
           # distinguishes "the runner hung" from "a test failed".
           if [ "$status" -eq 124 ]; then
             echo "::error::the GUT runner hung and was killed after 4 minutes"
+            exit 1
+          fi
+          # A test file that fails to parse is SKIPPED, not failed: GUT prints
+          # "All tests passed" with the whole file missing from the run. Green
+          # with silently less coverage than yesterday is worse than red, and
+          # only the log says so.
+          if grep -qE "Parse Error|Failed to load script|Compile Error" <<< "$output"; then
+            echo "::error::a script failed to load — some tests never ran"
+            exit 1
           fi
           exit "$status"
 
