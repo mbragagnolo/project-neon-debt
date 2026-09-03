@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_player"]
 [ext_resource type="Resource" path="res://src/player/movement_config.tres" id="2_config"]
@@ -10,8 +10,6 @@
 [ext_resource type="Script" path="res://src/player/states/wall_slide_state.gd" id="8_wall"]
 [ext_resource type="Script" path="res://src/player/states/melee_attack_state.gd" id="9_melee_state"]
 [ext_resource type="Resource" path="res://src/combat/combat_config.tres" id="10_combat"]
-[ext_resource type="Resource" path="res://src/combat/weapons/wrench.tres" id="11_wrench"]
-[ext_resource type="Resource" path="res://src/combat/weapons/zipgun.tres" id="12_zipgun"]
 [ext_resource type="Script" path="res://src/combat/health.gd" id="13_health"]
 [ext_resource type="Script" path="res://src/combat/hurtbox.gd" id="14_hurtbox"]
 [ext_resource type="Script" path="res://src/combat/hitbox.gd" id="15_hitbox"]
@@ -29,8 +27,6 @@ floor_snap_length = 16.0
 script = ExtResource("1_player")
 config = ExtResource("2_config")
 combat_config = ExtResource("10_combat")
-melee_weapon = ExtResource("11_wrench")
-ranged_weapon = ExtResource("12_zipgun")
 max_ammo = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

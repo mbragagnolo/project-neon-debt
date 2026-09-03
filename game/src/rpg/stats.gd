@@ -41,6 +41,10 @@ func _ready() -> void:
 	# enemy (docs/combat/damage-pipeline.md, death), so nothing here has to
 	# de-duplicate simultaneous killing blows.
 	Events.enemy_died.connect(_on_enemy_died)
+	# Gear changes the sheet as surely as a level does, and everything that
+	# draws the sheet listens to one signal.
+	Events.item_equipped.connect(_on_equipment_changed)
+	Events.item_unequipped.connect(_on_equipment_changed)
 	GameState.register_state(SAVE_KEY, self)
 
 
@@ -66,6 +70,50 @@ func base_max_hp() -> int:
 
 func base_max_ram() -> int:
 	return stat_curve.ram_at(level)
+
+
+# --- The effective sheet ----------------------------------------------------
+#
+# Everything outside this file asks for these, never for the base values. The
+# indirection is what items.md asked M3 to force into existence: the boots
+# cannot make the dash faster unless *something* sits between `MovementConfig`
+# and the controller, and the same seam is what V2's independent builds need
+# anyway. Four modifier reads, four callers, no framework.
+
+func effective_max_hp() -> int:
+	return base_max_hp() + Inventory.max_hp_bonus()
+
+
+func effective_max_ram() -> int:
+	# No RAM modifier exists — the gloves move the *regen rate*, not the pool.
+	return base_max_ram()
+
+
+## Every point of DEF the player has. Levels contribute nothing, forever.
+func effective_defense() -> int:
+	return Inventory.total_defense()
+
+
+## The boots' hook. Takes the authored cooldown rather than reading
+## `MovementConfig` itself, so the tuning resource stays the single source of
+## the *base* number and this layer only ever bends it.
+func effective_dash_cooldown(base_cooldown: float) -> float:
+	return base_cooldown * Inventory.dash_cooldown_mult()
+
+
+## The gloves' hook. Nothing calls it until M4's regen tick exists; it lives
+## here now so the equip screen can show the number it will move.
+func effective_ram_regen(base_rate: float) -> float:
+	return base_rate * Inventory.ram_regen_mult()
+
+
+## The hardhat's hook: the melee→energy interlock, made equipment-adjustable.
+## The weapon still owns the base amount, so V2 switches the whole intertwined
+## kit off by zeroing a field on three items and this stays true.
+func effective_ammo_on_hit(weapon: MeleeWeapon) -> int:
+	if weapon == null:
+		return 0
+	return weapon.ammo_on_hit + Inventory.melee_energy_bonus()
 
 
 # --- XP and levels ----------------------------------------------------------
@@ -119,6 +167,10 @@ func _on_enemy_died(_enemy: Node, xp_reward: int, credit_reward: int) -> void:
 	grant_credits(credit_reward)
 
 
+func _on_equipment_changed(_slot: StringName, _item_id: StringName) -> void:
+	publish()
+
+
 # --- Publication ------------------------------------------------------------
 
 ## The whole sheet, as the flat dictionary `Events.stats_changed` carries.
@@ -130,8 +182,9 @@ func as_dictionary() -> Dictionary:
 		"xp": xp,
 		"xp_into_level": xp_into_level(),
 		"xp_for_level": xp_for_level(),
-		"max_hp": base_max_hp(),
-		"max_ram": base_max_ram(),
+		"max_hp": effective_max_hp(),
+		"max_ram": effective_max_ram(),
+		"def": effective_defense(),
 		"str": strength(),
 		"dex": dexterity(),
 		"int": intelligence(),

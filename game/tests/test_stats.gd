@@ -13,11 +13,13 @@ var _stat_curve: StatCurve
 
 func before_each() -> void:
 	PlayerStats.reset()
+	Inventory.reset()
 	_stat_curve = load("res://src/rpg/stat_curve.tres")
 
 
 func after_each() -> void:
 	PlayerStats.reset()
+	Inventory.reset()
 
 
 ## Raise the level without going through the XP path, for the tests that are
@@ -161,6 +163,70 @@ func test_restoring_from_nothing_is_a_fresh_sheet() -> void:
 	PlayerStats.restore({})
 	assert_eq(PlayerStats.level, 1)
 	assert_eq(PlayerStats.xp, 0)
+
+
+# --- The effective sheet ----------------------------------------------------
+#
+# The layer items.md asked M3 to force into existence. Each of these is one
+# modifier with exactly one read-site, and each has the same failure mode: the
+# number is right in the item file, right on the equip screen, and never
+# reaches the thing it is supposed to bend.
+
+func test_the_jacket_is_the_only_thing_that_moves_max_hp() -> void:
+	assert_eq(PlayerStats.effective_max_hp(), 40)
+	Inventory.grant(&"work_boots")
+	assert_eq(PlayerStats.effective_max_hp(), 40, "boots are not a jacket")
+	Inventory.grant(&"padded_jacket")
+	assert_eq(PlayerStats.effective_max_hp(), 50)
+
+
+func test_def_is_gear_and_only_gear_at_every_level() -> void:
+	# The rule clothing's whole monopoly on survivability rests on. Levelling
+	# to the end of the slice must not add a single point.
+	_at_level(6)
+	assert_eq(PlayerStats.effective_defense(), 0, "a level granted DEF")
+	Inventory.grant(&"padded_jacket")
+	assert_eq(PlayerStats.effective_defense(), 2)
+
+
+func test_the_boots_bend_the_dash_cooldown_without_touching_the_config() -> void:
+	# The controller must read through here rather than off `MovementConfig`,
+	# and the config must stay the single source of the base number — a
+	# modifier that edits the tuning resource is a modifier that survives being
+	# unequipped.
+	var movement: MovementConfig = load("res://src/player/movement_config.tres")
+	var base: float = movement.dash_cooldown
+	assert_almost_eq(PlayerStats.effective_dash_cooldown(base), base, 0.0001)
+	Inventory.grant(&"work_boots")
+	assert_almost_eq(PlayerStats.effective_dash_cooldown(base), base * 0.85, 0.0001)
+	assert_almost_eq(movement.dash_cooldown, base, 0.0001, "the boots edited the config")
+
+
+func test_the_hardhat_raises_the_interlock_payout() -> void:
+	# The melee-to-energy refill stays the weapon's number bent by equipment,
+	# never a constant in the pipeline — which is what lets V2 switch the
+	# intertwined kit off by zeroing a field on three items.
+	var wrench: MeleeWeapon = load("res://src/combat/weapons/wrench.tres")
+	assert_eq(PlayerStats.effective_ammo_on_hit(wrench), wrench.ammo_on_hit)
+	Inventory.grant(&"scavved_hardhat")
+	assert_eq(PlayerStats.effective_ammo_on_hit(wrench), wrench.ammo_on_hit + 2)
+
+
+func test_the_gloves_bend_the_regen_rate_that_m4_will_tick() -> void:
+	Inventory.grant(&"linesman_gloves")
+	assert_almost_eq(PlayerStats.effective_ram_regen(2.0), 2.5, 0.0001)
+
+
+func test_equipping_republishes_the_sheet() -> void:
+	# Gear changes the sheet as surely as a level does, and everything that
+	# draws the sheet listens to one signal.
+	var published: Array = []
+	Events.stats_changed.connect(func(sheet: Dictionary) -> void: published.append(sheet))
+	Inventory.grant(&"padded_jacket")
+	assert_gt(published.size(), 0, "equipping published nothing")
+	var latest: Dictionary = published[published.size() - 1]
+	assert_eq(int(latest["max_hp"]), 50)
+	assert_eq(int(latest["def"]), 2)
 
 
 func test_the_sheet_rides_along_in_the_game_state_snapshot() -> void:

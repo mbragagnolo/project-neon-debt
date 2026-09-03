@@ -18,8 +18,6 @@ enum Facing { LEFT = -1, RIGHT = 1 }
 
 @export var config: MovementConfig
 @export var combat_config: CombatConfig
-@export var melee_weapon: MeleeWeapon
-@export var ranged_weapon: RangedWeapon
 ## Shared energy pool for every ranged weapon (docs/rpg/stats-and-curves.md).
 ## Cap growth is a vendor purchase in M5; M2 just needs a number to spend.
 @export var max_ammo: int = 8
@@ -31,6 +29,11 @@ enum Facing { LEFT = -1, RIGHT = 1 }
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var melee_hitbox: Hitbox = $MeleeHitbox
 
+## What is in hand. Not exported: `Inventory` is the single source of the
+## loadout, because from M5 this node is re-instanced at every door and a kit
+## authored on the scene would be a kit handed back on every room change.
+var melee_weapon: MeleeWeapon
+var ranged_weapon: RangedWeapon
 ## +1 right, -1 left.
 var facing: int = Facing.RIGHT
 ## -1, 0 or +1 from the move_left/move_right actions this frame.
@@ -223,7 +226,9 @@ func end_dash() -> void:
 	# into a run keeps flowing.
 	velocity.x = clampf(velocity.x, -config.run_speed, config.run_speed)
 	velocity.y = 0.0
-	_dash_cooldown_timer = config.dash_cooldown
+	# Read through the stats layer, never straight off `MovementConfig` — the
+	# boots' modifier exists here and nowhere else (docs/rpg/items.md).
+	_dash_cooldown_timer = PlayerStats.effective_dash_cooldown(config.dash_cooldown)
 
 
 # --- Queries used by the states ---------------------------------------------
@@ -287,6 +292,16 @@ func _setup_combat() -> void:
 	health.damaged.connect(_on_damaged)
 	health.died.connect(_on_died)
 
+	# The sheet owns max HP and DEF; this node owns the current number. Both
+	# arrive on the bus, so nothing here holds a reference to PlayerStats
+	# beyond asking it for values.
+	_refresh_loadout()
+	_apply_sheet()
+	health.restore()
+	Events.item_equipped.connect(_on_item_equipped)
+	Events.stats_changed.connect(_on_stats_changed)
+	Events.level_gained.connect(_on_level_gained)
+
 	# The swing box is sized from the weapon rather than the scene, so swapping
 	# the maul in changes its reach without touching player.tscn.
 	_melee_shape = RectangleShape2D.new()
@@ -304,6 +319,45 @@ func _setup_combat() -> void:
 
 	ammo = max_ammo
 	Events.ammo_changed.emit(ammo, max_ammo)
+	Events.hp_changed.emit(health.hp, health.max_hp)
+	PlayerStats.publish()
+
+
+func _refresh_loadout() -> void:
+	melee_weapon = Inventory.equipped_melee()
+	ranged_weapon = Inventory.equipped_ranged()
+
+
+## Max HP and DEF, folded from the level curve and the equipped clothing.
+##
+## Current HP is clamped down but never topped up when the ceiling rises.
+## Granting the difference would read better for one frame and then be an
+## exploit: equipping and re-equipping the jacket while wounded would heal 10
+## a cycle, forever. The full heal belongs to the level-up, where it is
+## earned.
+func _apply_sheet() -> void:
+	if health == null:
+		return
+	health.max_hp = PlayerStats.effective_max_hp()
+	health.defense = PlayerStats.effective_defense()
+	health.hp = mini(health.hp, health.max_hp)
+	Events.hp_changed.emit(health.hp, health.max_hp)
+
+
+func _on_item_equipped(_slot: StringName, _item_id: StringName) -> void:
+	_refresh_loadout()
+
+
+func _on_stats_changed(_sheet: Dictionary) -> void:
+	_apply_sheet()
+
+
+## Level-up = full heal (DESIGN.md §3.3). The sheet is applied first: the
+## signal arrives with the new level already set, so healing before raising
+## the ceiling would top up to the old maximum and leave the difference empty.
+func _on_level_gained(_new_level: int) -> void:
+	_apply_sheet()
+	health.restore()
 	Events.hp_changed.emit(health.hp, health.max_hp)
 
 
@@ -340,7 +394,12 @@ func start_melee() -> void:
 	var attack := Attack.make(
 		self, global_position, melee_weapon.power, melee_weapon.knockback
 	)
-	attack.ammo_on_hit = melee_weapon.ammo_on_hit
+	# Step 4: the weapon is the base, STR is the multiplier. Wired here rather
+	# than inside the pipeline so the enemy side stays flat.
+	attack.stat = PlayerStats.strength()
+	# The hardhat's +1 rides along on the attack, so the interlock stays the
+	# weapon's number bent by equipment rather than a constant in the pipeline.
+	attack.ammo_on_hit = PlayerStats.effective_ammo_on_hit(melee_weapon)
 
 	_melee_shape.size = melee_weapon.hitbox_size
 	melee_hitbox.position = Vector2(
@@ -387,6 +446,7 @@ func fire_ranged() -> void:
 	var attack := Attack.make(
 		self, global_position, ranged_weapon.power, ranged_weapon.knockback
 	)
+	attack.stat = PlayerStats.dexterity()
 	attack.is_ranged = true
 
 	var shot := Projectile.new()
@@ -403,7 +463,8 @@ func fire_ranged() -> void:
 		ranged_weapon.projectile_speed,
 		ranged_weapon.projectile_lifetime,
 		ranged_weapon.projectile_size,
-		ranged_weapon.projectile_color
+		ranged_weapon.projectile_color,
+		ranged_weapon.projectile_gravity
 	)
 
 	spend_ammo(ranged_weapon.energy_per_shot)

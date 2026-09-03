@@ -61,10 +61,15 @@ func _ready() -> void:
 
 	# --- B. Armour. DEF 5 is the top of the slice's locked range, which at
 	# --- this number scale is where the flat-DEF heavy-hit bias becomes
-	# --- obvious: the wrench's 8 lands as 3, the zipgun's 6 as 1 — and a
-	# --- floor-1 hit is silent by design, no hitstop at all.
+	# --- obvious. M3's stat layer moved *which* weapon bottoms out here: at
+	# --- STR/DEX 5 the starter kit is blunted rather than floored (the
+	# --- wrench's 8 lands as 5, the zipgun's 6 as 2) and it is the light
+	# --- found weapons that grind to the floor — the blade's 5 lands as
+	# --- exactly 1, silent by design, no hitstop at all. Which weapon this
+	# --- station punishes now depends on what is equipped, which is what an
+	# --- equip screen is for.
 	_dummy("Armoured", Vector2(1120, FLOOR_TOP), 40, 5, 1)
-	_label("B · ARMOUR\nDEF 5 · FLOOR-1 IS SILENT", Vector2(980, 1180))
+	_label("B · ARMOUR\nDEF 5 · LIGHT HITS GRIND TO THE FLOOR", Vector2(980, 1180))
 
 	# --- C. Stagger threshold 12. Sits above the wrench's 8 and below the
 	# --- maul's 18, so this is where flinch-versus-stagger knockback reads:

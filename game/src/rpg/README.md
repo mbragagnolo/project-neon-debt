@@ -13,5 +13,12 @@ are `Resource` files so balance is data, not code.
   starting kit as *data*. Weapon `.tres` files stay in `combat/weapons/` next
   to the scripts that give them behaviour — one home per item, and the split
   is by what reads them, not by what they are.
-- `stats.gd`, `xp_curve.tres`, `stat_curve.tres` — **M3**
-- `inventory.gd` — **M3**
+- `stats.gd` (autoload `PlayerStats`) + `xp_curve.tres` / `stat_curve.tres` —
+  **M3.** Level, lifetime XP, credits, and the *effective* sheet that folds
+  equipment in. Everything outside it asks for the effective values.
+- `inventory.gd` (autoload `Inventory`) — **M3.** Owned ids plus one item per
+  slot, and the four modifier reads.
+
+Both are autoloads rather than nodes on the player: from M5 the player is
+re-instanced per room, so progression or gear living on that node would be
+handed back at every door. Both register with `GameState` to be saved.
