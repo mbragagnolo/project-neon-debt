@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="RangedWeapon" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/combat/weapons/ranged_weapon.gd" id="1_ranged"]
+
+[resource]
+script = ExtResource("1_ranged")
+id = &"nailgun"
+display_name = "Modified nailgun"
+description = "Construction nailer with the safety filed off. Empties the pool about as fast as it empties itself."
+power = 3.0
+attack_speed = 4.0
+knockback = 40.0
+energy_per_shot = 1
+projectile_speed = 1250.0
+projectile_lifetime = 0.7
+muzzle_offset = Vector2(34, -46)
+projectile_gravity = 0.0
+projectile_size = Vector2(12, 5)
+projectile_color = Color(0.85, 0.92, 1, 1)

@@ -2,6 +2,13 @@ class_name MeleeWeapon
 extends Weapon
 ## A swung tool (docs/rpg/items.md — wrench, utility blade, breaker maul).
 
+
+## Pinned rather than exported: a maul is never headgear, and an authoring
+## mistake in a `.tres` should be impossible rather than merely unlikely.
+func _init() -> void:
+	slot = Item.Slot.MELEE
+
+
 ## Ammo refunded per hit that *lands*. The mechanical spine of the intertwined
 ## kit: shoot → close in → melee → back out.
 ##

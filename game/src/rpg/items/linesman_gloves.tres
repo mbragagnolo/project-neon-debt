@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Clothing" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/rpg/clothing.gd" id="1_clothing"]
+
+[resource]
+script = ExtResource("1_clothing")
+id = &"linesman_gloves"
+display_name = "Insulated linesman's gloves"
+description = "Jacked straight into the deck. The trickle back into your pool runs a little less grudgingly."
+slot = 5
+defense = 1
+max_hp_bonus = 0
+dash_cooldown_mult = 1.0
+ram_regen_mult = 1.25
+melee_energy_bonus = 0

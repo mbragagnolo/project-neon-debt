@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Clothing" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/rpg/clothing.gd" id="1_clothing"]
+
+[resource]
+script = ExtResource("1_clothing")
+id = &"work_boots"
+display_name = "Steel-toe work boots"
+description = "Site boots with the reinforcement still intact. Better push-off than whatever you were wearing."
+slot = 4
+defense = 1
+max_hp_bonus = 0
+dash_cooldown_mult = 0.85
+ram_regen_mult = 1.0
+melee_energy_bonus = 0

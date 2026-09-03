@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource("1_ranged")
+id = &"zipgun"
 display_name = "Zipgun"
+description = "Home-made pipe pistol. Dependable, not exciting, and yours since before the debt."
 power = 6.0
 attack_speed = 1.5
 knockback = 90.0

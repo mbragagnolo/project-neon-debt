@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Clothing" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/rpg/clothing.gd" id="1_clothing"]
+
+[resource]
+script = ExtResource("1_clothing")
+id = &"scavved_hardhat"
+display_name = "Scavved hardhat"
+description = "A dead worker's helmet, HUD visor cracked across. It still counts your swings, and it still pays you for them."
+slot = 2
+defense = 1
+max_hp_bonus = 0
+dash_cooldown_mult = 1.0
+ram_regen_mult = 1.0
+melee_energy_bonus = 2

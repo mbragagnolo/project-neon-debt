@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource("1_melee")
+id = &"pipe_wrench"
 display_name = "Pipe wrench"
+description = "A steam-fitter's tool out of a tower maintenance closet. Chunky, dependable, and heavy enough that nobody argues twice."
 power = 8.0
 attack_speed = 1.6
 knockback = 280.0

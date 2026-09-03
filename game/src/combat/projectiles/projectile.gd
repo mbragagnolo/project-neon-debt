@@ -12,6 +12,11 @@ extends Hitbox
 signal expired()
 
 var velocity: Vector2 = Vector2.ZERO
+## px/s² of drop. Zero for everything but the rivet gun (docs/rpg/items.md).
+## Named `drop` rather than `gravity` because `Area2D` already owns that name
+## — and its `gravity` is the area's *effect on other bodies*, which is not
+## remotely this.
+var drop: float = 0.0
 
 var _life: float = 0.0
 var _visual: ColorRect
@@ -31,10 +36,12 @@ func launch(
 	speed: float,
 	lifetime: float,
 	size: Vector2,
-	colour: Color
+	colour: Color,
+	drop_rate: float = 0.0
 ) -> void:
 	activate(new_attack)
 	velocity = direction * speed
+	drop = drop_rate
 	_life = lifetime
 	rotation = direction.angle()
 	_build_shape(size)
@@ -47,6 +54,11 @@ func _physics_process(delta: float) -> void:
 	if not is_active():
 		return
 
+	if not is_zero_approx(drop):
+		velocity.y += drop * delta
+		# The sprite follows the arc rather than the aim, so what the shot
+		# looks like is where it is actually going.
+		rotation = velocity.angle()
 	position += velocity * delta
 
 	_life -= delta

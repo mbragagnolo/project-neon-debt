@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Clothing" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/rpg/clothing.gd" id="1_clothing"]
+
+[resource]
+script = ExtResource("1_clothing")
+id = &"padded_jacket"
+display_name = "Utility worker's padded jacket"
+description = "The Stacks' idea of armour: quilted synth-weave, three sizes of patch, and a name tag that is not yours."
+slot = 3
+defense = 2
+max_hp_bonus = 10
+dash_cooldown_mult = 1.0
+ram_regen_mult = 1.0
+melee_energy_bonus = 0
