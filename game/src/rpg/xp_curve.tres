@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="XPCurve" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/rpg/xp_curve.gd" id="1_xp_curve"]
+
+[resource]
+script = ExtResource("1_xp_curve")
+base_xp = 60
+growth = 1.5
+max_level = 99
+assumed_district_xp = 959

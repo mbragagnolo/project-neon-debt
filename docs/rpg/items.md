@@ -38,8 +38,8 @@ still a felt upgrade. All three stay live: the flat-DEF heavy-hit bias
 | Slot in trio | Identity | dmg | atk speed | Notes |
 |---|---|---|---|---|
 | Balanced (starter) | **Pipe wrench** — steam-fitter's tool from the towers | 8 | **1.6/s** | Chunky, instant-read silhouette. Speed playtested in M2 — see below |
-| Fast-light (found) | **Powered utility blade** — linesman's vibro-cutter for cable and drywall | 5 | 1.8/s | Best raw DPS; flat DEF eats it against armor |
-| Slow-heavy (found) | **Hydraulic breaker maul** — servo-assisted demolition tool for rebar and concrete | 18 | 0.5/s | Punches through Riot-unit-grade armor |
+| Fast-light (found) | **Powered utility blade** — linesman's vibro-cutter for cable and drywall | 5 | **2.9/s** | Best raw DPS; flat DEF eats it against armor |
+| Slow-heavy (found) | **Hydraulic breaker maul** — servo-assisted demolition tool for rebar and concrete | 18 | **0.8/s** | Punches through Riot-unit-grade armor |
 
 ## Ranged — LOCKED (identities), numbers TUNE
 
@@ -62,12 +62,22 @@ only use once a second. **1.6/s is the playtested value** and is what the
 
 Two consequences, neither resolved yet because neither weapon exists:
 
-- **The trio's speed spread needs rescaling.** The axis was authored as
-  ratios against a 1.0 balanced weapon — fast ×1.8, slow ×0.5. Against 1.6
-  those become 2.9/s and 0.8/s if the spread is to be preserved; leaving the
-  blade at 1.8 would make it a rounding error away from the starter and
-  collapse the sidegrade into a straight upgrade. Set them when they are built
-  and can be felt, not now.
+- **The trio's speed spread was rescaled in M3** (resolved). The axis was
+  authored as ratios against a 1.0 balanced weapon — fast ×1.8, slow ×0.5.
+  Against the playtested 1.6 those are **2.9/s and 0.8/s**, and the table
+  above now carries them. Leaving the blade at 1.8 would have made it a
+  rounding error away from the starter and collapsed the sidegrade into a
+  straight upgrade.
+
+  Preserving the ratio also preserves what the ratio was *for*: the authored
+  budgets were 8×1.0 = 8 against 5×1.8 = 9 and 18×0.5 = 9, i.e. the found
+  weapons carry ~+12% total budget over the starter. At the rescaled speeds
+  that edge survives intact (16.0 / 17.7 / 17.6 DPS at level 1 against DEF
+  0), which is the "sidegrades on the speed axis, upgrades in total budget"
+  claim holding as a number rather than as an intention. Under DEF 5 at level
+  6 the same trio reads 13.3 / 9.7 / 20.0 — the heavy-hit bias doing its job.
+  Both sets are arithmetic, not playtest: **the felt call on 2.9/s and 0.8/s
+  is still owed**, and it is M3's tuning pass to close.
 - **Armour balance shifted with it.** DPS through DEF is
   `(raw − DEF) × attacks_per_second`, so the wrench got 60% better against
   the DEF-5 station too, not just faster. That is the intended second lever
@@ -100,9 +110,9 @@ the set quietly demonstrates the whole intertwined kit:
 
 | Slot | Identity | DEF | Modifier (slot personality) |
 |---|---|---|---|
-| Body | Utility worker's padded jacket | 2 | +max HP — survival |
+| Body | Utility worker's padded jacket | 2 | **+10 max HP** — survival |
 | Legs | Steel-toe work boots | 1 | dash cooldown −15% — mobility |
-| Hands | Insulated linesman's gloves, deck-jacked | 1 | +RAM regen — the hack slot |
+| Hands | Insulated linesman's gloves, deck-jacked | 1 | **+25% RAM regen** — the hack slot |
 | Head | Scavved hardhat, cracked HUD visor | 1 | +1 energy on melee hit — feeds the combat rhythm |
 
 Full-set DEF totals 5 (`TUNE`): against the locked anchors a light hit drops
@@ -117,9 +127,9 @@ A modifier is an engine hook, not content. Rules:
 
 | Modifier | Carried by | Engine hook | Lands in |
 |---|---|---|---|
-| `max_hp_bonus` (flat) | Jacket | Stats reads equipment into max HP | M3 |
+| `max_hp_bonus` (**+10**) | Jacket | Stats reads equipment into max HP | M3 |
 | `dash_cooldown_mult` (−15%) | Boots | Controller reads *effective* dash cooldown via the stats layer, not raw MovementConfig | M3 (touches M1 code) |
-| `ram_regen_mult` (+%) | Gloves | RAM regen consults equipment | M4 |
+| `ram_regen_mult` (**+25%**) | Gloves | RAM regen consults equipment | M4 |
 | `melee_energy_bonus` (+1/hit) | Hardhat | The melee→energy interlock constant becomes equipment-adjustable | M2 |
 
 - **Weapons carry no modifiers in V1.** Their personality already lives in

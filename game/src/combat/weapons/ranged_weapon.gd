@@ -11,6 +11,10 @@ extends Weapon
 ## central.
 @export var energy_per_shot: int = 1
 
+
+func _init() -> void:
+	slot = Item.Slot.RANGED
+
 @export_group("Projectile")
 @export var projectile_speed: float = 900.0
 ## Seconds before an unspent projectile despawns. Doubles as the range limit —
@@ -18,5 +22,10 @@ extends Weapon
 @export var projectile_lifetime: float = 1.1
 ## Where the shot spawns, px from the player's origin. x is mirrored by facing.
 @export var muzzle_offset: Vector2 = Vector2(34.0, -46.0)
+## px/s² pulling the shot down in flight. Zero for every weapon but the rivet
+## gun, whose slight arc is the one exception V1 allows to "straight lines"
+## (docs/rpg/items.md) — it is what makes the big slug a skill-shot rather
+## than a slower hitscan hose.
+@export var projectile_gravity: float = 0.0
 @export var projectile_size: Vector2 = Vector2(18.0, 8.0)
 @export var projectile_color: Color = Color(1.0, 0.85, 0.35)

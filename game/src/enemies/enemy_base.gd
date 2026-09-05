@@ -203,7 +203,7 @@ func _on_died() -> void:
 	contact_hitbox.deactivate()
 	# Rewards resolve on the death event, not on the killing blow, so two hits
 	# arriving in the same frame cannot both pay out.
-	Events.enemy_died.emit(self, config.xp_reward)
+	Events.enemy_died.emit(self, config.xp_reward, config.credit_reward)
 	_state_machine.transition_to(&"Dead")
 
 

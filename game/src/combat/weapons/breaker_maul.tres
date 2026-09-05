@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MeleeWeapon" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/combat/weapons/melee_weapon.gd" id="1_melee"]
+
+[resource]
+script = ExtResource("1_melee")
+id = &"breaker_maul"
+display_name = "Hydraulic breaker maul"
+description = "Servo-assisted demolition tool for rebar and concrete. Slow enough to watch coming, and armour is not a category it recognises."
+power = 18.0
+attack_speed = 0.8
+knockback = 560.0
+ammo_on_hit = 1
+hitbox_size = Vector2(96, 88)
+hitbox_offset = Vector2(62, -44)
+active_time = 0.1
+swing_color = Color(1, 0.55, 0.2, 0.8)
+commit_time = 0.2

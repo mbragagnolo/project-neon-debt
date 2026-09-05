@@ -1,0 +1,480 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/world/room.gd" id="1_cmbp2"]
+[ext_resource type="PackedScene" path="res://src/enemies/training_dummy/training_dummy.tscn" id="2_mlf4d"]
+[ext_resource type="Script" path="res://src/enemies/training_dummy/training_dummy.gd" id="3_6rd0g"]
+[ext_resource type="PackedScene" path="res://src/world/pickup.tscn" id="4_67aff"]
+[ext_resource type="Script" path="res://src/world/pickup.gd" id="5_qnf4q"]
+[ext_resource type="Script" path="res://src/world/encounter.gd" id="6_833w1"]
+[ext_resource type="PackedScene" path="res://src/enemies/scav/scav.tscn" id="7_0blr4"]
+[ext_resource type="PackedScene" path="res://src/player/player.tscn" id="8_b56oh"]
+[ext_resource type="Script" path="res://src/player/player.gd" id="9_5ru7m"]
+[ext_resource type="Resource" path="res://src/player/movement_config.tres" id="10_6ugae"]
+[ext_resource type="Resource" path="res://src/combat/combat_config.tres" id="11_lctsp"]
+[ext_resource type="Script" path="res://src/ui/debug_combat_hud.gd" id="12_hf0l2"]
+[ext_resource type="Script" path="res://src/ui/menus/equip_screen.gd" id="13_vi4ts"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvxrs"]
+size = Vector2(5120, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwv77"]
+size = Vector2(5120, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3bg8"]
+size = Vector2(60, 1440)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7itxw"]
+size = Vector2(60, 1440)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8f3c"]
+size = Vector2(60, 480)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8m3da"]
+size = Vector2(360, 60)
+
+[node name="RpgGym" type="Node2D" unique_id=591301471]
+script = ExtResource("1_cmbp2")
+room_id = &"rpg_gym"
+display_name = "RPG Gym"
+camera_limits = Rect2i(0, 0, 5120, 1440)
+
+[node name="Geometry" type="Node2D" parent="." unique_id=95894113]
+
+[node name="Floor" type="StaticBody2D" parent="Geometry" unique_id=1076099079]
+position = Vector2(2560, 1410)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Floor" unique_id=1870520542]
+shape = SubResource("RectangleShape2D_kvxrs")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Floor" unique_id=1296524392]
+offset_left = -2560.0
+offset_top = -30.0
+offset_right = 2560.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Ceiling" type="StaticBody2D" parent="Geometry" unique_id=1486645519]
+position = Vector2(2560, 30)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Ceiling" unique_id=453752528]
+shape = SubResource("RectangleShape2D_nwv77")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Ceiling" unique_id=1361893862]
+offset_left = -2560.0
+offset_top = -30.0
+offset_right = 2560.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="WallLeft" type="StaticBody2D" parent="Geometry" unique_id=1621031611]
+position = Vector2(30, 720)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/WallLeft" unique_id=313959324]
+shape = SubResource("RectangleShape2D_b3bg8")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/WallLeft" unique_id=162238122]
+offset_left = -30.0
+offset_top = -720.0
+offset_right = 30.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="WallRight" type="StaticBody2D" parent="Geometry" unique_id=1208698140]
+position = Vector2(5090, 720)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/WallRight" unique_id=1856250949]
+shape = SubResource("RectangleShape2D_7itxw")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/WallRight" unique_id=2042083620]
+offset_left = -30.0
+offset_top = -720.0
+offset_right = 30.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="PenWall" type="StaticBody2D" parent="Geometry" unique_id=2000983469]
+position = Vector2(4060, 1140)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/PenWall" unique_id=468943704]
+shape = SubResource("RectangleShape2D_l8f3c")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/PenWall" unique_id=860312299]
+offset_left = -30.0
+offset_top = -240.0
+offset_right = 30.0
+offset_bottom = 240.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="HighLedge" type="StaticBody2D" parent="Geometry" unique_id=11900217]
+position = Vector2(3500, 800)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/HighLedge" unique_id=1856704364]
+shape = SubResource("RectangleShape2D_8m3da")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/HighLedge" unique_id=635385315]
+offset_left = -180.0
+offset_top = -30.0
+offset_right = 180.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.29411766, 0.33333334, 0.4392157, 1)
+
+[node name="Labels" type="Node2D" parent="." unique_id=1361213000]
+
+[node name="AArmoury_" type="Label" parent="Labels" unique_id=697801172]
+offset_left = 300.0
+offset_top = 900.0
+offset_right = 300.0
+offset_bottom = 900.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "A - ARMOURY: TAKE WHAT YOU WANT TO FEEL"
+
+[node name="[e]Take" type="Label" parent="Labels" unique_id=1979653388]
+offset_left = 300.0
+offset_top = 960.0
+offset_right = 300.0
+offset_bottom = 960.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "[F] TAKE     [TAB] LOADOUT"
+
+[node name="Blade" type="Label" parent="Labels" unique_id=1812903394]
+offset_left = 360.0
+offset_top = 1120.0
+offset_right = 360.0
+offset_bottom = 1120.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "BLADE"
+
+[node name="Boots" type="Label" parent="Labels" unique_id=337847688]
+offset_left = 560.0
+offset_top = 1120.0
+offset_right = 560.0
+offset_bottom = 1120.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "BOOTS"
+
+[node name="Nailgun" type="Label" parent="Labels" unique_id=1169319476]
+offset_left = 760.0
+offset_top = 1120.0
+offset_right = 760.0
+offset_bottom = 1120.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "NAILGUN"
+
+[node name="Gloves" type="Label" parent="Labels" unique_id=1130548930]
+offset_left = 960.0
+offset_top = 1120.0
+offset_right = 960.0
+offset_bottom = 1120.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "GLOVES"
+
+[node name="Jacket" type="Label" parent="Labels" unique_id=1457639510]
+offset_left = 1160.0
+offset_top = 1120.0
+offset_right = 1160.0
+offset_bottom = 1120.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "JACKET"
+
+[node name="Maul" type="Label" parent="Labels" unique_id=1780333187]
+offset_left = 1360.0
+offset_top = 1120.0
+offset_right = 1360.0
+offset_bottom = 1120.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "MAUL"
+
+[node name="RivetGun" type="Label" parent="Labels" unique_id=206207901]
+offset_left = 1560.0
+offset_top = 1120.0
+offset_right = 1560.0
+offset_bottom = 1120.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "RIVET GUN"
+
+[node name="Hardhat" type="Label" parent="Labels" unique_id=322894978]
+offset_left = 1760.0
+offset_top = 1120.0
+offset_right = 1760.0
+offset_bottom = 1120.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "HARDHAT"
+
+[node name="BTheWall" type="Label" parent="Labels" unique_id=1424864668]
+offset_left = 2180.0
+offset_top = 620.0
+offset_right = 2180.0
+offset_bottom = 620.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "B - THE WALL: SAME DUMMY, DIFFERENT ARMOUR"
+
+[node name="SwapAWeapo" type="Label" parent="Labels" unique_id=1183963339]
+offset_left = 2180.0
+offset_top = 680.0
+offset_right = 2180.0
+offset_bottom = 680.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "SWAP A WEAPON AND WATCH ~LAST HIT~"
+
+[node name="Def0" type="Label" parent="Labels" unique_id=2000566554]
+offset_left = 2250.0
+offset_top = 1190.0
+offset_right = 2250.0
+offset_bottom = 1190.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "DEF 0"
+
+[node name="Def2" type="Label" parent="Labels" unique_id=1941348225]
+offset_left = 2550.0
+offset_top = 1190.0
+offset_right = 2550.0
+offset_bottom = 1190.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "DEF 2"
+
+[node name="Def5" type="Label" parent="Labels" unique_id=109960927]
+offset_left = 2850.0
+offset_top = 1190.0
+offset_right = 2850.0
+offset_bottom = 1190.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "DEF 5"
+
+[node name="CTheRang" type="Label" parent="Labels" unique_id=1953090725]
+offset_left = 3300.0
+offset_top = 620.0
+offset_right = 3300.0
+offset_bottom = 620.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "C - THE RANGE: THE RIVET DROPS - LEAD IT"
+
+[node name="AimUp_W_" type="Label" parent="Labels" unique_id=330688448]
+offset_left = 3300.0
+offset_top = 680.0
+offset_right = 3300.0
+offset_bottom = 680.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "AIM UP: W  /  DIAGONAL: W + A/D"
+
+[node name="DThePen_" type="Label" parent="Labels" unique_id=1267682027]
+offset_left = 4200.0
+offset_top = 300.0
+offset_right = 4200.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "D - THE PEN: 6 SCAVS = LEVEL 2"
+
+[node name="LevelUpIs" type="Label" parent="Labels" unique_id=1554851665]
+offset_left = 4200.0
+offset_top = 360.0
+offset_right = 4200.0
+offset_bottom = 360.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "LEVEL UP IS A FULL HEAL"
+
+[node name="ClearThemA" type="Label" parent="Labels" unique_id=1575849196]
+offset_left = 4200.0
+offset_top = 420.0
+offset_right = 4200.0
+offset_bottom = 420.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "CLEAR THEM AND THEY COME BACK"
+
+[node name="MeleeJ" type="Label" parent="Labels" unique_id=1506545642]
+offset_left = 300.0
+offset_top = 240.0
+offset_right = 300.0
+offset_bottom = 240.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "MELEE  J     RANGED  K     DASH  SHIFT"
+
+[node name="LoadoutI" type="Label" parent="Labels" unique_id=985533074]
+offset_left = 300.0
+offset_top = 300.0
+offset_right = 300.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "LOADOUT  TAB     TAKE  F"
+
+[node name="LevelsMove" type="Label" parent="Labels" unique_id=217810937]
+offset_left = 300.0
+offset_top = 360.0
+offset_right = 300.0
+offset_bottom = 360.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
+text = "LEVELS MOVE THE MULTIPLIER. GEAR MOVES THE WEAPON."
+
+[node name="Dummies" type="Node2D" parent="." unique_id=73547262]
+
+[node name="ArmourNone" type="CharacterBody2D" parent="Dummies" unique_id=1602428424 instance=ExtResource("2_mlf4d")]
+position = Vector2(2300, 1380)
+collision_layer = 16
+floor_snap_length = 16.0
+script = ExtResource("3_6rd0g")
+max_hp = 200
+stagger_threshold = 9999
+
+[node name="ArmourLight" type="CharacterBody2D" parent="Dummies" unique_id=775509524 instance=ExtResource("2_mlf4d")]
+position = Vector2(2600, 1380)
+collision_layer = 16
+floor_snap_length = 16.0
+script = ExtResource("3_6rd0g")
+max_hp = 200
+defense = 2
+stagger_threshold = 9999
+
+[node name="ArmourHeavy" type="CharacterBody2D" parent="Dummies" unique_id=907842323 instance=ExtResource("2_mlf4d")]
+position = Vector2(2900, 1380)
+collision_layer = 16
+floor_snap_length = 16.0
+script = ExtResource("3_6rd0g")
+max_hp = 200
+defense = 5
+stagger_threshold = 9999
+
+[node name="FarTarget" type="CharacterBody2D" parent="Dummies" unique_id=441058741 instance=ExtResource("2_mlf4d")]
+position = Vector2(3900, 1380)
+collision_layer = 16
+floor_snap_length = 16.0
+script = ExtResource("3_6rd0g")
+max_hp = 200
+stagger_threshold = 9999
+
+[node name="HighTarget" type="CharacterBody2D" parent="Dummies" unique_id=713189119 instance=ExtResource("2_mlf4d")]
+position = Vector2(3500, 770)
+collision_layer = 16
+floor_snap_length = 16.0
+script = ExtResource("3_6rd0g")
+max_hp = 200
+stagger_threshold = 9999
+
+[node name="Pickups" type="Node2D" parent="." unique_id=412603357]
+
+[node name="Blade" type="Area2D" parent="Pickups" unique_id=382714215 instance=ExtResource("4_67aff")]
+position = Vector2(420, 1380)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("5_qnf4q")
+item_id = &"utility_blade"
+pickup_id = &"rpg_gym_utility_blade"
+
+[node name="Boots" type="Area2D" parent="Pickups" unique_id=1400205237 instance=ExtResource("4_67aff")]
+position = Vector2(620, 1380)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("5_qnf4q")
+item_id = &"work_boots"
+pickup_id = &"rpg_gym_work_boots"
+
+[node name="Nailgun" type="Area2D" parent="Pickups" unique_id=2054403679 instance=ExtResource("4_67aff")]
+position = Vector2(820, 1380)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("5_qnf4q")
+item_id = &"nailgun"
+pickup_id = &"rpg_gym_nailgun"
+
+[node name="Gloves" type="Area2D" parent="Pickups" unique_id=152688557 instance=ExtResource("4_67aff")]
+position = Vector2(1020, 1380)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("5_qnf4q")
+item_id = &"linesman_gloves"
+pickup_id = &"rpg_gym_linesman_gloves"
+
+[node name="Jacket" type="Area2D" parent="Pickups" unique_id=600292729 instance=ExtResource("4_67aff")]
+position = Vector2(1220, 1380)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("5_qnf4q")
+item_id = &"padded_jacket"
+pickup_id = &"rpg_gym_padded_jacket"
+
+[node name="Maul" type="Area2D" parent="Pickups" unique_id=243924402 instance=ExtResource("4_67aff")]
+position = Vector2(1420, 1380)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("5_qnf4q")
+item_id = &"breaker_maul"
+pickup_id = &"rpg_gym_breaker_maul"
+
+[node name="RivetGun" type="Area2D" parent="Pickups" unique_id=582084527 instance=ExtResource("4_67aff")]
+position = Vector2(1620, 1380)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("5_qnf4q")
+item_id = &"rivet_gun"
+pickup_id = &"rpg_gym_rivet_gun"
+
+[node name="Hardhat" type="Area2D" parent="Pickups" unique_id=1786569235 instance=ExtResource("4_67aff")]
+position = Vector2(1820, 1380)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("5_qnf4q")
+item_id = &"scavved_hardhat"
+pickup_id = &"rpg_gym_scavved_hardhat"
+
+[node name="ScavPen" type="Node2D" parent="." unique_id=442416323]
+script = ExtResource("6_833w1")
+enemy_scene = ExtResource("7_0blr4")
+
+[node name="Spawn1" type="Marker2D" parent="ScavPen" unique_id=1022168427]
+position = Vector2(4400, 1380)
+
+[node name="Spawn2" type="Marker2D" parent="ScavPen" unique_id=397547682]
+position = Vector2(4700, 1380)
+
+[node name="Spawn3" type="Marker2D" parent="ScavPen" unique_id=545715899]
+position = Vector2(4950, 1380)
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=192772202]
+position = Vector2(240, 1380)
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1876136567 instance=ExtResource("8_b56oh")]
+position = Vector2(240, 1380)
+collision_layer = 2
+floor_snap_length = 16.0
+script = ExtResource("9_5ru7m")
+config = ExtResource("10_6ugae")
+combat_config = ExtResource("11_lctsp")
+
+[node name="DebugHud" type="CanvasLayer" parent="." unique_id=1383923728]
+script = ExtResource("12_hf0l2")
+
+[node name="EquipScreen" type="CanvasLayer" parent="." unique_id=2052424585]
+script = ExtResource("13_vi4ts")

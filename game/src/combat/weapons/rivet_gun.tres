@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="RangedWeapon" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/combat/weapons/ranged_weapon.gd" id="1_ranged"]
+
+[resource]
+script = ExtResource("1_ranged")
+id = &"rivet_gun"
+display_name = "Rivet gun"
+description = "Industrial hull-riveter throwing hot slugs. Heavy, expensive to feed, and it drops over distance — lead it."
+power = 15.0
+attack_speed = 0.6
+knockback = 220.0
+energy_per_shot = 3
+projectile_speed = 620.0
+projectile_lifetime = 1.5
+muzzle_offset = Vector2(34, -46)
+projectile_gravity = 320.0
+projectile_size = Vector2(24, 12)
+projectile_color = Color(1, 0.45, 0.15, 1)

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MeleeWeapon" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/combat/weapons/melee_weapon.gd" id="1_melee"]
+
+[resource]
+script = ExtResource("1_melee")
+id = &"utility_blade"
+display_name = "Powered utility blade"
+description = "A linesman's vibro-cutter, meant for cable and drywall. Cuts faster than you can think. Stops dead at anything plated."
+power = 5.0
+attack_speed = 2.9
+knockback = 140.0
+ammo_on_hit = 1
+hitbox_size = Vector2(60, 64)
+hitbox_offset = Vector2(46, -44)
+active_time = 0.06
+swing_color = Color(0.55, 1, 0.85, 0.7)
+commit_time = 0.1

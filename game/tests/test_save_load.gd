@@ -75,3 +75,65 @@ func test_delete_slot() -> void:
 	assert_true(SaveLoad.delete_slot(SLOT))
 	assert_false(SaveLoad.has_save(SLOT))
 	assert_false(SaveLoad.delete_slot(SLOT), "deleting a missing slot reports false")
+
+
+# --- M3: the sheet and the loadout go through the file ----------------------
+
+func test_progression_survives_a_real_round_trip_through_json() -> void:
+	# The unit tests round-trip through dictionaries; this one goes through the
+	# file, which is where JSON gets its say. Every number comes back as a
+	# float and every PackedStringArray as a plain Array, so a restore that
+	# assigned straight across would load level 3.0 and own nothing.
+	PlayerStats.reset()
+	Inventory.reset()
+	PlayerStats.grant_xp(200)
+	PlayerStats.grant_credits(75)
+	Inventory.grant(&"breaker_maul")
+	Inventory.grant(&"work_boots")
+	Inventory.equip(&"breaker_maul")
+
+	assert_true(SaveLoad.save_to_slot(SLOT, GameState.snapshot()))
+	PlayerStats.reset()
+	Inventory.reset()
+	assert_eq(PlayerStats.level, 1, "the reset did not take")
+
+	GameState.restore(SaveLoad.load_from_slot(SLOT))
+
+	assert_eq(PlayerStats.level, 3)
+	assert_eq(PlayerStats.xp, 200)
+	assert_eq(PlayerStats.credits, 75)
+	assert_true(Inventory.owns(&"work_boots"))
+	assert_eq(Inventory.equipped_melee().id, &"breaker_maul")
+	assert_eq(Inventory.equipped(Item.Slot.LEGS).id, &"work_boots")
+	# And the derived half followed, rather than the raw fields loading while
+	# the effective sheet stayed at level 1.
+	assert_eq(PlayerStats.effective_max_hp(), 50)
+	assert_eq(PlayerStats.effective_defense(), 1)
+
+	PlayerStats.reset()
+	Inventory.reset()
+	GameState.reset()
+
+
+func test_a_version_one_save_loads_as_a_fresh_sheet() -> void:
+	# Saves written before M3 carry no "stats" or "inventory" key at all. The
+	# rule is that a missing key restores from an empty dictionary, so an old
+	# file degrades to a fresh run rather than to a crash.
+	PlayerStats.grant_xp(400)
+	Inventory.grant(&"nailgun")
+	SaveLoad.save_to_slot(SLOT, {
+		"version": 1,
+		"flags": ["door.breach_01"],
+		"visited_rooms": ["stacks_01"],
+		"current_save_point": "terminal_hub",
+		"play_time": 12.5,
+	})
+
+	GameState.restore(SaveLoad.load_from_slot(SLOT))
+	assert_true(GameState.has_flag(&"door.breach_01"), "the old keys still load")
+	assert_eq(PlayerStats.level, 1)
+	assert_false(Inventory.owns(&"nailgun"))
+
+	PlayerStats.reset()
+	Inventory.reset()
+	GameState.reset()

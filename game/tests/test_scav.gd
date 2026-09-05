@@ -181,7 +181,7 @@ func test_it_ships_with_no_defense() -> void:
 func test_death_pays_out_once_and_is_terminal() -> void:
 	await _arena(2000.0)
 	var payouts: Array[int] = []
-	Events.enemy_died.connect(func(_e: Node, xp: int) -> void: payouts.append(xp))
+	Events.enemy_died.connect(func(_e: Node, xp: int, _cr: int) -> void: payouts.append(xp))
 
 	var hurtbox: Hurtbox = _scav.get_node("Hurtbox")
 	for _i: int in 4:

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemCatalog" load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://src/rpg/item_catalog.gd" id="1_catalog"]
+[ext_resource type="Resource" path="res://src/combat/weapons/wrench.tres" id="2_wrench"]
+[ext_resource type="Resource" path="res://src/combat/weapons/utility_blade.tres" id="3_blade"]
+[ext_resource type="Resource" path="res://src/combat/weapons/breaker_maul.tres" id="4_maul"]
+[ext_resource type="Resource" path="res://src/combat/weapons/zipgun.tres" id="5_zipgun"]
+[ext_resource type="Resource" path="res://src/combat/weapons/nailgun.tres" id="6_nailgun"]
+[ext_resource type="Resource" path="res://src/combat/weapons/rivet_gun.tres" id="7_rivet"]
+[ext_resource type="Resource" path="res://src/rpg/items/scavved_hardhat.tres" id="8_hardhat"]
+[ext_resource type="Resource" path="res://src/rpg/items/padded_jacket.tres" id="9_jacket"]
+[ext_resource type="Resource" path="res://src/rpg/items/work_boots.tres" id="10_boots"]
+[ext_resource type="Resource" path="res://src/rpg/items/linesman_gloves.tres" id="11_gloves"]
+
+[resource]
+script = ExtResource("1_catalog")
+items = Array[Item]([ExtResource("2_wrench"), ExtResource("3_blade"), ExtResource("4_maul"), ExtResource("5_zipgun"), ExtResource("6_nailgun"), ExtResource("7_rivet"), ExtResource("8_hardhat"), ExtResource("9_jacket"), ExtResource("10_boots"), ExtResource("11_gloves")])
+starting_items = Array[Item]([ExtResource("2_wrench"), ExtResource("5_zipgun")])

@@ -4,6 +4,9 @@ extends GutTest
 ## reverted, a hitbox that masks the wrong layer, an "elevated" dummy that
 ## turns out to be reachable by jumping.
 
+## M2's lab, kept and still tested after M3 took over the main scene: the
+## stations answer one pipeline question each, and none of those questions
+## stopped mattering.
 const GYM_PATH := "res://rooms/combat_gym.tscn"
 const LAYER_WORLD := 1 << 0
 const LAYER_PLAYER_HURTBOX := 1 << 3
@@ -16,13 +19,6 @@ var _gym: Node
 
 func before_each() -> void:
 	_gym = autofree(load(GYM_PATH).instantiate())
-
-
-func test_the_combat_gym_is_the_main_scene() -> void:
-	# The main scene tracks the active milestone: M1 shipped the movement gym
-	# here, M2 ships this one. Pressing play should always land on the thing
-	# currently being judged by feel.
-	assert_eq(ProjectSettings.get_setting("application/run/main_scene"), GYM_PATH)
 
 
 func test_it_instances_with_a_player_and_the_five_stations() -> void:
@@ -39,10 +35,13 @@ func test_it_instances_with_a_player_and_the_five_stations() -> void:
 
 
 func test_the_player_arrives_armed() -> void:
+	# The kit is no longer authored on the scene: `Inventory` hands it over in
+	# `_ready`, because from M5 the player is re-instanced at every door. What
+	# the gym has to guarantee is that there is a kit to hand over at all.
 	var player: Player = _gym.get_node("Player")
 	assert_not_null(player.combat_config, "no CombatConfig — nothing can be hurt")
-	assert_not_null(player.melee_weapon, "no melee weapon — J does nothing")
-	assert_not_null(player.ranged_weapon, "no ranged weapon — K does nothing")
+	assert_not_null(Inventory.equipped_melee(), "no melee weapon — J does nothing")
+	assert_not_null(Inventory.equipped_ranged(), "no ranged weapon — K does nothing")
 	assert_gt(player.max_ammo, 0, "an empty pool makes the interlock untestable")
 
 
@@ -68,15 +67,26 @@ func test_each_station_kept_the_stat_block_the_generator_gave_it() -> void:
 	assert_eq(baseline.stagger_threshold, 1)
 
 
-func test_the_armour_station_actually_produces_a_floor_one_hit() -> void:
-	# The station only teaches what it is for if DEF 5 grinds the zipgun's 6
-	# down to the floor — that is the "wrong tool" signal, and it is also the
-	# hit that must be silent.
+func test_the_armour_station_still_grinds_a_light_hit_to_the_floor() -> void:
+	# The station's job is the "wrong tool" signal: a hit ground all the way
+	# down, and silent because of it. M3's stat layer moved which weapon
+	# produces it. At STR/DEX 5 the starter kit is blunted rather than floored
+	# — the zipgun's 6 lands as 2 — and it is the light found weapons that
+	# bottom out. What the station teaches now depends on what is equipped,
+	# which is the whole reason there is an equip screen.
 	var config: CombatConfig = load("res://src/combat/combat_config.tres")
+	var blade: MeleeWeapon = load("res://src/combat/weapons/utility_blade.tres")
 	var zipgun: RangedWeapon = load("res://src/combat/weapons/zipgun.tres")
 	var armoured: TrainingDummy = _gym.get_node("Dummies/Armoured")
 
-	assert_eq(Damage.final_damage(zipgun.power, armoured.defense), 1)
+	var blade_hit: int = Damage.final_damage(
+		blade.damage_at(PlayerStats.strength(), config), armoured.defense
+	)
+	var zipgun_hit: int = Damage.final_damage(
+		zipgun.damage_at(PlayerStats.dexterity(), config), armoured.defense
+	)
+	assert_eq(blade_hit, 1, "no weapon in the game bottoms out on this station")
+	assert_gt(zipgun_hit, 1, "the starter kit should be blunted, not floored")
 	assert_eq(config.hitstop_frames_for(1), 0, "a floor-1 hit must not freeze")
 
 

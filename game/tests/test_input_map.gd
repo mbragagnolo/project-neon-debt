@@ -50,3 +50,16 @@ func test_movement_keys_are_physical_so_azerty_still_works() -> void:
 					(event as InputEventKey).physical_keycode, 0,
 					"'%s' has a key event bound by keycode instead of physical_keycode" % action
 				)
+
+
+func test_the_loadout_is_reachable_on_a_gamepad() -> void:
+	# `toggle_inventory` sat on JOY_BUTTON_GUIDE — the Xbox Home / PS button,
+	# which the OS claims for its own overlay — so the equip screen had no
+	# pressable pad button at all (#4). "Controller from day one" is only true
+	# if the button reaches the game.
+	for event: InputEvent in InputMap.action_get_events("toggle_inventory"):
+		if event is InputEventJoypadButton:
+			assert_ne(
+				(event as InputEventJoypadButton).button_index, JOY_BUTTON_GUIDE,
+				"the loadout is bound to the button the OS intercepts"
+			)

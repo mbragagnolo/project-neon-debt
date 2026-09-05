@@ -6,6 +6,10 @@ Rooms, doors, save points, and the graph that ties them together (DESIGN.md §3.
 - `encounter.gd` — **M2**. A group of enemies that belong to one fight:
   spawns one per `Marker2D` child, and repopulates when cleared so a tuning
   session can run the same fight repeatedly without restarting the game.
+- `pickup.gd` / `pickup.tscn` — **M3.** An item waiting in the world: a chest,
+  a crate, a dead worker's kit. One node rather than a chest/floor-item pair,
+  because what differs between them is art that does not exist yet. Looting is
+  a `GameState` flag, so a chest re-entered after a save stays open.
 - `door.gd`, `save_point.gd`, `world_graph.tres` — **M5**
 
 Room ids are snake_case and stable: they end up in the save file and on the map

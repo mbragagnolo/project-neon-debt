@@ -1,8 +1,9 @@
 # Stats & curves
 
-**Status: in progress** — sections get locked one decision at a time; open
-sections are listed at the bottom. Constants marked `TUNE` are placeholders
-until combat exists to tune against.
+**Status: LOCKED.** Every section is closed; the file's exports to later
+milestones are listed at the bottom. Constants marked `TUNE` are locked
+*decisions* whose *values* stay open to tuning — the XP curve's `base` in
+particular is re-solved in M5 against the real roster.
 
 ## Stat scaling — LOCKED
 
@@ -185,8 +186,132 @@ Enemies do not run the player's six-stat sheet. Reduced block:
 - V2-safe: independent builds change player scaling, never what a drone
   hits for.
 
-## Open sections
+## Starting values & the level curve — LOCKED
 
-1. Starting values, per-level increments, XP curve constants (`TUNE`, solved
-   against district XP total once the enemy roster lands — the sole
-   remaining section; everything structural above is locked)
+The auto-allocated sheet. No player ever spends a point in V1; this table is
+the entire progression the level-up moment delivers.
+
+| Stat | Level 1 | Per level | Level 6 | Growth from anywhere else |
+|---|---|---|---|---|
+| HP | 40 | +5 | 65 | HP Max Up pickups (2–3) |
+| RAM | 12 | +2 | 22 | Cyberdeck (pool expansion), RAM Max Up pickups (2–3) |
+| STR | 5 | +3 | 20 | — |
+| DEX | 5 | +3 | 20 | — |
+| INT | 5 | +3 | 20 | — |
+| DEF | 0 | **+0** | 0 | **Gear only** — locked above, no level ever grants it |
+
+- **HP 40** is the locked anchor ("three big mistakes kill you"). +5/level is
+  sized to hold that sentence roughly true as enemy damage climbs toward the
+  boss, rather than to outrun it: 65 HP against a boss hitting for ~15 is
+  still four mistakes.
+- **RAM 12 = three Firewall casts** at 4 RAM each — the pool-sizing rule
+  hacks.md already locked ("a full early pool ≈ 3 casts"). +2/level is
+  deliberately stingy: the Cyberdeck is advertised as *the* capacity upgrade
+  (DESIGN.md §2), and it cannot be that if six levels already doubled the
+  pool. Level-up does **not** refill RAM — the full restore stays a save
+  point's job, so the pool has a real cost curve between terminals.
+- **STR/DEX/INT 5 → 20** is the "~5–20 over six levels" band the stat-scaling
+  section above already promised. In multiplier terms the slice runs
+  ×1.22 → ×1.67: **+36% damage from six levels of grinding, against +125%
+  for swapping the wrench (8) for the maul (18).** That ratio *is* "gear does
+  the differentiation, levels compound quietly" — stated as a number so a
+  later retune can be checked against it.
+- All three attack stats rise in lockstep, as locked above: the verbs stay
+  balanced by default and only weapons and clothing differentiate them.
+
+### What this does to M2's playtest
+
+One number moves. At STR 5 the wrench's authored 8 lands as **10**, not 8.
+The Scav still dies in two hits (16 HP), and the lunge, contact and knockback
+numbers are flat on the enemy side and therefore untouched — so the M2 tuning
+session's conclusions survive contact with the stat sheet. That is the whole
+delta, and it is recorded here because "the numbers quietly changed under a
+playtested feel" is the failure mode this milestone is most exposed to.
+
+## XP curve — LOCKED (`base` re-solved in M5)
+
+```
+xp_to_next(level) = round(base × growth^(level − 1))
+```
+
+| Constant | Value | Meaning |
+|---|---|---|
+| `base` | 60 `TUNE` | XP for the first level-up. The one knob M5 re-solves. |
+| `growth` | 1.5 `TUNE` | Per-level multiplier |
+
+| Level | XP for next | Cumulative to reach |
+|---|---|---|
+| 1 → 2 | 60 | 60 |
+| 2 → 3 | 90 | 150 |
+| 3 → 4 | 135 | 285 |
+| 4 → 5 | 203 | 488 |
+| 5 → 6 | 304 | 792 |
+| 6 → 7 | 456 | 1248 |
+
+First level-up at 60 XP is six Scavs — minutes in, and deliberately *before*
+the first gear pickup (items.md pacing: nothing found in the first ~10
+minutes). Levels open the game, gear punctuates it.
+
+### The district budget it was solved against
+
+The open question this section inherited was that the curve wants a district
+XP total that does not exist until M5 lays out rooms and M6 finishes the
+roster. Rather than defer the whole milestone, the curve is solved against an
+**assumed** roster, written down here so the assumption is auditable and
+M5 re-solves by editing one constant:
+
+| Enemy | Assumed count | XP each | Total |
+|---|---|---|---|
+| Scav | 28 | 10 | 280 |
+| Watcher drone | 12 | 14 | 168 |
+| Riot unit | 8 | 22 | 176 |
+| Elite Scav | 3 | 45 | 135 |
+| The Landlord | 1 | 200 | 200 |
+| | | **Assumed district total** | **959** |
+
+Counts are ~50 enemies across the 25–35 rooms of DESIGN.md §2 — roughly two
+per room once traversal and hub rooms are discounted. The per-enemy values
+keep the ratios the enemy stat block already implies (`xp_reward` is authored
+on the config; only the Scav's 10 exists today, the rest are this table's
+proposal for M6).
+
+Against that total:
+
+| Player | XP earned | Lands at |
+|---|---|---|
+| Skips what it can | ~70% (671) | **Level 5**, most of the way to 6 |
+| Clears the critical path | ~85% (815) | **Level 6** |
+| Kills everything | 100% (959) | **Level 6**, not halfway to 7 |
+
+Which is DESIGN.md §2's "~level 5–6" for every play style — and level 7 is
+unreachable in the slice by construction (1248 > 959), so the curve needs no
+level cap and V2 can extend it without a cliff.
+
+**The guard is a test, not vigilance.** `tests/test_xp_curve.gd` asserts that
+the cumulative XP to level 6 sits between 70% and 90% of the district budget
+recorded above. When M5 lands real room counts and M6 real `xp_reward`
+values, the test fails loudly and `base` is re-solved — the curve's shape and
+every other number here stay put.
+
+## Exports
+
+- **M3 builds:** the stat sheet and this curve as `PlayerStats` +
+  `xp_curve.tres`, the effective-stats layer that folds equipment in
+  (items.md modifier table), and `Attack.stat` finally fed from STR/DEX at
+  step 4 of the pipeline.
+- **The enemy DEF pass** that damage-pipeline.md hands to M3 has, on
+  inspection, nothing to act on: the M3 roster is one Scav, whose teaching
+  role is spacing and whose DEF stays **0** — armour is the Riot unit's
+  lesson. The pass is therefore **deferred to M6**, where the enemies that
+  want DEF exist and the full weapon trio is playtested. The gym's DEF-5
+  station remains where the number gets felt in the meantime.
+- **Credits are a counter in M3** — enemies already author `credit_reward`,
+  and M3 accumulates and displays it. Prices, vendor stock and the
+  `economy.md` that holds them are **M5's**: writing prices now would be
+  inventing numbers for a shop with nothing in it.
+- **M4 needs:** the RAM pool above as a live resource, `ram_regen_mult` from
+  the gloves consulted by the regen tick, and INT fed to step 4 the same way
+  STR and DEX are here.
+- **M5 needs:** to re-solve `base` against the real roster, and to spend the
+  Cyberdeck's pool expansion and the four Max Up pickups against the RAM and
+  HP columns.

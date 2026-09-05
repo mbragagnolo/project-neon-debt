@@ -29,10 +29,21 @@ func before_each() -> void:
 
 func after_each() -> void:
 	TestArena.release_all_input()
+	# The loadout is global from M3, so a test that swaps weapons would arm
+	# every test after it.
+	Inventory.reset()
 	# Combat freezes the engine; a stranded time_scale would take the rest of
 	# the suite down with it.
 	Hitstop.cancel()
 	Engine.time_scale = 1.0
+
+
+## What a wrench hit actually lands for, at the sheet the player is carrying.
+## M3 moved this number — the authored 8 lands as 10 at STR 5 — so the tests
+## ask the same layer the pipeline asks rather than restating a weapon
+## constant that is now one multiplication away from the truth.
+func _wrench_hit() -> int:
+	return _wrench.damage_at(PlayerStats.strength(), _config)
 
 
 func _arena() -> void:
@@ -65,7 +76,7 @@ func test_a_single_swing_hits_a_target_only_once() -> void:
 
 	# The box is armed for several frames and swept every one of them. Without
 	# the per-swing target set this would read 40 - 8×N.
-	assert_eq(dummy.health.hp, 40 - int(_wrench.power), "one swing dealt more than one hit")
+	assert_eq(dummy.health.hp, 40 - _wrench_hit(), "one swing dealt more than one hit")
 
 
 func test_a_second_swing_hits_the_same_target_again() -> void:
@@ -80,7 +91,7 @@ func test_a_second_swing_hits_the_same_target_again() -> void:
 
 	# The target set is scoped to the swing, not to the target: re-arming is a
 	# genuinely new attack.
-	assert_eq(dummy.health.hp, 40 - int(_wrench.power) * 2)
+	assert_eq(dummy.health.hp, 40 - _wrench_hit() * 2)
 
 
 # --- Step 10: the melee→ammo interlock --------------------------------------
@@ -97,7 +108,9 @@ func test_a_landed_melee_hit_refills_ammo() -> void:
 	await _settle(30)
 
 	assert_gt(dummy.health.hp, 0, "the dummy should have survived to prove the hit landed")
-	assert_eq(_player.ammo, before + _wrench.ammo_on_hit)
+	# The hardhat can raise this, so the expectation comes from the same
+	# effective-stats read the swing itself uses.
+	assert_eq(_player.ammo, before + PlayerStats.effective_ammo_on_hit(_wrench))
 
 
 func test_a_whiffed_swing_refills_nothing() -> void:
@@ -162,7 +175,7 @@ func test_a_shot_damages_a_target_it_reaches() -> void:
 	await _settle(40)
 
 	var zipgun: RangedWeapon = load("res://src/combat/weapons/zipgun.tres")
-	assert_eq(dummy.health.hp, 40 - int(zipgun.power))
+	assert_eq(dummy.health.hp, 40 - zipgun.damage_at(PlayerStats.dexterity(), _config))
 
 
 ## Two hurtboxes can land in one shot's overlap list on a single frame — two
@@ -352,3 +365,52 @@ func test_the_tell_mirrors_with_facing() -> void:
 	# drift away from what it is drawing.
 	assert_lt(_player.melee_hitbox.position.x, 0.0)
 	assert_eq(_player.facing, -1)
+
+
+# --- M3: gear changes the math ----------------------------------------------
+
+func test_swapping_to_the_maul_visibly_changes_the_damage_number() -> void:
+	# M3's exit test, as far as a test can carry it: "equipping better gear
+	# visibly changes combat math." The felt half is Marcos's. The half a
+	# machine can hold is that the number the pipeline produces actually moves
+	# when the equip screen says it will — the failure this guards against is
+	# a loadout that is swapped in the inventory and never reaches the swing.
+	await _arena()
+	var dummy := TestArena.dummy(_root, Vector2(IN_REACH, FLOOR_TOP))
+	await _settle(3)
+
+	await _tap("attack_melee")
+	await _settle(30)
+	var with_wrench: int = 40 - dummy.health.hp
+
+	Inventory.grant(&"breaker_maul")
+	Inventory.equip(&"breaker_maul")
+	dummy.health.restore()
+	await _settle(90)  # past the maul's much slower cooldown
+
+	await _tap("attack_melee")
+	await _settle(30)
+	var with_maul: int = 40 - dummy.health.hp
+
+	assert_gt(with_wrench, 0, "the wrench never connected")
+	assert_gt(with_maul, with_wrench * 2, "the maul is landing like a wrench")
+
+
+func test_the_swing_tell_changes_with_the_weapon() -> void:
+	# The tell is the only thing on screen that says which tool is equipped
+	# (items.md), and it is drawn at the hitbox's exact size. A swap that moves
+	# the damage but not the box teaches a reach the player does not have.
+	await _arena()
+	await _tap("attack_melee")
+	await _settle(2)
+	var wrench_box: Vector2 = _swing_tell().size
+
+	await _settle(60)
+	Inventory.grant(&"breaker_maul")
+	Inventory.equip(&"breaker_maul")
+	await _tap("attack_melee")
+	await _settle(2)
+
+	var maul: MeleeWeapon = load("res://src/combat/weapons/breaker_maul.tres")
+	assert_eq(_swing_tell().size, maul.hitbox_size)
+	assert_ne(_swing_tell().size, wrench_box, "the tell did not follow the weapon")
