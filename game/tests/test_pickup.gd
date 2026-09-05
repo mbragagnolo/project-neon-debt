@@ -82,3 +82,21 @@ func test_the_prompt_only_shows_with_the_player_standing_in_it() -> void:
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	assert_true(prompt.visible, "the player is standing in it and it said nothing")
+
+
+func test_the_prompt_names_the_key_that_actually_takes_it() -> void:
+	# The prompt said "[E] take" for the whole of M3 while `interact` was bound
+	# to F (#4). E fires `hack_next`, which nothing reads until M4, so pressing
+	# the advertised key did nothing at all and logged nothing either.
+	var pickup: Pickup = _pickup(&"work_boots")
+	var prompt: Label = pickup.get_node("Prompt")
+	var key: String = ""
+	for event: InputEvent in InputMap.action_get_events(&"interact"):
+		if event is InputEventKey:
+			key = OS.get_keycode_string((event as InputEventKey).physical_keycode)
+			break
+	assert_ne(key, "", "`interact` lost its keyboard binding")
+	assert_string_contains(
+		prompt.text, "[%s]" % key.to_upper(),
+		"the prompt does not name the key bound to `interact`"
+	)

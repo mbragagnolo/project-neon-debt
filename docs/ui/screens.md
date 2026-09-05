@@ -54,7 +54,7 @@ and the exit test could pass on a lie.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
-│  LOADOUT                                             [I] / [Esc] ✕   │
+│  LOADOUT                                           [TAB] / [Esc] ✕   │
 ├─────────────────────────┬────────────────────────────────────────────┤
 │  MELEE    Pipe wrench   │  FITS THIS SLOT                            │
 │  RANGED   Zipgun        │   ▸ Pipe wrench            (equipped)      │

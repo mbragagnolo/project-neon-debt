@@ -177,7 +177,8 @@ func _redraw() -> void:
 	_draw_items()
 	_draw_detail()
 	_hint.text = (
-		"[W/S] choose   [D] items   [A] slots   [E] equip / take off   [I] close"
+		"[W/S] choose   [D] items   [A] slots   %s equip / take off   %s close"
+		% [InputPrompt.label(&"interact"), InputPrompt.label(&"toggle_inventory")]
 	)
 
 

@@ -148,7 +148,7 @@ offset_right = 300.0
 offset_bottom = 960.0
 theme_override_font_sizes/font_size = 26
 theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
-text = "[E] TAKE     [I] LOADOUT"
+text = "[F] TAKE     [TAB] LOADOUT"
 
 [node name="Blade" type="Label" parent="Labels" unique_id=1812903394]
 offset_left = 360.0
@@ -328,7 +328,7 @@ offset_right = 300.0
 offset_bottom = 300.0
 theme_override_font_sizes/font_size = 26
 theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
-text = "LOADOUT  I     TAKE  E"
+text = "LOADOUT  TAB     TAKE  F"
 
 [node name="LevelsMove" type="Label" parent="Labels" unique_id=217810937]
 offset_left = 300.0

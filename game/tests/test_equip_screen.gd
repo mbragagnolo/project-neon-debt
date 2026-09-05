@@ -153,3 +153,22 @@ func test_the_sheet_panel_reads_the_same_dictionary_the_hud_does() -> void:
 	assert_eq(int(sheet["level"]), 2)
 	assert_true(sheet.has("def"), "the sheet the screen draws has no DEF in it")
 	assert_true(sheet.has("xp_into_level"))
+
+
+# --- The hint line ----------------------------------------------------------
+
+func test_the_hint_names_the_keys_that_actually_work() -> void:
+	# The hint read "[E] equip / take off   [I] close" while the handlers above
+	# answered to `interact` (F) and `toggle_inventory` (Tab) — #4. A menu whose
+	# own footer names the wrong exit is the worst place for this to be wrong.
+	_screen.open()
+	for action: StringName in [&"interact", &"toggle_inventory"]:
+		var key: String = ""
+		for event: InputEvent in InputMap.action_get_events(action):
+			if event is InputEventKey:
+				key = OS.get_keycode_string((event as InputEventKey).physical_keycode)
+				break
+		assert_string_contains(
+			_screen._hint.text, "[%s]" % key.to_upper(),
+			"the hint does not name the key bound to `%s`" % action
+		)

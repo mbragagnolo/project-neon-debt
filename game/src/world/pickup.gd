@@ -56,7 +56,7 @@ func _ready() -> void:
 	collider.shape = circle
 	add_child(collider)
 
-	_prompt.text = "%s\n[E] take" % _item.display_name
+	_prompt.text = "%s\n%s take" % [_item.display_name, InputPrompt.label(&"interact")]
 	_prompt.add_theme_font_size_override("font_size", 24)
 	_prompt.visible = false
 	body_entered.connect(_on_body_entered)

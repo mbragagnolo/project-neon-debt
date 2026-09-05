@@ -79,7 +79,14 @@ func _ready() -> void:
 	# --- the pickup path — prompt, toast, auto-equip for clothing, never for
 	# --- weapons — is what gets exercised.
 	_label("A - ARMOURY: TAKE WHAT YOU WANT TO FEEL", Vector2(300, 900))
-	_label("[E] TAKE     [I] LOADOUT", Vector2(300, 960))
+	# Built from the bindings rather than typed, so a rebind cannot leave the
+	# wall telling players to press a key that does nothing (#4).
+	_label(
+		"%s TAKE     %s LOADOUT" % [
+			InputPrompt.label(&"interact"), InputPrompt.label(&"toggle_inventory"),
+		],
+		Vector2(300, 960)
+	)
 	for entry: Array in CHESTS:
 		_chest(String(entry[0]), String(entry[1]), float(entry[2]))
 
@@ -121,7 +128,13 @@ func _ready() -> void:
 	])
 
 	_label("MELEE  J     RANGED  K     DASH  SHIFT", Vector2(300, 240))
-	_label("LOADOUT  I     TAKE  E", Vector2(300, 300))
+	_label(
+		"LOADOUT  %s     TAKE  %s" % [
+			InputPrompt.key(&"toggle_inventory").to_upper(),
+			InputPrompt.key(&"interact").to_upper(),
+		],
+		Vector2(300, 300)
+	)
 	_label("LEVELS MOVE THE MULTIPLIER. GEAR MOVES THE WEAPON.", Vector2(300, 360))
 
 	var spawn := Marker2D.new()

@@ -71,6 +71,9 @@ is unreachable on a pad regardless of the label.
   `[E] equip / take off   [I] close`; the handlers on lines 68 and 88 use
   `toggle_inventory` (Tab) and `interact` (F).
 - `game/rooms/rpg_gym.tscn:151` — label node text `"[E] TAKE     [I] LOADOUT"`.
+- `game/rooms/rpg_gym.tscn:331` — a second label, `"LOADOUT  I     TAKE  E"`. **Missed during diagnosis** and found by the regression test: it writes its
+  keys without brackets, so the `[E]`/`[I]` grep that found the other four
+  walked straight past it. Same root cause, same commit.
 - `game/tools/make_rpg_gym.gd:82` — the generator that emits that scene. Must be
   fixed too or the next regeneration reintroduces the bug.
 - `docs/ui/screens.md:57` — the LOCKED layout block shows the loadout header as

@@ -136,3 +136,41 @@ func test_the_pen_holds_enough_scavs_to_level_up_on() -> void:
 	var pen: Node = _gym.get_node_or_null("ScavPen")
 	assert_not_null(pen, "no Scavs - nothing pays XP")
 	assert_eq(pen.get_child_count(), 3, "three spawn markers, two clears to level 2")
+
+
+# --- The wall of instructions -----------------------------------------------
+
+## Does `text` name `key` as a word of its own? The gym writes its keys two
+## ways — "[F] TAKE" on the armoury wall, "TAKE  F" in the corner legend — so
+## matching a bare substring would pass on the F in "FEEL".
+func _names_key(text: String, key: String) -> bool:
+	var pattern := "(^|[^A-Za-z0-9])%s([^A-Za-z0-9]|$)" % key.to_upper()
+	return RegEx.create_from_string(pattern).search(text.to_upper()) != null
+
+
+func test_the_wall_labels_name_the_keys_that_actually_work() -> void:
+	# The gym is the room Marcos actually plays, and for the whole of M3 both of
+	# its instruction labels told him to press E and I while the bound keys were
+	# F and Tab (#4). Every label that mentions the loadout is checked, because
+	# the second one was written in a different format and a grep for "[I]"
+	# walked straight past it.
+	var keys: Dictionary = {}
+	for action: StringName in [&"interact", &"toggle_inventory"]:
+		for event: InputEvent in InputMap.action_get_events(action):
+			if event is InputEventKey:
+				keys[action] = OS.get_keycode_string((event as InputEventKey).physical_keycode)
+				break
+		assert_true(keys.has(action), "`%s` lost its keyboard binding" % action)
+
+	var checked: int = 0
+	for child: Node in _gym.get_node("Labels").get_children():
+		if not (child is Label) or not ("LOADOUT" in (child as Label).text):
+			continue
+		checked += 1
+		var text: String = (child as Label).text
+		for action: StringName in keys:
+			assert_true(
+				_names_key(text, String(keys[action])),
+				"'%s' does not name the key bound to `%s`" % [text, action]
+			)
+	assert_eq(checked, 2, "the gym stopped saying how to open the loadout")
