@@ -18,6 +18,10 @@ extends RefCounted
 ## kit before it by at least this factor, and reachable by the kit after it
 ## by at least this factor.
 const GATE_MARGIN := 1.15
+## The player's collision box, px. A gap measured lip to lip is crossed by a
+## body that leaves the near lip half a body late and lands on the far lip
+## half a body early, so a gap of `g` asks for `g - BODY_WIDTH` of travel.
+const BODY_WIDTH := 48.0
 
 var config: MovementConfig
 
@@ -115,10 +119,17 @@ func wall_jump_reach() -> float:
 
 # --- Gate checks --------------------------------------------------------------
 
-## A Sidewinder gate: a level gap the starting kit cannot cross and the
-## implant can, each by the margin.
+## A Sidewinder gate: a level gap (lip to lip, px) the starting kit cannot
+## cross and the implant can, each by the margin.
 func is_valid_air_dash_gate(gap: float) -> bool:
-	return gap >= max_gap(false) * GATE_MARGIN and gap * GATE_MARGIN <= max_gap(true)
+	var travel: float = gap - BODY_WIDTH
+	return travel >= max_gap(false) * GATE_MARGIN and travel * GATE_MARGIN <= max_gap(true)
+
+
+## A level gap the starting kit crosses comfortably — ordinary platforming,
+## not a gate.
+func is_plain_jump(gap: float) -> bool:
+	return (gap - BODY_WIDTH) * GATE_MARGIN <= max_gap(false)
 
 
 ## A double-jump tease: a single-wall ledge higher than a jump by the margin.
@@ -128,6 +139,7 @@ func is_valid_tease_height(height: float) -> bool:
 	return height >= jump_height() * GATE_MARGIN
 
 
-## A Mag-Hook shaft: two facing walls close enough to bounce between.
+## A Mag-Hook shaft: two facing walls (inner faces `width` px apart) close
+## enough to bounce between.
 func is_climbable_shaft(width: float) -> bool:
-	return width * GATE_MARGIN <= wall_jump_reach()
+	return (width - BODY_WIDTH) * GATE_MARGIN <= wall_jump_reach()

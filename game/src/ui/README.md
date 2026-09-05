@@ -21,5 +21,10 @@ Everything here reads the signal bus; no UI node reaches into gameplay nodes.
   same effective-stats layer the damage pipeline uses — a screen that reads a
   weapon's authored `power` agrees with the item file and disagrees with the
   game.
+- `menus/pause_shell.gd`, `map_screen.gd`, `quest_log.gd` — **M5.** The
+  pause shell and its tabs (docs/ui/screens.md). The equip screen runs
+  inside the shell with `standalone = false`.
+- `menus/shop_screen.gd` — **M5.** Stitch's stall.
+- `dialogue_box.gd`, `bark_box.gd` — **M5.** Pages of NPC dialogue, and the
+  protagonist's one-liners.
 - `hud/` — **M7**, when the real HUD replaces the gym readout
-- `menus/` (pause, quest log), `map_screen/` — **M5**

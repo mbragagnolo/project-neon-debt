@@ -1,0 +1,665 @@
+[gd_resource type="Resource" script_class="WorldGraph" format=3]
+
+[ext_resource type="Script" path="res://src/world/world_graph.gd" id="1_ywyfh"]
+
+[resource]
+script = ExtResource("1_ywyfh")
+rooms = Array[Dictionary]([{
+"cell": Vector2i(10, 2),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 1,
+"target_door": "2",
+"target_room": "breach_gate_room"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 3,
+"target_door": "1",
+"target_room": "armory_chute"
+}],
+"id": "armory",
+"name": "Repossessed Assets",
+"save": false,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(10, 3),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 2,
+"target_door": "2",
+"target_room": "armory"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 0,
+"target_door": "3",
+"target_room": "lift_base"
+}],
+"id": "armory_chute",
+"name": "Disposal Chute",
+"save": false,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(11, 2),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 2,
+"target_door": "3",
+"target_room": "east_ledges"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 0,
+"target_door": "1",
+"target_room": "armory"
+}],
+"id": "breach_gate_room",
+"name": "Collections Bulkhead",
+"save": false,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(13, 1),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 0,
+"target_door": "2",
+"target_room": "server_nook"
+}],
+"id": "catwalks",
+"name": "Service Catwalks",
+"save": false,
+"size": Vector2i(2, 2)
+}, {
+"cell": Vector2i(12, -1),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 0,
+"target_door": "2",
+"target_room": "collections_lobby"
+}],
+"id": "collections",
+"name": "Collections - Floor 40",
+"save": false,
+"size": Vector2i(2, 1)
+}, {
+"cell": Vector2i(10, -1),
+"doors": [{
+"at": Vector2i(0, 1),
+"id": "1",
+"side": 0,
+"target_door": "2",
+"target_room": "roof_gap"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 1,
+"target_door": "1",
+"target_room": "collections_lobby"
+}],
+"id": "collections_lift",
+"name": "Collections - Private Lift",
+"save": false,
+"size": Vector2i(1, 2)
+}, {
+"cell": Vector2i(11, -1),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 0,
+"target_door": "2",
+"target_room": "collections_lift"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 1,
+"target_door": "1",
+"target_room": "collections"
+}],
+"id": "collections_lobby",
+"name": "Collections - Reception",
+"save": true,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(3, 7),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 0,
+"target_door": "3",
+"target_room": "gut_lift"
+}, {
+"at": Vector2i(1, 0),
+"id": "2",
+"side": 1,
+"target_door": "1",
+"target_room": "gut_deep"
+}],
+"id": "defaulter_den",
+"name": "The Gut - Sump",
+"save": false,
+"size": Vector2i(2, 1)
+}, {
+"cell": Vector2i(6, 4),
+"doors": [{
+"at": Vector2i(0, 3),
+"id": "1",
+"side": 0,
+"target_door": "2",
+"target_room": "gut_deep"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 2,
+"target_door": "3",
+"target_room": "underpass"
+}],
+"id": "drain_riser",
+"name": "Drain Riser",
+"save": false,
+"size": Vector2i(1, 4)
+}, {
+"cell": Vector2i(10, 1),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 0,
+"target_door": "2",
+"target_room": "lift_shaft"
+}, {
+"at": Vector2i(1, 0),
+"id": "2",
+"side": 1,
+"target_door": "1",
+"target_room": "server_nook"
+}, {
+"at": Vector2i(1, 0),
+"id": "3",
+"side": 3,
+"target_door": "1",
+"target_room": "breach_gate_room"
+}],
+"id": "east_ledges",
+"name": "East Ledges",
+"save": false,
+"size": Vector2i(2, 1)
+}, {
+"cell": Vector2i(1, 8),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 1,
+"target_door": "2",
+"target_room": "gut_lift"
+}],
+"id": "gut_cistern",
+"name": "Cistern",
+"save": false,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(5, 7),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 0,
+"target_door": "2",
+"target_room": "defaulter_den"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 1,
+"target_door": "1",
+"target_room": "drain_riser"
+}],
+"id": "gut_deep",
+"name": "The Gut - Retrieval",
+"save": false,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(2, 7),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 0,
+"target_door": "3",
+"target_room": "gut_pumps"
+}, {
+"at": Vector2i(0, 1),
+"id": "2",
+"side": 0,
+"target_door": "1",
+"target_room": "gut_cistern"
+}, {
+"at": Vector2i(0, 0),
+"id": "3",
+"side": 1,
+"target_door": "1",
+"target_room": "defaulter_den"
+}],
+"id": "gut_lift",
+"name": "The Gut - Lift",
+"save": false,
+"size": Vector2i(1, 2)
+}, {
+"cell": Vector2i(0, 6),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 2,
+"target_door": "2",
+"target_room": "service_tunnel"
+}, {
+"at": Vector2i(1, 0),
+"id": "2",
+"side": 1,
+"target_door": "1",
+"target_room": "gut_vent"
+}, {
+"at": Vector2i(1, 1),
+"id": "3",
+"side": 1,
+"target_door": "1",
+"target_room": "gut_lift"
+}],
+"id": "gut_pumps",
+"name": "The Gut - Pump Hall",
+"save": false,
+"size": Vector2i(2, 2)
+}, {
+"cell": Vector2i(1, 4),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 2,
+"target_door": "3",
+"target_room": "mezz"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 3,
+"target_door": "1",
+"target_room": "service_tunnel"
+}],
+"id": "gut_stair",
+"name": "The Gut - Stair",
+"save": false,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(2, 6),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 0,
+"target_door": "2",
+"target_room": "gut_pumps"
+}],
+"id": "gut_vent",
+"name": "Filter Housing",
+"save": false,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(6, 2),
+"doors": [{
+"at": Vector2i(1, 0),
+"id": "1",
+"side": 1,
+"target_door": "2",
+"target_room": "stairwell_east"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 0,
+"target_door": "1",
+"target_room": "maintenance_closet"
+}],
+"id": "hall_13",
+"name": "Floor 13 - Hall",
+"save": true,
+"size": Vector2i(2, 1)
+}, {
+"cell": Vector2i(6, 1),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 0,
+"target_door": "1",
+"target_room": "unit_14c"
+}, {
+"at": Vector2i(1, 0),
+"id": "2",
+"side": 1,
+"target_door": "1",
+"target_room": "stairwell_east"
+}],
+"id": "hall_14",
+"name": "Floor 14 - Hall",
+"save": false,
+"size": Vector2i(2, 1)
+}, {
+"cell": Vector2i(9, 3),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 0,
+"target_door": "2",
+"target_room": "underpass"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 2,
+"target_door": "1",
+"target_room": "lift_shaft"
+}, {
+"at": Vector2i(0, 0),
+"id": "3",
+"side": 1,
+"target_door": "2",
+"target_room": "armory_chute"
+}],
+"id": "lift_base",
+"name": "East Lift - Base",
+"save": false,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(9, 1),
+"doors": [{
+"at": Vector2i(0, 1),
+"id": "1",
+"side": 3,
+"target_door": "2",
+"target_room": "lift_base"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 1,
+"target_door": "1",
+"target_room": "east_ledges"
+}],
+"id": "lift_shaft",
+"name": "East Lift - Shaft",
+"save": false,
+"size": Vector2i(1, 2)
+}, {
+"cell": Vector2i(5, 2),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 1,
+"target_door": "2",
+"target_room": "hall_13"
+}],
+"id": "maintenance_closet",
+"name": "Maintenance 13",
+"save": false,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(1, 3),
+"doors": [{
+"at": Vector2i(2, 0),
+"id": "2",
+"side": 1,
+"target_door": "2",
+"target_room": "mezz_east"
+}, {
+"at": Vector2i(0, 0),
+"id": "3",
+"side": 3,
+"target_door": "1",
+"target_room": "gut_stair"
+}],
+"id": "mezz",
+"name": "The Mezz",
+"save": true,
+"size": Vector2i(3, 1)
+}, {
+"cell": Vector2i(4, 3),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 2,
+"target_door": "3",
+"target_room": "west_stair"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 0,
+"target_door": "2",
+"target_room": "mezz"
+}, {
+"at": Vector2i(0, 0),
+"id": "3",
+"side": 1,
+"target_door": "1",
+"target_room": "pawn_back"
+}],
+"id": "mezz_east",
+"name": "Mezzanine East",
+"save": false,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(5, 3),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 0,
+"target_door": "3",
+"target_room": "mezz_east"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 1,
+"target_door": "1",
+"target_room": "underpass"
+}],
+"id": "pawn_back",
+"name": "Stitch's Back Room",
+"save": false,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(8, 0),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 3,
+"target_door": "3",
+"target_room": "stairwell_east"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 0,
+"target_door": "2",
+"target_room": "roof_span"
+}, {
+"at": Vector2i(0, 0),
+"id": "3",
+"side": 1,
+"target_door": "1",
+"target_room": "roof_gap"
+}],
+"id": "roof_access",
+"name": "Roof Access",
+"save": false,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(9, 0),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 0,
+"target_door": "3",
+"target_room": "roof_access"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 1,
+"target_door": "1",
+"target_room": "collections_lift"
+}],
+"id": "roof_gap",
+"name": "Between Towers",
+"save": false,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(5, 0),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 0,
+"target_door": "1",
+"target_room": "west_stair"
+}, {
+"at": Vector2i(2, 0),
+"id": "2",
+"side": 1,
+"target_door": "2",
+"target_room": "roof_access"
+}],
+"id": "roof_span",
+"name": "Tower 7 - Roof",
+"save": false,
+"size": Vector2i(3, 1)
+}, {
+"cell": Vector2i(12, 1),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 0,
+"target_door": "2",
+"target_room": "east_ledges"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 1,
+"target_door": "1",
+"target_room": "catwalks"
+}],
+"id": "server_nook",
+"name": "Edge Node 7",
+"save": false,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(0, 5),
+"doors": [{
+"at": Vector2i(1, 0),
+"id": "1",
+"side": 2,
+"target_door": "2",
+"target_room": "gut_stair"
+}, {
+"at": Vector2i(0, 0),
+"id": "2",
+"side": 3,
+"target_door": "1",
+"target_room": "gut_pumps"
+}],
+"id": "service_tunnel",
+"name": "The Gut - Service Tunnel",
+"save": false,
+"size": Vector2i(3, 1)
+}, {
+"cell": Vector2i(8, 1),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 0,
+"target_door": "2",
+"target_room": "hall_14"
+}, {
+"at": Vector2i(0, 1),
+"id": "2",
+"side": 0,
+"target_door": "1",
+"target_room": "hall_13"
+}, {
+"at": Vector2i(0, 0),
+"id": "3",
+"side": 2,
+"target_door": "1",
+"target_room": "roof_access"
+}],
+"id": "stairwell_east",
+"name": "Stairwell East",
+"save": false,
+"size": Vector2i(1, 2)
+}, {
+"cell": Vector2i(6, 3),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 0,
+"target_door": "2",
+"target_room": "pawn_back"
+}, {
+"at": Vector2i(2, 0),
+"id": "2",
+"side": 1,
+"target_door": "1",
+"target_room": "lift_base"
+}, {
+"at": Vector2i(0, 0),
+"id": "3",
+"side": 3,
+"target_door": "2",
+"target_room": "drain_riser"
+}],
+"id": "underpass",
+"name": "Service Underpass",
+"save": false,
+"size": Vector2i(3, 1)
+}, {
+"cell": Vector2i(5, 1),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 1,
+"target_door": "1",
+"target_room": "hall_14"
+}],
+"id": "unit_14c",
+"name": "Unit 14-C",
+"save": false,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(3, 1),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 1,
+"target_door": "2",
+"target_room": "west_stair"
+}],
+"id": "west_alcove",
+"name": "Utility 3W",
+"save": false,
+"size": Vector2i(1, 1)
+}, {
+"cell": Vector2i(4, 0),
+"doors": [{
+"at": Vector2i(0, 0),
+"id": "1",
+"side": 1,
+"target_door": "1",
+"target_room": "roof_span"
+}, {
+"at": Vector2i(0, 1),
+"id": "2",
+"side": 0,
+"target_door": "1",
+"target_room": "west_alcove"
+}, {
+"at": Vector2i(0, 2),
+"id": "3",
+"side": 3,
+"target_door": "1",
+"target_room": "mezz_east"
+}],
+"id": "west_stair",
+"name": "Stair West",
+"save": false,
+"size": Vector2i(1, 3)
+}])

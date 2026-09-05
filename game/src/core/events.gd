@@ -50,6 +50,12 @@ signal ability_granted(ability: StringName)
 # --- World / metroidvania (M5) ---------------------------------------------
 signal room_entered(room_id: StringName)
 signal room_exited(room_id: StringName)
+## A door was walked into; the world answers by swapping rooms.
+signal room_travel_requested(room_id: StringName, door_id: StringName)
+## A permanent stat bump was found (`&"hp"` or `&"ram"`).
+signal stat_up_acquired(kind: StringName, amount: int)
+signal quest_item_acquired(item_id: StringName)
+signal shop_purchased(entry_id: StringName)
 signal door_opened(door_id: StringName)
 signal save_point_activated(save_point_id: StringName)
 signal game_saved(slot: int)
@@ -62,3 +68,5 @@ signal quest_completed(quest_id: StringName)
 
 # --- UI ---------------------------------------------------------------------
 signal toast_requested(text: String)
+## One of the protagonist's lines, shown at the bottom for a few seconds.
+signal bark_requested(text: String)

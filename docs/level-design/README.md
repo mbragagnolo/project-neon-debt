@@ -7,6 +7,8 @@ is **not** gated by M1. Room geometry (gap widths, platform spacing) **is** —
 it inherits the tuned movement numbers, so no absolute dimensions here until
 M1 signs off.
 
-Planned specs:
-- `stacks-graph.md` — the district as a boxes-and-arrows room graph
-- `gym-notes.md` — findings from M1 playtesting worth keeping
+Specs:
+- [`stacks.md`](stacks.md) — **built (M5).** The district as shipped: the
+  room graph, the critical path with the kit at each step, every gate by
+  the grammar, the envelope they were sized against, the room table, and
+  the spec format the rooms are authored in.

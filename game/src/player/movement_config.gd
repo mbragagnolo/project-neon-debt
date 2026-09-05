@@ -69,6 +69,10 @@ extends Resource
 ## kick away from the wall actually lands instead of being cancelled by the
 ## stick the player is already holding toward it.
 @export var wall_jump_lockout_time: float = 0.12
+## Extra seconds, on top of a wall jump's whole flight, before the *same*
+## wall accepts the player again. The flight is derived; this is the margin.
+## It is what makes a single wall unclimbable (DESIGN.md §3.1 anti-exploit).
+@export var same_wall_lockout_margin: float = 0.05
 
 
 ## Downward acceleration while rising, px/s². Derived from the jump shape.
@@ -96,6 +100,18 @@ func wall_jump_velocity() -> float:
 	if g <= 0.0:
 		return 0.0
 	return -sqrt(2.0 * g * wall_jump_height)
+
+
+## Seconds a wall jump spends rising and falling back to its take-off
+## height. The same wall is refused for this long plus the margin, so a
+## re-stick always happens below the point of departure.
+func same_wall_lockout_time() -> float:
+	var rise_g: float = rise_gravity()
+	if rise_g <= 0.0:
+		return same_wall_lockout_margin
+	var rise: float = sqrt(2.0 * wall_jump_height / rise_g)
+	var fall: float = sqrt(2.0 * wall_jump_height / fall_gravity())
+	return rise + fall + same_wall_lockout_margin
 
 
 ## Constant horizontal speed held for `dash_duration`, px/s.

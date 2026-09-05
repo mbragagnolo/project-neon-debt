@@ -28,3 +28,4 @@ wall_jump_push = 420.0
 wall_jump_height = 144.0
 wall_stick_time = 0.1
 wall_jump_lockout_time = 0.12
+same_wall_lockout_margin = 0.05

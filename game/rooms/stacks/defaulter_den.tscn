@@ -1,0 +1,184 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/world/room.gd" id="1_88dkj"]
+[ext_resource type="Script" path="res://src/world/hazard.gd" id="2_5vn6b"]
+[ext_resource type="Script" path="res://src/world/door.gd" id="3_hgo7u"]
+[ext_resource type="Script" path="res://src/world/sign.gd" id="4_ug7bn"]
+[ext_resource type="PackedScene" path="res://src/world/pickup.tscn" id="5_sx3xq"]
+[ext_resource type="Script" path="res://src/world/pickup.gd" id="6_68vew"]
+[ext_resource type="Script" path="res://src/world/encounter.gd" id="7_321o2"]
+[ext_resource type="PackedScene" path="res://src/enemies/scav/scav.tscn" id="8_yqyiv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_co2d3"]
+size = Vector2(3840, 540)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jldh4"]
+size = Vector2(60, 300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwrux"]
+size = Vector2(60, 300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1tdm"]
+size = Vector2(3840, 60)
+
+[node name="DefaulterDen" type="Node2D" unique_id=1138179430]
+script = ExtResource("1_88dkj")
+room_id = &"defaulter_den"
+display_name = "The Gut - Sump"
+camera_limits = Rect2i(0, 0, 3840, 1080)
+announces_on_ready = false
+
+[node name="Geometry" type="Node2D" parent="." unique_id=377856677]
+
+[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=1732286205]
+z_index = -10
+offset_right = 3840.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.050980393, 0.0627451, 0.09411765, 1)
+
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=514147963]
+position = Vector2(1920, 270)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=2082409089]
+shape = SubResource("RectangleShape2D_co2d3")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=2068228867]
+offset_left = -1920.0
+offset_top = -270.0
+offset_right = 1920.0
+offset_bottom = 270.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=1829708691]
+position = Vector2(30, 690)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=80725443]
+shape = SubResource("RectangleShape2D_jldh4")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=173949875]
+offset_left = -30.0
+offset_top = -150.0
+offset_right = 30.0
+offset_bottom = 150.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=846590873]
+position = Vector2(3810, 690)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=1428286836]
+shape = SubResource("RectangleShape2D_qwrux")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=1381749703]
+offset_left = -30.0
+offset_top = -150.0
+offset_right = 30.0
+offset_bottom = 150.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=109257506]
+position = Vector2(1920, 1050)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=1593848207]
+shape = SubResource("RectangleShape2D_r1tdm")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=650538273]
+offset_left = -1920.0
+offset_top = -30.0
+offset_right = 1920.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Hazards" type="Node2D" parent="." unique_id=425126754]
+
+[node name="Hazard0" type="Area2D" parent="Hazards" unique_id=986200076]
+position = Vector2(1320, 990)
+script = ExtResource("2_5vn6b")
+size = Vector2(240, 60)
+
+[node name="Hazard1" type="Area2D" parent="Hazards" unique_id=1805051087]
+position = Vector2(2400, 990)
+script = ExtResource("2_5vn6b")
+size = Vector2(240, 60)
+
+[node name="Doors" type="Node2D" parent="." unique_id=1130433053]
+
+[node name="1" type="Area2D" parent="Doors" unique_id=873831313]
+position = Vector2(30, 930)
+script = ExtResource("3_hgo7u")
+door_id = &"1"
+target_room = &"gut_lift"
+target_door = &"3"
+spawn_point = Vector2(90, 1020)
+room_size = Vector2(3840, 1080)
+
+[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=1507310385]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="2" type="Area2D" parent="Doors" unique_id=685803309]
+position = Vector2(3810, 930)
+script = ExtResource("3_hgo7u")
+door_id = &"2"
+target_room = &"gut_deep"
+target_door = &"1"
+side = 1
+spawn_point = Vector2(3750, 1020)
+room_size = Vector2(3840, 1080)
+
+[node name="Frame" type="ColorRect" parent="Doors/2" unique_id=2114199608]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="Props" type="Node2D" parent="." unique_id=1400617430]
+
+[node name="Sign_f" type="Node2D" parent="Props" unique_id=999819301]
+position = Vector2(3390, 780)
+script = ExtResource("4_ug7bn")
+text = "FERRO · ACCT CLOSED
+Remains forfeit to VESTA"
+warning = true
+
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=1508648883]
+position = Vector2(510, 780)
+script = ExtResource("4_ug7bn")
+text = "SUMP
+LIVE WATER"
+
+[node name="Pickups" type="Node2D" parent="." unique_id=1845776677]
+
+[node name="QuestItem_memory_chip" type="Area2D" parent="Pickups" unique_id=165365101 instance=ExtResource("5_sx3xq")]
+position = Vector2(3390, 1020)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("6_68vew")
+kind = 5
+quest_item_id = &"memory_chip"
+pickup_id = &"defaulter_den_c"
+
+[node name="Scavs" type="Node2D" parent="." unique_id=1341073534]
+script = ExtResource("7_321o2")
+enemy_scene = ExtResource("8_yqyiv")
+respawn_delay = 0.0
+
+[node name="Spawn1" type="Marker2D" parent="Scavs" unique_id=1200619232]
+position = Vector2(870, 1020)
+
+[node name="Spawn2" type="Marker2D" parent="Scavs" unique_id=1963387540]
+position = Vector2(2790, 1020)

@@ -1,0 +1,189 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/world/room.gd" id="1_rboi0"]
+[ext_resource type="Script" path="res://src/world/hazard.gd" id="2_d0d0u"]
+[ext_resource type="Script" path="res://src/world/door.gd" id="3_rvxe8"]
+[ext_resource type="Script" path="res://src/world/sign.gd" id="4_h62jx"]
+[ext_resource type="PackedScene" path="res://src/world/pickup.tscn" id="5_eyglb"]
+[ext_resource type="Script" path="res://src/world/pickup.gd" id="6_tm6ij"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f4x6t"]
+size = Vector2(1920, 540)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ur8a"]
+size = Vector2(60, 540)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fho8"]
+size = Vector2(60, 300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fmpeq"]
+size = Vector2(180, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5dmjr"]
+size = Vector2(660, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qumk"]
+size = Vector2(1020, 60)
+
+[node name="GutCistern" type="Node2D" unique_id=1682620818]
+script = ExtResource("1_rboi0")
+room_id = &"gut_cistern"
+display_name = "Cistern"
+camera_limits = Rect2i(0, 0, 1920, 1080)
+announces_on_ready = false
+
+[node name="Geometry" type="Node2D" parent="." unique_id=251432671]
+
+[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=1397385486]
+z_index = -10
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.050980393, 0.0627451, 0.09411765, 1)
+
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=1047012039]
+position = Vector2(960, 270)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=1072294717]
+shape = SubResource("RectangleShape2D_f4x6t")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=1720064484]
+offset_left = -960.0
+offset_top = -270.0
+offset_right = 960.0
+offset_bottom = 270.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=1843275174]
+position = Vector2(30, 810)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=750172458]
+shape = SubResource("RectangleShape2D_5ur8a")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=61431592]
+offset_left = -30.0
+offset_top = -270.0
+offset_right = 30.0
+offset_bottom = 270.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=320326738]
+position = Vector2(1890, 690)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=1453358197]
+shape = SubResource("RectangleShape2D_3fho8")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=438278]
+offset_left = -30.0
+offset_top = -150.0
+offset_right = 30.0
+offset_bottom = 150.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=1936845672]
+position = Vector2(810, 990)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=41737323]
+shape = SubResource("RectangleShape2D_fmpeq")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=1783532146]
+offset_left = -90.0
+offset_top = -90.0
+offset_right = 90.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=961736736]
+position = Vector2(390, 1050)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=1750757324]
+shape = SubResource("RectangleShape2D_5dmjr")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid4" unique_id=11203083]
+offset_left = -330.0
+offset_top = -30.0
+offset_right = 330.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid5" type="StaticBody2D" parent="Geometry" unique_id=1462224858]
+position = Vector2(1410, 1050)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid5" unique_id=485218338]
+shape = SubResource("RectangleShape2D_4qumk")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid5" unique_id=538557332]
+offset_left = -510.0
+offset_top = -30.0
+offset_right = 510.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Hazards" type="Node2D" parent="." unique_id=1302945064]
+
+[node name="Hazard0" type="Area2D" parent="Hazards" unique_id=910687970]
+position = Vector2(300, 990)
+script = ExtResource("2_d0d0u")
+size = Vector2(240, 60)
+
+[node name="Hazard1" type="Area2D" parent="Hazards" unique_id=307872197]
+position = Vector2(1320, 990)
+script = ExtResource("2_d0d0u")
+size = Vector2(240, 60)
+
+[node name="Doors" type="Node2D" parent="." unique_id=1621624162]
+
+[node name="1" type="Area2D" parent="Doors" unique_id=1290358290]
+position = Vector2(1890, 930)
+script = ExtResource("3_rvxe8")
+door_id = &"1"
+target_room = &"gut_lift"
+target_door = &"2"
+side = 1
+spawn_point = Vector2(1830, 1020)
+
+[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=1747706605]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="Props" type="Node2D" parent="." unique_id=1287821287]
+
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=1102662806]
+position = Vector2(1050, 780)
+script = ExtResource("4_h62jx")
+text = "CISTERN
+LINESMAN KIT — RETURN TO VESTA"
+
+[node name="Pickups" type="Node2D" parent="." unique_id=1375143560]
+
+[node name="Item_linesman_gloves" type="Area2D" parent="Pickups" unique_id=100408722 instance=ExtResource("5_eyglb")]
+position = Vector2(810, 900)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("6_tm6ij")
+item_id = &"linesman_gloves"
+pickup_id = &"gut_cistern_k"
+
+[node name="RamUp_m" type="Area2D" parent="Pickups" unique_id=1932425809 instance=ExtResource("5_eyglb")]
+position = Vector2(90, 1020)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("6_tm6ij")
+kind = 4
+pickup_id = &"gut_cistern_m"

@@ -26,6 +26,11 @@ signal cleared()
 ## Seconds after the group is cleared before it repopulates. 0 = never, which
 ## is what any shipped room will want.
 @export var respawn_delay: float = 2.5
+## M5: a fight that stays won. Set, the group is skipped when the flag is on
+## and the flag goes on when the group is cleared — a miniboss, a boss. Left
+## empty, the fight comes back every time the room is entered, which is what
+## a regular pack wants.
+@export var persist_flag: StringName = &""
 
 var _alive_ids: Array[int] = []
 var _respawn_timer: float = 0.0
@@ -33,6 +38,8 @@ var _spawned_once: bool = false
 
 
 func _ready() -> void:
+	if persist_flag != &"" and GameState.has_flag(persist_flag):
+		return
 	spawn_all()
 
 
@@ -42,6 +49,8 @@ func _process(delta: float) -> void:
 
 	if _spawned_once:
 		_spawned_once = false
+		if persist_flag != &"":
+			GameState.set_flag(persist_flag)
 		cleared.emit()
 
 	if respawn_delay <= 0.0:

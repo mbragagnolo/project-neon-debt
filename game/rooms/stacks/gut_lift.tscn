@@ -1,0 +1,223 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/world/room.gd" id="1_s5ovk"]
+[ext_resource type="Script" path="res://src/world/door.gd" id="2_3pvtc"]
+[ext_resource type="PackedScene" path="res://src/world/breach_door.tscn" id="3_rutnm"]
+[ext_resource type="Script" path="res://src/world/breach_door.gd" id="4_fisx4"]
+[ext_resource type="Script" path="res://src/world/sign.gd" id="5_f0wi0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u00nk"]
+size = Vector2(1920, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ge0v5"]
+size = Vector2(60, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifu4h"]
+size = Vector2(60, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cckr6"]
+size = Vector2(480, 900)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bduk7"]
+size = Vector2(1200, 900)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqlps"]
+size = Vector2(60, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yu2u7"]
+size = Vector2(1860, 60)
+
+[node name="GutLift" type="Node2D" unique_id=1749216589]
+script = ExtResource("1_s5ovk")
+room_id = &"gut_lift"
+display_name = "The Gut - Lift"
+camera_limits = Rect2i(0, 0, 1920, 2160)
+announces_on_ready = false
+
+[node name="Geometry" type="Node2D" parent="." unique_id=2067865684]
+
+[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=1738609003]
+z_index = -10
+offset_right = 1920.0
+offset_bottom = 2160.0
+mouse_filter = 2
+color = Color(0.050980393, 0.0627451, 0.09411765, 1)
+
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=1488445264]
+position = Vector2(960, 360)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=185949569]
+shape = SubResource("RectangleShape2D_u00nk")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=741468269]
+offset_left = -960.0
+offset_top = -360.0
+offset_right = 960.0
+offset_bottom = 360.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=884621921]
+position = Vector2(30, 780)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=990786155]
+shape = SubResource("RectangleShape2D_ge0v5")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=457552242]
+offset_left = -30.0
+offset_top = -60.0
+offset_right = 30.0
+offset_bottom = 60.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=522054852]
+position = Vector2(1890, 780)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=1258799555]
+shape = SubResource("RectangleShape2D_ifu4h")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=244892796]
+offset_left = -30.0
+offset_top = -60.0
+offset_right = 30.0
+offset_bottom = 60.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=1430186958]
+position = Vector2(240, 1470)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=643605261]
+shape = SubResource("RectangleShape2D_cckr6")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=216983173]
+offset_left = -240.0
+offset_top = -450.0
+offset_right = 240.0
+offset_bottom = 450.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=698446449]
+position = Vector2(1320, 1470)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=707832425]
+shape = SubResource("RectangleShape2D_bduk7")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid4" unique_id=924308527]
+offset_left = -600.0
+offset_top = -450.0
+offset_right = 600.0
+offset_bottom = 450.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid5" type="StaticBody2D" parent="Geometry" unique_id=2002395752]
+position = Vector2(1890, 2040)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid5" unique_id=1709599997]
+shape = SubResource("RectangleShape2D_sqlps")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid5" unique_id=1609491964]
+offset_left = -30.0
+offset_top = -120.0
+offset_right = 30.0
+offset_bottom = 120.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid6" type="StaticBody2D" parent="Geometry" unique_id=106714255]
+position = Vector2(930, 2130)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid6" unique_id=1224716161]
+shape = SubResource("RectangleShape2D_yu2u7")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid6" unique_id=1339770251]
+offset_left = -930.0
+offset_top = -30.0
+offset_right = 930.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Hazards" type="Node2D" parent="." unique_id=608302457]
+
+[node name="Doors" type="Node2D" parent="." unique_id=1392557616]
+
+[node name="1" type="Area2D" parent="Doors" unique_id=848595520]
+position = Vector2(30, 930)
+script = ExtResource("2_3pvtc")
+door_id = &"1"
+target_room = &"gut_pumps"
+target_door = &"3"
+spawn_point = Vector2(90, 1020)
+room_size = Vector2(1920, 2160)
+
+[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=1047119747]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="2" type="Area2D" parent="Doors" unique_id=1740688843]
+position = Vector2(30, 2010)
+script = ExtResource("2_3pvtc")
+door_id = &"2"
+target_room = &"gut_cistern"
+target_door = &"1"
+spawn_point = Vector2(90, 2100)
+room_size = Vector2(1920, 2160)
+
+[node name="Frame" type="ColorRect" parent="Doors/2" unique_id=1740193525]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="3" type="Area2D" parent="Doors" unique_id=569966901]
+position = Vector2(1890, 930)
+script = ExtResource("2_3pvtc")
+door_id = &"3"
+target_room = &"defaulter_den"
+target_door = &"1"
+side = 1
+spawn_point = Vector2(1830, 1020)
+room_size = Vector2(1920, 2160)
+
+[node name="Frame" type="ColorRect" parent="Doors/3" unique_id=1923193611]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="Props" type="Node2D" parent="." unique_id=668443491]
+
+[node name="BreachDoor_bulkhead_gut" type="StaticBody2D" parent="Props" unique_id=314414508 instance=ExtResource("3_rutnm")]
+position = Vector2(1590, 1020)
+collision_mask = 0
+script = ExtResource("4_fisx4")
+door_id = &"bulkhead_gut"
+size = Vector2(60, 300)
+
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=1418470652]
+position = Vector2(990, 780)
+script = ExtResource("5_f0wi0")
+text = "SEALED
+VESTA COLLECTIONS BULKHEAD"
+warning = true
+
+[node name="Pickups" type="Node2D" parent="." unique_id=789089188]

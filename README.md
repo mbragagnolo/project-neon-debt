@@ -4,12 +4,12 @@ Cyberpunk 2D metroidvania with Castlevania-style RPG elements, built in
 **Godot 4.7** (GDScript). See [DESIGN.md](DESIGN.md) for the full vertical-slice
 design and the milestone plan.
 
-**Status: M4 (hacks) in, M5–M7 in progress on the `vertical-slice` branch.**
-RAM, the three programs (Firewall / Overload / Breach), the quickslot, the
-shared cooldown, the mechanical stun and the Breach door are in and tested;
-the hack gym is the main scene until the district lands. The earlier gyms
-are still there and still tested; each milestone's lab outlives its
-milestone.
+**Status: M5 (the district) in, M6–M7 in progress on the `vertical-slice`
+branch.** The Stacks — 34 rooms, doors, terminals, the map, the hub with
+Stitch and Marisol, the fetch quest, the three ability pickups, the gates
+and the teases — is the main scene. Play it from the start: wake up in
+14-C, find the Mag-Hook, climb. The gyms are still there and still tested;
+each milestone's lab outlives its milestone.
 
 ---
 
@@ -27,8 +27,11 @@ downloading and CI runs offline.
 ```bash
 cd game
 
-# Play it (opens the current milestone's gym)
+# Play it (opens the district; the gyms are under rooms/)
 godot --path .
+
+# Regenerate the district after editing a room spec in tools/stacks/
+godot --headless --path . tools/make_stacks.tscn
 
 # Boot headless (what CI does — must log no errors)
 godot --headless --path . --quit-after 120
@@ -48,9 +51,9 @@ game/
     player/            # controller, state machine, movement_config.tres
     world/             # room.gd
     combat/ rpg/ enemies/ quests/ ui/    # scaffolded, filled in per milestone
-  rooms/               # one .tscn per room; gym.tscn is the main scene
+  rooms/               # the gyms, world.tscn (the main scene) and stacks/ (generated)
   tests/               # GUT tests, run headless in CI
-  tools/               # greybox room generators (editor-side, not shipped)
+  tools/               # greybox room generators (editor-side, not shipped); stacks/*.room are the district
   addons/gut/          # vendored test framework
 ```
 

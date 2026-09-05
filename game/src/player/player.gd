@@ -19,8 +19,11 @@ enum Facing { LEFT = -1, RIGHT = 1 }
 @export var config: MovementConfig
 @export var combat_config: CombatConfig
 ## Shared energy pool for every ranged weapon (docs/rpg/stats-and-curves.md).
-## Cap growth is a vendor purchase in M5; M2 just needs a number to spend.
-@export var max_ammo: int = 8
+## The authored base; the vendor's cells raise it through the sheet.
+@export var base_max_ammo: int = 8
+## In a gym the player respawns itself at the room's entry. Under the world
+## (M5) death is the world's to handle — travel back to the terminal.
+@export var handles_own_respawn: bool = true
 
 @onready var _state_machine: PlayerStateMachine = $StateMachine
 @onready var _visual: Node2D = $Visual
@@ -41,6 +44,10 @@ var facing: int = Facing.RIGHT
 ## -1, 0 or +1 from the move_left/move_right actions this frame.
 var input_direction: int = 0
 var ammo: int = 0
+var max_ammo: int = 8
+## Set by the world while a room is swapping or a death plays out: no input,
+## no physics. A door is not a place to keep falling.
+var frozen: bool = false
 ## The casting pool (docs/rpg/stats-and-curves.md, RAM). The sheet owns the
 ## ceiling, this node owns the current number — same split as HP.
 var ram: int = 0
@@ -64,6 +71,17 @@ var _wall_jump_lockout_timer: float = 0.0
 var _melee_cooldown_timer: float = 0.0
 var _ranged_cooldown_timer: float = 0.0
 var _air_dash_used: bool = false
+## The wall the last wall jump left, and how long it stays refused. A single
+## wall must not be climbable by re-sticking after a jump off it (DESIGN.md
+## §3.1): the refusal outlasts the jump's whole flight, so by the time this
+## wall accepts the player again they are below where they left it. The
+## *other* wall is always accepted — that is what a shaft is.
+var _last_wall_jump_dir: int = 0
+var _same_wall_lockout_timer: float = 0.0
+## Where the player last stood on solid ground clear of hazards. A void drop
+## puts them back here.
+var last_safe_position: Vector2 = Vector2.ZERO
+var _safe_timer: float = 0.0
 var _melee_shape: RectangleShape2D
 var _swing_visual: ColorRect
 var _spawn_position: Vector2 = Vector2.ZERO
@@ -85,6 +103,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if frozen:
+		return
 	_read_input()
 	_tick_timers(delta)
 	_state_machine.physics_update(delta)
@@ -152,6 +172,9 @@ func _tick_timers(delta: float) -> void:
 	_wall_jump_lockout_timer = maxf(_wall_jump_lockout_timer - delta, 0.0)
 	_melee_cooldown_timer = maxf(_melee_cooldown_timer - delta, 0.0)
 	_ranged_cooldown_timer = maxf(_ranged_cooldown_timer - delta, 0.0)
+	_same_wall_lockout_timer = maxf(_same_wall_lockout_timer - delta, 0.0)
+	if _same_wall_lockout_timer <= 0.0:
+		_last_wall_jump_dir = 0
 
 
 func _settle_after_move() -> void:
@@ -160,17 +183,40 @@ func _settle_after_move() -> void:
 		# actually leave the floor, which is exactly the grace window we want.
 		_coyote_timer = config.coyote_time
 		_air_dash_used = false
+		_last_wall_jump_dir = 0
+		_same_wall_lockout_timer = 0.0
+		# Safe ground is ground stood on for a moment without being hurt —
+		# the lip of a pit counts, the tile you were knocked back onto from
+		# live water does not.
+		_safe_timer += get_physics_process_delta_time()
+		if _safe_timer >= 0.25 and not health.is_invulnerable():
+			last_safe_position = global_position
+	else:
+		_safe_timer = 0.0
 
 
 func _apply_camera_limits() -> void:
-	var room := _find_room()
-	if room == null or room.camera_limits.size == Vector2i.ZERO:
+	apply_room_limits(_find_room())
+
+
+## Clamps the camera to a room. The gyms find their room above them; the
+## world hands its current room in, because there the player is the room's
+## sibling rather than its child.
+func apply_room_limits(room: Room) -> void:
+	if room == null:
+		return
+	if room.camera_limits.size == Vector2i.ZERO:
+		camera.limit_left = -10000000
+		camera.limit_top = -10000000
+		camera.limit_right = 10000000
+		camera.limit_bottom = 10000000
 		return
 	var limits: Rect2i = room.camera_limits
-	camera.limit_left = limits.position.x
-	camera.limit_top = limits.position.y
-	camera.limit_right = limits.end.x
-	camera.limit_bottom = limits.end.y
+	var origin: Vector2 = room.global_position
+	camera.limit_left = int(origin.x) + limits.position.x
+	camera.limit_top = int(origin.y) + limits.position.y
+	camera.limit_right = int(origin.x) + limits.end.x
+	camera.limit_bottom = int(origin.y) + limits.end.y
 
 
 func _find_room() -> Room:
@@ -225,6 +271,8 @@ func start_jump() -> void:
 func start_wall_jump(wall_direction: int) -> void:
 	velocity = Vector2(-wall_direction * config.wall_jump_push, config.wall_jump_velocity())
 	_wall_jump_lockout_timer = config.wall_jump_lockout_time
+	_last_wall_jump_dir = wall_direction
+	_same_wall_lockout_timer = config.same_wall_lockout_time()
 	set_facing(-wall_direction)
 	consume_jump()
 
@@ -300,10 +348,15 @@ func can_wall_jump() -> bool:
 
 
 ## Direction *toward* the wall being touched: -1 left, +1 right, 0 for none.
+## A wall the player just jumped off is not a wall for a moment — see
+## `_same_wall_lockout_timer`.
 func wall_direction() -> int:
 	if not is_on_wall():
 		return 0
-	return -signi(int(signf(get_wall_normal().x)))
+	var direction: int = -signi(int(signf(get_wall_normal().x)))
+	if direction == _last_wall_jump_dir and _same_wall_lockout_timer > 0.0:
+		return 0
+	return direction
 
 
 ## True while the wall kick owns the horizontal axis. Both velocity and facing
@@ -360,6 +413,7 @@ func _setup_combat() -> void:
 	_swing_visual.visible = false
 	melee_hitbox.add_child(_swing_visual)
 
+	max_ammo = PlayerStats.effective_max_ammo(base_max_ammo)
 	ammo = max_ammo
 	Events.ammo_changed.emit(ammo, max_ammo)
 	Events.hp_changed.emit(health.hp, health.max_hp)
@@ -394,6 +448,9 @@ func _apply_sheet() -> void:
 	max_ram = PlayerStats.effective_max_ram()
 	ram = mini(ram, max_ram)
 	Events.ram_changed.emit(ram, max_ram)
+	max_ammo = PlayerStats.effective_max_ammo(base_max_ammo)
+	ammo = mini(ammo, max_ammo)
+	Events.ammo_changed.emit(ammo, max_ammo)
 
 
 func _on_item_equipped(_slot: StringName, _item_id: StringName) -> void:
@@ -572,6 +629,33 @@ func restore_ram() -> void:
 	Events.ram_changed.emit(ram, max_ram)
 
 
+## The care terminal: full HP, full RAM, full pool.
+func restore_all() -> void:
+	health.restore()
+	Events.hp_changed.emit(health.hp, health.max_hp)
+	restore_ram()
+	ammo = max_ammo
+	Events.ammo_changed.emit(ammo, max_ammo)
+
+
+## A drop into nothing. Back to the last safe ground, HP already docked by
+## the pipeline; velocity cleared so the return does not carry the fall.
+func void_return() -> void:
+	velocity = Vector2.ZERO
+	if last_safe_position != Vector2.ZERO:
+		global_position = last_safe_position
+	camera.reset_smoothing()
+
+
+## Live water. Up and away, so a pool is something you get out of.
+func hazard_bounce(from: Vector2) -> void:
+	velocity.y = config.jump_velocity() * 0.9
+	var direction: float = signf(global_position.x - from.x)
+	if is_zero_approx(direction):
+		direction = float(-facing)
+	velocity.x = direction * 260.0
+
+
 ## Firewall's tell. A buff the player cannot see is a buff they will not trust
 ## enough to cast into a hit.
 func set_guard_visual(active: bool, colour: Color) -> void:
@@ -607,10 +691,10 @@ func _on_damaged(_amount: int, _attack: Attack) -> void:
 
 func _on_died() -> void:
 	Events.player_died.emit()
-	# M2 respawns at the room's entry point. Save-point respawn is M5's, once
-	# save points exist; the slice default (respawn, keep everything) is the
-	# target behaviour and nothing here should assume otherwise.
-	respawn()
+	# A gym respawns at the room's entry point. The world respawns at the last
+	# care terminal (DESIGN.md §7: respawn, enemies respawn, keep everything).
+	if handles_own_respawn:
+		respawn()
 
 
 func respawn() -> void:

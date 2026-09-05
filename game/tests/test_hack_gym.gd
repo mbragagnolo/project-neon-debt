@@ -15,12 +15,6 @@ func before_each() -> void:
 	_gym = autofree(load(GYM_PATH).instantiate())
 
 
-func test_the_hack_gym_is_the_main_scene() -> void:
-	# The main scene tracks the active milestone: pressing play should always
-	# land on the thing currently being judged by feel.
-	assert_eq(ProjectSettings.get_setting("application/run/main_scene"), GYM_PATH)
-
-
 func test_it_instances_with_a_player_a_hud_the_equip_screen_and_the_grants() -> void:
 	assert_is(_gym, Room)
 	assert_eq(_gym.room_id, &"hack_gym")

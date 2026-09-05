@@ -1,0 +1,134 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/world/room.gd" id="1_ouub7"]
+[ext_resource type="Script" path="res://src/world/door.gd" id="2_xeu5s"]
+[ext_resource type="Script" path="res://src/world/sign.gd" id="3_grmi0"]
+[ext_resource type="PackedScene" path="res://src/world/pickup.tscn" id="4_uolf1"]
+[ext_resource type="Script" path="res://src/world/pickup.gd" id="5_k0wa3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kt6n0"]
+size = Vector2(1920, 660)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vgjn"]
+size = Vector2(60, 420)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhgum"]
+size = Vector2(60, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrhpl"]
+size = Vector2(1860, 60)
+
+[node name="WestAlcove" type="Node2D" unique_id=1030639774]
+script = ExtResource("1_ouub7")
+room_id = &"west_alcove"
+display_name = "Utility 3W"
+camera_limits = Rect2i(0, 0, 1920, 1080)
+announces_on_ready = false
+
+[node name="Geometry" type="Node2D" parent="." unique_id=1296030638]
+
+[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=638556818]
+z_index = -10
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.050980393, 0.0627451, 0.09411765, 1)
+
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=543659432]
+position = Vector2(960, 330)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=2119188858]
+shape = SubResource("RectangleShape2D_kt6n0")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=1843876709]
+offset_left = -960.0
+offset_top = -330.0
+offset_right = 960.0
+offset_bottom = 330.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=2095576773]
+position = Vector2(30, 870)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=2125990198]
+shape = SubResource("RectangleShape2D_4vgjn")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=1092892525]
+offset_left = -30.0
+offset_top = -210.0
+offset_right = 30.0
+offset_bottom = 210.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=505078141]
+position = Vector2(1890, 750)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=665468308]
+shape = SubResource("RectangleShape2D_qhgum")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=1095318073]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=206751167]
+position = Vector2(990, 1050)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=1110221912]
+shape = SubResource("RectangleShape2D_hrhpl")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=2097454510]
+offset_left = -930.0
+offset_top = -30.0
+offset_right = 930.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Hazards" type="Node2D" parent="." unique_id=1673774039]
+
+[node name="Doors" type="Node2D" parent="." unique_id=157038873]
+
+[node name="1" type="Area2D" parent="Doors" unique_id=330689565]
+position = Vector2(1890, 930)
+script = ExtResource("2_xeu5s")
+door_id = &"1"
+target_room = &"west_stair"
+target_door = &"2"
+side = 1
+spawn_point = Vector2(1830, 1020)
+
+[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=1246615005]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="Props" type="Node2D" parent="." unique_id=1990635108]
+
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=680297105]
+position = Vector2(990, 840)
+script = ExtResource("3_grmi0")
+text = "UTILITY 3W
+DERMAL STOCK — DO NOT REMOVE"
+
+[node name="Pickups" type="Node2D" parent="." unique_id=415985432]
+
+[node name="HpUp_h" type="Area2D" parent="Pickups" unique_id=183867790 instance=ExtResource("4_uolf1")]
+position = Vector2(390, 1020)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("5_k0wa3")
+kind = 3
+pickup_id = &"west_alcove_h"

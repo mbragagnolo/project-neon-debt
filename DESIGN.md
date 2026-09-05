@@ -68,7 +68,7 @@ The slice succeeds if a stranger playing 30–45 minutes says:
 - Attack while moving and mid-air; no movement lock on melee
 - Tuning lives in one `movement_config.tres` resource so iteration = editing numbers, not code
 - **Tuning vs possession are separate systems.** `MovementConfig` answers "how does the ability behave"; `GameState` ability flags (`has_wall_jump`, `has_air_dash`, `has_breach`, …) answer "does the player have it". States check the flag before offering the move. The gym grants all flags so everything stays testable; the district grants them via pickups.
-- **Anti-exploit requirement:** a single wall must not be climbable by re-sticking after a wall jump off it (push + lockout must guarantee net height loss on the same wall). Cover with a unit test — the double-jump teases depend on it.
+- **Anti-exploit requirement:** a single wall must not be climbable by re-sticking after a wall jump off it (push + lockout must guarantee net height loss on the same wall). Cover with a unit test — the double-jump teases depend on it. **Built in M5:** the wall just jumped off refuses the player for the jump's whole flight (`same_wall_lockout_time`); the facing wall is always accepted. Two more controller rules exist for the gates to hold: a dash that runs off a ledge forfeits the jump at its end, and the air dash does not wait on the ground dash's cooldown (docs/level-design/stacks.md, the envelope).
 
 ### 3.2 Combat
 
@@ -193,8 +193,8 @@ If the slice is good → V2 planning: 2nd and 3rd district, double jump actually
 
 ## 7. Open questions (fine to defer, listed so they're not forgotten)
 
-- Death penalty: none / lose unbanked credits (Souls-lite) / return to save with world reset? *(Slice default: respawn at save point, enemies respawn, keep everything — simplest.)*
+- ~~Death penalty~~ — **decided in M5:** respawn at the last care terminal, enemies respawn (the room reloads), keep everything. No terminal used yet means back to 14-C.
 - ~~Dash from the start vs. found early?~~ **Decided:** ground dash from the start; air dash is the Sidewinder implant, late-slice. Wall jump is the Mag-Hook, first pickup.
 - Dash i-frames on/off — still a playtest call (config flag, currently off).
-- ~~Name, tone and narrative hook~~ — **resolved**: augment-debt premise, feature-locked firmware as gate fiction, the Landlord as lockholder; see [`docs/narrative/hook.md`](docs/narrative/hook.md). (Actual names still open inside its conventions.)
+- ~~Name, tone and narrative hook~~ — **resolved**: augment-debt premise, feature-locked firmware as gate fiction, the Landlord as lockholder; see [`docs/narrative/hook.md`](docs/narrative/hook.md). Names chosen in M5 (VESTA, Dani Okonkwo, Stitch, Marisol, Ferro).
 - Pixel art vs. hand-drawn vs. hi-bit for the eventual art pass.

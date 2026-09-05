@@ -1,0 +1,183 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/world/room.gd" id="1_w2345"]
+[ext_resource type="Script" path="res://src/world/door.gd" id="2_lrp7b"]
+[ext_resource type="PackedScene" path="res://src/world/pickup.tscn" id="3_shx4d"]
+[ext_resource type="Script" path="res://src/world/pickup.gd" id="4_ul88c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_urq4t"]
+size = Vector2(1920, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amji4"]
+size = Vector2(840, 2100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cprgo"]
+size = Vector2(840, 780)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2ko4"]
+size = Vector2(120, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_af8hb"]
+size = Vector2(840, 1140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_feqw1"]
+size = Vector2(60, 60)
+
+[node name="LiftShaft" type="Node2D" unique_id=985999576]
+script = ExtResource("1_w2345")
+room_id = &"lift_shaft"
+display_name = "East Lift - Shaft"
+camera_limits = Rect2i(0, 0, 1920, 2160)
+announces_on_ready = false
+
+[node name="Geometry" type="Node2D" parent="." unique_id=593706808]
+
+[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=674444098]
+z_index = -10
+offset_right = 1920.0
+offset_bottom = 2160.0
+mouse_filter = 2
+color = Color(0.050980393, 0.0627451, 0.09411765, 1)
+
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=255974791]
+position = Vector2(960, 30)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=838352831]
+shape = SubResource("RectangleShape2D_urq4t")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=136221701]
+offset_left = -960.0
+offset_top = -30.0
+offset_right = 960.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=207413161]
+position = Vector2(420, 1110)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=1712780812]
+shape = SubResource("RectangleShape2D_amji4")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=795495463]
+offset_left = -420.0
+offset_top = -1050.0
+offset_right = 420.0
+offset_bottom = 1050.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=56950549]
+position = Vector2(1500, 450)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=1723630825]
+shape = SubResource("RectangleShape2D_cprgo")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=1920343117]
+offset_left = -420.0
+offset_top = -390.0
+offset_right = 420.0
+offset_bottom = 390.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=1854589777]
+position = Vector2(900, 270)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=1454667641]
+shape = SubResource("RectangleShape2D_u2ko4")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=1725981853]
+offset_left = -60.0
+offset_top = -30.0
+offset_right = 60.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=1647633891]
+position = Vector2(1500, 1590)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=682350967]
+shape = SubResource("RectangleShape2D_af8hb")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid4" unique_id=326753610]
+offset_left = -420.0
+offset_top = -570.0
+offset_right = 420.0
+offset_bottom = 570.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid5" type="StaticBody2D" parent="Geometry" unique_id=414734946]
+position = Vector2(1050, 2130)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid5" unique_id=88860747]
+shape = SubResource("RectangleShape2D_feqw1")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid5" unique_id=508113448]
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Hazards" type="Node2D" parent="." unique_id=573054131]
+
+[node name="Doors" type="Node2D" parent="." unique_id=1962861228]
+
+[node name="1" type="Area2D" parent="Doors" unique_id=1295091150]
+position = Vector2(930, 2130)
+script = ExtResource("2_lrp7b")
+door_id = &"1"
+target_room = &"lift_base"
+target_door = &"2"
+side = 3
+size = Vector2(180, 60)
+spawn_point = Vector2(1050, 2100)
+room_size = Vector2(1920, 2160)
+
+[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=1961469129]
+offset_left = -90.0
+offset_top = -30.0
+offset_right = 90.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="2" type="Area2D" parent="Doors" unique_id=309362245]
+position = Vector2(1890, 930)
+script = ExtResource("2_lrp7b")
+door_id = &"2"
+target_room = &"east_ledges"
+target_door = &"1"
+side = 1
+spawn_point = Vector2(1830, 1020)
+room_size = Vector2(1920, 2160)
+
+[node name="Frame" type="ColorRect" parent="Doors/2" unique_id=1307058030]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="Props" type="Node2D" parent="." unique_id=1141217090]
+
+[node name="Pickups" type="Node2D" parent="." unique_id=1784478003]
+
+[node name="RamUp_m" type="Area2D" parent="Pickups" unique_id=1636270299 instance=ExtResource("3_shx4d")]
+position = Vector2(870, 240)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("4_ul88c")
+kind = 4
+pickup_id = &"lift_shaft_m"

@@ -8,4 +8,5 @@ Planned specs:
   stat blocks, XP/credit rewards
 - `boss-landlord.md` — two phases as an attack matrix: telegraph, verb it
   punishes, verb it invites
-- `npcs.md` — vendor and quest NPC: roles, then names once narrative/ lands
+- [`npcs.md`](npcs.md) — **built (M5).** Stitch, Marisol, Ferro, and what
+  talking to each does.

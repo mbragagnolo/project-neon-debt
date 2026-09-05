@@ -1,0 +1,187 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/world/room.gd" id="1_8hr1a"]
+[ext_resource type="Script" path="res://src/world/door.gd" id="2_fmcfi"]
+[ext_resource type="Script" path="res://src/world/sign.gd" id="3_7mjwv"]
+[ext_resource type="PackedScene" path="res://src/world/pickup.tscn" id="4_sfjmm"]
+[ext_resource type="Script" path="res://src/world/pickup.gd" id="5_ltjdj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f82uo"]
+size = Vector2(1920, 600)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n75dr"]
+size = Vector2(60, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66ecw"]
+size = Vector2(60, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qisqj"]
+size = Vector2(240, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boi35"]
+size = Vector2(720, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnlud"]
+size = Vector2(960, 60)
+
+[node name="PawnBack" type="Node2D" unique_id=1218586022]
+script = ExtResource("1_8hr1a")
+room_id = &"pawn_back"
+display_name = "Stitch's Back Room"
+camera_limits = Rect2i(0, 0, 1920, 1080)
+announces_on_ready = false
+
+[node name="Geometry" type="Node2D" parent="." unique_id=1926125081]
+
+[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=1876025488]
+z_index = -10
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.050980393, 0.0627451, 0.09411765, 1)
+
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=1335356319]
+position = Vector2(960, 300)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=499091754]
+shape = SubResource("RectangleShape2D_f82uo")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=789525581]
+offset_left = -960.0
+offset_top = -300.0
+offset_right = 960.0
+offset_bottom = 300.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=580110955]
+position = Vector2(30, 720)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=33820109]
+shape = SubResource("RectangleShape2D_n75dr")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=2038786431]
+offset_left = -30.0
+offset_top = -120.0
+offset_right = 30.0
+offset_bottom = 120.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=722065577]
+position = Vector2(1890, 720)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=706168618]
+shape = SubResource("RectangleShape2D_66ecw")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=867550834]
+offset_left = -30.0
+offset_top = -120.0
+offset_right = 30.0
+offset_bottom = 120.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=555244170]
+position = Vector2(840, 990)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=1127786425]
+shape = SubResource("RectangleShape2D_qisqj")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=2009962901]
+offset_left = -120.0
+offset_top = -90.0
+offset_right = 120.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=906770512]
+position = Vector2(360, 1050)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=1312526491]
+shape = SubResource("RectangleShape2D_boi35")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid4" unique_id=771596167]
+offset_left = -360.0
+offset_top = -30.0
+offset_right = 360.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid5" type="StaticBody2D" parent="Geometry" unique_id=1073103153]
+position = Vector2(1440, 1050)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid5" unique_id=1780901860]
+shape = SubResource("RectangleShape2D_jnlud")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid5" unique_id=1022057756]
+offset_left = -480.0
+offset_top = -30.0
+offset_right = 480.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Hazards" type="Node2D" parent="." unique_id=197150488]
+
+[node name="Doors" type="Node2D" parent="." unique_id=1384659240]
+
+[node name="1" type="Area2D" parent="Doors" unique_id=1832038482]
+position = Vector2(30, 930)
+script = ExtResource("2_fmcfi")
+door_id = &"1"
+target_room = &"mezz_east"
+target_door = &"3"
+spawn_point = Vector2(90, 1020)
+
+[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=1658326613]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="2" type="Area2D" parent="Doors" unique_id=760137120]
+position = Vector2(1890, 930)
+script = ExtResource("2_fmcfi")
+door_id = &"2"
+target_room = &"underpass"
+target_door = &"1"
+side = 1
+spawn_point = Vector2(1830, 1020)
+
+[node name="Frame" type="ColorRect" parent="Doors/2" unique_id=342644256]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="Props" type="Node2D" parent="." unique_id=38308071]
+
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=352018856]
+position = Vector2(510, 780)
+script = ExtResource("3_7mjwv")
+text = "BACK ROOM
+NOT FOR SALE. NOT FOR YOU."
+
+[node name="Pickups" type="Node2D" parent="." unique_id=1038951380]
+
+[node name="Ability_ability_cyberdeck" type="Area2D" parent="Pickups" unique_id=1714829344 instance=ExtResource("4_sfjmm")]
+position = Vector2(810, 900)
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("5_ltjdj")
+kind = 2
+ability_id = &"ability.cyberdeck"
+pickup_id = &"pawn_back_Y"

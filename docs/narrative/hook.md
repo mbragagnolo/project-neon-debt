@@ -1,8 +1,17 @@
 # The hook
 
 **Status: locked** (premise, tone, gate fiction, protagonist voice, quest
-flavor, naming conventions). Actual names — corp, protagonist, item labels —
-are a brainstorm inside these rules, still `TODO`.
+flavor, naming conventions). Names were chosen in M5 under the conventions
+below and live in `src/narrative/lines.gd`:
+
+| | Name | Convention |
+|---|---|---|
+| The corp | **VESTA** (VESTA Somatic Finance) | One name, everywhere — terminals, augs, the Landlord's paperwork |
+| The protagonist | **OKONKWO, D.** — Dani | Printed the way the corp prints it; account 14C-0091-77 |
+| The vendor / ripperdoc | **Stitch** | Stacks slang |
+| The neighbour | **Marisol** | — |
+| The defaulter | **Ferro** | — |
+| The enforcer | **The Landlord** | A title; the Stacks never learned his name |
 
 ## Premise — LOCKED
 

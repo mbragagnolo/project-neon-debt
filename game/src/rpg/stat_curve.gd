@@ -28,6 +28,14 @@ extends Resource
 @export var ram_per_level: int = 2
 @export var attack_stat_per_level: int = 3
 
+@export_group("Found and bought")
+## The Cyberdeck's pool expansion (DESIGN.md §2 — *the* capacity upgrade).
+@export var cyberdeck_ram_bonus: int = 6
+## One HP Max Up pickup, and the vendor's dermal patch.
+@export var hp_up_amount: int = 5
+## One RAM Max Up pickup.
+@export var ram_up_amount: int = 3
+
 
 func hp_at(level: int) -> int:
 	return start_hp + hp_per_level * (maxi(level, 1) - 1)

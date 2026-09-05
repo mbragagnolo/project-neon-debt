@@ -17,9 +17,21 @@ extends Node2D
 @export var camera_limits: Rect2i = Rect2i()
 
 
+## Set by the world so a room announces itself once the player is actually
+## in it, not at instancing. Gyms leave it on and announce at ready.
+@export var announces_on_ready: bool = true
+
+
 func _ready() -> void:
 	if room_id == &"":
 		push_warning("Room '%s' has no room_id — it cannot be saved or mapped." % name)
+		return
+	if announces_on_ready:
+		enter()
+
+
+func enter() -> void:
+	if room_id == &"":
 		return
 	GameState.mark_room_visited(room_id)
 	Events.room_entered.emit(room_id)

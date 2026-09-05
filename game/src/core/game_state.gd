@@ -25,6 +25,9 @@ const SAVE_VERSION := 2
 const ABILITY_MAG_HOOK := &"ability.mag_hook"
 const ABILITY_CYBERDECK := &"ability.cyberdeck"
 const ABILITY_SIDEWINDER := &"ability.sidewinder"
+## The Sidewinder as found: carried, not yet installed. Implants are surgery
+## (DESIGN.md §2); the ripperdoc turns this into `ABILITY_SIDEWINDER`.
+const SIDEWINDER_CARRIED := &"item.sidewinder_carried"
 
 ## Arbitrary world flags, e.g. "door.stacks_breach_01" -> true.
 var _flags: Dictionary = {}
@@ -34,6 +37,8 @@ var _visited_rooms: Dictionary = {}
 var current_save_point: StringName = &""
 ## Seconds of play time accumulated across sessions.
 var play_time: float = 0.0
+## Which of the three files this run writes to. Chosen on the title screen.
+var active_slot: int = 0
 ## Systems that serialize themselves, keyed by the save-file key they own.
 ## Each must answer `snapshot()`, `restore(Dictionary)` and `reset()`.
 var _providers: Dictionary = {}

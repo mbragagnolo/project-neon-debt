@@ -1,0 +1,200 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/world/room.gd" id="1_icxpe"]
+[ext_resource type="Script" path="res://src/world/door.gd" id="2_45kv2"]
+[ext_resource type="Script" path="res://src/world/grate.gd" id="3_688fo"]
+[ext_resource type="Script" path="res://src/world/sign.gd" id="4_7mdrm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4eb0v"]
+size = Vector2(840, 780)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxbwq"]
+size = Vector2(900, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ok7uc"]
+size = Vector2(840, 780)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xv8lc"]
+size = Vector2(240, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_looi8"]
+size = Vector2(540, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmnol"]
+size = Vector2(1920, 60)
+
+[node name="LiftBase" type="Node2D" unique_id=1586624843]
+script = ExtResource("1_icxpe")
+room_id = &"lift_base"
+display_name = "East Lift - Base"
+camera_limits = Rect2i(0, 0, 1920, 1080)
+announces_on_ready = false
+
+[node name="Geometry" type="Node2D" parent="." unique_id=784973378]
+
+[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=212708284]
+z_index = -10
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.050980393, 0.0627451, 0.09411765, 1)
+
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=1499541352]
+position = Vector2(420, 390)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=1419409735]
+shape = SubResource("RectangleShape2D_4eb0v")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=1300944156]
+offset_left = -420.0
+offset_top = -390.0
+offset_right = 420.0
+offset_bottom = 390.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=1162332275]
+position = Vector2(1470, 30)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=944964696]
+shape = SubResource("RectangleShape2D_rxbwq")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=155416859]
+offset_left = -450.0
+offset_top = -30.0
+offset_right = 450.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=1865853425]
+position = Vector2(1500, 450)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=2046368214]
+shape = SubResource("RectangleShape2D_ok7uc")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=1909360870]
+offset_left = -420.0
+offset_top = -390.0
+offset_right = 420.0
+offset_bottom = 390.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=889742621]
+position = Vector2(120, 810)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=611449858]
+shape = SubResource("RectangleShape2D_xv8lc")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=1040317864]
+offset_left = -120.0
+offset_top = -30.0
+offset_right = 120.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=689456721]
+position = Vector2(570, 810)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=1561084290]
+shape = SubResource("RectangleShape2D_looi8")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid4" unique_id=339464287]
+offset_left = -270.0
+offset_top = -30.0
+offset_right = 270.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid5" type="StaticBody2D" parent="Geometry" unique_id=1390850068]
+position = Vector2(960, 1050)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid5" unique_id=1069904640]
+shape = SubResource("RectangleShape2D_lmnol")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid5" unique_id=1811546455]
+offset_left = -960.0
+offset_top = -30.0
+offset_right = 960.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Hazards" type="Node2D" parent="." unique_id=339080135]
+
+[node name="Doors" type="Node2D" parent="." unique_id=1628571986]
+
+[node name="1" type="Area2D" parent="Doors" unique_id=185823100]
+position = Vector2(30, 930)
+script = ExtResource("2_45kv2")
+door_id = &"1"
+target_room = &"underpass"
+target_door = &"2"
+spawn_point = Vector2(90, 1020)
+
+[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=749410144]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="2" type="Area2D" parent="Doors" unique_id=795904296]
+position = Vector2(930, 30)
+script = ExtResource("2_45kv2")
+door_id = &"2"
+target_room = &"lift_shaft"
+target_door = &"1"
+side = 2
+size = Vector2(180, 60)
+spawn_point = Vector2(930, 120)
+
+[node name="Frame" type="ColorRect" parent="Doors/2" unique_id=687646652]
+offset_left = -90.0
+offset_top = -30.0
+offset_right = 90.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="3" type="Area2D" parent="Doors" unique_id=2124710308]
+position = Vector2(1890, 930)
+script = ExtResource("2_45kv2")
+door_id = &"3"
+target_room = &"armory_chute"
+target_door = &"2"
+side = 1
+spawn_point = Vector2(1830, 1020)
+
+[node name="Frame" type="ColorRect" parent="Doors/3" unique_id=1842815321]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="Props" type="Node2D" parent="." unique_id=1647498865]
+
+[node name="Grate_lift_base_grate" type="StaticBody2D" parent="Props" unique_id=1355892681]
+position = Vector2(1770, 1020)
+script = ExtResource("3_688fo")
+grate_id = &"lift_base_grate"
+
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=1699723388]
+position = Vector2(270, 840)
+script = ExtResource("4_7mdrm")
+text = "EAST LIFT
+OUT OF SERVICE — SHAFT OPEN"
+
+[node name="Pickups" type="Node2D" parent="." unique_id=394560699]

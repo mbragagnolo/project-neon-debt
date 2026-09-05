@@ -1,0 +1,184 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/world/room.gd" id="1_afp4h"]
+[ext_resource type="Script" path="res://src/world/hazard.gd" id="2_tsx2u"]
+[ext_resource type="Script" path="res://src/world/door.gd" id="3_6cfwl"]
+[ext_resource type="Script" path="res://src/world/sign.gd" id="4_p60g2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kneb2"]
+size = Vector2(1920, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xhcsa"]
+size = Vector2(60, 480)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_js8cv"]
+size = Vector2(60, 480)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwarm"]
+size = Vector2(540, 360)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3g326"]
+size = Vector2(900, 360)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqwg4"]
+size = Vector2(480, 60)
+
+[node name="RoofGap" type="Node2D" unique_id=1648804602]
+script = ExtResource("1_afp4h")
+room_id = &"roof_gap"
+display_name = "Between Towers"
+camera_limits = Rect2i(0, 0, 1920, 1080)
+announces_on_ready = false
+
+[node name="Geometry" type="Node2D" parent="." unique_id=1462352577]
+
+[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=58300055]
+z_index = -10
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.050980393, 0.0627451, 0.09411765, 1)
+
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=683124306]
+position = Vector2(960, 30)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=1773571417]
+shape = SubResource("RectangleShape2D_kneb2")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=1366449724]
+offset_left = -960.0
+offset_top = -30.0
+offset_right = 960.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=451105338]
+position = Vector2(30, 300)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=137739387]
+shape = SubResource("RectangleShape2D_xhcsa")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=58082711]
+offset_left = -30.0
+offset_top = -240.0
+offset_right = 30.0
+offset_bottom = 240.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=1676041265]
+position = Vector2(1890, 300)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=1001091562]
+shape = SubResource("RectangleShape2D_js8cv")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=1141038377]
+offset_left = -30.0
+offset_top = -240.0
+offset_right = 30.0
+offset_bottom = 240.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=2147142667]
+position = Vector2(270, 900)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=1483900685]
+shape = SubResource("RectangleShape2D_iwarm")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=1013421392]
+offset_left = -270.0
+offset_top = -180.0
+offset_right = 270.0
+offset_bottom = 180.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=1507536415]
+position = Vector2(1470, 900)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=1411496932]
+shape = SubResource("RectangleShape2D_3g326")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid4" unique_id=1659216016]
+offset_left = -450.0
+offset_top = -180.0
+offset_right = 450.0
+offset_bottom = 180.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid5" type="StaticBody2D" parent="Geometry" unique_id=1594173026]
+position = Vector2(780, 1050)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid5" unique_id=1854210408]
+shape = SubResource("RectangleShape2D_wqwg4")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid5" unique_id=1993247646]
+offset_left = -240.0
+offset_top = -30.0
+offset_right = 240.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Hazards" type="Node2D" parent="." unique_id=1941051475]
+
+[node name="Void0" type="Area2D" parent="Hazards" unique_id=1887824771]
+position = Vector2(780, 990)
+script = ExtResource("2_tsx2u")
+size = Vector2(480, 60)
+returns_player = true
+
+[node name="Doors" type="Node2D" parent="." unique_id=817449035]
+
+[node name="1" type="Area2D" parent="Doors" unique_id=678014022]
+position = Vector2(30, 630)
+script = ExtResource("3_6cfwl")
+door_id = &"1"
+target_room = &"roof_access"
+target_door = &"3"
+spawn_point = Vector2(90, 720)
+
+[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=259081720]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="2" type="Area2D" parent="Doors" unique_id=1125768542]
+position = Vector2(1890, 630)
+script = ExtResource("3_6cfwl")
+door_id = &"2"
+target_room = &"collections_lift"
+target_door = &"1"
+side = 1
+spawn_point = Vector2(1830, 720)
+
+[node name="Frame" type="ColorRect" parent="Doors/2" unique_id=2146763187]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="Props" type="Node2D" parent="." unique_id=373606769]
+
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=1012292322]
+position = Vector2(270, 600)
+script = ExtResource("4_p60g2")
+text = "GAP — LEG UNIT OVERRIDE
+REQUIRED (VESTA SIDEWINDER™)"
+warning = true
+
+[node name="Pickups" type="Node2D" parent="." unique_id=1961423592]

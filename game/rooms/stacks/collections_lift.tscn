@@ -1,0 +1,197 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/world/room.gd" id="1_f4nuy"]
+[ext_resource type="Script" path="res://src/world/door.gd" id="2_2m6os"]
+[ext_resource type="Script" path="res://src/world/sign.gd" id="3_bqltb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxtxc"]
+size = Vector2(1920, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63ado"]
+size = Vector2(840, 1800)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4fskf"]
+size = Vector2(840, 780)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yy4mb"]
+size = Vector2(840, 1140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uo3k3"]
+size = Vector2(360, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6d867"]
+size = Vector2(420, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5d2e"]
+size = Vector2(1080, 60)
+
+[node name="CollectionsLift" type="Node2D" unique_id=167758507]
+script = ExtResource("1_f4nuy")
+room_id = &"collections_lift"
+display_name = "Collections - Private Lift"
+camera_limits = Rect2i(0, 0, 1920, 2160)
+announces_on_ready = false
+
+[node name="Geometry" type="Node2D" parent="." unique_id=1455062215]
+
+[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=720071731]
+z_index = -10
+offset_right = 1920.0
+offset_bottom = 2160.0
+mouse_filter = 2
+color = Color(0.050980393, 0.0627451, 0.09411765, 1)
+
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=1671326958]
+position = Vector2(960, 30)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=586692882]
+shape = SubResource("RectangleShape2D_cxtxc")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=1001132463]
+offset_left = -960.0
+offset_top = -30.0
+offset_right = 960.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=1292518086]
+position = Vector2(420, 960)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=1552824507]
+shape = SubResource("RectangleShape2D_63ado")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=1438085066]
+offset_left = -420.0
+offset_top = -900.0
+offset_right = 420.0
+offset_bottom = 900.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=1911360528]
+position = Vector2(1500, 450)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=673747570]
+shape = SubResource("RectangleShape2D_4fskf")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=730404554]
+offset_left = -420.0
+offset_top = -390.0
+offset_right = 420.0
+offset_bottom = 390.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=2006353427]
+position = Vector2(1500, 1590)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=467521104]
+shape = SubResource("RectangleShape2D_yy4mb")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=1098012150]
+offset_left = -420.0
+offset_top = -570.0
+offset_right = 420.0
+offset_bottom = 570.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=1638616983]
+position = Vector2(180, 1890)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=333599455]
+shape = SubResource("RectangleShape2D_uo3k3")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid4" unique_id=625204680]
+offset_left = -180.0
+offset_top = -30.0
+offset_right = 180.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid5" type="StaticBody2D" parent="Geometry" unique_id=336876702]
+position = Vector2(630, 1890)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid5" unique_id=714931725]
+shape = SubResource("RectangleShape2D_6d867")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid5" unique_id=1840588356]
+offset_left = -210.0
+offset_top = -30.0
+offset_right = 210.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid6" type="StaticBody2D" parent="Geometry" unique_id=1143949987]
+position = Vector2(540, 2130)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid6" unique_id=1120943762]
+shape = SubResource("RectangleShape2D_y5d2e")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid6" unique_id=2066119351]
+offset_left = -540.0
+offset_top = -30.0
+offset_right = 540.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Hazards" type="Node2D" parent="." unique_id=2028104290]
+
+[node name="Doors" type="Node2D" parent="." unique_id=1019253942]
+
+[node name="1" type="Area2D" parent="Doors" unique_id=1596027256]
+position = Vector2(30, 2010)
+script = ExtResource("2_2m6os")
+door_id = &"1"
+target_room = &"roof_gap"
+target_door = &"2"
+spawn_point = Vector2(90, 2100)
+room_size = Vector2(1920, 2160)
+
+[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=127801282]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="2" type="Area2D" parent="Doors" unique_id=1504338154]
+position = Vector2(1890, 930)
+script = ExtResource("2_2m6os")
+door_id = &"2"
+target_room = &"collections_lobby"
+target_door = &"1"
+side = 1
+spawn_point = Vector2(1830, 1020)
+room_size = Vector2(1920, 2160)
+
+[node name="Frame" type="ColorRect" parent="Doors/2" unique_id=961132700]
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="Props" type="Node2D" parent="." unique_id=630948263]
+
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=219996714]
+position = Vector2(390, 1920)
+script = ExtResource("3_bqltb")
+text = "VESTA COLLECTIONS
+PRIVATE LIFT — OUT OF SERVICE"
+warning = true
+
+[node name="Pickups" type="Node2D" parent="." unique_id=1287880016]

@@ -1,0 +1,301 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/world/room.gd" id="1_15nn6"]
+[ext_resource type="Script" path="res://src/world/hazard.gd" id="2_ix0sa"]
+[ext_resource type="Script" path="res://src/world/door.gd" id="3_3tpmm"]
+[ext_resource type="Script" path="res://src/world/sign.gd" id="4_b5sko"]
+[ext_resource type="Script" path="res://src/world/encounter.gd" id="5_i41o2"]
+[ext_resource type="PackedScene" path="res://src/enemies/scav/scav.tscn" id="6_u8nei"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2d1u"]
+size = Vector2(3360, 600)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47cwr"]
+size = Vector2(2220, 600)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_km18n"]
+size = Vector2(60, 480)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37qtf"]
+size = Vector2(60, 480)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_giimn"]
+size = Vector2(180, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_15mh1"]
+size = Vector2(120, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3voky"]
+size = Vector2(180, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_32hq4"]
+size = Vector2(420, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scf33"]
+size = Vector2(3540, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jp7n2"]
+size = Vector2(1020, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a17b5"]
+size = Vector2(480, 12)
+
+[node name="ServiceTunnel" type="Node2D" unique_id=392323956]
+script = ExtResource("1_15nn6")
+room_id = &"service_tunnel"
+display_name = "The Gut - Service Tunnel"
+camera_limits = Rect2i(0, 0, 5760, 1080)
+announces_on_ready = false
+
+[node name="Geometry" type="Node2D" parent="." unique_id=43275703]
+
+[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=1393089556]
+z_index = -10
+offset_right = 5760.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.050980393, 0.0627451, 0.09411765, 1)
+
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=1896442563]
+position = Vector2(1680, 300)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=517744125]
+shape = SubResource("RectangleShape2D_r2d1u")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=1057762521]
+offset_left = -1680.0
+offset_top = -300.0
+offset_right = 1680.0
+offset_bottom = 300.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=486208353]
+position = Vector2(4650, 300)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=1994036952]
+shape = SubResource("RectangleShape2D_47cwr")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=280561237]
+offset_left = -1110.0
+offset_top = -300.0
+offset_right = 1110.0
+offset_bottom = 300.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=1577635925]
+position = Vector2(30, 840)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=1780803427]
+shape = SubResource("RectangleShape2D_km18n")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=1419354920]
+offset_left = -30.0
+offset_top = -240.0
+offset_right = 30.0
+offset_bottom = 240.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=546363749]
+position = Vector2(5730, 840)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=295638179]
+shape = SubResource("RectangleShape2D_37qtf")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=1214682776]
+offset_left = -30.0
+offset_top = -240.0
+offset_right = 30.0
+offset_bottom = 240.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=1683284913]
+position = Vector2(930, 990)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=709183282]
+shape = SubResource("RectangleShape2D_giimn")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid4" unique_id=499127227]
+offset_left = -90.0
+offset_top = -90.0
+offset_right = 90.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid5" type="StaticBody2D" parent="Geometry" unique_id=1961705168]
+position = Vector2(4620, 990)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid5" unique_id=1353415431]
+shape = SubResource("RectangleShape2D_15mh1")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid5" unique_id=158742522]
+offset_left = -60.0
+offset_top = -90.0
+offset_right = 60.0
+offset_bottom = 90.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid6" type="StaticBody2D" parent="Geometry" unique_id=22268052]
+position = Vector2(150, 1050)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid6" unique_id=166573660]
+shape = SubResource("RectangleShape2D_3voky")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid6" unique_id=965049622]
+offset_left = -90.0
+offset_top = -30.0
+offset_right = 90.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid7" type="StaticBody2D" parent="Geometry" unique_id=341199389]
+position = Vector2(630, 1050)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid7" unique_id=1202313661]
+shape = SubResource("RectangleShape2D_32hq4")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid7" unique_id=659217831]
+offset_left = -210.0
+offset_top = -30.0
+offset_right = 210.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid8" type="StaticBody2D" parent="Geometry" unique_id=741622918]
+position = Vector2(2790, 1050)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid8" unique_id=1663254397]
+shape = SubResource("RectangleShape2D_scf33")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid8" unique_id=623942075]
+offset_left = -1770.0
+offset_top = -30.0
+offset_right = 1770.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Solid9" type="StaticBody2D" parent="Geometry" unique_id=443802077]
+position = Vector2(5190, 1050)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid9" unique_id=971355264]
+shape = SubResource("RectangleShape2D_jp7n2")
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid9" unique_id=1241178777]
+offset_left = -510.0
+offset_top = -30.0
+offset_right = 510.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
+
+[node name="Platform0" type="StaticBody2D" parent="Geometry" unique_id=1261047553]
+position = Vector2(2280, 786)
+collision_layer = 1025
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform0" unique_id=266989725]
+shape = SubResource("RectangleShape2D_a17b5")
+one_way_collision = true
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Platform0" unique_id=1985828109]
+offset_left = -240.0
+offset_top = -6.0
+offset_right = 240.0
+offset_bottom = 6.0
+mouse_filter = 2
+color = Color(0.3529412, 0.4, 0.5176471, 1)
+
+[node name="Hazards" type="Node2D" parent="." unique_id=1547479795]
+
+[node name="Hazard0" type="Area2D" parent="Hazards" unique_id=1555839113]
+position = Vector2(2280, 990)
+script = ExtResource("2_ix0sa")
+size = Vector2(240, 60)
+
+[node name="Hazard1" type="Area2D" parent="Hazards" unique_id=465142944]
+position = Vector2(3810, 990)
+script = ExtResource("2_ix0sa")
+size = Vector2(180, 60)
+
+[node name="Doors" type="Node2D" parent="." unique_id=1125887047]
+
+[node name="1" type="Area2D" parent="Doors" unique_id=1125600967]
+position = Vector2(3450, 30)
+script = ExtResource("3_3tpmm")
+door_id = &"1"
+target_room = &"gut_stair"
+target_door = &"2"
+side = 2
+size = Vector2(180, 60)
+spawn_point = Vector2(3450, 120)
+room_size = Vector2(5760, 1080)
+
+[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=1063770352]
+offset_left = -90.0
+offset_top = -30.0
+offset_right = 90.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="2" type="Area2D" parent="Doors" unique_id=1182176373]
+position = Vector2(330, 1050)
+script = ExtResource("3_3tpmm")
+door_id = &"2"
+target_room = &"gut_pumps"
+target_door = &"1"
+side = 3
+size = Vector2(180, 60)
+spawn_point = Vector2(450, 1020)
+room_size = Vector2(5760, 1080)
+
+[node name="Frame" type="ColorRect" parent="Doors/2" unique_id=736001925]
+offset_left = -90.0
+offset_top = -30.0
+offset_right = 90.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.1, 0.16, 0.24, 1)
+
+[node name="Props" type="Node2D" parent="." unique_id=234552299]
+
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=507540770]
+position = Vector2(510, 840)
+script = ExtResource("4_b5sko")
+text = "LIVE WATER
+VESTA NEVER PAID TO GROUND IT"
+warning = true
+
+[node name="Pickups" type="Node2D" parent="." unique_id=1035370928]
+
+[node name="Scavs" type="Node2D" parent="." unique_id=2017497156]
+script = ExtResource("5_i41o2")
+enemy_scene = ExtResource("6_u8nei")
+respawn_delay = 0.0
+
+[node name="Spawn1" type="Marker2D" parent="Scavs" unique_id=1722897959]
+position = Vector2(1230, 1020)
+
+[node name="Spawn2" type="Marker2D" parent="Scavs" unique_id=957974767]
+position = Vector2(2730, 1020)
+
+[node name="Spawn3" type="Marker2D" parent="Scavs" unique_id=274285231]
+position = Vector2(4830, 1020)

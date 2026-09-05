@@ -1,8 +1,8 @@
 # Screens
 
-**Status: the inventory-equip screen is LOCKED for M3.** The map screen and
-quest log are M5, settings is M7; all three slot into the same pause shell
-this file specifies, and each gets its section when its milestone opens.
+**Status: the inventory-equip screen is LOCKED for M3; the pause shell, map
+and quest log are built (M5).** Settings is M7. All of them slot into the
+same pause shell this file specifies.
 
 ## What the equip screen is for — LOCKED
 
@@ -119,11 +119,41 @@ reads: swap the wrench for the maul, hit the same dummy, watch the number
 change. No new signal is invented for M3 — every one above was declared on
 the bus in M0.
 
-## Exports
+## The pause shell — built (M5)
 
-- **M5:** the map screen and quest log become tabs in this pause shell —
-  rule 1 (pauses) and rule 7 (pad-first) are shell properties, not screen
-  properties, and should be implemented as such.
+One shell, three tabs: **MAP · LOADOUT · QUESTS**. The shell owns what every
+tab shares — pausing the tree, the tab bar, the keys that open, close and
+cycle — and a tab only handles navigation inside itself
+(`src/ui/menus/pause_shell.gd`).
+
+| Key | Closed | Open |
+|---|---|---|
+| `pause` | opens on MAP | closes |
+| `toggle_map` | opens on MAP | closes if on MAP, else switches to it |
+| `toggle_inventory` | opens on LOADOUT | closes if on LOADOUT, else switches |
+| `hack_prev` / `hack_next` (Q/E, shoulders) | — | cycle tabs |
+
+One way in, two ways out, on pad and keyboard. Another screen holding the
+tree — a dialogue, the stall — keeps the shell shut.
+
+The equip screen runs inside the shell with `standalone = false`: the shell
+pauses and answers the open/close keys, the screen only navigates. The gyms
+still run it standalone.
+
+**Map screen.** Draws the `WorldGraph` the district generator wrote: every
+*visited* room as a cell rectangle, doors as notches, `S` on rooms with a
+care terminal, a pulsing diamond on the room you are in, and that room's
+name underneath. Nothing to navigate yet; it is a picture.
+
+**Quest log.** Every quest the tracker knows a state for: title, giver, the
+objective while active or the epilogue once done, and a nudge when the
+objective is met and only the hand-in remains.
+
+**Dialogue and the stall** are not tabs. `DialogueBox` shows a speaker and
+pages, `interact`/`jump` advances, `pause` skips out; `ShopScreen` is a short
+list, `interact` buys, `pause` leaves. Both pause the tree while up.
+
+## Exports
 - **M7:** restyle only. If the polish pass needs to move a panel, this spec
   was wrong and should be amended, not silently diverged from.
 - **V2:** manual stat allocation and respec land in the sheet panel; rule 5

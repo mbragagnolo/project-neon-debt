@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://src/world/world.gd" id="1_world"]
+[ext_resource type="PackedScene" path="res://src/player/player.tscn" id="2_player"]
+[ext_resource type="Script" path="res://src/ui/debug_combat_hud.gd" id="3_hud"]
+[ext_resource type="Script" path="res://src/ui/bark_box.gd" id="4_barks"]
+[ext_resource type="Script" path="res://src/ui/dialogue_box.gd" id="5_dialogue"]
+[ext_resource type="Script" path="res://src/ui/menus/shop_screen.gd" id="6_shop"]
+[ext_resource type="Script" path="res://src/ui/menus/pause_shell.gd" id="7_shell"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_world")
+
+[node name="RoomHost" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+
+[node name="Hud" type="CanvasLayer" parent="."]
+script = ExtResource("3_hud")
+
+[node name="Barks" type="CanvasLayer" parent="."]
+script = ExtResource("4_barks")
+
+[node name="Dialogue" type="CanvasLayer" parent="."]
+script = ExtResource("5_dialogue")
+
+[node name="Shop" type="CanvasLayer" parent="."]
+script = ExtResource("6_shop")
+
+[node name="Shell" type="CanvasLayer" parent="."]
+script = ExtResource("7_shell")
+
+[node name="Fade" type="CanvasLayer" parent="."]
+layer = 50
+
+[node name="Black" type="ColorRect" parent="Fade"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

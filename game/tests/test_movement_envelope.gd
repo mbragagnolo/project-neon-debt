@@ -261,3 +261,73 @@ func test_a_tease_ledge_is_out_of_reach_of_the_whole_kit() -> void:
 		if _i == 22:
 			Input.action_release("dash")
 	assert_gt(highest, FLOOR_TOP - 240.0, "the tease ledge was reached with the full kit")
+
+
+# --- The anti-exploit: one wall is not a ladder -------------------------------
+
+func test_a_single_wall_cannot_be_climbed_by_re_sticking() -> void:
+	# DESIGN.md §3.1: push + lockout must guarantee net height loss on the
+	# same wall. Every double-jump tease in the district is a single wall, so
+	# if this fails the teases are lies. Hold into the wall and mash jump for
+	# three seconds; the player must end up no higher than they started.
+	GameState.grant_ability(GameState.ABILITY_MAG_HOOK)
+	TestArena.solid(_root, Vector2(0, FLOOR_TOP + 100.0), Vector2(6000, 200))
+	TestArena.solid(_root, Vector2(300.0, FLOOR_TOP - 1500.0), Vector2(200, 3400))
+	_player = TestArena.player(_root, Vector2(170.0, FLOOR_TOP))
+	await wait_frames(3)
+	var start_y: float = _player.position.y
+	var highest: float = start_y
+	Input.action_press("move_right")
+	for i: int in 180:
+		if i % 4 == 0:
+			Input.action_press("jump")
+		elif i % 4 == 2:
+			Input.action_release("jump")
+		await get_tree().physics_frame
+		highest = minf(highest, _player.position.y)
+	# One wall jump's worth of height is the most a single wall ever gives —
+	# and only if the first jump came off the floor.
+	assert_gt(highest, start_y - _config.jump_height - _config.wall_jump_height - 10.0,
+		"climbed %.0fpx up a single wall" % (start_y - highest))
+	assert_gte(_player.position.y, start_y - _config.jump_height - 10.0,
+		"ended %.0fpx up a single wall" % (start_y - _player.position.y))
+
+
+func test_a_shaft_is_still_climbable_with_the_hook() -> void:
+	# The other half of the rule: the *facing* wall is always accepted.
+	GameState.grant_ability(GameState.ABILITY_MAG_HOOK)
+	TestArena.solid(_root, Vector2(0, FLOOR_TOP + 100.0), Vector2(6000, 200))
+	TestArena.solid(_root, Vector2(-100.0, FLOOR_TOP - 1500.0), Vector2(200, 3400))
+	TestArena.solid(_root, Vector2(340.0, FLOOR_TOP - 1500.0), Vector2(200, 3400))
+	_player = TestArena.player(_root, Vector2(120.0, FLOOR_TOP))
+	await wait_frames(3)
+	assert_true(_envelope.is_climbable_shaft(240.0), "a 4-tile shaft should certify")
+	var start_y: float = _player.position.y
+	# Push into whichever wall you are on; press jump when it is touched and
+	# hold it through the rise (releasing early is the jump cut). The kick
+	# turns you toward the other wall.
+	Input.action_press("move_right")
+	var jump_held := false
+	var held_frames: int = 0
+	for i: int in 300:
+		var on_wall: bool = _player.wall_direction() != 0 and not _player.is_on_floor()
+		if not jump_held and (on_wall or i == 6):
+			Input.action_press("jump")
+			jump_held = true
+			held_frames = 0
+		elif jump_held:
+			# A press lands a physics frame after the call, so a hold has to
+			# outlast that before the velocity says anything about it.
+			held_frames += 1
+			if held_frames >= 8 and _player.velocity.y > 0.0:
+				Input.action_release("jump")
+				jump_held = false
+		if _player.facing > 0:
+			Input.action_release("move_left")
+			Input.action_press("move_right")
+		else:
+			Input.action_release("move_right")
+			Input.action_press("move_left")
+		await get_tree().physics_frame
+	assert_lt(_player.position.y, start_y - 600.0,
+		"only climbed %.0fpx in a 4-tile shaft" % (start_y - _player.position.y))

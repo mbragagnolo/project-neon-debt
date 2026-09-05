@@ -38,6 +38,11 @@ const SLOT_ORDER: Array[Item.Slot] = [
 
 enum Column { SLOTS, ITEMS }
 
+## On its own (the gyms) the screen pauses the tree and answers the keys that
+## open and close it. Inside the pause shell (M5) the shell does both and
+## hands navigation in through `handle_input()`.
+@export var standalone: bool = true
+
 var _config: CombatConfig
 var _slot_index: int = 0
 var _item_index: int = 0
@@ -62,7 +67,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not event.is_pressed() or event.is_echo():
+	if not standalone or not event.is_pressed() or event.is_echo():
 		return
 
 	if event.is_action(&"toggle_inventory"):
@@ -76,7 +81,16 @@ func _input(event: InputEvent) -> void:
 	# that opened it is the classic controller trap.
 	if event.is_action(&"pause"):
 		close()
-	elif event.is_action(&"move_down"):
+	elif not handle_input(event):
+		return
+	get_viewport().set_input_as_handled()
+
+
+## Navigation inside the screen. Returns whether the event meant anything.
+func handle_input(event: InputEvent) -> bool:
+	if not visible:
+		return false
+	if event.is_action(&"move_down"):
 		_move(1)
 	elif event.is_action(&"move_up"):
 		_move(-1)
@@ -88,8 +102,8 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action(&"interact"):
 		_confirm()
 	else:
-		return
-	get_viewport().set_input_as_handled()
+		return false
+	return true
 
 
 # --- Open / close -----------------------------------------------------------
@@ -107,13 +121,15 @@ func open() -> void:
 	_item_index = 0
 	# Nothing is fought behind an open menu, and no comparison is made against
 	# a health bar that is still moving.
-	get_tree().paused = true
+	if standalone:
+		get_tree().paused = true
 	_redraw()
 
 
 func close() -> void:
 	visible = false
-	get_tree().paused = false
+	if standalone:
+		get_tree().paused = false
 
 
 # --- Navigation -------------------------------------------------------------

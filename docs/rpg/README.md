@@ -11,6 +11,6 @@ Specs:
 - [`items.md`](items.md) — the ten items: identities, stats, one modifier
   each, and where each is found. Locked but for their names, which wait on
   `narrative/`.
-- `economy.md` — credit drops and vendor stock, **M5**. Enemies already author
-  `credit_reward` and M3 accumulates it; prices wait for a shop to spend them
-  in.
+- [`economy.md`](economy.md) — **built (M5).** Stitch's stock and prices,
+  the income the district holds, and the one rule: credits never touch an
+  unlock.
