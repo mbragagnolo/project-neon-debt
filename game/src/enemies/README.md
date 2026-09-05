@@ -35,6 +35,7 @@ raised. No new script, no subclass, no copy of the state machine.
 | `Lunge` | The commitment, attack box armed at full `attack_power` |
 | `Recover` | **The overcommit** — the punishable window |
 | `Stagger` | Interrupted, entered from anywhere by `Health.staggered` |
+| `Stunned` | **M4.** Breached — only `mechanical` enemies answer `stun()`. Attack and contact boxes disarmed, gravity on, and a hit does *not* end it |
 | `Dead` | Terminal; the machine refuses every transition out of it |
 
 Windup/Lunge/Recover could have been three phases of one attack state. They are

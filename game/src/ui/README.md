@@ -10,7 +10,10 @@ Everything here reads the signal bus; no UI node reaches into gameplay nodes.
   cannot tune "one wrench hit buys one zipgun shot" by feel if the pool is
   imaginary. **M3** grew it by level, XP, credits, DEF, the level-up
   announcement and pickup toasts, every one hanging off a signal declared on
-  the bus in M0. The real HUD is M7's and will hang off exactly these signals.
+  the bus in M0. **M4** added RAM and the quickslot line — which program is
+  loaded, what it costs, the cycle keys, why the last cast was refused, and
+  Firewall's remaining window. The real HUD is M7's and will hang off exactly
+  these signals.
 - `menus/equip_screen.gd` — **M3.** The inventory/equip screen
   (docs/ui/screens.md). Built in code for the same reason the debug HUD is:
   it is greybox, and a `.tscn` would be four hundred lines of node text nobody

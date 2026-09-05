@@ -12,10 +12,18 @@ extends Area2D
 ## story — the inventory already knows what it owns, and an item that somehow
 ## got granted twice is refused there anyway.
 
-## What is inside. Ids are resolved through the catalog rather than the
-## resource being referenced directly, so a room scene never pins a copy of an
-## item's numbers.
+## What kind of thing is waiting here. Items go to the inventory; programs
+## (M4) are hacks, which live outside the ten-item budget and are owned as
+## `GameState` flags. One node for both, because what differs is the art.
+enum Kind { ITEM, HACK }
+
+@export var kind: Kind = Kind.ITEM
+## What is inside, for `ITEM`. Ids are resolved through the catalog rather
+## than the resource being referenced directly, so a room scene never pins a
+## copy of an item's numbers.
 @export var item_id: StringName = &""
+## What is inside, for `HACK`.
+@export var hack_id: StringName = &""
 ## Unique across the district — it becomes a save flag. Room ids are permanent
 ## for the same reason (README conventions).
 @export var pickup_id: StringName = &""
@@ -27,6 +35,7 @@ extends Area2D
 @onready var _prompt: Label = $Prompt
 
 var _item: Item
+var _hack: Hack
 var _player_in_range: bool = false
 
 
@@ -37,11 +46,24 @@ func flag() -> StringName:
 func _ready() -> void:
 	if pickup_id == &"":
 		push_warning("Pickup '%s' has no pickup_id — looting it will not persist." % name)
-	_item = Inventory.catalog.by_id(item_id) if Inventory.catalog != null else null
-	if _item == null:
-		push_error("Pickup '%s' holds no item ('%s')." % [name, item_id])
-		queue_free()
-		return
+	match kind:
+		Kind.ITEM:
+			_item = Inventory.catalog.by_id(item_id) if Inventory.catalog != null else null
+			if _item == null:
+				push_error("Pickup '%s' holds no item ('%s')." % [name, item_id])
+				queue_free()
+				return
+		Kind.HACK:
+			_hack = HackKit.hack_by_id(hack_id)
+			if _hack == null:
+				push_error("Pickup '%s' holds no program ('%s')." % [name, hack_id])
+				queue_free()
+				return
+			# A program already owned has nothing left to hand over.
+			if HackKit.is_owned(_hack):
+				queue_free()
+				return
+			_visual.color = _hack.color
 
 	# Already looted: never existed, as far as this visit is concerned.
 	if pickup_id != &"" and GameState.has_flag(flag()):
@@ -56,7 +78,9 @@ func _ready() -> void:
 	collider.shape = circle
 	add_child(collider)
 
-	_prompt.text = "%s\n%s take" % [_item.display_name, InputPrompt.label(&"interact")]
+	_prompt.text = "%s\n%s %s" % [
+		display_name(), InputPrompt.label(&"interact"), "download" if kind == Kind.HACK else "take"
+	]
 	_prompt.add_theme_font_size_override("font_size", 24)
 	_prompt.visible = false
 	body_entered.connect(_on_body_entered)
@@ -71,12 +95,24 @@ func _process(_delta: float) -> void:
 		take()
 
 
-## Grants the item and closes the chest for good. Public so M5's quest reward
-## can hand its item over without a player standing on anything.
+func display_name() -> String:
+	if kind == Kind.HACK:
+		return "PROGRAM: %s" % (_hack.display_name.to_upper() if _hack != null else "?")
+	return _item.display_name if _item != null else "?"
+
+
+## Grants the contents and closes the chest for good. Public so M5's quest
+## reward can hand its item over without a player standing on anything.
 func take() -> void:
-	if _item == null:
-		return
-	Inventory.grant(_item.id)
+	match kind:
+		Kind.ITEM:
+			if _item == null:
+				return
+			Inventory.grant(_item.id)
+		Kind.HACK:
+			if _hack == null:
+				return
+			HackKit.grant(_hack.id)
 	if pickup_id != &"":
 		GameState.set_flag(flag())
 	queue_free()

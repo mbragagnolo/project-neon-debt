@@ -4,12 +4,12 @@ Cyberpunk 2D metroidvania with Castlevania-style RPG elements, built in
 **Godot 4.7** (GDScript). See [DESIGN.md](DESIGN.md) for the full vertical-slice
 design and the milestone plan.
 
-**Status: M3 (RPG layer) ready to play.** Stats, levels, the ten items,
-inventory and equip screen, pickups and the level-up moment are in and tested.
-The exit test — "equipping better gear visibly changes combat math; HUD shows
-it" — is Marcos's to call: open a chest in the RPG gym, swap a weapon, hit the
-same dummy and watch the number. The two earlier gyms are still there and
-still tested; each milestone's lab outlives its milestone.
+**Status: M4 (hacks) in, M5–M7 in progress on the `vertical-slice` branch.**
+RAM, the three programs (Firewall / Overload / Breach), the quickslot, the
+shared cooldown, the mechanical stun and the Breach door are in and tested;
+the hack gym is the main scene until the district lands. The earlier gyms
+are still there and still tested; each milestone's lab outlives its
+milestone.
 
 ---
 
@@ -27,7 +27,7 @@ downloading and CI runs offline.
 ```bash
 cd game
 
-# Play it (opens the M3 gear-and-levels gym)
+# Play it (opens the current milestone's gym)
 godot --path .
 
 # Boot headless (what CI does — must log no errors)

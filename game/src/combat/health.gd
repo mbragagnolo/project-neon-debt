@@ -36,6 +36,11 @@ const TAG_IMMUNE_RANGED_FRONTAL := &"immune_ranged_frontal"
 @export var tags: Array[StringName] = []
 
 var hp: int = 0
+## Multiplier on incoming damage, applied at step 6 after DEF and before the
+## floor. 1.0 is nothing; Firewall sets 0.5 for its duration. A multiplier
+## rather than a DEF bonus because "incoming damage halved" has to mean halved
+## against a boss hit as much as against a Scav's — flat DEF cannot say that.
+var guard_mult: float = 1.0
 
 var _iframe_timer: float = 0.0
 
@@ -63,6 +68,10 @@ func is_invulnerable() -> bool:
 ## rejected outright rather than reduced to the floor of 1 — otherwise the
 ## shield leaks chip damage and the tag reads as a lie.
 func blocks(attack: Attack) -> bool:
+	# Hacks are not projectiles: `immune_ranged_frontal` means nothing to a
+	# voltage spike. This is hacks.md rule 4 — the pipeline with one step off.
+	if attack.is_hack:
+		return false
 	if not attack.is_ranged:
 		return false
 	if not tags.has(TAG_IMMUNE_RANGED_FRONTAL):
@@ -120,3 +129,7 @@ func clear_iframes() -> void:
 func restore() -> void:
 	hp = max_hp
 	_iframe_timer = 0.0
+
+
+func is_guarded() -> bool:
+	return guard_mult < 1.0

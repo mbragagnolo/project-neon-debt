@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Hack" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/combat/hacks/hack.gd" id="1_hack"]
+
+[resource]
+script = ExtResource("1_hack")
+id = &"breach"
+display_name = "Breach"
+description = "Forces a handshake on every machine in reach. Doors open, drones drop, humans don't notice."
+effect = 2
+ram_cost = 2
+power = 0.0
+knockback = 0.0
+radius = 360.0
+duration = 1.5
+guard_mult = 1.0
+flag = &"hack.breach"
+color = Color(0.55, 1, 0.5, 1)

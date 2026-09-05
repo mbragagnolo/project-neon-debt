@@ -22,6 +22,7 @@ cd game
 godot --headless --path . tools/make_gym.tscn         # M1 movement gym
 godot --headless --path . tools/make_combat_gym.tscn  # M2 hit-feel lab
 godot --headless --path . tools/make_rpg_gym.tscn     # M3 gear-and-levels lab
+godot --headless --path . tools/make_hack_gym.tscn    # M4 hacks lab
 ```
 
 Run generators **as a scene**, not with `-s`. Godot does not load autoloads for

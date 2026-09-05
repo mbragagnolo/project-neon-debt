@@ -9,7 +9,13 @@ Rooms, doors, save points, and the graph that ties them together (DESIGN.md §3.
 - `pickup.gd` / `pickup.tscn` — **M3.** An item waiting in the world: a chest,
   a crate, a dead worker's kit. One node rather than a chest/floor-item pair,
   because what differs between them is art that does not exist yet. Looting is
-  a `GameState` flag, so a chest re-entered after a save stays open.
+  a `GameState` flag, so a chest re-entered after a save stays open. **M4**
+  gave it a `kind`: `HACK` pickups hand out programs instead of items.
+- `breach_door.gd` / `breach_door.tscn` — **M4.** The sealed door with a
+  terminal. Opens for free through the terminal if Breach is owned, or from a
+  Breach cast in reach; the opening is a `GameState` flag (`door.<id>`).
+- `gym_grants.gd` — gym-only. Sets every ability flag on load so a lab is
+  fully testable wherever its feature sits in the district. Never shipped.
 - `door.gd`, `save_point.gd`, `world_graph.tres` — **M5**
 
 Room ids are snake_case and stable: they end up in the save file and on the map

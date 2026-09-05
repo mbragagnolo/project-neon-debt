@@ -28,6 +28,8 @@ enum Facing { LEFT = -1, RIGHT = 1 }
 @onready var health: Health = $Health
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var melee_hitbox: Hitbox = $MeleeHitbox
+@onready var hacks: HackKit = $Hacks
+@onready var _guard_visual: ColorRect = $Visual/Guard
 
 ## What is in hand. Not exported: `Inventory` is the single source of the
 ## loadout, because from M5 this node is re-instanced at every door and a kit
@@ -39,6 +41,10 @@ var facing: int = Facing.RIGHT
 ## -1, 0 or +1 from the move_left/move_right actions this frame.
 var input_direction: int = 0
 var ammo: int = 0
+## The casting pool (docs/rpg/stats-and-curves.md, RAM). The sheet owns the
+## ceiling, this node owns the current number — same split as HP.
+var ram: int = 0
+var max_ram: int = 0
 ## Edge-triggered input, sampled once per frame in `_read_input`. States read
 ## these rather than polling `Input` themselves: one sample point per frame
 ## means two states can never disagree about whether a button was tapped, and
@@ -47,6 +53,9 @@ var _dash_pressed: bool = false
 var _jump_released: bool = false
 var _melee_pressed: bool = false
 var _ranged_pressed: bool = false
+var _hack_pressed: bool = false
+var _hack_next_pressed: bool = false
+var _hack_prev_pressed: bool = false
 
 var _coyote_timer: float = 0.0
 var _jump_buffer_timer: float = 0.0
@@ -86,6 +95,14 @@ func _physics_process(delta: float) -> void:
 	# nailgun's 4/s fire rate a state-machine problem.
 	if _ranged_pressed and can_fire_ranged():
 		fire_ranged()
+	# Hacks have no state for the same reason ranged has none: a cast is
+	# auto-targeted and instant, so it costs a cooldown and never commitment.
+	if _hack_next_pressed:
+		hacks.select_next()
+	if _hack_prev_pressed:
+		hacks.select_prev()
+	if _hack_pressed:
+		hacks.try_cast()
 	move_and_slide()
 	_settle_after_move()
 
@@ -105,6 +122,9 @@ func _read_input() -> void:
 	_jump_released = Input.is_action_just_released("jump")
 	_melee_pressed = Input.is_action_just_pressed("attack_melee")
 	_ranged_pressed = Input.is_action_just_pressed("attack_ranged")
+	_hack_pressed = Input.is_action_just_pressed("hack_cast")
+	_hack_next_pressed = Input.is_action_just_pressed("hack_next")
+	_hack_prev_pressed = Input.is_action_just_pressed("hack_prev")
 	if Input.is_action_just_pressed("jump"):
 		# Buffer every press. Whichever state can honour it consumes it; if
 		# nothing does within the window it expires harmlessly.
@@ -320,6 +340,9 @@ func _setup_combat() -> void:
 	ammo = max_ammo
 	Events.ammo_changed.emit(ammo, max_ammo)
 	Events.hp_changed.emit(health.hp, health.max_hp)
+	ram = max_ram
+	Events.ram_changed.emit(ram, max_ram)
+	hacks.setup(self)
 	PlayerStats.publish()
 
 
@@ -342,6 +365,12 @@ func _apply_sheet() -> void:
 	health.defense = PlayerStats.effective_defense()
 	health.hp = mini(health.hp, health.max_hp)
 	Events.hp_changed.emit(health.hp, health.max_hp)
+	# RAM follows the same rule as HP: the ceiling moves, the current number
+	# is clamped down and never topped up. A level-up does not refill RAM —
+	# the full restore is a save terminal's job (stats-and-curves.md).
+	max_ram = PlayerStats.effective_max_ram()
+	ram = mini(ram, max_ram)
+	Events.ram_changed.emit(ram, max_ram)
 
 
 func _on_item_equipped(_slot: StringName, _item_id: StringName) -> void:
@@ -498,6 +527,43 @@ func spend_ammo(amount: int) -> void:
 		Events.ammo_changed.emit(ammo, max_ammo)
 
 
+# --- RAM (M4) ---------------------------------------------------------------
+
+func add_ram(amount: int) -> void:
+	var before: int = ram
+	ram = mini(ram + amount, max_ram)
+	if ram != before:
+		Events.ram_changed.emit(ram, max_ram)
+
+
+func spend_ram(amount: int) -> void:
+	var before: int = ram
+	ram = maxi(ram - amount, 0)
+	if ram != before:
+		Events.ram_changed.emit(ram, max_ram)
+
+
+## The save terminal's full restore, and the gym's respawn convenience.
+func restore_ram() -> void:
+	ram = max_ram
+	Events.ram_changed.emit(ram, max_ram)
+
+
+## Firewall's tell. A buff the player cannot see is a buff they will not trust
+## enough to cast into a hit.
+func set_guard_visual(active: bool, colour: Color) -> void:
+	if _guard_visual == null:
+		return
+	_guard_visual.visible = active
+	if active:
+		_guard_visual.color = Color(colour.r, colour.g, colour.b, 0.4)
+
+
+## Where a hack measures from and draws to: mid-body, not the feet.
+func center() -> Vector2:
+	return global_position + Vector2(0.0, -44.0)
+
+
 ## Called by our own `Hurtbox` when something lands on us.
 ##
 ## The direction comes from the hit but the magnitude is our own, much smaller
@@ -531,6 +597,7 @@ func respawn() -> void:
 	ammo = max_ammo
 	Events.hp_changed.emit(health.hp, health.max_hp)
 	Events.ammo_changed.emit(ammo, max_ammo)
+	restore_ram()
 
 
 ## An invulnerability the player cannot see is indistinguishable from the

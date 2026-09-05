@@ -19,6 +19,13 @@ extends Node
 ## version-1 file degrades to a fresh sheet rather than a crash.
 const SAVE_VERSION := 2
 
+## The three ability flags (DESIGN.md §2 progression). Plain flags — this file
+## stays a flag store — but named here so a gate, a pickup and a gym cannot
+## spell the same ability three ways.
+const ABILITY_MAG_HOOK := &"ability.mag_hook"
+const ABILITY_CYBERDECK := &"ability.cyberdeck"
+const ABILITY_SIDEWINDER := &"ability.sidewinder"
+
 ## Arbitrary world flags, e.g. "door.stacks_breach_01" -> true.
 var _flags: Dictionary = {}
 ## Room ids the player has entered at least once (drives the map screen).
@@ -70,6 +77,22 @@ func has_flag(flag: StringName) -> bool:
 
 func flag_count() -> int:
 	return _flags.size()
+
+
+# --- Abilities --------------------------------------------------------------
+#
+# Possession, not tuning: `MovementConfig` says how a wall jump behaves, these
+# say whether the player has it (DESIGN.md §3.1).
+
+func has_ability(ability: StringName) -> bool:
+	return has_flag(ability)
+
+
+func grant_ability(ability: StringName) -> void:
+	if has_flag(ability):
+		return
+	set_flag(ability)
+	Events.ability_granted.emit(ability)
 
 
 # --- Rooms ------------------------------------------------------------------

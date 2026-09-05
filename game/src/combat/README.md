@@ -49,3 +49,10 @@ that never instances a room.
 - `combat_config.tres` — every tuning number, same rule as `MovementConfig`
 - `weapons/` — `Weapon` base plus the melee/ranged resources
 - `projectiles/` — `Projectile`, which is just a `Hitbox` that moves and expires
+- `hacks/` — **M4.** `Hack` resources (three shapes: guard / burst / pulse),
+  the catalog, `hack_config.tres`, and `HackKit` — the component on the
+  player that owns the quickslot, the shared cooldown, RAM regen and the
+  Firewall timer. `HackFx` is the greybox cast tell. Spec and implementation
+  notes: `docs/combat/hacks.md`. Hacks run the same pipeline with
+  `Attack.is_hack` disabling step 5; Firewall is `Health.guard_mult` at
+  step 6.

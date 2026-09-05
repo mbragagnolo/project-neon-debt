@@ -1,7 +1,8 @@
 # Hacks
 
-**Status: locked.** Numbers `TUNE`. Elaborates DESIGN.md §3.2 against the
-locked RAM model (stats-and-curves.md).
+**Status: locked, implemented in M4.** Numbers `TUNE`. Elaborates DESIGN.md
+§3.2 against the locked RAM model (stats-and-curves.md). The implementation
+notes at the bottom record what M4 decided where this file left room.
 
 The fiction rule every hack must pass: **the player is hacking a specific
 system**. Overload hacks the enemy's, Breach hacks the door's or the
@@ -55,6 +56,48 @@ Breach = control.**
 
 - The Firewall-first arc (corp-installed defense → stolen offense) is a
   narrative beat `narrative/hook.md` should own and voice.
-- M4 needs: quickslot UI, the 1s global cooldown, auto-target acquisition,
-  the self-buff timer, and the `mechanical` stun hook (M2's pipeline
-  already carries stagger and tags).
+- ~~M4 needs: quickslot UI, the 1s global cooldown, auto-target acquisition,
+  the self-buff timer, and the `mechanical` stun hook~~ — **shipped**, see
+  below.
+
+## M4 implementation notes
+
+Decisions M4 made inside the rules above, recorded so a retune knows what is
+data and what is shape:
+
+- **A hack is a `Hack` resource with one of three shapes** — `GUARD` (self,
+  Firewall), `BURST` (nearest enemy, Overload), `PULSE` (every machine in
+  reach, Breach). Cost, power, reach and duration are fields on the `.tres`;
+  the shared cooldown and the regen rate live on `hack_config.tres`.
+- **Firewall is a multiplier, not +DEF.** `Health.guard_mult` is applied at
+  step 6 *after* DEF and *before* the floor: `max(1, (raw − DEF) × guard)`.
+  "Halved" therefore means halved against what would actually have landed,
+  against a boss as much as a Scav, and the floor still holds. Recasting
+  refreshes the window rather than stacking.
+- **Overload refuses to cast with nothing in reach**, at no cost. A fizzle
+  that spent 3 RAM would teach the player to stop casting. Firewall and
+  Breach always cast — Firewall always has a target (you), and Breach's
+  pulse is the point even when it finds nothing.
+- **Casting has no player state** (same reasoning as ranged): auto-targeted
+  and instant, it costs a cooldown and never commitment. Firewall is a
+  reaction you can make mid-jump, not a plan.
+- **Ownership is a `GameState` flag** on each hack (`hack.overload`,
+  `hack.breach`). Firewall has no flag: factory-installed, always owned.
+  Programs are handed out by the same `Pickup` node chests use, with
+  `kind = HACK`.
+- **The quickslot is the Cyberdeck's** (`ability.cyberdeck`). Without the
+  deck the kit is single-slot and cycling is refused with a reason the HUD
+  shows. The district must place the deck before Overload (DESIGN.md §2);
+  the gyms grant it on load.
+- **A stunned enemy stays stunned when hit.** Breach → walk in → swing is the
+  loop, so a stagger-worthy hit does not exit the `Stunned` state; knockback
+  still applies. Stunned enemies disarm both the attack box and contact
+  damage, and gravity still applies — a stunned drone falls.
+- **Breach doors open two ways.** The terminal interaction is free and checks
+  ownership only (rule 2). A Breach cast in reach also opens the door, at the
+  cast's normal cost, because pulsing next to a door should do the obvious
+  thing.
+- **RAM regen** is `0.4/s` before the gloves (`TUNE`): a full 12-point pool
+  from empty in 30 seconds, one Firewall in 10. Fractional points accumulate
+  so the rate is honoured exactly. Level-up raises the ceiling and refills
+  nothing; the save terminal (M5) restores the pool.

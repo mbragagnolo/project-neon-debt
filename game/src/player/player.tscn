@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_player"]
 [ext_resource type="Resource" path="res://src/player/movement_config.tres" id="2_config"]
@@ -13,6 +13,9 @@
 [ext_resource type="Script" path="res://src/combat/health.gd" id="13_health"]
 [ext_resource type="Script" path="res://src/combat/hurtbox.gd" id="14_hurtbox"]
 [ext_resource type="Script" path="res://src/combat/hitbox.gd" id="15_hitbox"]
+[ext_resource type="Script" path="res://src/combat/hacks/hack_kit.gd" id="16_hack_kit"]
+[ext_resource type="Resource" path="res://src/combat/hacks/catalog.tres" id="17_hack_catalog"]
+[ext_resource type="Resource" path="res://src/combat/hacks/hack_config.tres" id="18_hack_config"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
 size = Vector2(48, 88)
@@ -34,6 +37,15 @@ position = Vector2(0, -44)
 shape = SubResource("RectangleShape2D_body")
 
 [node name="Visual" type="Node2D" parent="."]
+
+[node name="Guard" type="ColorRect" parent="Visual"]
+visible = false
+offset_left = -32.0
+offset_top = -96.0
+offset_right = 32.0
+offset_bottom = 8.0
+mouse_filter = 2
+color = Color(0.35, 0.85, 1, 0.4)
 
 [node name="Body" type="ColorRect" parent="Visual"]
 offset_left = -24.0
@@ -78,6 +90,11 @@ collision_mask = 64
 monitoring = false
 monitorable = false
 script = ExtResource("15_hitbox")
+
+[node name="Hacks" type="Node" parent="."]
+script = ExtResource("16_hack_kit")
+catalog = ExtResource("17_hack_catalog")
+config = ExtResource("18_hack_config")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_machine")

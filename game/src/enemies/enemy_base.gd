@@ -15,6 +15,10 @@ extends CharacterBody2D
 
 const CONFIG_PATH := "res://src/combat/combat_config.tres"
 const PLAYER_GROUP := &"player"
+## Every enemy joins this group, which is how a hack finds its targets without
+## the kit holding a list: the nearest member in radius is Overload's, every
+## `mechanical` member in radius is Breach's.
+const ENEMY_GROUP := &"enemies"
 
 @export var config: EnemyConfig
 
@@ -31,6 +35,9 @@ var facing: int = 1
 ## here, so an enemy always has somewhere to go back to.
 var home: Vector2 = Vector2.ZERO
 var player: Node2D
+## Seconds the current stun lasts. Set by `stun()` just before the transition,
+## read by the Stunned state on entry — the same hand-off shape as the lunge.
+var stun_duration: float = 0.0
 
 var _gravity: float = 0.0
 var _lunge_cooldown_timer: float = 0.0
@@ -44,6 +51,7 @@ func _ready() -> void:
 		set_physics_process(false)
 		return
 
+	add_to_group(ENEMY_GROUP)
 	home = global_position
 	_gravity = float(ProjectSettings.get_setting("physics/2d/default_gravity", 980.0))
 	_combat_config = load(CONFIG_PATH) as CombatConfig
@@ -71,7 +79,7 @@ func _ready() -> void:
 	_acquire_player()
 	Events.player_spawned.connect(_on_player_spawned)
 
-	_arm_contact()
+	arm_contact()
 	_state_machine.setup(self)
 	tint(config.color_idle)
 
@@ -175,12 +183,42 @@ func end_lunge() -> void:
 	attack_hitbox.deactivate()
 
 
-func _arm_contact() -> void:
+func arm_contact() -> void:
+	if health.is_dead():
+		return
 	var mult: float = _combat_config.contact_damage_mult if _combat_config != null else 0.5
 	var attack := Attack.make(self, global_position, config.contact_power(mult))
 	attack.scales_with_stat = false
 	attack.is_contact = true
 	contact_hitbox.activate(attack)
+
+
+func disarm_contact() -> void:
+	contact_hitbox.deactivate()
+
+
+# --- Hacks ------------------------------------------------------------------
+
+## Breach's hook. Only `mechanical` enemies answer — a Scav shrugs at a
+## handshake request, which is the whole reason the tag exists. Returns
+## whether the stun took, so the caster can tell "nothing in reach" from
+## "nothing in reach that cares".
+func stun(seconds: float) -> bool:
+	if health.is_dead() or not is_mechanical():
+		return false
+	if not has_node("StateMachine/Stunned"):
+		return false
+	stun_duration = seconds
+	_state_machine.transition_to(&"Stunned")
+	return true
+
+
+func is_mechanical() -> bool:
+	return health.tags.has(Health.TAG_MECHANICAL)
+
+
+func is_stunned() -> bool:
+	return state_name() == &"Stunned"
 
 
 # --- Reactions --------------------------------------------------------------
@@ -194,6 +232,11 @@ func _on_damaged(_amount: int, _attack: Attack) -> void:
 ## produce a visible reward rather than just a number.
 func _on_staggered() -> void:
 	if health.is_dead():
+		return
+	# A stunned enemy stays stunned. Knockback still lands (the hurtbox applied
+	# it before this signal), but the setup verb's window is not spent by the
+	# first hit that uses it.
+	if is_stunned():
 		return
 	_state_machine.transition_to(&"Stagger")
 

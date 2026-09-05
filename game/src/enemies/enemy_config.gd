@@ -105,6 +105,9 @@ extends Resource
 ## Deliberately drained. Recovery should look like an opening, because it is.
 @export var color_recover: Color = Color(0.45, 0.4, 0.5)
 @export var color_stagger: Color = Color(1.0, 1.0, 1.0)
+## Breached. Cold and dark: a machine with its lights off, which is what the
+## player should be reading as "hit it now".
+@export var color_stunned: Color = Color(0.3, 0.55, 0.7)
 
 
 ## Contact damage is half `attack_power` for every enemy

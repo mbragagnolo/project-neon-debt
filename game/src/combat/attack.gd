@@ -33,6 +33,11 @@ var is_contact: bool = false
 ## Projectiles and bullets. Only ranged attacks can be stopped by
 ## `immune_ranged_frontal` (M6's Riot unit).
 var is_ranged: bool = false
+## A program, not a weapon. Enters at step 4 with the hack's base power in the
+## `weapon_power` role and INT as the stat, and **skips step 5**: hacks bypass
+## positional immunities and never DEF (docs/combat/hacks.md, rule 4). One
+## flag, one step disabled — no second damage path.
+var is_hack: bool = false
 
 
 static func make(

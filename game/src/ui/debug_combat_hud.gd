@@ -19,15 +19,23 @@ const LOW_COLOUR := Color(1.0, 0.45, 0.45)
 const DIM_COLOUR := Color(0.45, 0.52, 0.64)
 const GOOD_COLOUR := Color(0.45, 0.95, 0.6)
 
+const HACK_COLOUR := Color(0.75, 0.6, 1.0)
+
 var _level_label: Label
 var _hp_label: Label
 var _ammo_label: Label
+var _ram_label: Label
+var _hack_label: Label
 var _credits_label: Label
 var _last_hit_label: Label
 var _toast_label: Label
 
 var _hit_clear_timer: float = 0.0
 var _toast_timer: float = 0.0
+var _hack_flash_timer: float = 0.0
+var _guard_timer: float = 0.0
+var _selected_hack: StringName = &""
+var _catalog: HackCatalog
 ## Last published sheet, kept because the HP line draws DEF beside the bar and
 ## the two arrive on different signals.
 var _sheet: Dictionary = {}
@@ -42,6 +50,8 @@ func _ready() -> void:
 	_level_label = _make_label(box, "LVL —")
 	_hp_label = _make_label(box, "HP —")
 	_ammo_label = _make_label(box, "AMMO —")
+	_ram_label = _make_label(box, "RAM —", HACK_COLOUR)
+	_hack_label = _make_label(box, "HACK —", HACK_COLOUR)
 	_credits_label = _make_label(box, "CR 0", DIM_COLOUR)
 	_last_hit_label = _make_label(box, "")
 	_toast_label = _make_label(box, "", GOOD_COLOUR)
@@ -53,6 +63,13 @@ func _ready() -> void:
 	Events.credits_changed.connect(_on_credits_changed)
 	Events.level_gained.connect(_on_level_gained)
 	Events.toast_requested.connect(_on_toast)
+	Events.ram_changed.connect(_on_ram_changed)
+	Events.hack_selected.connect(_on_hack_selected)
+	Events.hack_cast.connect(_on_hack_cast)
+	Events.hack_failed.connect(_on_hack_failed)
+	Events.hack_acquired.connect(_on_hack_acquired)
+	Events.guard_changed.connect(_on_guard_changed)
+	_catalog = load(HackKit.CATALOG_PATH)
 
 	# The bus carries no history, so a HUD built after the sheet was published
 	# would start blank until something happened. Ask once.
@@ -68,6 +85,13 @@ func _process(delta: float) -> void:
 		_toast_timer -= delta
 		if _toast_timer <= 0.0:
 			_toast_label.text = ""
+	if _hack_flash_timer > 0.0:
+		_hack_flash_timer -= delta
+		if _hack_flash_timer <= 0.0:
+			_draw_hack_line()
+	if _guard_timer > 0.0:
+		_guard_timer -= delta
+		_draw_hack_line()
 
 
 func _make_label(parent: Node, text: String, colour: Color = OK_COLOUR) -> Label:
@@ -127,3 +151,69 @@ func _on_level_gained(new_level: int) -> void:
 func _on_toast(text: String) -> void:
 	_toast_label.text = text
 	_toast_timer = 2.5
+
+
+# --- M4: RAM and the quickslot ----------------------------------------------
+
+func _on_ram_changed(current: int, maximum: int) -> void:
+	_ram_label.text = "RAM  %d / %d" % [current, maximum]
+	_ram_label.add_theme_color_override("font_color", LOW_COLOUR if current <= 0 else HACK_COLOUR)
+
+
+func _on_hack_selected(hack_id: StringName) -> void:
+	_selected_hack = hack_id
+	_draw_hack_line()
+
+
+func _hack_name(hack_id: StringName) -> String:
+	var hack: Hack = _catalog.by_id(hack_id) if _catalog != null else null
+	return hack.display_name.to_upper() if hack != null else "—"
+
+
+func _hack_cost(hack_id: StringName) -> int:
+	var hack: Hack = _catalog.by_id(hack_id) if _catalog != null else null
+	return hack.ram_cost if hack != null else 0
+
+
+## The quickslot: what fires on `hack_cast`, what it costs, and the cycle
+## keys. Firewall's remaining window is appended while it is up.
+func _draw_hack_line() -> void:
+	var text: String = "HACK  %s %s %s   %d RAM" % [
+		InputPrompt.label(&"hack_prev"),
+		_hack_name(_selected_hack),
+		InputPrompt.label(&"hack_next"),
+		_hack_cost(_selected_hack),
+	]
+	if _guard_timer > 0.0:
+		text += "   FIREWALL %.1fs" % _guard_timer
+	_hack_label.text = text
+	_hack_label.add_theme_color_override("font_color", HACK_COLOUR)
+
+
+func _on_hack_cast(hack_id: StringName, _ram_cost: int) -> void:
+	_hack_label.text = "HACK  %s  CAST" % _hack_name(hack_id)
+	_hack_label.add_theme_color_override("font_color", GOOD_COLOUR)
+	_hack_flash_timer = 0.5
+
+
+func _on_hack_failed(hack_id: StringName, reason: StringName) -> void:
+	var why: String
+	match reason:
+		&"ram": why = "NO RAM"
+		&"cooldown": why = "COOLING"
+		&"no_target": why = "NO TARGET IN REACH"
+		&"no_deck": why = "NO DECK - CANNOT CYCLE"
+		_: why = "NO PROGRAM"
+	_hack_label.text = "HACK  %s  %s" % [_hack_name(hack_id), why]
+	_hack_label.add_theme_color_override("font_color", LOW_COLOUR)
+	_hack_flash_timer = 0.8
+
+
+func _on_hack_acquired(hack_id: StringName) -> void:
+	_toast_label.text = "PROGRAM ACQUIRED  →  %s" % _hack_name(hack_id)
+	_toast_timer = 2.5
+
+
+func _on_guard_changed(active: bool, seconds: float) -> void:
+	_guard_timer = seconds if active else 0.0
+	_draw_hack_line()

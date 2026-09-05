@@ -29,7 +29,7 @@ code.
 | 3 | Reject if target is dead or in i-frames | |
 | 4 | `raw = weapon_power × stat_multiplier(stat)` | Enemies skip this — flat `attack_power` |
 | 5 | Reject on positional immunity tags | `immune_ranged_frontal` is checked **here**, before DEF |
-| 6 | `damage = max(1, raw − DEF)` | Floor at 1, universal, zero exceptions |
+| 6 | `damage = max(1, (raw − DEF) × guard)` | Floor at 1, universal, zero exceptions. `guard` is 1.0 unless Firewall is up (M4) |
 | 7 | Apply damage, emit the hit signal | The signal is what HUD, SFX and juice hang off |
 | 8 | `damage ≥ stagger_threshold` → stagger; else flinch | One field, one comparison |
 | 9 | Hitstop, then knockback impulse | Skipped by contact damage, see below |
@@ -206,10 +206,12 @@ and would quietly obsolete the drone's whole vertical-threat lesson.
   and low-end DEF is swingy against light weapons. DEF becomes real in M3.
 - **M3 needs:** `stat_multiplier` wired into step 4 from real stats, and the
   first DEF pass across the roster.
-- **M4 needs:** hacks enter at step 4 with base power in the `weapon_power`
-  role and INT as the stat, and **skip step 5** — the locked "hacks bypass
-  positional immunities, never DEF" rule (hacks.md) is exactly the pipeline
-  running with one step disabled. No new damage path.
+- **M4 shipped:** hacks enter at step 4 with base power in the `weapon_power`
+  role and INT as the stat, and **skip step 5** (`Attack.is_hack`) — the
+  locked "hacks bypass positional immunities, never DEF" rule (hacks.md) is
+  exactly the pipeline running with one step disabled. No new damage path.
+  Firewall lives at step 6 as `Health.guard_mult`, applied after DEF and
+  before the floor (hacks.md, implementation notes).
 - **M6 needs:** step 5's facing check, for the Riot unit's
   `immune_ranged_frontal`; and lingering-hitbox multi-hit, which the
   per-attack target set already covers.

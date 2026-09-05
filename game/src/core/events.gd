@@ -40,6 +40,12 @@ signal credits_changed(amount: int)
 signal hack_selected(hack_id: StringName)
 signal hack_cast(hack_id: StringName, ram_cost: int)
 signal hack_failed(hack_id: StringName, reason: StringName)
+## A program was found. Programs are not items, so this is not `item_picked_up`.
+signal hack_acquired(hack_id: StringName)
+## Firewall went up (`active`, with its full duration) or came down.
+signal guard_changed(active: bool, seconds: float)
+## A gadget or implant was granted — the metroidvania gates read these.
+signal ability_granted(ability: StringName)
 
 # --- World / metroidvania (M5) ---------------------------------------------
 signal room_entered(room_id: StringName)
