@@ -115,6 +115,13 @@ func _ready() -> void:
 	_label("MELEE  J        RANGED  K        DASH  SHIFT", Vector2(760, 180))
 	_label("MELEE HITS REFILL AMMO — WATCH THE COUNTER", Vector2(760, 240))
 
+	# The gym grants every ability so the whole kit is testable here; the
+	# district hands them out as pickups (DESIGN.md §3.1).
+	var grants := Node.new()
+	grants.name = "GymGrants"
+	grants.set_script(load("res://src/world/gym_grants.gd"))
+	_root.add_child(grants)
+
 	var spawn := Marker2D.new()
 	spawn.name = "PlayerSpawn"
 	spawn.position = Vector2(240, FLOOR_TOP)

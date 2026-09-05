@@ -137,6 +137,13 @@ func _ready() -> void:
 	)
 	_label("LEVELS MOVE THE MULTIPLIER. GEAR MOVES THE WEAPON.", Vector2(300, 360))
 
+	# The gym grants every ability so the whole kit is testable here; the
+	# district hands them out as pickups (DESIGN.md §3.1).
+	var grants := Node.new()
+	grants.name = "GymGrants"
+	grants.set_script(load("res://src/world/gym_grants.gd"))
+	_root.add_child(grants)
+
 	var spawn := Marker2D.new()
 	spawn.name = "PlayerSpawn"
 	spawn.position = Vector2(240, FLOOR_TOP)

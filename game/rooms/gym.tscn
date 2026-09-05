@@ -1,386 +1,392 @@
-[gd_scene load_steps=22 format=3]
+[gd_scene format=3]
 
-[ext_resource type="Script" path="res://src/world/room.gd" id="1_bg25q"]
-[ext_resource type="PackedScene" path="res://src/player/player.tscn" id="2_j61b4"]
-[ext_resource type="Script" path="res://src/player/player.gd" id="3_apjto"]
-[ext_resource type="Resource" path="res://src/player/movement_config.tres" id="4_abs0i"]
+[ext_resource type="Script" path="res://src/world/room.gd" id="1_2sk74"]
+[ext_resource type="Script" path="res://src/world/gym_grants.gd" id="2_g5avf"]
+[ext_resource type="PackedScene" path="res://src/player/player.tscn" id="3_8o8dk"]
+[ext_resource type="Script" path="res://src/player/player.gd" id="4_gupey"]
+[ext_resource type="Resource" path="res://src/player/movement_config.tres" id="5_fiok1"]
+[ext_resource type="Resource" path="res://src/combat/combat_config.tres" id="6_8pbv3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3h37"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xub2m"]
 size = Vector2(3840, 60)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u06yn"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujwfa"]
 size = Vector2(3840, 60)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1rcf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b06gd"]
 size = Vector2(60, 2160)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1h0u3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1c0o1"]
 size = Vector2(60, 2160)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vo3x"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yehco"]
 size = Vector2(600, 60)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwlq5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jktvx"]
 size = Vector2(240, 60)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nqnl"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uljsi"]
 size = Vector2(300, 60)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjb58"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wd4g3"]
 size = Vector2(300, 60)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xd7v"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_042mf"]
 size = Vector2(300, 60)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlnm4"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3jr6"]
 size = Vector2(240, 60)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_claty"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2dcs"]
 size = Vector2(240, 60)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ix1bu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x26vo"]
 size = Vector2(240, 60)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_adja6"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xo8o"]
 size = Vector2(60, 900)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_buf22"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4ctr"]
 size = Vector2(60, 900)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7xp4"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ppnk"]
 size = Vector2(360, 60)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bo0h3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lc5uk"]
 size = Vector2(480, 60)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyh2e"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8tey"]
 size = Vector2(480, 60)
 
-[node name="Gym" type="Node2D"]
-script = ExtResource("1_bg25q")
+[node name="Gym" type="Node2D" unique_id=1366028971]
+script = ExtResource("1_2sk74")
 room_id = &"gym"
 display_name = "Movement Gym"
 camera_limits = Rect2i(0, 0, 3840, 2160)
 
-[node name="Geometry" type="Node2D" parent="."]
+[node name="Geometry" type="Node2D" parent="." unique_id=1781327744]
 
-[node name="Floor" type="StaticBody2D" parent="Geometry"]
+[node name="Floor" type="StaticBody2D" parent="Geometry" unique_id=1936143178]
 position = Vector2(1920, 2130)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Floor"]
-shape = SubResource("RectangleShape2D_e3h37")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Floor" unique_id=1621368053]
+shape = SubResource("RectangleShape2D_xub2m")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Floor"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Floor" unique_id=1290768524]
 offset_left = -1920.0
 offset_top = -30.0
 offset_right = 1920.0
 offset_bottom = 30.0
 mouse_filter = 2
-color = Color(0.227451, 0.258824, 0.337255, 1)
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Ceiling" type="StaticBody2D" parent="Geometry"]
+[node name="Ceiling" type="StaticBody2D" parent="Geometry" unique_id=1047930317]
 position = Vector2(1920, 30)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Ceiling"]
-shape = SubResource("RectangleShape2D_u06yn")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Ceiling" unique_id=1874282213]
+shape = SubResource("RectangleShape2D_ujwfa")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Ceiling"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Ceiling" unique_id=213670922]
 offset_left = -1920.0
 offset_top = -30.0
 offset_right = 1920.0
 offset_bottom = 30.0
 mouse_filter = 2
-color = Color(0.227451, 0.258824, 0.337255, 1)
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="WallLeft" type="StaticBody2D" parent="Geometry"]
+[node name="WallLeft" type="StaticBody2D" parent="Geometry" unique_id=570439724]
 position = Vector2(30, 1080)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/WallLeft"]
-shape = SubResource("RectangleShape2D_i1rcf")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/WallLeft" unique_id=663834460]
+shape = SubResource("RectangleShape2D_b06gd")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/WallLeft"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/WallLeft" unique_id=1501627494]
 offset_left = -30.0
 offset_top = -1080.0
 offset_right = 30.0
 offset_bottom = 1080.0
 mouse_filter = 2
-color = Color(0.227451, 0.258824, 0.337255, 1)
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="WallRight" type="StaticBody2D" parent="Geometry"]
+[node name="WallRight" type="StaticBody2D" parent="Geometry" unique_id=74372306]
 position = Vector2(3810, 1080)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/WallRight"]
-shape = SubResource("RectangleShape2D_1h0u3")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/WallRight" unique_id=84677110]
+shape = SubResource("RectangleShape2D_1c0o1")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/WallRight"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/WallRight" unique_id=906326400]
 offset_left = -30.0
 offset_top = -1080.0
 offset_right = 30.0
 offset_bottom = 1080.0
 mouse_filter = 2
-color = Color(0.227451, 0.258824, 0.337255, 1)
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="LowCeiling" type="StaticBody2D" parent="Geometry"]
+[node name="LowCeiling" type="StaticBody2D" parent="Geometry" unique_id=981314183]
 position = Vector2(360, 1968)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/LowCeiling"]
-shape = SubResource("RectangleShape2D_4vo3x")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/LowCeiling" unique_id=1111816671]
+shape = SubResource("RectangleShape2D_yehco")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/LowCeiling"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/LowCeiling" unique_id=644719420]
 offset_left = -300.0
 offset_top = -30.0
 offset_right = 300.0
 offset_bottom = 30.0
 mouse_filter = 2
-color = Color(0.227451, 0.258824, 0.337255, 1)
+color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="StepUp" type="StaticBody2D" parent="Geometry"]
+[node name="StepUp" type="StaticBody2D" parent="Geometry" unique_id=1392879164]
 position = Vector2(900, 1980)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StepUp"]
-shape = SubResource("RectangleShape2D_dwlq5")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StepUp" unique_id=903982024]
+shape = SubResource("RectangleShape2D_jktvx")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/StepUp"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/StepUp" unique_id=1565569559]
 offset_left = -120.0
 offset_top = -30.0
 offset_right = 120.0
 offset_bottom = 30.0
 mouse_filter = 2
-color = Color(0.294118, 0.333333, 0.439216, 1)
+color = Color(0.29411766, 0.33333334, 0.4392157, 1)
 
-[node name="JumpA" type="StaticBody2D" parent="Geometry"]
+[node name="JumpA" type="StaticBody2D" parent="Geometry" unique_id=257600390]
 position = Vector2(1140, 1830)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/JumpA"]
-shape = SubResource("RectangleShape2D_5nqnl")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/JumpA" unique_id=1712673495]
+shape = SubResource("RectangleShape2D_uljsi")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/JumpA"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/JumpA" unique_id=686067889]
 offset_left = -150.0
 offset_top = -30.0
 offset_right = 150.0
 offset_bottom = 30.0
 mouse_filter = 2
-color = Color(0.294118, 0.333333, 0.439216, 1)
+color = Color(0.29411766, 0.33333334, 0.4392157, 1)
 
-[node name="JumpB" type="StaticBody2D" parent="Geometry"]
+[node name="JumpB" type="StaticBody2D" parent="Geometry" unique_id=1906596967]
 position = Vector2(1650, 1830)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/JumpB"]
-shape = SubResource("RectangleShape2D_gjb58")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/JumpB" unique_id=999152400]
+shape = SubResource("RectangleShape2D_wd4g3")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/JumpB"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/JumpB" unique_id=1110581607]
 offset_left = -150.0
 offset_top = -30.0
 offset_right = 150.0
 offset_bottom = 30.0
 mouse_filter = 2
-color = Color(0.294118, 0.333333, 0.439216, 1)
+color = Color(0.29411766, 0.33333334, 0.4392157, 1)
 
-[node name="JumpC" type="StaticBody2D" parent="Geometry"]
+[node name="JumpC" type="StaticBody2D" parent="Geometry" unique_id=1807224124]
 position = Vector2(2310, 1830)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/JumpC"]
-shape = SubResource("RectangleShape2D_0xd7v")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/JumpC" unique_id=1176180693]
+shape = SubResource("RectangleShape2D_042mf")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/JumpC"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/JumpC" unique_id=1179480533]
 offset_left = -150.0
 offset_top = -30.0
 offset_right = 150.0
 offset_bottom = 30.0
 mouse_filter = 2
-color = Color(0.294118, 0.333333, 0.439216, 1)
+color = Color(0.29411766, 0.33333334, 0.4392157, 1)
 
-[node name="StairA" type="StaticBody2D" parent="Geometry"]
+[node name="StairA" type="StaticBody2D" parent="Geometry" unique_id=268640994]
 position = Vector2(2700, 1680)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StairA"]
-shape = SubResource("RectangleShape2D_qlnm4")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StairA" unique_id=1875535671]
+shape = SubResource("RectangleShape2D_t3jr6")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/StairA"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/StairA" unique_id=392833735]
 offset_left = -120.0
 offset_top = -30.0
 offset_right = 120.0
 offset_bottom = 30.0
 mouse_filter = 2
-color = Color(0.294118, 0.333333, 0.439216, 1)
+color = Color(0.29411766, 0.33333334, 0.4392157, 1)
 
-[node name="StairB" type="StaticBody2D" parent="Geometry"]
+[node name="StairB" type="StaticBody2D" parent="Geometry" unique_id=1441916326]
 position = Vector2(3060, 1530)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StairB"]
-shape = SubResource("RectangleShape2D_claty")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StairB" unique_id=1249324702]
+shape = SubResource("RectangleShape2D_m2dcs")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/StairB"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/StairB" unique_id=1809425811]
 offset_left = -120.0
 offset_top = -30.0
 offset_right = 120.0
 offset_bottom = 30.0
 mouse_filter = 2
-color = Color(0.294118, 0.333333, 0.439216, 1)
+color = Color(0.29411766, 0.33333334, 0.4392157, 1)
 
-[node name="StairC" type="StaticBody2D" parent="Geometry"]
+[node name="StairC" type="StaticBody2D" parent="Geometry" unique_id=1681533746]
 position = Vector2(3420, 1380)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StairC"]
-shape = SubResource("RectangleShape2D_ix1bu")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StairC" unique_id=1113143649]
+shape = SubResource("RectangleShape2D_x26vo")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/StairC"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/StairC" unique_id=19953572]
 offset_left = -120.0
 offset_top = -30.0
 offset_right = 120.0
 offset_bottom = 30.0
 mouse_filter = 2
-color = Color(0.294118, 0.333333, 0.439216, 1)
+color = Color(0.29411766, 0.33333334, 0.4392157, 1)
 
-[node name="ShaftInnerWall" type="StaticBody2D" parent="Geometry"]
+[node name="ShaftInnerWall" type="StaticBody2D" parent="Geometry" unique_id=152107859]
 position = Vector2(3270, 900)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/ShaftInnerWall"]
-shape = SubResource("RectangleShape2D_adja6")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/ShaftInnerWall" unique_id=681932525]
+shape = SubResource("RectangleShape2D_6xo8o")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/ShaftInnerWall"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/ShaftInnerWall" unique_id=1665054988]
 offset_left = -30.0
 offset_top = -450.0
 offset_right = 30.0
 offset_bottom = 450.0
 mouse_filter = 2
-color = Color(0.294118, 0.333333, 0.439216, 1)
+color = Color(0.29411766, 0.33333334, 0.4392157, 1)
 
-[node name="ShaftOuterWall" type="StaticBody2D" parent="Geometry"]
+[node name="ShaftOuterWall" type="StaticBody2D" parent="Geometry" unique_id=1579928869]
 position = Vector2(3630, 900)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/ShaftOuterWall"]
-shape = SubResource("RectangleShape2D_buf22")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/ShaftOuterWall" unique_id=356919917]
+shape = SubResource("RectangleShape2D_p4ctr")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/ShaftOuterWall"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/ShaftOuterWall" unique_id=941023944]
 offset_left = -30.0
 offset_top = -450.0
 offset_right = 30.0
 offset_bottom = 450.0
 mouse_filter = 2
-color = Color(0.294118, 0.333333, 0.439216, 1)
+color = Color(0.29411766, 0.33333334, 0.4392157, 1)
 
-[node name="ShaftExit" type="StaticBody2D" parent="Geometry"]
+[node name="ShaftExit" type="StaticBody2D" parent="Geometry" unique_id=847030902]
 position = Vector2(3060, 420)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/ShaftExit"]
-shape = SubResource("RectangleShape2D_q7xp4")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/ShaftExit" unique_id=684397773]
+shape = SubResource("RectangleShape2D_5ppnk")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/ShaftExit"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/ShaftExit" unique_id=1079648100]
 offset_left = -180.0
 offset_top = -30.0
 offset_right = 180.0
 offset_bottom = 30.0
 mouse_filter = 2
-color = Color(0.294118, 0.333333, 0.439216, 1)
+color = Color(0.29411766, 0.33333334, 0.4392157, 1)
 
-[node name="HighA" type="StaticBody2D" parent="Geometry"]
+[node name="HighA" type="StaticBody2D" parent="Geometry" unique_id=499783845]
 position = Vector2(2400, 420)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/HighA"]
-shape = SubResource("RectangleShape2D_bo0h3")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/HighA" unique_id=1019961784]
+shape = SubResource("RectangleShape2D_lc5uk")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/HighA"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/HighA" unique_id=308000615]
 offset_left = -240.0
 offset_top = -30.0
 offset_right = 240.0
 offset_bottom = 30.0
 mouse_filter = 2
-color = Color(0.294118, 0.333333, 0.439216, 1)
+color = Color(0.29411766, 0.33333334, 0.4392157, 1)
 
-[node name="HighB" type="StaticBody2D" parent="Geometry"]
+[node name="HighB" type="StaticBody2D" parent="Geometry" unique_id=1965122991]
 position = Vector2(1680, 420)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/HighB"]
-shape = SubResource("RectangleShape2D_fyh2e")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/HighB" unique_id=1566155080]
+shape = SubResource("RectangleShape2D_s8tey")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/HighB"]
+[node name="ColorRect" type="ColorRect" parent="Geometry/HighB" unique_id=1499408573]
 offset_left = -240.0
 offset_top = -30.0
 offset_right = 240.0
 offset_bottom = 30.0
 mouse_filter = 2
-color = Color(0.294118, 0.333333, 0.439216, 1)
+color = Color(0.29411766, 0.33333334, 0.4392157, 1)
 
-[node name="Labels" type="Node2D" parent="."]
+[node name="Labels" type="Node2D" parent="." unique_id=920129130]
 
-[node name="Run·Turn·" type="Label" parent="Labels"]
+[node name="Run·Turn·" type="Label" parent="Labels" unique_id=10284882]
 offset_left = 120.0
 offset_top = 2020.0
 offset_right = 120.0
 offset_bottom = 2020.0
 theme_override_font_sizes/font_size = 30
-theme_override_colors/font_color = Color(0.435294, 0.490196, 0.639216, 1)
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
 text = "RUN · TURN · LOW CEILING"
 
-[node name="240Gap→Ru" type="Label" parent="Labels"]
+[node name="240Gap→Ru" type="Label" parent="Labels" unique_id=1009638096]
 offset_left = 1000.0
 offset_top = 1730.0
 offset_right = 1000.0
 offset_bottom = 1730.0
 theme_override_font_sizes/font_size = 30
-theme_override_colors/font_color = Color(0.435294, 0.490196, 0.639216, 1)
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
 text = "240 GAP → RUNNING JUMP"
 
-[node name="360Gap→Ne" type="Label" parent="Labels"]
+[node name="360Gap→Ne" type="Label" parent="Labels" unique_id=981938641]
 offset_left = 1800.0
 offset_top = 1730.0
 offset_right = 1800.0
 offset_bottom = 1730.0
 theme_override_font_sizes/font_size = 30
-theme_override_colors/font_color = Color(0.435294, 0.490196, 0.639216, 1)
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
 text = "360 GAP → NEEDS DASH"
 
-[node name="Stairs↗" type="Label" parent="Labels"]
+[node name="Stairs↗" type="Label" parent="Labels" unique_id=1842818139]
 offset_left = 2600.0
 offset_top = 1580.0
 offset_right = 2600.0
 offset_bottom = 1580.0
 theme_override_font_sizes/font_size = 30
-theme_override_colors/font_color = Color(0.435294, 0.490196, 0.639216, 1)
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
 text = "STAIRS ↗"
 
-[node name="WallShaft↑" type="Label" parent="Labels"]
+[node name="WallShaft↑" type="Label" parent="Labels" unique_id=485417197]
 offset_left = 3130.0
 offset_top = 1270.0
 offset_right = 3130.0
 offset_bottom = 1270.0
 theme_override_font_sizes/font_size = 30
-theme_override_colors/font_color = Color(0.435294, 0.490196, 0.639216, 1)
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
 text = "WALL SHAFT ↑"
 
-[node name="HighLedge—" type="Label" parent="Labels"]
+[node name="HighLedge—" type="Label" parent="Labels" unique_id=1168858240]
 offset_left = 1400.0
 offset_top = 320.0
 offset_right = 1400.0
 offset_bottom = 320.0
 theme_override_font_sizes/font_size = 30
-theme_override_colors/font_color = Color(0.435294, 0.490196, 0.639216, 1)
+theme_override_colors/font_color = Color(0.43529412, 0.49019608, 0.6392157, 1)
 text = "HIGH LEDGE — LONG DROP ↓"
 
-[node name="PlayerSpawn" type="Marker2D" parent="."]
+[node name="GymGrants" type="Node" parent="." unique_id=1948280367]
+script = ExtResource("2_g5avf")
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1699929642]
 position = Vector2(180, 2100)
 
-[node name="Player" type="CharacterBody2D" parent="." instance=ExtResource("2_j61b4")]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=887125060 instance=ExtResource("3_8o8dk")]
 position = Vector2(180, 2100)
 collision_layer = 2
 floor_snap_length = 16.0
-script = ExtResource("3_apjto")
-config = ExtResource("4_abs0i")
+script = ExtResource("4_gupey")
+config = ExtResource("5_fiok1")
+combat_config = ExtResource("6_8pbv3")

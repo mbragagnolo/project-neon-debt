@@ -246,6 +246,14 @@ func end_dash() -> void:
 	# into a run keeps flowing.
 	velocity.x = clampf(velocity.x, -config.run_speed, config.run_speed)
 	velocity.y = 0.0
+	# A dash that ran off a ledge does not get a jump at its end. Without
+	# this, the coyote window opened by leaving the ground mid-dash lets a
+	# buffered jump fire in mid-air, and the starting kit's reach across a gap
+	# becomes "dash off the edge, then jump" — which is the Sidewinder's job
+	# (docs/level-design/stacks.md, the envelope). Dash-jump from the ground
+	# is untouched: on a floor the coyote timer refreshes every frame.
+	if not is_on_floor():
+		_coyote_timer = 0.0
 	# Read through the stats layer, never straight off `MovementConfig` — the
 	# boots' modifier exists here and nowhere else (docs/rpg/items.md).
 	_dash_cooldown_timer = PlayerStats.effective_dash_cooldown(config.dash_cooldown)
@@ -268,12 +276,27 @@ func consume_jump() -> void:
 	_coyote_timer = 0.0
 
 
+## Grounded: the ground dash, on its cooldown. Airborne: the Sidewinder's air
+## dash, one per airtime and **not** on the ground dash's cooldown — that is
+## what makes dash → jump → air dash a chain rather than a timing puzzle, and
+## it is the whole reason the implant extends reach past a dash-jump
+## (docs/level-design/stacks.md, the envelope).
 func can_dash() -> bool:
-	if _dash_cooldown_timer > 0.0:
-		return false
 	if is_on_floor():
-		return true
-	return config.can_dash_in_air and not _air_dash_used
+		return _dash_cooldown_timer <= 0.0
+	return has_air_dash() and not _air_dash_used
+
+
+## Possession, not tuning: the config says how an air dash behaves, the
+## Sidewinder flag says whether the player has it (DESIGN.md §3.1).
+func has_air_dash() -> bool:
+	return config.can_dash_in_air and GameState.has_ability(GameState.ABILITY_SIDEWINDER)
+
+
+## The Mag-Hook. Wall *slide* is always available — it teaches that walls are
+## interactive — and the jump off one is the first gate in the game.
+func can_wall_jump() -> bool:
+	return GameState.has_ability(GameState.ABILITY_MAG_HOOK)
 
 
 ## Direction *toward* the wall being touched: -1 left, +1 right, 0 for none.

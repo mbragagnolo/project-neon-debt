@@ -22,7 +22,7 @@ func physics_update(delta: float) -> StringName:
 	if player.wants_dash() and player.can_dash():
 		return &"Dash"
 
-	if player.has_buffered_jump() and wall != 0:
+	if player.has_buffered_jump() and wall != 0 and player.can_wall_jump():
 		player.start_wall_jump(wall)
 		return &"Air"
 

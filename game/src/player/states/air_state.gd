@@ -31,7 +31,7 @@ func physics_update(delta: float) -> StringName:
 			player.start_jump()
 		else:
 			var wall: int = player.wall_direction()
-			if wall != 0:
+			if wall != 0 and player.can_wall_jump():
 				player.start_wall_jump(wall)
 
 	if player.is_on_floor():
