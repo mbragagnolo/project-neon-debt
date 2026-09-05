@@ -1,55 +1,56 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://src/world/room.gd" id="1_ap57g"]
-[ext_resource type="Script" path="res://src/world/door.gd" id="2_aiv1e"]
-[ext_resource type="Script" path="res://src/world/sign.gd" id="3_7p8kw"]
-[ext_resource type="PackedScene" path="res://src/world/pickup.tscn" id="4_sjxfr"]
-[ext_resource type="Script" path="res://src/world/pickup.gd" id="5_psxwn"]
-[ext_resource type="Script" path="res://src/world/encounter.gd" id="6_xubyo"]
-[ext_resource type="PackedScene" path="res://src/enemies/scav/scav.tscn" id="7_s4xs8"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwpqg"]
-size = Vector2(1920, 540)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wreo5"]
-size = Vector2(60, 300)
+[ext_resource type="Script" path="res://src/world/room.gd" id="1_aiv1e"]
+[ext_resource type="Script" path="res://src/world/door.gd" id="2_7p8kw"]
+[ext_resource type="Script" path="res://src/world/sign.gd" id="3_sjxfr"]
+[ext_resource type="PackedScene" path="res://src/world/pickup.tscn" id="4_psxwn"]
+[ext_resource type="Script" path="res://src/world/pickup.gd" id="5_xubyo"]
+[ext_resource type="Script" path="res://src/world/encounter.gd" id="6_s4xs8"]
+[ext_resource type="PackedScene" path="res://src/enemies/scav/scav.tscn" id="7_vwpqg"]
+[ext_resource type="PackedScene" path="res://src/enemies/riot/riot.tscn" id="8_wreo5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rppc5"]
-size = Vector2(60, 300)
+size = Vector2(1920, 540)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7k2n"]
-size = Vector2(240, 180)
+size = Vector2(60, 300)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yyd3a"]
-size = Vector2(840, 60)
+size = Vector2(60, 300)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3lpv"]
+size = Vector2(240, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d5dyw"]
 size = Vector2(840, 60)
 
-[node name="GutDeep" type="Node2D" unique_id=429645513]
-script = ExtResource("1_ap57g")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrgia"]
+size = Vector2(840, 60)
+
+[node name="GutDeep" type="Node2D" unique_id=734906312]
+script = ExtResource("1_aiv1e")
 room_id = &"gut_deep"
 display_name = "The Gut - Retrieval"
 camera_limits = Rect2i(0, 0, 1920, 1080)
 announces_on_ready = false
 
-[node name="Geometry" type="Node2D" parent="." unique_id=89979856]
+[node name="Geometry" type="Node2D" parent="." unique_id=1944683144]
 
-[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=137356267]
+[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=1558349207]
 z_index = -10
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
 color = Color(0.050980393, 0.0627451, 0.09411765, 1)
 
-[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=559174450]
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=1552915070]
 position = Vector2(960, 270)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=1798888935]
-shape = SubResource("RectangleShape2D_vwpqg")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=1205356430]
+shape = SubResource("RectangleShape2D_rppc5")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=187160694]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=159031952]
 offset_left = -960.0
 offset_top = -270.0
 offset_right = 960.0
@@ -57,14 +58,14 @@ offset_bottom = 270.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=583901981]
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=223592022]
 position = Vector2(30, 690)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=1872458827]
-shape = SubResource("RectangleShape2D_wreo5")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=1866097558]
+shape = SubResource("RectangleShape2D_e7k2n")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=1952558228]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=557989578]
 offset_left = -30.0
 offset_top = -150.0
 offset_right = 30.0
@@ -72,14 +73,14 @@ offset_bottom = 150.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=461892357]
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=1045844656]
 position = Vector2(1890, 690)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=2127232088]
-shape = SubResource("RectangleShape2D_rppc5")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=618279817]
+shape = SubResource("RectangleShape2D_yyd3a")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=682472730]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=1382778903]
 offset_left = -30.0
 offset_top = -150.0
 offset_right = 30.0
@@ -87,14 +88,14 @@ offset_bottom = 150.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=1773278249]
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=2030342094]
 position = Vector2(960, 990)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=1803095004]
-shape = SubResource("RectangleShape2D_e7k2n")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=891651745]
+shape = SubResource("RectangleShape2D_g3lpv")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=217385756]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=438549695]
 offset_left = -120.0
 offset_top = -90.0
 offset_right = 120.0
@@ -102,14 +103,14 @@ offset_bottom = 90.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=1750830476]
+[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=1225420560]
 position = Vector2(420, 1050)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=763643341]
-shape = SubResource("RectangleShape2D_yyd3a")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=703667647]
+shape = SubResource("RectangleShape2D_d5dyw")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid4" unique_id=442753588]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid4" unique_id=1906316356]
 offset_left = -420.0
 offset_top = -30.0
 offset_right = 420.0
@@ -117,14 +118,14 @@ offset_bottom = 30.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Solid5" type="StaticBody2D" parent="Geometry" unique_id=250603044]
+[node name="Solid5" type="StaticBody2D" parent="Geometry" unique_id=1205869973]
 position = Vector2(1500, 1050)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid5" unique_id=611296722]
-shape = SubResource("RectangleShape2D_g3lpv")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid5" unique_id=1326003504]
+shape = SubResource("RectangleShape2D_jrgia")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid5" unique_id=2084613166]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid5" unique_id=176981751]
 offset_left = -420.0
 offset_top = -30.0
 offset_right = 420.0
@@ -132,19 +133,19 @@ offset_bottom = 30.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Hazards" type="Node2D" parent="." unique_id=539486055]
+[node name="Hazards" type="Node2D" parent="." unique_id=2053934078]
 
-[node name="Doors" type="Node2D" parent="." unique_id=1457329695]
+[node name="Doors" type="Node2D" parent="." unique_id=1980135049]
 
-[node name="1" type="Area2D" parent="Doors" unique_id=699714777]
+[node name="1" type="Area2D" parent="Doors" unique_id=1407185939]
 position = Vector2(30, 930)
-script = ExtResource("2_aiv1e")
+script = ExtResource("2_7p8kw")
 door_id = &"1"
 target_room = &"defaulter_den"
 target_door = &"2"
 spawn_point = Vector2(90, 1020)
 
-[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=759835010]
+[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=1725671146]
 offset_left = -30.0
 offset_top = -90.0
 offset_right = 30.0
@@ -152,16 +153,16 @@ offset_bottom = 90.0
 mouse_filter = 2
 color = Color(0.1, 0.16, 0.24, 1)
 
-[node name="2" type="Area2D" parent="Doors" unique_id=1274972042]
+[node name="2" type="Area2D" parent="Doors" unique_id=1294560503]
 position = Vector2(1890, 930)
-script = ExtResource("2_aiv1e")
+script = ExtResource("2_7p8kw")
 door_id = &"2"
 target_room = &"drain_riser"
 target_door = &"1"
 side = 1
 spawn_point = Vector2(1830, 1020)
 
-[node name="Frame" type="ColorRect" parent="Doors/2" unique_id=1027709130]
+[node name="Frame" type="ColorRect" parent="Doors/2" unique_id=1039900713]
 offset_left = -30.0
 offset_top = -90.0
 offset_right = 30.0
@@ -169,33 +170,41 @@ offset_bottom = 90.0
 mouse_filter = 2
 color = Color(0.1, 0.16, 0.24, 1)
 
-[node name="Props" type="Node2D" parent="." unique_id=887913517]
+[node name="Props" type="Node2D" parent="." unique_id=1334069146]
 
-[node name="Sign_s" type="Node2D" parent="Props" unique_id=831168436]
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=831344382]
 position = Vector2(930, 780)
-script = ExtResource("3_7p8kw")
+script = ExtResource("3_sjxfr")
 text = "VESTA MEDICAL
 FIELD RETRIEVAL — DO NOT OPEN"
 warning = true
 
-[node name="Pickups" type="Node2D" parent="." unique_id=356295701]
+[node name="Pickups" type="Node2D" parent="." unique_id=1690362247]
 
-[node name="Ability_item_sidewinder_carried" type="Area2D" parent="Pickups" unique_id=127459398 instance=ExtResource("4_sjxfr")]
+[node name="Ability_item_sidewinder_carried" type="Area2D" parent="Pickups" unique_id=933293915 instance=ExtResource("4_psxwn")]
 position = Vector2(930, 900)
 collision_layer = 128
 collision_mask = 2
-script = ExtResource("5_psxwn")
+script = ExtResource("5_xubyo")
 kind = 2
 ability_id = &"item.sidewinder_carried"
 pickup_id = &"gut_deep_Z"
 
-[node name="Scavs" type="Node2D" parent="." unique_id=675526461]
-script = ExtResource("6_xubyo")
-enemy_scene = ExtResource("7_s4xs8")
+[node name="Scavs" type="Node2D" parent="." unique_id=1576317751]
+script = ExtResource("6_s4xs8")
+enemy_scene = ExtResource("7_vwpqg")
 respawn_delay = 0.0
 
-[node name="Spawn1" type="Marker2D" parent="Scavs" unique_id=591224203]
+[node name="Spawn1" type="Marker2D" parent="Scavs" unique_id=118420859]
 position = Vector2(510, 1020)
 
-[node name="Spawn2" type="Marker2D" parent="Scavs" unique_id=469497337]
+[node name="Spawn2" type="Marker2D" parent="Scavs" unique_id=352161511]
 position = Vector2(1590, 1020)
+
+[node name="Riots" type="Node2D" parent="." unique_id=1152254985]
+script = ExtResource("6_s4xs8")
+enemy_scene = ExtResource("8_wreo5")
+respawn_delay = 0.0
+
+[node name="Spawn1" type="Marker2D" parent="Riots" unique_id=1510757714]
+position = Vector2(1470, 1020)

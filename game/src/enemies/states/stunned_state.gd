@@ -29,13 +29,11 @@ func exit() -> void:
 
 
 func physics_update(delta: float) -> StringName:
-	enemy.apply_gravity(delta)
+	# Forced: a stunned flier drops.
+	enemy.apply_gravity(delta, true)
 	enemy.brake(delta, enemy.config.knockback_friction)
 
 	_remaining -= delta
 	if _remaining > 0.0:
 		return &""
-
-	if enemy.has_player() and enemy.distance_to_player() <= enemy.config.detection_range:
-		return &"Chase"
-	return &"Patrol"
+	return enemy.after_recover_state()

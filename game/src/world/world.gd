@@ -19,6 +19,7 @@ const FADE_SECONDS := 0.16
 @onready var _host: Node2D = $RoomHost
 @onready var player: Player = $Player
 @onready var _fade: ColorRect = $Fade/Black
+@onready var _ending: EndingScreen = $Ending
 
 var current_room: Room
 var current_room_id: StringName = &""
@@ -30,6 +31,7 @@ func _ready() -> void:
 	player.frozen = true
 	Events.room_travel_requested.connect(_on_travel_requested)
 	Events.player_died.connect(_on_player_died)
+	Events.boss_defeated.connect(_on_boss_defeated)
 	_fade.modulate.a = 1.0
 	# A save picked from the title screen (M7) lands at its terminal; a fresh
 	# run wakes up in 14-C.
@@ -137,3 +139,38 @@ func _fade_to(alpha: float) -> void:
 	var tween := create_tween()
 	tween.tween_property(_fade, "modulate:a", alpha, FADE_SECONDS)
 	await tween.finished
+
+
+# --- The ending (DESIGN.md §3.5) --------------------------------------------------
+
+## The Landlord is down: a beat, the line, then the reception room where
+## the tease lights up under the camera, and the card.
+func _on_boss_defeated(_boss: Node) -> void:
+	GameState.set_flag(&"boss.landlord_defeated")
+	await get_tree().create_timer(2.4).timeout
+	Events.bark_requested.emit(Lines.BARK_POST_BOSS)
+	await get_tree().create_timer(1.6).timeout
+	await travel(&"collections_lobby", &"save")
+	await play_ending()
+
+
+func play_ending() -> void:
+	player.frozen = true
+	var tease: Node = _first_in_group_under(current_room, &"teases")
+	if tease != null and tease.has_method(&"unlock"):
+		# The camera rides the player; move it to where the tease is, a little
+		# above the crate so the notice reads.
+		var offset: Vector2 = (tease as Node2D).global_position - player.global_position + Vector2(0.0, -40.0)
+		var tween := create_tween()
+		tween.tween_property(player.camera, "position", offset, 1.6) \
+			.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+		await tween.finished
+		tease.call(&"unlock")
+		Events.toast_requested.emit("FIRMWARE TIER 2 — OVERRIDE ACCEPTED")
+		await get_tree().create_timer(2.2).timeout
+	_ending.show_ending()
+	await _ending.dismissed
+	var back := create_tween()
+	back.tween_property(player.camera, "position", Vector2(0.0, -44.0), 0.8)
+	await back.finished
+	player.frozen = false

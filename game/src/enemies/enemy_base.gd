@@ -41,8 +41,12 @@ var stun_duration: float = 0.0
 
 var _gravity: float = 0.0
 var _lunge_cooldown_timer: float = 0.0
+var _fire_cooldown_timer: float = 0.0
 var _combat_config: CombatConfig
 var _attack_shape: RectangleShape2D
+## Optional `Facing` child, mirrored with the facing so a shield or a gun
+## sits on the side it is meant to.
+var _facing_node: Node2D
 
 
 func _ready() -> void:
@@ -78,6 +82,7 @@ func _ready() -> void:
 
 	_acquire_player()
 	Events.player_spawned.connect(_on_player_spawned)
+	_facing_node = get_node_or_null("Facing") as Node2D
 
 	arm_contact()
 	_state_machine.setup(self)
@@ -86,14 +91,32 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	_lunge_cooldown_timer = maxf(_lunge_cooldown_timer - delta, 0.0)
+	_fire_cooldown_timer = maxf(_fire_cooldown_timer - delta, 0.0)
 	_state_machine.physics_update(delta)
 	move_and_slide()
 
 
 # --- Physics helpers used by the states -------------------------------------
 
-func apply_gravity(delta: float) -> void:
+## Fliers ignore gravity unless `force` — the Stunned and Dead states force
+## it, which is how Breach drops a drone out of the air.
+func apply_gravity(delta: float, force: bool = false) -> void:
+	if config.flies and not force:
+		return
 	velocity.y += _gravity * delta
+
+
+## Steer toward a point at `speed`, easing in so a flier settles rather than
+## overshoots. Facing follows the horizontal component.
+func fly_toward(target: Vector2, speed: float, delta: float) -> void:
+	var to: Vector2 = target - global_position
+	var distance: float = to.length()
+	var wanted: Vector2 = Vector2.ZERO
+	if distance > 4.0:
+		wanted = to.normalized() * minf(speed, distance * 3.0)
+	velocity = velocity.move_toward(wanted, config.fly_acceleration * delta)
+	if absf(to.x) > 12.0:
+		set_facing(signi(int(signf(to.x))))
 
 
 func walk(direction: int, speed: float) -> void:
@@ -111,6 +134,8 @@ func set_facing(direction: int) -> void:
 	if direction == 0 or direction == facing:
 		return
 	facing = direction
+	if _facing_node != null:
+		_facing_node.scale.x = float(facing)
 
 
 ## Called by our own `Hurtbox` at step 9.
@@ -157,6 +182,29 @@ func start_lunge_cooldown() -> void:
 	_lunge_cooldown_timer = config.lunge_cooldown
 
 
+func can_fire() -> bool:
+	return config.fires and _fire_cooldown_timer <= 0.0
+
+
+func start_fire_cooldown() -> void:
+	_fire_cooldown_timer = config.fire_interval
+
+
+## Where a state goes when it is done being interrupted or recovering. The
+## roster's enemies chase or patrol; a boss overrides this with its own
+## approach state.
+func after_recover_state() -> StringName:
+	var aware: bool = has_player() and distance_to_player() <= config.detection_range
+	if config.flies:
+		return &"Track" if aware else &"Hover"
+	return &"Chase" if aware else &"Patrol"
+
+
+## The centre of the body, for aiming at and from.
+func center() -> Vector2:
+	return global_position + Vector2(0.0, -40.0)
+
+
 func state_name() -> StringName:
 	return _state_machine.current_state_name()
 
@@ -181,6 +229,37 @@ func start_lunge() -> void:
 
 func end_lunge() -> void:
 	attack_hitbox.deactivate()
+
+
+## Lobs one projectile at where the player is *now*. Flat power like every
+## enemy hit, `is_ranged` so the pipeline treats it as a shot, and it stops at
+## walls — masked to the world and the player's hurtbox only.
+func fire_at_player() -> void:
+	if not has_player():
+		return
+	var target: Vector2 = player.global_position + Vector2(0.0, -44.0)
+	fire_toward(target)
+
+
+func fire_toward(target: Vector2) -> Projectile:
+	var origin: Vector2 = center()
+	var direction: Vector2 = (target - origin).normalized()
+	if direction == Vector2.ZERO:
+		direction = Vector2(float(facing), 0.0)
+	var attack := Attack.make(self, origin, config.attack_power, config.projectile_knockback)
+	attack.scales_with_stat = false
+	attack.is_ranged = true
+	var shot := Projectile.new()
+	shot.collision_layer = 512  # projectile
+	shot.collision_mask = 1 | 8  # world + player_hurtbox
+	get_parent().add_child(shot)
+	shot.global_position = origin
+	shot.launch(
+		attack, direction, config.projectile_speed, config.projectile_lifetime,
+		config.projectile_size, config.projectile_color
+	)
+	start_fire_cooldown()
+	return shot
 
 
 func arm_contact() -> void:

@@ -289,9 +289,14 @@ level cap and V2 can extend it without a cliff.
 
 **The guard is a test, not vigilance.** `tests/test_xp_curve.gd` asserts that
 the cumulative XP to level 6 sits between 70% and 90% of the district budget
-recorded above. When M5 lands real room counts and M6 real `xp_reward`
-values, the test fails loudly and `base` is re-solved — the curve's shape and
-every other number here stay put.
+recorded above, and `tests/test_roster.gd` measures the placed district
+against the recorded premise.
+
+**Re-solved in M6.** The placed roster (stacks.md: 29 Scavs, 17 drones, 8
+Riot units, 1 Elite, the Landlord) holds **949 XP** against the 959 assumed.
+Level 6 costs 792 — 83% of the district — so `base` held at 60 and
+`assumed_district_xp` moved to 949. A thorough player finishes at 6; a
+player who skips what they can lands at 5.
 
 ## Exports
 

@@ -18,30 +18,30 @@ size = Vector2(60, 240)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dvkyl"]
 size = Vector2(1860, 60)
 
-[node name="MaintenanceCloset" type="Node2D" unique_id=312295315]
+[node name="MaintenanceCloset" type="Node2D" unique_id=1587249509]
 script = ExtResource("1_m0awa")
 room_id = &"maintenance_closet"
 display_name = "Maintenance 13"
 camera_limits = Rect2i(0, 0, 1920, 1080)
 announces_on_ready = false
 
-[node name="Geometry" type="Node2D" parent="." unique_id=1588119426]
+[node name="Geometry" type="Node2D" parent="." unique_id=1955965486]
 
-[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=680426504]
+[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=1660388046]
 z_index = -10
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
 color = Color(0.050980393, 0.0627451, 0.09411765, 1)
 
-[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=2024129535]
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=1846501948]
 position = Vector2(960, 300)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=543262959]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=313040033]
 shape = SubResource("RectangleShape2D_haxo5")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=1070521031]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=422842423]
 offset_left = -960.0
 offset_top = -300.0
 offset_right = 960.0
@@ -49,14 +49,14 @@ offset_bottom = 300.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=1230218892]
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=598677483]
 position = Vector2(30, 840)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=1322498945]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=1253379427]
 shape = SubResource("RectangleShape2D_pwk4i")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=50565663]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=787446728]
 offset_left = -30.0
 offset_top = -240.0
 offset_right = 30.0
@@ -64,14 +64,14 @@ offset_bottom = 240.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=975221248]
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=1050896730]
 position = Vector2(1890, 720)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=959997792]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=278169128]
 shape = SubResource("RectangleShape2D_sbpwy")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=715421343]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=911003883]
 offset_left = -30.0
 offset_top = -120.0
 offset_right = 30.0
@@ -79,14 +79,14 @@ offset_bottom = 120.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=1670988660]
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=607499873]
 position = Vector2(990, 1050)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=536703857]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=141074404]
 shape = SubResource("RectangleShape2D_dvkyl")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=572521832]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=1040508766]
 offset_left = -930.0
 offset_top = -30.0
 offset_right = 930.0
@@ -94,11 +94,11 @@ offset_bottom = 30.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Hazards" type="Node2D" parent="." unique_id=810383725]
+[node name="Hazards" type="Node2D" parent="." unique_id=2144170079]
 
-[node name="Doors" type="Node2D" parent="." unique_id=213228330]
+[node name="Doors" type="Node2D" parent="." unique_id=1936164544]
 
-[node name="1" type="Area2D" parent="Doors" unique_id=40146485]
+[node name="1" type="Area2D" parent="Doors" unique_id=2135272115]
 position = Vector2(1890, 930)
 script = ExtResource("2_yj731")
 door_id = &"1"
@@ -107,7 +107,7 @@ target_door = &"2"
 side = 1
 spawn_point = Vector2(1830, 1020)
 
-[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=60457863]
+[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=1779706836]
 offset_left = -30.0
 offset_top = -90.0
 offset_right = 30.0
@@ -115,24 +115,24 @@ offset_bottom = 90.0
 mouse_filter = 2
 color = Color(0.1, 0.16, 0.24, 1)
 
-[node name="Props" type="Node2D" parent="." unique_id=801281663]
+[node name="Props" type="Node2D" parent="." unique_id=959947598]
 
-[node name="Sign_s" type="Node2D" parent="Props" unique_id=1877698615]
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=447188679]
 position = Vector2(450, 780)
 script = ExtResource("3_e545x")
 text = "MAINTENANCE 13
 AUTHORISED PERSONNEL"
 
-[node name="Sign_t" type="Node2D" parent="Props" unique_id=1326683035]
+[node name="Sign_t" type="Node2D" parent="Props" unique_id=1916366322]
 position = Vector2(1110, 840)
 script = ExtResource("3_e545x")
 text = "TOWER TECH · ACCT CLOSED
 Equipment forfeit to VESTA"
 warning = true
 
-[node name="Pickups" type="Node2D" parent="." unique_id=1951413650]
+[node name="Pickups" type="Node2D" parent="." unique_id=686908239]
 
-[node name="Ability_ability_mag_hook" type="Area2D" parent="Pickups" unique_id=1209704582 instance=ExtResource("4_p6641")]
+[node name="Ability_ability_mag_hook" type="Area2D" parent="Pickups" unique_id=710149418 instance=ExtResource("4_p6641")]
 position = Vector2(390, 1020)
 collision_layer = 128
 collision_mask = 2

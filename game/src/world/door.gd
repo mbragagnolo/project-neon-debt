@@ -33,6 +33,8 @@ enum Side { LEFT, RIGHT, UP, DOWN }
 @export var room_size: Vector2 = Vector2(1920.0, 1080.0)
 
 var _armed: bool = true
+var _locked: bool = false
+var _seal: StaticBody2D
 
 
 func _ready() -> void:
@@ -52,8 +54,43 @@ func disarm() -> void:
 	_armed = false
 
 
+func is_locked() -> bool:
+	return _locked
+
+
+## Seals the opening: solid, and no travel. The boss arena uses it.
+func lock() -> void:
+	if _locked:
+		return
+	_locked = true
+	_seal = StaticBody2D.new()
+	_seal.collision_layer = 1
+	_seal.collision_mask = 0
+	var rect := RectangleShape2D.new()
+	rect.size = size
+	var collider := CollisionShape2D.new()
+	collider.shape = rect
+	_seal.add_child(collider)
+	var slab := ColorRect.new()
+	slab.color = Color(0.62, 0.2, 0.3)
+	slab.position = -size * 0.5
+	slab.size = size
+	slab.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_seal.add_child(slab)
+	add_child(_seal)
+
+
+func unlock() -> void:
+	if not _locked:
+		return
+	_locked = false
+	if _seal != null:
+		_seal.queue_free()
+		_seal = null
+
+
 func _on_body_entered(body: Node2D) -> void:
-	if not body.is_in_group(&"player") or not _armed:
+	if not body.is_in_group(&"player") or not _armed or _locked:
 		return
 	_armed = false
 	Events.room_travel_requested.emit(target_room, target_door)
@@ -63,7 +100,7 @@ func _on_body_exited(body: Node2D) -> void:
 	if not body.is_in_group(&"player"):
 		return
 	_armed = true
-	if _is_outside(body):
+	if _is_outside(body) and not _locked:
 		_armed = false
 		Events.room_travel_requested.emit(target_room, target_door)
 

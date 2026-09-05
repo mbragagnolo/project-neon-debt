@@ -25,30 +25,30 @@ size = Vector2(60, 1020)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b2vu0"]
 size = Vector2(1860, 60)
 
-[node name="BreachGateRoom" type="Node2D" unique_id=365826123]
+[node name="BreachGateRoom" type="Node2D" unique_id=378491097]
 script = ExtResource("1_6t8m7")
 room_id = &"breach_gate_room"
 display_name = "Collections Bulkhead"
 camera_limits = Rect2i(0, 0, 1920, 1080)
 announces_on_ready = false
 
-[node name="Geometry" type="Node2D" parent="." unique_id=524355977]
+[node name="Geometry" type="Node2D" parent="." unique_id=1768243782]
 
-[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=1614419283]
+[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=422749244]
 z_index = -10
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
 color = Color(0.050980393, 0.0627451, 0.09411765, 1)
 
-[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=726189311]
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=583243147]
 position = Vector2(240, 30)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=1295673217]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=1458455757]
 shape = SubResource("RectangleShape2D_w1cjr")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=1026302689]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=1144896920]
 offset_left = -240.0
 offset_top = -30.0
 offset_right = 240.0
@@ -56,14 +56,14 @@ offset_bottom = 30.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=654109412]
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=1629167853]
 position = Vector2(1290, 30)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=1343291186]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=285378517]
 shape = SubResource("RectangleShape2D_ichm7")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=1826885169]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=1400682833]
 offset_left = -630.0
 offset_top = -30.0
 offset_right = 630.0
@@ -71,14 +71,14 @@ offset_bottom = 30.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=1663231710]
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=350707828]
 position = Vector2(30, 450)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=1679485434]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=1972534618]
 shape = SubResource("RectangleShape2D_16ech")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=1994060412]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=1125258533]
 offset_left = -30.0
 offset_top = -390.0
 offset_right = 30.0
@@ -86,14 +86,14 @@ offset_bottom = 390.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=13617613]
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=867458974]
 position = Vector2(1890, 570)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=971442466]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=664428241]
 shape = SubResource("RectangleShape2D_6sogj")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=1678369771]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=1802925592]
 offset_left = -30.0
 offset_top = -510.0
 offset_right = 30.0
@@ -101,14 +101,14 @@ offset_bottom = 510.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=2091635820]
+[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=1906270255]
 position = Vector2(930, 1050)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=1889648116]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=2047209656]
 shape = SubResource("RectangleShape2D_b2vu0")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid4" unique_id=934399313]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid4" unique_id=1375863746]
 offset_left = -930.0
 offset_top = -30.0
 offset_right = 930.0
@@ -116,11 +116,11 @@ offset_bottom = 30.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Hazards" type="Node2D" parent="." unique_id=1899395912]
+[node name="Hazards" type="Node2D" parent="." unique_id=1905116812]
 
-[node name="Doors" type="Node2D" parent="." unique_id=201709344]
+[node name="Doors" type="Node2D" parent="." unique_id=671131445]
 
-[node name="1" type="Area2D" parent="Doors" unique_id=100768730]
+[node name="1" type="Area2D" parent="Doors" unique_id=67896451]
 position = Vector2(570, 30)
 script = ExtResource("2_y6lsr")
 door_id = &"1"
@@ -130,7 +130,7 @@ side = 2
 size = Vector2(180, 60)
 spawn_point = Vector2(570, 120)
 
-[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=519847365]
+[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=1453626656]
 offset_left = -90.0
 offset_top = -30.0
 offset_right = 90.0
@@ -138,7 +138,7 @@ offset_bottom = 30.0
 mouse_filter = 2
 color = Color(0.1, 0.16, 0.24, 1)
 
-[node name="2" type="Area2D" parent="Doors" unique_id=1863398089]
+[node name="2" type="Area2D" parent="Doors" unique_id=1435647569]
 position = Vector2(30, 930)
 script = ExtResource("2_y6lsr")
 door_id = &"2"
@@ -146,7 +146,7 @@ target_room = &"armory"
 target_door = &"1"
 spawn_point = Vector2(90, 1020)
 
-[node name="Frame" type="ColorRect" parent="Doors/2" unique_id=1658557029]
+[node name="Frame" type="ColorRect" parent="Doors/2" unique_id=1723670644]
 offset_left = -30.0
 offset_top = -90.0
 offset_right = 30.0
@@ -154,25 +154,25 @@ offset_bottom = 90.0
 mouse_filter = 2
 color = Color(0.1, 0.16, 0.24, 1)
 
-[node name="Props" type="Node2D" parent="." unique_id=930531054]
+[node name="Props" type="Node2D" parent="." unique_id=1764318656]
 
-[node name="BreachDoor_bulkhead_east" type="StaticBody2D" parent="Props" unique_id=1049739351 instance=ExtResource("3_ardhq")]
+[node name="BreachDoor_bulkhead_east" type="StaticBody2D" parent="Props" unique_id=1685737093 instance=ExtResource("3_ardhq")]
 position = Vector2(390, 1020)
 collision_mask = 0
 script = ExtResource("4_5esuv")
 door_id = &"bulkhead_east"
 size = Vector2(60, 300)
 
-[node name="Sign_s" type="Node2D" parent="Props" unique_id=1079989906]
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=432175278]
 position = Vector2(630, 780)
 script = ExtResource("5_dnymt")
 text = "SEALED
 VESTA COLLECTIONS BULKHEAD"
 warning = true
 
-[node name="Pickups" type="Node2D" parent="." unique_id=1847189592]
+[node name="Pickups" type="Node2D" parent="." unique_id=538242033]
 
-[node name="Hack_breach" type="Area2D" parent="Pickups" unique_id=1144952301 instance=ExtResource("6_83tm6")]
+[node name="Hack_breach" type="Area2D" parent="Pickups" unique_id=1846359711 instance=ExtResource("6_83tm6")]
 position = Vector2(1230, 1020)
 collision_layer = 128
 collision_mask = 2
@@ -181,13 +181,13 @@ kind = 1
 hack_id = &"breach"
 pickup_id = &"breach_gate_room_o"
 
-[node name="Scavs" type="Node2D" parent="." unique_id=820749564]
+[node name="Scavs" type="Node2D" parent="." unique_id=620927637]
 script = ExtResource("8_bbhvq")
 enemy_scene = ExtResource("9_ln6av")
 respawn_delay = 0.0
 
-[node name="Spawn1" type="Marker2D" parent="Scavs" unique_id=1732946511]
+[node name="Spawn1" type="Marker2D" parent="Scavs" unique_id=580409296]
 position = Vector2(870, 1020)
 
-[node name="Spawn2" type="Marker2D" parent="Scavs" unique_id=936865726]
+[node name="Spawn2" type="Marker2D" parent="Scavs" unique_id=512107865]
 position = Vector2(1590, 1020)

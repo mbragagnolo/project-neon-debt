@@ -5,6 +5,8 @@
 [resource]
 script = ExtResource("1_enemy_config")
 display_name = "Scav"
+flies = false
+fires = false
 teaches = "Spacing. Bait the lunge, step in, punish the recovery. The first fight of the game."
 max_hp = 16
 attack_power = 6.0

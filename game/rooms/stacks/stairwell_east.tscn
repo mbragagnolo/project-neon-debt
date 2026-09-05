@@ -19,30 +19,30 @@ size = Vector2(840, 900)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5f5wv"]
 size = Vector2(1080, 60)
 
-[node name="StairwellEast" type="Node2D" unique_id=1595743573]
+[node name="StairwellEast" type="Node2D" unique_id=1375607851]
 script = ExtResource("1_oxw1w")
 room_id = &"stairwell_east"
 display_name = "Stairwell East"
 camera_limits = Rect2i(0, 0, 1920, 2160)
 announces_on_ready = false
 
-[node name="Geometry" type="Node2D" parent="." unique_id=955411608]
+[node name="Geometry" type="Node2D" parent="." unique_id=1991952451]
 
-[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=580191151]
+[node name="Backdrop" type="ColorRect" parent="Geometry" unique_id=1235847586]
 z_index = -10
 offset_right = 1920.0
 offset_bottom = 2160.0
 mouse_filter = 2
 color = Color(0.050980393, 0.0627451, 0.09411765, 1)
 
-[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=724273201]
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=1992244937]
 position = Vector2(420, 420)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=1472206432]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=1956947978]
 shape = SubResource("RectangleShape2D_40t36")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=659467208]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid0" unique_id=1651059269]
 offset_left = -420.0
 offset_top = -420.0
 offset_right = 420.0
@@ -50,14 +50,14 @@ offset_bottom = 420.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=848000572]
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=1821167445]
 position = Vector2(1470, 30)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=29652568]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=209825428]
 shape = SubResource("RectangleShape2D_mr5sp")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=1007921351]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid1" unique_id=644010041]
 offset_left = -450.0
 offset_top = -30.0
 offset_right = 450.0
@@ -65,14 +65,14 @@ offset_bottom = 30.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=188848663]
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=1668642132]
 position = Vector2(1500, 1110)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=931618278]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=1985665278]
 shape = SubResource("RectangleShape2D_ke8v7")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=2117367633]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid2" unique_id=592435495]
 offset_left = -420.0
 offset_top = -1050.0
 offset_right = 420.0
@@ -80,14 +80,14 @@ offset_bottom = 1050.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=1584934011]
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=404590619]
 position = Vector2(420, 1470)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=963061415]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=1929807528]
 shape = SubResource("RectangleShape2D_a6bbm")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=1119640390]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid3" unique_id=1370582135]
 offset_left = -420.0
 offset_top = -450.0
 offset_right = 420.0
@@ -95,14 +95,14 @@ offset_bottom = 450.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=1918431138]
+[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=72277719]
 position = Vector2(540, 2130)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=1272537059]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=1330060220]
 shape = SubResource("RectangleShape2D_5f5wv")
 
-[node name="ColorRect" type="ColorRect" parent="Geometry/Solid4" unique_id=1088826551]
+[node name="ColorRect" type="ColorRect" parent="Geometry/Solid4" unique_id=261247685]
 offset_left = -540.0
 offset_top = -30.0
 offset_right = 540.0
@@ -110,11 +110,11 @@ offset_bottom = 30.0
 mouse_filter = 2
 color = Color(0.22745098, 0.25882354, 0.3372549, 1)
 
-[node name="Hazards" type="Node2D" parent="." unique_id=36812427]
+[node name="Hazards" type="Node2D" parent="." unique_id=138120775]
 
-[node name="Doors" type="Node2D" parent="." unique_id=591519516]
+[node name="Doors" type="Node2D" parent="." unique_id=310834361]
 
-[node name="1" type="Area2D" parent="Doors" unique_id=1104111975]
+[node name="1" type="Area2D" parent="Doors" unique_id=1133833110]
 position = Vector2(30, 930)
 script = ExtResource("2_qj42i")
 door_id = &"1"
@@ -123,7 +123,7 @@ target_door = &"2"
 spawn_point = Vector2(90, 1020)
 room_size = Vector2(1920, 2160)
 
-[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=1055426024]
+[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=948519302]
 offset_left = -30.0
 offset_top = -90.0
 offset_right = 30.0
@@ -131,7 +131,7 @@ offset_bottom = 90.0
 mouse_filter = 2
 color = Color(0.1, 0.16, 0.24, 1)
 
-[node name="2" type="Area2D" parent="Doors" unique_id=611829640]
+[node name="2" type="Area2D" parent="Doors" unique_id=275957523]
 position = Vector2(30, 2010)
 script = ExtResource("2_qj42i")
 door_id = &"2"
@@ -140,7 +140,7 @@ target_door = &"1"
 spawn_point = Vector2(90, 2100)
 room_size = Vector2(1920, 2160)
 
-[node name="Frame" type="ColorRect" parent="Doors/2" unique_id=1147927507]
+[node name="Frame" type="ColorRect" parent="Doors/2" unique_id=1798212332]
 offset_left = -30.0
 offset_top = -90.0
 offset_right = 30.0
@@ -148,7 +148,7 @@ offset_bottom = 90.0
 mouse_filter = 2
 color = Color(0.1, 0.16, 0.24, 1)
 
-[node name="3" type="Area2D" parent="Doors" unique_id=1760335328]
+[node name="3" type="Area2D" parent="Doors" unique_id=1000553959]
 position = Vector2(930, 30)
 script = ExtResource("2_qj42i")
 door_id = &"3"
@@ -159,7 +159,7 @@ size = Vector2(180, 60)
 spawn_point = Vector2(930, 120)
 room_size = Vector2(1920, 2160)
 
-[node name="Frame" type="ColorRect" parent="Doors/3" unique_id=513767576]
+[node name="Frame" type="ColorRect" parent="Doors/3" unique_id=512739195]
 offset_left = -90.0
 offset_top = -30.0
 offset_right = 90.0
@@ -167,12 +167,12 @@ offset_bottom = 30.0
 mouse_filter = 2
 color = Color(0.1, 0.16, 0.24, 1)
 
-[node name="Props" type="Node2D" parent="." unique_id=539311572]
+[node name="Props" type="Node2D" parent="." unique_id=2010730611]
 
-[node name="Sign_s" type="Node2D" parent="Props" unique_id=1807958321]
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=603552029]
 position = Vector2(390, 2040)
 script = ExtResource("3_li648")
 text = "STAIRWELL E
 ROOF ACCESS ↑ 14 FLOORS"
 
-[node name="Pickups" type="Node2D" parent="." unique_id=576730364]
+[node name="Pickups" type="Node2D" parent="." unique_id=722437078]

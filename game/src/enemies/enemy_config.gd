@@ -81,6 +81,36 @@ extends Resource
 ## own much smaller constant, so this is the enemy's intent, not the result.
 @export var lunge_knockback: float = 260.0
 
+@export_group("Flight")
+## A flier ignores gravity except when stunned or dead — Breach "drops it out
+## of the air" (enemies.md), and so does dying.
+@export var flies: bool = false
+## px above the player's centre a flier holds. Above melee reach on purpose:
+## the puzzle is *reaching* it, and the answer is the ranged verb.
+@export var hover_height: float = 210.0
+## px of horizontal standoff a flier keeps while tracking.
+@export var hover_standoff: float = 240.0
+@export var fly_speed: float = 230.0
+## px/s² a flier changes course at. Low reads as a drone, high as a wasp.
+@export var fly_acceleration: float = 900.0
+## px of idle bob around home while unaware.
+@export var drift_radius: float = 50.0
+
+@export_group("Firing")
+## Lobs projectiles at the player instead of lunging.
+@export var fires: bool = false
+## Seconds between shots, measured from the shot.
+@export var fire_interval: float = 2.2
+## **The telegraph** for a shot: still and lit for this long before firing.
+@export var fire_windup: float = 0.45
+## px it must be within to bother shooting.
+@export var fire_range: float = 700.0
+@export var projectile_speed: float = 340.0
+@export var projectile_lifetime: float = 2.4
+@export var projectile_size: Vector2 = Vector2(16.0, 16.0)
+@export var projectile_color: Color = Color(1.0, 0.35, 0.35)
+@export var projectile_knockback: float = 120.0
+
 @export_group("Reactions")
 ## Seconds interrupted when a hit meets `stagger_threshold`. Must stay under
 ## the player's fastest weapon cooldown or melee becomes a stunlock.

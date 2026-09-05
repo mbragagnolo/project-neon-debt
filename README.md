@@ -4,12 +4,12 @@ Cyberpunk 2D metroidvania with Castlevania-style RPG elements, built in
 **Godot 4.7** (GDScript). See [DESIGN.md](DESIGN.md) for the full vertical-slice
 design and the milestone plan.
 
-**Status: M5 (the district) in, M6–M7 in progress on the `vertical-slice`
-branch.** The Stacks — 34 rooms, doors, terminals, the map, the hub with
-Stitch and Marisol, the fetch quest, the three ability pickups, the gates
-and the teases — is the main scene. Play it from the start: wake up in
-14-C, find the Mag-Hook, climb. The gyms are still there and still tested;
-each milestone's lab outlives its milestone.
+**Status: M6 (enemies and the boss) in, M7 in progress on the
+`vertical-slice` branch.** The Stacks — 34 rooms, the full roster (Scav,
+Watcher drone, Riot unit, Elite Scav), the Landlord with two phases in a
+sealed arena, and the slice's ending — is the main scene. Play it from the
+start: wake up in 14-C, find the Mag-Hook, climb. The gyms are still there
+and still tested; each milestone's lab outlives its milestone.
 
 ---
 

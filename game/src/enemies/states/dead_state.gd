@@ -17,7 +17,8 @@ func enter(_previous: StringName) -> void:
 
 
 func physics_update(delta: float) -> StringName:
-	enemy.apply_gravity(delta)
+	# Forced: a dead flier falls.
+	enemy.apply_gravity(delta, true)
 	enemy.brake(delta)
 
 	_remaining -= delta

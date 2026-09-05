@@ -165,6 +165,28 @@ func test_the_gut_bulkhead_stays_shut_without_the_program() -> void:
 	assert_true(door.is_open())
 
 
+func test_the_landlords_death_plays_the_ending() -> void:
+	# The closing shot (DESIGN.md §3.5): reception, the tease lights up under
+	# the camera, the card. Driven from the signal rather than a real kill —
+	# the kill is test_landlord.gd's.
+	await _world.travel(&"collections", &"1")
+	await _settled()
+	Events.boss_defeated.emit(null)
+	await wait_until(func() -> bool: return _world.get_node("Ending").is_open(), 14.0)
+	var ending: EndingScreen = _world.get_node("Ending")
+	assert_true(ending.is_open(), "no ending card")
+	assert_eq(_world.current_room_id, &"collections_lobby", "the ending plays in reception")
+	assert_true(_player.frozen, "the player should be held for the shot")
+	var tease: Tease = _first_in_room(&"teases") as Tease
+	assert_not_null(tease)
+	if tease != null:
+		assert_true(tease.is_unlocked(), "the ledge never lit up")
+	assert_true(GameState.has_flag(&"boss.landlord_defeated"))
+	ending.dismiss()
+	await wait_until(func() -> bool: return not _player.frozen, 3.0)
+	assert_false(_player.frozen, "the run does not continue after the card")
+
+
 func test_rooms_announce_themselves_once_the_player_is_in_them() -> void:
 	watch_signals(Events)
 	await _world.travel(&"hall_14", &"1")

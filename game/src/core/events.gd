@@ -22,6 +22,12 @@ signal enemy_died(enemy: Node, xp_reward: int, credit_reward: int)
 signal hitstop_requested(frames: int)
 signal camera_shake_requested(strength: float, duration: float)
 
+# --- The boss (M6) -----------------------------------------------------------
+signal boss_hp_changed(display_name: String, hp: int, max_hp: int)
+signal boss_phase_changed(phase: int)
+## The slice's ending hangs off this.
+signal boss_defeated(boss: Node)
+
 # --- Vitals (M2/M3/M4) ------------------------------------------------------
 signal hp_changed(current: int, maximum: int)
 signal ram_changed(current: int, maximum: int)

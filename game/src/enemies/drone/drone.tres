@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="EnemyConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/enemies/enemy_config.gd" id="1_enemy_config"]
+
+[resource]
+script = ExtResource("1_enemy_config")
+display_name = "Watcher drone"
+teaches = "Vertical threat, and the ranged verb. It hovers above melee reach and lobs slow, dodgeable shots; the answer is to aim up. Mechanical: Breach drops it out of the air."
+max_hp = 10
+attack_power = 5.0
+defense = 0
+stagger_threshold = 1
+tags = Array[StringName]([&"mechanical"])
+xp_reward = 14
+credit_reward = 7
+patrol_speed = 0.0
+patrol_range = 0.0
+patrol_pause = 0.0
+detection_range = 620.0
+chase_speed = 0.0
+give_up_range = 1100.0
+lunge_range = 0.0
+windup_time = 0.0
+lunge_speed = 0.0
+lunge_time = 0.0
+recover_time = 0.0
+lunge_cooldown = 0.0
+attack_size = Vector2(1, 1)
+attack_offset = Vector2(0, 0)
+lunge_knockback = 0.0
+flies = true
+hover_height = 210.0
+hover_standoff = 240.0
+fly_speed = 230.0
+fly_acceleration = 900.0
+drift_radius = 50.0
+fires = true
+fire_interval = 2.2
+fire_windup = 0.45
+fire_range = 720.0
+projectile_speed = 340.0
+projectile_lifetime = 2.4
+projectile_size = Vector2(16, 16)
+projectile_color = Color(1, 0.35, 0.35, 1)
+projectile_knockback = 120.0
+stagger_time = 0.25
+death_time = 0.6
+knockback_friction = 900.0
+color_idle = Color(0.55, 0.75, 0.9, 1)
+color_chase = Color(0.65, 0.85, 1, 1)
+color_windup = Color(1, 0.85, 0.3, 1)
+color_lunge = Color(1, 0.45, 0.25, 1)
+color_recover = Color(0.45, 0.4, 0.5, 1)
+color_stagger = Color(1, 1, 1, 1)
+color_stunned = Color(0.3, 0.55, 0.7, 1)

@@ -21,6 +21,7 @@ const GOOD_COLOUR := Color(0.45, 0.95, 0.6)
 
 const HACK_COLOUR := Color(0.75, 0.6, 1.0)
 
+var _boss_label: Label
 var _level_label: Label
 var _hp_label: Label
 var _ammo_label: Label
@@ -47,6 +48,7 @@ func _ready() -> void:
 	box.position = Vector2(32.0, 24.0)
 	add_child(box)
 
+	_boss_label = _make_label(box, "", LOW_COLOUR)
 	_level_label = _make_label(box, "LVL —")
 	_hp_label = _make_label(box, "HP —")
 	_ammo_label = _make_label(box, "AMMO —")
@@ -69,6 +71,9 @@ func _ready() -> void:
 	Events.hack_failed.connect(_on_hack_failed)
 	Events.hack_acquired.connect(_on_hack_acquired)
 	Events.guard_changed.connect(_on_guard_changed)
+	Events.boss_hp_changed.connect(_on_boss_hp_changed)
+	Events.boss_defeated.connect(_on_boss_defeated)
+	Events.room_exited.connect(_on_room_exited)
 	_catalog = load(HackKit.CATALOG_PATH)
 
 	# The bus carries no history, so a HUD built after the sheet was published
@@ -217,3 +222,20 @@ func _on_hack_acquired(hack_id: StringName) -> void:
 func _on_guard_changed(active: bool, seconds: float) -> void:
 	_guard_timer = seconds if active else 0.0
 	_draw_hack_line()
+
+
+# --- M6: the boss ---------------------------------------------------------------
+
+func _on_boss_hp_changed(display_name: String, hp: int, max_hp: int) -> void:
+	var filled: int = int(round(20.0 * float(hp) / float(maxi(max_hp, 1))))
+	_boss_label.text = "%s  [%s%s]  %d / %d" % [
+		display_name.to_upper(), "█".repeat(filled), "·".repeat(20 - filled), hp, max_hp
+	]
+
+
+func _on_boss_defeated(_boss: Node) -> void:
+	_boss_label.text = ""
+
+
+func _on_room_exited(_room_id: StringName) -> void:
+	_boss_label.text = ""
