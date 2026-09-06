@@ -1,5 +1,6 @@
 room roof_span
 name Tower 7 - Roof
+style roof
 cell 5 0
 size 3 1
 door 1 west_stair 1

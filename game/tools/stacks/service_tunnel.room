@@ -1,5 +1,6 @@
 room service_tunnel
 name The Gut - Service Tunnel
+style gut
 cell 0 5
 size 3 1
 door 1 gut_stair 2

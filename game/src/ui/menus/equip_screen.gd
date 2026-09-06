@@ -159,6 +159,7 @@ func _move(step: int) -> void:
 		var count: int = _candidates().size()
 		if count > 0:
 			_item_index = wrapi(_item_index + step, 0, count)
+	Sfx.play(&"ui_move")
 	_redraw()
 
 

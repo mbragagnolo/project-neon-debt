@@ -1,5 +1,6 @@
 room gut_lift
 name The Gut - Lift
+style shaft
 cell 2 7
 size 1 2
 door 1 gut_pumps 3

@@ -74,5 +74,14 @@ signal quest_completed(quest_id: StringName)
 
 # --- UI ---------------------------------------------------------------------
 signal toast_requested(text: String)
+
+# --- Presentation (M7): what the player did, where, for sound and juice ---
+## The player's verbs as they happen: jump, wall_jump, dash, land, swing,
+## shoot_<weapon>, hurt, hurt_guard, hazard. Position is the feet.
+signal player_action(action: StringName, position: Vector2, direction: int)
+## Anything else that wants a sound by name (docs/audio/direction.md).
+signal sfx_requested(id: StringName, position: Vector2)
+## A shot met a wall.
+signal impact(position: Vector2, colour: Color)
 ## One of the protagonist's lines, shown at the bottom for a few seconds.
 signal bark_requested(text: String)

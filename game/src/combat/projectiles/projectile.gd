@@ -19,7 +19,10 @@ var velocity: Vector2 = Vector2.ZERO
 var drop: float = 0.0
 
 var _life: float = 0.0
-var _visual: ColorRect
+var _visual: CanvasItem
+
+
+var _impact_colour: Color = Color.WHITE
 
 
 func _ready() -> void:
@@ -37,15 +40,20 @@ func launch(
 	lifetime: float,
 	size: Vector2,
 	colour: Color,
-	drop_rate: float = 0.0
+	drop_rate: float = 0.0,
+	texture: Texture2D = null
 ) -> void:
 	activate(new_attack)
 	velocity = direction * speed
 	drop = drop_rate
+	_impact_colour = colour
 	_life = lifetime
 	rotation = direction.angle()
 	_build_shape(size)
-	_build_visual(size, colour)
+	if texture != null:
+		_build_sprite(texture)
+	else:
+		_build_visual(size, colour)
 
 
 func _physics_process(delta: float) -> void:
@@ -69,6 +77,7 @@ func _physics_process(delta: float) -> void:
 	# Walls stop shots. Masking the world layer alongside hurtboxes means one
 	# area answers both questions.
 	if not get_overlapping_bodies().is_empty():
+		Events.impact.emit(global_position, _impact_colour)
 		_expire()
 
 
@@ -94,6 +103,15 @@ func _build_shape(size: Vector2) -> void:
 	var collider := CollisionShape2D.new()
 	collider.shape = rect
 	add_child(collider)
+
+
+func _build_sprite(texture: Texture2D) -> void:
+	var sprite := Sprite2D.new()
+	sprite.texture = texture
+	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	sprite.z_index = 4
+	_visual = sprite
+	add_child(sprite)
 
 
 func _build_visual(size: Vector2, colour: Color) -> void:

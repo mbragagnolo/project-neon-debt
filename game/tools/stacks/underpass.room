@@ -1,5 +1,6 @@
 room underpass
 name Service Underpass
+style mezz
 cell 6 3
 size 3 1
 door 1 pawn_back 2

@@ -44,8 +44,11 @@ const COL_QUEST := Color(0.95, 0.95, 0.95)
 ## past.
 @export var reach: float = 110.0
 
-@onready var _visual: ColorRect = $Visual
+@onready var _visual: Sprite2D = $Visual
 @onready var _prompt: Label = $Prompt
+
+var _bob: float = 0.0
+var _light: PointLight2D
 
 var _item: Item
 var _hack: Hack
@@ -76,21 +79,15 @@ func _ready() -> void:
 			if HackKit.is_owned(_hack):
 				queue_free()
 				return
-			_visual.color = _hack.color
 		Kind.ABILITY:
 			if ability_id == &"" or GameState.has_flag(ability_id):
 				queue_free()
 				return
-			_visual.color = COL_ABILITY
-		Kind.HP_UP:
-			_visual.color = COL_HP
-		Kind.RAM_UP:
-			_visual.color = COL_RAM
 		Kind.QUEST_ITEM:
 			if quest_item_id == &"" or GameState.has_flag(quest_flag()):
 				queue_free()
 				return
-			_visual.color = COL_QUEST
+	_dress()
 
 	# Already looted: never existed, as far as this visit is concerned.
 	if pickup_id != &"" and GameState.has_flag(flag()):
@@ -114,16 +111,56 @@ func _ready() -> void:
 	body_exited.connect(_on_body_exited)
 
 
-func _process(_delta: float) -> void:
+func quest_flag() -> StringName:
+	return StringName("quest_item.%s" % quest_item_id)
+
+
+## The sprite and the light for what this is. Small things bob; crates and
+## terminals stand on the floor.
+func _dress() -> void:
+	var texture: String = "chest"
+	var colour := COL_ITEM
+	match kind:
+		Kind.HACK:
+			texture = "program_terminal"
+			colour = _hack.color if _hack != null else Color(0.55, 1.0, 0.5)
+		Kind.ABILITY:
+			texture = "implant_crate" if ability_id == GameState.SIDEWINDER_CARRIED else "gadget_crate"
+			colour = COL_ABILITY
+		Kind.HP_UP:
+			texture = "hp_up"
+			colour = COL_HP
+		Kind.RAM_UP:
+			texture = "ram_up"
+			colour = COL_RAM
+		Kind.QUEST_ITEM:
+			texture = "chip"
+			colour = COL_QUEST
+	var path: String = "res://assets/props/%s.png" % texture
+	if ResourceLoader.exists(path):
+		_visual.texture = load(path)
+		_visual.centered = false
+		_visual.position = Vector2(-_visual.texture.get_width() * 0.5, -_visual.texture.get_height())
+	_light = PointLight2D.new()
+	_light.texture = load("res://assets/fx/light_soft.png")
+	_light.color = colour
+	_light.energy = 0.8
+	_light.texture_scale = 1.6
+	_light.position = Vector2(0.0, -30.0)
+	add_child(_light)
+
+
+func _process(delta: float) -> void:
 	# Polled rather than handled in `_input` so that a pickup and a door
 	# overlapping the same button press cannot race: whoever the player is
 	# standing in reads it, and there is never more than one.
 	if _player_in_range and Input.is_action_just_pressed("interact"):
 		take()
-
-
-func quest_flag() -> StringName:
-	return StringName("quest_item.%s" % quest_item_id)
+	if kind == Kind.HP_UP or kind == Kind.RAM_UP or kind == Kind.QUEST_ITEM:
+		_bob += delta * 3.0
+		_visual.position.y = -_visual.texture.get_height() - 8.0 + sin(_bob) * 4.0 if _visual.texture != null else 0.0
+	if _light != null:
+		_light.energy = 0.7 + 0.2 * sin(_bob * 1.7)
 
 
 func display_name() -> String:

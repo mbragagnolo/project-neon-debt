@@ -26,7 +26,8 @@ const ENEMY_GROUP := &"enemies"
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var attack_hitbox: Hitbox = $AttackHitbox
 @onready var contact_hitbox: Hitbox = $ContactHitbox
-@onready var visual: ColorRect = $Visual
+## Either the greybox box (the dummy, tests) or a `PixelAnim` sheet.
+@onready var visual: CanvasItem = $Visual
 @onready var _state_machine: EnemyStateMachine = $StateMachine
 
 ## +1 right, -1 left.
@@ -41,6 +42,8 @@ var stun_duration: float = 0.0
 
 var _gravity: float = 0.0
 var _lunge_cooldown_timer: float = 0.0
+var _flash_timer: float = 0.0
+var _last_tint: Color = Color.WHITE
 var _fire_cooldown_timer: float = 0.0
 var _combat_config: CombatConfig
 var _attack_shape: RectangleShape2D
@@ -92,6 +95,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	_lunge_cooldown_timer = maxf(_lunge_cooldown_timer - delta, 0.0)
 	_fire_cooldown_timer = maxf(_fire_cooldown_timer - delta, 0.0)
+	if _flash_timer > 0.0:
+		_flash_timer -= delta
+		if _flash_timer <= 0.0:
+			tint(_last_tint)
 	_state_machine.physics_update(delta)
 	move_and_slide()
 
@@ -136,6 +143,8 @@ func set_facing(direction: int) -> void:
 	facing = direction
 	if _facing_node != null:
 		_facing_node.scale.x = float(facing)
+	if visual is Sprite2D:
+		(visual as Sprite2D).flip_h = facing < 0
 
 
 ## Called by our own `Hurtbox` at step 9.
@@ -143,9 +152,36 @@ func apply_knockback(impulse: Vector2) -> void:
 	velocity += impulse
 
 
+## The state colour. On a coloured box it *is* the picture; on a sprite it
+## is blended over the art — faint for the idle states, loud for the windup,
+## a white flash for the stagger — so the read the greybox taught survives.
 func tint(colour: Color) -> void:
-	if visual != null:
-		visual.color = colour
+	_last_tint = colour
+	if visual == null:
+		return
+	if visual is ColorRect:
+		(visual as ColorRect).color = colour
+		return
+	if colour == config.color_stagger:
+		visual.modulate = Color(1.7, 1.7, 1.7, visual.modulate.a)
+		return
+	var strength: float = 0.15
+	if colour == config.color_windup:
+		strength = 0.7
+	elif colour == config.color_lunge:
+		strength = 0.5
+	elif colour == config.color_recover or colour == config.color_stunned:
+		strength = 0.45
+	var blended: Color = Color.WHITE.lerp(colour, strength)
+	visual.modulate = Color(blended.r, blended.g, blended.b, visual.modulate.a)
+
+
+## The clip for a state. A sheet without the clip keeps whatever it plays;
+## a coloured box has no clips and ignores this.
+func play(clip: StringName) -> void:
+	if visual is PixelAnim:
+		var anim: PixelAnim = visual as PixelAnim
+		anim.play(clip if anim.has_clip(clip) else &"idle")
 
 
 # --- Queries used by the states ---------------------------------------------
@@ -243,6 +279,7 @@ func fire_at_player() -> void:
 
 func fire_toward(target: Vector2) -> Projectile:
 	var origin: Vector2 = center()
+	Events.sfx_requested.emit(&"drone_shot", origin)
 	var direction: Vector2 = (target - origin).normalized()
 	if direction == Vector2.ZERO:
 		direction = Vector2(float(facing), 0.0)
@@ -256,7 +293,7 @@ func fire_toward(target: Vector2) -> Projectile:
 	shot.global_position = origin
 	shot.launch(
 		attack, direction, config.projectile_speed, config.projectile_lifetime,
-		config.projectile_size, config.projectile_color
+		config.projectile_size, config.projectile_color, 0.0, config.projectile_texture
 	)
 	start_fire_cooldown()
 	return shot
@@ -303,7 +340,16 @@ func is_stunned() -> bool:
 # --- Reactions --------------------------------------------------------------
 
 func _on_damaged(_amount: int, _attack: Attack) -> void:
-	pass
+	flash()
+
+
+## A white pop on the frame a hit lands (docs/art/direction.md). The state
+## tint comes back when it fades.
+func flash() -> void:
+	if visual == null or visual is ColorRect or health.is_dead():
+		return
+	_flash_timer = 0.07
+	visual.modulate = Color(2.4, 2.4, 2.4, visual.modulate.a)
 
 
 ## A hit that meets `stagger_threshold` interrupts whatever was happening —

@@ -1,5 +1,6 @@
 room east_ledges
 name East Ledges
+style roof
 cell 10 1
 size 2 1
 door 1 lift_shaft 2

@@ -1,6 +1,9 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=20 format=3]
 
 [ext_resource type="Script" path="res://src/enemies/enemy_base.gd" id="1_enemy"]
+[ext_resource type="Script" path="res://src/art/pixel_anim.gd" id="90_anim"]
+[ext_resource type="Texture2D" path="res://assets/sprites/riot.png" id="91_sheet"]
+[ext_resource type="Texture2D" path="res://assets/sprites/riot_shield.png" id="92_shield"]
 [ext_resource type="Resource" path="res://src/enemies/riot/riot.tres" id="2_riot"]
 [ext_resource type="Script" path="res://src/combat/health.gd" id="3_health"]
 [ext_resource type="Script" path="res://src/combat/hurtbox.gd" id="4_hurtbox"]
@@ -30,22 +33,29 @@ config = ExtResource("2_riot")
 position = Vector2(0, -50)
 shape = SubResource("RectangleShape2D_riot_body")
 
-[node name="Visual" type="ColorRect" parent="."]
-offset_left = -30.0
-offset_top = -100.0
-offset_right = 30.0
-mouse_filter = 2
-color = Color(0.42, 0.45, 0.55, 1)
+[node name="Visual" type="Sprite2D" parent="."]
+position = Vector2(0, -51)
+texture = ExtResource("91_sheet")
+script = ExtResource("90_anim")
+frame_width = 78
+frame_height = 102
+clips = {
+"dead": [11, 1, 0.0, false],
+"idle": [0, 2, 2.0, true],
+"lunge": [7, 1, 0.0, false],
+"recover": [8, 1, 0.0, false],
+"run": [2, 4, 6.0, true],
+"stagger": [9, 1, 0.0, false],
+"stunned": [10, 1, 0.0, false],
+"windup": [6, 1, 0.0, false]
+}
+autoplay = &"idle"
 
 [node name="Facing" type="Node2D" parent="."]
 
-[node name="Shield" type="ColorRect" parent="Facing"]
-offset_left = 30.0
-offset_top = -106.0
-offset_right = 44.0
-offset_bottom = 4.0
-mouse_filter = 2
-color = Color(0.2, 0.85, 1, 0.85)
+[node name="Shield" type="Sprite2D" parent="Facing"]
+position = Vector2(40, -52)
+texture = ExtResource("92_shield")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_health")

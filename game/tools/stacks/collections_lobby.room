@@ -1,5 +1,6 @@
 room collections_lobby
 name Collections - Reception
+style collections
 cell 11 -1
 size 1 1
 door 1 collections_lift 2

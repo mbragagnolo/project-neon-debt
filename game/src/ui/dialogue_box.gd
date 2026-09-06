@@ -46,6 +46,7 @@ func open(speaker: String, pages: Array[String]) -> void:
 	_open = true
 	visible = true
 	get_tree().paused = true
+	Sfx.play(&"ui_open")
 	_show_page()
 
 
@@ -73,8 +74,10 @@ func _input(event: InputEvent) -> void:
 func _advance() -> void:
 	_page += 1
 	if _page >= _pages.size():
+		Sfx.play(&"ui_close")
 		close()
 	else:
+		Sfx.play(&"text")
 		_show_page()
 
 

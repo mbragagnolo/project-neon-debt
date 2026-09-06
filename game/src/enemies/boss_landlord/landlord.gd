@@ -98,7 +98,9 @@ func slam() -> void:
 		wave.collision_mask = 8  # the player's hurtbox only; the floor is where it lives
 		get_parent().add_child(wave)
 		wave.global_position = global_position + Vector2(float(side) * 50.0, -22.0)
-		wave.launch(attack, Vector2(float(side), 0.0), slam_speed, slam_lifetime, Vector2(44.0, 30.0), Color(1.0, 0.55, 0.2))
+		wave.launch(attack, Vector2(float(side), 0.0), slam_speed, slam_lifetime, Vector2(44.0, 30.0), Color(1.0, 0.55, 0.2), 0.0, load("res://assets/fx/wave.png"))
+		if side < 0:
+			wave.get_child(wave.get_child_count() - 1).set(&"flip_h", true)
 
 
 func summon_drones() -> void:

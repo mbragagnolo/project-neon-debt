@@ -1,5 +1,6 @@
 room hall_13
 name Floor 13 - Hall
+style residential
 cell 6 2
 size 2 1
 door 1 stairwell_east 2

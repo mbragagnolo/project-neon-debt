@@ -1,7 +1,7 @@
 class_name PauseShell
 extends CanvasLayer
-## The pause menu (docs/ui/screens.md): one shell, three tabs — map,
-## loadout, quests. Settings is M7's tab.
+## The pause menu (docs/ui/screens.md): one shell, four tabs — map,
+## loadout, quests, and system (settings, quit to title).
 ##
 ## The shell owns what every tab shares: pausing the tree, the tab bar, and
 ## the keys that open, close and cycle. A tab only handles navigation inside
@@ -9,9 +9,9 @@ extends CanvasLayer
 ## and `toggle_inventory` jump straight to their tab and close it again if it
 ## is already showing — one way in, two ways out, on pad and keyboard alike.
 
-enum Tab { MAP, LOADOUT, QUESTS }
+enum Tab { MAP, LOADOUT, QUESTS, SYSTEM }
 
-const TAB_NAMES: Array[String] = ["MAP", "LOADOUT", "QUESTS"]
+const TAB_NAMES: Array[String] = ["MAP", "LOADOUT", "QUESTS", "SYSTEM"]
 const COL_ACTIVE := Color(0.6, 0.95, 1.0)
 const COL_DIM := Color(0.45, 0.52, 0.64)
 
@@ -38,7 +38,10 @@ func _ready() -> void:
 	var quests := QuestLog.new()
 	quests.name = "Quests"
 	add_child(quests)
-	_tabs = [map, loadout, quests]
+	var system := SystemTab.new()
+	system.name = "System"
+	add_child(system)
+	_tabs = [map, loadout, quests, system]
 	visible = false
 
 
@@ -54,6 +57,7 @@ func open(tab: Tab = Tab.MAP) -> void:
 	_open = true
 	visible = true
 	get_tree().paused = true
+	Sfx.play(&"ui_open")
 	_show(tab)
 
 
@@ -64,9 +68,12 @@ func close() -> void:
 	_open = false
 	visible = false
 	get_tree().paused = false
+	Sfx.play(&"ui_close")
 
 
 func _show(tab: Tab) -> void:
+	if _open and tab != _tab:
+		Sfx.play(&"ui_move")
 	if _open and _tabs[_tab].visible:
 		_tabs[_tab].close()
 	_tab = tab

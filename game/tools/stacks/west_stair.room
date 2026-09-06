@@ -1,5 +1,6 @@
 room west_stair
 name Stair West
+style shaft
 cell 4 0
 size 1 3
 door 1 roof_span 1

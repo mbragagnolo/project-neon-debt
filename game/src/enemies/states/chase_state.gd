@@ -8,6 +8,7 @@ extends EnemyState
 
 func enter(_previous: StringName) -> void:
 	enemy.tint(enemy.config.color_chase)
+	enemy.play(&"run")
 
 
 func physics_update(delta: float) -> StringName:

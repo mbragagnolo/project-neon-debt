@@ -1,6 +1,8 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://src/enemies/enemy_base.gd" id="1_enemy"]
+[ext_resource type="Script" path="res://src/art/pixel_anim.gd" id="90_anim"]
+[ext_resource type="Texture2D" path="res://assets/sprites/elite_scav.png" id="91_sheet"]
 [ext_resource type="Resource" path="res://src/enemies/scav/elite_scav.tres" id="2_scav"]
 [ext_resource type="Script" path="res://src/combat/health.gd" id="3_health"]
 [ext_resource type="Script" path="res://src/combat/hurtbox.gd" id="4_hurtbox"]
@@ -30,12 +32,23 @@ config = ExtResource("2_scav")
 position = Vector2(0, -40)
 shape = SubResource("RectangleShape2D_scav_body")
 
-[node name="Visual" type="ColorRect" parent="."]
-offset_left = -22.0
-offset_top = -80.0
-offset_right = 22.0
-mouse_filter = 2
-color = Color(0.55, 0.18, 0.2, 1)
+[node name="Visual" type="Sprite2D" parent="."]
+position = Vector2(0, -42)
+texture = ExtResource("91_sheet")
+script = ExtResource("90_anim")
+frame_width = 60
+frame_height = 84
+clips = {
+"dead": [10, 1, 0.0, false],
+"idle": [0, 2, 3.0, true],
+"lunge": [7, 1, 0.0, false],
+"recover": [8, 1, 0.0, false],
+"run": [2, 4, 10.0, true],
+"stagger": [9, 1, 0.0, false],
+"stunned": [9, 1, 0.0, false],
+"windup": [6, 1, 0.0, false]
+}
+autoplay = &"idle"
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_health")

@@ -1,5 +1,6 @@
 room lift_shaft
 name East Lift - Shaft
+style shaft
 cell 9 1
 size 1 2
 door 1 lift_base 2

@@ -1,5 +1,6 @@
 room server_nook
 name Edge Node 7
+style mezz
 cell 12 1
 size 1 1
 door 1 east_ledges 2

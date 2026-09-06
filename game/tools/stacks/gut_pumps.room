@@ -1,5 +1,6 @@
 room gut_pumps
 name The Gut - Pump Hall
+style gut
 cell 0 6
 size 2 2
 door 1 service_tunnel 2

@@ -13,6 +13,8 @@ var _line: Line2D
 
 func enter(_previous: StringName) -> void:
 	enemy.tint(enemy.config.color_windup)
+	enemy.play(&"beam")
+	Events.sfx_requested.emit(&"beam_charge", enemy.global_position)
 	_remaining = enemy.config.fire_windup
 	_line = Line2D.new()
 	_line.width = 3.0
@@ -41,4 +43,5 @@ func physics_update(delta: float) -> StringName:
 	if _remaining > 0.0:
 		return &""
 	enemy.fire_at_player()
+	Events.sfx_requested.emit(&"beam_fire", enemy.global_position)
 	return &"Recover"

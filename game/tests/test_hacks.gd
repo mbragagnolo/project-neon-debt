@@ -271,10 +271,9 @@ func test_the_guard_is_drawn_while_it_is_up() -> void:
 	# A buff the player cannot see is a buff they will not trust enough to
 	# cast into a hit.
 	await _arena()
-	var guard: ColorRect = _player.get_node("Visual/Guard")
-	assert_false(guard.visible)
+	assert_false(_player.is_guard_visible())
 	_kit.try_cast()
-	assert_true(guard.visible)
+	assert_true(_player.is_guard_visible())
 
 
 # --- Overload: BURST ----------------------------------------------------------

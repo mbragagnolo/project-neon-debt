@@ -11,6 +11,7 @@ var _phase: float = 0.0
 
 func enter(_previous: StringName) -> void:
 	enemy.tint(enemy.config.color_idle)
+	enemy.play(&"hover")
 	_phase = randf() * TAU
 
 

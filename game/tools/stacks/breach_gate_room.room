@@ -1,5 +1,6 @@
 room breach_gate_room
 name Collections Bulkhead
+style mezz
 cell 11 2
 size 1 1
 door 1 east_ledges 3

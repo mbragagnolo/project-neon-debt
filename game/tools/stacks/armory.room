@@ -1,5 +1,6 @@
 room armory
 name Repossessed Assets
+style mezz
 cell 10 2
 size 1 1
 door 1 breach_gate_room 2

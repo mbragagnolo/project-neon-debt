@@ -1,5 +1,6 @@
 room armory_chute
 name Disposal Chute
+style mezz
 cell 10 3
 size 1 1
 door 1 armory 2

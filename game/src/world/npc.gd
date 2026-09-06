@@ -42,12 +42,23 @@ func _ready() -> void:
 		_:
 			display_name = String(npc_id).capitalize()
 
-	var body := ColorRect.new()
-	body.color = colour
-	body.position = Vector2(-22.0, -84.0)
-	body.size = Vector2(44.0, 84.0)
-	body.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(body)
+	var sheet: String = "res://assets/sprites/%s.png" % npc_id
+	if ResourceLoader.exists(sheet):
+		var body := PixelAnim.new()
+		body.texture = load(sheet)
+		body.frame_width = body.texture.get_height()
+		body.frame_width = body.texture.get_width() / 2
+		body.frame_height = body.texture.get_height()
+		body.clips = {"idle": [0, 2, 1.5, true]}
+		body.position = Vector2(0.0, -body.frame_height * 0.5)
+		add_child(body)
+	else:
+		var body := ColorRect.new()
+		body.color = colour
+		body.position = Vector2(-22.0, -84.0)
+		body.size = Vector2(44.0, 84.0)
+		body.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		add_child(body)
 
 	var tag := Label.new()
 	tag.text = display_name.to_upper()

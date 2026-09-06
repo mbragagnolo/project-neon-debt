@@ -27,6 +27,17 @@ func _press(action: StringName) -> void:
 	_shell._input(event)
 
 
+func test_the_system_tab_is_the_last_stop_on_the_cycle() -> void:
+	_press(&"pause")
+	_press(&"hack_prev")
+	assert_eq(_shell.current_tab(), PauseShell.Tab.SYSTEM)
+	var system: Node = _shell.get_node("System")
+	assert_true(system is SystemTab)
+	assert_true(system.visible)
+	_press(&"hack_next")
+	assert_eq(_shell.current_tab(), PauseShell.Tab.MAP)
+
+
 func test_pause_opens_on_the_map_and_pauses_the_tree() -> void:
 	assert_false(_shell.is_open())
 	_press(&"pause")
@@ -60,7 +71,11 @@ func test_the_shoulder_keys_cycle_the_tabs() -> void:
 	_press(&"hack_next")
 	assert_eq(_shell.current_tab(), PauseShell.Tab.QUESTS)
 	_press(&"hack_next")
+	assert_eq(_shell.current_tab(), PauseShell.Tab.SYSTEM)
+	_press(&"hack_next")
 	assert_eq(_shell.current_tab(), PauseShell.Tab.MAP, "did not wrap")
+	_press(&"hack_prev")
+	assert_eq(_shell.current_tab(), PauseShell.Tab.SYSTEM)
 	_press(&"hack_prev")
 	assert_eq(_shell.current_tab(), PauseShell.Tab.QUESTS)
 
@@ -95,6 +110,7 @@ func test_the_map_knows_the_district_and_where_you_are() -> void:
 func test_the_quest_log_lists_what_has_been_asked() -> void:
 	var log: QuestLog = _shell.get_node("Quests")
 	_press(&"pause")
+	_press(&"hack_prev")
 	_press(&"hack_prev")
 	assert_eq(_shell.current_tab(), PauseShell.Tab.QUESTS)
 	var rows: VBoxContainer = log._rows

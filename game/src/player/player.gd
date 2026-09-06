@@ -32,7 +32,8 @@ enum Facing { LEFT = -1, RIGHT = 1 }
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var melee_hitbox: Hitbox = $MeleeHitbox
 @onready var hacks: HackKit = $Hacks
-@onready var _guard_visual: ColorRect = $Visual/Guard
+@onready var _sprite: PixelAnim = $Visual/Sprite
+@onready var _glow: Sprite2D = $Visual/Glow
 
 ## What is in hand. Not exported: `Inventory` is the single source of the
 ## loadout, because from M5 this node is re-instanced at every door and a kit
@@ -77,13 +78,14 @@ var _air_dash_used: bool = false
 ## wall accepts the player again they are below where they left it. The
 ## *other* wall is always accepted — that is what a shaft is.
 var _last_wall_jump_dir: int = 0
+var _was_airborne: bool = false
 var _same_wall_lockout_timer: float = 0.0
 ## Where the player last stood on solid ground clear of hazards. A void drop
 ## puts them back here.
 var last_safe_position: Vector2 = Vector2.ZERO
 var _safe_timer: float = 0.0
 var _melee_shape: RectangleShape2D
-var _swing_visual: ColorRect
+var _swing_visual: SwingTell
 var _spawn_position: Vector2 = Vector2.ZERO
 
 
@@ -129,6 +131,23 @@ func _physics_process(delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	_update_iframe_flash()
+	_update_animation()
+
+
+## The state machine decides the move; the clip follows it. Rising and
+## falling are one Air state and two clips, which is the only place the
+## picture knows something the machine does not bother to.
+func _update_animation() -> void:
+	if _sprite == null:
+		return
+	var clip: StringName = &"idle"
+	match state_name():
+		&"Run": clip = &"run"
+		&"Air": clip = &"jump" if velocity.y < 0.0 else &"fall"
+		&"Dash": clip = &"dash"
+		&"WallSlide": clip = &"wall"
+		&"MeleeAttack": clip = &"attack"
+	_sprite.play(clip)
 
 
 # --- Input ------------------------------------------------------------------
@@ -179,6 +198,9 @@ func _tick_timers(delta: float) -> void:
 
 func _settle_after_move() -> void:
 	if is_on_floor():
+		if _was_airborne:
+			_was_airborne = false
+			Events.player_action.emit(&"land", global_position, facing)
 		# Refresh coyote every grounded frame; it only starts draining once we
 		# actually leave the floor, which is exactly the grace window we want.
 		_coyote_timer = config.coyote_time
@@ -193,6 +215,7 @@ func _settle_after_move() -> void:
 			last_safe_position = global_position
 	else:
 		_safe_timer = 0.0
+		_was_airborne = true
 
 
 func _apply_camera_limits() -> void:
@@ -266,6 +289,7 @@ func apply_wall_slide(delta: float) -> void:
 func start_jump() -> void:
 	velocity.y = config.jump_velocity()
 	consume_jump()
+	Events.player_action.emit(&"jump", global_position, facing)
 
 
 func start_wall_jump(wall_direction: int) -> void:
@@ -275,6 +299,7 @@ func start_wall_jump(wall_direction: int) -> void:
 	_same_wall_lockout_timer = config.same_wall_lockout_time()
 	set_facing(-wall_direction)
 	consume_jump()
+	Events.player_action.emit(&"wall_jump", global_position, wall_direction)
 
 
 ## Variable jump height: releasing early clips the rise short (DESIGN.md §3.1).
@@ -287,6 +312,7 @@ func start_dash() -> void:
 	velocity = Vector2(facing * config.dash_speed(), 0.0)
 	if not is_on_floor():
 		_air_dash_used = true
+	Events.player_action.emit(&"dash", global_position, facing)
 
 
 func end_dash() -> void:
@@ -407,10 +433,7 @@ func _setup_combat() -> void:
 
 	# The swing tell lives inside the hitbox, so it inherits the box's position
 	# and facing mirror for free and cannot drift away from what it is drawing.
-	_swing_visual = ColorRect.new()
-	_swing_visual.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_swing_visual.z_index = 5
-	_swing_visual.visible = false
+	_swing_visual = SwingTell.new()
 	melee_hitbox.add_child(_swing_visual)
 
 	max_ammo = PlayerStats.effective_max_ammo(base_max_ammo)
@@ -521,11 +544,10 @@ func start_melee() -> void:
 	# tuning lab the tell has to *be* the truth: a swing arc that is bigger
 	# than its hitbox teaches the player a reach they do not have, and every
 	# whiff after that reads as the game dropping inputs.
-	_swing_visual.size = melee_weapon.hitbox_size
-	_swing_visual.position = -melee_weapon.hitbox_size * 0.5
-	_swing_visual.color = melee_weapon.swing_color
-	_swing_visual.modulate.a = 1.0
-	_swing_visual.visible = true
+	_swing_visual.show_swing(melee_weapon.hitbox_size, melee_weapon.swing_color)
+	Events.player_action.emit(&"swing", global_position, facing)
+	if _sprite != null:
+		_sprite.play(&"attack", true)
 
 
 func end_melee() -> void:
@@ -541,7 +563,7 @@ func end_melee() -> void:
 ## either direction.
 func set_swing_alpha(alpha: float) -> void:
 	if _swing_visual != null:
-		_swing_visual.modulate.a = alpha
+		_swing_visual.set_alpha(alpha)
 
 
 func can_fire_ranged() -> bool:
@@ -573,11 +595,19 @@ func fire_ranged() -> void:
 		ranged_weapon.projectile_lifetime,
 		ranged_weapon.projectile_size,
 		ranged_weapon.projectile_color,
-		ranged_weapon.projectile_gravity
+		ranged_weapon.projectile_gravity,
+		ranged_weapon.projectile_texture
 	)
 
 	spend_ammo(ranged_weapon.energy_per_shot)
 	_ranged_cooldown_timer = ranged_weapon.cooldown()
+	var weapon_id: String = String(ranged_weapon.id)
+	var verb: StringName = &"shoot_bolt"
+	if weapon_id.contains("nail"):
+		verb = &"shoot_nail"
+	elif weapon_id.contains("rivet"):
+		verb = &"shoot_rivet"
+	Events.player_action.emit(verb, global_position, facing)
 
 
 ## Step 10 — the attacker's on-hit interlocks, called back by the `Hurtbox`
@@ -629,6 +659,17 @@ func restore_ram() -> void:
 	Events.ram_changed.emit(ram, max_ram)
 
 
+## Everything a HUD draws, restated. A HUD built after the player already
+## announced itself starts blank otherwise: the bus carries no history.
+func publish_vitals() -> void:
+	Events.hp_changed.emit(health.hp, health.max_hp)
+	Events.ram_changed.emit(ram, max_ram)
+	Events.ammo_changed.emit(ammo, max_ammo)
+	if hacks != null and hacks.selected() != null:
+		Events.hack_selected.emit(hacks.selected().id)
+	PlayerStats.publish()
+
+
 ## The care terminal: full HP, full RAM, full pool.
 func restore_all() -> void:
 	health.restore()
@@ -644,12 +685,14 @@ func void_return() -> void:
 	velocity = Vector2.ZERO
 	if last_safe_position != Vector2.ZERO:
 		global_position = last_safe_position
-	camera.reset_smoothing()
+	if camera.has_method(&"snap_to_target"):
+		camera.call(&"snap_to_target")
 
 
 ## Live water. Up and away, so a pool is something you get out of.
 func hazard_bounce(from: Vector2) -> void:
 	velocity.y = config.jump_velocity() * 0.9
+	Events.player_action.emit(&"hazard", global_position, facing)
 	var direction: float = signf(global_position.x - from.x)
 	if is_zero_approx(direction):
 		direction = float(-facing)
@@ -659,11 +702,13 @@ func hazard_bounce(from: Vector2) -> void:
 ## Firewall's tell. A buff the player cannot see is a buff they will not trust
 ## enough to cast into a hit.
 func set_guard_visual(active: bool, colour: Color) -> void:
-	if _guard_visual == null:
+	if _glow == null:
 		return
-	_guard_visual.visible = active
-	if active:
-		_guard_visual.color = Color(colour.r, colour.g, colour.b, 0.4)
+	_glow.modulate = Color(colour.r, colour.g, colour.b, 0.55 if active else 0.0)
+
+
+func is_guard_visible() -> bool:
+	return _glow != null and _glow.modulate.a > 0.0
 
 
 ## Where a hack measures from and draws to: mid-body, not the feet.
@@ -687,6 +732,8 @@ func apply_knockback(impulse: Vector2) -> void:
 
 func _on_damaged(_amount: int, _attack: Attack) -> void:
 	Events.hp_changed.emit(health.hp, health.max_hp)
+	var guarded: bool = health.guard_mult < 1.0
+	Events.player_action.emit(&"hurt_guard" if guarded else &"hurt", global_position, facing)
 
 
 func _on_died() -> void:

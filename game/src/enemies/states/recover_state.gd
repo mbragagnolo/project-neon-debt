@@ -13,6 +13,7 @@ var _remaining: float = 0.0
 
 func enter(_previous: StringName) -> void:
 	enemy.tint(enemy.config.color_recover)
+	enemy.play(&"recover")
 	_remaining = enemy.config.recover_time
 
 

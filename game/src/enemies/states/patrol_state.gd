@@ -28,6 +28,7 @@ func physics_update(delta: float) -> StringName:
 	if _pause_timer > 0.0:
 		_pause_timer -= delta
 		enemy.brake(delta)
+		enemy.play(&"idle")
 		return &""
 
 	# Turn at the end of the beat, and at anything solid in the way — a patrol
@@ -41,6 +42,7 @@ func physics_update(delta: float) -> StringName:
 		return &""
 
 	enemy.walk(_direction, enemy.config.patrol_speed)
+	enemy.play(&"run")
 	return &""
 
 

@@ -27,6 +27,8 @@ func physics_update(delta: float) -> StringName:
 	if direction == 0 or enemy.distance_to_player() < enemy.config.lunge_range * 0.6:
 		enemy.brake(delta)
 		enemy.set_facing(direction)
+		enemy.play(&"idle")
 		return &""
 	enemy.walk(direction, landlord.approach_speed())
+	enemy.play(&"run")
 	return &""

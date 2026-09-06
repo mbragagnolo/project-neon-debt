@@ -1,5 +1,6 @@
 room maintenance_closet
 name Maintenance 13
+style residential
 cell 5 2
 size 1 1
 door 1 hall_13 2

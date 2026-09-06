@@ -1,5 +1,6 @@
 room drain_riser
 name Drain Riser
+style shaft
 cell 6 4
 size 1 4
 door 1 gut_deep 2

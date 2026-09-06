@@ -1,5 +1,6 @@
 room collections_lift
 name Collections - Private Lift
+style shaft
 cell 10 -1
 size 1 2
 door 1 roof_gap 2

@@ -17,7 +17,7 @@ const COL_PROMPT := Color(0.55, 1.0, 0.5)
 @export var open_side: int = 1
 @export var reach: float = 110.0
 
-var _slab: ColorRect
+var _slab: TextureRect
 var _collider: CollisionShape2D
 var _prompt: Label
 var _open: bool = false
@@ -42,8 +42,10 @@ func _ready() -> void:
 	_collider.position = Vector2(0.0, -size.y * 0.5)
 	add_child(_collider)
 
-	_slab = ColorRect.new()
-	_slab.color = COL_GRATE
+	_slab = TextureRect.new()
+	_slab.texture = load("res://assets/props/grate.png")
+	_slab.stretch_mode = TextureRect.STRETCH_TILE
+	_slab.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	_slab.position = Vector2(-size.x * 0.5, -size.y)
 	_slab.size = size
 	_slab.mouse_filter = Control.MOUSE_FILTER_IGNORE

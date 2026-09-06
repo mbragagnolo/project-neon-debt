@@ -1,5 +1,6 @@
 room hall_14
 name Floor 14 - Hall
+style residential
 cell 6 1
 size 2 1
 door 1 unit_14c 1

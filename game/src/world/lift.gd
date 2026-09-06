@@ -34,18 +34,21 @@ func _ready() -> void:
 	collider.shape = rect
 	collider.position = Vector2(0.0, 12.0)
 	add_child(collider)
-	var deck := ColorRect.new()
-	deck.color = COL_DECK
+	var deck := TextureRect.new()
+	deck.texture = load("res://assets/props/lift_deck.png")
+	deck.stretch_mode = TextureRect.STRETCH_TILE
+	deck.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	deck.position = Vector2(-width * 0.5, 0.0)
 	deck.size = Vector2(width, 24.0)
 	deck.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(deck)
-	var rail := ColorRect.new()
-	rail.color = COL_RAIL
-	rail.position = Vector2(-width * 0.5, 0.0)
-	rail.size = Vector2(width, 4.0)
-	rail.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(rail)
+	var light := PointLight2D.new()
+	light.texture = load("res://assets/fx/light_soft.png")
+	light.color = Color(1.0, 0.75, 0.3)
+	light.energy = 0.6
+	light.texture_scale = 2.0
+	light.position = Vector2(0.0, 12.0)
+	add_child(light)
 	_wait = pause
 
 

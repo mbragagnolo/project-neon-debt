@@ -1,5 +1,6 @@
 room roof_gap
 name Between Towers
+style roof
 cell 9 0
 size 1 1
 door 1 roof_access 3

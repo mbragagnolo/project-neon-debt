@@ -21,6 +21,20 @@ var _notice: Sign
 
 func _ready() -> void:
 	add_to_group(&"teases")
+	var crate := Sprite2D.new()
+	crate.texture = load("res://assets/props/tease_crate.png")
+	crate.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	crate.centered = false
+	crate.position = Vector2(-24.0, -48.0)
+	add_child(crate)
+	var light := PointLight2D.new()
+	light.name = "Light"
+	light.texture = load("res://assets/fx/light_soft.png")
+	light.color = COL_LOCK
+	light.energy = 0.8
+	light.texture_scale = 1.8
+	light.position = Vector2(0.0, -24.0)
+	add_child(light)
 	_notice = Sign.new()
 	_notice.text = "%s FIRMWARE\nTIER 2 · LOCKED" % Lines.CORP
 	_notice.width = 220.0
@@ -38,6 +52,11 @@ func is_unlocked() -> bool:
 ## the ledge lights up. Nothing becomes reachable — that is V2's first act.
 func unlock() -> void:
 	_unlocked = true
+	var light: PointLight2D = get_node_or_null("Light") as PointLight2D
+	if light != null:
+		light.color = COL_OPEN
+		light.energy = 1.4
+		light.texture_scale = 3.0
 	_notice.queue_free()
 	_notice = Sign.new()
 	_notice.text = "%s FIRMWARE\nTIER 2 · OVERRIDE ACCEPTED" % Lines.CORP
@@ -53,9 +72,6 @@ func _process(delta: float) -> void:
 
 
 func _draw() -> void:
-	# The crate.
-	draw_rect(Rect2(-22.0, -46.0, 44.0, 46.0), COL_CRATE)
-	draw_rect(Rect2(-22.0, -46.0, 44.0, 46.0), Color(0.3, 0.2, 0.05), false, 3.0)
 	# The lock, breathing — or, after the override, open and lit.
 	var pulse: float = 0.6 + 0.4 * (0.5 + 0.5 * sin(_phase * 3.0))
 	var base: Color = COL_OPEN if _unlocked else COL_LOCK

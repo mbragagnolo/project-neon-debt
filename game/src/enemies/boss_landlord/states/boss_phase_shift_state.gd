@@ -14,6 +14,7 @@ var _summoned: bool = false
 func enter(_previous: StringName) -> void:
 	var landlord: Landlord = enemy as Landlord
 	enemy.tint(enemy.config.color_stagger)
+	enemy.play(&"phase")
 	enemy.end_lunge()
 	_remaining = landlord.phase_shift_time
 	_summoned = false

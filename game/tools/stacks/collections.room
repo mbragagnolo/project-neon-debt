@@ -1,5 +1,6 @@
 room collections
 name Collections - Floor 40
+style collections
 cell 12 -1
 size 2 1
 door 1 collections_lobby 2

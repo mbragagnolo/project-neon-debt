@@ -13,6 +13,7 @@ extends Node2D
 ## terminal with everything kept; the room reloads, so enemies come back.
 
 const ROOM_DIR := "res://rooms/stacks"
+const TITLE_SCENE := "res://rooms/title.tscn"
 const START_ROOM := &"unit_14c"
 const FADE_SECONDS := 0.16
 
@@ -86,7 +87,7 @@ func travel(room_id: StringName, door_id: StringName) -> void:
 	if arrival != null:
 		player.set_facing(1 if arrival.side == Door.Side.LEFT else (-1 if arrival.side == Door.Side.RIGHT else player.facing))
 	player.apply_room_limits(current_room)
-	player.camera.reset_smoothing()
+	player.camera.snap_to_target()
 	if not GameState.has_visited(room_id) or door_id == &"start":
 		Events.toast_requested.emit(current_room.display_name.to_upper())
 	current_room.enter()
@@ -160,9 +161,9 @@ func play_ending() -> void:
 	if tease != null and tease.has_method(&"unlock"):
 		# The camera rides the player; move it to where the tease is, a little
 		# above the crate so the notice reads.
-		var offset: Vector2 = (tease as Node2D).global_position - player.global_position + Vector2(0.0, -40.0)
+		var offset: Vector2 = (tease as Node2D).global_position - player.global_position + Vector2(0.0, -84.0)
 		var tween := create_tween()
-		tween.tween_property(player.camera, "position", offset, 1.6) \
+		tween.tween_method(player.camera.set_pan, Vector2.ZERO, offset, 1.6) \
 			.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 		await tween.finished
 		tease.call(&"unlock")
@@ -171,6 +172,12 @@ func play_ending() -> void:
 	_ending.show_ending()
 	await _ending.dismissed
 	var back := create_tween()
-	back.tween_property(player.camera, "position", Vector2(0.0, -44.0), 0.8)
+	back.tween_method(player.camera.set_pan, player.camera.get_pan(), Vector2.ZERO, 0.8)
 	await back.finished
 	player.frozen = false
+	# The credits close on the title (M7). Under a test the world is not the
+	# current scene, and the run simply continues.
+	if get_tree().current_scene == self:
+		await _fade_to(1.0)
+		Music.stop(0.4)
+		get_tree().change_scene_to_file(TITLE_SCENE)

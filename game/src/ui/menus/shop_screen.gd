@@ -42,6 +42,7 @@ func open() -> void:
 	_open = true
 	_index = 0
 	visible = true
+	Sfx.play(&"ui_open")
 	get_tree().paused = true
 	_feedback.text = ""
 	_redraw()
@@ -51,6 +52,7 @@ func close() -> void:
 	_open = false
 	visible = false
 	get_tree().paused = false
+	Sfx.play(&"ui_close")
 
 
 func _input(event: InputEvent) -> void:
@@ -60,12 +62,17 @@ func _input(event: InputEvent) -> void:
 		close()
 	elif event.is_action(&"move_down"):
 		_index = wrapi(_index + 1, 0, stock.entries.size())
+		Sfx.play(&"ui_move")
 		_redraw()
 	elif event.is_action(&"move_up"):
 		_index = wrapi(_index - 1, 0, stock.entries.size())
+		Sfx.play(&"ui_move")
 		_redraw()
 	elif event.is_action(&"interact"):
-		_feedback_for(buy(stock.entries[_index]))
+		var outcome: StringName = buy(stock.entries[_index])
+		if outcome != &"bought":
+			Sfx.play(&"deny")
+		_feedback_for(outcome)
 		_redraw()
 	else:
 		return

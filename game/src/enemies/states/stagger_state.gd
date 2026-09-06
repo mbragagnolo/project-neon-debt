@@ -21,6 +21,7 @@ var _remaining: float = 0.0
 
 func enter(_previous: StringName) -> void:
 	enemy.tint(enemy.config.color_stagger)
+	enemy.play(&"stagger")
 	# A hit landing mid-lunge has to disarm the attack, or an interrupted Scav
 	# still hits you with a swing it never finished.
 	enemy.end_lunge()

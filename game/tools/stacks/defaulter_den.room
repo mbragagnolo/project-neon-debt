@@ -1,5 +1,6 @@
 room defaulter_den
 name The Gut - Sump
+style gut
 cell 3 7
 size 2 1
 door 1 gut_lift 3

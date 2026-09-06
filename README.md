@@ -4,12 +4,15 @@ Cyberpunk 2D metroidvania with Castlevania-style RPG elements, built in
 **Godot 4.7** (GDScript). See [DESIGN.md](DESIGN.md) for the full vertical-slice
 design and the milestone plan.
 
-**Status: M6 (enemies and the boss) in, M7 in progress on the
-`vertical-slice` branch.** The Stacks — 34 rooms, the full roster (Scav,
-Watcher drone, Riot unit, Elite Scav), the Landlord with two phases in a
-sealed arena, and the slice's ending — is the main scene. Play it from the
-start: wake up in 14-C, find the Mag-Hook, climb. The gyms are still there
-and still tested; each milestone's lab outlives its milestone.
+**Status: the vertical slice is complete (M0–M7) on the `vertical-slice`
+branch.** The Stacks — 34 rooms, the full roster (Scav, Watcher drone, Riot
+unit, Elite Scav), the Landlord with two phases in a sealed arena, and the
+slice's ending — sits behind a title screen with three save slots. M7 added
+the art (pixel art at 3×, lights, particles, a real HUD), the sound (49
+synthesised effects, five music loops), the juice, settings, and the title.
+Play it from the start: NEW RUN, wake up in 14-C, find the Mag-Hook, climb.
+The gyms are still there and still tested; each milestone's lab outlives
+its milestone.
 
 ---
 
@@ -39,6 +42,24 @@ godot --headless --path . --quit-after 120
 # Run the test suite
 godot --headless --path . -s addons/gut/gut_cmdln.gd -gconfig=.gutconfig.json
 ```
+
+## Regenerating the art and the audio
+
+Every sprite, tile, prop, sound and music loop is generated from a script
+in `game/tools/art/` or `game/tools/audio/` (docs/art/direction.md,
+docs/audio/direction.md). They need Python 3 with `pillow`, `numpy`,
+`scipy` and `soundfile`:
+
+```bash
+pip install pillow numpy scipy soundfile
+cd game/tools/art   && python make_player.py && python make_cast.py && python make_tiles.py && python make_props.py && python make_fx.py
+cd ../audio         && python make_sfx.py && python make_music.py
+cd ../..            && godot --headless --import      # then regenerate the district if a tile changed
+godot --headless tools/make_stacks.tscn
+```
+
+The outputs are committed, so none of this is needed to play or to run the
+tests.
 
 ## Layout
 
@@ -89,7 +110,7 @@ revisiting:
 |---|---|---|
 | Engine | Godot 4.7 (standard build) | Started on 4.3; moved to 4.7 before M1 so the movement controller is never written against an engine we then migrate off. CI pins the exact patch (`GODOT_VERSION` in `ci.yml`) — keep the local editor on the same one. |
 | Base viewport | 1920×1080, `canvas_items` stretch, `keep` aspect | The *coordinate space*, not the output resolution — `canvas_items` renders natively at whatever the window is, so 1440p and 4K are already crisp. 1080p keeps world units equal to pixels at the most common display size. |
-| Default window | 1280×720 windowed | Fits any laptop on first launch; fullscreen gives native. A resolution/fullscreen setting is M7. |
+| Default window | 1280×720 windowed | Fits any laptop on first launch; fullscreen is a setting (title or the pause shell's SYSTEM tab), kept in `user://settings.cfg`. |
 | Texture filter | Linear | Nearest would be a pixel-art commitment, and DESIGN.md §7 hasn't made that call. One-line flip if the art pass goes pixel. |
 | Greybox grid | 60px — 1920×1080 is exactly 32×18 units | Clean divisor for M5 level layout; a 60×90 player is 1×1.5 units. |
 | Room size | One room = one screen at M0 | The M1 gym and M5's district rooms get a following camera and can be any size. |

@@ -1,5 +1,6 @@
 room mezz_east
 name Mezzanine East
+style mezz
 cell 4 3
 size 1 1
 door 1 west_stair 3

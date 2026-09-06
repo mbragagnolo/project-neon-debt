@@ -1,7 +1,8 @@
 # Screens
 
 **Status: the inventory-equip screen is LOCKED for M3; the pause shell, map
-and quest log are built (M5).** Settings is M7. All of them slot into the
+and quest log are built (M5). The title screen, the save slots and the
+settings tab are built (M7).** All of them slot into the
 same pause shell this file specifies.
 
 ## What the equip screen is for — LOCKED
@@ -153,8 +154,36 @@ objective is met and only the hand-in remains.
 pages, `interact`/`jump` advances, `pause` skips out; `ShopScreen` is a short
 list, `interact` buys, `pause` leaves. Both pause the tree while up.
 
+## The title, the slots, the settings — built (M7)
+
+**Title** (`src/ui/title/title_screen.gd`, `rooms/title.tscn`, the main
+scene): the skyline in the rain, the name in neon, and a short list —
+CONTINUE (only when a slot holds a save), NEW RUN, SETTINGS, QUIT. The
+movement keys walk it, `interact`/`jump` confirm, `pause` backs out; the
+ui_* actions do the same on a pad.
+
+**Slots.** Three cards: `SLOT n` and one line — level, the care terminal
+the save sits at, play time, credits, CLEARED once the Landlord is down —
+or `— EMPTY —`. CONTINUE picks an occupied slot and loads it; NEW RUN picks
+any slot and, over a save, asks a second time before wiping it. Either way
+`GameState.active_slot` is set and the world reads
+`GameState.current_save_point` to know where to wake up: the terminal, or
+14-C for a fresh run.
+
+**Settings** (`src/ui/settings_panel.gd`) is one panel used twice — on the
+title and as the shell's SYSTEM tab. Rows: FULLSCREEN, MASTER / MUSIC /
+SFX VOLUME (ten steps), SCREEN SHAKE, CONTROLS. Left/right change a value,
+`interact` toggles or opens the controls page, which lists every action
+with its keyboard key *and* its pad button read from the input map
+(`InputPrompt.key`, `InputPrompt.pad`). Values live in `Settings`
+(`user://settings.cfg`) and apply immediately.
+
+**SYSTEM tab** (`src/ui/menus/system_tab.gd`): the same panel plus QUIT TO
+TITLE, which asks twice and says what is lost — progress since the last
+care terminal. The ending returns to the title on its own.
+
 ## Exports
-- **M7:** restyle only. If the polish pass needs to move a panel, this spec
-  was wrong and should be amended, not silently diverged from.
+- **M7:** restyled with the neon theme (`assets/theme/neon.tres`); no
+  panel moved.
 - **V2:** manual stat allocation and respec land in the sheet panel; rule 5
   is where they attach.

@@ -1,5 +1,6 @@
 room gut_cistern
 name Cistern
+style gut
 cell 1 8
 size 1 1
 door 1 gut_lift 2

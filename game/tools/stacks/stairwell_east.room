@@ -1,5 +1,6 @@
 room stairwell_east
 name Stairwell East
+style shaft
 cell 8 1
 size 1 2
 door 1 hall_14 2

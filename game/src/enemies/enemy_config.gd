@@ -110,6 +110,8 @@ extends Resource
 @export var projectile_size: Vector2 = Vector2(16.0, 16.0)
 @export var projectile_color: Color = Color(1.0, 0.35, 0.35)
 @export var projectile_knockback: float = 120.0
+## The shot's sprite (M7).
+@export var projectile_texture: Texture2D
 
 @export_group("Reactions")
 ## Seconds interrupted when a hit meets `stagger_threshold`. Must stay under

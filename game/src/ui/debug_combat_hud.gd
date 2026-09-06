@@ -79,6 +79,9 @@ func _ready() -> void:
 	# The bus carries no history, so a HUD built after the sheet was published
 	# would start blank until something happened. Ask once.
 	_on_stats_changed(PlayerStats.as_dictionary())
+	var player: Node = get_tree().get_first_node_in_group(&"player")
+	if player != null and player.has_method(&"publish_vitals"):
+		player.call(&"publish_vitals")
 
 
 func _process(delta: float) -> void:

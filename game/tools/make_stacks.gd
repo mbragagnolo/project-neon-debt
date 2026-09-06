@@ -16,6 +16,17 @@ const COL_BACK := Color("0d1018")
 const COL_SOLID := Color("3a4256")
 const COL_PLATFORM := Color("5a6684")
 
+## The dark each style sits under; lights punch through it (M7).
+const AMBIENT: Dictionary = {
+	"residential": Color(0.62, 0.66, 0.8),
+	"shaft": Color(0.5, 0.55, 0.7),
+	"roof": Color(0.48, 0.54, 0.72),
+	"mezz": Color(0.62, 0.64, 0.82),
+	"gut": Color(0.46, 0.53, 0.56),
+	"collections": Color(0.54, 0.54, 0.68),
+}
+const LIGHT_TEXTURE := "res://assets/fx/light_soft.png"
+
 const ENEMY_SCENES: Dictionary = {
 	"e": "res://src/enemies/scav/scav.tscn",
 	"d": "res://src/enemies/drone/drone.tscn",
@@ -79,6 +90,7 @@ func _graph_entry(spec: RoomSpec) -> Dictionary:
 	return {
 		"id": String(spec.id),
 		"name": spec.display_name,
+		"style": spec.style,
 		"cell": spec.cell,
 		"size": spec.size,
 		"save": spec.has_marker_type("save"),
@@ -102,13 +114,7 @@ func _build(spec: RoomSpec) -> void:
 	_props = _group("Props")
 	_pickups = _group("Pickups")
 
-	var back := ColorRect.new()
-	back.name = "Backdrop"
-	back.color = COL_BACK
-	back.size = spec.pixel_size()
-	back.z_index = -10
-	back.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_geometry.add_child(back)
+	_backdrop(spec)
 
 	var index: int = 0
 	for rect: Rect2i in spec.solid_rects():
@@ -152,6 +158,9 @@ func _build(spec: RoomSpec) -> void:
 		for rect: Rect2i in regions_of:
 			_marker(c, marker["type"], marker["args"], rect)
 
+	_dress(spec)
+	_atmosphere(spec)
+
 	_own_recursive(_root, _root)
 	var packed := PackedScene.new()
 	if packed.pack(_root) != OK:
@@ -191,9 +200,16 @@ func _solid(solid_name: String, rect: Rect2i) -> void:
 	collider.name = "CollisionShape2D"
 	collider.shape = shape
 	body.add_child(collider)
-	var fill := ColorRect.new()
-	fill.name = "ColorRect"
-	fill.color = COL_SOLID
+	var fill := NinePatchRect.new()
+	fill.name = "Wall"
+	fill.texture = load("res://assets/tiles/wall_%s.png" % _spec.style)
+	fill.patch_margin_left = 60
+	fill.patch_margin_top = 60
+	fill.patch_margin_right = 60
+	fill.patch_margin_bottom = 60
+	fill.axis_stretch_horizontal = NinePatchRect.AXIS_STRETCH_MODE_TILE
+	fill.axis_stretch_vertical = NinePatchRect.AXIS_STRETCH_MODE_TILE
+	fill.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	fill.position = -px.size * 0.5
 	fill.size = px.size
 	fill.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -217,9 +233,11 @@ func _platform(platform_name: String, rect: Rect2i) -> void:
 	collider.shape = shape
 	collider.one_way_collision = true
 	body.add_child(collider)
-	var fill := ColorRect.new()
-	fill.name = "ColorRect"
-	fill.color = COL_PLATFORM
+	var fill := TextureRect.new()
+	fill.name = "Ledge"
+	fill.texture = load("res://assets/tiles/platform.png")
+	fill.stretch_mode = TextureRect.STRETCH_TILE
+	fill.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	fill.position = Vector2(-px.size.x * 0.5, -thickness * 0.5)
 	fill.size = Vector2(px.size.x, thickness)
 	fill.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -252,13 +270,31 @@ func _door(digit: String, rect: Rect2i) -> void:
 	door.set("room_size", _spec.pixel_size())
 	_doors.add_child(door)
 	# The opening, drawn: a lit frame in the wall so a door reads as a door.
-	var frame := ColorRect.new()
-	frame.name = "Frame"
-	frame.color = Color(0.1, 0.16, 0.24)
-	frame.position = -px.size * 0.5
-	frame.size = px.size
-	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	door.add_child(frame)
+	var side: int = _spec.door_side(rect)
+	if side == Door.Side.LEFT or side == Door.Side.RIGHT:
+		var frame := Sprite2D.new()
+		frame.name = "Frame"
+		frame.texture = load("res://assets/props/door_frame.png")
+		frame.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		frame.z_index = -2
+		door.add_child(frame)
+		var lamp := PointLight2D.new()
+		lamp.name = "Lamp"
+		lamp.texture = load(LIGHT_TEXTURE)
+		lamp.color = Color(0.5, 0.9, 1.0)
+		lamp.energy = 0.7
+		lamp.texture_scale = 2.4
+		lamp.position = Vector2(0.0, -px.size.y * 0.5 + 10.0)
+		door.add_child(lamp)
+	else:
+		var hatch := ColorRect.new()
+		hatch.name = "Frame"
+		hatch.color = Color(0.03, 0.04, 0.07)
+		hatch.position = -px.size * 0.5
+		hatch.size = px.size
+		hatch.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		hatch.z_index = -2
+		door.add_child(hatch)
 
 
 func _encounter(kind: String, spots: Array[Vector2i]) -> void:
@@ -377,6 +413,210 @@ func _pickup(c: String, type: String, parts: PackedStringArray, at: Vector2) -> 
 			pickup.set("kind", Pickup.Kind.QUEST_ITEM)
 			pickup.set("quest_item_id", StringName(payload))
 	_pickups.add_child(pickup)
+
+
+# --- The art pass (M7) ----------------------------------------------------------------
+
+## The backdrop: a tiled interior for the style, and for the rooms that
+## open onto the night, the skyline scrolling behind it.
+func _backdrop(spec: RoomSpec) -> void:
+	if spec.style == "roof":
+		var parallax := ParallaxBackground.new()
+		parallax.name = "Sky"
+		parallax.layer = -20
+		_root.add_child(parallax)
+		var sky := ColorRect.new()
+		sky.name = "Night"
+		sky.color = Color("07080f")
+		sky.position = Vector2(-2000.0, -2000.0)
+		sky.size = Vector2(spec.pixel_size().x + 4000.0, spec.pixel_size().y + 4000.0)
+		sky.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var sky_layer := ParallaxLayer.new()
+		sky_layer.name = "SkyLayer"
+		sky_layer.motion_scale = Vector2(0.0, 0.0)
+		sky_layer.add_child(sky)
+		parallax.add_child(sky_layer)
+		for entry: Array in [["skyline_far", 0.12, 0.04, 1], ["skyline_near", 0.3, 0.08, 2]]:
+			var layer := ParallaxLayer.new()
+			layer.name = String(entry[0]).to_pascal_case()
+			layer.motion_scale = Vector2(float(entry[1]), float(entry[2]))
+			layer.motion_mirroring = Vector2(960.0, 0.0)
+			var strip := TextureRect.new()
+			strip.name = "Strip"
+			strip.texture = load("res://assets/tiles/%s.png" % entry[0])
+			strip.stretch_mode = TextureRect.STRETCH_TILE
+			strip.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			strip.size = Vector2(960.0 * 3.0, 540.0)
+			strip.position = Vector2(-960.0, spec.pixel_size().y - 540.0 - 60.0 * float(entry[3]))
+			strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			layer.add_child(strip)
+			parallax.add_child(layer)
+		return
+	var back := TextureRect.new()
+	back.name = "Backdrop"
+	back.texture = load("res://assets/tiles/back_%s.png" % spec.style)
+	back.stretch_mode = TextureRect.STRETCH_TILE
+	back.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	back.size = spec.pixel_size()
+	back.z_index = -10
+	back.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_geometry.add_child(back)
+
+
+## The dark, and the weather.
+func _atmosphere(spec: RoomSpec) -> void:
+	var dark := CanvasModulate.new()
+	dark.name = "Ambient"
+	dark.color = AMBIENT.get(spec.style, Color(0.6, 0.6, 0.7))
+	_root.add_child(dark)
+	var size: Vector2 = spec.pixel_size()
+	match spec.style:
+		"roof":
+			_particles("Rain", Vector2(size.x * 0.5, -40.0), Vector2(size.x * 0.5, 4.0), Vector2(60.0, 1300.0), 1.2, int(size.x / 12.0), "drop", Color(0.7, 0.8, 1.0, 0.5), 2.0)
+		"gut":
+			for i: int in maxi(1, int(size.x / 900.0)):
+				_particles("Steam%d" % i, Vector2(size.x * (float(i) + 0.5) / maxf(1.0, float(int(size.x / 900.0))), size.y - 80.0), Vector2(60.0, 10.0), Vector2(0.0, -40.0), 3.0, 14, "puff", Color(0.7, 0.85, 0.85, 0.18), 9.0)
+		_:
+			_particles("Dust", size * 0.5, size * 0.5, Vector2(8.0, -6.0), 8.0, int(size.x * size.y / 120000.0), "dot", Color(1.0, 0.95, 0.85, 0.22), 1.6)
+
+
+func _particles(node_name: String, at: Vector2, extents: Vector2, velocity: Vector2, life: float, amount: int, texture: String, colour: Color, scale: float) -> void:
+	var particles := GPUParticles2D.new()
+	particles.name = node_name
+	particles.position = at
+	particles.amount = maxi(amount, 1)
+	particles.lifetime = life
+	particles.preprocess = life
+	particles.texture = load("res://assets/fx/%s.png" % texture)
+	particles.z_index = -3
+	particles.modulate = colour
+	var material := ParticleProcessMaterial.new()
+	material.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_BOX
+	material.emission_box_extents = Vector3(extents.x, extents.y, 1.0)
+	material.direction = Vector3(velocity.x, velocity.y, 0.0)
+	material.spread = 8.0
+	material.initial_velocity_min = velocity.length() * 0.8
+	material.initial_velocity_max = velocity.length() * 1.2
+	material.gravity = Vector3.ZERO
+	material.scale_min = scale
+	material.scale_max = scale * 1.4
+	particles.process_material = material
+	_root.add_child(particles)
+
+
+## Dressing: posters, vents, pipes, lamps, crates — placed where the grid
+## has room, seeded by the room id so a regeneration is the same room.
+func _dress(spec: RoomSpec) -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = hash(String(spec.id))
+	var decor := Node2D.new()
+	decor.name = "Decor"
+	decor.z_index = -5
+	_root.add_child(decor)
+	var taken: Dictionary = {}
+	for c: String in spec.markers:
+		for at: Vector2i in spec.positions_of(c):
+			for dx: int in range(-2, 3):
+				for dy: int in range(-4, 2):
+					taken[at + Vector2i(dx, dy)] = true
+	for kind: String in ["P", "e", "d", "r", "E", "B"]:
+		for at: Vector2i in spec.positions_of(kind):
+			for dx: int in range(-2, 3):
+				taken[at + Vector2i(dx, 0)] = true
+	var regions: Dictionary = spec.door_regions()
+	for digit: String in regions:
+		var rect: Rect2i = regions[digit]
+		for x: int in range(rect.position.x - 3, rect.end.x + 4):
+			for y: int in range(rect.position.y - 3, rect.end.y + 4):
+				taken[Vector2i(x, y)] = true
+
+	var floors: Array[Vector2i] = []
+	var walls: Array[Vector2i] = []
+	var ceilings: Array[Vector2i] = []
+	for y: int in range(1, spec.height() - 1):
+		for x: int in range(1, spec.width() - 1):
+			if not spec.is_air(x, y) or taken.has(Vector2i(x, y)):
+				continue
+			if spec.is_solid(x, y + 1):
+				floors.append(Vector2i(x, y))
+			if spec.is_solid(x, y - 1):
+				ceilings.append(Vector2i(x, y))
+			if spec.is_air(x, y + 1) and spec.is_air(x, y + 2) and spec.is_air(x, y - 1):
+				walls.append(Vector2i(x, y))
+	var cells: int = spec.size.x * spec.size.y
+	var sets: Dictionary = _decor_sets(spec.style)
+	_place(decor, rng, floors, sets["floor"], cells * 2, spec, taken, 3)
+	_place(decor, rng, walls, sets["wall"], cells * 3, spec, taken, 4)
+	_place(decor, rng, ceilings, sets["ceiling"], cells * 2, spec, taken, 5, true)
+
+
+func _decor_sets(style: String) -> Dictionary:
+	match style:
+		"residential":
+			return {"floor": ["crates", "barrel", "monitor"], "wall": ["poster_a", "poster_b", "window", "vent"], "ceiling": ["lamp", "pipe_h"]}
+		"roof":
+			return {"floor": ["crates", "barrel", "fan"], "wall": ["vent", "window"], "ceiling": ["pipe_h"]}
+		"mezz":
+			return {"floor": ["crates", "barrel", "monitor"], "wall": ["poster_a", "poster_b", "vent", "window"], "ceiling": ["neon_tube_c", "neon_tube_m", "lamp", "cable"]}
+		"gut":
+			return {"floor": ["barrel", "crates", "fan"], "wall": ["vent", "pipe_v", "fan"], "ceiling": ["pipe_h", "cable", "lamp"]}
+		"collections":
+			return {"floor": ["monitor"], "wall": ["window", "poster_b"], "ceiling": ["neon_tube_c", "lamp"]}
+	return {"floor": ["barrel"], "wall": ["vent", "pipe_v"], "ceiling": ["pipe_h", "lamp", "cable"]}
+
+
+func _place(parent: Node, rng: RandomNumberGenerator, spots: Array[Vector2i], names: Array, count: int, spec: RoomSpec, taken: Dictionary, spacing: int, hangs: bool = false) -> void:
+	if spots.is_empty() or names.is_empty():
+		return
+	var placed: int = 0
+	var tries: int = 0
+	while placed < count and tries < count * 12:
+		tries += 1
+		var at: Vector2i = spots[rng.randi() % spots.size()]
+		if taken.has(at):
+			continue
+		var name: String = names[rng.randi() % names.size()]
+		var texture: Texture2D = load("res://assets/props/%s.png" % name)
+		if texture == null:
+			continue
+		var w_tiles: int = ceili(texture.get_width() / RoomSpec.TILE)
+		var fits := true
+		for dx: int in range(0, w_tiles):
+			if not spec.is_air(at.x + dx, at.y) or taken.has(Vector2i(at.x + dx, at.y)):
+				fits = false
+		if not fits:
+			continue
+		var sprite := Sprite2D.new()
+		sprite.name = "%s_%d" % [name.to_pascal_case(), placed]
+		sprite.texture = texture
+		sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		sprite.centered = false
+		var px: Vector2 = Vector2(at) * RoomSpec.TILE
+		if hangs:
+			sprite.position = Vector2(px.x, px.y)
+		else:
+			sprite.position = Vector2(px.x, px.y + RoomSpec.TILE - texture.get_height())
+		parent.add_child(sprite)
+		if name == "lamp" or name.begins_with("neon_tube") or name == "window" or name == "monitor":
+			var light := PointLight2D.new()
+			light.name = "Light"
+			light.texture = load(LIGHT_TEXTURE)
+			light.position = Vector2(texture.get_width() * 0.5, texture.get_height() * 0.6)
+			light.texture_scale = 2.2 if name == "lamp" else 1.6
+			light.energy = 0.9 if name == "lamp" else 0.5
+			if name == "lamp":
+				light.color = Color(1.0, 0.75, 0.45)
+			elif name == "neon_tube_m":
+				light.color = Color(1.0, 0.4, 0.75)
+			elif name == "monitor":
+				light.color = Color(0.5, 1.0, 0.6)
+			else:
+				light.color = Color(0.45, 0.9, 1.0)
+			sprite.add_child(light)
+		for dx: int in range(-spacing, w_tiles + spacing):
+			for dy: int in range(-2, 3):
+				taken[at + Vector2i(dx, dy)] = true
+		placed += 1
 
 
 ## `pack()` only saves nodes it owns. Instanced sub-scenes keep their own

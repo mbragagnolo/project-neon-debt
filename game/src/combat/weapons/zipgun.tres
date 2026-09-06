@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="RangedWeapon" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="RangedWeapon" load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://src/combat/weapons/ranged_weapon.gd" id="1_ranged"]
+[ext_resource type="Texture2D" path="res://assets/fx/bolt.png" id="2_tex"]
 
 [resource]
 script = ExtResource("1_ranged")
@@ -16,3 +17,4 @@ projectile_lifetime = 1.1
 muzzle_offset = Vector2(34, -46)
 projectile_size = Vector2(18, 8)
 projectile_color = Color(1, 0.85, 0.35, 1)
+projectile_texture = ExtResource("2_tex")

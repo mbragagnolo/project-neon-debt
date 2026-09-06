@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3]
+[gd_scene load_steps=23 format=3]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_player"]
 [ext_resource type="Resource" path="res://src/player/movement_config.tres" id="2_config"]
@@ -16,6 +16,14 @@
 [ext_resource type="Script" path="res://src/combat/hacks/hack_kit.gd" id="16_hack_kit"]
 [ext_resource type="Resource" path="res://src/combat/hacks/catalog.tres" id="17_hack_catalog"]
 [ext_resource type="Resource" path="res://src/combat/hacks/hack_config.tres" id="18_hack_config"]
+[ext_resource type="Script" path="res://src/art/pixel_anim.gd" id="19_anim"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player.png" id="20_sheet"]
+[ext_resource type="Texture2D" path="res://assets/fx/light_soft.png" id="21_light"]
+[ext_resource type="Script" path="res://src/player/pixel_camera.gd" id="22_camera"]
+[ext_resource type="Script" path="res://src/art/pixel_anim.gd" id="19_anim"]
+[ext_resource type="Texture2D" path="res://assets/sprites/player.png" id="20_sheet"]
+[ext_resource type="Texture2D" path="res://assets/fx/light_soft.png" id="21_light"]
+[ext_resource type="Script" path="res://src/player/pixel_camera.gd" id="22_camera"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
 size = Vector2(48, 88)
@@ -38,34 +46,40 @@ shape = SubResource("RectangleShape2D_body")
 
 [node name="Visual" type="Node2D" parent="."]
 
-[node name="Guard" type="ColorRect" parent="Visual"]
-visible = false
-offset_left = -32.0
-offset_top = -96.0
-offset_right = 32.0
-offset_bottom = 8.0
-mouse_filter = 2
-color = Color(0.35, 0.85, 1, 0.4)
+[node name="Glow" type="Sprite2D" parent="Visual"]
+modulate = Color(0.35, 0.85, 1, 0)
+position = Vector2(0, -48)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("21_light")
 
-[node name="Body" type="ColorRect" parent="Visual"]
-offset_left = -24.0
-offset_top = -88.0
-offset_right = 24.0
-mouse_filter = 2
-color = Color(0, 0.898039, 1, 1)
+[node name="Sprite" type="Sprite2D" parent="Visual"]
+position = Vector2(0, -48)
+texture = ExtResource("20_sheet")
+script = ExtResource("19_anim")
+frame_width = 66
+frame_height = 96
+clips = {
+"attack": [12, 3, 18.0, false],
+"dash": [10, 1, 0.0, false],
+"fall": [9, 1, 0.0, false],
+"hurt": [15, 1, 0.0, false],
+"idle": [0, 2, 3.0, true],
+"jump": [8, 1, 0.0, false],
+"run": [2, 6, 12.0, true],
+"wall": [11, 1, 0.0, false]
+}
+autoplay = &"idle"
 
-[node name="Nose" type="ColorRect" parent="Visual"]
-offset_left = 12.0
-offset_top = -68.0
-offset_right = 32.0
-offset_bottom = -56.0
-mouse_filter = 2
-color = Color(1, 0.176471, 0.584314, 1)
+[node name="Light" type="PointLight2D" parent="Visual"]
+position = Vector2(0, -44)
+color = Color(0.75, 0.9, 1, 1)
+energy = 0.6
+texture = ExtResource("21_light")
+texture_scale = 4.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -44)
-position_smoothing_enabled = true
-position_smoothing_speed = 8.0
+script = ExtResource("22_camera")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("13_health")

@@ -25,7 +25,9 @@ const COL_LOCKED := Color(1.0, 0.45, 0.45)
 ## px the terminal can be used from.
 @export var reach: float = 140.0
 
-@onready var _slab: ColorRect = $Slab
+@onready var _slab: Control = $Slab
+var _terminal_sprite: Sprite2D
+var _light: PointLight2D
 @onready var _collider: CollisionShape2D = $CollisionShape2D
 @onready var _terminal: Area2D = $Terminal
 @onready var _prompt: Label = $Prompt
@@ -53,9 +55,24 @@ func _ready() -> void:
 	rect.size = size
 	_collider.shape = rect
 	_collider.position = Vector2(0.0, -size.y * 0.5)
-	_slab.color = COL_SEALED
 	_slab.position = Vector2(-size.x * 0.5, -size.y)
 	_slab.size = size
+	if _slab is NinePatchRect:
+		(_slab as NinePatchRect).texture = load("res://assets/props/breach_door.png")
+	_terminal_sprite = Sprite2D.new()
+	_terminal_sprite.texture = load("res://assets/props/breach_terminal.png")
+	_terminal_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	_terminal_sprite.centered = false
+	_terminal_sprite.position = Vector2(-size.x * 0.5 - 44.0, -48.0)
+	_terminal_sprite.z_index = -1
+	add_child(_terminal_sprite)
+	_light = PointLight2D.new()
+	_light.texture = load("res://assets/fx/light_soft.png")
+	_light.color = Color(1.0, 0.3, 0.35)
+	_light.energy = 0.9
+	_light.texture_scale = 2.2
+	_light.position = Vector2(0.0, -size.y + 40.0)
+	add_child(_light)
 
 	var circle := CircleShape2D.new()
 	circle.radius = reach
@@ -105,6 +122,9 @@ func _set_open(animated: bool) -> void:
 	_open = true
 	_prompt.visible = false
 	_collider.set_deferred("disabled", true)
+	if _light != null:
+		_light.color = Color(0.5, 1.0, 0.6)
+		_light.energy = 0.6
 	if animated:
 		var tween := create_tween()
 		tween.tween_property(_slab, "position:y", _slab.position.y - size.y, 0.35) \

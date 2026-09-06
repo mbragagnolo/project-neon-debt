@@ -1,18 +1,22 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://src/world/world.gd" id="1_world"]
 [ext_resource type="PackedScene" path="res://src/player/player.tscn" id="2_player"]
-[ext_resource type="Script" path="res://src/ui/debug_combat_hud.gd" id="3_hud"]
+[ext_resource type="Script" path="res://src/ui/hud/hud.gd" id="3_hud"]
 [ext_resource type="Script" path="res://src/ui/bark_box.gd" id="4_barks"]
 [ext_resource type="Script" path="res://src/ui/dialogue_box.gd" id="5_dialogue"]
 [ext_resource type="Script" path="res://src/ui/menus/shop_screen.gd" id="6_shop"]
 [ext_resource type="Script" path="res://src/ui/menus/pause_shell.gd" id="7_shell"]
 [ext_resource type="Script" path="res://src/ui/ending_screen.gd" id="8_ending"]
+[ext_resource type="Script" path="res://src/fx/juice.gd" id="9_juice"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_world")
 
 [node name="RoomHost" type="Node2D" parent="."]
+
+[node name="Juice" type="Node2D" parent="."]
+script = ExtResource("9_juice")
 
 [node name="Player" parent="." instance=ExtResource("2_player")]
 

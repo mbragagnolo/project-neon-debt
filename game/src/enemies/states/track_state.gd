@@ -13,6 +13,7 @@ var _side: int = 1
 
 func enter(_previous: StringName) -> void:
 	enemy.tint(enemy.config.color_chase)
+	enemy.play(&"hover")
 	_side = -enemy.direction_to_player()
 	if _side == 0:
 		_side = 1

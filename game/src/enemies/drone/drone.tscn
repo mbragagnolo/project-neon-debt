@@ -1,6 +1,8 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="Script" path="res://src/enemies/enemy_base.gd" id="1_enemy"]
+[ext_resource type="Script" path="res://src/art/pixel_anim.gd" id="90_anim"]
+[ext_resource type="Texture2D" path="res://assets/sprites/drone.png" id="91_sheet"]
 [ext_resource type="Resource" path="res://src/enemies/drone/drone.tres" id="2_drone"]
 [ext_resource type="Script" path="res://src/combat/health.gd" id="3_health"]
 [ext_resource type="Script" path="res://src/combat/hurtbox.gd" id="4_hurtbox"]
@@ -28,23 +30,21 @@ config = ExtResource("2_drone")
 position = Vector2(0, -40)
 shape = SubResource("RectangleShape2D_drone_body")
 
-[node name="Visual" type="ColorRect" parent="."]
-offset_left = -26.0
-offset_top = -58.0
-offset_right = 26.0
-offset_bottom = -22.0
-mouse_filter = 2
-color = Color(0.55, 0.75, 0.9, 1)
-
-[node name="Facing" type="Node2D" parent="."]
-
-[node name="Eye" type="ColorRect" parent="Facing"]
-offset_left = 8.0
-offset_top = -46.0
-offset_right = 22.0
-offset_bottom = -36.0
-mouse_filter = 2
-color = Color(1, 0.25, 0.3, 1)
+[node name="Visual" type="Sprite2D" parent="."]
+position = Vector2(0, -40)
+texture = ExtResource("91_sheet")
+script = ExtResource("90_anim")
+frame_width = 54
+frame_height = 36
+clips = {
+"aim": [2, 1, 0.0, false],
+"dead": [4, 1, 0.0, false],
+"hover": [0, 2, 8.0, true],
+"idle": [0, 2, 8.0, true],
+"stagger": [2, 1, 0.0, false],
+"stunned": [3, 1, 0.0, false]
+}
+autoplay = &"idle"
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_health")

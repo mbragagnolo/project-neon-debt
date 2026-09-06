@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://src/world/breach_door.gd" id="1_door"]
+[ext_resource type="Texture2D" path="res://assets/props/breach_door.png" id="2_tex"]
 
 [node name="BreachDoor" type="StaticBody2D"]
 collision_mask = 0
@@ -8,12 +9,18 @@ script = ExtResource("1_door")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[node name="Slab" type="ColorRect" parent="."]
+[node name="Slab" type="NinePatchRect" parent="."]
+texture_filter = 1
 offset_left = -30.0
 offset_top = -240.0
 offset_right = 30.0
 mouse_filter = 2
-color = Color(0.62, 0.2, 0.3, 1)
+texture = ExtResource("2_tex")
+patch_margin_left = 6
+patch_margin_top = 30
+patch_margin_right = 6
+patch_margin_bottom = 6
+axis_stretch_vertical = 1
 
 [node name="Terminal" type="Area2D" parent="."]
 collision_layer = 128

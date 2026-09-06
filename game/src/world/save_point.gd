@@ -29,27 +29,19 @@ func _ready() -> void:
 	collider.position = Vector2(0.0, -60.0)
 	add_child(collider)
 
-	var panel := ColorRect.new()
-	panel.color = COL_PANEL
-	panel.position = Vector2(-36.0, -132.0)
-	panel.size = Vector2(72.0, 132.0)
-	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(panel)
-	var screen := ColorRect.new()
-	screen.color = COL_BRAND
-	screen.position = Vector2(-26.0, -118.0)
-	screen.size = Vector2(52.0, 40.0)
-	screen.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(screen)
-	var brand := Label.new()
-	brand.text = Lines.CORP
-	brand.add_theme_font_size_override("font_size", 16)
-	brand.add_theme_color_override("font_color", COL_PANEL)
-	brand.position = Vector2(-26.0, -110.0)
-	brand.size = Vector2(52.0, 24.0)
-	brand.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	brand.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(brand)
+	var kiosk := Sprite2D.new()
+	kiosk.texture = load("res://assets/props/save_terminal.png")
+	kiosk.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	kiosk.centered = false
+	kiosk.position = Vector2(-36.0, -132.0)
+	add_child(kiosk)
+	var light := PointLight2D.new()
+	light.texture = load("res://assets/fx/light_soft.png")
+	light.color = Color(0.35, 0.85, 1.0)
+	light.energy = 1.0
+	light.texture_scale = 2.6
+	light.position = Vector2(0.0, -100.0)
+	add_child(light)
 
 	_prompt = Label.new()
 	_prompt.text = "%s CARE TERMINAL\n%s SAVE" % [Lines.CORP, InputPrompt.label(&"interact")]

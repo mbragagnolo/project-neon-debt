@@ -14,6 +14,7 @@ var _remaining: float = 0.0
 
 func enter(_previous: StringName) -> void:
 	enemy.tint(enemy.config.color_windup)
+	enemy.play(&"aim")
 	_remaining = enemy.config.fire_windup
 
 

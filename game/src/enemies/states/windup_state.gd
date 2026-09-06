@@ -15,6 +15,8 @@ var _remaining: float = 0.0
 
 func enter(_previous: StringName) -> void:
 	enemy.tint(enemy.config.color_windup)
+	enemy.play(&"windup")
+	Events.sfx_requested.emit(&"tell", enemy.global_position)
 	_remaining = enemy.config.windup_time
 	# Aim once, at the start. Tracking the player through the windup would
 	# delete the whole lesson: a lunge you cannot sidestep is not a telegraph,

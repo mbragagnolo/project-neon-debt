@@ -1,5 +1,6 @@
 room catwalks
 name Service Catwalks
+style roof
 cell 13 1
 size 2 2
 door 1 server_nook 2

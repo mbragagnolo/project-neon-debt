@@ -1,5 +1,6 @@
 room gut_deep
 name The Gut - Retrieval
+style gut
 cell 5 7
 size 1 1
 door 1 defaulter_den 2

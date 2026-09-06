@@ -1,5 +1,6 @@
 room pawn_back
 name Stitch's Back Room
+style mezz
 cell 5 3
 size 1 1
 door 1 mezz_east 3

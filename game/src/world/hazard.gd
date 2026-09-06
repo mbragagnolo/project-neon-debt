@@ -19,6 +19,9 @@ const COL_HAZARD := Color(0.1, 0.55, 0.6, 0.85)
 @export var returns_player: bool = false
 
 var _visual: ColorRect
+var _water: TextureRect
+var _frames: Array[Texture2D] = []
+var _frame_time: float = 0.0
 
 
 func _ready() -> void:
@@ -38,6 +41,27 @@ func _ready() -> void:
 	_visual.size = size
 	_visual.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_visual)
+	if not returns_player:
+		for i: int in 3:
+			var path: String = "res://assets/tiles/hazard_%d.png" % i
+			if ResourceLoader.exists(path):
+				_frames.append(load(path))
+		if not _frames.is_empty():
+			_visual.visible = false
+			_water = TextureRect.new()
+			_water.texture = _frames[0]
+			_water.stretch_mode = TextureRect.STRETCH_TILE
+			_water.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			_water.position = -size * 0.5
+			_water.size = size
+			_water.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			add_child(_water)
+			var light := PointLight2D.new()
+			light.texture = load("res://assets/fx/light_soft.png")
+			light.color = Color(0.2, 0.9, 1.0)
+			light.energy = 0.6
+			light.texture_scale = maxf(size.x, 120.0) / 64.0
+			add_child(light)
 
 	var attack := Attack.make(self, global_position, power)
 	attack.scales_with_stat = false
@@ -46,10 +70,13 @@ func _ready() -> void:
 	hit_landed.connect(_on_hit_landed)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	# A slow electric shimmer, so a live floor reads as live.
 	var t: float = 0.75 + 0.25 * sin(Time.get_ticks_msec() / 180.0)
 	_visual.modulate.a = t
+	if _water != null:
+		_frame_time += delta
+		_water.texture = _frames[int(_frame_time * 6.0) % _frames.size()]
 
 
 func _on_hit_landed(hurtbox: Hurtbox, _result: DamageResult) -> void:

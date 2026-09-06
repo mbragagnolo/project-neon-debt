@@ -1,5 +1,6 @@
 room roof_access
 name Roof Access
+style roof
 cell 8 0
 size 1 1
 door 1 stairwell_east 3

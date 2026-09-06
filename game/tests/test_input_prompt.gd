@@ -32,6 +32,18 @@ func test_the_helper_reports_the_bound_key() -> void:
 	assert_eq(script.key(&"toggle_inventory"), _bound_key(&"toggle_inventory"))
 
 
+func test_the_helper_names_the_pad_button() -> void:
+	var script: GDScript = load(INPUT_PROMPT_PATH)
+	if script == null:
+		return
+	# Project facts (project.godot), named the way the pad prints them.
+	assert_eq(script.pad(&"jump"), "A")
+	assert_eq(script.pad(&"pause"), "START")
+	assert_eq(script.pad(&"toggle_map"), "LT", "the map lives on a trigger; the guide button belongs to the OS")
+	assert_eq(script.pad(&"move_left"), "LS ←")
+	assert_eq(script.pad(&"no_such_action"), "")
+
+
 func test_the_helper_brackets_the_key_for_display() -> void:
 	var script: GDScript = load(INPUT_PROMPT_PATH)
 	if script == null:

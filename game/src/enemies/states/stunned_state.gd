@@ -19,6 +19,8 @@ var _remaining: float = 0.0
 
 func enter(_previous: StringName) -> void:
 	enemy.tint(enemy.config.color_stunned)
+	enemy.play(&"stunned")
+	Events.sfx_requested.emit(&"stun", enemy.global_position)
 	enemy.end_lunge()
 	enemy.disarm_contact()
 	_remaining = enemy.stun_duration

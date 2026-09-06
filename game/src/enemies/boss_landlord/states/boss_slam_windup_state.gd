@@ -11,13 +11,14 @@ var _remaining: float = 0.0
 
 func enter(_previous: StringName) -> void:
 	enemy.tint(enemy.config.color_windup)
+	enemy.play(&"slam_windup")
+	Events.sfx_requested.emit(&"tell", enemy.global_position)
 	_remaining = (enemy as Landlord).slam_windup
 	enemy.set_facing(enemy.direction_to_player())
-	enemy.visual.scale = Vector2(1.15, 0.85)
 
 
 func exit() -> void:
-	enemy.visual.scale = Vector2.ONE
+	pass
 
 
 func physics_update(delta: float) -> StringName:
@@ -28,4 +29,5 @@ func physics_update(delta: float) -> StringName:
 		return &""
 	(enemy as Landlord).slam()
 	Events.camera_shake_requested.emit(6.0, 0.25)
+	Events.sfx_requested.emit(&"slam", enemy.global_position)
 	return &"Recover"

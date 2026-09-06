@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="EnemyConfig" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="EnemyConfig" load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://src/enemies/enemy_config.gd" id="1_enemy_config"]
+[ext_resource type="Texture2D" path="res://assets/fx/drone_shot.png" id="2_tex"]
 
 [resource]
 script = ExtResource("1_enemy_config")
@@ -53,3 +54,4 @@ color_lunge = Color(1, 0.45, 0.25, 1)
 color_recover = Color(0.45, 0.4, 0.5, 1)
 color_stagger = Color(1, 1, 1, 1)
 color_stunned = Color(0.3, 0.55, 0.7, 1)
+projectile_texture = ExtResource("2_tex")

@@ -37,6 +37,9 @@ const RESERVED := "#.=~v0123456789PedrEB"
 
 var id: StringName = &""
 var display_name: String = ""
+## Which set of walls, backdrop, lights and dressing the generator uses:
+## residential, shaft, roof, mezz, gut, collections (docs/art/direction.md).
+var style: String = "residential"
 var cell: Vector2i = Vector2i.ZERO
 var size: Vector2i = Vector2i.ONE
 var doors: Dictionary = {}
@@ -74,6 +77,8 @@ static func parse(text: String, source_path: String = "") -> RoomSpec:
 				spec.id = StringName(parts[1])
 			"name":
 				spec.display_name = trimmed.substr(5).strip_edges()
+			"style":
+				spec.style = parts[1]
 			"cell":
 				spec.cell = Vector2i(int(parts[1]), int(parts[2]))
 			"size":
