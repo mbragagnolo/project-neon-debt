@@ -33,20 +33,19 @@ position = Vector2(0, -40)
 shape = SubResource("RectangleShape2D_scav_body")
 
 [node name="Visual" type="Sprite2D" parent="."]
-position = Vector2(0, -42)
+position = Vector2(0, -56)
 texture = ExtResource("91_sheet")
 script = ExtResource("90_anim")
-frame_width = 60
-frame_height = 84
+frame_width = 120
+frame_height = 112
 clips = {
-"dead": [10, 1, 0.0, false],
-"idle": [0, 2, 3.0, true],
-"lunge": [7, 1, 0.0, false],
-"recover": [8, 1, 0.0, false],
-"run": [2, 4, 10.0, true],
-"stagger": [9, 1, 0.0, false],
-"stunned": [9, 1, 0.0, false],
-"windup": [6, 1, 0.0, false]
+"dead": [15, 1, 0.0, false],
+"idle": [0, 4, 4.0, true],
+"lunge": [12, 1, 0.0, false],
+"recover": [13, 1, 0.0, false],
+"run": [4, 6, 12.0, true],
+"stagger": [14, 1, 0.0, false],
+"windup": [10, 2, 8.0, false]
 }
 autoplay = &"idle"
 

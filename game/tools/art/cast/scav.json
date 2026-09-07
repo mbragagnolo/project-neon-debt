@@ -1,0 +1,415 @@
+{
+  "name": "scav",
+  "look": "docs/art/cast.md#scav--melee-rusher",
+  "sheet": "sprites/scav.png",
+  "still": {
+    "model": "Laxhar/noobai-XL-1.1",
+    "width": 832,
+    "height": 1216,
+    "steps": 28,
+    "cfg": 5.5,
+    "scheduler": "euler_a",
+    "chosen_seed": 8,
+    "prompt": "masterpiece, best quality, very aesthetic, absurdres, 1boy, solo, full body, (standing, t-pose, outstretched arms, legs apart, from side, profile)1.15, looking ahead, (simple background, grey background)1.2, skinny, thin, (hood up, hooded coat, olive coat, olive green jacket, canvas jacket, dirty clothes, torn clothes)1.15, layered clothing, rust brown shirt, stained shirt, baggy pants, brown pants, pants tucked in, bandaged legs, taped boots, worn boots, fingerless gloves, (shaded face, glowing eye, orange eyes, mechanical eye)1.2, cyberpunk, post-apocalyptic, scavenger, cel shading, anime coloring, soft shading, detailed clothes, clothes wrinkles, highlights, rim lighting, character design",
+    "negative": "nsfw, nude, naked, nipples, underwear, bare shoulders, barefoot, cleavage, worst quality, low quality, blurry, watermark, signature, text, jpeg artifacts, multiple views, multiple boys, 2boys, cropped, chibi, from behind, back view, sitting, gradient background, detailed background, scenery, gun, dress, skirt, flat color, flat shading, monochrome, greyscale, sketch, unfinished, lowres, spotlight, lens flare, light rays, light particles, blue jacket, navy jacket, green hair, armor, helmet, mask, gas mask, facing viewer, from front, dynamic pose, holding, weapon",
+    "_prompt_note": "Dani's shading tags and negative as the base (docs/art/pipeline.md). The warm-light negatives (orange, yellow trim) are dropped because the Scav is rust and amber; the hood, the olive and the dirt are weighted like Dani's accents; 'holding, weapon' are negative because the pipe is a prop still.",
+    "chosen_run": "shaded",
+    "flipped": false,
+    "_chosen_note": "shaded seed 8: the one profile T-pose of ten, already facing right. Hood up, one glowing eye, olive coat over a rust shirt, taped boots; both hands drawn on the extended arm, the lower one is cut into a discard part."
+  },
+  "target": {
+    "height_art_px": 50,
+    "scale": 2,
+    "frame": [
+      60,
+      56
+    ],
+    "downscale": "kcentroid",
+    "edge": {
+      "shade": 0.62,
+      "lit": 1.3,
+      "light": [
+        -1,
+        -1
+      ]
+    },
+    "palette": [
+      "olive",
+      "olive_l",
+      "olive_d",
+      "olive_ll",
+      "rust0",
+      "rust1",
+      "rust2",
+      "rust3",
+      "amber",
+      "amber_d",
+      "amber_l",
+      "grey",
+      "grey_d",
+      "skin2",
+      "skin2_d",
+      "black",
+      "black_l",
+      "concrete0",
+      "concrete1",
+      "concrete2",
+      "concrete3",
+      "outline",
+      "steel1",
+      "steel2",
+      "white",
+      "hair",
+      "hair_h"
+    ],
+    "k": 2,
+    "accent": {
+      "share": 0.25,
+      "chroma": 120,
+      "luma": 200
+    },
+    "lines": {
+      "radius": 7,
+      "delta": 22,
+      "coverage": 0.22,
+      "factor": 0.75
+    },
+    "_settings_note": "Dani's target block (the template), sizes from the cast.md table: 50 art px tall in a 60x56 frame (120x112 screen; 52 clipped the pipe in the windup and the lunge), collider 44x80 unchanged, feet on its bottom edge. The palette is the Scav's own: olive and rust ramps, amber for the eye, grey for the pipe."
+  },
+  "rig": {
+    "_comment": "Joints in still pixels (832x1216, facing right, profile). The near arm is the extended one (rest 90, poses assume it hangs) and is cut in three: upper, forearm, hand; the pipe (props.pipe) hangs from the palm joint hand_near, parented to the hand. The coat is long: its back tail is a torso part (coat_back, drawn first) so the thighs carry only the front flaps and the legs can swing; the still's far shin and far hand are discards; far limbs are darkened copies set a little behind.",
+    "root": "torso",
+    "pad": 5,
+    "joint_radius": 16,
+    "joints": {
+      "hip": [
+        255,
+        640
+      ],
+      "neck": [
+        290,
+        262
+      ],
+      "head_top": [
+        268,
+        78
+      ],
+      "hood_top": [
+        185,
+        95
+      ],
+      "hood_bottom": [
+        150,
+        295
+      ],
+      "coat_top": [
+        180,
+        655
+      ],
+      "coat_hem": [
+        150,
+        845
+      ],
+      "shoulder_near": [
+        340,
+        340
+      ],
+      "elbow_near": [
+        520,
+        350
+      ],
+      "wrist_near": [
+        690,
+        342
+      ],
+      "hand_near": [
+        745,
+        338
+      ],
+      "finger_near": [
+        805,
+        330
+      ],
+      "wrist_far": [
+        700,
+        405
+      ],
+      "finger_far": [
+        805,
+        400
+      ],
+      "hip_near": [
+        300,
+        662
+      ],
+      "knee_near": [
+        300,
+        900
+      ],
+      "ankle_near": [
+        300,
+        1052
+      ],
+      "toe_near": [
+        412,
+        1166
+      ],
+      "knee_far": [
+        150,
+        890
+      ],
+      "sole_far": [
+        140,
+        1196
+      ]
+    },
+    "prop_joints": {
+      "pipe": {
+        "grip": [
+          400,
+          900
+        ],
+        "tip": [
+          400,
+          345
+        ],
+        "elbow_a": [
+          400,
+          230
+        ],
+        "elbow_b": [
+          620,
+          240
+        ],
+        "tap_a": [
+          262,
+          405
+        ],
+        "tap_b": [
+          340,
+          410
+        ]
+      }
+    },
+    "parts": [
+      {
+        "name": "x_leg_far_lower",
+        "pivot": "knee_far",
+        "tip": "sole_far",
+        "discard": true,
+        "_why": "the still's far shin and boot; the far leg is a copy of the near one"
+      },
+      {
+        "name": "x_hand_far",
+        "pivot": "wrist_far",
+        "tip": "finger_far",
+        "discard": true,
+        "joint_radius": 10,
+        "_why": "the still drew both hands on the extended arm; the lower one is the far hand"
+      },
+      {
+        "name": "x_pipe_elbow",
+        "still": "pipe",
+        "pivot": "elbow_a",
+        "tip": "elbow_b",
+        "discard": true,
+        "joint_radius": 40,
+        "_why": "the still drew a plumbing elbow on top; a length of pipe has none"
+      },
+      {
+        "name": "x_pipe_tap",
+        "still": "pipe",
+        "pivot": "tap_a",
+        "tip": "tap_b",
+        "discard": true,
+        "joint_radius": 10
+      },
+      {
+        "name": "coat_back",
+        "pivot": "coat_top",
+        "tip": "coat_hem",
+        "parent": "torso",
+        "weight": 1.0,
+        "joint_radius": 14,
+        "_why": "the coat reaches mid-thigh; its back tail hangs from the torso so the thighs only carry the front flaps"
+      },
+      {
+        "name": "leg_far_upper",
+        "copy_of": "leg_near_upper",
+        "parent": "torso",
+        "offset": [
+          -30,
+          -4
+        ],
+        "tint": 0.68
+      },
+      {
+        "name": "leg_far_lower",
+        "copy_of": "leg_near_lower",
+        "parent": "leg_far_upper",
+        "offset": [
+          -30,
+          -4
+        ],
+        "tint": 0.68
+      },
+      {
+        "name": "foot_far",
+        "copy_of": "foot_near",
+        "parent": "leg_far_lower",
+        "offset": [
+          -30,
+          -4
+        ],
+        "tint": 0.68,
+        "ground": true
+      },
+      {
+        "name": "arm_far_upper",
+        "copy_of": "arm_near_upper",
+        "parent": "torso",
+        "offset": [
+          -24,
+          -6
+        ],
+        "tint": 0.68,
+        "rest": 90
+      },
+      {
+        "name": "arm_far_lower",
+        "copy_of": "arm_near_lower",
+        "parent": "arm_far_upper",
+        "offset": [
+          -24,
+          -6
+        ],
+        "tint": 0.68
+      },
+      {
+        "name": "hand_far",
+        "copy_of": "hand_near",
+        "parent": "arm_far_lower",
+        "offset": [
+          -24,
+          -6
+        ],
+        "tint": 0.68
+      },
+      {
+        "name": "hood",
+        "pivot": "hood_top",
+        "tip": "hood_bottom",
+        "parent": "torso",
+        "weight": 1.15,
+        "joint_radius": 14,
+        "_why": "coat, not head: rides the torso, drawn behind the head (Dani's rule)"
+      },
+      {
+        "name": "torso",
+        "pivot": "hip",
+        "tip": "neck",
+        "parent": null,
+        "weight": 1.2
+      },
+      {
+        "name": "leg_near_upper",
+        "pivot": "hip_near",
+        "tip": "knee_near",
+        "parent": "torso"
+      },
+      {
+        "name": "leg_near_lower",
+        "pivot": "knee_near",
+        "tip": "ankle_near",
+        "parent": "leg_near_upper"
+      },
+      {
+        "name": "foot_near",
+        "pivot": "ankle_near",
+        "tip": "toe_near",
+        "parent": "leg_near_lower",
+        "joint_radius": 12,
+        "ground": true
+      },
+      {
+        "name": "head",
+        "pivot": "neck",
+        "tip": "head_top",
+        "parent": "torso",
+        "weight": 1.3,
+        "joint_radius": 10,
+        "recolor": [
+          {
+            "box": [
+              286,
+              155,
+              316,
+              196
+            ],
+            "min_sat": 0.3,
+            "min_val": 0.4,
+            "hue_to": 42,
+            "sat_to": 0.9,
+            "val_to": 1.0,
+            "_why": "the iris, painted amber: the still drew it as a pale orange glow that neither the accent vote nor the palette snap would keep"
+          },
+          {
+            "hue": [
+              0,
+              40
+            ],
+            "min_val": 0.5,
+            "sat_mul": 3.0,
+            "val_mul": 0.42,
+            "_why": "cast.md: the face is lost in the hood. The pale skin (which baked to white) and the orange fringe go into shadow; the iris is at hue 42 by now and is left alone"
+          }
+        ]
+      },
+      {
+        "name": "arm_near_upper",
+        "pivot": "shoulder_near",
+        "tip": "elbow_near",
+        "parent": "torso",
+        "rest": 90
+      },
+      {
+        "name": "arm_near_lower",
+        "pivot": "elbow_near",
+        "tip": "wrist_near",
+        "parent": "arm_near_upper"
+      },
+      {
+        "name": "hand_near",
+        "pivot": "wrist_near",
+        "tip": "finger_near",
+        "parent": "arm_near_lower",
+        "joint_radius": 10
+      },
+      {
+        "name": "pipe",
+        "still": "pipe",
+        "pivot": "grip",
+        "tip": "tip",
+        "attach": "hand_near",
+        "parent": "hand_near",
+        "joint_radius": 8,
+        "scale": 0.55,
+        "rest": 90,
+        "_why": "its own still (no profile T-pose holds a weapon); hangs from the palm so the forearm and hand carry it",
+        "_rest_why": "the prop still draws the pipe upright; rest 90 on top of the hanging arm makes angle 0 continue the forearm, business end outward",
+        "_scale_why": "the straight run is 886 px in the prop still; 0.55 makes it 21 art px, thigh to shin when it hangs, 2-3 art px thick"
+      }
+    ]
+  },
+  "props": {
+    "pipe": {
+      "prompt": "masterpiece, best quality, very aesthetic, absurdres, no humans, still life, object focus, metal pipe, steel pipe, lead pipe, rusty pipe, weapon, worn metal, dents, (simple background, grey background)1.2, from side, vertical, cel shading, anime coloring, soft shading, highlights, rim lighting",
+      "negative": "nsfw, 1girl, 1boy, hands, holding, person, human, worst quality, low quality, blurry, watermark, signature, text, jpeg artifacts, multiple views, multiple objects, cropped, gradient background, detailed background, scenery, spotlight, lens flare, wrench, gun, sword",
+      "height_art_px": 22,
+      "chosen_seed": 2,
+      "flipped": false,
+      "_why": "cast.md: a length of steel pipe in both hands, held low. No profile T-pose holds a weapon, so the pipe is its own still like Dani's wrench.",
+      "_chosen_note": "prop_pipe seed 2: the one thick enough to survive the vote (110 px wide in the still). Its elbow and tap are discard parts; the straight run below the collar is the pipe."
+    }
+  }
+}
