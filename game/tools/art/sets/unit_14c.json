@@ -110,26 +110,31 @@
       ],
       "towers": {
         "width": [
-          16,
-          40
+          10,
+          26
         ],
         "height": [
           0.3,
-          0.78
+          0.8
         ],
         "gap": [
-          3,
-          12
+          2,
+          8
         ],
         "body": "bg2",
         "edge": "bg3",
         "lit": "steel4",
         "lit_cold": "cyan_d",
         "lit_warm": "amber_d",
-        "density": 0.25,
+        "density": 0.22,
         "pitch": 3
       },
-      "_albedo_note": "the sky is the haze the block opposite stands against, lighter at the bottom where the street glows; the towers are silhouettes on it, never on black"
+      "_albedo_note": "the sky is the haze the block opposite stands against, lighter at the bottom where the street glows; the towers are silhouettes on it, never on black",
+      "size": [
+        512,
+        512
+      ],
+      "_size_note": "room px, 128 x 128 art px at 4: the glass is 228 x 348 and the camera pans 640 in this room, so the plane lags 128 px either way behind it (parallax 0.6) and needs that much margin"
     },
     {
       "name": "wall",
@@ -141,30 +146,14 @@
       ],
       "plane": "back",
       "method": "pixel",
-      "px": 3,
-      "inpaint": [
-        "piano",
-        "boxes",
-        "crt",
-        "table",
-        "cabinet",
-        "papers_a",
-        "papers_b"
-      ],
-      "keep": [
-        "shelf",
-        "pinboard",
-        "window"
-      ],
-      "note": "the back wall plane, play-plane props and the cabinet inpainted out, the window glass cut out",
+      "px": 2,
+      "note": "the back wall plane, authored at 2 room px per art px (3 screen px at the 1.5x camera, the play plane's density) on a figure-scaled layout",
       "room": [
         60,
         420,
         1860,
         1020
       ],
-      "inpaint_pad": 14,
-      "inpaint_strength": 0.95,
       "downscale": "box",
       "palette": [
         "void",
@@ -190,31 +179,6 @@
         "amber_d"
       ],
       "_note": "the back wall plane, authored: the ring's plaster noise on the concept's layout (pilasters, the window frame, pale rectangles where things were taken) with the shelf and pinboard pasted from the concept at 3 screen px per art px; the window glass cut out",
-      "_inpaint_note": "inpainting the props out with the base NoobAI weights failed twice (2026-09-07): shelves first, then black blobs. Authored instead.",
-      "pilasters": [
-        [
-          235,
-          300
-        ],
-        [
-          1140,
-          1180
-        ]
-      ],
-      "pale": [
-        [
-          330,
-          250,
-          470,
-          330
-        ],
-        [
-          700,
-          560,
-          780,
-          590
-        ]
-      ],
       "ramp": [
         "bg2",
         "bg3",
@@ -236,12 +200,67 @@
         "steel1"
       ],
       "_albedo_note": "2026-09-07: a 2D light adds light_colour x energy x the surface colour, so a wall painted in the darkest ramp cannot take light. The plane is painted mid-tone (steel1 base, luma 56) and the ambient darkens it; the window and the door lamp bring it back where they reach.",
-      "mullions_x": [
-        840
-      ],
-      "mullions_y": [
-        320
-      ]
+      "layout": {
+        "_note": "room px, sized from the figure (65.9 px per metre; a tile is 0.91 m). The unit is a stripped shell: the dropped ceiling came out, so the old ceiling's line is a datum at 2.7 m with the wiring run under it, the bare shell above, and the window runs up past it into the found storeys. Everything with a known size (window panes 0.9 m, the shelf, the pinboard, the pale rectangles) is human-sized; the room's height is the level's.",
+        "window": [
+          840,
+          600,
+          1080,
+          960
+        ],
+        "panes": [
+          60,
+          60
+        ],
+        "datum": 840,
+        "pilasters": [
+          [
+            400,
+            430
+          ],
+          [
+            1260,
+            1290
+          ],
+          [
+            1650,
+            1680
+          ]
+        ],
+        "pale": [
+          [
+            440,
+            760,
+            520,
+            820
+          ],
+          [
+            1340,
+            930,
+            1400,
+            1010
+          ]
+        ],
+        "keep": {
+          "shelf": [
+            66,
+            764,
+            148,
+            880
+          ],
+          "pinboard": [
+            1720,
+            871,
+            1777,
+            959
+          ]
+        },
+        "drops": [
+          436,
+          1296
+        ]
+      },
+      "_layout_note": "window 3.6 x 5.4 m (4 x 6 panes), sill 0.9 m; shelf 1.24 x 1.76 m by the ledge; pinboard 0.86 x 1.34 m by the door at eye height; pilasters 0.45 m wide at 5.7 to 13 m spacing; conduit drops from the shell's ceiling to the wiring run beside two pilasters"
     },
     {
       "name": "floor",
@@ -266,7 +285,7 @@
       "plane": "back",
       "method": "light",
       "colour": "cold",
-      "note": "the cut-out and the room's big cold source; rain and blinds later"
+      "note": "the cut-out and the room's big cold source; its rect is wall.layout.window (room px), this box is the concept reference only"
     },
     {
       "name": "shelf",
@@ -450,6 +469,21 @@
       "chosen_seed": 3,
       "_chosen_note": "laid out, since Dani wakes on it; 1 and 4 are rolled",
       "metres": 0.36
+    },
+    {
+      "name": "lamp",
+      "box": null,
+      "plane": "play",
+      "method": "fixture",
+      "fixture": "lamp",
+      "cable_art": 200,
+      "shade_art": [
+        24,
+        9
+      ],
+      "metres": 0.36,
+      "note": "from the brief: the hanging lamp turned off. Authored in pixels (no still): a cable from the ceiling, a flat conical shade, a dark bulb",
+      "_note": "cable 200 art px = 6 m: hangs from the 9 m shell to 2.5 m above the floor, past the old ceiling's datum; the shade 0.73 m, an industrial cone"
     }
   ],
   "prop_still": {
@@ -520,7 +554,11 @@
   },
   "figure": {
     "art_px": 56,
-    "metres": 1.7
+    "metres": 1.7,
+    "room_px_per_metre": 65.9,
+    "concept_px": 246,
+    "_note": "Dani: 56 art px = 112 room px = 1.7 m. The concept has no figure; its scale is read off the piano (232 concept px for a 1.6 m grand), so a metre is 145 concept px and Dani would be 246. Room px per concept px at the figure's scale is 112/246 = 0.455, not the 1920/1344 the cell suggests (environment.md, 6)."
   },
-  "assets": "../../assets"
+  "assets": "../../assets",
+  "_scale_note": "2026-09-07, the scale rework (environment.md, 6): the camera looks through a 1.5x zoom, so 2x art is 3 screen px and Dani is 15% of the frame; the wall's layout is in room px from the figure, not stretched from the concept; the outside plane is bigger than the glass for the parallax."
 }

@@ -362,19 +362,59 @@ def plane_art(crop, art_size, cfg):
 
 def wall_plane(spec, still, wall, window, art_w, art_h):
     """The back wall authored at plane resolution: the ring's plaster noise
-    in a dark ramp, the concept's pilasters, the window frame with its glass
-    cut out, pale rectangles where things were taken, a wiring run along the
-    top, and the pieces the concept keeps on the wall (shelf, pinboard)
-    pasted from their crops."""
+    on a mid-tone ramp, pilasters, the window frame with its glass cut out
+    and mullions at the pane pitch, pale rectangles where things were taken,
+    a datum line where the old ceiling was with the wiring run under it and
+    the bare shell a step darker above it, and the pieces the concept keeps
+    on the wall (shelf, pinboard) pasted from their crops.
+
+    With a `layout` block the geometry is in room px, sized from the figure
+    (docs/art/environment.md, 6): a window is as many metres wide as a
+    window, whatever the concept's frame made it. Without one the concept's
+    boxes are stretched over the room, the pilot's first pass."""
     import numpy as np
     import ring
     from pixel import PALETTE
 
-    wx0, wy0, wx1, wy1 = wall["box"]
-    fx, fy = art_w / (wx1 - wx0), art_h / (wy1 - wy0)
+    px = int(wall.get("px", 3))
+    room = wall.get("room", [60, 420, 1860, 1020])
+    layout = wall.get("layout")
+    if layout:
+        def to_x(x):
+            return int(round((x - room[0]) / px))
 
-    def to_plane(box):
-        return (int((box[0] - wx0) * fx), int((box[1] - wy0) * fy), int((box[2] - wx0) * fx), int((box[3] - wy0) * fy))
+        def to_y(y):
+            return int(round((y - room[1]) / px))
+
+        def to_plane(box):
+            return (to_x(box[0]), to_y(box[1]), to_x(box[2]), to_y(box[3]))
+        pilasters = layout.get("pilasters", [])
+        pale = layout.get("pale", [])
+        keep = layout.get("keep", {})
+        glass_box = layout["window"]
+        pane_w, pane_h = layout.get("panes", [60, 60])
+        mull_x = list(range(glass_box[0] + pane_w, glass_box[2], pane_w))
+        mull_y = list(range(glass_box[1] + pane_h, glass_box[3], pane_h))
+        datum = layout.get("datum")
+    else:
+        wx0, wy0, wx1, wy1 = wall["box"]
+        fx, fy = art_w / (wx1 - wx0), art_h / (wy1 - wy0)
+
+        def to_x(x):
+            return int((x - wx0) * fx)
+
+        def to_y(y):
+            return int((y - wy0) * fy)
+
+        def to_plane(box):
+            return (to_x(box[0]), to_y(box[1]), to_x(box[2]), to_y(box[3]))
+        pilasters = wall.get("pilasters", [])
+        pale = wall.get("pale", [])
+        keep = {name: element(spec, name)["box"] for name in wall.get("keep", []) if name != "window"}
+        glass_box = window["box"]
+        mull_x = wall.get("mullions_x", [840])
+        mull_y = wall.get("mullions_y", [320])
+        datum = None
 
     rng = np.random.default_rng(int(wall.get("seed", 3)))
     size = max(art_w, art_h)
@@ -389,6 +429,14 @@ def wall_plane(spec, still, wall, window, art_w, art_h):
     # a darker band under the ceiling and a grime band above the floor
     step[:3] = np.minimum(step[:3], base - 1)
     step[art_h - 4:][field[art_h - 4:] < 0.6] = base - 1
+    datum_y = to_y(datum) if datum else None
+    if datum_y:
+        # the bare shell above the old ceiling: a step darker, its stains
+        # bigger (the noise field is shared, the thresholds shift)
+        shell = step[:datum_y]
+        shell[:] = np.minimum(shell, base - 1)
+        shell[field[:datum_y] > 0.7] = base
+        shell[field[:datum_y] < 0.2] = base - 2
     lut = np.array([PALETTE[k] for k in ramp], dtype=np.uint8)
     rgb = lut[np.clip(step, 0, len(ramp) - 1)]
     alpha = np.full((art_h, art_w), 255, dtype=np.uint8)
@@ -402,36 +450,54 @@ def wall_plane(spec, still, wall, window, art_w, art_h):
             rgb[y0:y1, x1 - 1] = PALETTE[edge_r]
 
     pil = wall.get("pilaster", {"fill": "bg1", "lit": "bg3", "shade": "bg0"})
-    for px0, px1 in wall.get("pilasters", []):
-        x0, x1 = int((px0 - wx0) * fx), int((px1 - wx0) * fx)
+    for px0, px1 in pilasters:
+        x0, x1 = to_x(px0), to_x(px1)
         fill((x0, 0, x1, art_h), pil["fill"], pil["lit"], pil["shade"])
         # panel noise inside the pilaster too
         band = rgb[:, x0:x1]
         band[field[:, x0:x1] < 0.25] = PALETTE[pil["shade"]]
     pale_keys = wall.get("pale_keys", ["bg3", "bg2"])
-    for box in wall.get("pale", []):
+    for box in pale:
         x0, y0, x1, y1 = to_plane(box)
         rgb[y0:y1, x0:x1] = PALETTE[pale_keys[0]]
         rgb[y0:y1, x0:x1][field[y0:y1, x0:x1] < 0.4] = PALETTE[pale_keys[1]]
         rgb[y0, x0:x1] = PALETTE[pale_keys[1]]
         rgb[y0:y1, x0] = PALETTE[pale_keys[1]]
-    # the wiring run the brief asks for: two lines along the top with clips
-    run_y = int(wall.get("wiring_y", 6))
-    rgb[run_y, :] = PALETTE["steel1"]
-    rgb[run_y + 1, :] = PALETTE["steel0"]
-    for x in range(8, art_w, 40):
-        rgb[run_y - 1:run_y + 3, x:x + 2] = PALETTE["steel0"]
+    if datum_y:
+        # the old ceiling's line: a lit edge where the plaster stopped, the
+        # wiring run under it with clips, the hanger stubs above it
+        rgb[datum_y - 1, :] = PALETTE[ramp[min(base + 1, len(ramp) - 1)]]
+        rgb[datum_y, :] = PALETTE[ramp[max(base - 2, 0)]]
+        run_y = datum_y + 3
+        rgb[run_y, :] = PALETTE["steel1"]
+        rgb[run_y + 1, :] = PALETTE["steel0"]
+        for x in range(8, art_w, 40):
+            rgb[run_y - 1:run_y + 3, x:x + 2] = PALETTE["steel0"]
+        for x in range(20, art_w, 90):
+            rgb[datum_y - 7:datum_y - 1, x:x + 2] = PALETTE["steel0"]
+        # conduit drops: a pipe down the shell from the ceiling to the run
+        for dx in layout.get("drops", []):
+            x = to_x(dx)
+            rgb[:run_y + 1, x:x + 2] = PALETTE["steel1"]
+            rgb[:run_y + 1, x + 1] = PALETTE["steel0"]
+            for y in range(6, run_y, 30):
+                rgb[y:y + 2, x - 1:x + 3] = PALETTE["steel0"]
+    else:
+        # the wiring run the brief asks for: two lines along the top with clips
+        run_y = int(wall.get("wiring_y", 6))
+        rgb[run_y, :] = PALETTE["steel1"]
+        rgb[run_y + 1, :] = PALETTE["steel0"]
+        for x in range(8, art_w, 40):
+            rgb[run_y - 1:run_y + 3, x:x + 2] = PALETTE["steel0"]
     # the pieces the concept keeps on the wall, from their crops
-    for name in wall.get("keep", []):
+    for name, box in keep.items():
         e = element(spec, name)
-        if name == "window":
-            continue
-        x0, y0, x1, y1 = to_plane(e["box"])
+        x0, y0, x1, y1 = to_plane(box)
         crop = still.crop(tuple(e["box"]))
         piece = plane_art(crop, (max(1, x1 - x0), max(1, y1 - y0)), {"downscale": "box", "palette": wall.get("palette")})
         rgb[y0:y1, x0:x1] = np.array(piece)[..., :3]
     # the window: a frame around the glass, mullions across it, the glass cut out
-    gx0, gy0, gx1, gy1 = to_plane(window["box"])
+    gx0, gy0, gx1, gy1 = to_plane(glass_box)
     gy0 = max(gy0, 0)
     frame = int(wall.get("frame", 3))
     fill((gx0, gy0, gx1, gy1), "black")
@@ -441,12 +507,12 @@ def wall_plane(spec, still, wall, window, art_w, art_h):
     rgb[gy0:gy1, gx1 - 1] = PALETTE["black_l"]
     ix0, iy0, ix1, iy1 = gx0 + frame, gy0 + frame, gx1 - frame, gy1 - frame
     alpha[iy0:iy1, ix0:ix1] = 0
-    for mx in wall.get("mullions_x", [840]):
-        x = int((mx - wx0) * fx)
+    for mx in mull_x:
+        x = to_x(mx)
         alpha[iy0:iy1, x - 1:x + 1] = 255
         rgb[iy0:iy1, x - 1:x + 1] = PALETTE["black"]
-    for my in wall.get("mullions_y", [320]):
-        y = int((my - wy0) * fy)
+    for my in mull_y:
+        y = to_y(my)
         alpha[y - 1:y + 1, ix0:ix1] = 255
         rgb[y - 1:y + 1, ix0:ix1] = PALETTE["black"]
     out = np.dstack([rgb, alpha]).astype(np.uint8)
@@ -514,9 +580,13 @@ def cmd_planes(spec, args):
     wall_art, glass = wall_plane(spec, still, wall, window, art_w, art_h)
     wall_art.save(os.path.join(out_dir, "back_wall.png"))
     save_scaled(wall_art, f"tiles/back_{spec['name']}.png", scale=px)
-    # the outside fills the glass at its own coarser pixel
+    # the outside fills the glass at its own coarser pixel; with a `size`
+    # (room px) it is bigger than the glass, for the parallax to pan behind
     opx = int(outside.get("px", 4))
-    ow, oh = (glass[2] - glass[0]) * px // opx, (glass[3] - glass[1]) * px // opx
+    if outside.get("size"):
+        ow, oh = int(outside["size"][0]) // opx, int(outside["size"][1]) // opx
+    else:
+        ow, oh = (glass[2] - glass[0]) * px // opx, (glass[3] - glass[1]) * px // opx
     chosen = outside.get("chosen_seed")
     src_path = os.path.join(work_dir(spec["name"], os.path.join("props", "outside")), f"still_{chosen}.png") if chosen else ""
     if outside["method"] == "pixel":
@@ -533,7 +603,11 @@ def cmd_planes(spec, args):
         outside_art = plane_art(src, (ow, oh), outside)
     outside_art.save(os.path.join(out_dir, "outside.png"))
     save_scaled(outside_art, f"tiles/outside_{spec['name']}.png", scale=opx)
-    at = [room[0] + glass[0] * px, room[1] + glass[1] * px]
+    glass_px = [room[0] + glass[0] * px, room[1] + glass[1] * px, room[0] + glass[2] * px, room[1] + glass[3] * px]
+    if outside.get("size"):
+        at = [(glass_px[0] + glass_px[2] - ow * opx) // 2, (glass_px[1] + glass_px[3] - oh * opx) // 2]
+    else:
+        at = glass_px[:2]
     dress_path = os.path.join(os.path.dirname(HERE), "stacks", f"{spec['name']}.dress.json")
     if os.path.exists(dress_path):
         dress = json.load(open(dress_path, encoding="utf-8"))
@@ -544,17 +618,80 @@ def cmd_planes(spec, args):
                 plane["at"] = [room[0], room[1]]
         json.dump(dress, open(dress_path, "w", encoding="utf-8"), indent=2)
     preview = Image.new("RGBA", wall_art.size, (7, 8, 15, 255))
-    preview.alpha_composite(outside_art.resize(((glass[2] - glass[0]), (glass[3] - glass[1])), Image.NEAREST), (glass[0], glass[1]))
+    shown = outside_art.resize((ow * opx // px, oh * opx // px), Image.NEAREST)
+    preview.alpha_composite(shown.crop((0, 0, min(shown.width, art_w), min(shown.height, art_h))), (max(0, (at[0] - room[0]) // px), max(0, (at[1] - room[1]) // px)))
     preview.alpha_composite(wall_art)
     preview.resize((preview.width * px, preview.height * px), Image.NEAREST).save(os.path.join(out_dir, "planes_preview.png"))
-    print(f"back wall {art_w}x{art_h} art px at {px}x ({rig.colour_count(wall_art)} colours), glass {glass};"
+    print(f"back wall {art_w}x{art_h} art px at {px}x ({rig.colour_count(wall_art)} colours), glass {glass} = room px {glass_px};"
           f" outside {ow}x{oh} art px at {opx}x ({rig.colour_count(outside_art)} colours), placed at {at}")
+
+
+def fixture_lamp(e, cfg):
+    """A hanging lamp, off: a cable, a flat conical shade with a lit rim on
+    the window's side, a dark bulb. Authored in art px; no still, since a
+    fixture is a silhouette and a few steps of one ramp."""
+    import numpy as np
+    from pixel import PALETTE
+
+    cable = int(e.get("cable_art", 120))
+    sw, sh = e.get("shade_art", [16, 7])
+    w, h = max(sw, 4), cable + sh + 4
+    img = np.zeros((h, w, 4), dtype=np.uint8)
+
+    def put(x, y, key):
+        if 0 <= x < w and 0 <= y < h:
+            img[y, x] = PALETTE[key] + (255,)
+
+    cx = w // 2
+    for y in range(cable):
+        put(cx, y, "black_l" if y % 7 else "steel0")
+    # the shade: a cone widening down, dark, the rim a step lighter
+    for row in range(sh):
+        half = max(1, int(round((row + 1) / sh * (sw / 2))))
+        for x in range(cx - half, cx + half):
+            put(x, cable + row, "black" if x < cx else "black_l")
+    for x in range(cx - sw // 2, cx + sw // 2):
+        put(x, cable + sh - 1, "steel1")
+    put(cx - sw // 2, cable + sh - 1, "steel0")
+    # the bulb, dark
+    for x in range(cx - 1, cx + 2):
+        put(x, cable + sh, "grey_d")
+        put(x, cable + sh + 1, "grey_d")
+    put(cx, cable + sh + 2, "black_l")
+    return Image.fromarray(img, "RGBA")
+
+
+FIXTURES = {"lamp": fixture_lamp}
+
+
+def cmd_fixtures(spec, args):
+    """Small props with no still: elements whose method is `fixture` are
+    drawn by the author named in `fixture` and written to assets/props/
+    <room>_<name>.png at the game's scale."""
+    scale = int(spec.get("target", {}).get("scale", 2))
+    done = 0
+    for e in elements(spec, args.only):
+        if e.get("method") != "fixture":
+            continue
+        author = FIXTURES.get(e.get("fixture"))
+        if author is None:
+            print(f"{e['name']}: no fixture author named {e.get('fixture')}")
+            continue
+        art = author(e, spec)
+        out_dir = work_dir(spec["name"], "fixtures")
+        art.save(os.path.join(out_dir, f"{e['name']}.png"))
+        if not args.work_only:
+            save_scaled(art, f"props/{spec['name']}_{e['name']}.png", scale=scale)
+        print(f"{e['name']}: {art.width}x{art.height} art px ({rig.colour_count(art)} colours)")
+        done += 1
+    if not done:
+        print("no fixture elements in the set")
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("name")
-    ap.add_argument("command", choices=["gen", "sheet", "cut", "props", "prop_sheet", "bake", "inpaint", "planes"])
+    ap.add_argument("command", choices=["gen", "sheet", "cut", "props", "prop_sheet", "bake", "inpaint", "planes", "fixtures"])
     ap.add_argument("--seeds", default="1-8")
     ap.add_argument("--variant", default="")
     ap.add_argument("--only", default=None, help="comma-separated element names")
@@ -563,7 +700,8 @@ def main():
     args = ap.parse_args()
     spec = load_set(args.name)
     {"gen": cmd_gen, "sheet": cmd_sheet, "cut": cmd_cut, "props": cmd_props,
-     "prop_sheet": cmd_prop_sheet, "bake": cmd_bake, "inpaint": cmd_inpaint, "planes": cmd_planes}[args.command](spec, args)
+     "prop_sheet": cmd_prop_sheet, "bake": cmd_bake, "inpaint": cmd_inpaint, "planes": cmd_planes,
+     "fixtures": cmd_fixtures}[args.command](spec, args)
 
 
 if __name__ == "__main__":

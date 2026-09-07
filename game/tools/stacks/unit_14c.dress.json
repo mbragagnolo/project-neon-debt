@@ -1,22 +1,22 @@
 {
-  "_note": "Unit 14-C dressed from its concept (tools/art/sets/unit_14c.json, flat seed 6; docs/art/environment.md section 4). Room px; a prop stands at `at`, its bottom centre: concept x times 1920/1344, on the floor at y 1020 or the P ledge at y 900. Assets that do not exist yet are skipped by make_stacks.",
+  "_note": "Unit 14-C dressed from its concept (tools/art/sets/unit_14c.json, flat seed 6; docs/art/environment.md sections 4 and 6). Room px; a prop stands at `at`, its bottom centre, on the floor at y 1020 or the P ledge at y 900. The window is wall.layout.window: 840..1080 x 600..960, glass 846..1074 x 606..954. The camera shows 1280 x 720 of this room (rows 6 to 18, all of the air and one ring tile), panning 640 across it; the opening view is x 0..1280.",
   "ambient": [
-    0.36,
-    0.4,
-    0.52
+    0.46,
+    0.5,
+    0.62
   ],
   "planes": [
     {
       "name": "outside",
       "texture": "res://assets/tiles/outside_unit_14c.png",
       "at": [
-        819,
-        429
+        704,
+        524
       ],
       "z": -12,
       "unlit": true,
       "parallax": 0.6,
-      "_note": "on a ParallaxBackground: unlit by the ambient, so the glass is the bright area; 0.6 parallax for when the camera moves"
+      "_note": "on the Outside CanvasLayer (unlit by the ambient) under a Parallax2D at 0.6, registered with the camera centred in the room; `at` is written by concept.py planes"
     },
     {
       "name": "back_wall",
@@ -29,6 +29,16 @@
     }
   ],
   "props": [
+    {
+      "name": "lamp",
+      "texture": "res://assets/props/unit_14c_lamp.png",
+      "at": [
+        500,
+        852
+      ],
+      "z": -3,
+      "_note": "the hanging lamp, dark: its cable runs from the shell's ceiling down past the old ceiling's line, a plumb line that says how tall the room is; left of the notice so the panel does not hide it, its cable crossing the pale rectangle"
+    },
     {
       "name": "boxes",
       "texture": "res://assets/props/unit_14c_boxes.png",
@@ -51,7 +61,7 @@
       "name": "crt",
       "texture": "res://assets/props/unit_14c_crt.png",
       "at": [
-        860,
+        880,
         1020
       ],
       "z": -4
@@ -60,7 +70,7 @@
       "name": "table",
       "texture": "res://assets/props/unit_14c_table.png",
       "at": [
-        1029,
+        1010,
         1020
       ],
       "z": -4
@@ -69,7 +79,7 @@
       "name": "piano",
       "texture": "res://assets/props/unit_14c_piano.png",
       "at": [
-        1464,
+        1156,
         1020
       ],
       "z": -4
@@ -78,7 +88,7 @@
       "name": "crate",
       "texture": "res://assets/props/unit_14c_crate.png",
       "at": [
-        1720,
+        1370,
         1020
       ],
       "z": -3
@@ -105,7 +115,7 @@
       "name": "papers_a2",
       "texture": "res://assets/props/unit_14c_papers_a.png",
       "at": [
-        1300,
+        1290,
         1020
       ],
       "z": -2,
@@ -134,7 +144,7 @@
       "name": "papers_b3",
       "texture": "res://assets/props/unit_14c_papers_b.png",
       "at": [
-        1640,
+        1560,
         1020
       ],
       "z": -2
@@ -144,35 +154,35 @@
     {
       "name": "window",
       "at": [
-        1203,
-        690
+        960,
+        780
       ],
       "color": [
         0.55,
         0.72,
         1.0
       ],
-      "energy": 1.2,
-      "scale": 5.5,
-      "_note": "the cold source: the window at 800..1607 x 415..967"
+      "energy": 1.8,
+      "scale": 3.8,
+      "_note": "the cold source: the window at 840..1080 x 600..960"
     },
     {
       "name": "window_floor",
       "at": [
-        1188,
-        1010
+        960,
+        1012
       ],
       "color": [
         0.5,
         0.68,
         1.0
       ],
-      "energy": 1.1,
-      "scale": 3.0,
+      "energy": 1.4,
+      "scale": 2.6,
       "_note": "the lit strip under the window",
       "scale_xy": [
         2.4,
-        0.8
+        0.7
       ]
     },
     {
@@ -193,7 +203,7 @@
     {
       "name": "notice_a",
       "at": [
-        870,
+        690,
         770
       ],
       "color": [
@@ -207,7 +217,7 @@
     {
       "name": "notice_b",
       "at": [
-        1470,
+        1170,
         770
       ],
       "color": [
@@ -233,19 +243,19 @@
     {
       "name": "rain",
       "at": [
-        1188,
-        429
+        960,
+        608
       ],
       "extents": [
-        369,
+        112,
         2
       ],
       "velocity": [
         25,
         760
       ],
-      "life": 0.72,
-      "amount": 70,
+      "life": 0.46,
+      "amount": 40,
       "texture": "drop",
       "color": [
         0.75,
@@ -254,24 +264,24 @@
         0.45
       ],
       "scale": 1.4,
-      "_note": "on the glass: emitted along the top of the window, dying at its sill"
+      "_note": "on the glass: emitted along the top of the window, dying at its sill (350 px at 760 px/s)"
     },
     {
       "name": "motes",
       "at": [
-        1188,
-        760
+        960,
+        850
       ],
       "extents": [
-        300,
-        240
+        150,
+        160
       ],
       "velocity": [
         6,
         -4
       ],
       "life": 9.0,
-      "amount": 26,
+      "amount": 18,
       "texture": "dot",
       "color": [
         0.75,
