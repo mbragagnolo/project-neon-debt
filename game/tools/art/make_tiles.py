@@ -279,6 +279,11 @@ def skyline(seed, base, window, min_h, max_h, density):
 
 if __name__ == "__main__":
     for name, fn in WALLS.items():
+        # A style with a set json is made by swatch.py from a diffused
+        # material (docs/art/environment.md); the ASCII wall is superseded.
+        if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), "sets", "%s.json" % name)):
+            print("wall_%s: made by swatch.py, skipped" % name)
+            continue
         save(fn(), "tiles/wall_%s.png" % name)
     for name, fn in BACKS.items():
         save(fn(), "tiles/back_%s.png" % name)
