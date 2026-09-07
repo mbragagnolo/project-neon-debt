@@ -1,0 +1,46 @@
+{
+  "arm_far": {
+    "pivot": [
+      197,
+      137
+    ],
+    "origin": [
+      133,
+      423
+    ],
+    "still": null
+  },
+  "torso": {
+    "pivot": [
+      199,
+      489
+    ],
+    "origin": [
+      51,
+      411
+    ],
+    "still": null
+  },
+  "head": {
+    "pivot": [
+      174,
+      227
+    ],
+    "origin": [
+      326,
+      203
+    ],
+    "still": null
+  },
+  "arm_near": {
+    "pivot": [
+      70,
+      106
+    ],
+    "origin": [
+      530,
+      414
+    ],
+    "still": null
+  }
+}

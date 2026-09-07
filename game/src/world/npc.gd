@@ -12,10 +12,26 @@ const COL_STITCH := Color(0.55, 0.85, 0.55)
 const COL_MARISOL := Color(0.85, 0.6, 0.85)
 const COL_PROMPT := Color(0.6, 0.95, 1.0)
 
+## The sheets' clip tables, as `tools/art/rig.py bake` prints them (frame
+## size in screen px; name -> [first, count, fps, loops]). An NPC without an
+## entry falls back to a two-frame idle sheet, the M7 shape. `talk` plays
+## while the dialogue box is open.
+const SHEETS := {
+	&"stitch": {"frame": Vector2i(112, 120), "clips": {
+		"idle": [0, 4, 2.0, true],
+		"talk": [4, 2, 4.0, true],
+	}},
+	&"marisol": {"frame": Vector2i(80, 120), "clips": {
+		"idle": [0, 4, 2.0, true],
+		"talk": [4, 2, 3.0, true],
+	}},
+}
+
 @export var npc_id: StringName = &""
 @export var reach: float = 130.0
 
 var display_name: String = ""
+var _anim: PixelAnim
 var _prompt: Label
 var _player_in_range: bool = false
 var _talking: bool = false
@@ -46,12 +62,18 @@ func _ready() -> void:
 	if ResourceLoader.exists(sheet):
 		var body := PixelAnim.new()
 		body.texture = load(sheet)
-		body.frame_width = body.texture.get_height()
-		body.frame_width = body.texture.get_width() / 2
-		body.frame_height = body.texture.get_height()
-		body.clips = {"idle": [0, 2, 1.5, true]}
+		if SHEETS.has(npc_id) and _sheet_fits(SHEETS[npc_id], body.texture):
+			var table: Dictionary = SHEETS[npc_id]
+			body.frame_width = (table["frame"] as Vector2i).x
+			body.frame_height = (table["frame"] as Vector2i).y
+			body.clips = table["clips"]
+		else:
+			body.frame_width = body.texture.get_width() / 2
+			body.frame_height = body.texture.get_height()
+			body.clips = {"idle": [0, 2, 1.5, true]}
 		body.position = Vector2(0.0, -body.frame_height * 0.5)
 		add_child(body)
+		_anim = body
 	else:
 		var body := ColorRect.new()
 		body.color = colour
@@ -64,7 +86,7 @@ func _ready() -> void:
 	tag.text = display_name.to_upper()
 	tag.add_theme_font_size_override("font_size", 18)
 	tag.add_theme_color_override("font_color", colour)
-	tag.position = Vector2(-80.0, -116.0)
+	tag.position = Vector2(-80.0, -140.0)
 	tag.size = Vector2(160.0, 24.0)
 	tag.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	tag.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -74,7 +96,7 @@ func _ready() -> void:
 	_prompt.text = "%s TALK" % InputPrompt.label(&"interact")
 	_prompt.add_theme_font_size_override("font_size", 22)
 	_prompt.add_theme_color_override("font_color", COL_PROMPT)
-	_prompt.position = Vector2(-80.0, -150.0)
+	_prompt.position = Vector2(-80.0, -172.0)
 	_prompt.size = Vector2(160.0, 30.0)
 	_prompt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_prompt.visible = false
@@ -83,6 +105,17 @@ func _ready() -> void:
 
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+
+
+## A table only applies to a sheet that has its frames: an older sheet on
+## disk (the M7 two-frame idle) keeps the fallback instead of indexing past
+## its end.
+static func _sheet_fits(table: Dictionary, texture: Texture2D) -> bool:
+	var frame: Vector2i = table["frame"]
+	var needed: int = 0
+	for row: Array in (table["clips"] as Dictionary).values():
+		needed = maxi(needed, int(row[0]) + int(row[1]))
+	return texture.get_height() >= frame.y and texture.get_width() >= frame.x * needed
 
 
 func _process(_delta: float) -> void:
@@ -115,9 +148,13 @@ func _say(box: DialogueBox, pages: Array[String]) -> void:
 	if box == null:
 		return
 	_talking = true
+	if _anim != null:
+		_anim.play(&"talk")
 	box.open(display_name, pages)
 	await box.finished
 	_talking = false
+	if _anim != null:
+		_anim.play(&"idle")
 
 
 # --- Stitch: ripperdoc and vendor ------------------------------------------

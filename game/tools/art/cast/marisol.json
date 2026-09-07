@@ -1,0 +1,175 @@
+{
+  "name": "marisol",
+  "look": "docs/art/cast.md#marisol--the-neighbour",
+  "sheet": "sprites/marisol.png",
+  "still": {
+    "model": "Laxhar/noobai-XL-1.1",
+    "width": 832,
+    "height": 1216,
+    "steps": 28,
+    "cfg": 5.5,
+    "scheduler": "euler_a",
+    "chosen_seed": 6,
+    "prompt": "masterpiece, best quality, very aesthetic, absurdres, 1girl, solo, old woman, elderly, grandmother, wrinkles, small, petite, (standing, upright posture, crossed arms, arms folded, from side, profile)1.25, looking ahead, (simple background, grey background)1.2, (purple headscarf, violet head scarf, headscarf knotted at the nape)1.2, (rust cardigan, brown cardigan, buttoned up cardigan)1.15, long black skirt, ankle-length skirt, flat shoes, glasses on a cord, reading glasses, light skin, cyberpunk, cel shading, anime coloring, soft shading, detailed clothes, clothes wrinkles, highlights, rim lighting, character design",
+    "negative": "nsfw, nude, naked, nipples, underwear, bare shoulders, barefoot, cleavage, worst quality, low quality, blurry, watermark, signature, text, jpeg artifacts, multiple views, multiple girls, multiple boys, cropped, chibi, from behind, back view, gradient background, detailed background, scenery, gun, weapon, holding, flat color, flat shading, monochrome, greyscale, sketch, unfinished, lowres, spotlight, lens flare, light rays, light particles, facing viewer, from front, dynamic pose, young, child, sitting, hat, apron, t-pose, outstretched arms, short skirt, dress, high heels, pink, blue",
+    "_prompt_note": "Dani's shading tags and negative as the base. Not a T-pose: cast.md folds her arms always, so the still is generated with them folded and one forearm is cut off the folded pair to point.",
+    "chosen_run": "shaded",
+    "flipped": false,
+    "_chosen_note": "shaded seed 6: profile facing right as drawn, upright, arms folded, the headscarf knotted at the nape, glasses, the cardigan buttoned, the long skirt. The pointing hand is the near folded forearm cut as an overlay so the cardigan keeps its imprint when it swings out."
+  },
+  "target": {
+    "height_art_px": 52,
+    "scale": 2,
+    "frame": [
+      40,
+      60
+    ],
+    "downscale": "kcentroid",
+    "edge": {
+      "shade": 0.62,
+      "lit": 1.3,
+      "light": [
+        -1,
+        -1
+      ]
+    },
+    "palette": [
+      "violet",
+      "violet_d",
+      "rust0",
+      "rust1",
+      "rust2",
+      "rust3",
+      "black",
+      "black_l",
+      "concrete0",
+      "concrete1",
+      "concrete2",
+      "grey",
+      "grey_d",
+      "skin",
+      "skin_l",
+      "skin_d",
+      "skin_dd",
+      "hair",
+      "hair_h",
+      "hair_l",
+      "white",
+      "outline"
+    ],
+    "k": 2,
+    "accent": {
+      "share": 0.25,
+      "chroma": 120,
+      "luma": 200
+    },
+    "lines": {
+      "radius": 7,
+      "delta": 22,
+      "coverage": 0.22,
+      "factor": 0.75
+    },
+    "_settings_note": "Dani's target block; 52 art px tall (the cast.md table's 28x52) in a 40x60 frame (80x120 screen)."
+  },
+  "rig": {
+    "_comment": "Joints in still pixels (832x1216, facing right). Head, torso with the folded arms, the near forearm as an overlay part that swings out from the elbow to point, the skirt (one part; the legs do not show under an ankle-length skirt, so cast.md's near and far leg are the skirt and the feet), the feet.",
+    "root": "torso",
+    "pad": 5,
+    "joint_radius": 16,
+    "joints": {
+      "hip": [
+        470,
+        520
+      ],
+      "neck": [
+        470,
+        215
+      ],
+      "head_top": [
+        470,
+        30
+      ],
+      "elbow_near": [
+        565,
+        340
+      ],
+      "hand_near": [
+        350,
+        330
+      ],
+      "skirt_top": [
+        470,
+        530
+      ],
+      "hem": [
+        482,
+        1060
+      ],
+      "ankle": [
+        470,
+        1085
+      ],
+      "sole": [
+        470,
+        1200
+      ]
+    },
+    "prop_joints": {},
+    "parts": [
+      {
+        "name": "skirt",
+        "pivot": "skirt_top",
+        "tip": "hem",
+        "parent": "torso",
+        "joint_radius": 24
+      },
+      {
+        "name": "feet",
+        "pivot": "ankle",
+        "tip": "sole",
+        "parent": "skirt",
+        "joint_radius": 30,
+        "ground": true
+      },
+      {
+        "name": "torso",
+        "pivot": "hip",
+        "tip": "neck",
+        "parent": null,
+        "weight": 1.2
+      },
+      {
+        "name": "head",
+        "pivot": "neck",
+        "tip": "head_top",
+        "parent": "torso",
+        "weight": 1.3,
+        "joint_radius": 14,
+        "recolor": [
+          {
+            "hue": [
+              225,
+              300
+            ],
+            "min_sat": 0.12,
+            "hue_to": 262,
+            "sat_mul": 2.0,
+            "val_mul": 0.9,
+            "_why": "cast.md: a violet headscarf; the still's lavender is too pale on its lit side and snapped to white"
+          }
+        ]
+      },
+      {
+        "name": "hand_point",
+        "pivot": "elbow_near",
+        "tip": "hand_near",
+        "parent": "torso",
+        "overlay": true,
+        "weight": 0.85,
+        "joint_radius": 12,
+        "_why": "the near folded forearm; an overlay so the torso keeps the folded-arms imprint when it swings out to point (cast.md: she unfolds one hand to point and folds it again)"
+      }
+    ]
+  },
+  "props": {}
+}
