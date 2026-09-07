@@ -18,3 +18,10 @@ Thumbs.db
 
 # Python tool caches
 __pycache__/
+
+# Third-party reference screenshots (docs/art/refs/README.md stays tracked; the images do not)
+docs/art/refs/*
+!docs/art/refs/README.md
+
+# Diffusion candidates and intermediates for the art pass (tools/art/gen_still.py)
+game/tools/art/work/

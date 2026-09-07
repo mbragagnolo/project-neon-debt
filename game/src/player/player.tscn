@@ -53,20 +53,20 @@ scale = Vector2(1.6, 1.6)
 texture = ExtResource("21_light")
 
 [node name="Sprite" type="Sprite2D" parent="Visual"]
-position = Vector2(0, -48)
+position = Vector2(0, -64)
 texture = ExtResource("20_sheet")
 script = ExtResource("19_anim")
-frame_width = 66
-frame_height = 96
+frame_width = 96
+frame_height = 128
 clips = {
-"attack": [12, 3, 18.0, false],
-"dash": [10, 1, 0.0, false],
-"fall": [9, 1, 0.0, false],
-"hurt": [15, 1, 0.0, false],
-"idle": [0, 2, 3.0, true],
-"jump": [8, 1, 0.0, false],
-"run": [2, 6, 12.0, true],
-"wall": [11, 1, 0.0, false]
+"attack": [14, 3, 18.0, false],
+"dash": [12, 1, 0.0, false],
+"fall": [11, 1, 0.0, false],
+"hurt": [17, 1, 0.0, false],
+"idle": [0, 4, 4.0, true],
+"jump": [10, 1, 0.0, false],
+"run": [4, 6, 12.0, true],
+"wall": [13, 1, 0.0, false]
 }
 autoplay = &"idle"
 

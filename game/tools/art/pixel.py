@@ -72,6 +72,22 @@ PALETTE = {
     "chrome_d": (120, 130, 150),
     "olive":    (78, 84, 58),
     "olive_l":  (110, 118, 82),
+    # hi-bit ramps (docs/art/refs/README.md): a fourth and fifth step per
+    # material so a shaded still has somewhere to land after the snap. The
+    # neutral ramp is black / concrete0-3 / grey, already six steps.
+    "navy_ll":  (86, 102, 150),
+    "skin_l":   (240, 200, 178),
+    "skin_dd":  (112, 70, 58),
+    "hair_l":   (92, 74, 86),
+    "cyan_l":   (170, 246, 255),
+    "magenta_l": (255, 140, 200),
+    # Roster ramps (the enemies' and NPCs' materials had two or three steps):
+    # olive and rust get a dark and a light end, amber a highlight for the eye.
+    "olive_d":  (50, 55, 36),
+    "olive_ll": (146, 156, 112),
+    "rust3":    (214, 150, 118),
+    "amber_l":  (255, 224, 150),
+    "red_l":    (255, 150, 140),
 }
 
 

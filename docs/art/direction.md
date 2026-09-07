@@ -1,5 +1,11 @@
 # Art direction — built (M7)
 
+> **Superseded as a target, 2026-09-06.** The M7 pass below is what ships in
+> the slice today. The next art pass moves to **hi-bit pixel art** (2×, 64–96
+> art px characters, lights composited over pixels) after the REPLACED / The
+> Last Night references in [`refs/README.md`](refs/README.md). Everything below
+> stays accurate for the current build until that pass lands.
+
 **Status: built.** Everything the slice draws comes from
 `game/tools/art/*.py` and lands in `game/assets/`; the engine side is in
 `src/art/`, `src/player/pixel_camera.gd`, `src/fx/juice.gd` and the room

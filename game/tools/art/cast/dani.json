@@ -1,0 +1,317 @@
+{
+  "name": "dani",
+  "look": "docs/art/cast.md#dani-okonkwo--the-player",
+  "sheet": "sprites/player.png",
+  "still": {
+    "model": "Laxhar/noobai-XL-1.1",
+    "width": 832,
+    "height": 1216,
+    "steps": 28,
+    "cfg": 5.5,
+    "scheduler": "euler_a",
+    "chosen_seed": 6,
+    "prompt": "masterpiece, best quality, very aesthetic, absurdres, 1girl, solo, full body, (standing, t-pose, outstretched arms, legs apart, from side, profile)1.15, looking ahead, (simple background, grey background)1.2, short hair, black hair, undercut, light skin, tired eyes, jitome, padded jacket, puffer jacket, quilted jacket, dark navy jacket, dark blue jacket, oversized clothes, sleeves rolled up, (cyan trim, cyan piping)1.25, zipper, visor, magenta visor, cracked visor, head-mounted display, dark grey pants, cargo pants, knee pads, prosthetic leg, mechanical legs, (black metal legs, glowing cyan lines, cyan glow)1.2, work boots, combat boots, holding wrench, pipe wrench, large wrench, cyberpunk, cel shading, anime coloring, soft shading, detailed clothes, clothes wrinkles, highlights, rim lighting, character design",
+    "_prompt_flat": "masterpiece, best quality, very aesthetic, absurdres, 1girl, solo, full body, standing, t-pose, outstretched arms, legs apart, from side, profile, looking ahead, simple background, grey background, short hair, black hair, undercut, light skin, tired eyes, jitome, padded jacket, navy blue jacket, oversized clothes, sleeves rolled up, cyan trim, zipper, visor, magenta visor, cracked visor, head-mounted display, grey pants, cargo pants, knee pads, prosthetic leg, mechanical legs, black metal legs, glowing cyan lines, cyan glow, work boots, combat boots, holding wrench, pipe wrench, large wrench, cyberpunk, flat color, flat shading, rim lighting, clean lineart, concept art, character design",
+    "_prompt_note": "Three prompts so far. _prompt_flat (sweep work/dani/, seed 3 = the first still) asked for flat color and baked flat at 56 px. The first shaded pass (work/dani/shaded/) added cel shading, highlights, weighted accents and 'dramatic lighting, backlighting, official art': it shaded well but drifted to bright blue, warm orange rim and three-quarter or frontal views. This prompt (work/dani/shaded2/) keeps the shading tags, weights the pose and the flat ground, says dark navy, and puts the warm light, lens effects and frontal views in the negative.",
+    "negative": "nsfw, nude, naked, nipples, underwear, bare shoulders, barefoot, cleavage, worst quality, low quality, blurry, watermark, signature, text, jpeg artifacts, multiple views, multiple girls, 2girls, cropped, chibi, from behind, back view, sitting, gradient background, detailed background, scenery, gun, dress, skirt, flat color, flat shading, monochrome, greyscale, sketch, unfinished, lowres, spotlight, lens flare, light rays, light particles, orange, orange trim, yellow trim, sky blue jacket, light blue jacket, facing viewer, from front, dynamic pose",
+    "_negative_flat": "nsfw, nude, naked, nipples, underwear, bare shoulders, barefoot, cleavage, worst quality, low quality, blurry, watermark, signature, text, jpeg artifacts, multiple views, multiple girls, 2girls, cropped, chibi, from behind, back view, sitting, gradient background, detailed background, scenery, gun, dress, skirt",
+    "chosen_run": "shaded2",
+    "flipped": true,
+    "_chosen_note": "shaded2 seed 6: the one clean profile T-pose of the sweep, mirrored so she faces right. It drew no wrench (no seed in a profile T-pose did), so the wrench is a prop still."
+  },
+  "target": {
+    "height_art_px": 56,
+    "scale": 2,
+    "frame": [
+      48,
+      64
+    ],
+    "downscale": "kcentroid",
+    "edge": {
+      "shade": 0.62,
+      "lit": 1.3,
+      "light": [
+        -1,
+        -1
+      ]
+    },
+    "palette": [
+      "navy",
+      "navy_l",
+      "navy_d",
+      "bg2",
+      "bg3",
+      "steel0",
+      "cyan",
+      "cyan_d",
+      "magenta",
+      "magenta_d",
+      "black",
+      "black_l",
+      "grey",
+      "grey_d",
+      "white",
+      "skin",
+      "skin_d",
+      "hair",
+      "hair_h",
+      "chrome",
+      "chrome_d",
+      "steel1",
+      "steel2",
+      "steel3",
+      "concrete0",
+      "concrete1",
+      "concrete2",
+      "concrete3",
+      "outline",
+      "navy_ll",
+      "steel4",
+      "skin_l",
+      "skin_dd",
+      "hair_l",
+      "cyan_l",
+      "magenta_l"
+    ],
+    "k": 2,
+    "accent": {
+      "share": 0.25,
+      "chroma": 120,
+      "luma": 200
+    },
+    "lines": {
+      "radius": 7,
+      "delta": 22,
+      "coverage": 0.22,
+      "factor": 0.75
+    },
+    "_settings_note": "Chosen 2026-09-06 on A/B strips (work/dani/ab_*.png). The still carries the tonal steps; lines/edge/accent each add a little on top: lines brings the seams back (0.2-0.22 coverage; 0.15 speckles, 0.3 misses a 4 px line in a 19 px block), lit edge puts a navy_ll rim on the back and hood, accent keeps the shin struts and visor highlight. k=3 lost colours and was dropped."
+  },
+  "rig": {
+    "_comment": "Joints in still pixels (832x1216, facing right, profile). The near arm is the extended one and is drawn against a hanging rest (rest 90), which is what the poses assume. The still's far leg (the left one) is cut into discard parts; far limbs are darkened copies of the near ones set a little behind. The wrench is a prop still (props.wrench) hung from hand_near.",
+    "root": "torso",
+    "pad": 5,
+    "joint_radius": 16,
+    "joints": {
+      "hip": [
+        350,
+        610
+      ],
+      "neck": [
+        330,
+        215
+      ],
+      "head_top": [
+        330,
+        85
+      ],
+      "shoulder_near": [
+        400,
+        240
+      ],
+      "elbow_near": [
+        540,
+        245
+      ],
+      "hand_near": [
+        700,
+        232
+      ],
+      "hip_near": [
+        390,
+        620
+      ],
+      "knee_near": [
+        395,
+        805
+      ],
+      "ankle_near": [
+        410,
+        1080
+      ],
+      "toe_near": [
+        470,
+        1165
+      ],
+      "hip_far": [
+        330,
+        620
+      ],
+      "knee_far": [
+        315,
+        805
+      ],
+      "sole_far": [
+        300,
+        1165
+      ],
+      "hood_top": [
+        235,
+        210
+      ],
+      "hood_bottom": [
+        185,
+        320
+      ]
+    },
+    "prop_joints": {
+      "wrench": {
+        "grip": [
+          432,
+          930
+        ],
+        "tip": [
+          432,
+          200
+        ]
+      }
+    },
+    "parts": [
+      {
+        "name": "x_leg_far_upper",
+        "pivot": "hip_far",
+        "tip": "knee_far",
+        "discard": true
+      },
+      {
+        "name": "x_leg_far_lower",
+        "pivot": "knee_far",
+        "tip": "sole_far",
+        "discard": true
+      },
+      {
+        "name": "arm_far_upper",
+        "copy_of": "arm_near_upper",
+        "parent": "torso",
+        "offset": [
+          -24,
+          -6
+        ],
+        "tint": 0.68,
+        "rest": 90
+      },
+      {
+        "name": "arm_far_lower",
+        "copy_of": "arm_near_lower",
+        "parent": "arm_far_upper",
+        "offset": [
+          -24,
+          -6
+        ],
+        "tint": 0.68
+      },
+      {
+        "name": "leg_far_upper",
+        "copy_of": "leg_near_upper",
+        "parent": "torso",
+        "offset": [
+          -30,
+          -4
+        ],
+        "tint": 0.68
+      },
+      {
+        "name": "leg_far_lower",
+        "copy_of": "leg_near_lower",
+        "parent": "leg_far_upper",
+        "offset": [
+          -30,
+          -4
+        ],
+        "tint": 0.68
+      },
+      {
+        "name": "foot_far",
+        "copy_of": "foot_near",
+        "parent": "leg_far_lower",
+        "offset": [
+          -30,
+          -4
+        ],
+        "tint": 0.68,
+        "ground": true
+      },
+      {
+        "name": "hood",
+        "pivot": "hood_top",
+        "tip": "hood_bottom",
+        "parent": "torso",
+        "weight": 1.15,
+        "joint_radius": 14,
+        "_why": "the still drew a hood; it is jacket, not head, so it rides the torso and sits behind the head"
+      },
+      {
+        "name": "torso",
+        "pivot": "hip",
+        "tip": "neck",
+        "parent": null,
+        "weight": 1.2
+      },
+      {
+        "name": "leg_near_upper",
+        "pivot": "hip_near",
+        "tip": "knee_near",
+        "parent": "torso"
+      },
+      {
+        "name": "leg_near_lower",
+        "pivot": "knee_near",
+        "tip": "ankle_near",
+        "parent": "leg_near_upper"
+      },
+      {
+        "name": "foot_near",
+        "pivot": "ankle_near",
+        "tip": "toe_near",
+        "parent": "leg_near_lower",
+        "joint_radius": 12,
+        "ground": true
+      },
+      {
+        "name": "head",
+        "pivot": "neck",
+        "tip": "head_top",
+        "parent": "torso",
+        "weight": 1.3,
+        "joint_radius": 10
+      },
+      {
+        "name": "arm_near_upper",
+        "pivot": "shoulder_near",
+        "tip": "elbow_near",
+        "parent": "torso",
+        "rest": 90
+      },
+      {
+        "name": "arm_near_lower",
+        "pivot": "elbow_near",
+        "tip": "hand_near",
+        "parent": "arm_near_upper"
+      },
+      {
+        "name": "weapon",
+        "still": "wrench",
+        "pivot": "grip",
+        "tip": "tip",
+        "attach": "hand_near",
+        "parent": "arm_near_lower",
+        "joint_radius": 8,
+        "scale": 0.35,
+        "rest": 90,
+        "_why": "its own still: no profile T-pose seed drew a wrench, and cast.md wants the weapon swappable anyway",
+        "_rest_why": "the prop still draws the wrench head up; rest 90 on top of the hanging arm turns it head down (cast.md)",
+        "_scale_why": "the prop still is 900 px tall; 0.35 makes the wrench 16 art px, hip to knee when it hangs"
+      }
+    ]
+  },
+  "props": {
+    "wrench": {
+      "prompt": "masterpiece, best quality, very aesthetic, absurdres, no humans, still life, object focus, pipe wrench, monkey wrench, wrench, hand tool, steel, worn metal, (simple background, grey background)1.2, from side, vertical, cel shading, anime coloring, soft shading, highlights, rim lighting",
+      "negative": "nsfw, 1girl, 1boy, hands, holding, person, human, worst quality, low quality, blurry, watermark, signature, text, jpeg artifacts, multiple views, multiple objects, cropped, gradient background, detailed background, scenery, spotlight, lens flare",
+      "height_art_px": 16,
+      "chosen_seed": 1,
+      "flipped": false,
+      "_why": "cast.md: the wrench is its own part so the blade and the maul can replace it later; a prop still is how a weapon enters the rig."
+    }
+  }
+}
