@@ -24,8 +24,12 @@ sit over the pixel layer — a lamp is a sprite *and* a `PointLight2D` — and
 particles (rain, steam, dust) are rendered at the same scale so they read
 as part of the picture, not on top of it.
 
-The camera snaps to 3 px so the art never lands between pixels; the window
-filter is nearest. Screen shake is a setting.
+The camera looks through a 1.5x zoom (since the scale rework,
+[`environment.md`](environment.md) section 6): the hi-bit art is baked at
+2 room px per art px, so an art pixel is 3 screen px at 1080p and the
+player is 15% of the frame. The camera snaps to whole art pixels and the
+project snaps every sprite's transform, so the art never lands between
+pixels; the window filter is nearest. Screen shake is a setting.
 
 ## Palette
 
@@ -55,8 +59,9 @@ Each script writes a `preview_*.png` next to itself for eyeballing.
   short.
 - `SwingTell` (`src/art/swing_tell.gd`): the melee arc, drawn to the size
   of the hitbox it sits in, so the picture is never bigger than the truth.
-- `PixelCamera` (`src/player/pixel_camera.gd`): follows the player, snaps
-  to 3 px, owns shake and the ending's pan.
+- `PixelCamera` (`src/player/pixel_camera.gd`): follows the player at a
+  1.5x zoom, snaps to whole art pixels, owns shake and the ending's pan;
+  the room generator bounds it to a room's air plus one tile of ring.
 - Rooms: `tools/make_stacks.gd` dresses each room from its `style`
   keyword — nine-patch walls, a tiled backdrop, a `CanvasModulate` ambient
   per style, lamps with lights, decor placed deterministically from the room
@@ -69,7 +74,9 @@ Each script writes a `preview_*.png` next to itself for eyeballing.
 
 ## Rules
 
-1. Draw at 1×, place at 3×. Nothing is scaled by a non-integer.
+1. Draw at 1×, bake at 2×, the camera at 1.5×: an art pixel is three
+   screen pixels. Nothing else is scaled by a non-integer, and planes are
+   authored at 2 or 4 room px per art px, never 3.
 2. A colour is a palette name.
 3. Lights and particles serve readability first: a hazard glows, a save
    point glows, an enemy's windup tint is still the loudest thing on screen.

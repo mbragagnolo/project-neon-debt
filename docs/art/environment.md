@@ -635,8 +635,105 @@ as their diffusion, downscale and palette engine. Every script was run
 against `game/tools/art` as the studio and reproduces this room. The
 project's own tools stay as the originals; the skills are the packaging.
 
-**Pinned:** the apartment's scale next to Dani. Props sized from the
-figure read small at a camera that shows the whole cell; the answer is a
-camera or composition decision (the interior zoom of section 1), not
-larger props. Recorded in the skills' reference files as an open
-question.
+**Pinned, then answered in section 6:** the apartment's scale next to
+Dani. Props sized from the figure read small at a camera that shows the
+whole cell; the answer was the camera (1.5x) and the wall's layout at the
+figure's scale, not larger props.
+
+## 6. The scale (2026-09-07, night)
+
+The first dressed shot made it plain: the room did not agree with the
+sprites. Two separate mistakes, measured before anything was changed.
+
+**The camera.** It showed the whole 32 x 18 tile cell, 1920 x 1080 room
+px, so Dani at 112 screen px was 10% of the frame. The references were
+measured on their own screenshots: REPLACED's player is about 165 screen
+px of 1080 in art pixels three screen px wide, some 55 art px, which is
+Dani's pixel count seen 1.5x closer; The Last Night's figure is 330 px in
+pixels four to five screen px wide. A 1.5x zoom on a 2x bake is the one
+integer answer between them: an art pixel becomes exactly three screen
+px, Dani 168 px, 15.6% of the frame, the view 1280 x 720 room px, 21 x 12
+tiles. Any whole room-px offset lands every art pixel on three whole
+screen px; a half px draws them 2 and 4 wide, so the camera snaps to
+whole art pixels (`PixelCamera.PIXEL` 2) and the project snaps every
+sprite's transform (`rendering/2d/snap/snap_2d_transforms_to_pixel`).
+Verified on the shot: runs of three on Dani and the ring, runs of four
+and five on the back wall that was still at 3 room px per art px (now 2)
+and on the old 3x door frame (a note for the pass).
+
+**The architecture.** The props were sized from Dani, as the cut list
+says, but the wall was not: its layout came from the concept's boxes
+times 1920/1344, the cell's width over the still's. The concept is drawn
+for people; its scale read off the piano (232 px for 1.6 m) is 145 px per
+metre, so room px per concept px at the figure's scale is 0.455, and the
+stretch had made the window 12 x 8 m beside a 1.6 m piano. The piano read
+as a toy because the window said the room was a hangar. The wall's
+geometry now lives in `wall.layout` in room px from metres (65.9 per
+metre, a tile 0.91 m): a window 3.6 x 5.4 m in 0.9 m panes with its sill
+at 0.9 m, a shelf 1.24 x 1.76 m by the ledge, a pinboard 0.86 x 1.34 m
+by the door at eye height, pale rectangles the size of the cabinets that
+left. The room's ten rows of air stay: 9 m is what the level is, and the
+story carries it. The unit is a stripped shell whose dropped ceiling came
+out, so the old ceiling's line is a datum at 2.7 m with the wiring run
+under it and the bare shell a step darker above, conduit drops beside two
+pilasters, and the window runs up past the datum into the found storeys.
+A hanging lamp on a 6 m cable (`concept.py fixtures`, authored in art px:
+a fixture is a silhouette, no still needed) is the plumb line that says
+how tall the room is.
+
+**The camera's bounds.** With the camera closer, the old limits (the
+whole cell) would have panned over the black slab. `make_stacks.
+camera_limits` now bounds the camera to the air's bounding box plus one
+tile of ring, clamped to the cell and never smaller than one view; a room
+shorter or narrower than the view is centred in it, with a void apron
+painted past the cell in the room's canvas so the ambient darkens it like
+the slab's own void. 14-C's ten rows of air and two of ring are exactly
+the view's twelve rows: the black third is gone by construction.
+
+**The outside plane.** On a ParallaxBackground it drifted off the cut-out
+under zoom and pan. It lives on a CanvasLayer now (its own canvas, so the
+ambient cannot reach it; `follow_viewport_enabled` so its children are in
+world space) under a Parallax2D. Measured on 4.7 with three camera
+positions: a Parallax2D sits at screen_offset x (1 - scroll_scale) +
+scroll_offset, where screen_offset is the camera's centre minus half the
+unzoomed viewport. The generator registers the plane with the camera
+centred in the room's limits; as the camera pans by d the plane lags by
+0.4 d, so the plane is 512 x 512 room px behind a 228 x 348 glass
+(`outside.size`), 128 px of margin for this room's 640 px of pan.
+
+**Numbers**, whole frame and the lived band (y 540 down, the lower half:
+the room has no slab in frame now, but its upper half is bare shell by
+design):
+
+| shot | dark | mid | bright | cold | lower half |
+|---|---|---|---|---|---|
+| 14-C, whole cell, wall stretched from the concept (section 4) | 73% | 21% | 6% | 86% | 58 / 33 / 10 under the slab |
+| the same assets at 1.5x | 64% | 26% | 10% | 74% | 71 / 26 / 3 |
+| wall at the figure's scale, old lights | 83% | 15% | 2% | 80% | 71 / 27 / 3 |
+| lights up, ambient 0.40 / 0.44 / 0.56 | 76% | 21% | 3% | 83% | 59 / 38 / 3 |
+| **ambient 0.46 / 0.50 / 0.62, window 1.8 at 3.4, lamp** | **67%** | **30%** | **3%** | **81%** | **44 / 53 / 3** |
+
+The smaller window lights less: bright fell from 6% to 3% and stays
+there, since a mid-tone wall under one window never crosses the bright
+line; the lived band's dark is at the brief's 40 to 50%. The eye goes
+window, the two red notices flanking it, Dani on the ledge, the piano;
+the door is off the opening frame now (the room pans), which is how a
+door works at this camera. Cold-led, the warm pin at the door when it
+comes into view.
+
+**What changed elsewhere.** All 34 rooms regenerate under the new limits
+and the roof, shaft and hall styles shoot without error at 1.5x. In-world
+signs and notices are Labels scaled 1.5x and were sized down (notice 240
+x 12, sign 200 x 14) to read the same on screen; they stay slightly soft
+until the HUD redo. The shot rig takes `zoom=` and `travel=room:door`
+and applies `player=` after the world's own start travel. The pilot's
+skills carry all of it: `planes.py` reads `wall.layout`, `fixtures.py`
+draws the lamp, the references record the camera, the limits and the
+Parallax2D formula.
+
+Open: the old 3x assets (door frame, greybox props, HUD-style panels)
+read uneven at 1.5x until they are redone at 2x, style by style; the
+per-room zoom Marcos floated stays possible (1.0 and 1.5 are the only
+even ones) but one camera for the whole game is the recommendation; the
+upper half of the shell wants the near plane (a duct run) and the
+window's light on the wall to carry it.

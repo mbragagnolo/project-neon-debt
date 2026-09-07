@@ -9,6 +9,13 @@ character per 60px tile) and generated into scenes by
 are output. `tests/test_stacks.gd` reads the specs and holds them to
 everything on this page.
 
+The camera shows 1280 x 720 room px of a room (21 x 12 tiles, a 1.5x zoom
+on the 1920 x 1080 viewport; `docs/art/environment.md` section 6) and is
+bounded to the room's air plus one tile of ring, never the whole cell: a
+1 x 1 cell pans, a room with ten rows of air fits the view with its
+rings, and a room smaller than the view is centred in it over the void.
+Author a room's air knowing the player sees twelve rows at once.
+
 ## The shape
 
 ```
