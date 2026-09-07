@@ -1,0 +1,200 @@
+{
+  "name": "drone",
+  "look": "docs/art/cast.md#watcher-drone--flying-sentry",
+  "sheet": "sprites/drone.png",
+  "still": {
+    "model": "Laxhar/noobai-XL-1.1",
+    "width": 1216,
+    "height": 832,
+    "steps": 28,
+    "cfg": 5.5,
+    "scheduler": "euler_a",
+    "chosen_seed": 1,
+    "prompt": "masterpiece, best quality, very aesthetic, absurdres, no humans, (ufo, flying saucer, disc-shaped, round flat body, lenticular)1.3, (helicopter rotor on top, propeller blades above, rotor ring)1.25, (single red lens underneath, red camera eye on the underside, glowing red light)1.2, small gun barrel underneath, (from side, side view, profile)1.2, hovering, (simple background, grey background)1.2, dull steel, grey metal, matte metal, riveted, scratches, dents, damaged, worn, thin cyan light ring, cyan glow, surveillance drone, security drone, cel shading, anime coloring, soft shading, highlights, rim lighting",
+    "negative": "nsfw, 1girl, 1boy, humans, person, face, worst quality, low quality, blurry, watermark, signature, text, jpeg artifacts, multiple views, multiple drones, cropped, chibi, gradient background, detailed background, scenery, sky, clouds, ground, flat color, flat shading, monochrome, greyscale, sketch, unfinished, lowres, spotlight, lens flare, light rays, light particles, from above, from below, three-quarter view, isometric, wings, legs, arms, quadcopter, four rotors, orange, yellow, blue, white body, jet, fighter, spaceship, aircraft, airplane, pointed, sharp, sleek, fins, red stripes, red fins, red paint, cockpit, dome, window",
+    "_prompt_note": "Not humanoid: the sweep is landscape (1216x832), 'no humans, drone, from side' per the handoff, Dani's shading tags and negative as the base with the human terms swapped for machine ones. Quadcopter is negative because the look is one rotor ring on a disc, not four arms.",
+    "chosen_run": "saucer",
+    "flipped": false,
+    "_prompt_jet": "masterpiece, best quality, very aesthetic, absurdres, no humans, (drone, flying drone, robot, machine, mechanical)1.2, (from side, side view, profile)1.2, hovering, flying, (flat disc, saucer, flying saucer, flat body, wide body)1.1, propeller, rotor, rotor blades on top, single red lens, red eye, camera lens, glowing red light, gun barrel, small gun, underside, steel, grey metal, matte metal, scratches, dents, damaged, worn, cyan lights, cyan glow, glowing ring, (simple background, grey background)1.2, cyberpunk, sci-fi, cel shading, anime coloring, soft shading, highlights, rim lighting, concept art",
+    "_prompt_jet_note": "First sweep (work/drone/shaded/): 'drone, flying drone, robot, sci-fi, concept art' drew fighter jets with red fins, every seed. The look wants a disc with a rotor above and a lens below.",
+    "crop": [
+      0,
+      0,
+      560,
+      720
+    ],
+    "_chosen_note": "saucer seed 1, cropped to its left half (the model also drew a helicopter beside it): a flat disc with a rotor mast on top and a red lens glowing on the underside, in clean profile. The gun barrel is not drawn; it is a small part cut from the mast (see rig)."
+  },
+  "target": {
+    "height_art_px": 30,
+    "scale": 2,
+    "frame": [
+      40,
+      32
+    ],
+    "downscale": "kcentroid",
+    "edge": {
+      "shade": 0.62,
+      "lit": 1.3,
+      "light": [
+        -1,
+        -1
+      ]
+    },
+    "palette": [
+      "steel0",
+      "steel1",
+      "steel2",
+      "steel3",
+      "steel4",
+      "grey",
+      "grey_d",
+      "concrete0",
+      "concrete1",
+      "concrete2",
+      "concrete3",
+      "black",
+      "black_l",
+      "red",
+      "red_d",
+      "cyan",
+      "cyan_d",
+      "cyan_l",
+      "white",
+      "outline",
+      "red_l"
+    ],
+    "k": 2,
+    "accent": {
+      "share": 0.25,
+      "chroma": 120,
+      "luma": 200
+    },
+    "lines": {
+      "radius": 7,
+      "delta": 22,
+      "coverage": 0.22,
+      "factor": 0.75
+    },
+    "_settings_note": "Dani's target block; the still is 30 art px tall before the rotor and mast are squashed (see rig), which puts the disc at ~25 art px wide and the whole drone at ~18 tall, the cast.md table's 28x18, in a 40x32 frame (80x64 screen). The collider is 52x36 screen px, unchanged; the sprite's bottom edge sits on the collider's bottom edge."
+  },
+  "rig": {
+    "_comment": "Joints in the cropped still's pixels (560x720). Four parts: the disc is the root (pivot at its centre so the aim and the stun tilt about it), the red glow under the rim is the lens (its own part so a pose can brighten it), the camera mast on top tilts with the aim, the rotor hangs from the mast top and wobbles in the hover. cast.md's gun barrel was not drawn; the camera mast stands in for it. The rotor and the mast carry non-uniform scales and the rotor an `attach` below its cut pivot: the still's tall helicopter rotor is flattened into a ring close to the disc.",
+    "root": "body",
+    "pad": 5,
+    "joint_radius": 12,
+    "joints": {
+      "center": [
+        255,
+        545
+      ],
+      "nose": [
+        470,
+        545
+      ],
+      "lens_a": [
+        200,
+        612
+      ],
+      "lens_b": [
+        310,
+        612
+      ],
+      "mast_base": [
+        250,
+        458
+      ],
+      "mast_top": [
+        250,
+        300
+      ],
+      "hub": [
+        250,
+        255
+      ],
+      "blade_tip": [
+        545,
+        262
+      ],
+      "hub_low": [
+        250,
+        372
+      ]
+    },
+    "prop_joints": {},
+    "parts": [
+      {
+        "name": "lens",
+        "pivot": "lens_a",
+        "tip": "lens_b",
+        "parent": "body",
+        "weight": 1.25,
+        "joint_radius": 8,
+        "_why": "the red glow on the underside; its own part so aim can brighten it and stunned can put it out (pose tint)"
+      },
+      {
+        "name": "mast",
+        "pivot": "mast_base",
+        "tip": "mast_top",
+        "parent": "body",
+        "joint_radius": 10,
+        "recolor": [
+          {
+            "max_sat": 0.55,
+            "hue_to": 224,
+            "sat_to": 0.34,
+            "val_add": 0.2,
+            "_why": "the still drew the shell near-black gloss; cast.md wants steel1-3. Lifted onto the steel hue so the snap lands on that ramp (the cyan ring and the red glow are saturated and skip the rule)"
+          }
+        ],
+        "scale": [
+          1.0,
+          0.55
+        ],
+        "_scale_why": "the mast shortened to match the lowered rotor"
+      },
+      {
+        "name": "rotor",
+        "pivot": "hub",
+        "tip": "blade_tip",
+        "parent": "mast",
+        "weight": 1.5,
+        "joint_radius": 8,
+        "_why": "the blades reach far from the hub; the weight keeps their tips off the mast and the disc",
+        "recolor": [
+          {
+            "max_sat": 0.55,
+            "hue_to": 224,
+            "sat_to": 0.34,
+            "val_add": 0.2,
+            "_why": "the still drew the shell near-black gloss; cast.md wants steel1-3. Lifted onto the steel hue so the snap lands on that ramp (the cyan ring and the red glow are saturated and skip the rule)"
+          }
+        ],
+        "thicken": 22,
+        "_thicken_why": "the blades are ~10 still px thick, under half an art pixel; dilated to ~38 so the ring survives the vote",
+        "scale": [
+          1.0,
+          0.3
+        ],
+        "attach": "hub_low",
+        "_scale_why": "the still drew a tall helicopter rotor; squashed to a flat ellipse it reads as the ring blur cast.md wants, and hung from hub_low so it sits just above the disc"
+      },
+      {
+        "name": "body",
+        "pivot": "center",
+        "tip": "nose",
+        "parent": null,
+        "weight": 1.2,
+        "recolor": [
+          {
+            "max_sat": 0.55,
+            "hue_to": 224,
+            "sat_to": 0.34,
+            "val_add": 0.2,
+            "_why": "the still drew the shell near-black gloss; cast.md wants steel1-3. Lifted onto the steel hue so the snap lands on that ramp (the cyan ring and the red glow are saturated and skip the rule)"
+          }
+        ]
+      }
+    ]
+  }
+}

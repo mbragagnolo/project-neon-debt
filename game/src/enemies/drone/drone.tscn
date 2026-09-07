@@ -31,18 +31,18 @@ position = Vector2(0, -40)
 shape = SubResource("RectangleShape2D_drone_body")
 
 [node name="Visual" type="Sprite2D" parent="."]
-position = Vector2(0, -40)
+position = Vector2(0, -54)
 texture = ExtResource("91_sheet")
 script = ExtResource("90_anim")
-frame_width = 54
-frame_height = 36
+frame_width = 80
+frame_height = 64
 clips = {
-"aim": [2, 1, 0.0, false],
-"dead": [4, 1, 0.0, false],
-"hover": [0, 2, 8.0, true],
-"idle": [0, 2, 8.0, true],
-"stagger": [2, 1, 0.0, false],
-"stunned": [3, 1, 0.0, false]
+"aim": [8, 1, 0.0, false],
+"dead": [11, 1, 0.0, false],
+"hover": [4, 4, 8.0, true],
+"idle": [0, 4, 8.0, true],
+"stagger": [9, 1, 0.0, false],
+"stunned": [10, 1, 0.0, false]
 }
 autoplay = &"idle"
 

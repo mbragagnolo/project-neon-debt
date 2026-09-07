@@ -1,0 +1,46 @@
+{
+  "lens": {
+    "pivot": [
+      162,
+      110
+    ],
+    "origin": [
+      38,
+      502
+    ],
+    "still": null
+  },
+  "mast": {
+    "pivot": [
+      71,
+      180
+    ],
+    "origin": [
+      179,
+      278
+    ],
+    "still": null
+  },
+  "rotor": {
+    "pivot": [
+      250,
+      160
+    ],
+    "origin": [
+      0,
+      95
+    ],
+    "still": null
+  },
+  "body": {
+    "pivot": [
+      113,
+      80
+    ],
+    "origin": [
+      142,
+      465
+    ],
+    "still": null
+  }
+}
