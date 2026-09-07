@@ -58,6 +58,20 @@ func _physics_process(delta: float) -> void:
 	super(delta)
 
 
+## Phase two wears the coat off the shoulders (docs/art/cast.md): the sheet
+## carries a second set of clips prefixed `p2_`, and once the phase has
+## shifted every state's clip is swapped for its phase-two twin when the sheet
+## has one. The states keep asking for `idle`, `run`, `windup`; only the art
+## changes.
+func play(clip: StringName) -> void:
+	if phase == 2 and visual is PixelAnim:
+		var twin: StringName = StringName("p2_" + String(clip))
+		if (visual as PixelAnim).has_clip(twin):
+			super(twin)
+			return
+	super(clip)
+
+
 # --- Attacks ------------------------------------------------------------------
 
 func can_attack() -> bool:

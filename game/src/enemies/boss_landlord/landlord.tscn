@@ -37,22 +37,31 @@ position = Vector2(0, -62)
 shape = SubResource("RectangleShape2D_boss_body")
 
 [node name="Visual" type="Sprite2D" parent="."]
-position = Vector2(0, -66)
+position = Vector2(0, -88)
 texture = ExtResource("91_sheet")
 script = ExtResource("90_anim")
-frame_width = 84
-frame_height = 132
+frame_width = 144
+frame_height = 176
 clips = {
-"beam": [10, 1, 0.0, false],
-"dead": [13, 1, 0.0, false],
-"idle": [0, 2, 2.0, true],
-"lunge": [7, 1, 0.0, false],
-"phase": [12, 1, 0.0, false],
-"recover": [8, 1, 0.0, false],
-"run": [2, 4, 7.0, true],
-"slam_windup": [9, 1, 0.0, false],
-"stagger": [11, 1, 0.0, false],
-"windup": [6, 1, 0.0, false]
+"beam": [17, 1, 0.0, false],
+"dead": [19, 1, 0.0, false],
+"idle": [0, 4, 3.0, true],
+"lunge": [12, 1, 0.0, false],
+"p2_beam": [37, 1, 0.0, false],
+"p2_dead": [38, 1, 0.0, false],
+"p2_idle": [20, 4, 3.0, true],
+"p2_lunge": [32, 1, 0.0, false],
+"p2_recover": [33, 1, 0.0, false],
+"p2_run": [24, 6, 10.0, true],
+"p2_slam_windup": [35, 2, 5.0, false],
+"p2_stagger": [34, 1, 0.0, false],
+"p2_windup": [30, 2, 6.0, false],
+"phase": [18, 1, 0.0, false],
+"recover": [13, 1, 0.0, false],
+"run": [4, 6, 10.0, true],
+"slam_windup": [15, 2, 5.0, false],
+"stagger": [14, 1, 0.0, false],
+"windup": [10, 2, 6.0, false]
 }
 autoplay = &"idle"
 

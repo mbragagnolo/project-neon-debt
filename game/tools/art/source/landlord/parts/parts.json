@@ -1,0 +1,178 @@
+{
+  "coat_back": {
+    "pivot": [
+      143,
+      82
+    ],
+    "origin": [
+      157,
+      488
+    ],
+    "still": null
+  },
+  "torso": {
+    "pivot": [
+      82,
+      381
+    ],
+    "origin": [
+      303,
+      159
+    ],
+    "still": null
+  },
+  "coat_front": {
+    "pivot": [
+      43,
+      93
+    ],
+    "origin": [
+      412,
+      477
+    ],
+    "still": null
+  },
+  "leg_near_upper": {
+    "pivot": [
+      69,
+      28
+    ],
+    "origin": [
+      331,
+      562
+    ],
+    "still": null
+  },
+  "leg_near_lower": {
+    "pivot": [
+      99,
+      44
+    ],
+    "origin": [
+      301,
+      766
+    ],
+    "still": null
+  },
+  "foot_near": {
+    "pivot": [
+      40,
+      16
+    ],
+    "origin": [
+      360,
+      1069
+    ],
+    "still": null
+  },
+  "deck": {
+    "pivot": [
+      144,
+      52
+    ],
+    "origin": [
+      228,
+      163
+    ],
+    "still": null
+  },
+  "head": {
+    "pivot": [
+      113,
+      135
+    ],
+    "origin": [
+      272,
+      40
+    ],
+    "still": null
+  },
+  "arm_near_upper": {
+    "pivot": [
+      39,
+      45
+    ],
+    "origin": [
+      423,
+      200
+    ],
+    "still": null
+  },
+  "arm_near_lower": {
+    "pivot": [
+      16,
+      44
+    ],
+    "origin": [
+      576,
+      241
+    ],
+    "still": null
+  },
+  "hand_near": {
+    "pivot": [
+      10,
+      22
+    ],
+    "origin": [
+      690,
+      280
+    ],
+    "still": null
+  },
+  "arm_near_upper_p2": {
+    "pivot": [
+      39,
+      45
+    ],
+    "origin": [
+      423,
+      200
+    ],
+    "still": null
+  },
+  "arm_near_lower_p2": {
+    "pivot": [
+      16,
+      44
+    ],
+    "origin": [
+      576,
+      241
+    ],
+    "still": null
+  },
+  "hand_near_p2": {
+    "pivot": [
+      10,
+      22
+    ],
+    "origin": [
+      690,
+      280
+    ],
+    "still": null
+  },
+  "baton": {
+    "pivot": [
+      212,
+      771
+    ],
+    "origin": [
+      248,
+      109
+    ],
+    "still": "baton"
+  },
+  "baton_lit": {
+    "pivot": [
+      212,
+      771
+    ],
+    "origin": [
+      248,
+      109
+    ],
+    "still": "baton"
+  }
+}
