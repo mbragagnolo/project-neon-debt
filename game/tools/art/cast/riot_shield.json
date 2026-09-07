@@ -1,0 +1,104 @@
+{
+  "name": "riot_shield",
+  "look": "docs/art/cast.md#riot-unit--the-shield-wall",
+  "sheet": "sprites/riot_shield.png",
+  "_why": "The shield is its own sheet and its own Sprite2D node (riot.tscn Facing/Shield), so it is its own one-part rig: one still, one frame.",
+  "still": {
+    "model": "Laxhar/noobai-XL-1.1",
+    "width": 832,
+    "height": 1216,
+    "steps": 28,
+    "cfg": 5.5,
+    "scheduler": "euler_a",
+    "chosen_seed": 1,
+    "prompt": "masterpiece, best quality, very aesthetic, absurdres, no humans, still life, object focus, (riot shield, polycarbonate shield, tall rectangular shield, full body shield)1.2, (from side, side view, edge on, thin)1.2, upright, vertical, grey, concrete grey, translucent plastic, scuffed, scratches, dents, worn, black handle, (simple background, grey background)1.2, cel shading, anime coloring, soft shading, highlights, rim lighting",
+    "negative": "nsfw, 1girl, 1boy, hands, holding, person, human, worst quality, low quality, blurry, watermark, signature, text, jpeg artifacts, multiple views, multiple objects, cropped, gradient background, detailed background, scenery, spotlight, lens flare, round shield, medieval, wooden, emblem, logo, sword, gun",
+    "chosen_run": "shaded",
+    "flipped": false,
+    "_chosen_note": "shaded seed 1: the clean upright slab with a black frame and a handle, drawn from the front. The part is squashed to 0.36 of its width in the bake so it reads edge-on in front of the body, as the old 8 px sprite did."
+  },
+  "target": {
+    "height_art_px": 66,
+    "scale": 2,
+    "frame": [
+      14,
+      68
+    ],
+    "downscale": "kcentroid",
+    "edge": {
+      "shade": 0.62,
+      "lit": 1.3,
+      "light": [
+        -1,
+        -1
+      ]
+    },
+    "palette": [
+      "concrete0",
+      "concrete1",
+      "concrete2",
+      "concrete3",
+      "grey",
+      "grey_d",
+      "steel1",
+      "steel2",
+      "steel3",
+      "steel4",
+      "black",
+      "black_l",
+      "cyan_d",
+      "white",
+      "outline"
+    ],
+    "k": 2,
+    "accent": {
+      "share": 0.25,
+      "chroma": 120,
+      "luma": 200
+    },
+    "lines": {
+      "radius": 7,
+      "delta": 22,
+      "coverage": 0.22,
+      "factor": 0.75
+    },
+    "_settings_note": "66 art px tall in a 14x68 frame (28x136 screen): the cast.md table's 10x66 shield with room for the edge shade."
+  },
+  "rig": {
+    "_comment": "One part. The bone runs up the middle; the non-uniform scale narrows the frontal still to the edge-on width the scene wants.",
+    "root": "shield",
+    "pad": 4,
+    "joint_radius": 10,
+    "joints": {
+      "bottom": [
+        530,
+        1075
+      ],
+      "top": [
+        530,
+        290
+      ]
+    },
+    "prop_joints": {},
+    "parts": [
+      {
+        "name": "shield",
+        "pivot": "bottom",
+        "tip": "top",
+        "parent": null,
+        "scale": [
+          0.36,
+          1.0
+        ],
+        "recolor": [
+          {
+            "max_sat": 0.5,
+            "sat_mul": 0.25,
+            "_why": "the still's polycarbonate is bluish and snapped to steel; cast.md wants concrete grey"
+          }
+        ]
+      }
+    ]
+  },
+  "props": {}
+}

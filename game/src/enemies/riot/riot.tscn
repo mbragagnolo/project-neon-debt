@@ -34,27 +34,28 @@ position = Vector2(0, -50)
 shape = SubResource("RectangleShape2D_riot_body")
 
 [node name="Visual" type="Sprite2D" parent="."]
-position = Vector2(0, -51)
+position = Vector2(0, -68)
 texture = ExtResource("91_sheet")
 script = ExtResource("90_anim")
-frame_width = 78
-frame_height = 102
+frame_width = 96
+frame_height = 136
 clips = {
-"dead": [11, 1, 0.0, false],
-"idle": [0, 2, 2.0, true],
-"lunge": [7, 1, 0.0, false],
-"recover": [8, 1, 0.0, false],
-"run": [2, 4, 6.0, true],
-"stagger": [9, 1, 0.0, false],
-"stunned": [10, 1, 0.0, false],
-"windup": [6, 1, 0.0, false]
+"dead": [16, 1, 0.0, false],
+"idle": [0, 4, 3.0, true],
+"lunge": [12, 1, 0.0, false],
+"recover": [13, 1, 0.0, false],
+"run": [4, 6, 8.0, true],
+"stagger": [14, 1, 0.0, false],
+"stunned": [15, 1, 0.0, false],
+"windup": [10, 2, 6.0, false]
 }
 autoplay = &"idle"
 
 [node name="Facing" type="Node2D" parent="."]
 
 [node name="Shield" type="Sprite2D" parent="Facing"]
-position = Vector2(40, -52)
+position = Vector2(40, -68)
+texture_filter = 1
 texture = ExtResource("92_shield")
 
 [node name="Health" type="Node" parent="."]

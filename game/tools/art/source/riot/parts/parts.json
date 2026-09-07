@@ -1,0 +1,90 @@
+{
+  "torso": {
+    "pivot": [
+      139,
+      248
+    ],
+    "origin": [
+      241,
+      182
+    ],
+    "still": null
+  },
+  "lamp": {
+    "pivot": [
+      38,
+      38
+    ],
+    "origin": [
+      414,
+      200
+    ],
+    "still": null
+  },
+  "leg_near_upper": {
+    "pivot": [
+      68,
+      64
+    ],
+    "origin": [
+      367,
+      406
+    ],
+    "still": null
+  },
+  "leg_near_lower": {
+    "pivot": [
+      181,
+      25
+    ],
+    "origin": [
+      339,
+      675
+    ],
+    "still": null
+  },
+  "foot_near": {
+    "pivot": [
+      20,
+      58
+    ],
+    "origin": [
+      580,
+      942
+    ],
+    "still": null
+  },
+  "head": {
+    "pivot": [
+      169,
+      94
+    ],
+    "origin": [
+      211,
+      106
+    ],
+    "still": null
+  },
+  "arm_near_upper": {
+    "pivot": [
+      46,
+      53
+    ],
+    "origin": [
+      424,
+      249
+    ],
+    "still": null
+  },
+  "arm_near_lower": {
+    "pivot": [
+      18,
+      34
+    ],
+    "origin": [
+      587,
+      271
+    ],
+    "still": null
+  }
+}

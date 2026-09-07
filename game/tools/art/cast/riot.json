@@ -1,0 +1,321 @@
+{
+  "name": "riot",
+  "look": "docs/art/cast.md#riot-unit--the-shield-wall",
+  "sheet": "sprites/riot.png",
+  "still": {
+    "model": "Laxhar/noobai-XL-1.1",
+    "width": 832,
+    "height": 1216,
+    "steps": 28,
+    "cfg": 5.5,
+    "scheduler": "euler_a",
+    "chosen_seed": 10,
+    "prompt": "masterpiece, best quality, very aesthetic, absurdres, no humans, (heavy robot, industrial robot, power armor, bulky mech, walking tank)1.3, solo, full body, (standing, t-pose, outstretched arms, legs apart, from side, profile)1.25, (simple background, grey background)1.2, (huge shoulders, boxy torso, squat, stocky, wide body, thick armored legs, heavy plating)1.25, matte steel, dark grey metal, riot armor, riot police, hydraulic pistons, cables, tubes at joints, black rubber joints, (narrow cyan visor slit, glowing cyan line for a face, no face)1.2, industrial, worn metal, scratches, dents, scuffed, cel shading, anime coloring, soft shading, highlights, rim lighting",
+    "negative": "nsfw, 1girl, 1boy, humans, person, face, skin, hair, worst quality, low quality, blurry, watermark, signature, text, jpeg artifacts, multiple views, multiple robots, cropped, chibi, from behind, back view, sitting, gradient background, detailed background, scenery, flat color, flat shading, monochrome, greyscale, sketch, unfinished, lowres, spotlight, lens flare, light rays, light particles, facing viewer, from front, dynamic pose, holding, shield, gun, sword, weapon, wings, red, blue armor, white armor, gold, slim, thin, tall, slender, feminine, curvy, elegant, sleek, smooth, android, humanoid, helmet with visor, orange visor, amber visor, yellow visor, orange, yellow",
+    "_prompt_note": "Dani's shading tags and negative as the base with the human terms swapped for machine ones; the shield is negative because it is its own still (riot_shield.json) and node.",
+    "chosen_run": "heavy",
+    "flipped": true,
+    "_prompt_sleek": "masterpiece, best quality, very aesthetic, absurdres, no humans, (robot, humanoid robot, mecha, android, machine)1.2, solo, full body, (standing, t-pose, outstretched arms, legs apart, from side, profile)1.2, (simple background, grey background)1.2, (bulky, heavy armor, wide shoulders, squat, thick legs)1.1, matte steel, grey armor, dark grey metal, riot armor, riot police, hydraulic, pistons, cables, tubes at joints, black joints, (narrow visor, cyan visor, glowing cyan visor slit, single eye slit)1.2, (amber light on shoulder, orange warning light)1.15, industrial, worn metal, scratches, dents, scuffed, cyberpunk, cel shading, anime coloring, soft shading, highlights, rim lighting, concept art",
+    "_prompt_sleek_note": "First sweep (work/riot/shaded/): every seed a slender humanoid with an amber visor. 'humanoid robot, android' pulls toward a slim figure, and the shoulder lamp's amber took the visor.",
+    "_chosen_note": "heavy seed 10, mirrored to face right: the one clean profile T-pose of the sweep with the boxy torso, thick armoured legs and the cyan visor slit on top. No shoulder lamp was drawn (it is painted by a box recolour on the torso).",
+    "key_seeds": [
+      [
+        450,
+        900
+      ]
+    ],
+    "clear_boxes": [
+      [
+        0,
+        1056,
+        832,
+        1216
+      ]
+    ],
+    "_key_note": "The still's floor shadow closes off the background between the legs from the border; a seed there keys it, and the shadow strip under the soles is cleared."
+  },
+  "target": {
+    "height_art_px": 62,
+    "scale": 2,
+    "frame": [
+      48,
+      68
+    ],
+    "downscale": "kcentroid",
+    "edge": {
+      "shade": 0.62,
+      "lit": 1.3,
+      "light": [
+        -1,
+        -1
+      ]
+    },
+    "palette": [
+      "steel0",
+      "steel1",
+      "steel2",
+      "steel3",
+      "steel4",
+      "grey",
+      "grey_d",
+      "concrete0",
+      "concrete1",
+      "concrete2",
+      "concrete3",
+      "black",
+      "black_l",
+      "cyan",
+      "cyan_d",
+      "cyan_l",
+      "amber",
+      "amber_d",
+      "amber_l",
+      "white",
+      "outline"
+    ],
+    "k": 2,
+    "accent": {
+      "share": 0.25,
+      "chroma": 120,
+      "luma": 200
+    },
+    "lines": {
+      "radius": 7,
+      "delta": 22,
+      "coverage": 0.22,
+      "factor": 0.75
+    },
+    "_settings_note": "Dani's target block; 62 art px tall in a 48x68 frame (96x136 screen), collider 60x100 screen px unchanged, feet on its bottom edge. Steel ramp, cyan visor, amber lamp."
+  },
+  "rig": {
+    "_comment": "Joints in still pixels (832x1216, mirrored to face right). The still is a stride: the near thigh leans 22 degrees forward and the shin 15, so the leg parts carry rest angles that stand them straight for the poses (thigh +22, shin -7, foot -15: a bone pointing down-right is at a negative screen angle, summing to zero so the pose file's flat() still levels the sole). The near arm is the extended one (rest 90). The far arm and far leg are discards, replaced by darkened copies. The lamp is a small part claimed on the near shoulder and painted amber: the still drew none.",
+    "root": "torso",
+    "pad": 6,
+    "joint_radius": 18,
+    "joints": {
+      "hip": [
+        380,
+        430
+      ],
+      "neck": [
+        380,
+        200
+      ],
+      "head_top": [
+        385,
+        105
+      ],
+      "shoulder_near": [
+        470,
+        302
+      ],
+      "elbow_near": [
+        605,
+        305
+      ],
+      "hand_near": [
+        770,
+        312
+      ],
+      "shoulder_far": [
+        215,
+        300
+      ],
+      "hand_far": [
+        85,
+        300
+      ],
+      "hip_near": [
+        435,
+        470
+      ],
+      "knee_near": [
+        520,
+        700
+      ],
+      "ankle_near": [
+        600,
+        1000
+      ],
+      "toe_near": [
+        785,
+        1050
+      ],
+      "hip_far": [
+        330,
+        470
+      ],
+      "knee_far": [
+        200,
+        720
+      ],
+      "sole_far": [
+        60,
+        1060
+      ],
+      "lamp_a": [
+        452,
+        238
+      ],
+      "lamp_b": [
+        468,
+        250
+      ]
+    },
+    "prop_joints": {},
+    "parts": [
+      {
+        "name": "x_arm_far",
+        "pivot": "shoulder_far",
+        "tip": "hand_far",
+        "discard": true
+      },
+      {
+        "name": "x_leg_far_upper",
+        "pivot": "hip_far",
+        "tip": "knee_far",
+        "discard": true
+      },
+      {
+        "name": "x_leg_far_lower",
+        "pivot": "knee_far",
+        "tip": "sole_far",
+        "discard": true
+      },
+      {
+        "name": "leg_far_upper",
+        "copy_of": "leg_near_upper",
+        "parent": "torso",
+        "offset": [
+          -34,
+          -4
+        ],
+        "tint": 0.68,
+        "rest": 22
+      },
+      {
+        "name": "leg_far_lower",
+        "copy_of": "leg_near_lower",
+        "parent": "leg_far_upper",
+        "offset": [
+          -34,
+          -4
+        ],
+        "tint": 0.68,
+        "rest": -7
+      },
+      {
+        "name": "foot_far",
+        "copy_of": "foot_near",
+        "parent": "leg_far_lower",
+        "offset": [
+          -34,
+          -4
+        ],
+        "tint": 0.68,
+        "rest": -15,
+        "ground": true
+      },
+      {
+        "name": "arm_far_upper",
+        "copy_of": "arm_near_upper",
+        "parent": "torso",
+        "offset": [
+          -40,
+          -6
+        ],
+        "tint": 0.68,
+        "rest": 90
+      },
+      {
+        "name": "arm_far_lower",
+        "copy_of": "arm_near_lower",
+        "parent": "arm_far_upper",
+        "offset": [
+          -40,
+          -6
+        ],
+        "tint": 0.68
+      },
+      {
+        "name": "torso",
+        "pivot": "hip",
+        "tip": "neck",
+        "parent": null,
+        "weight": 1.2
+      },
+      {
+        "name": "lamp",
+        "pivot": "lamp_a",
+        "tip": "lamp_b",
+        "parent": "torso",
+        "weight": 1.0,
+        "joint_radius": 6,
+        "recolor": [
+          {
+            "hue_to": 40,
+            "sat_to": 0.9,
+            "val_to": 1.0,
+            "_why": "cast.md: an amber warning lamp on one shoulder, painted because the still drew none; a pose tint blinks it"
+          }
+        ],
+        "_why": "its own part so the windup can hold it lit and the idle can blink it (pose tint). Weight 1: the nearest-bone rule already gives a short bone near the shell's edge a disc of about 40 px, two art px; a heavier weight took the whole upper shell"
+      },
+      {
+        "name": "leg_near_upper",
+        "pivot": "hip_near",
+        "tip": "knee_near",
+        "parent": "torso",
+        "rest": 22
+      },
+      {
+        "name": "leg_near_lower",
+        "pivot": "knee_near",
+        "tip": "ankle_near",
+        "parent": "leg_near_upper",
+        "rest": -7
+      },
+      {
+        "name": "foot_near",
+        "pivot": "ankle_near",
+        "tip": "toe_near",
+        "parent": "leg_near_lower",
+        "joint_radius": 14,
+        "rest": -15,
+        "ground": true
+      },
+      {
+        "name": "head",
+        "pivot": "neck",
+        "tip": "head_top",
+        "parent": "torso",
+        "weight": 1.2,
+        "joint_radius": 12,
+        "_why": "the visor block on top of the shell: the stun darkens it (pose tint)"
+      },
+      {
+        "name": "arm_near_upper",
+        "pivot": "shoulder_near",
+        "tip": "elbow_near",
+        "parent": "torso",
+        "rest": 90
+      },
+      {
+        "name": "arm_near_lower",
+        "pivot": "elbow_near",
+        "tip": "hand_near",
+        "parent": "arm_near_upper"
+      }
+    ],
+    "recolor": [
+      {
+        "max_sat": 0.5,
+        "hue_to": 224,
+        "sat_to": 0.28,
+        "val_add": 0.14,
+        "_why": "the still's olive-grey armour snapped to black_l; cast.md wants steel1-3. Lifted onto the steel hue (the cyan visor and the lamp are saturated and skip it)"
+      }
+    ]
+  },
+  "props": {}
+}
