@@ -95,8 +95,17 @@ func test_leaving_back_out_through_the_arrival_door_works() -> void:
 func test_the_camera_clamps_to_the_room() -> void:
 	await _world.travel(&"hall_13", &"1")
 	await _settled()
-	assert_eq(_player.camera.limit_right, 3840, "a two-cell room is 3840 wide")
-	assert_eq(_player.camera.limit_bottom, 1080)
+	# The limits are the room's own (its air plus one ring tile, at least one
+	# view; make_stacks.camera_limits), placed where the room is.
+	var room: Room = _world.current_room
+	var limits: Rect2i = room.camera_limits
+	var origin := Vector2i(room.global_position)
+	assert_eq(_player.camera.limit_left, origin.x + limits.position.x)
+	assert_eq(_player.camera.limit_right, origin.x + limits.end.x)
+	assert_eq(_player.camera.limit_top, origin.y + limits.position.y)
+	assert_eq(_player.camera.limit_bottom, origin.y + limits.end.y)
+	assert_eq(limits.size.x, 3840, "a two-cell room pans its whole width")
+	assert_true(limits.size.y >= int(PixelCamera.view_size().y), "never less than one view tall")
 
 
 func test_death_without_a_terminal_returns_to_the_flat_with_everything() -> void:

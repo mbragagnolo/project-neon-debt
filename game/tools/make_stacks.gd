@@ -15,6 +15,9 @@ const GRAPH_PATH := "res://src/world/world_graph.tres"
 const COL_BACK := Color("0d1018")
 const COL_SOLID := Color("3a4256")
 const COL_PLATFORM := Color("5a6684")
+## The palette's `void`: what a solid is past its ring, and what the camera
+## sees past a room smaller than its view (the apron in `_void_apron`).
+const COL_VOID := Color("07080f")
 
 ## The dark each style sits under; lights punch through it (M7).
 const AMBIENT: Dictionary = {
@@ -106,7 +109,8 @@ func _build(spec: RoomSpec) -> void:
 	_root.set_script(load("res://src/world/room.gd"))
 	_root.set("room_id", spec.id)
 	_root.set("display_name", spec.display_name)
-	_root.set("camera_limits", Rect2i(Vector2i.ZERO, Vector2i(spec.pixel_size())))
+	var limits: Rect2i = camera_limits(spec)
+	_root.set("camera_limits", limits)
 	_root.set("announces_on_ready", false)
 
 	_geometry = _group("Geometry")
@@ -117,7 +121,8 @@ func _build(spec: RoomSpec) -> void:
 
 	var dress_data: Dictionary = _dress_data(spec)
 	_dress_json = dress_data
-	_backdrop(spec, dress_data)
+	_void_apron(spec, limits)
+	_backdrop(spec, dress_data, limits)
 
 	var index: int = 0
 	for rect: Rect2i in spec.solid_rects():
@@ -179,6 +184,67 @@ func _build(spec: RoomSpec) -> void:
 		get_tree().quit(1)
 		return
 	_root.free()
+
+
+## Where the camera may look: the room's air plus one tile of ring, clamped
+## to the cell, and never less than one view. The whole cell was the old
+## rule; under the Metroid rule the slab past the ring is black, and a
+## camera that pans over it shows nothing. A room shorter or narrower than
+## the view is centred in it (docs/art/environment.md, 6).
+static func camera_limits(spec: RoomSpec) -> Rect2i:
+	var air := Rect2i()
+	var found := false
+	for y: int in spec.height():
+		for x: int in spec.width():
+			if not spec.is_air(x, y):
+				continue
+			var tile := Rect2i(x, y, 1, 1)
+			air = tile if not found else air.merge(tile)
+			found = true
+	if not found:
+		air = Rect2i(Vector2i.ZERO, Vector2i(spec.width(), spec.height()))
+	var cell := Rect2i(Vector2i.ZERO, Vector2i(spec.width(), spec.height()))
+	var ring: Rect2i = air.grow(1).intersection(cell)
+	var tile_px: int = int(RoomSpec.TILE)
+	var limits := Rect2i(ring.position * tile_px, ring.size * tile_px)
+	var view: Vector2i = Vector2i(PixelCamera.view_size())
+	if limits.size.x < view.x:
+		limits.position.x -= (view.x - limits.size.x) / 2
+		limits.size.x = view.x
+	if limits.size.y < view.y:
+		limits.position.y -= (view.y - limits.size.y) / 2
+		limits.size.y = view.y
+	return limits
+
+
+## The void past the cell, for a room the camera centres: four strips
+## between the cell and the limits, in the room's canvas so the ambient
+## darkens them like the slab's own void. Inside the cell nothing is
+## painted, so a window's cut-out still sees the outside layer.
+func _void_apron(spec: RoomSpec, limits: Rect2i) -> void:
+	var cell := Rect2i(Vector2i.ZERO, Vector2i(spec.pixel_size()))
+	var outer: Rect2i = limits.grow(int(RoomSpec.TILE) * 2)
+	if cell.encloses(outer):
+		return
+	var strips: Array[Rect2i] = [
+		Rect2i(outer.position.x, outer.position.y, outer.size.x, cell.position.y - outer.position.y),
+		Rect2i(outer.position.x, cell.end.y, outer.size.x, outer.end.y - cell.end.y),
+		Rect2i(outer.position.x, cell.position.y, cell.position.x - outer.position.x, cell.size.y),
+		Rect2i(cell.end.x, cell.position.y, outer.end.x - cell.end.x, cell.size.y),
+	]
+	var index: int = 0
+	for strip: Rect2i in strips:
+		if strip.size.x <= 0 or strip.size.y <= 0:
+			continue
+		var rect := ColorRect.new()
+		rect.name = "Void%d" % index
+		rect.color = COL_VOID
+		rect.position = Vector2(strip.position)
+		rect.size = Vector2(strip.size)
+		rect.z_index = -50
+		rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_geometry.add_child(rect)
+		index += 1
 
 
 func _group(group_name: String) -> Node2D:
@@ -405,15 +471,18 @@ func _marker(c: String, type: String, args: String, rect: Rect2i) -> void:
 			sign.name = node_name
 			sign.set_script(load("res://src/world/sign.gd"))
 			sign.position = at
+			# Sized for the 1.5x camera: a panel reads on screen at 1.5x these.
 			if type == "notice":
 				sign.set("text", Lines.NOTICE_REPOSSESSION)
 				sign.set("warning", true)
-				sign.set("width", 360.0)
-				sign.set("font_size", 17)
+				sign.set("width", 240.0)
+				sign.set("font_size", 12)
 			else:
 				var warning: bool = args.begins_with("! ")
 				sign.set("text", args.trim_prefix("! ").replace("\\n", "\n"))
 				sign.set("warning", warning)
+				sign.set("width", 200.0)
+				sign.set("font_size", 14)
 			_props.add_child(sign)
 		"tease":
 			var tease := Node2D.new()
@@ -490,9 +559,9 @@ func _pickup(c: String, type: String, parts: PackedStringArray, at: Vector2) -> 
 ## data draws its planes instead: the outside on a ParallaxBackground, which
 ## the ambient CanvasModulate does not touch, so a window can be the bright
 ## area of a dark room; the back wall in the canvas, under the props.
-func _backdrop(spec: RoomSpec, dress_data: Dictionary = {}) -> void:
+func _backdrop(spec: RoomSpec, dress_data: Dictionary = {}, limits: Rect2i = Rect2i()) -> void:
 	if dress_data.has("planes"):
-		_planes(spec, dress_data["planes"])
+		_planes(spec, dress_data["planes"], limits)
 		return
 	if spec.style == "roof":
 		var parallax := ParallaxBackground.new()
@@ -537,8 +606,20 @@ func _backdrop(spec: RoomSpec, dress_data: Dictionary = {}) -> void:
 	_geometry.add_child(back)
 
 
-func _planes(spec: RoomSpec, planes: Array) -> void:
-	var parallax: ParallaxBackground = null
+## The room's planes from its dress json. A plane marked `unlit` (the
+## outside, seen through a window) goes on its own CanvasLayer so the
+## room's CanvasModulate cannot darken it, following the viewport so it
+## sits in world space, under a Parallax2D for its depth. The Parallax2D is
+## registered with the camera centred in the room's limits: there the plane
+## is exactly at `at`; as the camera pans the plane lags by
+## (1 - parallax) x the pan, so it must be bigger than the glass by that.
+## Measured on 4.7: a Parallax2D sits at screen_offset x (1 - scroll_scale)
+## + scroll_offset, where screen_offset is the camera's centre minus half
+## the unzoomed viewport.
+func _planes(spec: RoomSpec, planes: Array, limits: Rect2i = Rect2i()) -> void:
+	var outside: CanvasLayer = null
+	var centre: Vector2 = Vector2(limits.position) + Vector2(limits.size) * 0.5
+	var home: Vector2 = centre - PixelCamera.view_size() * PixelCamera.ZOOM * 0.5
 	for i: int in planes.size():
 		var plane: Dictionary = planes[i]
 		var tex_path: String = plane["texture"]
@@ -552,16 +633,19 @@ func _planes(spec: RoomSpec, planes: Array) -> void:
 		sprite.centered = false
 		sprite.position = _vec(plane["at"])
 		if plane.get("unlit", false):
-			if parallax == null:
-				parallax = ParallaxBackground.new()
-				parallax.name = "Outside"
-				parallax.layer = -20
-				_root.add_child(parallax)
-			var layer := ParallaxLayer.new()
-			layer.name = sprite.name + "Layer"
-			layer.motion_scale = Vector2(float(plane.get("parallax", 1.0)), float(plane.get("parallax", 1.0)))
-			layer.add_child(sprite)
-			parallax.add_child(layer)
+			if outside == null:
+				outside = CanvasLayer.new()
+				outside.name = "Outside"
+				outside.layer = -20
+				outside.follow_viewport_enabled = true
+				_root.add_child(outside)
+			var motion: float = float(plane.get("parallax", 1.0))
+			var scroller := Parallax2D.new()
+			scroller.name = sprite.name + "Scroll"
+			scroller.scroll_scale = Vector2(motion, motion)
+			scroller.scroll_offset = -home * (1.0 - motion)
+			scroller.add_child(sprite)
+			outside.add_child(scroller)
 		else:
 			sprite.z_index = int(plane.get("z", -10))
 			_geometry.add_child(sprite)

@@ -1,15 +1,21 @@
 class_name PixelCamera
 extends Camera2D
-## The follow camera, snapped to the art grid (docs/art/direction.md).
+## The follow camera, snapped to the art grid (docs/art/environment.md, 6).
 ##
-## Every art pixel is three world pixels, so a camera at a fractional or
-## off-grid position draws some art pixels two screen pixels wide and some
-## four. This camera follows its parent with its own smoothing and lands on
-## multiples of three, so the picture stays crisp. It also owns the shake:
-## `Events.camera_shake_requested` decays into `offset`, and the ending's pan
-## tweens `offset` as well.
+## The art is baked at two world pixels per art pixel and the camera looks
+## through a 1.5x zoom, so an art pixel is three screen pixels at 1080p:
+## the density of the references, with Dani at 15% of the frame instead of
+## 10%. Any whole world pixel lands an art pixel on three whole screen
+## pixels; a half world pixel does not. So this camera follows its parent
+## with its own smoothing and lands on whole art pixels (two world px), and
+## `rendering/2d/snap/snap_2d_transforms_to_pixel` does the same for every
+## sprite. It also owns the shake: `Events.camera_shake_requested` decays
+## into `offset`, and the ending's pan tweens `offset` as well.
 
-const PIXEL := 3.0
+## Screen px per world px. 1.5 makes a 2x-baked art pixel three screen px.
+const ZOOM := 1.5
+## One art pixel in world px; the camera and the shake land on multiples.
+const PIXEL := 2.0
 
 @export var smoothing: float = 9.0
 
@@ -25,6 +31,7 @@ var _rng := RandomNumberGenerator.new()
 func _ready() -> void:
 	_follow = get_parent() as Node2D
 	_anchor = position
+	zoom = Vector2(ZOOM, ZOOM)
 	position_smoothing_enabled = false
 	top_level = true
 	Events.camera_shake_requested.connect(shake)
@@ -84,3 +91,11 @@ func set_pan(value: Vector2) -> void:
 
 func get_pan() -> Vector2:
 	return _pan
+
+
+## What the camera shows, in world px: the project viewport over the zoom.
+## The room generator sizes its camera limits from this.
+static func view_size() -> Vector2:
+	var w: float = float(ProjectSettings.get_setting("display/window/size/viewport_width", 1920))
+	var h: float = float(ProjectSettings.get_setting("display/window/size/viewport_height", 1080))
+	return Vector2(w, h) / ZOOM

@@ -48,16 +48,48 @@ gravity = Vector3(0, 0, 0)
 scale_min = 1.6
 scale_max = 2.24
 
-[node name="BreachGateRoom" type="Node2D" unique_id=1835969382]
+[node name="BreachGateRoom" type="Node2D" unique_id=329210440]
 script = ExtResource("1_6sogj")
 room_id = &"breach_gate_room"
 display_name = "Collections Bulkhead"
 camera_limits = Rect2i(0, 0, 1920, 1080)
 announces_on_ready = false
 
-[node name="Geometry" type="Node2D" parent="." unique_id=970459]
+[node name="Geometry" type="Node2D" parent="." unique_id=40473466]
 
-[node name="Backdrop" type="TextureRect" parent="Geometry" unique_id=1839910454]
+[node name="Void0" type="ColorRect" parent="Geometry" unique_id=1263688010]
+z_index = -50
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 2040.0
+mouse_filter = 2
+color = Color(0.02745098, 0.03137255, 0.05882353, 1)
+
+[node name="Void1" type="ColorRect" parent="Geometry" unique_id=1599382570]
+z_index = -50
+offset_left = -120.0
+offset_top = 1080.0
+offset_right = 2040.0
+offset_bottom = 1200.0
+mouse_filter = 2
+color = Color(0.02745098, 0.03137255, 0.05882353, 1)
+
+[node name="Void2" type="ColorRect" parent="Geometry" unique_id=64059772]
+z_index = -50
+offset_left = -120.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.02745098, 0.03137255, 0.05882353, 1)
+
+[node name="Void3" type="ColorRect" parent="Geometry" unique_id=425488764]
+z_index = -50
+offset_left = 1920.0
+offset_right = 2040.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.02745098, 0.03137255, 0.05882353, 1)
+
+[node name="Backdrop" type="TextureRect" parent="Geometry" unique_id=62186071]
 z_index = -10
 texture_filter = 1
 offset_right = 1920.0
@@ -66,14 +98,14 @@ mouse_filter = 2
 texture = ExtResource("2_b2vu0")
 stretch_mode = 1
 
-[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=1530640608]
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=1161702203]
 position = Vector2(240, 30)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=1018787880]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=413510930]
 shape = SubResource("RectangleShape2D_hm5yt")
 
-[node name="Wall" type="NinePatchRect" parent="Geometry/Solid0" unique_id=210352142]
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid0" unique_id=723380032]
 texture_filter = 1
 offset_left = -240.0
 offset_top = -30.0
@@ -86,14 +118,14 @@ patch_margin_bottom = 60
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=1627109600]
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=1287903891]
 position = Vector2(1290, 30)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=957901424]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=1481932844]
 shape = SubResource("RectangleShape2D_b5aw2")
 
-[node name="Wall" type="NinePatchRect" parent="Geometry/Solid1" unique_id=1349133041]
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid1" unique_id=332214229]
 texture_filter = 1
 offset_left = -630.0
 offset_top = -30.0
@@ -106,14 +138,14 @@ patch_margin_bottom = 60
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=1748110068]
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=1970200738]
 position = Vector2(30, 450)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=759797577]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=652894434]
 shape = SubResource("RectangleShape2D_7hn3t")
 
-[node name="Wall" type="NinePatchRect" parent="Geometry/Solid2" unique_id=322471352]
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid2" unique_id=291397310]
 texture_filter = 1
 offset_left = -30.0
 offset_top = -390.0
@@ -126,14 +158,14 @@ patch_margin_bottom = 60
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=404705430]
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=359741502]
 position = Vector2(1890, 570)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=263779916]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=1146021782]
 shape = SubResource("RectangleShape2D_tess8")
 
-[node name="Wall" type="NinePatchRect" parent="Geometry/Solid3" unique_id=318877598]
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid3" unique_id=1173259387]
 texture_filter = 1
 offset_left = -30.0
 offset_top = -510.0
@@ -145,14 +177,14 @@ patch_margin_left = 60
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=2136985717]
+[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=1745263802]
 position = Vector2(930, 1050)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=2073848318]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=585876214]
 shape = SubResource("RectangleShape2D_t5uu0")
 
-[node name="Wall" type="NinePatchRect" parent="Geometry/Solid4" unique_id=250333781]
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid4" unique_id=161797581]
 texture_filter = 1
 offset_left = -930.0
 offset_top = -30.0
@@ -164,11 +196,11 @@ patch_margin_top = 60
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Hazards" type="Node2D" parent="." unique_id=2035812867]
+[node name="Hazards" type="Node2D" parent="." unique_id=247228592]
 
-[node name="Doors" type="Node2D" parent="." unique_id=1202470443]
+[node name="Doors" type="Node2D" parent="." unique_id=1230614912]
 
-[node name="1" type="Area2D" parent="Doors" unique_id=1671505429]
+[node name="1" type="Area2D" parent="Doors" unique_id=2034630801]
 position = Vector2(570, 30)
 script = ExtResource("4_aaryc")
 door_id = &"1"
@@ -178,7 +210,7 @@ side = 2
 size = Vector2(180, 60)
 spawn_point = Vector2(570, 120)
 
-[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=45540403]
+[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=1101361400]
 z_index = -2
 offset_left = -90.0
 offset_top = -30.0
@@ -187,7 +219,7 @@ offset_bottom = 30.0
 mouse_filter = 2
 color = Color(0.03, 0.04, 0.07, 1)
 
-[node name="2" type="Area2D" parent="Doors" unique_id=473019290]
+[node name="2" type="Area2D" parent="Doors" unique_id=1034602337]
 position = Vector2(30, 930)
 script = ExtResource("4_aaryc")
 door_id = &"2"
@@ -195,37 +227,39 @@ target_room = &"armory"
 target_door = &"1"
 spawn_point = Vector2(90, 1020)
 
-[node name="Frame" type="Sprite2D" parent="Doors/2" unique_id=874490744]
+[node name="Frame" type="Sprite2D" parent="Doors/2" unique_id=383531431]
 z_index = -2
 texture_filter = 1
 texture = ExtResource("5_ccpjk")
 
-[node name="Lamp" type="PointLight2D" parent="Doors/2" unique_id=1522783317]
+[node name="Lamp" type="PointLight2D" parent="Doors/2" unique_id=1507560961]
 position = Vector2(0, -80)
 color = Color(0.5, 0.9, 1, 1)
 energy = 0.7
 texture = ExtResource("6_xncn1")
 texture_scale = 2.4
 
-[node name="Props" type="Node2D" parent="." unique_id=906738724]
+[node name="Props" type="Node2D" parent="." unique_id=1772601951]
 
-[node name="BreachDoor_bulkhead_east" type="StaticBody2D" parent="Props" unique_id=653104095 instance=ExtResource("7_uitd8")]
+[node name="BreachDoor_bulkhead_east" type="StaticBody2D" parent="Props" unique_id=1317263817 instance=ExtResource("7_uitd8")]
 position = Vector2(390, 1020)
 collision_mask = 0
 script = ExtResource("8_ev4n7")
 door_id = &"bulkhead_east"
 size = Vector2(60, 300)
 
-[node name="Sign_s" type="Node2D" parent="Props" unique_id=1750985083]
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=1689536826]
 position = Vector2(630, 780)
 script = ExtResource("9_a65kl")
 text = "SEALED
 VESTA COLLECTIONS BULKHEAD"
+width = 200.0
 warning = true
+font_size = 14
 
-[node name="Pickups" type="Node2D" parent="." unique_id=1740747404]
+[node name="Pickups" type="Node2D" parent="." unique_id=1781931973]
 
-[node name="Hack_breach" type="Area2D" parent="Pickups" unique_id=706621275 instance=ExtResource("10_jd7sj")]
+[node name="Hack_breach" type="Area2D" parent="Pickups" unique_id=126052522 instance=ExtResource("10_jd7sj")]
 position = Vector2(1230, 1020)
 collision_layer = 128
 collision_mask = 2
@@ -234,94 +268,94 @@ kind = 1
 hack_id = &"breach"
 pickup_id = &"breach_gate_room_o"
 
-[node name="Scavs" type="Node2D" parent="." unique_id=88897788]
+[node name="Scavs" type="Node2D" parent="." unique_id=1399983609]
 script = ExtResource("12_lumxk")
 enemy_scene = ExtResource("13_qg5mr")
 respawn_delay = 0.0
 
-[node name="Spawn1" type="Marker2D" parent="Scavs" unique_id=1192517677]
+[node name="Spawn1" type="Marker2D" parent="Scavs" unique_id=135443776]
 position = Vector2(870, 1020)
 
-[node name="Spawn2" type="Marker2D" parent="Scavs" unique_id=1388672883]
+[node name="Spawn2" type="Marker2D" parent="Scavs" unique_id=1190383121]
 position = Vector2(1590, 1020)
 
-[node name="Decor" type="Node2D" parent="." unique_id=1988894782]
+[node name="Decor" type="Node2D" parent="." unique_id=1967955778]
 z_index = -5
 
-[node name="Crates_0" type="Sprite2D" parent="Decor" unique_id=606755617]
+[node name="Crates_0" type="Sprite2D" parent="Decor" unique_id=572561631]
 texture_filter = 1
 position = Vector2(540, 960)
 texture = ExtResource("14_yfumq")
 centered = false
 
-[node name="Monitor_1" type="Sprite2D" parent="Decor" unique_id=1932149408]
+[node name="Monitor_1" type="Sprite2D" parent="Decor" unique_id=1951346034]
 texture_filter = 1
 position = Vector2(1800, 984)
 texture = ExtResource("15_nj8cd")
 centered = false
 
-[node name="Light" type="PointLight2D" parent="Decor/Monitor_1" unique_id=1942097273]
+[node name="Light" type="PointLight2D" parent="Decor/Monitor_1" unique_id=767434533]
 position = Vector2(24, 21.6)
 color = Color(0.5, 1, 0.6, 1)
 energy = 0.5
 texture = ExtResource("6_xncn1")
 texture_scale = 1.6
 
-[node name="Window_0" type="Sprite2D" parent="Decor" unique_id=955624030]
+[node name="Window_0" type="Sprite2D" parent="Decor" unique_id=142286268]
 texture_filter = 1
 position = Vector2(1380, 312)
 texture = ExtResource("16_d3mx3")
 centered = false
 
-[node name="Light" type="PointLight2D" parent="Decor/Window_0" unique_id=1719525054]
+[node name="Light" type="PointLight2D" parent="Decor/Window_0" unique_id=940276195]
 position = Vector2(36, 28.8)
 color = Color(0.45, 0.9, 1, 1)
 energy = 0.5
 texture = ExtResource("6_xncn1")
 texture_scale = 1.6
 
-[node name="PosterB_1" type="Sprite2D" parent="Decor" unique_id=743184799]
+[node name="PosterB_1" type="Sprite2D" parent="Decor" unique_id=340687245]
 texture_filter = 1
 position = Vector2(780, 660)
 texture = ExtResource("17_iqslj")
 centered = false
 
-[node name="PosterA_2" type="Sprite2D" parent="Decor" unique_id=579536552]
+[node name="PosterA_2" type="Sprite2D" parent="Decor" unique_id=563106806]
 texture_filter = 1
 position = Vector2(1260, 600)
 texture = ExtResource("18_xnggf")
 centered = false
 
-[node name="NeonTubeC_0" type="Sprite2D" parent="Decor" unique_id=522328501]
+[node name="NeonTubeC_0" type="Sprite2D" parent="Decor" unique_id=772957790]
 texture_filter = 1
 position = Vector2(1080, 60)
 texture = ExtResource("19_wb7o8")
 centered = false
 
-[node name="Light" type="PointLight2D" parent="Decor/NeonTubeC_0" unique_id=356740447]
+[node name="Light" type="PointLight2D" parent="Decor/NeonTubeC_0" unique_id=1554853898]
 position = Vector2(61.5, 5.4)
 color = Color(0.45, 0.9, 1, 1)
 energy = 0.5
 texture = ExtResource("6_xncn1")
 texture_scale = 1.6
 
-[node name="Lamp_1" type="Sprite2D" parent="Decor" unique_id=1872628969]
+[node name="Lamp_1" type="Sprite2D" parent="Decor" unique_id=1241576728]
 texture_filter = 1
 position = Vector2(180, 60)
 texture = ExtResource("20_st85r")
 centered = false
 
-[node name="Light" type="PointLight2D" parent="Decor/Lamp_1" unique_id=1993554388]
+[node name="Light" type="PointLight2D" parent="Decor/Lamp_1" unique_id=865908291]
 position = Vector2(12, 18)
 color = Color(1, 0.75, 0.45, 1)
 energy = 0.9
 texture = ExtResource("6_xncn1")
 texture_scale = 2.2
 
-[node name="Ambient" type="CanvasModulate" parent="." unique_id=895087302]
+[node name="Ambient" type="CanvasModulate" parent="." unique_id=540072691]
 color = Color(0.62, 0.64, 0.82, 1)
 
-[node name="Dust" type="GPUParticles2D" parent="." unique_id=1653676944]
+[node name="Dust" type="GPUParticles2D" parent="." unique_id=1083707988]
 modulate = Color(1, 0.95, 0.85, 0.22)
 z_index = -3
 position = Vector2(960, 540)

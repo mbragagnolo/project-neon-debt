@@ -104,16 +104,48 @@ gravity = Vector3(0, 0, 0)
 scale_min = 1.6
 scale_max = 2.24
 
-[node name="WestStair" type="Node2D" unique_id=484028818]
+[node name="WestStair" type="Node2D" unique_id=259863021]
 script = ExtResource("1_oja61")
 room_id = &"west_stair"
 display_name = "Stair West"
 camera_limits = Rect2i(0, 0, 1920, 3240)
 announces_on_ready = false
 
-[node name="Geometry" type="Node2D" parent="." unique_id=638605692]
+[node name="Geometry" type="Node2D" parent="." unique_id=1399113039]
 
-[node name="Backdrop" type="TextureRect" parent="Geometry" unique_id=46672293]
+[node name="Void0" type="ColorRect" parent="Geometry" unique_id=143354577]
+z_index = -50
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 2040.0
+mouse_filter = 2
+color = Color(0.02745098, 0.03137255, 0.05882353, 1)
+
+[node name="Void1" type="ColorRect" parent="Geometry" unique_id=1543916300]
+z_index = -50
+offset_left = -120.0
+offset_top = 3240.0
+offset_right = 2040.0
+offset_bottom = 3360.0
+mouse_filter = 2
+color = Color(0.02745098, 0.03137255, 0.05882353, 1)
+
+[node name="Void2" type="ColorRect" parent="Geometry" unique_id=383838293]
+z_index = -50
+offset_left = -120.0
+offset_bottom = 3240.0
+mouse_filter = 2
+color = Color(0.02745098, 0.03137255, 0.05882353, 1)
+
+[node name="Void3" type="ColorRect" parent="Geometry" unique_id=1305552332]
+z_index = -50
+offset_left = 1920.0
+offset_right = 2040.0
+offset_bottom = 3240.0
+mouse_filter = 2
+color = Color(0.02745098, 0.03137255, 0.05882353, 1)
+
+[node name="Backdrop" type="TextureRect" parent="Geometry" unique_id=1005549583]
 z_index = -10
 texture_filter = 1
 offset_right = 1920.0
@@ -122,14 +154,14 @@ mouse_filter = 2
 texture = ExtResource("2_lgxjv")
 stretch_mode = 1
 
-[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=89532678]
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=944816851]
 position = Vector2(960, 30)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=450097476]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=761033867]
 shape = SubResource("RectangleShape2D_h25i6")
 
-[node name="Wall" type="NinePatchRect" parent="Geometry/Solid0" unique_id=1669111680]
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid0" unique_id=2047717838]
 texture_filter = 1
 offset_left = -960.0
 offset_top = -30.0
@@ -141,14 +173,14 @@ patch_margin_bottom = 60
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=625675152]
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=1440979857]
 position = Vector2(30, 990)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=1398484327]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=306417408]
 shape = SubResource("RectangleShape2D_0qdbd")
 
-[node name="Wall" type="NinePatchRect" parent="Geometry/Solid1" unique_id=1713924609]
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid1" unique_id=1062965733]
 texture_filter = 1
 offset_left = -30.0
 offset_top = -930.0
@@ -161,14 +193,14 @@ patch_margin_bottom = 60
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=758487104]
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=1908112338]
 position = Vector2(1890, 450)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=1374695678]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=1132531919]
 shape = SubResource("RectangleShape2D_ttnxy")
 
-[node name="Wall" type="NinePatchRect" parent="Geometry/Solid2" unique_id=687759660]
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid2" unique_id=672369262]
 texture_filter = 1
 offset_left = -30.0
 offset_top = -390.0
@@ -181,14 +213,14 @@ patch_margin_bottom = 60
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=252212922]
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=848144969]
 position = Vector2(1500, 1050)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=1498661943]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=1957350148]
 shape = SubResource("RectangleShape2D_i2hqv")
 
-[node name="Wall" type="NinePatchRect" parent="Geometry/Solid3" unique_id=1261042705]
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid3" unique_id=2130288493]
 texture_filter = 1
 offset_left = -420.0
 offset_top = -30.0
@@ -202,14 +234,14 @@ patch_margin_bottom = 30
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=2121592114]
+[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=237371300]
 position = Vector2(1890, 2160)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=1626637886]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=98925760]
 shape = SubResource("RectangleShape2D_v0wbk")
 
-[node name="Wall" type="NinePatchRect" parent="Geometry/Solid4" unique_id=1073226121]
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid4" unique_id=1500991113]
 texture_filter = 1
 offset_left = -30.0
 offset_top = -1080.0
@@ -221,14 +253,14 @@ patch_margin_left = 60
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Solid5" type="StaticBody2D" parent="Geometry" unique_id=440348465]
+[node name="Solid5" type="StaticBody2D" parent="Geometry" unique_id=2001861482]
 position = Vector2(480, 2130)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid5" unique_id=1491929579]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid5" unique_id=1691425131]
 shape = SubResource("RectangleShape2D_8avuv")
 
-[node name="Wall" type="NinePatchRect" parent="Geometry/Solid5" unique_id=466252293]
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid5" unique_id=444575437]
 texture_filter = 1
 offset_left = -480.0
 offset_top = -30.0
@@ -242,14 +274,14 @@ patch_margin_bottom = 30
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Solid6" type="StaticBody2D" parent="Geometry" unique_id=1907668821]
+[node name="Solid6" type="StaticBody2D" parent="Geometry" unique_id=1476237865]
 position = Vector2(30, 2700)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid6" unique_id=535281606]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid6" unique_id=2090004556]
 shape = SubResource("RectangleShape2D_t32wd")
 
-[node name="Wall" type="NinePatchRect" parent="Geometry/Solid6" unique_id=595193481]
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid6" unique_id=1900664777]
 texture_filter = 1
 offset_left = -30.0
 offset_top = -540.0
@@ -261,14 +293,14 @@ patch_margin_right = 60
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Solid7" type="StaticBody2D" parent="Geometry" unique_id=151765949]
+[node name="Solid7" type="StaticBody2D" parent="Geometry" unique_id=123710535]
 position = Vector2(450, 3210)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid7" unique_id=1478746550]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid7" unique_id=590644810]
 shape = SubResource("RectangleShape2D_5xhj7")
 
-[node name="Wall" type="NinePatchRect" parent="Geometry/Solid7" unique_id=1011537837]
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid7" unique_id=1192181831]
 texture_filter = 1
 offset_left = -390.0
 offset_top = -30.0
@@ -281,14 +313,14 @@ patch_margin_right = 60
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Solid8" type="StaticBody2D" parent="Geometry" unique_id=1524531465]
+[node name="Solid8" type="StaticBody2D" parent="Geometry" unique_id=1251500058]
 position = Vector2(1440, 3210)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid8" unique_id=1854961718]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid8" unique_id=1682566788]
 shape = SubResource("RectangleShape2D_s2xk8")
 
-[node name="Wall" type="NinePatchRect" parent="Geometry/Solid8" unique_id=999915389]
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid8" unique_id=825763472]
 texture_filter = 1
 offset_left = -420.0
 offset_top = -30.0
@@ -301,16 +333,16 @@ patch_margin_top = 60
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Platform0" type="StaticBody2D" parent="Geometry" unique_id=145737968]
+[node name="Platform0" type="StaticBody2D" parent="Geometry" unique_id=1831856741]
 position = Vector2(510, 1146)
 collision_layer = 1025
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform0" unique_id=1149214759]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform0" unique_id=2116730823]
 shape = SubResource("RectangleShape2D_k6tyx")
 one_way_collision = true
 
-[node name="Ledge" type="TextureRect" parent="Geometry/Platform0" unique_id=1831343641]
+[node name="Ledge" type="TextureRect" parent="Geometry/Platform0" unique_id=1948769304]
 texture_filter = 1
 offset_left = -450.0
 offset_top = -6.0
@@ -320,16 +352,16 @@ mouse_filter = 2
 texture = ExtResource("4_ninbi")
 stretch_mode = 1
 
-[node name="Platform1" type="StaticBody2D" parent="Geometry" unique_id=1672905777]
+[node name="Platform1" type="StaticBody2D" parent="Geometry" unique_id=701195452]
 position = Vector2(1410, 1266)
 collision_layer = 1025
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform1" unique_id=2099562983]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform1" unique_id=733329083]
 shape = SubResource("RectangleShape2D_cuya5")
 one_way_collision = true
 
-[node name="Ledge" type="TextureRect" parent="Geometry/Platform1" unique_id=1558008780]
+[node name="Ledge" type="TextureRect" parent="Geometry/Platform1" unique_id=560126385]
 texture_filter = 1
 offset_left = -450.0
 offset_top = -6.0
@@ -339,16 +371,16 @@ mouse_filter = 2
 texture = ExtResource("4_ninbi")
 stretch_mode = 1
 
-[node name="Platform2" type="StaticBody2D" parent="Geometry" unique_id=1056644080]
+[node name="Platform2" type="StaticBody2D" parent="Geometry" unique_id=637543488]
 position = Vector2(510, 1386)
 collision_layer = 1025
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform2" unique_id=1087869849]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform2" unique_id=714501602]
 shape = SubResource("RectangleShape2D_e2t08")
 one_way_collision = true
 
-[node name="Ledge" type="TextureRect" parent="Geometry/Platform2" unique_id=1982955271]
+[node name="Ledge" type="TextureRect" parent="Geometry/Platform2" unique_id=1909270676]
 texture_filter = 1
 offset_left = -450.0
 offset_top = -6.0
@@ -358,16 +390,16 @@ mouse_filter = 2
 texture = ExtResource("4_ninbi")
 stretch_mode = 1
 
-[node name="Platform3" type="StaticBody2D" parent="Geometry" unique_id=1015842163]
+[node name="Platform3" type="StaticBody2D" parent="Geometry" unique_id=453790803]
 position = Vector2(1410, 1506)
 collision_layer = 1025
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform3" unique_id=913626013]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform3" unique_id=438786531]
 shape = SubResource("RectangleShape2D_3my78")
 one_way_collision = true
 
-[node name="Ledge" type="TextureRect" parent="Geometry/Platform3" unique_id=1184175072]
+[node name="Ledge" type="TextureRect" parent="Geometry/Platform3" unique_id=1942090719]
 texture_filter = 1
 offset_left = -450.0
 offset_top = -6.0
@@ -377,16 +409,16 @@ mouse_filter = 2
 texture = ExtResource("4_ninbi")
 stretch_mode = 1
 
-[node name="Platform4" type="StaticBody2D" parent="Geometry" unique_id=1096475057]
+[node name="Platform4" type="StaticBody2D" parent="Geometry" unique_id=1555643177]
 position = Vector2(510, 1626)
 collision_layer = 1025
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform4" unique_id=1138355013]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform4" unique_id=272689228]
 shape = SubResource("RectangleShape2D_m488p")
 one_way_collision = true
 
-[node name="Ledge" type="TextureRect" parent="Geometry/Platform4" unique_id=1115303881]
+[node name="Ledge" type="TextureRect" parent="Geometry/Platform4" unique_id=2006344120]
 texture_filter = 1
 offset_left = -450.0
 offset_top = -6.0
@@ -396,16 +428,16 @@ mouse_filter = 2
 texture = ExtResource("4_ninbi")
 stretch_mode = 1
 
-[node name="Platform5" type="StaticBody2D" parent="Geometry" unique_id=68653453]
+[node name="Platform5" type="StaticBody2D" parent="Geometry" unique_id=705572122]
 position = Vector2(1410, 1746)
 collision_layer = 1025
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform5" unique_id=590186400]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform5" unique_id=1309233086]
 shape = SubResource("RectangleShape2D_pgr6a")
 one_way_collision = true
 
-[node name="Ledge" type="TextureRect" parent="Geometry/Platform5" unique_id=120931331]
+[node name="Ledge" type="TextureRect" parent="Geometry/Platform5" unique_id=749431338]
 texture_filter = 1
 offset_left = -450.0
 offset_top = -6.0
@@ -415,16 +447,16 @@ mouse_filter = 2
 texture = ExtResource("4_ninbi")
 stretch_mode = 1
 
-[node name="Platform6" type="StaticBody2D" parent="Geometry" unique_id=1150795547]
+[node name="Platform6" type="StaticBody2D" parent="Geometry" unique_id=804943145]
 position = Vector2(510, 1866)
 collision_layer = 1025
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform6" unique_id=1868607855]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform6" unique_id=245774018]
 shape = SubResource("RectangleShape2D_tqohi")
 one_way_collision = true
 
-[node name="Ledge" type="TextureRect" parent="Geometry/Platform6" unique_id=35119575]
+[node name="Ledge" type="TextureRect" parent="Geometry/Platform6" unique_id=1724138683]
 texture_filter = 1
 offset_left = -450.0
 offset_top = -6.0
@@ -434,16 +466,16 @@ mouse_filter = 2
 texture = ExtResource("4_ninbi")
 stretch_mode = 1
 
-[node name="Platform7" type="StaticBody2D" parent="Geometry" unique_id=2126535006]
+[node name="Platform7" type="StaticBody2D" parent="Geometry" unique_id=1478681753]
 position = Vector2(1410, 1986)
 collision_layer = 1025
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform7" unique_id=334746502]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform7" unique_id=1589694026]
 shape = SubResource("RectangleShape2D_vq435")
 one_way_collision = true
 
-[node name="Ledge" type="TextureRect" parent="Geometry/Platform7" unique_id=2139460770]
+[node name="Ledge" type="TextureRect" parent="Geometry/Platform7" unique_id=853749225]
 texture_filter = 1
 offset_left = -450.0
 offset_top = -6.0
@@ -453,16 +485,16 @@ mouse_filter = 2
 texture = ExtResource("4_ninbi")
 stretch_mode = 1
 
-[node name="Platform8" type="StaticBody2D" parent="Geometry" unique_id=246140301]
+[node name="Platform8" type="StaticBody2D" parent="Geometry" unique_id=433763712]
 position = Vector2(1410, 2226)
 collision_layer = 1025
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform8" unique_id=951297273]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform8" unique_id=861049847]
 shape = SubResource("RectangleShape2D_q36wt")
 one_way_collision = true
 
-[node name="Ledge" type="TextureRect" parent="Geometry/Platform8" unique_id=1381607895]
+[node name="Ledge" type="TextureRect" parent="Geometry/Platform8" unique_id=1344772904]
 texture_filter = 1
 offset_left = -450.0
 offset_top = -6.0
@@ -472,16 +504,16 @@ mouse_filter = 2
 texture = ExtResource("4_ninbi")
 stretch_mode = 1
 
-[node name="Platform9" type="StaticBody2D" parent="Geometry" unique_id=463098903]
+[node name="Platform9" type="StaticBody2D" parent="Geometry" unique_id=303882627]
 position = Vector2(510, 2346)
 collision_layer = 1025
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform9" unique_id=632944553]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform9" unique_id=1394259795]
 shape = SubResource("RectangleShape2D_nx0jy")
 one_way_collision = true
 
-[node name="Ledge" type="TextureRect" parent="Geometry/Platform9" unique_id=1310156239]
+[node name="Ledge" type="TextureRect" parent="Geometry/Platform9" unique_id=151744720]
 texture_filter = 1
 offset_left = -450.0
 offset_top = -6.0
@@ -491,16 +523,16 @@ mouse_filter = 2
 texture = ExtResource("4_ninbi")
 stretch_mode = 1
 
-[node name="Platform10" type="StaticBody2D" parent="Geometry" unique_id=1317161571]
+[node name="Platform10" type="StaticBody2D" parent="Geometry" unique_id=904008047]
 position = Vector2(1410, 2466)
 collision_layer = 1025
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform10" unique_id=504369473]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform10" unique_id=1238456538]
 shape = SubResource("RectangleShape2D_kpog0")
 one_way_collision = true
 
-[node name="Ledge" type="TextureRect" parent="Geometry/Platform10" unique_id=2137553138]
+[node name="Ledge" type="TextureRect" parent="Geometry/Platform10" unique_id=1329688021]
 texture_filter = 1
 offset_left = -450.0
 offset_top = -6.0
@@ -510,16 +542,16 @@ mouse_filter = 2
 texture = ExtResource("4_ninbi")
 stretch_mode = 1
 
-[node name="Platform11" type="StaticBody2D" parent="Geometry" unique_id=1770963880]
+[node name="Platform11" type="StaticBody2D" parent="Geometry" unique_id=189287410]
 position = Vector2(510, 2586)
 collision_layer = 1025
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform11" unique_id=959952802]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform11" unique_id=2095416575]
 shape = SubResource("RectangleShape2D_dvmh1")
 one_way_collision = true
 
-[node name="Ledge" type="TextureRect" parent="Geometry/Platform11" unique_id=854681482]
+[node name="Ledge" type="TextureRect" parent="Geometry/Platform11" unique_id=851763381]
 texture_filter = 1
 offset_left = -450.0
 offset_top = -6.0
@@ -529,16 +561,16 @@ mouse_filter = 2
 texture = ExtResource("4_ninbi")
 stretch_mode = 1
 
-[node name="Platform12" type="StaticBody2D" parent="Geometry" unique_id=1833520477]
+[node name="Platform12" type="StaticBody2D" parent="Geometry" unique_id=1474755898]
 position = Vector2(1410, 2706)
 collision_layer = 1025
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform12" unique_id=969525427]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform12" unique_id=1540956166]
 shape = SubResource("RectangleShape2D_q37q1")
 one_way_collision = true
 
-[node name="Ledge" type="TextureRect" parent="Geometry/Platform12" unique_id=1722210868]
+[node name="Ledge" type="TextureRect" parent="Geometry/Platform12" unique_id=1183513651]
 texture_filter = 1
 offset_left = -450.0
 offset_top = -6.0
@@ -548,16 +580,16 @@ mouse_filter = 2
 texture = ExtResource("4_ninbi")
 stretch_mode = 1
 
-[node name="Platform13" type="StaticBody2D" parent="Geometry" unique_id=1684150012]
+[node name="Platform13" type="StaticBody2D" parent="Geometry" unique_id=1965566194]
 position = Vector2(510, 2826)
 collision_layer = 1025
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform13" unique_id=365675820]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform13" unique_id=1497668068]
 shape = SubResource("RectangleShape2D_niprg")
 one_way_collision = true
 
-[node name="Ledge" type="TextureRect" parent="Geometry/Platform13" unique_id=2059371838]
+[node name="Ledge" type="TextureRect" parent="Geometry/Platform13" unique_id=454875632]
 texture_filter = 1
 offset_left = -450.0
 offset_top = -6.0
@@ -567,16 +599,16 @@ mouse_filter = 2
 texture = ExtResource("4_ninbi")
 stretch_mode = 1
 
-[node name="Platform14" type="StaticBody2D" parent="Geometry" unique_id=909214175]
+[node name="Platform14" type="StaticBody2D" parent="Geometry" unique_id=771514673]
 position = Vector2(1410, 2946)
 collision_layer = 1025
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform14" unique_id=84049714]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform14" unique_id=902529577]
 shape = SubResource("RectangleShape2D_2lj6h")
 one_way_collision = true
 
-[node name="Ledge" type="TextureRect" parent="Geometry/Platform14" unique_id=34158196]
+[node name="Ledge" type="TextureRect" parent="Geometry/Platform14" unique_id=70322010]
 texture_filter = 1
 offset_left = -450.0
 offset_top = -6.0
@@ -586,16 +618,16 @@ mouse_filter = 2
 texture = ExtResource("4_ninbi")
 stretch_mode = 1
 
-[node name="Platform15" type="StaticBody2D" parent="Geometry" unique_id=966860024]
+[node name="Platform15" type="StaticBody2D" parent="Geometry" unique_id=1254021343]
 position = Vector2(510, 3066)
 collision_layer = 1025
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform15" unique_id=1499226463]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Platform15" unique_id=645276510]
 shape = SubResource("RectangleShape2D_k3wfy")
 one_way_collision = true
 
-[node name="Ledge" type="TextureRect" parent="Geometry/Platform15" unique_id=1098079344]
+[node name="Ledge" type="TextureRect" parent="Geometry/Platform15" unique_id=1009412987]
 texture_filter = 1
 offset_left = -450.0
 offset_top = -6.0
@@ -605,11 +637,11 @@ mouse_filter = 2
 texture = ExtResource("4_ninbi")
 stretch_mode = 1
 
-[node name="Hazards" type="Node2D" parent="." unique_id=1914873566]
+[node name="Hazards" type="Node2D" parent="." unique_id=1979679153]
 
-[node name="Doors" type="Node2D" parent="." unique_id=1196219980]
+[node name="Doors" type="Node2D" parent="." unique_id=1793580208]
 
-[node name="1" type="Area2D" parent="Doors" unique_id=1637718998]
+[node name="1" type="Area2D" parent="Doors" unique_id=1802087976]
 position = Vector2(1890, 930)
 script = ExtResource("5_jqw6n")
 door_id = &"1"
@@ -619,19 +651,19 @@ side = 1
 spawn_point = Vector2(1830, 1020)
 room_size = Vector2(1920, 3240)
 
-[node name="Frame" type="Sprite2D" parent="Doors/1" unique_id=964783142]
+[node name="Frame" type="Sprite2D" parent="Doors/1" unique_id=1156384458]
 z_index = -2
 texture_filter = 1
 texture = ExtResource("6_4cevy")
 
-[node name="Lamp" type="PointLight2D" parent="Doors/1" unique_id=1723835610]
+[node name="Lamp" type="PointLight2D" parent="Doors/1" unique_id=135662500]
 position = Vector2(0, -80)
 color = Color(0.5, 0.9, 1, 1)
 energy = 0.7
 texture = ExtResource("7_o7eep")
 texture_scale = 2.4
 
-[node name="2" type="Area2D" parent="Doors" unique_id=1854714341]
+[node name="2" type="Area2D" parent="Doors" unique_id=1064414088]
 position = Vector2(30, 2010)
 script = ExtResource("5_jqw6n")
 door_id = &"2"
@@ -640,19 +672,19 @@ target_door = &"1"
 spawn_point = Vector2(90, 2100)
 room_size = Vector2(1920, 3240)
 
-[node name="Frame" type="Sprite2D" parent="Doors/2" unique_id=1317243769]
+[node name="Frame" type="Sprite2D" parent="Doors/2" unique_id=87702982]
 z_index = -2
 texture_filter = 1
 texture = ExtResource("6_4cevy")
 
-[node name="Lamp" type="PointLight2D" parent="Doors/2" unique_id=1397833103]
+[node name="Lamp" type="PointLight2D" parent="Doors/2" unique_id=485100210]
 position = Vector2(0, -80)
 color = Color(0.5, 0.9, 1, 1)
 energy = 0.7
 texture = ExtResource("7_o7eep")
 texture_scale = 2.4
 
-[node name="3" type="Area2D" parent="Doors" unique_id=2137904207]
+[node name="3" type="Area2D" parent="Doors" unique_id=816609557]
 position = Vector2(930, 3210)
 script = ExtResource("5_jqw6n")
 door_id = &"3"
@@ -663,7 +695,7 @@ size = Vector2(180, 60)
 spawn_point = Vector2(1050, 3180)
 room_size = Vector2(1920, 3240)
 
-[node name="Frame" type="ColorRect" parent="Doors/3" unique_id=892565769]
+[node name="Frame" type="ColorRect" parent="Doors/3" unique_id=279808]
 z_index = -2
 offset_left = -90.0
 offset_top = -30.0
@@ -672,161 +704,163 @@ offset_bottom = 30.0
 mouse_filter = 2
 color = Color(0.03, 0.04, 0.07, 1)
 
-[node name="Props" type="Node2D" parent="." unique_id=488627586]
+[node name="Props" type="Node2D" parent="." unique_id=1841113294]
 
-[node name="Sign_s" type="Node2D" parent="Props" unique_id=1666761014]
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=313809764]
 position = Vector2(510, 780)
 script = ExtResource("8_lvfjw")
 text = "STAIR W
 MEZZANINE ↓"
+width = 200.0
+font_size = 14
 
-[node name="Pickups" type="Node2D" parent="." unique_id=1231699676]
+[node name="Pickups" type="Node2D" parent="." unique_id=1773572054]
 
-[node name="Scavs" type="Node2D" parent="." unique_id=1011778422]
+[node name="Scavs" type="Node2D" parent="." unique_id=172524394]
 script = ExtResource("9_0nh7p")
 enemy_scene = ExtResource("10_2cm50")
 respawn_delay = 0.0
 
-[node name="Spawn1" type="Marker2D" parent="Scavs" unique_id=1149208929]
+[node name="Spawn1" type="Marker2D" parent="Scavs" unique_id=1736985844]
 position = Vector2(390, 1860)
 
-[node name="Spawn2" type="Marker2D" parent="Scavs" unique_id=667256732]
+[node name="Spawn2" type="Marker2D" parent="Scavs" unique_id=662449173]
 position = Vector2(1350, 3180)
 
-[node name="Decor" type="Node2D" parent="." unique_id=1999679266]
+[node name="Decor" type="Node2D" parent="." unique_id=1102092508]
 z_index = -5
 
-[node name="Barrel_0" type="Sprite2D" parent="Decor" unique_id=739581791]
+[node name="Barrel_0" type="Sprite2D" parent="Decor" unique_id=781805010]
 texture_filter = 1
 position = Vector2(1500, 3132)
 texture = ExtResource("11_hmd4h")
 centered = false
 
-[node name="Barrel_1" type="Sprite2D" parent="Decor" unique_id=178349812]
+[node name="Barrel_1" type="Sprite2D" parent="Decor" unique_id=1603532860]
 texture_filter = 1
 position = Vector2(240, 3132)
 texture = ExtResource("11_hmd4h")
 centered = false
 
-[node name="Barrel_2" type="Sprite2D" parent="Decor" unique_id=1877451986]
+[node name="Barrel_2" type="Sprite2D" parent="Decor" unique_id=1285740331]
 texture_filter = 1
 position = Vector2(1260, 972)
 texture = ExtResource("11_hmd4h")
 centered = false
 
-[node name="Barrel_3" type="Sprite2D" parent="Decor" unique_id=996768602]
+[node name="Barrel_3" type="Sprite2D" parent="Decor" unique_id=2092101751]
 texture_filter = 1
 position = Vector2(600, 3132)
 texture = ExtResource("11_hmd4h")
 centered = false
 
-[node name="Barrel_4" type="Sprite2D" parent="Decor" unique_id=187269043]
+[node name="Barrel_4" type="Sprite2D" parent="Decor" unique_id=585968484]
 texture_filter = 1
 position = Vector2(1740, 3132)
 texture = ExtResource("11_hmd4h")
 centered = false
 
-[node name="Barrel_5" type="Sprite2D" parent="Decor" unique_id=1821730149]
+[node name="Barrel_5" type="Sprite2D" parent="Decor" unique_id=1379424975]
 texture_filter = 1
 position = Vector2(840, 2052)
 texture = ExtResource("11_hmd4h")
 centered = false
 
-[node name="Vent_0" type="Sprite2D" parent="Decor" unique_id=1174407399]
+[node name="Vent_0" type="Sprite2D" parent="Decor" unique_id=1941201025]
 texture_filter = 1
 position = Vector2(1680, 444)
 texture = ExtResource("12_d4ihv")
 centered = false
 
-[node name="Vent_1" type="Sprite2D" parent="Decor" unique_id=1639715935]
+[node name="Vent_1" type="Sprite2D" parent="Decor" unique_id=269276291]
 texture_filter = 1
 position = Vector2(960, 144)
 texture = ExtResource("12_d4ihv")
 centered = false
 
-[node name="Vent_2" type="Sprite2D" parent="Decor" unique_id=1785104762]
+[node name="Vent_2" type="Sprite2D" parent="Decor" unique_id=1015486674]
 texture_filter = 1
 position = Vector2(1260, 384)
 texture = ExtResource("12_d4ihv")
 centered = false
 
-[node name="PipeV_3" type="Sprite2D" parent="Decor" unique_id=840166887]
+[node name="PipeV_3" type="Sprite2D" parent="Decor" unique_id=499929605]
 texture_filter = 1
 position = Vector2(1380, 660)
 texture = ExtResource("13_e50l7")
 centered = false
 
-[node name="Vent_4" type="Sprite2D" parent="Decor" unique_id=622258064]
+[node name="Vent_4" type="Sprite2D" parent="Decor" unique_id=101407789]
 texture_filter = 1
 position = Vector2(1020, 924)
 texture = ExtResource("12_d4ihv")
 centered = false
 
-[node name="Vent_5" type="Sprite2D" parent="Decor" unique_id=1558971580]
+[node name="Vent_5" type="Sprite2D" parent="Decor" unique_id=1851609757]
 texture_filter = 1
 position = Vector2(780, 744)
 texture = ExtResource("12_d4ihv")
 centered = false
 
-[node name="Vent_6" type="Sprite2D" parent="Decor" unique_id=995504613]
+[node name="Vent_6" type="Sprite2D" parent="Decor" unique_id=1350984975]
 texture_filter = 1
 position = Vector2(1800, 264)
 texture = ExtResource("12_d4ihv")
 centered = false
 
-[node name="Vent_7" type="Sprite2D" parent="Decor" unique_id=1125956759]
+[node name="Vent_7" type="Sprite2D" parent="Decor" unique_id=1321761901]
 texture_filter = 1
 position = Vector2(780, 504)
 texture = ExtResource("12_d4ihv")
 centered = false
 
-[node name="PipeV_8" type="Sprite2D" parent="Decor" unique_id=1435411188]
+[node name="PipeV_8" type="Sprite2D" parent="Decor" unique_id=1986950980]
 texture_filter = 1
 position = Vector2(660, 900)
 texture = ExtResource("13_e50l7")
 centered = false
 
-[node name="Lamp_0" type="Sprite2D" parent="Decor" unique_id=483631841]
+[node name="Lamp_0" type="Sprite2D" parent="Decor" unique_id=2052376139]
 texture_filter = 1
 position = Vector2(1260, 60)
 texture = ExtResource("14_4vv7m")
 centered = false
 
-[node name="Light" type="PointLight2D" parent="Decor/Lamp_0" unique_id=1473573983]
+[node name="Light" type="PointLight2D" parent="Decor/Lamp_0" unique_id=474884179]
 position = Vector2(12, 18)
 color = Color(1, 0.75, 0.45, 1)
 energy = 0.9
 texture = ExtResource("7_o7eep")
 texture_scale = 2.2
 
-[node name="Cable_1" type="Sprite2D" parent="Decor" unique_id=396186043]
+[node name="Cable_1" type="Sprite2D" parent="Decor" unique_id=1019269297]
 texture_filter = 1
 position = Vector2(360, 60)
 texture = ExtResource("15_8lp64")
 centered = false
 
-[node name="PipeH_2" type="Sprite2D" parent="Decor" unique_id=1414402306]
+[node name="PipeH_2" type="Sprite2D" parent="Decor" unique_id=788090263]
 texture_filter = 1
 position = Vector2(1560, 1080)
 texture = ExtResource("16_t4g6t")
 centered = false
 
-[node name="PipeH_3" type="Sprite2D" parent="Decor" unique_id=1014605722]
+[node name="PipeH_3" type="Sprite2D" parent="Decor" unique_id=1719198727]
 texture_filter = 1
 position = Vector2(1620, 60)
 texture = ExtResource("16_t4g6t")
 centered = false
 
-[node name="PipeH_4" type="Sprite2D" parent="Decor" unique_id=1592124658]
+[node name="PipeH_4" type="Sprite2D" parent="Decor" unique_id=237755939]
 texture_filter = 1
 position = Vector2(480, 2160)
 texture = ExtResource("16_t4g6t")
 centered = false
 
-[node name="Ambient" type="CanvasModulate" parent="." unique_id=916455071]
+[node name="Ambient" type="CanvasModulate" parent="." unique_id=1836962067]
 color = Color(0.5, 0.55, 0.7, 1)
 
-[node name="Dust" type="GPUParticles2D" parent="." unique_id=2054387391]
+[node name="Dust" type="GPUParticles2D" parent="." unique_id=1578122195]
 modulate = Color(1, 0.95, 0.85, 0.22)
 z_index = -3
 position = Vector2(960, 1620)

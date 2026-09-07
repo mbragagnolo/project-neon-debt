@@ -509,7 +509,17 @@ func test_every_room_scene_exists_and_matches_its_spec() -> void:
 		var room: Node = autofree((load(path) as PackedScene).instantiate())
 		assert_is(room, Room)
 		assert_eq(room.room_id, spec.id)
-		assert_eq(room.camera_limits.size, Vector2i(spec.pixel_size()), "%s camera bounds" % spec.id)
+		var limits: Rect2i = room.camera_limits
+		var view: Vector2i = Vector2i(PixelCamera.view_size())
+		assert_true(limits.size.x >= view.x and limits.size.y >= view.y, "%s camera bounds hold at least one view" % spec.id)
+		var tile_px: int = int(RoomSpec.TILE)
+		var cell := Rect2i(Vector2i.ZERO, Vector2i(spec.width(), spec.height()))
+		for y: int in spec.height():
+			for x: int in spec.width():
+				if spec.is_air(x, y):
+					var ring: Rect2i = Rect2i(x, y, 1, 1).grow(1).intersection(cell)
+					assert_true(limits.encloses(Rect2i(ring.position * tile_px, ring.size * tile_px)),
+						"%s camera bounds show tile %d,%d and its ring" % [spec.id, x, y])
 		for digit: String in spec.doors:
 			var door: Door = room.get_node_or_null("Doors/%s" % digit) as Door
 			assert_not_null(door, "%s scene lacks door %s — regenerate with tools/make_stacks.tscn" % [spec.id, digit])
