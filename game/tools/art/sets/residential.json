@@ -117,5 +117,189 @@
       ]
     },
     "block": 90
+  },
+  "ring": {
+    "_note": "The Metroid rule (docs/art/environment.md, direction change): a textured ring `tiles` deep around air, void past it. Authored at 2x by ring.py; `method` picks proc / hand / mix. face + fade art px from the air edge: the textured face, then the dithered fall to void. Thresholds on the 0..1 mottle: below `dark` the step under the base, above `light` the step over it.",
+    "method": "mix",
+    "seed": 7,
+    "tiles": 1,
+    "strip": 6,
+    "ramp": [
+      "void",
+      "bg0",
+      "concrete0",
+      "concrete1",
+      "concrete2",
+      "concrete3"
+    ],
+    "base": "concrete1",
+    "face": 20,
+    "fade": 7,
+    "noise": {
+      "cells": [
+        6,
+        12,
+        30
+      ],
+      "weights": [
+        0.45,
+        0.35,
+        0.2
+      ],
+      "grain": 0.1
+    },
+    "dither": {
+      "cells": [
+        3
+      ],
+      "weights": [
+        0.35
+      ],
+      "grain": 0.65
+    },
+    "steps": {
+      "dark": 0.3,
+      "light": 0.82,
+      "under_dark": 0.5,
+      "under_light": 0.95
+    },
+    "lip": {
+      "top": [
+        "concrete3",
+        "concrete2"
+      ],
+      "chip": 0.08,
+      "crease": "concrete0",
+      "crease_row": 3,
+      "crease_cover": 0.6
+    },
+    "edge": {
+      "under": "concrete0",
+      "lit_side": "concrete2",
+      "shade_side": "concrete0"
+    },
+    "seams": {
+      "every": 45,
+      "jitter": 6,
+      "lit_cover": 0.55
+    },
+    "streaks": {
+      "per_tile": 1.2,
+      "length": [
+        4,
+        14
+      ]
+    },
+    "scuffs": {
+      "per_tile": 0.8,
+      "depth": 6
+    },
+    "specks": {
+      "rate": 0.004,
+      "colour": "rust0",
+      "colour2": "rust1"
+    },
+    "hand": "residential_ring",
+    "stamps": [
+      {
+        "name": "stain",
+        "side": "b",
+        "at": [
+          12,
+          98,
+          158
+        ],
+        "depth": 0
+      },
+      {
+        "name": "plate",
+        "side": "l",
+        "at": [
+          52
+        ],
+        "depth": 5
+      },
+      {
+        "name": "plate",
+        "side": "r",
+        "at": [
+          118
+        ],
+        "depth": 5
+      },
+      {
+        "name": "crack",
+        "side": "l",
+        "at": [
+          130
+        ],
+        "depth": 4
+      },
+      {
+        "name": "crack",
+        "side": "r",
+        "at": [
+          20
+        ],
+        "depth": 4
+      },
+      {
+        "name": "crack",
+        "side": "t",
+        "at": [
+          66,
+          150
+        ],
+        "depth": 9
+      }
+    ],
+    "materials": {
+      "_note": "Per-side overrides on the ring block, from the 14-C concept (flat seed 6): near-black boards on the floor, plaster walls, a beam and slats under the ceiling. `band` is how deep a horizontal side owns the corners.",
+      "t": {
+        "band": 8,
+        "base": "concrete0",
+        "steps": {
+          "dark": 0.35,
+          "light": 0.9
+        },
+        "lip": {
+          "top": [
+            "concrete2",
+            "concrete1"
+          ],
+          "chip": 0.0
+        },
+        "boards": {
+          "depth": 8,
+          "base": "rust0",
+          "grain": "rust1",
+          "lit": "rust2",
+          "gap": "bg0",
+          "shadow": "black",
+          "length": [
+            12,
+            22
+          ],
+          "grain_per_tile": 3,
+          "chip": 0.1
+        },
+        "scuffs": null,
+        "seams": null,
+        "specks": null
+      },
+      "b": {
+        "band": 8,
+        "base": "concrete1",
+        "slats": {
+          "beam": "black",
+          "beam_depth": 2,
+          "line": "rust0",
+          "count": 3,
+          "every": 2,
+          "cover": 0.3
+        },
+        "specks": null
+      }
+    }
   }
 }

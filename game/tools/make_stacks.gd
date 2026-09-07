@@ -39,6 +39,7 @@ const ENEMY_NAMES: Dictionary = {
 }
 
 var _spec: RoomSpec
+var _dress_json: Dictionary = {}
 var _root: Node2D
 var _geometry: Node2D
 var _hazards: Node2D
@@ -114,7 +115,9 @@ func _build(spec: RoomSpec) -> void:
 	_props = _group("Props")
 	_pickups = _group("Pickups")
 
-	_backdrop(spec)
+	var dress_data: Dictionary = _dress_data(spec)
+	_dress_json = dress_data
+	_backdrop(spec, dress_data)
 
 	var index: int = 0
 	for rect: Rect2i in spec.solid_rects():
@@ -158,8 +161,11 @@ func _build(spec: RoomSpec) -> void:
 		for rect: Rect2i in regions_of:
 			_marker(c, marker["type"], marker["args"], rect)
 
-	_dress(spec)
-	_atmosphere(spec)
+	if dress_data.is_empty():
+		_dress(spec)
+	else:
+		_dress_from(spec, dress_data)
+	_atmosphere(spec, dress_data)
 
 	_own_recursive(_root, _root)
 	var packed := PackedScene.new()
@@ -203,10 +209,39 @@ func _solid(solid_name: String, rect: Rect2i) -> void:
 	var fill := NinePatchRect.new()
 	fill.name = "Wall"
 	fill.texture = load("res://assets/tiles/wall_%s.png" % _spec.style)
-	fill.patch_margin_left = 60
-	fill.patch_margin_top = 60
-	fill.patch_margin_right = 60
-	fill.patch_margin_bottom = 60
+	# The ring rule (docs/art/environment.md, section 3): a side wears the
+	# ring only where it faces air; the strips of the other sides are cut
+	# out of the region so the centre tiling never reads them. A block thinner
+	# than two rings splits itself between them.
+	var ring: float = _wall_margin(_spec.style)
+	var air: Dictionary = _air_sides(rect)
+	var tex_size: Vector2 = fill.texture.get_size()
+	var region := Rect2(Vector2.ZERO, tex_size)
+	if not air["l"]:
+		region.position.x += ring
+		region.size.x -= ring
+	if not air["r"]:
+		region.size.x -= ring
+	if not air["t"]:
+		region.position.y += ring
+		region.size.y -= ring
+	if not air["b"]:
+		region.size.y -= ring
+	fill.region_rect = region
+	var ml: float = ring if air["l"] else 0.0
+	var mr: float = ring if air["r"] else 0.0
+	var mt: float = ring if air["t"] else 0.0
+	var mb: float = ring if air["b"] else 0.0
+	if ml > 0.0 and mr > 0.0 and ml + mr > px.size.x:
+		ml = floorf(px.size.x * 0.5)
+		mr = px.size.x - ml
+	if mt > 0.0 and mb > 0.0 and mt + mb > px.size.y:
+		mt = floorf(px.size.y * 0.5)
+		mb = px.size.y - mt
+	fill.patch_margin_left = int(ml)
+	fill.patch_margin_top = int(mt)
+	fill.patch_margin_right = int(mr)
+	fill.patch_margin_bottom = int(mb)
 	fill.axis_stretch_horizontal = NinePatchRect.AXIS_STRETCH_MODE_TILE
 	fill.axis_stretch_vertical = NinePatchRect.AXIS_STRETCH_MODE_TILE
 	fill.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -214,6 +249,33 @@ func _solid(solid_name: String, rect: Rect2i) -> void:
 	fill.size = px.size
 	fill.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	body.add_child(fill)
+
+
+## Which sides of a solid rectangle face air in the spec (off-grid is solid).
+func _air_sides(rect: Rect2i) -> Dictionary:
+	var out: Dictionary = {"l": false, "r": false, "t": false, "b": false}
+	for y: int in range(rect.position.y, rect.end.y):
+		if _spec.is_air(rect.position.x - 1, y):
+			out["l"] = true
+		if _spec.is_air(rect.end.x, y):
+			out["r"] = true
+	for x: int in range(rect.position.x, rect.end.x):
+		if _spec.is_air(x, rect.position.y - 1):
+			out["t"] = true
+		if _spec.is_air(x, rect.end.y):
+			out["b"] = true
+	return out
+
+
+## The ring depth of a wall sheet, in screen px: `margin` in the json the
+## ring tool writes beside it (tools/art/ring.py), one tile otherwise.
+func _wall_margin(style: String) -> float:
+	var path: String = "res://assets/tiles/wall_%s.json" % style
+	if FileAccess.file_exists(path):
+		var data: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+		if data is Dictionary and data.has("margin"):
+			return float(data["margin"])
+	return RoomSpec.TILE
 
 
 ## A one-way ledge: thin, on top of its tile row, passable from below.
@@ -284,6 +346,12 @@ func _door(digit: String, rect: Rect2i) -> void:
 		lamp.color = Color(0.5, 0.9, 1.0)
 		lamp.energy = 0.7
 		lamp.texture_scale = 2.4
+		if _dress_json.has("door_lamp"):
+			var dl: Dictionary = _dress_json["door_lamp"]
+			var c: Array = dl.get("color", [0.5, 0.9, 1.0])
+			lamp.color = Color(float(c[0]), float(c[1]), float(c[2]))
+			lamp.energy = float(dl.get("energy", 0.7))
+			lamp.texture_scale = float(dl.get("scale", 2.4))
 		lamp.position = Vector2(0.0, -px.size.y * 0.5 + 10.0)
 		door.add_child(lamp)
 	else:
@@ -418,8 +486,14 @@ func _pickup(c: String, type: String, parts: PackedStringArray, at: Vector2) -> 
 # --- The art pass (M7) ----------------------------------------------------------------
 
 ## The backdrop: a tiled interior for the style, and for the rooms that
-## open onto the night, the skyline scrolling behind it.
-func _backdrop(spec: RoomSpec) -> void:
+## open onto the night, the skyline scrolling behind it. A room dressed from
+## data draws its planes instead: the outside on a ParallaxBackground, which
+## the ambient CanvasModulate does not touch, so a window can be the bright
+## area of a dark room; the back wall in the canvas, under the props.
+func _backdrop(spec: RoomSpec, dress_data: Dictionary = {}) -> void:
+	if dress_data.has("planes"):
+		_planes(spec, dress_data["planes"])
+		return
 	if spec.style == "roof":
 		var parallax := ParallaxBackground.new()
 		parallax.name = "Sky"
@@ -463,11 +537,44 @@ func _backdrop(spec: RoomSpec) -> void:
 	_geometry.add_child(back)
 
 
-## The dark, and the weather.
-func _atmosphere(spec: RoomSpec) -> void:
+func _planes(spec: RoomSpec, planes: Array) -> void:
+	var parallax: ParallaxBackground = null
+	for i: int in planes.size():
+		var plane: Dictionary = planes[i]
+		var tex_path: String = plane["texture"]
+		if not ResourceLoader.exists(tex_path):
+			print("  %s: plane %s skipped, no texture yet at %s" % [spec.id, plane.get("name", i), tex_path])
+			continue
+		var sprite := Sprite2D.new()
+		sprite.name = String(plane.get("name", "Plane%d" % i)).to_pascal_case()
+		sprite.texture = load(tex_path)
+		sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		sprite.centered = false
+		sprite.position = _vec(plane["at"])
+		if plane.get("unlit", false):
+			if parallax == null:
+				parallax = ParallaxBackground.new()
+				parallax.name = "Outside"
+				parallax.layer = -20
+				_root.add_child(parallax)
+			var layer := ParallaxLayer.new()
+			layer.name = sprite.name + "Layer"
+			layer.motion_scale = Vector2(float(plane.get("parallax", 1.0)), float(plane.get("parallax", 1.0)))
+			layer.add_child(sprite)
+			parallax.add_child(layer)
+		else:
+			sprite.z_index = int(plane.get("z", -10))
+			_geometry.add_child(sprite)
+
+
+## The dark, and the weather. A dressed room can set its own ambient.
+func _atmosphere(spec: RoomSpec, dress_data: Dictionary = {}) -> void:
 	var dark := CanvasModulate.new()
 	dark.name = "Ambient"
 	dark.color = AMBIENT.get(spec.style, Color(0.6, 0.6, 0.7))
+	if dress_data.has("ambient"):
+		var a: Array = dress_data["ambient"]
+		dark.color = Color(float(a[0]), float(a[1]), float(a[2]))
 	_root.add_child(dark)
 	var size: Vector2 = spec.pixel_size()
 	match spec.style:
@@ -502,6 +609,73 @@ func _particles(node_name: String, at: Vector2, extents: Vector2, velocity: Vect
 	material.scale_max = scale * 1.4
 	particles.process_material = material
 	_root.add_child(particles)
+
+
+## A room designed from a concept (docs/art/environment.md, section 4) is
+## dressed from `tools/stacks/<id>.dress.json` instead of the random pass:
+## its planes, its props at fixed positions, its lights. Missing textures
+## are skipped with a note, so the file can name assets before they exist.
+func _dress_data(spec: RoomSpec) -> Dictionary:
+	var path: String = "%s/%s.dress.json" % [SPEC_DIR, spec.id]
+	if not FileAccess.file_exists(path):
+		return {}
+	var data: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	if data is Dictionary:
+		return data
+	printerr("%s: cannot parse %s" % [spec.id, path])
+	return {}
+
+
+func _dress_from(spec: RoomSpec, data: Dictionary) -> void:
+	var decor := Node2D.new()
+	decor.name = "Decor"
+	decor.z_index = -5
+	_root.add_child(decor)
+	var props: Array = data.get("props", [])
+	for i: int in props.size():
+		var prop: Dictionary = props[i]
+		var tex_path: String = prop["texture"]
+		if not ResourceLoader.exists(tex_path):
+			print("  %s: prop %s skipped, no texture yet at %s" % [spec.id, prop.get("name", i), tex_path])
+			continue
+		var texture: Texture2D = load(tex_path)
+		var sprite := Sprite2D.new()
+		sprite.name = String(prop.get("name", tex_path.get_file().get_basename())).to_pascal_case()
+		sprite.texture = texture
+		sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		sprite.centered = false
+		# `at` is where the prop stands: its bottom centre, in room px.
+		var at: Vector2 = _vec(prop["at"])
+		sprite.position = Vector2(at.x - texture.get_width() * 0.5, at.y - texture.get_height())
+		if prop.get("flip", false):
+			sprite.flip_h = true
+		sprite.z_index = int(prop.get("z", 0))
+		decor.add_child(sprite)
+	var emitters: Array = data.get("particles", [])
+	for i: int in emitters.size():
+		var e: Dictionary = emitters[i]
+		var c: Array = e.get("color", [1.0, 1.0, 1.0, 0.5])
+		_particles(String(e.get("name", "Particles%d" % i)).to_pascal_case(), _vec(e["at"]), _vec(e["extents"]), _vec(e["velocity"]),
+			float(e.get("life", 1.0)), int(e.get("amount", 40)), String(e.get("texture", "dot")),
+			Color(float(c[0]), float(c[1]), float(c[2]), float(c[3]) if c.size() > 3 else 0.5), float(e.get("scale", 1.5)))
+	var lights: Array = data.get("lights", [])
+	for i: int in lights.size():
+		var entry: Dictionary = lights[i]
+		var light := PointLight2D.new()
+		light.name = String(entry.get("name", "Light%d" % i)).to_pascal_case()
+		light.texture = load(entry.get("texture", LIGHT_TEXTURE))
+		var c: Array = entry.get("color", [1.0, 1.0, 1.0])
+		light.color = Color(float(c[0]), float(c[1]), float(c[2]))
+		light.energy = float(entry.get("energy", 0.8))
+		light.texture_scale = float(entry.get("scale", 2.0))
+		light.position = _vec(entry["at"])
+		if entry.has("scale_xy"):
+			light.scale = _vec(entry["scale_xy"])
+		decor.add_child(light)
+
+
+func _vec(pair: Array) -> Vector2:
+	return Vector2(float(pair[0]), float(pair[1]))
 
 
 ## Dressing: posters, vents, pipes, lamps, crates — placed where the grid

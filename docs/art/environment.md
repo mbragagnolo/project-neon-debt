@@ -303,3 +303,340 @@ next session proposes the authoring method (a procedural pixel-art tile
 author extending `make_tiles.py` at 2×, a hand-drawn set, or a mix),
 shows a sample ring for 14-C per method at target size, and Marcos picks
 before anything is rolled out.
+
+## 3. The ring: three ways to author it (2026-09-07)
+
+`tools/art/ring.py` makes the ring from the `ring` block of the set json,
+three ways, and previews each one as Unit 14-C's corner drawn the way the
+room generator draws it, at 1:1, with Dani's idle frame on the P ledge
+(`work/rings/preview_residential_<method>.png`; `--all` stacks them in
+`compare_residential.png` with two extra rows, see below). The nine-patch
+is (C + L + C) square: corners C = `tiles` x 30 art px, edge strips L
+long, the centre void. Judged at 1:1, never zoomed.
+
+| method | what it is | strip | colours | what it needs |
+|---|---|---|---|---|
+| `proc` | rules only: one ramp (void, bg0, concrete0-3), value noise inside it with thresholds for the step under and over the base, a lit lip (concrete3 / concrete2, chipped by the noise, a crease under it), a dark underside edge, seams across the strips, streaks down the faces, scuffs on the lip, rust pits, then a grain-dithered fall to void over `fade` px | 6 tiles | 8 | the json only; a new style is a new block |
+| `hand` | typed 30 x 30 tiles in `sets/residential_ring.py` (floor A/B, ceiling A/B with a wiring run, wall A/B with a bolt plate and a seam, two corners), joined into 3-tile strips, mirrored and flipped for the free variants | 3 tiles | 10 | an hour of typing per style; every change is retyping |
+| `mix` | the `proc` surface with hand-drawn stamps placed by data: the conduit every 30 px along the ceiling with junction boxes, plates and cracks on the walls, cracks and rust bleeds on the floor face | 6 tiles | 11 | the json plus a stamp module per style; a stamp is typed once and placed anywhere |
+
+What the previews showed at 1:1:
+
+- **The material reads in all three.** Three to five steps of one cold
+  ramp, texture as mottling inside the ramp, a lit lip on the floor, the
+  dark step as the edge everywhere else, no black line: the bar from
+  section 1 holds without a diffusion still in the loop.
+- **The repeat is the hand set's problem.** Its designed features (the
+  junction box, the bolt plate) come back every 180 px and the ceiling reads
+  as wallpaper across a 32-tile room; the procedural strip repeats at 360
+  px with nothing in it that the eye can lock onto, and the mix places its
+  stamps at chosen positions on that strip. Longer hand strips cost linear
+  typing; a longer procedural strip is one number.
+- **Hand-drawn is cleaner and flatter.** Fewer single pixels, bigger
+  deliberate shapes, but the face is plain grey between the features: the
+  noise that the bar asks for is what a person cannot type. This is the
+  argument for the mix: rules for the surface, a hand for the shapes.
+- **The fade wants grain, not blobs.** The first dither (6 px noise cells)
+  read as fog at the ring's inner edge; 3 px cells plus per-pixel grain read
+  as a pixel-art dither. 20 px of face and 7 of fade fill a 30 px tile.
+- **A linear feature on the underside strip belongs to every underside.**
+  The nine-patch cannot tell a ceiling from a ledge, so the mix's conduit
+  runs under the P ledge as well as along the ceiling. A wiring run is
+  dressing (`_dress`, a ceiling prop strip) rather than ring art; the
+  stamps that stay in the ring are the ones any solid can wear (stains,
+  cracks, plates, rust).
+- **Ring depth is a knob.** `--set ring.tiles=2` (with face 50, fade 11)
+  gives a 120 px band under the slab; the 1-tile ring reads as a cornice
+  over black, the 2-tile ring as a wall the room is cut out of. The
+  `compare` page carries both for the pick. A thin column shows the outer
+  part of its ring either way, so the fix below serves both.
+
+### What the engine needs, for any of the three
+
+`make_stacks._solid` gives every rectangle 60 px margins on all four sides
+and reads the whole texture. The `compare` page's `mix_nofix` row draws the
+new ring through that rule: the top slab wears the lit side strip down its
+left edge though it faces no air there, the left column shows the lit
+left strip instead of its right face and a floor lip at its top under the
+ceiling, and the P ledge shows a lip and then its fade against the
+backdrop where its underside should be. The preview's `render_room` is the
+rule to port:
+
+1. For each side of a rectangle, does any tile past it read as air in the
+   spec (`RoomSpec.is_air`, with off-grid as solid)? That side's margin is
+   the ring depth if so, else 0.
+2. `region_rect` drops the strips of the sides that touch no air, so the
+   centre tiling never reads them.
+3. When both sides of an axis touch air and the two margins exceed the
+   rectangle, split the rectangle between them (a 1-tile ledge shows the
+   top half of its lip strip and the bottom half of its underside strip).
+4. The ring depth comes from `assets/tiles/wall_<style>.json` (`margin`,
+   written by `ring.py` beside the sheet), default 60.
+
+Godot's nine-patch mapping makes this work: below the first margin a
+pixel reads the texture from its start, past the last margin from its end,
+and the middle repeats the centre. A rectangle thinner than its margins
+shows the outer part of its ring, which is the part that matters.
+
+Inner corners (where the ceiling's strip runs on over a column) stay as
+they are: the underside's edge line crosses the column's top, two pixels
+at game scale, which a per-cell tile choice would fix and the nine-patch
+cannot. Not worth a tilemap for.
+
+Pending: Marcos picks the method and the ring depth; then the residential
+ring is built for real, 14-C regenerated, shot, measured and recorded here,
+and the lights follow.
+
+## 4. The concept step (2026-09-07, Marcos's proposal)
+
+The ring samples did not read as a room, and could not: the ring is the
+wall's edge, and a room reads from its biggest plane, its clutter and its
+light, all still the M7 greybox in the samples. Marcos's proposal: generate
+a concept still of the room from its brief, then have each element of it
+translated into pixel art by the method that suits it, some through the
+hi-bit downscale (a piano, boxes, a monitor), some authored directly (the
+ring's materials, the back wall), some as lights. The concept is a layout
+source made from *our* story, which the reference screenshots must never
+be.
+
+`tools/art/concept.py` with `sets/unit_14c.json` (kind `concept`): `gen`
+sweeps seeds into `work/concepts/unit_14c/[<variant>/]`, `sheet` lays them
+out at half size, two columns, because a concept is judged for what is
+where and how the light falls. NoobAI, the illustration model, is the right
+tool here for the reason it was the wrong one for a material: it composes.
+
+### What the two sweeps taught
+
+- **Asked for a flat side view, the model still draws a room in
+  perspective.** The first prompt (`still`) carried "side view, straight-on,
+  flat elevation, side-scrolling game background" at 1.25 and perspective
+  terms in the negative; all ten seeds came back in one-point perspective
+  with the ceiling's fluorescent panels lit, whatever "hanging lamp turned
+  off" said. Content landed (papers and wood floors in all, a piano in
+  half, rain windows, red notices, doors), so a perspective concept is
+  still a source of content and light; it is not a layout.
+- **Weight the view and the darkness, and negate the ceiling.** The `flat`
+  variant puts "2d side-scroller stage, flat side view, orthographic, the
+  back wall parallel to the picture plane, parallax background layer" at
+  1.35, "dark room, lights off, power outage, unlit ceiling" at 1.25, and
+  "perspective, vanishing point, receding floor, room corner, ceiling
+  visible, ceiling lights, fluorescent lights, lit ceiling, bright" at 1.4
+  in the negative. Two of eight seeds (5, 6) are flat elevations with the
+  power off; three more (2, 3, 8) are flat stages with the wrong content;
+  the rest went back to perspective. Eight seeds is enough when two hold.
+- **The model dresses the ceiling with lights when told not to.** Seed 5
+  hung a string of coloured lanterns, seed 6 a run of small red and blue
+  bulbs along the ducts. A concept's light is read, not copied: the brief
+  keeps the window cold, the door warm, the notices red.
+
+### The read of `flat` seeds 5 and 6
+
+- **Seed 6**: a flat dark wall; a large rain window centre-right with the
+  city's lit towers behind it, the cold source, exactly the street reference
+  inverted; a grand piano right against the window; a stack of boxes and a
+  crate left with a cyan screen glowing among them; a CRT on a stool and two
+  small tables under the window; a shelf of papers far left, a pinboard
+  and a fridge far right; papers in drifts across the floor; ducts and
+  rafters above. Missing: the door and its warm lamp (the right edge has a
+  fridge instead), the red notices (a red sign top right at best).
+- **Seed 5**: a flat blue wall with a wainscot-height dark band; a small
+  window centre with a visible cold light shaft falling from it; blinds
+  either side; a grand piano right, a broken keyboard left, a gramophone
+  centre, boxes and a CRT far left; papers on the boards. Cleaner
+  composition, the window's shaft is the picture; the lanterns are wrong.
+
+The pick: seed 6 for the room (window, piano, clutter, the drifts of paper,
+the duct ceiling), with seed 5's light shaft as the note for the window
+light. The door, its lamp and the notices are placed by the brief, not
+the concept, since the concept did not draw them and the spec fixes where
+they are.
+
+### The cut list, next
+
+`elements` in the room set: name, box on the still, plane (outside, back
+wall, play, near), method:
+
+- `hibit`: the crop goes through the character downscale at 2x
+  (k-centroid, line layer, palette snap) as a prop still: the piano, the
+  boxes, the crate, the CRT, the stools, the shelf, the paper drifts.
+- `pixel`: the crop is material reference for authored art: the ring's
+  strips (boards on top, plaster on the sides, the duct band under the
+  ceiling), the back wall plane with the window cut out, the outside
+  plane.
+- `light`: an emissive that becomes a PointLight2D and a small sprite: the
+  window, the door lamp, the notices, the cyan screen in the boxes.
+
+One artist per element from that list; the set dresser places them by
+plane for 14-C in place of the random `_dress`. The ring's method choice
+(section 3) stays as the mechanism; the concept decides its materials.
+
+### The pick, and what followed it (2026-09-07, later)
+
+Marcos picked `flat` seed 6. `concept.py cut` crops every element's box
+into `source/unit_14c/` (the reference each artist reads) and draws the
+boxes on the still (`work/concepts/unit_14c/cut_debug.png`). Eighteen
+elements: two material references (ceiling, floor), three planes (outside,
+wall, window), three wall-mounted pieces kept in the wall plane (shelf,
+pinboard) or removed (the cabinet, where the door is), two lights (the
+window, the cyan screen among the boxes), nine hi-bit props (piano, boxes,
+crate, box, CRT, table, two paper drifts, and the bedroll from the brief).
+
+- **Scale comes from the figure, never from the concept.** With no human
+  in the still the model drew the piano at 28% of the frame and the boxes
+  taller than a person. Every hi-bit element carries a `height_art` at 2x
+  taken from Dani's 56 art px for 1.7 m: the piano 52 with its lid up, the
+  box stack 50, the CRT on its stool 30, a crate 20, a paper drift 7 to 10.
+  The concept says what and where; the figure says how big.
+- **A composed scene cannot be keyed; a prop on grey can.** The hi-bit
+  props are generated again, one still each on a flat ground with the
+  characters' prop prompt shape, and the sheet shows the concept crop
+  beside every candidate at target size (`concept.py props`,
+  `props_contact.png`). The bake keys, crops to content, scales the
+  content to `height_art` and runs the character downscale with Dani's
+  settings and a materials-only palette.
+- **The ring takes its materials from the concept.** `ring.py` now has
+  per-side overrides (`materials` in the set json): the top strip is a
+  band of near-black boards (rust0 with rust1 grain, a rust2 lit edge, bg0
+  gaps at staggered board ends, a shadow line under the band) over a dark
+  concrete face, the underside a beam line with slats, the sides plaster.
+  A horizontal side owns its band into the corners so the boards reach the
+  edge of a ledge. Thirteen colours. The conduit stamp is gone from the
+  ring: it belonged to every underside, so it belongs to dressing.
+- **The engine rule is ported.** `make_stacks._solid` now reads the ring
+  depth from `wall_<style>.json`, checks each side of a rectangle for air,
+  cuts the strips of the other sides out of `region_rect`, and splits a
+  block thinner than two rings between them. All 34 rooms regenerate
+  without an error; the shot of 14-C shows the slab black above a ceiling
+  band, the left column wearing only its air face, the P ledge with boards
+  on top and an underside. The residential sheet is now the ring
+  (`assets/tiles/wall_residential.png`, 480 px, margin 60).
+- **A room can be dressed from data.** `tools/stacks/<id>.dress.json`
+  replaces the random `_dress` for a room that has one: planes (texture,
+  position, z), props (texture, the point they stand on, z, flip), lights
+  (colour, energy, scale) and the ambient. Positions for 14-C come from
+  the concept boxes times 1920/1344, standing on the floor at 1020 or the
+  ledge at 900; the window spans 800..1607 x 415..967, so the two notices
+  hang on its glass, which the story can carry (the collectors post on the
+  window). Textures that do not exist yet are skipped with a note, so the
+  file was written before the assets.
+
+Interim shot, ring and lights only, no planes or props, ambient 0.36 /
+0.40 / 0.52:
+
+| shot | dark | mid | bright |
+|---|---|---|---|
+| 14-C, swatch wall | 87% | 12% | 0% |
+| 14-C, ring, lights, no planes | 98% | 2% | 0% |
+
+Darker still, as it should be at this point: the window's glass (the
+outside plane) is the room's bright area and it is not there yet. The
+lights are placed; their energies get set once the planes are in.
+
+### The first dressed shot (2026-09-07, evening)
+
+`tools/shot_gym.tscn` on `world.tscn` at 1920x1080, measured whole and
+with the black slab cropped off (y 378 down), since the Metroid rule makes
+a third of this room's frame black by design and the references have no
+such band:
+
+| shot | dark | mid | bright | cold |
+|---|---|---|---|---|
+| 14-C, ASCII wall (start of the pass) | 63% | 37% | 0% | 67% |
+| 14-C, ring, lights, no planes | 98% | 2% | 0% | 79% |
+| 14-C, dressed, outside under the ambient | 96% | 4% | 0% | 84% |
+| 14-C, dressed, outside unlit, generated sky | 75% | 19% | 6% | 97% |
+| 14-C, dressed, authored skyline, mid-tone walls | **73%** | **21%** | **6%** | **85%** |
+| the same, room only (under the slab) | 58% | 33% | 10% | 80% |
+
+The eye goes window, notices, Dani, door, which is the brief's order with
+the notices added, and they earn it: they hang on the glass. Cold-led with
+one warm pin at the door. Bright is in the references' band; dark is over
+the 40 to 50% target because one window lights the room and the slab is
+black, and both are the design.
+
+What it took, in order, each a lesson:
+
+- **The outside plane must not be under the ambient.** A CanvasModulate
+  darkens everything in its canvas, so the window's glass was as dark as
+  the wall behind it however the light was set. The roof rooms already
+  escape this: their sky is on a ParallaxBackground, its own canvas. The
+  outside plane now lives on one (`unlit: true` in the dress json, motion
+  0.6 for when a camera moves) and the tiled backdrop is skipped for a
+  room with planes. That single move took bright from 0% to 6%.
+- **A 2D light adds light x surface, so a dark surface cannot take
+  light.** The first back wall was painted in the darkest ramp (bg0 to
+  bg3) to match the concept's night and stayed black under a 1.4-energy
+  window light. It is painted mid-tone now (steel1 base, luma 56, on a
+  bg2..steel2 ramp) and the ambient at 0.36 / 0.40 / 0.52 does the
+  darkening; the window and the door lamp bring it back where they
+  reach. Paint the albedo, let the light make the picture.
+- **Inpainting the props out of the concept did not work** with the base
+  NoobAI weights in the inpaint pipeline: the first pass refilled the
+  masks with shelves (the context is a cluttered room), the second, with
+  furniture negated at 1.5, with flat black blobs. The back wall is
+  authored instead (`concept.wall_plane`): the ring's plaster noise on a
+  dark ramp, the concept's pilasters, the window frame with mullions and
+  the glass cut out, pale rectangles where things were taken, a wiring
+  run with clips along the top, and the shelf and pinboard pasted from
+  their concept crops at 3 screen px per art px. Nineteen colours.
+- **The outside is authored too.** Its own generated stills read as an
+  overcast day (grey rain, no lit windows) and the palette snap turned
+  the one blue glow teal; the concept's glass had the piano lid across it.
+  `concept.skyline_block` draws the block opposite at 4 screen px per art
+  px: a haze lighter at the bottom where the street glows, towers as flat
+  silhouettes with real gaps so the haze shows between them, rows of small
+  windows a quarter lit, cold with a few warm. The rain is the engine's:
+  `drop` particles emitted along the top of the glass, dying at the sill,
+  and dust motes in the window's light, both from the dress json
+  (`particles`). Towers on black read as nothing; towers on haze read as
+  a city.
+- **The door's own lamp is the warm pin.** `_door` gives every side door
+  a cyan lamp; a dress json's `door_lamp` recolours it (amber, 1.3) so the
+  way out reads warm without a second light fighting the first.
+- **A parse error in the generator hangs the headless run.** The script
+  fails to load, `_ready` never runs, nothing calls quit. Run
+  `make_stacks.tscn` alone with a timeout after any edit and read the
+  first `SCRIPT ERROR` line; a `var` and a `func` cannot share a name.
+
+Still open for 14-C: the top third of the frame is black by the Metroid
+rule, which is where the interior camera zoom question (section 1) now
+has a picture to be asked against; the sky band at the top of the glass
+is a flat light grey and could keep more of the night; the notices' panels
+are the old 3x HUD-style drawing and will be redone with the HUD; the
+piano and the box stack are small next to Dani because they are true to
+scale, and a room at this camera distance wants fewer, bigger shapes, as
+section 1 said.
+
+Assets written: `assets/props/unit_14c_*.png` (nine), `assets/tiles/
+back_unit_14c.png`, `outside_unit_14c.png`, `wall_residential.png` with
+its `.json`; sources in `tools/art/source/unit_14c/`; the data in
+`sets/unit_14c.json`, `sets/residential.json` and
+`tools/stacks/unit_14c.dress.json`. All 34 room scenes regenerated with
+the ring rule.
+
+## 5. The skills (2026-09-07, evening)
+
+Extracted from this pilot into `~/.claude/skills`, three of them, split
+by the judgement each one makes and named as studio roles, in the
+character-designer's shape (a SKILL.md, `scripts/` for what is
+deterministic, `templates/` for the data files, `reference/` for the
+lessons):
+
+| skill | judgement | scripts |
+|---|---|---|
+| `concept-artist` | composition: brief to concept still to cut list | `concept.py` gen / sheet / grid / cut, `scale.py` |
+| `environment-artist` | the shading bar at 1:1: cut list to ring, props, planes | `ring.py`, `props.py`, `planes.py` |
+| `level-artist` | the shot's numbers and the eye path: assets to the lit room | `dress_check.py`, `shoot.py`, `ref_stats.py` |
+
+The seams are two data files: the room set with its cut list
+(`sets/<room>.json`), and the dress file (`<room>.dress.json`). The three
+share the character-designer's `gen_still.py`, `rig.py` and `pixelkit.py`
+as their diffusion, downscale and palette engine. Every script was run
+against `game/tools/art` as the studio and reproduces this room. The
+project's own tools stay as the originals; the skills are the packaging.
+
+**Pinned:** the apartment's scale next to Dani. Props sized from the
+figure read small at a camera that shows the whole cell; the answer is a
+camera or composition decision (the interior zoom of section 1), not
+larger props. Recorded in the skills' reference files as an open
+question.

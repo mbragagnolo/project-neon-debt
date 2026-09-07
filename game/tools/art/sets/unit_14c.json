@@ -1,0 +1,526 @@
+{
+  "name": "unit_14c",
+  "kind": "concept",
+  "look": "docs/art/environment.md#the-brief-for-14-c",
+  "frame": [
+    1920,
+    1080
+  ],
+  "still": {
+    "model": "Laxhar/noobai-XL-1.1",
+    "width": 1344,
+    "height": 768,
+    "steps": 28,
+    "cfg": 5.5,
+    "scheduler": "euler_a",
+    "prompt": "masterpiece, best quality, very aesthetic, absurdres, no humans, scenery, indoors, (side view, straight-on, flat elevation, side-scrolling game background, 2d platformer stage, wide shot)1.25, the back wall fills the frame, floor along the bottom, ceiling along the top, dilapidated apartment, stripped apartment, abandoned room, cyberpunk apartment, wooden floorboards, worn wooden floor, stained plaster wall, peeling paint, bare walls, pale rectangles where furniture was removed, (scattered papers on the floor, papers everywhere)1.15, (broken upright piano)1.2, cardboard boxes, bedroll, crt monitor on the floor, hanging lamp turned off, exposed wiring, conduit along the ceiling, large window with blinds, rain on the glass, night city outside the window, cold blue light from the window, doorway on the right with a warm lamp, red warning screen on the wall, dim, moody, cel shading, anime coloring, soft shading, detailed background, clean composition",
+    "negative": "1girl, 1boy, humans, people, character, figure, text, watermark, signature, blurry, lowres, worst quality, low quality, jpeg artifacts, (perspective, vanishing point, fisheye, isometric, top-down, bird's eye, dutch angle)1.3, bright, daylight, sunlight, clean, tidy, luxury, modern, white walls, photo, 3d render, sky, outdoors, multiple views, frame, border",
+    "_note": "First concept sweep 2026-09-07, Marcos's cues (wooden board floors, papers everywhere, a broken piano) on the brief: POWER SUSPENDED, lit from the window, the door's lamp the one warm source, the notices red. Asked for a flat side view so the still reads as the room's elevation, not a perspective interior.",
+    "chosen_variant": "flat",
+    "chosen_seed": 6,
+    "_chosen_note": "flat seed 6, picked by Marcos 2026-09-07: a flat dark wall, the rain window with the city behind it as the cold source, the piano against it, boxes with a cyan screen, a CRT on a stool, paper drifts, ducts above. The door, its lamp and the notices come from the spec; seed 5's window shaft is the lighting note."
+  },
+  "variants": {
+    "dream": {
+      "family": "sd15",
+      "model": "Lykon/dreamshaper-8",
+      "width": 896,
+      "height": 512,
+      "steps": 30,
+      "cfg": 7.0,
+      "prompt": "side view of a dilapidated cyberpunk apartment, flat elevation like a 2d side-scrolling game background, straight on, no perspective, wooden floorboards, stained plaster walls, scattered papers on the floor, a broken upright piano, cardboard boxes, a bedroll, a crt monitor on the floor, a hanging lamp switched off, exposed wiring along the ceiling, a large window with blinds and rain, night city outside, cold blue light from the window, a doorway on the right with a warm lamp, a red warning screen on the wall, dim, moody, concept art, high detail",
+      "negative": "people, person, face, text, watermark, blurry, lowres, perspective, vanishing point, isometric, top-down, bright, daylight, clean, tidy, luxury, modern, white walls, photo, sky, outdoors, frame, border, cartoon",
+      "_note": "The photographic read of the same brief, for comparison; SD 1.5 wants under 1 Mpx."
+    },
+    "flat": {
+      "prompt": "masterpiece, best quality, very aesthetic, absurdres, no humans, scenery, (2d side-scroller stage, flat side view, orthographic, the back wall parallel to the picture plane, no perspective, parallax background layer)1.35, (dark room, lights off, power outage, unlit ceiling, night)1.25, dilapidated cyberpunk apartment, stripped apartment, wooden floorboards along the bottom of the frame, stained plaster wall, peeling paint, pale rectangles where furniture was removed, (scattered papers on the floor)1.15, (broken upright piano)1.2, cardboard boxes, bedroll, crt monitor on the floor, hanging lamp turned off, exposed wiring along the ceiling, large window with blinds, rain on the glass, night city outside, (cold blue light from the window)1.2, doorway on the right with a small warm lamp, red warning screen on the wall, dim, moody, cel shading, anime coloring, soft shading, detailed background",
+      "negative": "1girl, 1boy, humans, people, character, figure, text, watermark, signature, blurry, lowres, worst quality, low quality, jpeg artifacts, (perspective, vanishing point, receding floor, room corner, ceiling visible, ceiling lights, fluorescent lights, lit ceiling, bright)1.4, fisheye, isometric, top-down, daylight, sunlight, clean, tidy, luxury, modern, white walls, photo, 3d render, sky, outdoors, multiple views, frame, border",
+      "_note": "Second NoobAI prompt, 2026-09-07: the first sweep drew every seed in one-point perspective with the ceiling lit. Flat-view and lights-off terms weighted, perspective and ceiling lights in the negative at 1.4."
+    }
+  },
+  "elements": [
+    {
+      "name": "ceiling",
+      "box": [
+        0,
+        0,
+        1344,
+        200
+      ],
+      "plane": "play",
+      "method": "pixel",
+      "note": "material reference for the ring's underside strip: rafters and ducts; the bulbs are the model's, not ours"
+    },
+    {
+      "name": "outside",
+      "box": [
+        585,
+        215,
+        1105,
+        545
+      ],
+      "plane": "outside",
+      "method": "pixel",
+      "px": 4,
+      "note": "the block opposite in rain, through the window only",
+      "downscale": "box",
+      "palette": [
+        "void",
+        "bg0",
+        "bg1",
+        "bg2",
+        "bg3",
+        "black",
+        "steel0",
+        "steel1",
+        "steel2",
+        "steel3",
+        "navy_d",
+        "navy",
+        "navy_l",
+        "cyan_d",
+        "amber_d",
+        "grey_d"
+      ],
+      "_note": "the block opposite, authored: a night sky, towers as flat silhouettes filling the glass, small windows mostly dark, a few lit cold and one or two warm, at 4 screen px per art px; the rain is particles over the glass. The generated stills (props/outside) read as an overcast day and the palette snap turned the glow teal; the concept's own glass is the reference",
+      "height_art": 138,
+      "prompt": "(night cityscape, dark skyscrapers, rows of small lit windows, rain, heavy rain, city at night)1.25, (seen straight on, flat, 2d game background, distant, no foreground)1.2, dark blue, cold blue light, a few cyan and amber lights, low clouds, dim, moody, cel shading, soft shading, detailed background",
+      "negative": "1girl, 1boy, humans, people, text, watermark, signature, blurry, lowres, worst quality, low quality, jpeg artifacts, window frame, interior, room, curtain, blinds, foreground, ground, street, cars, bright, daylight, sunset, sky gradient, moon, perspective from below, fisheye, frame, border",
+      "chosen_seed": 2,
+      "_chosen_note": "seed 2: one tower mass in rain with a blue glow top right; 1 is empty sky, 3 window panels, 4 drew the frame. None drew rows of lit windows; the concept's glass had them but with the piano lid across it.",
+      "levels": {
+        "pct": [
+          2,
+          98
+        ],
+        "lo": 22,
+        "hi": 150,
+        "tint": [
+          0.85,
+          0.92,
+          1.1
+        ]
+      },
+      "seed": 5,
+      "sky": [
+        "steel2",
+        "steel3",
+        "steel4",
+        "steel4"
+      ],
+      "towers": {
+        "width": [
+          16,
+          40
+        ],
+        "height": [
+          0.3,
+          0.78
+        ],
+        "gap": [
+          3,
+          12
+        ],
+        "body": "bg2",
+        "edge": "bg3",
+        "lit": "steel4",
+        "lit_cold": "cyan_d",
+        "lit_warm": "amber_d",
+        "density": 0.25,
+        "pitch": 3
+      },
+      "_albedo_note": "the sky is the haze the block opposite stands against, lighter at the bottom where the street glows; the towers are silhouettes on it, never on black"
+    },
+    {
+      "name": "wall",
+      "box": [
+        0,
+        200,
+        1344,
+        600
+      ],
+      "plane": "back",
+      "method": "pixel",
+      "px": 3,
+      "inpaint": [
+        "piano",
+        "boxes",
+        "crt",
+        "table",
+        "cabinet",
+        "papers_a",
+        "papers_b"
+      ],
+      "keep": [
+        "shelf",
+        "pinboard",
+        "window"
+      ],
+      "note": "the back wall plane, play-plane props and the cabinet inpainted out, the window glass cut out",
+      "room": [
+        60,
+        420,
+        1860,
+        1020
+      ],
+      "inpaint_pad": 14,
+      "inpaint_strength": 0.95,
+      "downscale": "box",
+      "palette": [
+        "void",
+        "bg0",
+        "bg1",
+        "bg2",
+        "bg3",
+        "black",
+        "black_l",
+        "steel0",
+        "steel1",
+        "steel2",
+        "concrete0",
+        "concrete1",
+        "concrete2",
+        "navy_d",
+        "rust0",
+        "rust1",
+        "grey_d",
+        "grey",
+        "white",
+        "red_d",
+        "amber_d"
+      ],
+      "_note": "the back wall plane, authored: the ring's plaster noise on the concept's layout (pilasters, the window frame, pale rectangles where things were taken) with the shelf and pinboard pasted from the concept at 3 screen px per art px; the window glass cut out",
+      "_inpaint_note": "inpainting the props out with the base NoobAI weights failed twice (2026-09-07): shelves first, then black blobs. Authored instead.",
+      "pilasters": [
+        [
+          235,
+          300
+        ],
+        [
+          1140,
+          1180
+        ]
+      ],
+      "pale": [
+        [
+          330,
+          250,
+          470,
+          330
+        ],
+        [
+          700,
+          560,
+          780,
+          590
+        ]
+      ],
+      "ramp": [
+        "bg2",
+        "bg3",
+        "steel1",
+        "steel2"
+      ],
+      "base": "steel1",
+      "steps": {
+        "dark": 0.3,
+        "light": 0.85
+      },
+      "pilaster": {
+        "fill": "bg3",
+        "lit": "steel2",
+        "shade": "bg2"
+      },
+      "pale_keys": [
+        "steel2",
+        "steel1"
+      ],
+      "_albedo_note": "2026-09-07: a 2D light adds light_colour x energy x the surface colour, so a wall painted in the darkest ramp cannot take light. The plane is painted mid-tone (steel1 base, luma 56) and the ambient darkens it; the window and the door lamp bring it back where they reach.",
+      "mullions_x": [
+        840
+      ],
+      "mullions_y": [
+        320
+      ]
+    },
+    {
+      "name": "floor",
+      "box": [
+        0,
+        590,
+        1344,
+        768
+      ],
+      "plane": "play",
+      "method": "pixel",
+      "note": "material reference for the ring's top strip: dark worn boards"
+    },
+    {
+      "name": "window",
+      "box": [
+        560,
+        195,
+        1125,
+        565
+      ],
+      "plane": "back",
+      "method": "light",
+      "colour": "cold",
+      "note": "the cut-out and the room's big cold source; rain and blinds later"
+    },
+    {
+      "name": "shelf",
+      "box": [
+        20,
+        265,
+        200,
+        520
+      ],
+      "plane": "back",
+      "method": "keep"
+    },
+    {
+      "name": "pinboard",
+      "box": [
+        1185,
+        205,
+        1310,
+        400
+      ],
+      "plane": "back",
+      "method": "keep"
+    },
+    {
+      "name": "cabinet",
+      "box": [
+        1235,
+        390,
+        1344,
+        645
+      ],
+      "plane": "back",
+      "method": "remove",
+      "note": "the door is there in the spec"
+    },
+    {
+      "name": "screen",
+      "box": [
+        455,
+        445,
+        495,
+        555
+      ],
+      "plane": "play",
+      "method": "light",
+      "colour": "cyan",
+      "note": "the one screen still running among the boxes"
+    },
+    {
+      "name": "piano",
+      "box": [
+        925,
+        360,
+        1125,
+        592
+      ],
+      "plane": "play",
+      "method": "hibit",
+      "height_art": 52,
+      "prompt": "(grand piano, black lacquered piano, lid open, raised lid)1.2, old, dusty, scratched, worn",
+      "chosen_seed": 1,
+      "_chosen_note": "lid up, side view, reads as a grand at 104 px; 3 is a front view",
+      "metres": 1.6
+    },
+    {
+      "name": "boxes",
+      "box": [
+        300,
+        275,
+        510,
+        635
+      ],
+      "plane": "play",
+      "method": "hibit",
+      "height_art": 50,
+      "prompt": "(stack of cardboard boxes and wooden crates)1.2, a crt television on top tilted, cluttered pile, worn, dusty",
+      "chosen_seed": 4,
+      "_chosen_note": "the stack with a CRT on top, as the concept has it",
+      "metres": 1.5
+    },
+    {
+      "name": "crate",
+      "box": [
+        410,
+        545,
+        510,
+        635
+      ],
+      "plane": "play",
+      "method": "hibit",
+      "height_art": 20,
+      "prompt": "(wooden crate, wooden box)1.2, old, worn",
+      "chosen_seed": 1,
+      "metres": 0.6
+    },
+    {
+      "name": "box",
+      "box": [
+        300,
+        555,
+        415,
+        635
+      ],
+      "plane": "play",
+      "method": "hibit",
+      "height_art": 16,
+      "prompt": "(cardboard box, open flaps)1.2, worn, taped",
+      "chosen_seed": 1,
+      "metres": 0.5
+    },
+    {
+      "name": "crt",
+      "box": [
+        555,
+        470,
+        650,
+        625
+      ],
+      "plane": "play",
+      "method": "hibit",
+      "height_art": 30,
+      "prompt": "(crt television on a wooden stool)1.2, old tv, screen off, dark screen, dusty",
+      "chosen_seed": 2,
+      "_chosen_note": "the CRT on a stool, as the concept has it",
+      "metres": 0.9
+    },
+    {
+      "name": "table",
+      "box": [
+        640,
+        540,
+        800,
+        625
+      ],
+      "plane": "play",
+      "method": "hibit",
+      "height_art": 18,
+      "prompt": "(small wooden side table, low table)1.2, old, worn, a few papers on it",
+      "chosen_seed": 1,
+      "metres": 0.55
+    },
+    {
+      "name": "papers_a",
+      "box": [
+        0,
+        570,
+        165,
+        665
+      ],
+      "plane": "play",
+      "method": "hibit",
+      "height_art": 10,
+      "prompt": "(pile of paper sheets on the floor, stack of loose papers, drift of papers)1.2, white paper, low pile",
+      "chosen_seed": 1,
+      "metres": 0.3
+    },
+    {
+      "name": "papers_b",
+      "box": [
+        520,
+        590,
+        720,
+        735
+      ],
+      "plane": "play",
+      "method": "hibit",
+      "height_art": 7,
+      "prompt": "(scattered loose paper sheets on the floor, a few sheets, flat)1.2, white paper",
+      "chosen_seed": 4,
+      "_chosen_note": "the widest low scatter",
+      "metres": 0.2
+    },
+    {
+      "name": "bedroll",
+      "box": null,
+      "plane": "play",
+      "method": "hibit",
+      "height_art": 12,
+      "prompt": "(bedroll, rolled sleeping bag on the floor, camping mat)1.2, worn, dark green, dusty",
+      "note": "from the brief: Dani wakes here; not in the concept",
+      "chosen_seed": 3,
+      "_chosen_note": "laid out, since Dani wakes on it; 1 and 4 are rolled",
+      "metres": 0.36
+    }
+  ],
+  "prop_still": {
+    "model": "Laxhar/noobai-XL-1.1",
+    "width": 1024,
+    "height": 1024,
+    "steps": 28,
+    "cfg": 5.5,
+    "prefix": "masterpiece, best quality, very aesthetic, absurdres, no humans, (simple background, grey background)1.3, (side view, from side, profile)1.2, still life, single object, centered, dim light, cel shading, soft shading, detailed, ",
+    "negative": "1girl, 1boy, humans, people, character, hands, text, watermark, signature, blurry, lowres, worst quality, low quality, jpeg artifacts, multiple objects, multiple views, cropped, perspective, from above, from below, top-down, room, wall, scenery, background details, gradient background, shadow, drop shadow, cast shadow, glow, lens flare, bright, white background",
+    "_note": "A hi-bit element is its own still on a flat ground, like the characters' props (pipeline.md): the concept crop beside it on the sheet is what it has to look like, the flat ground is what lets it key."
+  },
+  "target": {
+    "scale": 2,
+    "downscale": "kcentroid",
+    "k": 2,
+    "lines": {
+      "radius": 7,
+      "delta": 22,
+      "coverage": 0.22,
+      "factor": 0.8
+    },
+    "edge": {
+      "shade": 0.62,
+      "lit": 1.3,
+      "light": [
+        -1,
+        -1
+      ]
+    },
+    "palette": [
+      "void",
+      "bg0",
+      "bg1",
+      "bg2",
+      "bg3",
+      "black",
+      "black_l",
+      "concrete0",
+      "concrete1",
+      "concrete2",
+      "concrete3",
+      "grey",
+      "grey_d",
+      "white",
+      "rust0",
+      "rust1",
+      "rust2",
+      "rust3",
+      "olive_d",
+      "olive",
+      "olive_l",
+      "olive_ll",
+      "steel0",
+      "steel1",
+      "steel2",
+      "steel3",
+      "steel4",
+      "chrome",
+      "chrome_d",
+      "amber_d",
+      "cyan_d",
+      "red_d",
+      "hair",
+      "hair_h"
+    ],
+    "_note": "Dani's bake settings; the palette is every material ramp but the neons and skin. Heights in art px at 2x come from the figure (Dani 56 = 1.7 m), never from the concept's boxes: with no human in it the model drew the piano at 28% of the frame."
+  },
+  "figure": {
+    "art_px": 56,
+    "metres": 1.7
+  },
+  "assets": "../../assets"
+}
