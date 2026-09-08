@@ -334,8 +334,26 @@ func test_air_dash_gates_measure_up() -> void:
 				assert_false(spec.is_solid(x, y), "%s: the gap has ground at %d,%d" % [spec.id, x, y])
 				assert_false(spec.is_solid(x, y - 1), "%s: the gap is blocked above at %d,%d" % [spec.id, x, y - 1])
 			var gap: float = float(x2 - x1 - 1) * RoomSpec.TILE
-			assert_true(_envelope.is_valid_air_dash_gate(gap),
-				"%s: a %.0fpx gap is not a valid Sidewinder gate (kit reach %.0f, implant reach %.0f)" % [spec.id, gap, _envelope.max_gap(false), _envelope.max_gap(true)])
+			# Below the gap, too. A tile the player can stand on inside the gap,
+			# no deeper than a jump below the lips, splits the gap into hops, and
+			# the widest hop is what the starting kit has to fail. The catwalks'
+			# gate was crossed cold this way: the shaft's landing sat one tile
+			# under its right half, a four-tile jump and a step from the far lip.
+			var depth_tiles: int = int(_envelope.jump_height() / RoomSpec.TILE)
+			var edges: Array[int] = [x1]
+			for x: int in range(x1 + 1, x2):
+				for d: int in range(1, depth_tiles + 1):
+					var c: String = spec.tile(x, y + d)
+					if (c == "#" or c == "=") and not spec.is_solid(x, y + d - 1):
+						edges.append(x)
+						break
+			edges.append(x2)
+			var hop_tiles: int = 0
+			for j: int in range(1, edges.size()):
+				hop_tiles = maxi(hop_tiles, edges[j] - edges[j - 1] - 1)
+			var hop: float = float(hop_tiles) * RoomSpec.TILE
+			assert_true(_envelope.is_valid_air_dash_gate(hop),
+				"%s: the widest hop across the gate is %.0fpx (lip to lip %.0fpx; %d standable tiles inside the gap) — not a valid Sidewinder gate (kit reach %.0f, implant reach %.0f)" % [spec.id, hop, gap, edges.size() - 2, _envelope.max_gap(false), _envelope.max_gap(true)])
 	assert_gte(count, 2, "the district needs at least two Sidewinder gates")
 
 
