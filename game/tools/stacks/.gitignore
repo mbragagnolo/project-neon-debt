@@ -1,0 +1,4 @@
+# The level-designer skill's generated outputs (kiln); district.json and reach.json are the contract and are tracked.
+*.png
+*.dot
+*_report.md
