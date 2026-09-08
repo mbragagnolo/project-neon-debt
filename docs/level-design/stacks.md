@@ -101,6 +101,15 @@ the teases: **a wall the player just jumped off refuses them for the whole
 flight** (`same_wall_lockout_time`), so a single wall is never a ladder.
 `tests/test_movement_envelope.gd` proves all three with real physics.
 
+And one rule of the body: it is 88px tall, a tile and a half, so a
+one-tile slot is a wall and a three-tile band caps a jump at 92px, whatever
+the envelope says. Three rooms shipped in M5 with passes that did not exist
+for that body (mezz_east's block under the band's ceiling, west_stair's
+floor piece under the alcove door, roof_span's water tower stem);
+`tests/test_stacks_passage.gd` now walks the real player across each, and
+the level-designer solver (`prototype/level_designer/solve.py`) proves every
+door and pickup at door level, which a graph of doors cannot.
+
 ## Rooms
 
 | Room | Cell | Size | What it holds |
