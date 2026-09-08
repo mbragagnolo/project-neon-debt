@@ -72,3 +72,48 @@ func test_the_roof_crosses_under_the_water_tower() -> void:
 	# player through, since the only other way over is the tease.
 	var far: Vector2 = await _drive(&"roof_span", Vector2(50.5, 17.0), "move_left", false)
 	assert_lte(far.x, 38.0, "the player stopped at x %.1f tiles; the water tower's stem splits the roof" % far.x)
+
+
+## The climb policy the controller wants: jump from the floor to get between
+## the walls, then from a wall slide kick off and hold toward the other wall.
+## Returns the highest feet row reached (tiles; smaller is higher).
+func _climb(room_id: StringName, feet: Vector2, frames: int = 420) -> float:
+	var room: Node = (load(World.room_path(room_id)) as PackedScene).instantiate()
+	_root.add_child(room)
+	var player: Player = TestArena.player(room, feet * TILE)
+	await wait_physics_frames(3)
+	var top: float = player.position.y
+	var dir: String = "move_right"
+	var since_jump: int = 99
+	var flip_at: int = -1
+	Input.action_press(dir)
+	for _i: int in frames:
+		since_jump += 1
+		if player.is_on_floor() and since_jump > 30:
+			Input.action_press("jump")
+			since_jump = 0
+		elif player.state_name() == &"WallSlide" and since_jump > 10:
+			Input.action_press("jump")
+			since_jump = 0
+			flip_at = 8
+		if since_jump == 6:
+			Input.action_release("jump")
+		if flip_at >= 0 and since_jump == flip_at:
+			Input.action_release(dir)
+			dir = "move_left" if dir == "move_right" else "move_right"
+			Input.action_press(dir)
+			flip_at = -1
+		await get_tree().physics_frame
+		top = minf(top, player.position.y)
+	TestArena.release_all_input()
+	return top / TILE
+
+
+func test_the_tunnel_climbs_back_to_the_stair_with_the_hook() -> void:
+	# The Gut before Breach: a player who dropped in must be able to leave
+	# the way they came. The tunnel's shaft to gut_stair used to start seven
+	# rows above the floor with nothing to reach it from; now its walls come
+	# down to two tiles above the floor and the Hook climbs it.
+	GameState.grant_ability(GameState.ABILITY_MAG_HOOK)
+	var top: float = await _climb(&"service_tunnel", Vector2(57.5, 17.0))
+	assert_lte(top, 0.5, "the highest the player got was row %.2f; the shaft to gut_stair cannot be climbed from the tunnel floor" % top)

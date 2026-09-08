@@ -73,7 +73,7 @@ the jacket is the credit sink at Stitch.
 
 | Gate | Where | Opened by | Test |
 |---|---|---|---|
-| Shaft | stairwell_east (to the roof), lift_base → lift_shaft, gut_pumps (to the vent), gut_lift (to the cistern) | Mag-Hook | `gate shaft` — 4-tile shafts, certified against `wall_jump_reach()` |
+| Shaft | stairwell_east (to the roof), lift_base → lift_shaft, gut_pumps (to the vent), gut_lift (to the cistern), service_tunnel (back up to the stair, so the Gut is no trap before Breach) | Mag-Hook | `gate shaft` — 3- and 4-tile shafts, certified against `wall_jump_reach()` |
 | Sealed door with terminal | breach_gate_room → armory, gut_lift → defaulter_den | Breach | `requires <door> breach` in the progression walk |
 | Wide flat gap | roof_gap (8 tiles, over a void), catwalks (the collapsed end: 15 tiles lip to lip, a 7-tile hop up from the shaft's landing) | Sidewinder | `gate air_dash` — the widest hop against `max_gap()` both ways, ≥15% margin, counting any standable tile inside the gap within a jump of the lips as a stepping stone |
 | High single-wall ledge | roof_span (the water tower), catwalks (the chimney), collections_lobby (the hanging balcony) | **Never in V1** | `gate tease` — ≥15% above a jump, no facing wall within a wall jump |
