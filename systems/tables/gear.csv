@@ -1,5 +1,5 @@
 id,slot,defense,max_hp_bonus,dash_cooldown_mult,ram_regen_mult,melee_energy_bonus,starting,source
-linesman_gloves,hands,1,0,1.0,1.25,0,false,src/rpg/items/linesman_gloves.tres
+linesman_gloves,hands,0,0,1.0,1.25,0,false,src/rpg/items/linesman_gloves.tres
 padded_jacket,body,2,10,1.0,1.0,0,false,src/rpg/items/padded_jacket.tres
 scavved_hardhat,head,1,0,1.0,1.0,2,false,src/rpg/items/scavved_hardhat.tres
 work_boots,legs,1,0,0.85,1.0,0,false,src/rpg/items/work_boots.tres

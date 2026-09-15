@@ -27,9 +27,9 @@ DEF-piercing: the Riot unit ignoring a wrench *is* the lesson.
 | | Scav | Watcher drone | Riot unit | Elite Scav | The Landlord |
 |---|---|---|---|---|---|
 | Teaches | Spacing | Vertical threat, ranged verb | Heavy hits & hacks | The quest-area wall | Every verb has a job |
-| HP | 16 | 10 | 35 | 40 | 240 |
+| HP | 16 | 10 | 35 | 40 | 270 |
 | attack_power | 6 | 5 (projectile) | 10 | 9 | 14 |
-| **DEF** (M6 pass) | 0 | 0 | 3 | 2 | 4 |
+| **DEF** (M6 pass, boss raised 2026-09-15) | 0 | 0 | 3 | 2 | 5 |
 | stagger_threshold | 1 | 1 | 12 | 8 | 16 |
 | Tags | — | `mechanical` | `mechanical`, `immune_ranged_frontal` | — | — |
 | XP / credits | 10 / 5 | 14 / 7 | 22 / 15 | 45 / 25 | 200 / 100 |
@@ -53,13 +53,13 @@ the DEF pass below included.
 Set last, after the trio was tuned, at level 5 — the sheet the armoured
 enemies are met with (STR/DEX/INT 17, ×1.6):
 
-| Weapon | vs Riot unit (DEF 3) | vs Landlord (DEF 4) |
+| Weapon | vs Riot unit (DEF 3) | vs Landlord (DEF 5) |
 |---|---|---|
-| Wrench 13 | 10 — flinch | 9 — flinch |
-| Blade 8 | 5 — the wrong tool | 4 |
-| Maul 29 | 26 — **interrupts** | 25 — **interrupts** |
-| Rivet gun 24 | pings off the front; 21 from behind | 20 — **interrupts** |
-| Overload 24 | 21 — **interrupts**, through the shield | 20 — **interrupts** |
+| Wrench 13 | 10 — flinch | 8 — flinch |
+| Blade 8 | 5 — the wrong tool | 3 |
+| Maul 29 | 26 — **interrupts** | 24 — **interrupts** |
+| Rivet gun 24 | pings off the front; 21 from behind | 19 — **interrupts** |
+| Overload 24 | 21 — **interrupts**, through the shield | 19 — **interrupts** |
 
 The Scav and the drone stay at 0: they die to being reached. The Elite's 2
 keeps the wrench (11) over its threshold of 8, so the fight is about the

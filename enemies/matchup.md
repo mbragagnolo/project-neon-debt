@@ -59,7 +59,7 @@ after a dash-out the player is 132 px from it: 0.29 s to close, which a jump-ove
 | Breach | hack | 0 | 0 | 0.00 | does nothing: not mechanical |
 | Overload | hack | 22 | 2 | 1.00 | interrupts; 6 RAM |
 
-## The Landlord at level 5 (STR/DEX/INT 17, player HP 60); hp 240, DEF 4, threshold 16, tags none
+## The Landlord at level 5 (STR/DEX/INT 17, player HP 60); hp 270, DEF 5, threshold 16, tags none
 teaches: The wall worth climbing. DEF blunts light hits, only heavy hits and Overload interrupt him, the slam punishes standing on the floor, the beam punishes standing still, and the drones he calls are what Breach is for. Every verb has a job.
 
 contact: 7 a touch (9 touches kill at level 5); i-frames 0.85 s
@@ -72,9 +72,9 @@ contact: 7 a touch (9 touches kill at level 5); i-frames 0.85 s
 | walk out | 0.39 s | +7 f yes | from the trigger distance 250 px, 62 px to clear at 450 px/s |
 | punish with | hits in the window | window | |
 |---|---|---|---|
-| Hydraulic breaker maul | 1 | +24 f | 25 a hit, interrupts: each hit adds 0.45 s of stagger |
-| Powered utility blade | 2 | +30 f | 4 a hit |
-| Pipe wrench | 1 | +26 f | 9 a hit |
+| Hydraulic breaker maul | 1 | +24 f | 24 a hit, interrupts: each hit adds 0.45 s of stagger |
+| Powered utility blade | 2 | +30 f | 3 a hit |
+| Pipe wrench | 1 | +26 f | 8 a hit |
 after a dash-out the player is 126 px from it: 0.28 s to close, which a jump-over does not pay
 
 ### slam (projectile): tell 0.7 s, active 0.0 s, recovery 0.6 s, cooldown 1.1 s; hits for 12 (5 kill; 10 through Firewall); phases [1, 2]
@@ -83,9 +83,9 @@ after a dash-out the player is 126 px from it: 0.28 s to close, which a jump-ove
 | leave the floor | 0.29 s | +39 f yes | tell 0.7 s plus 0.24 s of wave travel from his stand-off (150 px); the wave is 30 px tall |
 | punish with | hits in the window | window | |
 |---|---|---|---|
-| Hydraulic breaker maul | 1 | +24 f | 25 a hit, interrupts: each hit adds 0.45 s of stagger |
-| Powered utility blade | 2 | +30 f | 4 a hit |
-| Pipe wrench | 1 | +26 f | 9 a hit |
+| Hydraulic breaker maul | 1 | +24 f | 24 a hit, interrupts: each hit adds 0.45 s of stagger |
+| Powered utility blade | 2 | +30 f | 3 a hit |
+| Pipe wrench | 1 | +26 f | 8 a hit |
 answer: leave the floor: a ledge or the dais
 
 ### beam (projectile): tell 0.8 s, active 0.0 s, recovery 0.6 s, cooldown 3.0 s; hits for 14 (5 kill; 9 through Firewall); phases [2]
@@ -97,21 +97,21 @@ answer: leave the floor: a ledge or the dais
 | dash at full range | 0.41 s | +64 f yes | already moving when it fires: no reaction to pay |
 | punish with | hits in the window | window | |
 |---|---|---|---|
-| Hydraulic breaker maul | 1 | +24 f | 25 a hit, interrupts: each hit adds 0.45 s of stagger |
-| Powered utility blade | 2 | +30 f | 4 a hit |
-| Pipe wrench | 1 | +26 f | 9 a hit |
+| Hydraulic breaker maul | 1 | +24 f | 24 a hit, interrupts: each hit adds 0.45 s of stagger |
+| Powered utility blade | 2 | +30 f | 3 a hit |
+| Pipe wrench | 1 | +26 f | 8 a hit |
 
 ### kill (arrival kit: breach, breaker_maul, cyberdeck, firewall, mag_hook, nailgun, overload, pipe_wrench, rivet_gun, sidewinder, utility_blade, zipgun)
 | with | kind | a hit | hits | seconds | |
 |---|---|---|---|---|---|
-| Hydraulic breaker maul | melee | 25 | 10 | 11.45 | interrupts |
-| Modified nailgun | ranged | 1 | 240 | 59.75 | flinch; 240 energy |
-| Rivet gun | ranged | 20 | 12 | 18.33 | interrupts; 36 energy |
-| Powered utility blade | melee | 4 | 60 | 20.44 | flinch |
-| Pipe wrench | melee | 9 | 27 | 16.41 | flinch |
-| Zipgun | ranged | 6 | 40 | 26.00 | flinch; 40 energy |
+| Hydraulic breaker maul | melee | 24 | 12 | 13.95 | interrupts |
+| Modified nailgun | ranged | 1 | 270 | 67.25 | flinch; 270 energy |
+| Rivet gun | ranged | 19 | 15 | 23.33 | interrupts; 45 energy |
+| Powered utility blade | melee | 3 | 90 | 30.79 | flinch |
+| Pipe wrench | melee | 8 | 34 | 20.79 | flinch |
+| Zipgun | ranged | 5 | 54 | 35.34 | flinch; 54 energy |
 | Breach | hack | 0 | 0 | 0.00 | does nothing: not mechanical |
-| Overload | hack | 20 | 12 | 11.00 | interrupts; 36 RAM |
+| Overload | hack | 19 | 15 | 14.00 | interrupts; 45 RAM |
 
 phase at 50% hp: 1.4 s invulnerable, summons {'drone': 2}, cooldown x0.7, speed x1.3, adds ['beam']
 

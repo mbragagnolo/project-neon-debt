@@ -204,7 +204,7 @@ func test_clothing_def_matches_the_locked_table() -> void:
 	var cases: Dictionary = {
 		&"padded_jacket": 2,
 		&"work_boots": 1,
-		&"linesman_gloves": 1,
+		&"linesman_gloves": 0,
 		&"scavved_hardhat": 1,
 	}
 	var total: int = 0
@@ -212,10 +212,11 @@ func test_clothing_def_matches_the_locked_table() -> void:
 		var piece: Clothing = _item(item_id)
 		assert_eq(piece.defense, int(cases[item_id]), String(item_id))
 		total += piece.defense
-	# Full-set DEF 5: a light hit drops from ~6 to ~1-2, a heavy from ~12 to
-	# ~7. Felt, never trivializing — and the ceiling every encounter in the
-	# district gets tuned under.
-	assert_eq(total, 5, "the full set must total DEF 5")
+	# Full-set DEF 4 (2026-09-15; it was 5, and at 5 a Scav's 6 landed as 1 and
+	# a geared player took fifty of them to die): a light hit drops from ~6 to
+	# ~2, a heavy from ~12 to ~8. Felt, not trivializing — and the ceiling
+	# every encounter in the district gets tuned under.
+	assert_eq(total, 4, "the full set must total DEF 4")
 
 
 func test_each_piece_carries_exactly_one_modifier() -> void:

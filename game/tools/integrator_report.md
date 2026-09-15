@@ -38,3 +38,13 @@ theme.py: 4 styleboxes, 5 types; 0 fail, 1 warn, 0 note, 0 written
 
 - WARN nine-patch panel_frame: no script or scene under ['src', 'rooms'] names res://assets/ui/panel_frame.png
 
+## 2026-09-15 18:42 tables.py --project F:/Projects/Coding Projects/project-neon-debt/game --only enemies --write
+
+tables.py: 1 tables; 0 fail, 0 warn, 4 note, 1 written
+
+- NOTE enemies/drone: kept from the file, not in the contract: patrol_speed, patrol_range, patrol_pause, chase_speed, lunge_range, windup_time, lunge_speed, lunge_time, recover_time, lunge_cooldown, attack_size, attack_offset, lunge_knockback
+- NOTE enemies/landlord: kept from the file, not in the contract: patrol_speed, patrol_range, patrol_pause, projectile_knockback
+- NOTE enemies/landlord: src/enemies/boss_landlord/landlord.tscn Health updated: max_hp 240 -> 270, defense 4 -> 5
+- NOTE enemies/player.json: no `source.tres` in player.json; not a EnemyConfig contract, skipped
+- wrote `src/enemies/boss_landlord/landlord.tscn`
+

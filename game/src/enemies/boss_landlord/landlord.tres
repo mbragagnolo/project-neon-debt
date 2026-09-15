@@ -7,9 +7,9 @@
 script = ExtResource("1_enemy_config")
 display_name = "The Landlord"
 teaches = "The wall worth climbing. DEF blunts light hits, only heavy hits and Overload interrupt him, the slam punishes standing on the floor, the beam punishes standing still, and the drones he calls are what Breach is for. Every verb has a job."
-max_hp = 240
+max_hp = 270
 attack_power = 14.0
-defense = 4
+defense = 5
 stagger_threshold = 16
 tags = Array[StringName]([])
 xp_reward = 200

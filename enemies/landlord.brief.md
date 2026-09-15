@@ -43,4 +43,4 @@ Phase two: the whole clip set again under the prefix `p2_`; the engine plays the
 - `beam`: a 30x10 px projectile at 950 px/s; it leaves from the body's centre.
 - contact: the body box, armed while alive.
 
-Stats (from `stats.csv`, row `landlord`): hp 240, hits for 14, DEF 4, threshold 16, tags none.
+Stats (from `stats.csv`, row `landlord`): hp 270, hits for 14, DEF 5, threshold 16, tags none.

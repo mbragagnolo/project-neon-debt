@@ -115,12 +115,13 @@ func test_def_comes_from_worn_clothing_only() -> void:
 	assert_eq(Inventory.total_defense(), 1, "owning a jacket is not wearing one")
 
 
-func test_the_full_set_totals_the_locked_five() -> void:
+func test_the_full_set_totals_the_locked_four() -> void:
+	# Four since 2026-09-15 (the gloves went to DEF 0): at five a Scav's 6 landed as 1.
 	for item_id: StringName in [
 		&"padded_jacket", &"work_boots", &"linesman_gloves", &"scavved_hardhat"
 	]:
 		Inventory.grant(item_id)
-	assert_eq(Inventory.total_defense(), 5)
+	assert_eq(Inventory.total_defense(), 4)
 	assert_eq(Inventory.max_hp_bonus(), 10)
 	assert_almost_eq(Inventory.dash_cooldown_mult(), 0.85, 0.001)
 	assert_almost_eq(Inventory.ram_regen_mult(), 1.25, 0.001)

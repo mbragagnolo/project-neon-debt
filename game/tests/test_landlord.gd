@@ -70,7 +70,7 @@ func _hurt(amount: float) -> DamageResult:
 
 func test_the_block_is_low_hundreds_with_armour() -> void:
 	assert_between(_config.max_hp, 150, 400, "boss HP is low hundreds, never four digits")
-	assert_eq(_config.defense, 4, "the DEF pass: the most armoured thing in the slice")
+	assert_eq(_config.defense, 5, "the DEF pass: the most armoured thing in the slice, at the top of the locked range since 2026-09-15")
 	assert_eq(_config.stagger_threshold, 16)
 	assert_eq(_config.xp_reward, 200)
 

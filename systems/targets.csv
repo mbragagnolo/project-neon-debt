@@ -1,7 +1,7 @@
 metric,player,stat,min,max,why
 level_at_boss,decent,p50,5,6,the design doc: the slice ends near level 5 to 6 for every play style
 level_at_boss,skipper,p50,5,6,a player who skips what they can still lands at 5
-level_at_boss,thorough,p50,6,6,a thorough player finishes at 6 and level 7 stays out of reach
+level_at_boss,thorough,p50,6,7,a thorough player finishes at 6 or farms to 7 on the way back (farming accepted 2026-09-15)
 boss_attempts,decent,p50,3,8,the boss's exit test: beatable in three to eight attempts for a decent player
 boss_attempts,decent,p90,1,12,the slow tail of decent players still finishes the boss inside a session
 minutes,decent,p50,30,45,the pitch: a stranger plays it in thirty to forty-five minutes

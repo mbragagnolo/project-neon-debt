@@ -100,18 +100,18 @@
      "max": 1
     },
     "minutes": {
-     "p10": 36.11380747126436,
-     "p50": 36.11380747126436,
-     "p90": 36.11380747126436,
-     "mean": 36.11380747126436,
-     "min": 36.11380747126436,
-     "max": 36.11380747126436
+     "p10": 36.14852969348657,
+     "p50": 36.14852969348657,
+     "p90": 36.14852969348657,
+     "mean": 36.14852969348657,
+     "min": 36.14852969348657,
+     "max": 36.14852969348657
     },
     "hits_taken": {
      "p10": 6.0,
      "p50": 9.0,
      "p90": 13.0,
-     "mean": 9.238,
+     "mean": 9.288,
      "min": 2,
      "max": 17
     },
@@ -135,7 +135,7 @@
     "scav/pipe_wrench": 26.0,
     "scav/breaker_maul": 22.0,
     "drone/breaker_maul": 14.0,
-    "landlord/breaker_maul": 9.0,
+    "landlord/breaker_maul": 10.0,
     "riot/breaker_maul": 8.0,
     "riot/overload": 6.0,
     "riot/pipe_wrench": 5.0,
@@ -276,20 +276,20 @@
      "max": 1
     },
     "minutes": {
-     "p10": 21.704431034482745,
-     "p50": 21.704431034482745,
-     "p90": 21.704431034482745,
-     "mean": 21.704431034482745,
-     "min": 21.704431034482745,
-     "max": 21.704431034482745
+     "p10": 21.746097701149413,
+     "p50": 21.746097701149413,
+     "p90": 21.746097701149413,
+     "mean": 21.746097701149413,
+     "min": 21.746097701149413,
+     "max": 21.746097701149413
     },
     "hits_taken": {
      "p10": 9.0,
      "p50": 13.0,
      "p90": 17.0,
-     "mean": 12.894,
-     "min": 3,
-     "max": 25
+     "mean": 13.091,
+     "min": 5,
+     "max": 23
     },
     "rooms_visited": {
      "p10": 29.0,
@@ -309,7 +309,7 @@
     "scav/utility_blade": 50.0,
     "drone/utility_blade": 28.0,
     "scav/pipe_wrench": 26.0,
-    "landlord/breaker_maul": 9.0,
+    "landlord/breaker_maul": 10.0,
     "riot/breaker_maul": 7.0,
     "riot/pipe_wrench": 5.0,
     "riot/overload": 5.0,
@@ -443,20 +443,20 @@
      "max": 1
     },
     "minutes": {
-     "p10": 18.365390804597688,
-     "p50": 18.365390804597688,
-     "p90": 18.365390804597688,
-     "mean": 18.365390804597688,
-     "min": 18.365390804597688,
-     "max": 18.365390804597688
+     "p10": 18.448724137931023,
+     "p50": 18.448724137931023,
+     "p90": 18.448724137931023,
+     "mean": 18.448724137931023,
+     "min": 18.448724137931023,
+     "max": 18.448724137931023
     },
     "hits_taken": {
      "p10": 4.0,
-     "p50": 6.0,
+     "p50": 7.0,
      "p90": 9.0,
-     "mean": 6.291,
-     "min": 1,
-     "max": 13
+     "mean": 6.55,
+     "min": 0,
+     "max": 14
     },
     "rooms_visited": {
      "p10": 29.0,
@@ -476,8 +476,8 @@
     "scav/utility_blade": 18.0,
     "drone/utility_blade": 18.0,
     "scav/pipe_wrench": 16.0,
+    "landlord/breaker_maul": 12.0,
     "riot/breaker_maul": 10.0,
-    "landlord/breaker_maul": 10.0,
     "riot/pipe_wrench": 5.0,
     "scav/breaker_maul": 5.0,
     "drone/breaker_maul": 3.0,
@@ -551,7 +551,7 @@
      "p10": 1083.0,
      "p50": 1083.0,
      "p90": 1083.0,
-     "mean": 1083.128,
+     "mean": 1083.086,
      "min": 1083,
      "max": 1115
     },
@@ -559,7 +559,7 @@
      "p10": 632.0,
      "p50": 632.0,
      "p90": 632.0,
-     "mean": 632.048,
+     "mean": 632.031,
      "min": 632,
      "max": 644
     },
@@ -575,7 +575,7 @@
      "p10": 402.0,
      "p50": 402.0,
      "p90": 402.0,
-     "mean": 402.048,
+     "mean": 402.031,
      "min": 402,
      "max": 414
     },
@@ -583,7 +583,7 @@
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0,
-     "mean": 0.004,
+     "mean": 0.003,
      "min": 0,
      "max": 1
     },
@@ -591,7 +591,7 @@
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0,
-     "mean": 0.004,
+     "mean": 0.003,
      "min": 0,
      "max": 1
     },
@@ -604,27 +604,27 @@
      "max": 1
     },
     "minutes": {
-     "p10": 28.82678981937601,
-     "p50": 28.82678981937601,
-     "p90": 28.82678981937601,
-     "mean": 28.832607881773384,
-     "min": 28.82678981937601,
-     "max": 30.28130541871918
+     "p10": 28.886313628899817,
+     "p50": 28.886313628899817,
+     "p90": 28.886313628899817,
+     "mean": 28.890598620689637,
+     "min": 28.886313628899817,
+     "max": 30.34082922824299
     },
     "hits_taken": {
-     "p10": 21.900000000000006,
+     "p10": 21.0,
      "p50": 26.0,
-     "p90": 30.0,
-     "mean": 25.746,
+     "p90": 31.0,
+     "mean": 25.901,
      "min": 16,
-     "max": 39
+     "max": 44
     },
     "rooms_visited": {
      "p10": 29.0,
      "p50": 29.0,
      "p90": 29.0,
-     "mean": 29.0,
-     "min": 29,
+     "mean": 28.999,
+     "min": 28,
      "max": 29
     }
    },
@@ -633,22 +633,26 @@
     "stall_affordable": 1.0
    },
    "deaths_by_room": {
-    "armory": 0.004
+    "armory": 0.002,
+    "breach_gate_room": 0.001
    },
    "weapon_use": {
-    "scav/utility_blade": 56.0,
-    "drone/utility_blade": 26.008,
+    "scav/utility_blade": 56.008,
+    "drone/utility_blade": 26.016,
     "scav/pipe_wrench": 26.0,
-    "landlord/breaker_maul": 9.0,
-    "riot/breaker_maul": 7.012,
-    "riot/pipe_wrench": 5.0,
-    "drone/breaker_maul": 5.0,
-    "riot/overload": 4.984,
+    "landlord/breaker_maul": 9.99,
+    "riot/breaker_maul": 6.999,
+    "riot/pipe_wrench": 5.006,
+    "drone/breaker_maul": 4.995,
+    "riot/overload": 4.988,
     "drone/pipe_wrench": 3.0,
-    "elite_scav/breaker_maul": 1.004,
+    "elite_scav/breaker_maul": 1.001,
     "landlord/overload": 1.0,
-    "elite_scav/overload": 0.996,
-    "scav/breaker_maul": 0.016
+    "elite_scav/overload": 0.997,
+    "landlord/pipe_wrench": 0.032,
+    "riot/utility_blade": 0.021,
+    "scav/breaker_maul": 0.008,
+    "elite_scav/pipe_wrench": 0.004
    },
    "hub_wallet": [
     {
@@ -679,8 +683,8 @@
      "1": 1000
     },
     "deaths": {
-     "0": 996,
-     "1": 4
+     "0": 997,
+     "1": 3
     }
    },
    "archetype": {

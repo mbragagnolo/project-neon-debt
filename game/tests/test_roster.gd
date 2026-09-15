@@ -31,7 +31,7 @@ func test_the_def_pass_is_the_locked_one() -> void:
 	# Set last, after the weapons were tuned (stats-and-curves.md). 0 to 5
 	# across the slice; the Scav and the drone die to being reached, armour
 	# is the Riot unit's lesson, the boss is the top of the range.
-	var expected: Dictionary = {"e": 0, "d": 0, "r": 3, "E": 2, "B": 4}
+	var expected: Dictionary = {"e": 0, "d": 0, "r": 3, "E": 2, "B": 5}
 	for kind: String in expected:
 		var config: EnemyConfig = _configs[kind]
 		assert_eq(config.defense, int(expected[kind]), config.display_name)

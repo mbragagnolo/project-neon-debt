@@ -293,8 +293,12 @@ Against that total:
 | Kills everything | 100% (959) | **Level 6**, not halfway to 7 |
 
 Which is DESIGN.md §2's "~level 5–6" for every play style — and level 7 is
-unreachable in the slice by construction (1248 > 959), so the curve needs no
-level cap and V2 can extend it without a cliff.
+out of reach of the district killed once (1248 > 959), so the curve needs no
+level cap and V2 can extend it without a cliff. Enemies come back on every
+room re-entry, so a player who fights on the way back can farm past it: the
+systems-designer's sim puts a thorough player at level 7 at the boss (1493
+XP). Accepted 2026-09-15: farming is allowed, the once-through total is the
+floor the curve is solved against, not a cap.
 
 **The guard is a test, not vigilance.** `tests/test_xp_curve.gd` asserts that
 the cumulative XP to level 6 sits between 70% and 90% of the district budget

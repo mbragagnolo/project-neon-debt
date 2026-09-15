@@ -67,8 +67,8 @@ autoplay = &"idle"
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_health")
-max_hp = 240
-defense = 4
+max_hp = 270
+defense = 5
 stagger_threshold = 16
 iframe_time = 0.0
 
