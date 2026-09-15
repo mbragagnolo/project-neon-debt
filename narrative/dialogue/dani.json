@@ -1,0 +1,22 @@
+{
+  "_doc": "The protagonist's barks: one line at a story beat, on the bark box, the game not paused. Never a tree, never a choice (docs/narrative/hook.md). Each branch is one bark; `trigger` names the code that emits it on Events.bark_requested, so a bark with no trigger is a line nobody hears.",
+  "scene": "dani",
+  "section": "The protagonist's lines",
+  "speaker": "dani",
+  "speaker_name": "name.protagonist_short",
+  "box": "bark",
+  "branches": [
+    { "id": "bark.wake", "trigger": "world.gd: a new run wakes in 14-C", "when": ["!flag:bark.wake"], "pages": ["bark.wake"], "then": [] },
+    { "id": "bark.first_save", "trigger": "save_point.gd: the first save of the run", "when": ["!flag:bark.first_save"], "pages": ["bark.first_save"], "then": [] },
+    { "id": "bark.mag_hook", "trigger": "pickup.gd: ability.mag_hook", "when": [], "pages": ["bark.mag_hook"], "then": [] },
+    { "id": "bark.cyberdeck", "trigger": "pickup.gd: ability.cyberdeck", "when": [], "pages": ["bark.cyberdeck"], "then": [] },
+    { "id": "bark.overload", "trigger": "pickup.gd: hack overload", "when": [], "pages": ["bark.overload"], "then": [] },
+    { "id": "bark.breach", "trigger": "pickup.gd: hack breach", "when": [], "pages": ["bark.breach"], "then": [] },
+    { "id": "bark.sidewinder", "trigger": "pickup.gd: item.sidewinder_carried", "when": [], "pages": ["bark.sidewinder"], "then": [] },
+    { "id": "bark.sidewinder_installed", "trigger": "stitch.install (then)", "when": [], "pages": ["bark.sidewinder_installed"], "then": [] },
+    { "id": "bark.chip", "trigger": "pickup.gd: quest_item memory_chip", "when": [], "pages": ["bark.chip"], "then": [] },
+    { "id": "bark.quest_done", "trigger": "marisol.complete (then)", "when": [], "pages": ["bark.quest_done"], "then": [] },
+    { "id": "bark.pre_boss", "trigger": null, "when": [], "pages": ["bark.pre_boss"], "then": [], "_note": "Written in M5; no code emits it. lint.py --source lists it. The collections door or the arena's seal is the beat it was written for." },
+    { "id": "bark.post_boss", "trigger": "world.gd: boss_defeated, before the travel to reception", "when": [], "pages": ["bark.post_boss"], "then": [] }
+  ]
+}

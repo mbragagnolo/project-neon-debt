@@ -14,3 +14,7 @@ Every line is in `src/narrative/lines.gd`; the flows are in
 `src/world/npc.gd`. A talk pauses the tree, shows pages one button at a time,
 and what happens after the last page — the stall, the quest state, the
 implant — is decided by what the player is carrying, never by a choice.
+
+Each NPC's want, voice, never-says and sample lines are `narrative/cast/<id>.md`;
+every line by key is `narrative/strings.json` and the scenes `narrative/dialogue/`,
+from which the narrative-designer exports `lines.gd`.
