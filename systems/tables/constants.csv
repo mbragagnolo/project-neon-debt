@@ -1,0 +1,21 @@
+key,value,source,doc
+hp_start,40,src/rpg/stat_curve.tres#start_hp,player max HP at level 1
+hp_per_level,5,src/rpg/stat_curve.tres#hp_per_level,max HP added per level
+ram_start,12,src/rpg/stat_curve.tres#start_ram,the hack pool at level 1
+ram_per_level,2,src/rpg/stat_curve.tres#ram_per_level,hack pool added per level
+attack_stat_start,5,src/rpg/stat_curve.tres#start_attack_stat,"STR, DEX and INT at level 1"
+attack_stat_per_level,3,src/rpg/stat_curve.tres#attack_stat_per_level,added to each attack stat per level
+cyberdeck_ram_bonus,6,src/rpg/stat_curve.tres#cyberdeck_ram_bonus,hack pool added by the capacity implant
+hp_up_amount,5,src/rpg/stat_curve.tres#hp_up_amount,one HP Max Up pickup
+ram_up_amount,3,src/rpg/stat_curve.tres#ram_up_amount,one RAM Max Up pickup
+xp_base,60,src/rpg/xp_curve.tres#base_xp,XP for the first level-up
+xp_growth,1.5,src/rpg/xp_curve.tres#growth,per-level multiplier on the XP to next
+xp_max_level,99,src/rpg/xp_curve.tres#max_level,backstop on the level loop
+xp_district_assumed,949,src/rpg/xp_curve.tres#assumed_district_xp,the district XP the curve was solved against; the sim measures the real one
+stat_max_bonus,2.0,src/combat/combat_config.tres#stat_max_bonus,"the most a stat multiplies damage by, asymptote 1 + this"
+stat_half_point,40.0,src/combat/combat_config.tres#stat_half_point,the stat at which half the bonus is earned
+contact_damage_mult,0.5,src/combat/combat_config.tres#contact_damage_mult,contact damage as a fraction of attack_power
+player_iframe_time,0.85,src/combat/combat_config.tres#player_iframe_time,seconds the player cannot be hit again after a hit
+ram_regen_per_second,0.4,src/combat/hacks/hack_config.tres#ram_regen_per_second,the hack pool's trickle
+hack_global_cooldown,1.0,src/combat/hacks/hack_config.tres#global_cooldown,seconds between any two casts
+ammo_max_base,8,src/player/player.gd#base_max_ammo,the ranged pool before the vendor's cells

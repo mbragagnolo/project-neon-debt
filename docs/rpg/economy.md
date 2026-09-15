@@ -2,6 +2,11 @@
 
 **Status: built (M5), numbers `TUNE` in M7.** Credits and what they buy.
 
+The numbers here are held as data in `systems/tables/shop.csv` and
+`enemies/stats.csv` (the systems-designer's tables, read from the engine and
+written back by its `export.py`); `systems/report.md` recomputes the ledger
+from the placed roster and measures what each player's route actually pays.
+
 ## The one rule — LOCKED
 
 **Credits never touch an unlock.** No ability, no program, no door is ever
@@ -32,12 +37,12 @@ enemies.md and the placed roster (stacks.md), the district holds roughly:
 
 | Source | Count | Credits each (proposed, M6) | Total |
 |---|---|---|---|
-| Scav | 29 | 5 | 145 |
+| Scav | 31 | 5 | 155 |
 | Watcher drone | 17 | 7 | 119 |
-| Riot unit | 8 | 15 | 120 |
+| Riot unit | 7 | 15 | 105 |
 | Elite Scav | 1 | 25 | 25 |
 | Quest reward | 1 | 60 | 60 |
-| **District, killing everything once** | | | **~470** |
+| **District, killing everything once** | | | **~465** |
 
 The whole stall costs 300 plus refills. A thorough player affords it with
 slack; a player who skips fights chooses between the jacket and the rest,

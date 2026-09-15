@@ -1,0 +1,4 @@
+id,ram_cost,power,duration,guard_mult,radius,knockback,flag,source
+breach,2,0.0,1.5,1.0,360.0,0.0,hack.breach,src/combat/hacks/breach.tres
+firewall,4,0.0,2.0,0.5,0.0,0.0,,src/combat/hacks/firewall.tres
+overload,3,15.0,0.0,1.0,420.0,320.0,hack.overload,src/combat/hacks/overload.tres

@@ -1,0 +1,5 @@
+name,mistake_rate,explores,fight_fraction,fight_fraction_revisit,hacks,quest,shop,uptime,seconds_new_room,seconds_revisit,doc
+thorough,0.15,all,1.0,0.5,true,true,padded_jacket hp_up ammo_cap ammo_refill,0.6,40,12,clears every room it can reach before taking the next kit; buys the whole stall in this order
+decent,0.2,goals,1.0,0.3,true,true,padded_jacket hp_up ammo_cap,0.5,35,10,goes kit to kit and fights what is in the way; the player the boss's attempt target is written for
+skipper,0.2,goals,0.7,0.2,false,false,padded_jacket,0.5,30,8,goes kit to kit and runs past a third of what it meets (the design doc's 'skips what it can' is ~70% of the XP); no hacks; skips the quest; buys the jacket if it can
+novice,0.35,goals,1.0,0.5,true,true,padded_jacket hp_up,0.35,45,15,takes a hit on most tells; the floor the difficulty is judged against

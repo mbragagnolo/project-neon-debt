@@ -1,0 +1,231 @@
+{
+  "_doc": [
+    "The adapter's map for one project: <root>/systems/godot.json. adapters/godot_tables.py reads it and writes systems/tables/*.csv from the Godot project's .tres files and script defaults; export.py reads it back to check or write the tables into the engine. Copy this template and rename what the project calls things; a project on another engine writes another adapter to the same tables.",
+    "game: the Godot project folder, relative to the root (holds project.godot).",
+    "constants: one row of constants.csv per entry. key is the skill's word for the number (rules.py and sim.py read these names; keep them). from is `<script_class>#<property>` for an exported property of the one resource of that class, or `<path to a .gd>#<property>` for a script's export default (a number the project keeps on a node, like the ammo pool's base). doc is what the number means, written into the table.",
+    "tables: per csv, the resources that are its rows. classes: the script_class values that belong to it (two weapon classes make one weapons table). id: the property that names the row. columns: property -> column; a column named after the property is written `\"power\": \"power\"`; a constant per class goes in `by_class` (kind melee/ranged from the class). sub: the property holding an Array of sub-resources when the rows live inside one resource (a shop's entries); then every sub-resource is a row and the file is one.",
+    "enemies: the stats table the enemy-designer reads, enemies/stats.csv, refreshed from the EnemyConfig resources; columns map csv column -> property. Columns not listed (met_at_level, placed) are kept as they are; a row with no resource is kept and reported. name_from strips the resource file name to the row name (elite_scav.tres -> elite_scav).",
+    "player: where the skill reads the player's timings it does not own: the enemy-designer's enemies/player.json (reaction time, the dash, the i-frames). Keep unless the project keeps them elsewhere.",
+    "enums: per table, a column whose engine value is an enum int, with the names in enum order; the adapter writes the name into the csv and export.py writes the int back. district: the level-designer's district.json when the project has one; sim.py reads the specs' door-level gates through it (without it the room list's per-room requires gate entry, which is coarser).",
+    "starting: on a table, `<class>#<array property>` naming the resources the player owns from the start (an item catalog's starting_items); the table gets a `starting` column. A hack's ownership flag is a column (`flag`): empty means owned from the start, otherwise the kit id after the last dot must be granted by a room."
+  ],
+  "game": "game",
+  "constants": [
+    {
+      "key": "hp_start",
+      "from": "StatCurve#start_hp",
+      "doc": "player max HP at level 1"
+    },
+    {
+      "key": "hp_per_level",
+      "from": "StatCurve#hp_per_level",
+      "doc": "max HP added per level"
+    },
+    {
+      "key": "ram_start",
+      "from": "StatCurve#start_ram",
+      "doc": "the hack pool at level 1"
+    },
+    {
+      "key": "ram_per_level",
+      "from": "StatCurve#ram_per_level",
+      "doc": "hack pool added per level"
+    },
+    {
+      "key": "attack_stat_start",
+      "from": "StatCurve#start_attack_stat",
+      "doc": "STR, DEX and INT at level 1"
+    },
+    {
+      "key": "attack_stat_per_level",
+      "from": "StatCurve#attack_stat_per_level",
+      "doc": "added to each attack stat per level"
+    },
+    {
+      "key": "cyberdeck_ram_bonus",
+      "from": "StatCurve#cyberdeck_ram_bonus",
+      "doc": "hack pool added by the capacity implant"
+    },
+    {
+      "key": "hp_up_amount",
+      "from": "StatCurve#hp_up_amount",
+      "doc": "one HP Max Up pickup"
+    },
+    {
+      "key": "ram_up_amount",
+      "from": "StatCurve#ram_up_amount",
+      "doc": "one RAM Max Up pickup"
+    },
+    {
+      "key": "xp_base",
+      "from": "XPCurve#base_xp",
+      "doc": "XP for the first level-up"
+    },
+    {
+      "key": "xp_growth",
+      "from": "XPCurve#growth",
+      "doc": "per-level multiplier on the XP to next"
+    },
+    {
+      "key": "xp_max_level",
+      "from": "XPCurve#max_level",
+      "doc": "backstop on the level loop"
+    },
+    {
+      "key": "xp_district_assumed",
+      "from": "XPCurve#assumed_district_xp",
+      "doc": "the district XP the curve was solved against; the sim measures the real one"
+    },
+    {
+      "key": "stat_max_bonus",
+      "from": "CombatConfig#stat_max_bonus",
+      "doc": "the most a stat multiplies damage by, asymptote 1 + this"
+    },
+    {
+      "key": "stat_half_point",
+      "from": "CombatConfig#stat_half_point",
+      "doc": "the stat at which half the bonus is earned"
+    },
+    {
+      "key": "contact_damage_mult",
+      "from": "CombatConfig#contact_damage_mult",
+      "doc": "contact damage as a fraction of attack_power"
+    },
+    {
+      "key": "player_iframe_time",
+      "from": "CombatConfig#player_iframe_time",
+      "doc": "seconds the player cannot be hit again after a hit"
+    },
+    {
+      "key": "ram_regen_per_second",
+      "from": "HackConfig#ram_regen_per_second",
+      "doc": "the hack pool's trickle"
+    },
+    {
+      "key": "hack_global_cooldown",
+      "from": "HackConfig#global_cooldown",
+      "doc": "seconds between any two casts"
+    },
+    {
+      "key": "ammo_max_base",
+      "from": "src/player/player.gd#base_max_ammo",
+      "doc": "the ranged pool before the vendor's cells"
+    }
+  ],
+  "tables": {
+    "weapons": {
+      "classes": [
+        "MeleeWeapon",
+        "RangedWeapon"
+      ],
+      "id": "id",
+      "by_class": {
+        "kind": {
+          "MeleeWeapon": "melee",
+          "RangedWeapon": "ranged"
+        }
+      },
+      "columns": {
+        "power": "power",
+        "attack_speed": "attack_speed",
+        "energy_per_shot": "energy_per_shot",
+        "ammo_on_hit": "ammo_on_hit",
+        "commit_time": "commit_time",
+        "active_time": "active_time",
+        "knockback": "knockback"
+      },
+      "starting": "ItemCatalog#starting_items"
+    },
+    "hacks": {
+      "classes": [
+        "Hack"
+      ],
+      "id": "id",
+      "columns": {
+        "ram_cost": "ram_cost",
+        "power": "power",
+        "duration": "duration",
+        "guard_mult": "guard_mult",
+        "radius": "radius",
+        "knockback": "knockback",
+        "flag": "flag"
+      }
+    },
+    "gear": {
+      "classes": [
+        "Clothing"
+      ],
+      "id": "id",
+      "columns": {
+        "slot": "slot",
+        "defense": "defense",
+        "max_hp_bonus": "max_hp_bonus",
+        "dash_cooldown_mult": "dash_cooldown_mult",
+        "ram_regen_mult": "ram_regen_mult",
+        "melee_energy_bonus": "melee_energy_bonus"
+      },
+      "enums": {
+        "slot": [
+          "melee",
+          "ranged",
+          "head",
+          "body",
+          "legs",
+          "hands"
+        ]
+      },
+      "starting": "ItemCatalog#starting_items"
+    },
+    "shop": {
+      "classes": [
+        "ShopStock"
+      ],
+      "sub": "entries",
+      "id": "id",
+      "columns": {
+        "price": "price",
+        "kind": "kind",
+        "item_id": "item_id",
+        "amount": "amount",
+        "once": "once"
+      },
+      "enums": {
+        "kind": [
+          "item",
+          "hp_up",
+          "ammo_cap",
+          "ammo_refill"
+        ]
+      }
+    },
+    "quests": {
+      "classes": [
+        "Quest"
+      ],
+      "id": "id",
+      "columns": {
+        "required_flag": "required_flag",
+        "reward_item_id": "reward_item_id",
+        "reward_credits": "reward_credits"
+      }
+    }
+  },
+  "enemies": {
+    "classes": [
+      "EnemyConfig"
+    ],
+    "csv": "enemies/stats.csv",
+    "name_from": "file",
+    "columns": {
+      "hp": "max_hp",
+      "attack_power": "attack_power",
+      "def": "defense",
+      "stagger_threshold": "stagger_threshold",
+      "tags": "tags",
+      "xp": "xp_reward",
+      "credits": "credit_reward"
+    }
+  },
+  "player": "enemies/player.json",
+  "district": "game/tools/stacks/district.json"
+}

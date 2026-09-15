@@ -1,6 +1,6 @@
-name,hp,attack_power,def,stagger_threshold,tags,xp,credits,met_at_level,placed
-scav,16,6.0,0,1,,10,5,1,29
-elite_scav,40,9.0,2,8,,45,25,5,1
-drone,10,5.0,0,1,mechanical,14,7,2,17
-riot,35,10.0,3,12,mechanical immune_ranged_frontal,22,15,3,8
-landlord,240,14.0,4,16,,200,100,5,1
+name,hp,attack_power,def,stagger_threshold,tags,xp,credits,met_at_level,placed,source
+scav,16,6.0,0,1,,10,5,1,31,src/enemies/scav/scav.tres
+elite_scav,40,9.0,2,8,,45,25,5,1,src/enemies/scav/elite_scav.tres
+drone,10,5.0,0,1,mechanical,14,7,2,17,src/enemies/drone/drone.tres
+riot,35,10.0,3,12,mechanical immune_ranged_frontal,22,15,3,7,src/enemies/riot/riot.tres
+landlord,240,14.0,4,16,,200,100,5,1,src/enemies/boss_landlord/landlord.tres

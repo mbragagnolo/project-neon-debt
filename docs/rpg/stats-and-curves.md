@@ -1,7 +1,16 @@
 # Stats & curves
 
 **Status: LOCKED.** Every section is closed; the file's exports to later
-milestones are listed at the bottom. Constants marked `TUNE` are locked
+milestones are listed at the bottom.
+
+The constants here live as data in `systems/tables/constants.csv` (the
+systems-designer's tables, one row per number with its `.tres` source);
+`systems/report.md` tabulates the curve against the placed district, the
+kill table per enemy at the level it is met, and hits to die bare and
+geared. One correction the report found: the "three big mistakes" and
+"four mistakes against the boss" sentences below hold for a bare sheet;
+with all four clothing pieces worn (DEF 5) a Scav's 6 lands as 1 and the
+Landlord's 14 as 9. Constants marked `TUNE` are locked
 *decisions* whose *values* stay open to tuning — the XP curve's `base` in
 particular is re-solved in M5 against the real roster.
 

@@ -1,0 +1,5 @@
+id,price,kind,item_id,amount,once,source
+padded_jacket,140,item,padded_jacket,0,true,src/rpg/shop_stock.tres#entry_jacket
+hp_up,90,hp_up,,5,true,src/rpg/shop_stock.tres#entry_hp
+ammo_cap,70,ammo_cap,,4,true,src/rpg/shop_stock.tres#entry_ammo_cap
+ammo_refill,10,ammo_refill,,0,false,src/rpg/shop_stock.tres#entry_refill

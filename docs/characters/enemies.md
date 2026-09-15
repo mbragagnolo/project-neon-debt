@@ -40,6 +40,8 @@ Ratios between rewards are the locked part. The placed roster holds 947 XP
 the curve assumes 949, within `test_roster.gd`'s 3 %); the XP curve's `base`
 held at 60 against it (stats-and-curves.md).
 
+The stat block is data in `enemies/stats.csv` (owned by the systems-designer,
+refreshed from the `.tres` files, `placed` counted from `design/rooms.json`).
 Each enemy as a state machine with its tell, commit, recovery and boxes is
 `enemies/<name>.json` (read off the `.tres` files and the boss script by the
 enemy-designer's adapters; the integrator writes the `.tres` back from it), and

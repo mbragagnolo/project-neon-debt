@@ -1,0 +1,2 @@
+id,required_flag,reward_item_id,reward_credits,source
+memory_chip,quest_item.memory_chip,scavved_hardhat,60,src/quests/memory_chip.tres
