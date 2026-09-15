@@ -6,7 +6,8 @@
     "methods: what the bot calls. travel on the scene's root: travel(room_id, door_id) for a per-room run; state_name on the player and on an enemy (its state machine's current state); has_player on an enemy (aggro). attack_states: enemy state names that begin an attack; one entry into any of them is one enemy attack for the calibration count. flags: the autoload and method that grant a kit flag (an ability, a program) so a per-room run arrives with the kit the walk says.",
     "doors: the node under the room holding one child per door, named by the door digit; the child's `target_room`, `spawn_point` and `side` properties (0 left, 1 right, 2 up, 3 down). start_door: the door id the world uses for a fresh start; save_door: for a terminal.",
     "kits: the walk's vocabulary to the engine's flags: the room list's kit ids -> the GameState flags set for them. A hack's flag and an ability's flag both live here.",
-    "bot: the controller's numbers, in pixels and seconds. reach_tolerance: how close to a waypoint counts as reached. stuck_seconds: no progress toward the waypoint for this long is a reach failure and the bot moves on. melee_range / ranged_range: when to swing and when to shoot. decide_every: physics frames between the random policy's decisions. ignore_time_scale: hold Engine.time_scale at 1 every frame, so a hitstop or slow-motion that counts wall-clock milliseconds cannot freeze a fixed-step run for a machine-dependent number of frames (the first project's hitstop did, 2.4 simulated seconds per heavy hit)."
+    "bot: the controller's numbers, in pixels and seconds. reach_tolerance: how close to a waypoint counts as reached. stuck_seconds: no progress toward the waypoint for this long is a reach failure and the bot moves on. melee_range / ranged_range: when to swing and when to shoot. decide_every: physics frames between the random policy's decisions. ignore_time_scale: hold Engine.time_scale at 1 every frame, so a hitstop or slow-motion that counts wall-clock milliseconds cannot freeze a fixed-step run for a machine-dependent number of frames (the first project's hitstop did, 2.4 simulated seconds per heavy hit).",
+    "talk: who the bot talks to and how. group: the NPCs' group; the bot stands within `range` px and presses interact as an event (a UI's _input never hears Input.action_press). dialogue_group: the node whose is_open() says a dialogue is up; the bot presses `advance` every few frames until it closes; make it an action the NPC itself does not listen to (the first project's dialogue advances on jump or interact and its NPC starts a talk on interact, so advancing with interact re-opened the talk on the last page, forever). menu_groups: nodes whose is_open() says a menu is up (a shop); the bot presses `close`. In a free run every NPC in a room is talked to once before its doors; in a room run the plan's `visits` (the spec's npc markers) come before the first exit. actions.pause is the close key."
   ],
   "game": "game",
   "scene": "res://rooms/world.tscn",
@@ -22,7 +23,8 @@
     "melee": "attack_melee",
     "ranged": "attack_ranged",
     "hack": "hack_cast",
-    "interact": "interact"
+    "interact": "interact",
+    "pause": "pause"
   },
   "groups": {
     "player": "player",
@@ -97,5 +99,15 @@
     "decide_every": 12,
     "sample_every": 6,
     "ignore_time_scale": true
+  },
+  "talk": {
+    "group": "npcs",
+    "dialogue_group": "dialogue_box",
+    "menu_groups": [
+      "shop"
+    ],
+    "advance": "jump",
+    "close": "pause",
+    "range": 70
   }
 }
