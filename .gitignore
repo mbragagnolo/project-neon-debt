@@ -25,3 +25,7 @@ docs/art/refs/*
 
 # Diffusion candidates and intermediates for the art pass (tools/art/gen_still.py)
 game/tools/art/work/
+
+# The autoplayer's per-run logs (megabytes per seed); the report, rows and heat beside them are kept
+runs/*/logs/
+runs/work/
