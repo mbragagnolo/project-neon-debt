@@ -1,0 +1,207 @@
+{
+  "_doc": "Written by adapters/godot_enemy_config.py; every key is documented in templates/enemy.json. Regenerate when the .tres is retuned; edit the brief and encounter blocks by hand.",
+  "name": "elite_scav",
+  "display_name": "Elite Scav",
+  "archetype": "veteran",
+  "role": "gate",
+  "teaches": "The quest-area wall. Same silhouette and moveset as the Scav, faster, and no overcommit: the lunge recovers safely, so bait-and-punish stops working and everything else has to be applied.",
+  "stats": {
+    "table": "stats.csv",
+    "row": "elite_scav"
+  },
+  "tags": [],
+  "body": {
+    "width": 44,
+    "height": 80
+  },
+  "flies": false,
+  "tick": 60,
+  "senses": {
+    "detection_range": 560.0,
+    "give_up_range": 1000.0
+  },
+  "locomotion": {
+    "patrol_speed": 120.0,
+    "patrol_range": 200.0,
+    "patrol_pause": 0.4,
+    "chase_speed": 300.0
+  },
+  "contact": {
+    "armed": "while alive and not stunned",
+    "power": "stats.attack_power x the project's contact_damage_mult"
+  },
+  "initial_state": "Patrol",
+  "states": {
+    "Patrol": {
+      "kind": "idle",
+      "clip": [
+        "idle",
+        "run"
+      ],
+      "note": "a beat of patrol_range px each side of home, patrol_pause s at each end; turns at walls"
+    },
+    "Chase": {
+      "kind": "approach",
+      "clip": "run",
+      "note": "closes at chase_speed; leashes home past give_up_range"
+    },
+    "Windup": {
+      "kind": "tell",
+      "clip": "windup",
+      "seconds": 0.34,
+      "attack": "lunge",
+      "tracks_player": false,
+      "note": "plants, the loudest tint on screen; aims once on entry"
+    },
+    "Lunge": {
+      "kind": "active",
+      "clip": "lunge",
+      "seconds": 0.2,
+      "attack": "lunge"
+    },
+    "Recover": {
+      "kind": "recovery",
+      "clip": "recover",
+      "seconds": 0.12,
+      "attack": "lunge",
+      "note": "drained tint; the punish window"
+    },
+    "Stagger": {
+      "kind": "reaction",
+      "clip": "stagger",
+      "seconds": 0.28,
+      "entered_by": "a hit at or over stagger_threshold, from any state but Stunned and Dead"
+    },
+    "Dead": {
+      "kind": "terminal",
+      "clip": "dead",
+      "seconds": 0.6
+    }
+  },
+  "transitions": [
+    [
+      "Patrol",
+      "Chase",
+      "player within detection_range"
+    ],
+    [
+      "Chase",
+      "Patrol",
+      "player lost, or farther than give_up_range from home"
+    ],
+    [
+      "Chase",
+      "Windup",
+      "player within lunge_range and the lunge cooldown is over"
+    ],
+    [
+      "Windup",
+      "Lunge",
+      "windup_time elapsed"
+    ],
+    [
+      "Lunge",
+      "Recover",
+      "lunge_time elapsed"
+    ],
+    [
+      "Recover",
+      "Chase",
+      "recover_time elapsed and the player is within detection_range"
+    ],
+    [
+      "Recover",
+      "Patrol",
+      "recover_time elapsed otherwise"
+    ],
+    [
+      "Stagger",
+      "Chase",
+      "stagger_time elapsed and the player is within detection_range"
+    ],
+    [
+      "Stagger",
+      "Patrol",
+      "stagger_time elapsed otherwise"
+    ],
+    [
+      "*",
+      "Stagger",
+      "a single hit at or over stagger_threshold"
+    ],
+    [
+      "*",
+      "Dead",
+      "hp reaches 0"
+    ]
+  ],
+  "attacks": {
+    "lunge": {
+      "kind": "melee",
+      "tell": "Windup",
+      "active": "Lunge",
+      "recovery": "Recover",
+      "tell_seconds": 0.34,
+      "active_seconds": 0.2,
+      "recovery_seconds": 0.12,
+      "cooldown_seconds": 0.45,
+      "power": "stats.attack_power",
+      "hitbox": {
+        "size": [
+          80,
+          80
+        ],
+        "offset": [
+          44,
+          -40
+        ]
+      },
+      "travel_px": 156.0,
+      "speed": 780.0,
+      "range_px": 150.0,
+      "tracks_player": false,
+      "knockback": 300.0
+    }
+  },
+  "phases": [],
+  "brief": {
+    "look": "The Scav's body and rig, re-dressed. Coat and hood in black and concrete grey, cleaner and better-fitting than any Scav's: he is paid. The pipe is a red-painted rebar cutter with a lick of tape at the grip. The eye is magenta, not amber: somebody else's money is behind it. Stands straighter than a Scav in idle, hunches only to lunge.",
+    "silhouette": "Identical to the Scav. That is the point.",
+    "accent": "magenta",
+    "palette": [
+      "black_l",
+      "concrete1",
+      "red",
+      "red_d",
+      "magenta"
+    ],
+    "rig_parts": [
+      "the Scav's, re-textured"
+    ]
+  },
+  "encounter": {
+    "room": "defaulter_den",
+    "arrival_kit": [
+      "pipe_wrench",
+      "utility_blade",
+      "breaker_maul",
+      "zipgun",
+      "nailgun",
+      "firewall",
+      "overload",
+      "breach",
+      "mag_hook",
+      "cyberdeck"
+    ],
+    "notes": "Guards the memory chip at the bottom of the Gut, behind the second Breach door, with two Scavs. The tutorial answer is gone; the maul's interrupt, Overload and the i-frames on contact are what is left."
+  },
+  "source": {
+    "tres": "src/enemies/scav/elite_scav.tres",
+    "scene": "src/enemies/scav/elite_scav.tscn",
+    "boss_script": ""
+  },
+  "intent": {
+    "punish_window": "none",
+    "why": "the quest-area wall: the Scav's answer (bait, step in, punish) must stop working; recovery 0.12 s sits under the wrench's 0.16 s commit on purpose"
+  }
+}

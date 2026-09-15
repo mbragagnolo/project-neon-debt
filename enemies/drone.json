@@ -1,0 +1,192 @@
+{
+  "_doc": "Written by adapters/godot_enemy_config.py; every key is documented in templates/enemy.json. Regenerate when the .tres is retuned; edit the brief and encounter blocks by hand.",
+  "name": "drone",
+  "display_name": "Watcher drone",
+  "archetype": "sentry",
+  "role": "puzzle",
+  "teaches": "Vertical threat, and the ranged verb. It hovers above melee reach and lobs slow, dodgeable shots; the answer is to aim up. Mechanical: Breach drops it out of the air.",
+  "stats": {
+    "table": "stats.csv",
+    "row": "drone"
+  },
+  "tags": [
+    "mechanical"
+  ],
+  "body": {
+    "width": 52,
+    "height": 36
+  },
+  "flies": true,
+  "tick": 60,
+  "senses": {
+    "detection_range": 620.0,
+    "give_up_range": 1100.0
+  },
+  "locomotion": {
+    "hover_height": 210.0,
+    "hover_standoff": 240.0,
+    "fly_speed": 230.0,
+    "fly_acceleration": 900.0,
+    "drift_radius": 50.0
+  },
+  "contact": {
+    "armed": "while alive and not stunned",
+    "power": "stats.attack_power x the project's contact_damage_mult"
+  },
+  "initial_state": "Hover",
+  "states": {
+    "Hover": {
+      "kind": "idle",
+      "clip": "hover",
+      "note": "drifts drift_radius px around home"
+    },
+    "Track": {
+      "kind": "approach",
+      "clip": "hover",
+      "note": "holds hover_height above and hover_standoff beside the player, on the side it is already on"
+    },
+    "Aim": {
+      "kind": "tell",
+      "clip": "aim",
+      "seconds": 0.45,
+      "attack": "shot",
+      "tracks_player": true,
+      "note": "still and lit; faces the player through the tell; the shot goes where the player is when the tell ends"
+    },
+    "Stagger": {
+      "kind": "reaction",
+      "clip": "stagger",
+      "seconds": 0.25,
+      "entered_by": "a hit at or over stagger_threshold, from any state but Stunned and Dead"
+    },
+    "Dead": {
+      "kind": "terminal",
+      "clip": "dead",
+      "seconds": 0.6,
+      "note": "falls"
+    },
+    "Stunned": {
+      "kind": "reaction",
+      "clip": "stunned",
+      "seconds": "the hack's duration",
+      "entered_by": "Breach, from any state but Dead; falls; hits do not end it"
+    }
+  },
+  "transitions": [
+    [
+      "Hover",
+      "Track",
+      "player within detection_range"
+    ],
+    [
+      "Track",
+      "Hover",
+      "player lost, or farther than give_up_range from home"
+    ],
+    [
+      "Track",
+      "Aim",
+      "player within fire_range and the fire cooldown is over"
+    ],
+    [
+      "Aim",
+      "Track",
+      "fire_windup elapsed: fires"
+    ],
+    [
+      "Stagger",
+      "Track",
+      "stagger_time elapsed and the player is within detection_range"
+    ],
+    [
+      "Stagger",
+      "Hover",
+      "stagger_time elapsed otherwise"
+    ],
+    [
+      "*",
+      "Stagger",
+      "a single hit at or over stagger_threshold"
+    ],
+    [
+      "*",
+      "Dead",
+      "hp reaches 0"
+    ],
+    [
+      "*",
+      "Stunned",
+      "Breach in reach"
+    ],
+    [
+      "Stunned",
+      "Track",
+      "the stun ends and the player is within detection_range"
+    ],
+    [
+      "Stunned",
+      "Hover",
+      "the stun ends otherwise"
+    ]
+  ],
+  "attacks": {
+    "shot": {
+      "kind": "projectile",
+      "tell": "Aim",
+      "active": null,
+      "recovery": null,
+      "tell_seconds": 0.45,
+      "active_seconds": 0.0,
+      "recovery_seconds": 0.0,
+      "cooldown_seconds": 2.2,
+      "power": "stats.attack_power",
+      "projectile": {
+        "speed": 340.0,
+        "lifetime": 2.4,
+        "size": [
+          16,
+          16
+        ]
+      },
+      "range_px": 720.0,
+      "aimed_at": "tell_end",
+      "tracks_player": true,
+      "knockback": 120.0
+    }
+  },
+  "phases": [],
+  "brief": {
+    "look": "A flattened steel disc the width of a dinner plate with a single red lens on its underside rim, a rotor ring on top that reads as a blur in flight, and a short gun barrel under the lens. A cyan status ring around the body: VESTA infrastructure, working as intended. Dents and a scorched patch on the shell. When it aims, the lens brightens and the body tilts toward the target. Stunned, the rotor stops and it drops nose-first.",
+    "silhouette": "A disc with a rotor above and a lens below. Nothing else in the roster is horizontal.",
+    "accent": "red",
+    "palette": [
+      "steel1",
+      "steel2",
+      "steel3",
+      "red",
+      "cyan",
+      "grey_d"
+    ],
+    "rig_parts": [
+      "body",
+      "rotor ring",
+      "lens",
+      "barrel"
+    ]
+  },
+  "encounter": {
+    "room": "roof_span",
+    "arrival_kit": [
+      "pipe_wrench",
+      "zipgun",
+      "firewall",
+      "mag_hook"
+    ],
+    "notes": "First met on the roof with two of them over three Scavs. The puzzle is reaching it; the zipgun is the intended answer and the roof is open sky."
+  },
+  "source": {
+    "tres": "src/enemies/drone/drone.tres",
+    "scene": "src/enemies/drone/drone.tscn",
+    "boss_script": ""
+  }
+}

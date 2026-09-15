@@ -1,0 +1,207 @@
+{
+  "_doc": "Written by adapters/godot_enemy_config.py; every key is documented in templates/enemy.json. Regenerate when the .tres is retuned; edit the brief and encounter blocks by hand.",
+  "name": "scav",
+  "display_name": "Scav",
+  "archetype": "rusher",
+  "role": "pressure",
+  "teaches": "Spacing. Bait the lunge, step in, punish the recovery. The first fight of the game.",
+  "stats": {
+    "table": "stats.csv",
+    "row": "scav"
+  },
+  "tags": [],
+  "body": {
+    "width": 44,
+    "height": 80
+  },
+  "flies": false,
+  "tick": 60,
+  "senses": {
+    "detection_range": 460.0,
+    "give_up_range": 820.0
+  },
+  "locomotion": {
+    "patrol_speed": 90.0,
+    "patrol_range": 170.0,
+    "patrol_pause": 0.7,
+    "chase_speed": 235.0
+  },
+  "contact": {
+    "armed": "while alive and not stunned",
+    "power": "stats.attack_power x the project's contact_damage_mult"
+  },
+  "initial_state": "Patrol",
+  "states": {
+    "Patrol": {
+      "kind": "idle",
+      "clip": [
+        "idle",
+        "run"
+      ],
+      "note": "a beat of patrol_range px each side of home, patrol_pause s at each end; turns at walls"
+    },
+    "Chase": {
+      "kind": "approach",
+      "clip": "run",
+      "note": "closes at chase_speed; leashes home past give_up_range"
+    },
+    "Windup": {
+      "kind": "tell",
+      "clip": "windup",
+      "seconds": 0.48,
+      "attack": "lunge",
+      "tracks_player": false,
+      "note": "plants, the loudest tint on screen; aims once on entry"
+    },
+    "Lunge": {
+      "kind": "active",
+      "clip": "lunge",
+      "seconds": 0.2,
+      "attack": "lunge"
+    },
+    "Recover": {
+      "kind": "recovery",
+      "clip": "recover",
+      "seconds": 0.75,
+      "attack": "lunge",
+      "note": "drained tint; the punish window"
+    },
+    "Stagger": {
+      "kind": "reaction",
+      "clip": "stagger",
+      "seconds": 0.3,
+      "entered_by": "a hit at or over stagger_threshold, from any state but Stunned and Dead"
+    },
+    "Dead": {
+      "kind": "terminal",
+      "clip": "dead",
+      "seconds": 0.45
+    }
+  },
+  "transitions": [
+    [
+      "Patrol",
+      "Chase",
+      "player within detection_range"
+    ],
+    [
+      "Chase",
+      "Patrol",
+      "player lost, or farther than give_up_range from home"
+    ],
+    [
+      "Chase",
+      "Windup",
+      "player within lunge_range and the lunge cooldown is over"
+    ],
+    [
+      "Windup",
+      "Lunge",
+      "windup_time elapsed"
+    ],
+    [
+      "Lunge",
+      "Recover",
+      "lunge_time elapsed"
+    ],
+    [
+      "Recover",
+      "Chase",
+      "recover_time elapsed and the player is within detection_range"
+    ],
+    [
+      "Recover",
+      "Patrol",
+      "recover_time elapsed otherwise"
+    ],
+    [
+      "Stagger",
+      "Chase",
+      "stagger_time elapsed and the player is within detection_range"
+    ],
+    [
+      "Stagger",
+      "Patrol",
+      "stagger_time elapsed otherwise"
+    ],
+    [
+      "*",
+      "Stagger",
+      "a single hit at or over stagger_threshold"
+    ],
+    [
+      "*",
+      "Dead",
+      "hp reaches 0"
+    ]
+  ],
+  "attacks": {
+    "lunge": {
+      "kind": "melee",
+      "tell": "Windup",
+      "active": "Lunge",
+      "recovery": "Recover",
+      "tell_seconds": 0.48,
+      "active_seconds": 0.2,
+      "recovery_seconds": 0.75,
+      "cooldown_seconds": 0.55,
+      "power": "stats.attack_power",
+      "hitbox": {
+        "size": [
+          76,
+          76
+        ],
+        "offset": [
+          42,
+          -40
+        ]
+      },
+      "travel_px": 132.0,
+      "speed": 660.0,
+      "range_px": 125.0,
+      "tracks_player": false,
+      "knockback": 260.0
+    }
+  },
+  "phases": [],
+  "brief": {
+    "look": "A person who lives in the Stacks' write-off floors. Hunched, hooded, the face lost in the hood except one amber eye: a cheap ocular implant that never stopped glowing. Layers of olive and rust: a hooded canvas coat over a stained work shirt, trousers tied at the ankle, boots wrapped in tape. A length of steel pipe in both hands, held low. Wiry rather than big. The overcommit pose is a full-body reach with the pipe, feet leaving the ground.",
+    "silhouette": "The hood and the hunch, pipe angled down. Shorter than the player.",
+    "accent": "amber",
+    "palette": [
+      "olive",
+      "olive_l",
+      "rust1",
+      "rust2",
+      "amber",
+      "grey_d",
+      "skin2_d"
+    ],
+    "rig_parts": [
+      "hooded head",
+      "torso",
+      "near upper arm",
+      "near forearm",
+      "near hand",
+      "far arm",
+      "near thigh",
+      "near shin",
+      "far leg",
+      "pipe"
+    ]
+  },
+  "encounter": {
+    "room": "hall_14",
+    "arrival_kit": [
+      "pipe_wrench",
+      "zipgun",
+      "firewall"
+    ],
+    "notes": "The first fight of the game, one Scav on the floor of a two-cell hall. Setup for the whole roster: the loudest tint is a tell, the drained tint is an opening."
+  },
+  "source": {
+    "tres": "src/enemies/scav/scav.tres",
+    "scene": "src/enemies/scav/scav.tscn",
+    "boss_script": ""
+  }
+}

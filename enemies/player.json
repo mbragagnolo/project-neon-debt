@@ -1,0 +1,219 @@
+{
+  "_doc": "Written by adapters/godot_player_timings.py from the project's .tres files; regenerate when the controller, a weapon or a hack is retuned. Every key is documented in templates/player.json.",
+  "tick": 60,
+  "reaction_time": 0.25,
+  "body": {
+    "width": 48,
+    "height": 88
+  },
+  "run_speed": 450.0,
+  "jump": {
+    "height": 168.0,
+    "time_to_apex": 0.36,
+    "fall_gravity_multiplier": 1.6,
+    "airtime": 0.6446,
+    "coyote_time": 0.1,
+    "buffer_time": 0.15
+  },
+  "dash": {
+    "distance": 288.0,
+    "duration": 0.16,
+    "cooldown": 0.5,
+    "iframes": false,
+    "in_air": true
+  },
+  "hurt": {
+    "iframe_time": 0.85,
+    "knockback": 220.0
+  },
+  "contact_damage_mult": 0.5,
+  "hitstop": {
+    "light_frames": 2,
+    "heavy_frames": 4,
+    "heavy_threshold": 12
+  },
+  "stat_curve": {
+    "max_bonus": 2.0,
+    "half_point": 40.0,
+    "start_attack_stat": 5,
+    "attack_stat_per_level": 3,
+    "start_hp": 40,
+    "hp_per_level": 5,
+    "start_ram": 12,
+    "ram_per_level": 2
+  },
+  "weapons": {
+    "breaker_maul": {
+      "display_name": "Hydraulic breaker maul",
+      "power": 18.0,
+      "attack_speed": 0.8,
+      "cooldown": 1.25,
+      "source": "src/combat/weapons/breaker_maul.tres",
+      "kind": "melee",
+      "commit_time": 0.2,
+      "active_time": 0.1,
+      "hitbox": {
+        "size": [
+          96,
+          88
+        ],
+        "offset": [
+          62,
+          -44
+        ]
+      },
+      "reach": {
+        "near": 14.0,
+        "far": 110.0,
+        "top": -88.0,
+        "bottom": 0.0
+      },
+      "ammo_on_hit": 1
+    },
+    "nailgun": {
+      "display_name": "Modified nailgun",
+      "power": 3.0,
+      "attack_speed": 4.0,
+      "cooldown": 0.25,
+      "source": "src/combat/weapons/nailgun.tres",
+      "kind": "ranged",
+      "energy_per_shot": 1,
+      "projectile": {
+        "speed": 1250.0,
+        "lifetime": 0.7,
+        "size": [
+          12,
+          5
+        ],
+        "gravity": 0.0
+      },
+      "range_px": 875.0
+    },
+    "rivet_gun": {
+      "display_name": "Rivet gun",
+      "power": 15.0,
+      "attack_speed": 0.6,
+      "cooldown": 1.6667,
+      "source": "src/combat/weapons/rivet_gun.tres",
+      "kind": "ranged",
+      "energy_per_shot": 3,
+      "projectile": {
+        "speed": 620.0,
+        "lifetime": 1.5,
+        "size": [
+          24,
+          12
+        ],
+        "gravity": 320.0
+      },
+      "range_px": 930.0
+    },
+    "utility_blade": {
+      "display_name": "Powered utility blade",
+      "power": 5.0,
+      "attack_speed": 2.9,
+      "cooldown": 0.3448,
+      "source": "src/combat/weapons/utility_blade.tres",
+      "kind": "melee",
+      "commit_time": 0.1,
+      "active_time": 0.06,
+      "hitbox": {
+        "size": [
+          60,
+          64
+        ],
+        "offset": [
+          46,
+          -44
+        ]
+      },
+      "reach": {
+        "near": 16.0,
+        "far": 76.0,
+        "top": -76.0,
+        "bottom": -12.0
+      },
+      "ammo_on_hit": 1
+    },
+    "pipe_wrench": {
+      "display_name": "Pipe wrench",
+      "power": 8.0,
+      "attack_speed": 1.6,
+      "cooldown": 0.625,
+      "source": "src/combat/weapons/wrench.tres",
+      "kind": "melee",
+      "commit_time": 0.16,
+      "active_time": 0.08,
+      "hitbox": {
+        "size": [
+          72,
+          72
+        ],
+        "offset": [
+          52,
+          -44
+        ]
+      },
+      "reach": {
+        "near": 16.0,
+        "far": 88.0,
+        "top": -80.0,
+        "bottom": -8.0
+      },
+      "ammo_on_hit": 1
+    },
+    "zipgun": {
+      "display_name": "Zipgun",
+      "power": 6.0,
+      "attack_speed": 1.5,
+      "cooldown": 0.6667,
+      "source": "src/combat/weapons/zipgun.tres",
+      "kind": "ranged",
+      "energy_per_shot": 1,
+      "projectile": {
+        "speed": 900.0,
+        "lifetime": 1.1,
+        "size": [
+          18,
+          8
+        ],
+        "gravity": 0.0
+      },
+      "range_px": 990.0
+    }
+  },
+  "hacks": {
+    "breach": {
+      "display_name": "Breach",
+      "shape": "pulse",
+      "ram_cost": 2,
+      "power": 0.0,
+      "radius": 360.0,
+      "duration": 1.5,
+      "guard_mult": 1.0,
+      "source": "src/combat/hacks/breach.tres"
+    },
+    "firewall": {
+      "display_name": "Firewall",
+      "shape": "guard",
+      "ram_cost": 4,
+      "power": 0.0,
+      "radius": 0.0,
+      "duration": 2.0,
+      "guard_mult": 0.5,
+      "source": "src/combat/hacks/firewall.tres"
+    },
+    "overload": {
+      "display_name": "Overload",
+      "shape": "burst",
+      "ram_cost": 3,
+      "power": 15.0,
+      "radius": 420.0,
+      "duration": 0.0,
+      "guard_mult": 1.0,
+      "source": "src/combat/hacks/overload.tres"
+    }
+  },
+  "hack_global_cooldown": 1.0,
+  "ram_regen_per_second": 0.4
+}
