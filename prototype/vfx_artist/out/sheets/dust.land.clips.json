@@ -1,0 +1,26 @@
+{
+ "sheet": "F:\\Projects\\Coding Projects\\project-neon-debt\\prototype\\vfx_artist\\out\\sheets\\dust.land.png",
+ "frame_width": 96,
+ "frame_height": 40,
+ "scale": 2,
+ "frames": 6,
+ "row_layout": "one row, left to right",
+ "anchor": [
+  48,
+  40
+ ],
+ "anchor_art_px": [
+  24,
+  20
+ ],
+ "fps": 20,
+ "tag": "hot",
+ "clips": {
+  "play": {
+   "first": 0,
+   "count": 6,
+   "fps": 20,
+   "loop": false
+  }
+ }
+}

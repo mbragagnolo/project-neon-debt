@@ -1,0 +1,26 @@
+{
+ "sheet": "F:\\Projects\\Coding Projects\\project-neon-debt\\prototype\\vfx_artist\\out\\sheets\\burst.die.png",
+ "frame_width": 128,
+ "frame_height": 128,
+ "scale": 2,
+ "frames": 8,
+ "row_layout": "one row, left to right",
+ "anchor": [
+  64,
+  80
+ ],
+ "anchor_art_px": [
+  32,
+  40
+ ],
+ "fps": 24,
+ "tag": "hot",
+ "clips": {
+  "play": {
+   "first": 0,
+   "count": 8,
+   "fps": 24,
+   "loop": false
+  }
+ }
+}

@@ -1,0 +1,7 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 576.02 - Compatibility - Using Device: NVIDIA - Quadro RTX 4000
+
+boost: 8 lights x 2.5
+glow: threshold 0.89999997615814 intensity 1.0 strength 1.0 bloom 0.10000000149012 blend additive levels 3,5
+camera centre (640.0, 720.0) zoom (1.5, 1.5) hdr_2d true
+shot -> F:\Projects\Coding Projects\project-neon-debt\prototype\vfx_artist\light\out\shot_glow_hot_hdr.png

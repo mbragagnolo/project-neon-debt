@@ -1,0 +1,66 @@
+{
+ "name": "spark.hit",
+ "tag": "bake",
+ "frame": [
+  32,
+  32
+ ],
+ "anchor": [
+  16,
+  16
+ ],
+ "fps": 30,
+ "clips": {
+  "play": [
+   0,
+   6,
+   30,
+   false
+  ]
+ },
+ "colours_sheet": 6,
+ "frames": [
+  {
+   "colours": 5,
+   "opaque": 117,
+   "off_palette": 0,
+   "rim_dark": 0.53,
+   "rim_light": 0.26
+  },
+  {
+   "colours": 4,
+   "opaque": 126,
+   "off_palette": 0,
+   "rim_dark": 0.56,
+   "rim_light": 0.36
+  },
+  {
+   "colours": 4,
+   "opaque": 79,
+   "off_palette": 0,
+   "rim_dark": 0.57,
+   "rim_light": 0.42
+  },
+  {
+   "colours": 4,
+   "opaque": 28,
+   "off_palette": 0,
+   "rim_dark": 0.64,
+   "rim_light": 0.4
+  },
+  {
+   "colours": 2,
+   "opaque": 8,
+   "off_palette": 0,
+   "rim_dark": 0.5,
+   "rim_light": 0.5
+  },
+  {
+   "colours": 1,
+   "opaque": 3,
+   "off_palette": 0,
+   "rim_dark": 0.0,
+   "rim_light": 0.0
+  }
+ ]
+}

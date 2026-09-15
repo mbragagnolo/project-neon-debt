@@ -1,0 +1,7 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 576.02 - Compatibility - Using Device: NVIDIA - Quadro RTX 4000
+
+glow: threshold 0.44999998807907 intensity 0.80000001192093 strength 1.0 bloom 0.10000000149012 blend additive levels 3,5,7
+shaft: alpha 0.14 lean 240.0 spread 120.0 in Unit14c
+camera centre (640.0, 720.0) zoom (1.5, 1.5) hdr_2d false
+shot -> F:\Projects\Coding Projects\project-neon-debt\prototype\vfx_artist\light\out\shot_shaft_soft_faint.png
