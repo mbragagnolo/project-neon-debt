@@ -7,7 +7,9 @@ Rooms are authored as ASCII grids in `game/tools/stacks/*.room` (one
 character per 60px tile) and generated into scenes by
 `tools/make_stacks.tscn`. The specs are the level design; the `.tscn` files
 are output. `tests/test_stacks.gd` reads the specs and holds them to
-everything on this page.
+everything on this page. The room list as data is `design/rooms.json` (what
+each room teaches, its doors, grants and enemies, a brief per room), checked
+against these specs by the game-designer's `loop_check.py --district`.
 
 The camera shows 1280 x 720 room px of a room (21 x 12 tiles, a 1.5x zoom
 on the 1920 x 1080 viewport; `docs/art/environment.md` section 6) and is

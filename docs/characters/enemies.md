@@ -33,10 +33,18 @@ DEF-piercing: the Riot unit ignoring a wrench *is* the lesson.
 | stagger_threshold | 1 | 1 | 12 | 8 | 16 |
 | Tags | — | `mechanical` | `mechanical`, `immune_ranged_frontal` | — | — |
 | XP / credits | 10 / 5 | 14 / 7 | 22 / 15 | 45 / 25 | 200 / 100 |
-| Placed | 29 | 17 | 8 | 1 | 1 |
+| Placed | 31 | 17 | 7 | 1 | 1 |
 
-Ratios between rewards are the locked part. The placed roster holds 949 XP;
-the XP curve's `base` held at 60 against it (stats-and-curves.md).
+Ratios between rewards are the locked part. The placed roster holds 947 XP
+(recounted from the specs 2026-09-14: 31 Scavs and 7 Riot units, not 29 and 8;
+the curve assumes 949, within `test_roster.gd`'s 3 %); the XP curve's `base`
+held at 60 against it (stats-and-curves.md).
+
+Each enemy as a state machine with its tell, commit, recovery and boxes is
+`enemies/<name>.json` (read off the `.tres` files and the boss script by the
+enemy-designer's adapters; the integrator writes the `.tres` back from it), and
+`enemies/matchup.md` is every attack against the player's timings in frames,
+the DEF pass below included.
 
 ### The DEF pass (M6)
 

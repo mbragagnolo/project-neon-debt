@@ -296,7 +296,9 @@ against the recorded premise.
 Riot units, 1 Elite, the Landlord) holds **949 XP** against the 959 assumed.
 Level 6 costs 792 — 83% of the district — so `base` held at 60 and
 `assumed_district_xp` moved to 949. A thorough player finishes at 6; a
-player who skips what they can lands at 5.
+player who skips what they can lands at 5. Recounted from the specs on
+2026-09-14 by the game-designer's checker: 31 Scavs and 7 Riot units, 947 XP,
+within the test's 3 % of the 949 the curve assumes, so the constant stays.
 
 ## Exports
 

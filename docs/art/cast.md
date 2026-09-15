@@ -6,6 +6,11 @@ is the contract; everything else in an entry is derived from it and from
 what the code already needs. Style target: hi-bit pixel per
 [`refs/README.md`](refs/README.md).
 
+Restated, not replaced: `design/briefs/<id>.md` is each entry in the
+game-designer's form (plus height, prop, voice), and `enemies/<name>.brief.md`
+is the enemies' with the machine's numbers, rendered from `enemies/<name>.json`.
+The *Look* here is the approved one; the briefs quote it.
+
 ## Rules that apply to everyone
 
 - **Scale.** Art is drawn at 1×, placed at 2×. At 1080p one art pixel is two

@@ -2,6 +2,9 @@
 
 *Working title. Cyberpunk 2D metroidvania with Castlevania-style RPG elements.*
 *V1 goal: one vertical slice district that proves the game is worth building.*
+*As data the kiln skills read: `design/design.md` (the tables), `design/rooms.json`
+(the room list), `design/briefs/` (the cast), `plan/plan.json` and `plan/log.md`
+(the milestones and the pass log). This file stays the record of the decisions.*
 
 ---
 
