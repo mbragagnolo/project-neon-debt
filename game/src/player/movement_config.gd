@@ -69,9 +69,16 @@ extends Resource
 ## kick away from the wall actually lands instead of being cancelled by the
 ## stick the player is already holding toward it.
 @export var wall_jump_lockout_time: float = 0.12
-## Extra seconds, on top of a wall jump's whole flight, before the *same*
-## wall accepts the player again. The flight is derived; this is the margin.
-## It is what makes a single wall unclimbable (DESIGN.md §3.1 anti-exploit).
+## How much of a wall jump's whole flight (rise and fall back to the take-off
+## height) the *same* wall refuses the player for. At 1.0 a re-stick always
+## lands below the point of departure and a single wall is unclimbable; below
+## it the wall is accepted while the player is still above the departure
+## point, and a single wall becomes a slow ladder for a player who re-sticks
+## and kicks on time (decided 2026-09-15: a player who climbs a tease ledge
+## that way has earned it). The gain per kick is the height still held when
+## the lockout ends; test_movement_envelope.gd measures the rate.
+@export var same_wall_lockout_scale: float = 0.85
+## Extra seconds on top of the scaled flight, the margin.
 @export var same_wall_lockout_margin: float = 0.05
 
 
@@ -102,16 +109,16 @@ func wall_jump_velocity() -> float:
 	return -sqrt(2.0 * g * wall_jump_height)
 
 
-## Seconds a wall jump spends rising and falling back to its take-off
-## height. The same wall is refused for this long plus the margin, so a
-## re-stick always happens below the point of departure.
+## The seconds a wall jump spends rising and falling back to its take-off
+## height, scaled by `same_wall_lockout_scale`, plus the margin. The same wall
+## is refused for this long.
 func same_wall_lockout_time() -> float:
 	var rise_g: float = rise_gravity()
 	if rise_g <= 0.0:
 		return same_wall_lockout_margin
 	var rise: float = sqrt(2.0 * wall_jump_height / rise_g)
 	var fall: float = sqrt(2.0 * wall_jump_height / fall_gravity())
-	return rise + fall + same_wall_lockout_margin
+	return (rise + fall) * same_wall_lockout_scale + same_wall_lockout_margin
 
 
 ## Constant horizontal speed held for `dash_duration`, px/s.

@@ -263,13 +263,19 @@ func test_a_tease_ledge_is_out_of_reach_of_the_whole_kit() -> void:
 	assert_gt(highest, FLOOR_TOP - 240.0, "the tease ledge was reached with the full kit")
 
 
-# --- The anti-exploit: one wall is not a ladder -------------------------------
+# --- One wall is a slow ladder -------------------------------------------------
 
-func test_a_single_wall_cannot_be_climbed_by_re_sticking() -> void:
-	# DESIGN.md §3.1: push + lockout must guarantee net height loss on the
-	# same wall. Every double-jump tease in the district is a single wall, so
-	# if this fails the teases are lies. Hold into the wall and mash jump for
-	# three seconds; the player must end up no higher than they started.
+func test_a_single_wall_is_climbed_slowly_by_re_sticking() -> void:
+	# DESIGN.md §3.1, revised 2026-09-15: the same wall refuses the player for
+	# `same_wall_lockout_scale` of a wall jump's flight, so a re-stick lands a
+	# little above the point of departure and a player who holds in and kicks
+	# the moment the wall accepts them climbs, slowly. This is that player:
+	# jump off the floor, hold into the wall, and press jump on the first
+	# frame the wall is a wall again (a real player has the jump buffer's
+	# nine frames of grace and loses about two pixels of slide per late
+	# frame). Four seconds must gain more than one kick's worth, at well
+	# under two wall jumps a second, and keep it: a tease ledge costs
+	# seconds of clean kicks rather than one jump.
 	GameState.grant_ability(GameState.ABILITY_MAG_HOOK)
 	TestArena.solid(_root, Vector2(0, FLOOR_TOP + 100.0), Vector2(6000, 200))
 	TestArena.solid(_root, Vector2(300.0, FLOOR_TOP - 1500.0), Vector2(200, 3400))
@@ -277,20 +283,28 @@ func test_a_single_wall_cannot_be_climbed_by_re_sticking() -> void:
 	await wait_frames(3)
 	var start_y: float = _player.position.y
 	var highest: float = start_y
+	var holding: int = 0
 	Input.action_press("move_right")
-	for i: int in 180:
-		if i % 4 == 0:
+	Input.action_press("jump")
+	holding = 20
+	for _i: int in 240:
+		if holding > 0:
+			holding -= 1
+			if holding == 0:
+				Input.action_release("jump")
+		elif not _player.is_on_floor() and _player.wall_direction() != 0:
 			Input.action_press("jump")
-		elif i % 4 == 2:
-			Input.action_release("jump")
+			holding = 20
 		await get_tree().physics_frame
 		highest = minf(highest, _player.position.y)
-	# One wall jump's worth of height is the most a single wall ever gives —
-	# and only if the first jump came off the floor.
-	assert_gt(highest, start_y - _config.jump_height - _config.wall_jump_height - 10.0,
-		"climbed %.0fpx up a single wall" % (start_y - highest))
-	assert_gte(_player.position.y, start_y - _config.jump_height - 10.0,
-		"ended %.0fpx up a single wall" % (start_y - _player.position.y))
+	Input.action_release("jump")
+	var climbed: float = start_y - highest
+	assert_gt(climbed, _config.jump_height + _config.wall_jump_height,
+		"a single wall should give more than one kick now (climbed %.0fpx)" % climbed)
+	assert_lt(climbed / 4.0, 2.0 * _config.wall_jump_height,
+		"a single wall should be slow: %.0fpx/s against a %.0fpx wall jump" % [climbed / 4.0, _config.wall_jump_height])
+	assert_lt(_player.position.y, start_y - _config.jump_height,
+		"the height gained should be kept while re-sticking (ended %.0fpx up)" % (start_y - _player.position.y))
 
 
 func test_a_shaft_is_still_climbable_with_the_hook() -> void:
