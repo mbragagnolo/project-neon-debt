@@ -1,0 +1,54 @@
+{
+  "_doc": [
+    "The game-feel config for one project: <root>/feel/feel.json (the skill copies this template there on the first run). Every name the harness needs to touch the game is here, so measure.gd never names a project class: it instances the player scene from this path, presses the input actions named here, grants the kit through the autoload named here and calls methods by name. A project that spells things differently edits this file, not the script.",
+    "game: the Godot project folder, relative to the root. godot: the binary. player_scene: the player scene the harness instances alone in a greybox fixture; it must stand on the world layer without a room around it.",
+    "knobs: the resources the controller reads its numbers from, by group: resource (the .tres, relative to the game folder, the adapter reads it and tune.py --apply writes one line of it) and on_player (the exported property on the player node that holds it, where a `--set` override is applied in memory). A knob name is looked up group by group; the first resource that has the property takes it.",
+    "actions: the input actions the harness presses, by role. flags: the autoload and method that grant a kit flag, and `all`: every flag the full kit needs (the harness measures the whole kit; possession is the level-designer's problem).",
+    "methods: what the harness calls on the player by role. state_name: the current state's name (for the samples). knockback: the method the hurt pipeline calls with an impulse Vector2 (the knockback probe calls it directly; empty to skip the probe).",
+    "bus: the autoload that carries the signals, and hitstop: the signal that requests a freeze in frames (the hitstop probe emits it; empty to skip the probe).",
+    "world_layer: the physics layer the fixtures' solids sit on, the one the player collides with. arena: floor_y is the floor's top face in world px; settle_frames is how long the player is left alone between trials so every timer runs out (longer than the longest cooldown).",
+    "reach: the level-designer's reach.json, relative to the root, to judge the measured reach against the model. district: its district.json, for the tile size. scale: the bible's scale.json (grid_unit_art_px x world_px_per_art_px) when there is no district. tile_px: the tile size outright, when neither file has it.",
+    "probes: per-probe numbers. drop_height: the fall the buffer and landing probes drop from. fall_height: the drop that reaches terminal velocity. shaft_widths: the shaft widths the climb is tried in (inner faces, px). knockback_impulse: the impulse the knockback probe calls with (its sign is the direction; the magnitude is the player's own). hitstop_frames: the light and heavy holds requested, when controller.json does not carry them."
+  ],
+  "game": "game",
+  "godot": "godot",
+  "player_scene": "res://src/player/player.tscn",
+  "knobs": {
+    "movement": { "resource": "src/player/movement_config.tres", "on_player": "config" },
+    "combat": { "resource": "src/combat/combat_config.tres", "on_player": "combat_config" }
+  },
+  "actions": {
+    "left": "move_left",
+    "right": "move_right",
+    "up": "move_up",
+    "down": "move_down",
+    "jump": "jump",
+    "dash": "dash"
+  },
+  "flags": {
+    "autoload": "GameState",
+    "set": "grant_ability",
+    "all": ["ability.mag_hook", "ability.sidewinder", "ability.cyberdeck"]
+  },
+  "methods": {
+    "state_name": "state_name",
+    "knockback": "apply_knockback"
+  },
+  "bus": {
+    "autoload": "Events",
+    "hitstop": "hitstop_requested"
+  },
+  "world_layer": 1,
+  "arena": { "floor_y": 600, "settle_frames": 45 },
+  "reach": "game/tools/stacks/reach.json",
+  "district": "game/tools/stacks/district.json",
+  "scale": null,
+  "tile_px": null,
+  "probes": {
+    "drop_height": 400,
+    "fall_height": 3000,
+    "shaft_widths": [200, 250, 300, 350, 400, 500],
+    "knockback_impulse": [-1, 0],
+    "hitstop_frames": { "light": 2, "heavy": 4 }
+  }
+}

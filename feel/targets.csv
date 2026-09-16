@@ -1,0 +1,20 @@
+metric,min,max,unit,why
+# One row per promise the design makes about the hands. metric is a name from measure.json (report.py lists them); min and max bound it (either may be empty); unit is what the report prints; why is the sentence in the design it comes from. reference/targets.md says how to turn an adjective into a row. These are the first project's.
+coyote_frames,4,7,frames,DESIGN.md 3.1: coyote time about 0.1 s. The pressable window runs two frames under the knob (the walk-off frame and the zero boundary each cost one)
+buffer_frames,8,10,frames,DESIGN.md 3.1: jump buffering about 0.15 s
+turn_frames,1,4,frames,DESIGN.md 3.1: instant turn. A reversal whose velocity crosses zero inside four frames reads as instant; one frame would be a snap
+accel_frames,4,12,frames,DESIGN.md 3.1: slight acceleration. Under a fifth of a second to top speed and more than one frame
+stop_frames,2,8,frames,DESIGN.md 3.1: slight deceleration. A released stick stops inside a few frames and not on the spot
+jump_rise_frames,18,26,frames,the jump is authored at 0.36 s to the apex: springy not floaty
+jump_height,160,190,px,the jump is authored at 168 px (2.8 tiles of 60) so a three-tile ledge is a wall; the discrete step adds about v0*dt/2
+jump_fall_rise_ratio,0.6,0.95,ratio,the fall multiplier is 1.6: the fall is quicker than the rise and the jump lands with weight
+min_hop_ratio,0.2,0.45,ratio,variable height: a one-frame tap hops clearly under half the full jump
+dash_frames,8,12,frames,the dash is a 0.16 s commitment: a step and not a cutscene
+dash_jump_press_first,1,3,frames,design.md pillars: the jump-cancelled dash. A jump pressed almost anywhere in the dash fires at its end; the first frame or two may be lost to the buffer
+landing_lag_frames,0,1,frames,no landing lag: the run is back at speed on touchdown
+wall_slide_speed,100,140,px/s,the slide is authored at 120 px/s: a wall is a place to think
+ladder_rate,0,144,px/s,DESIGN.md 3.1 (2026-09-15): a single wall is a slow ladder at under a wall jump's height (144 px) per second
+hitstop_light_frames,2,3,frames,docs/combat/damage-pipeline.md: light hitstop 2 frames; short or it is lag
+hitstop_heavy_frames,3,5,frames,docs/combat/damage-pipeline.md: heavy hitstop 4 frames; the difference from light is the weight
+knockback_distance,15,60,px,docs/combat/damage-pipeline.md: player knockback is loss of control on a small budget, but a hit has to be felt: a quarter tile at least, a tile at most
+knockback_frames,2,8,frames,the same: a hit costs a few frames of control and not a dozen

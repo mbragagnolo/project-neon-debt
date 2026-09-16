@@ -29,3 +29,7 @@ game/tools/art/work/
 # The autoplayer's per-run logs (megabytes per seed); the report, rows and heat beside them are kept
 runs/*/logs/
 runs/work/
+
+# game-feel (kiln): the harness samples and scratch
+feel/work/
+feel/runs/*/samples*.jsonl
