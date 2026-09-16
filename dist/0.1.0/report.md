@@ -53,7 +53,10 @@ Trailer: 142 frames at 20 fps, 9.05s, 640x360, 910.6 KB; mp4 735.1 KB
 - `butler push dist/0.1.0/exports/windows <your-itch-user>/neon-debt:windows --userversion 0.1.0`
 - `butler push dist/0.1.0/exports/linux <your-itch-user>/neon-debt:linux --userversion 0.1.0`
 
-Not pushed. butler is not on the PATH -- https://itch.io/docs/butler/installing.html (or `scoop install butler`); the store target is still '<your-itch-user>/neon-debt': put the real one in release.json
+No store configured yet, so there is nothing to push to and nothing was. The zips above are the deliverable.
+
+- butler is not installed -- https://itch.io/docs/butler/installing.html (or `scoop install butler`)
+- the store target is <your-itch-user>/neon-debt: put the real one in release.json
 
 ## What is somebody else's
 

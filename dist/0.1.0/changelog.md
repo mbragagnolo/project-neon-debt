@@ -1,6 +1,6 @@
 # Neon Debt v0.1.0
 
-2026-09-16. The first release: 119 commits, 38 logged events from 2026-08-27.
+2026-09-16. The first release: 121 commits, 39 logged events from 2026-08-27.
 
 ## What shipped
 
@@ -60,6 +60,7 @@
 - the plan written as data after the fact (note) -- plan/plan.json; the sign-offs before this row are inferred from the next milestone starting
 - **M7** the music check was a stale glob, not a missing track: it looked for audio/music/*.ogg and the composer writes a folder per track with a stem per layer (note) -- 5 tres and 35 stems were there all along; the check is now *.tres and */*.ogg
 - **M8** the district is lit from a vocabulary, 34 dress files; it still misses the budget and cannot meet it with light (note) -- the generic back planes are 0.0025-0.0103 median luma against back_unit_14c's 0.0297; lighting.md step 2 says a wall that stays black is painted too dark, and that is the environment-artist's
+- **M9** the playtest build is made: v0.1.0, windows and linux, with a card and a page (note) -- f31759e; dist/0.1.0/receipt.json. Not in anybody's hands yet, so no shipped row
 
 ## Not in the log
 
