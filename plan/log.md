@@ -44,3 +44,4 @@ playtest behind it, only the fact that the next milestone started.
 | 2026-09-08 | M5 | shipped | three one-line repairs and the Gut's way back; 34 rooms solved with the full kit in the locked order | 47311a5, ea517f4, bf61ac5 |
 | 2026-09-08 | M8 | note | the vfx pass: spark.hit, dust.land and burst.die baked through the character bake, one shot per family | uncommitted in game/tools/art/vfx and game/assets/fx |
 | 2026-09-14 | - | note | the plan written as data after the fact | plan/plan.json; the sign-offs before this row are inferred from the next milestone starting |
+| 2026-09-16 | M7 | note | the music check was a stale glob, not a missing track: it looked for audio/music/*.ogg and the composer writes a folder per track with a stem per layer | 5 tres and 35 stems were there all along; the check is now *.tres and */*.ogg |

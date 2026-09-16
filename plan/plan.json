@@ -142,7 +142,10 @@
         { "check": "exists", "path": "game/src/ui/title/title_screen.gd" },
         { "check": "exists", "path": "game/src/core/settings.gd" },
         { "check": "glob", "pattern": "game/assets/audio/sfx/*.wav", "min": 40 },
-        { "check": "glob", "pattern": "game/assets/audio/music/*.ogg", "min": 5 },
+        { "check": "glob", "pattern": "game/assets/audio/music/*.tres", "min": 5,
+          "_doc": "One synchronized stream per track, which is what the engine loads. This check used to be game/assets/audio/music/*.ogg and read 0 from the day the composer landed: it writes a folder per track and a stem per layer, so the oggs are one level deeper. A stale glob, never a missing track." },
+        { "check": "glob", "pattern": "game/assets/audio/music/*/*.ogg", "min": 20,
+          "_doc": "The stems themselves: five tracks carrying at least four layers each." },
         { "check": "commit", "match": "^feat\\(m7\\):" },
         { "check": "signoff", "what": "external playtesters run it start to finish without guidance" }
       ]
