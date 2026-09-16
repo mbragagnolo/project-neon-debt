@@ -1,0 +1,116 @@
+{
+  "_doc": "What Neon Debt's art is reviewed against. Proposed by `art-director/scripts/audit.py --init` from the assets themselves, then argued with once, here, which is the point of the file: --init reports what the art already is, and every number below is what it should be, with the reason beside it. The skill's templates/art.json documents every key. No skill owns this file; the art-director is only its first reader.",
+
+  "_palette": "Not copied. The colours live in the art pipeline's own PALETTE, so a colour changed for the sprites is changed for the review in the same commit -- the same source ui/ui.json reads.",
+  "palette": { "module": "game/tools/art/pixel.py", "symbol": "PALETTE" },
+  "assets": "game/assets",
+
+  "_figure": "Dani, the ruler every size is read off. 56 art px = 112 room px = 1.7 m (game/tools/art/sets/unit_14c.json). A concept with no human in it draws a piano at 28% of the frame; the figure is the only ruler.",
+  "figure": { "art_px": 56, "metres": 1.7, "name": "dani" },
+
+  "_planes": "Texture px per art px: how big one drawn pixel is in the file, which is how big it is on screen once the camera's 1.5x zoom is applied (2 texture px = 3 screen px). Two assets in one frame at two densities is two pixel sizes on one screen and the eye reads it as two games, so this is the number the review turns on. The authority is the 2026-09-07 scale rework in sets/unit_14c.json: the play plane is 2, and the back wall was re-authored to 2 to match it.",
+  "planes": {
+    "play": { "texture_px": 2, "_why": "the plane the player and everything it touches is drawn on. Dani bakes at 2; 24 of the 80 assets on this plane are already there and 50 are at 3, so the majority is the drift and not the rule." },
+    "back": { "texture_px": 2, "_why": "the wall behind the play plane. sets/unit_14c.json: 'authored at 2 room px per art px (3 screen px at the 1.5x camera, the play plane's density)'. back_unit_14c.png is the one that obeys it." },
+    "outside": { "texture_px": 4, "_why": "what is seen through a window or over a roof. Coarser on purpose: it is far, it parallaxes, and the shading bar says a far plane drops pixels rather than detail." },
+    "screen": { "texture_px": 3, "_why": "the interface, drawn at the design resolution with no camera between it and the eye. ui/ui.json's scale; not comparable to the world's planes and never judged against them." },
+    "free": { "texture_px": null, "_why": "no density at all: a gradient or an alpha mask has no drawn pixel to measure." }
+  },
+
+  "_kinds": "What an asset is, which decides what it is held to. An asset matched by two kinds belongs to the later one, so `props/unit_14c_*` after `props/*` would mean it. `outline`: forbidden where the shading bar applies (an edge is the darker step of the local colour, never a black line); allowed for a character, which carries one on purpose so it reads against any room. `palette`: snapped where a bake votes every pixel onto PALETTE; free where the asset is not colour at all. `steps`: how many steps of its dominant ramp a material may be -- under is flat, over is mush. `against`: the planes the asset is read on, for the flat contrast.",
+  "kinds": {
+    "character": {
+      "globs": ["sprites/*.png"],
+      "plane": "play",
+      "outline": "allowed",
+      "steps": [3, 8],
+      "metres": [0.8, 3.0],
+      "against": ["tiles/back_*.png", "tiles/wall_*.png"],
+      "_why": "the roster's sheets, baked by rig.py. The outline is the one the bake draws; a character has to read against every room it can walk into, which a prop does not. The metres band is a drone (0.9 m) to the Landlord (2.4 m)."
+    },
+    "prop": {
+      "globs": ["props/*.png"],
+      "plane": "play",
+      "outline": "forbidden",
+      "steps": [3, 5],
+      "against": ["tiles/wall_*.png"],
+      "_why": "everything standing in the room. The shading bar in full: three to five steps of one ramp, the edge the darker step of the local colour."
+    },
+    "emissive": {
+      "globs": ["props/neon_tube_*.png", "props/lamp.png", "props/unit_14c_lamp.png", "props/unit_14c_crt.png", "props/monitor.png", "props/window.png", "props/sign_panel*.png", "props/save_terminal.png", "props/program_terminal.png", "props/breach_terminal.png", "props/chip.png"],
+      "plane": "play",
+      "outline": "forbidden",
+      "steps": [3, 5],
+      "against": ["tiles/wall_*.png"],
+      "contrast_floor": null,
+      "_why": "a prop that carries its own light. The shading bar: every emissive is a separate piece with a light entry for the level-artist, and the asset is made to take light rather than to have it painted in, so its flat albedo is dim on purpose. The contrast is still measured -- it is what the light has to work with -- but it is never a finding here. Listed after `prop`, which is how a later kind wins.",
+      "_note": "chip.png and the terminals are screens; the neon tubes and the lamp are lamps; window.png is glass with a city behind it."
+    },
+    "wall": {
+      "globs": ["tiles/wall_*.png"],
+      "plane": "play",
+      "outline": "forbidden",
+      "steps": [3, 5],
+      "_why": "the wall ring, the band the player runs along. On the play plane because the player touches it."
+    },
+    "back": {
+      "globs": ["tiles/back_*.png"],
+      "plane": "back",
+      "outline": "forbidden",
+      "steps": [1, 5],
+      "_why": "the plane behind the air. One step is allowed: the bar says a far plane is a few big soft shapes, and back_roof is a sky."
+    },
+    "platform": {
+      "globs": ["tiles/platform.png", "tiles/hazard_*.png"],
+      "plane": "play",
+      "outline": "forbidden",
+      "steps": [3, 5],
+      "_why": "what the player stands on and what hurts. Read at the same distance as the player, so at the same density."
+    },
+    "outside": {
+      "globs": ["tiles/outside_*.png", "tiles/skyline_*.png"],
+      "plane": "outside",
+      "outline": "forbidden",
+      "steps": [1, 5],
+      "_why": "the city past the glass. One step is allowed: a far silhouette is a shape, not a material."
+    },
+    "effect": {
+      "globs": ["fx/*.png"],
+      "plane": "play",
+      "outline": "allowed",
+      "steps": [1, 6],
+      "_why": "the vfx-artist's baked sheets. They fire over the actor's frame, so they are on the actor's plane; an effect is light and may be two steps of a ramp."
+    },
+    "mask": {
+      "globs": ["fx/dot.png", "fx/drop.png", "fx/puff.png", "fx/light_*.png"],
+      "plane": "free",
+      "palette": "free",
+      "outline": "allowed",
+      "_why": "not art: an alpha shape the engine modulates to whatever colour the moment wants. White at 6.8 dE from the palette's white is correct here, and a density means nothing on a soft gradient. Listed by name rather than by a suffix so that adding one is a decision."
+    },
+    "gradient": {
+      "globs": ["tiles/sky_gradient.png"],
+      "plane": "free",
+      "palette": "free",
+      "outline": "allowed",
+      "_why": "a 3 px column stretched across the sky. A gradient is the one thing the palette cannot hold: snapping it to 61 entries is banding."
+    },
+    "screen": {
+      "globs": ["ui/*.png"],
+      "plane": "screen",
+      "outline": "allowed",
+      "_why": "the ui-artist's screen furniture, drawn at the design resolution. No `steps`: a frame is a line and a pip is a dot, and neither is a material with volume; the ui-artist judges these by contrast over the room they sit on. Its colours are the role table's, which may hold their own value outside the palette by design (ui/ui.json), so it is snapped only where the roles took palette entries."
+    }
+  },
+
+  "_floors": "Where a measurement stops being a number and becomes a finding.",
+  "floors": {
+    "off_palette_max": 0.0,
+    "ring_dark_max": 0.25,
+    "silhouette_contrast": 1.1,
+    "shadeable_art_px": 100,
+    "snap_de": 0.5,
+    "black_luma": 0.02,
+    "_why": "off_palette_max is 0 because rig.py's snap_to_palette votes every baked pixel onto PALETTE: one pixel off it means the asset did not come through the bake. ring_dark_max is the share of a silhouette's edge allowed to be a near-black step before it is a drawn outline; a quarter covers the places a dark material genuinely meets air. silhouette_contrast is flat albedo against the plane behind, before the room's light -- the level-artist measures the lit shot, this measures what the light has to work with; 1.1 is not a reading contrast, it is the line under which the asset and the plane are the same luminance and only the light separates them, and this game sits between 1.0 and 4.7. shadeable_art_px is the area a material needs before three steps are possible at all: below it a flat material is the asset's size, not its shading. snap_de 0.5 is under any eye; black_luma 0.02 is the WCAG luminance under which a palette step reads as black."
+  }
+}

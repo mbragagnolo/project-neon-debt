@@ -76,7 +76,10 @@ Each script writes a `preview_*.png` next to itself for eyeballing.
 
 1. Draw at 1×, bake at 2×, the camera at 1.5×: an art pixel is three
    screen pixels. Nothing else is scaled by a non-integer, and planes are
-   authored at 2 or 4 room px per art px, never 3.
+   authored at 2 or 4 room px per art px, never 3. This rule is now data in
+   [`bible/art.json`](../../bible/art.json) and checked every review by the
+   art-director; the first run of it (`art/reviews/2026-09-16/`) found 55
+   assets at 3, which is what an unchecked rule is worth.
 2. A colour is a palette name.
 3. Lights and particles serve readability first: a hazard glows, a save
    point glows, an enemy's windup tint is still the loudest thing on screen.
