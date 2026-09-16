@@ -1,0 +1,151 @@
+{
+  "_doc": "Collections - Reception (collections). Written by tools/stacks/dress.py from dress_vocab.json, which is where the district's lighting is decided. Edit here for this room alone, or in the vocabulary for the whole style; re-running the script overwrites this file.",
+  "decor": "seeded",
+  "_decor": "keep the clutter the generator places from the room id's seed; this file adds light.",
+  "ambient": [
+    0.58,
+    0.58,
+    0.72
+  ],
+  "door_lamp": {
+    "color": [
+      1.0,
+      0.7,
+      0.3
+    ],
+    "energy": 1.25,
+    "scale": 2.8
+  },
+  "lights": [
+    {
+      "name": "lamp_1",
+      "at": [
+        810,
+        270
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.3
+      ],
+      "energy": 1.05,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_2",
+      "at": [
+        270,
+        930
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.3
+      ],
+      "energy": 1.05,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_3",
+      "at": [
+        1230,
+        930
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.3
+      ],
+      "energy": 1.05,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_4",
+      "at": [
+        1770,
+        930
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.3
+      ],
+      "energy": 1.05,
+      "scale": 3.0
+    },
+    {
+      "name": "tease_1",
+      "at": [
+        930,
+        324
+      ],
+      "color": [
+        1.0,
+        0.25,
+        0.6
+      ],
+      "energy": 0.7,
+      "scale": 1.5
+    },
+    {
+      "name": "sign_2",
+      "at": [
+        510,
+        744
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "sign_3",
+      "at": [
+        1470,
+        744
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "save_4",
+      "at": [
+        510,
+        983
+      ],
+      "color": [
+        0.35,
+        0.9,
+        1.0
+      ],
+      "energy": 0.9,
+      "scale": 1.8
+    },
+    {
+      "name": "fill",
+      "at": [
+        960,
+        486
+      ],
+      "color": [
+        0.5,
+        0.48,
+        0.7
+      ],
+      "energy": 0.4,
+      "scale": 9.0,
+      "scale_xy": [
+        1.78,
+        1.0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "_doc": "The Gut - Stair (gut). Written by tools/stacks/dress.py from dress_vocab.json, which is where the district's lighting is decided. Edit here for this room alone, or in the vocabulary for the whole style; re-running the script overwrites this file.",
+  "decor": "seeded",
+  "_decor": "keep the clutter the generator places from the room id's seed; this file adds light.",
+  "ambient": [
+    0.52,
+    0.58,
+    0.6
+  ],
+  "door_lamp": {
+    "color": [
+      0.65,
+      1.0,
+      0.75
+    ],
+    "energy": 1.1,
+    "scale": 2.8
+  },
+  "lights": [
+    {
+      "name": "lamp_1",
+      "at": [
+        930,
+        90
+      ],
+      "color": [
+        0.6,
+        1.0,
+        0.72
+      ],
+      "energy": 0.95,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_2",
+      "at": [
+        330,
+        330
+      ],
+      "color": [
+        0.6,
+        1.0,
+        0.72
+      ],
+      "energy": 0.95,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_3",
+      "at": [
+        330,
+        930
+      ],
+      "color": [
+        0.6,
+        1.0,
+        0.72
+      ],
+      "energy": 0.95,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_4",
+      "at": [
+        930,
+        930
+      ],
+      "color": [
+        0.6,
+        1.0,
+        0.72
+      ],
+      "energy": 0.95,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_5",
+      "at": [
+        1770,
+        930
+      ],
+      "color": [
+        0.6,
+        1.0,
+        0.72
+      ],
+      "energy": 0.95,
+      "scale": 3.0
+    },
+    {
+      "name": "ledge_1",
+      "at": [
+        810,
+        276
+      ],
+      "color": [
+        0.7,
+        1.0,
+        0.8
+      ],
+      "energy": 0.5,
+      "scale": 1.5
+    },
+    {
+      "name": "ledge_2",
+      "at": [
+        330,
+        396
+      ],
+      "color": [
+        0.7,
+        1.0,
+        0.8
+      ],
+      "energy": 0.5,
+      "scale": 1.5
+    },
+    {
+      "name": "ledge_3",
+      "at": [
+        810,
+        516
+      ],
+      "color": [
+        0.7,
+        1.0,
+        0.8
+      ],
+      "energy": 0.5,
+      "scale": 1.5
+    },
+    {
+      "name": "ledge_4",
+      "at": [
+        330,
+        636
+      ],
+      "color": [
+        0.7,
+        1.0,
+        0.8
+      ],
+      "energy": 0.5,
+      "scale": 1.5
+    },
+    {
+      "name": "ledge_5",
+      "at": [
+        810,
+        756
+      ],
+      "color": [
+        0.7,
+        1.0,
+        0.8
+      ],
+      "energy": 0.5,
+      "scale": 1.5
+    },
+    {
+      "name": "ledge_6",
+      "at": [
+        330,
+        876
+      ],
+      "color": [
+        0.7,
+        1.0,
+        0.8
+      ],
+      "energy": 0.5,
+      "scale": 1.5
+    },
+    {
+      "name": "sign_1",
+      "at": [
+        390,
+        804
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "fill",
+      "at": [
+        960,
+        486
+      ],
+      "color": [
+        0.4,
+        0.55,
+        0.52
+      ],
+      "energy": 0.42,
+      "scale": 9.0,
+      "scale_xy": [
+        1.78,
+        1.0
+      ]
+    }
+  ]
+}

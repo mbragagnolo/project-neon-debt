@@ -1,0 +1,95 @@
+{
+  "_doc": "Between Towers (roof). Written by tools/stacks/dress.py from dress_vocab.json, which is where the district's lighting is decided. Edit here for this room alone, or in the vocabulary for the whole style; re-running the script overwrites this file.",
+  "decor": "seeded",
+  "_decor": "keep the clutter the generator places from the room id's seed; this file adds light.",
+  "ambient": [
+    0.54,
+    0.6,
+    0.78
+  ],
+  "door_lamp": {
+    "color": [
+      1.0,
+      0.66,
+      0.32
+    ],
+    "energy": 1.2,
+    "scale": 2.8
+  },
+  "lights": [
+    {
+      "name": "lamp_1",
+      "at": [
+        330,
+        630
+      ],
+      "color": [
+        1.0,
+        0.62,
+        0.28
+      ],
+      "energy": 1.0,
+      "scale": 3.4
+    },
+    {
+      "name": "lamp_2",
+      "at": [
+        1110,
+        630
+      ],
+      "color": [
+        1.0,
+        0.62,
+        0.28
+      ],
+      "energy": 1.0,
+      "scale": 3.4
+    },
+    {
+      "name": "lamp_3",
+      "at": [
+        1830,
+        630
+      ],
+      "color": [
+        1.0,
+        0.62,
+        0.28
+      ],
+      "energy": 1.0,
+      "scale": 3.4
+    },
+    {
+      "name": "sign_1",
+      "at": [
+        270,
+        564
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "fill",
+      "at": [
+        960,
+        486
+      ],
+      "color": [
+        0.4,
+        0.52,
+        0.86
+      ],
+      "energy": 0.5,
+      "scale": 11.0,
+      "scale_xy": [
+        1.78,
+        1.0
+      ]
+    }
+  ]
+}

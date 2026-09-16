@@ -169,6 +169,11 @@ func _build(spec: RoomSpec) -> void:
 	if dress_data.is_empty():
 		_dress(spec)
 	else:
+		# `decor: seeded` keeps the seeded clutter and adds the file's own
+		# light on top, so a room can be lit without re-authoring every
+		# crate in it. A fully authored room (14-C) leaves the key out.
+		if String(dress_data.get("decor", "")) == "seeded":
+			_dress(spec, "Clutter")
 		_dress_from(spec, dress_data)
 	_atmosphere(spec, dress_data)
 
@@ -764,11 +769,11 @@ func _vec(pair: Array) -> Vector2:
 
 ## Dressing: posters, vents, pipes, lamps, crates — placed where the grid
 ## has room, seeded by the room id so a regeneration is the same room.
-func _dress(spec: RoomSpec) -> void:
+func _dress(spec: RoomSpec, node_name: String = "Decor") -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = hash(String(spec.id))
 	var decor := Node2D.new()
-	decor.name = "Decor"
+	decor.name = node_name
 	decor.z_index = -5
 	_root.add_child(decor)
 	var taken: Dictionary = {}

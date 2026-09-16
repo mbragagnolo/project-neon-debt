@@ -1,0 +1,109 @@
+{
+  "_doc": "Cistern (gut). Written by tools/stacks/dress.py from dress_vocab.json, which is where the district's lighting is decided. Edit here for this room alone, or in the vocabulary for the whole style; re-running the script overwrites this file.",
+  "decor": "seeded",
+  "_decor": "keep the clutter the generator places from the room id's seed; this file adds light.",
+  "ambient": [
+    0.52,
+    0.58,
+    0.6
+  ],
+  "door_lamp": {
+    "color": [
+      0.65,
+      1.0,
+      0.75
+    ],
+    "energy": 1.1,
+    "scale": 2.8
+  },
+  "lights": [
+    {
+      "name": "lamp_1",
+      "at": [
+        570,
+        930
+      ],
+      "color": [
+        0.6,
+        1.0,
+        0.72
+      ],
+      "energy": 0.95,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_2",
+      "at": [
+        1650,
+        930
+      ],
+      "color": [
+        0.6,
+        1.0,
+        0.72
+      ],
+      "energy": 0.95,
+      "scale": 3.0
+    },
+    {
+      "name": "sign_1",
+      "at": [
+        1050,
+        744
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "item_2",
+      "at": [
+        810,
+        864
+      ],
+      "color": [
+        0.45,
+        1.0,
+        0.6
+      ],
+      "energy": 0.8,
+      "scale": 1.5
+    },
+    {
+      "name": "ram_up_3",
+      "at": [
+        90,
+        983
+      ],
+      "color": [
+        0.7,
+        0.45,
+        1.0
+      ],
+      "energy": 0.8,
+      "scale": 1.4
+    },
+    {
+      "name": "fill",
+      "at": [
+        960,
+        486
+      ],
+      "color": [
+        0.4,
+        0.55,
+        0.52
+      ],
+      "energy": 0.42,
+      "scale": 9.0,
+      "scale_xy": [
+        1.78,
+        1.0
+      ]
+    }
+  ]
+}
