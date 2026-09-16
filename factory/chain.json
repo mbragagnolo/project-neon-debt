@@ -1,0 +1,766 @@
+{
+ "_doc": [
+  "Neon Debt's chain, copied from the game-factory skill's templates/chain.json (which documents every key) and changed only where this project differs: the pitch is DESIGN.md at the root, the gates quote the sign-offs plan.json already asks for, and every step says which milestone it belongs to.",
+  "This default is the whole crew on a 2D side-scroller in Godot, in the order the first project ran them. Cut the steps a project does not want (set \"off\": true, or delete them), change the paths, change the gates' phrases to whatever the producer's plan.json asks a person to sign off.",
+  "name: the project, for the reports. timeout_s: the default cap on a check or a run, seconds.",
+  "paths: what this project calls each place, relative to the project root. Every {token} in a read, a write, a leave or an argument is one of these; {project} is always the root. The defaults are the first project's: the engine folder under the repo, the studio folder inside it, the district's specs beside it.",
+  "sources: the files a person or the engine puts there that no step in the chain writes -- the pitch, the bible, each skill's own config. chain.py --check names any read that is neither a source nor some step's write, because that is usually a missing @step.",
+  "steps: in order. id is short and permanent (it lands in the ledger). skill is a kiln skill name. title is the sentence the factory hands that skill when the step comes up. why says why the step sits where it sits, for chain.md.",
+  "by: agent means the skill is invoked by a person or an agent reading its SKILL.md -- the factory prints the brief and waits. by: script means the step is mechanical and the factory runs `run` itself: the two adapters, the integrator, the bot. A script step needs a run, which is a list of commands in the same shape as check, run in order and stopping at the first that fails; an agent step must not have one.",
+  "reads: @other-step (everything that step writes, and the dependency), or a path or glob relative to the project. writes: the hand-off -- the files the steps after it read. leaves: what the step also produces (reports, run folders, boards) -- tracked as the step's own evidence, but not part of any hand-off, so a new dated run folder does not make everything downstream stale. not: patterns taken back out of the three above.",
+  "check: how the hand-off is judged, as commands. skill names the kiln skill whose folder the command runs from (that is how the README says a skill's scripts are run); run is the argv, with {tokens} expanded to absolute paths; glob: true spreads a pattern in an argument into the files it matches, since the factory runs argv with no shell. why is the one line the report prints. Every one of these is the next skill's own checker -- the factory owns which one and when, not the checking.",
+  "gate: a steering point. The step's own checks can pass and the chain still stops here until a person looks and the producer's log.md holds a signoff row quoting this phrase. Four of them by default: the design, the feel, the concept, the first shot. A gate's phrase should be a signoff in the producer's plan.json too, so clearing it closes the milestone.",
+  "milestone: optional, a milestone id from the producer's plan.json, so a step says which playable thing it is part of.",
+  "A check judges a file that is already there. Where a skill's only checker is the command that makes the file (the art-director's audit.py), the step has no check: its output is the evidence and the ledger says whether it is current."
+ ],
+ "name": "Neon Debt",
+ "timeout_s": 900,
+ "paths": {
+  "project": ".",
+  "game": "game",
+  "studio": "game/tools/art",
+  "rooms": "game/tools/stacks"
+ },
+ "sources": [
+  "DESIGN.md",
+  "bible/art.json",
+  "bible/events.json",
+  "bible/moods.json",
+  "feel/feel.json",
+  "feel/targets.csv",
+  "systems/players.csv",
+  "systems/targets.csv",
+  "systems/godot.json",
+  "narrative/narrative.json",
+  "ui/ui.json",
+  "audio/audio.json",
+  "audio/sfx/recipes.py",
+  "audio/music/instruments.py",
+  "audio/music/motifs.json",
+  "audio/music/tracks/*.json",
+  "release/release.json",
+  "runs/autoplayer.json",
+  "{rooms}/district.json",
+  "{game}/tools/integrator.json",
+  "{game}/src/player/*.tres",
+  "{game}/src/combat/*.tres"
+ ],
+ "steps": [
+  {
+   "id": "design",
+   "skill": "game-designer",
+   "by": "agent",
+   "title": "the pitch to a design doc, a room list and a brief per character",
+   "why": "Nothing else can start: every skill after this one reads the pillars, the verbs, the room list or a brief.",
+   "reads": [
+    "DESIGN.md"
+   ],
+   "writes": [
+    "design/design.md",
+    "design/rooms.json",
+    "design/briefs/*.md"
+   ],
+   "check": [
+    {
+     "skill": "game-designer",
+     "run": [
+      "scripts/loop_check.py",
+      "--project",
+      "{project}"
+     ],
+     "why": "every verb paid off, every room teaching something, every door with a partner"
+    }
+   ],
+   "gate": "the design reads as a game"
+  },
+  {
+   "id": "plan",
+   "skill": "producer",
+   "by": "agent",
+   "title": "the design's slice into milestones with acceptance as checks, and the pass log started",
+   "why": "The plan is what the gates close against, and the factory reads its log to know which gates a person has signed off.",
+   "reads": [
+    "@design"
+   ],
+   "writes": [
+    "plan/plan.json",
+    "plan/log.md"
+   ],
+   "leaves": [
+    "plan/milestones.md"
+   ],
+   "check": [
+    {
+     "skill": "producer",
+     "run": [
+      "scripts/plan.py",
+      "--project",
+      "{project}",
+      "--check"
+     ],
+     "why": "the plan and the log parse, every check kind exists, every skill named is in the manifest"
+    }
+   ]
+  },
+  {
+   "id": "feel",
+   "skill": "game-feel",
+   "by": "agent",
+   "title": "the controller measured headless and tuned until the design's targets are met",
+   "why": "The genre lives or dies on the jump, and two things downstream are arithmetic on it: how far a room may stretch, and how long an enemy's tell must be.",
+   "reads": [
+    "@design",
+    "feel/feel.json",
+    "feel/targets.csv",
+    "{game}/src/player/*.tres"
+   ],
+   "writes": [
+    "feel/controller.json"
+   ],
+   "leaves": [
+    "feel/runs/*/report.md",
+    "feel/runs/*/measure.json",
+    "feel/log.md"
+   ],
+   "check": [
+    {
+     "skill": "game-feel",
+     "run": [
+      "scripts/report.py",
+      "--project",
+      "{project}",
+      "--strict"
+     ],
+     "why": "every target judged against the newest measurement"
+    }
+   ],
+   "gate": "moving around an empty room is fun",
+   "milestone": "M1"
+  },
+  {
+   "id": "reach",
+   "skill": "level-designer",
+   "by": "script",
+   "title": "the movement model the level solver uses, read out of the controller's resource",
+   "why": "The reach is never typed. A knob moves and every gap in the district is judged against a stale number until this runs again.",
+   "reads": [
+    "@feel"
+   ],
+   "writes": [
+    "{rooms}/reach.json"
+   ],
+   "run": [
+    {
+     "skill": "level-designer",
+     "run": [
+      "scripts/adapters/godot_movement_config.py",
+      "--tres",
+      "{game}/src/player/movement_config.tres",
+      "--body",
+      "48",
+      "88",
+      "--out",
+      "{rooms}/reach.json"
+     ],
+     "why": "the jump, the dash and the wall jump out of the resource into the solver's model"
+    }
+   ],
+   "check": [
+    {
+     "skill": "game-feel",
+     "run": [
+      "scripts/reach.py",
+      "--project",
+      "{project}",
+      "--strict"
+     ],
+     "why": "the measured reach against reach.json, in tiles"
+    }
+   ]
+  },
+  {
+   "id": "timings",
+   "skill": "enemy-designer",
+   "by": "script",
+   "title": "the player's side as data: the dash, the i-frames, every weapon's commit and reach",
+   "why": "An enemy's tell is only long enough against a number, and that number comes out of the project, not out of a designer's head.",
+   "reads": [
+    "@feel"
+   ],
+   "writes": [
+    "enemies/player.json"
+   ],
+   "run": [
+    {
+     "skill": "enemy-designer",
+     "run": [
+      "scripts/adapters/godot_player_timings.py",
+      "--game",
+      "{game}",
+      "--reaction",
+      "0.25",
+      "--out",
+      "{project}/enemies/player.json"
+     ],
+     "why": "the weapons, the hacks and the i-frames read out of the project"
+    }
+   ],
+   "milestone": "M2"
+  },
+  {
+   "id": "numbers",
+   "skill": "systems-designer",
+   "by": "agent",
+   "title": "every number in tables, simulated against the slice until the design's targets hold",
+   "why": "The enemies and the rooms are both priced from these; balancing after the content is built is a retune of everything.",
+   "reads": [
+    "@design",
+    "@timings",
+    "systems/players.csv",
+    "systems/targets.csv",
+    "systems/godot.json"
+   ],
+   "writes": [
+    "systems/tables/*.csv",
+    "enemies/stats.csv"
+   ],
+   "leaves": [
+    "systems/sim.json",
+    "systems/report.md",
+    "systems/log.md"
+   ],
+   "check": [
+    {
+     "skill": "systems-designer",
+     "run": [
+      "scripts/report.py",
+      "--project",
+      "{project}",
+      "--strict"
+     ],
+     "why": "every target judged over the simulated runs"
+    },
+    {
+     "skill": "systems-designer",
+     "run": [
+      "scripts/adapters/godot_tables.py",
+      "--project",
+      "{project}",
+      "--check"
+     ],
+     "why": "the engine still holds what the tables say"
+    }
+   ],
+   "milestone": "M3"
+  },
+  {
+   "id": "enemies",
+   "skill": "enemy-designer",
+   "by": "agent",
+   "title": "each archetype as a state machine, every attack dodgeable, punishable or ignorable on purpose",
+   "why": "The rooms need the encounter notes and the cast needs the briefs, and both are rendered from the machine.",
+   "reads": [
+    "@timings",
+    "@numbers",
+    "@design"
+   ],
+   "writes": [
+    "enemies/*.json",
+    "enemies/*.brief.md",
+    "enemies/*.encounter.md"
+   ],
+   "not": [
+    "enemies/player.json"
+   ],
+   "leaves": [
+    "enemies/matchup.md"
+   ],
+   "check": [
+    {
+     "skill": "enemy-designer",
+     "run": [
+      "scripts/machine.py",
+      "--project",
+      "{project}",
+      "{project}/enemies/*.json",
+      "--strict"
+     ],
+     "glob": true,
+     "why": "every state reachable, every attack behind a tell, the timings against the player's"
+    }
+   ],
+   "milestone": "M6"
+  },
+  {
+   "id": "rooms",
+   "skill": "level-designer",
+   "by": "agent",
+   "title": "the district as ASCII specs, every room solved with the kit the walk grants at its door",
+   "why": "The layout is the last thing that is cheap to change. Everything after this is drawn on top of it.",
+   "reads": [
+    "@design",
+    "@reach",
+    "@enemies",
+    "{rooms}/district.json"
+   ],
+   "writes": [
+    "{rooms}/*.room"
+   ],
+   "leaves": [
+    "{rooms}/district.png",
+    "{rooms}/pace.png"
+   ],
+   "check": [
+    {
+     "skill": "level-designer",
+     "run": [
+      "scripts/reach.py",
+      "--district",
+      "{rooms}/district.json",
+      "--strict"
+     ],
+     "why": "every gap and ledge against the movement reach"
+    },
+    {
+     "skill": "level-designer",
+     "run": [
+      "scripts/solve.py",
+      "--district",
+      "{rooms}/district.json",
+      "--strict"
+     ],
+     "why": "every room solved for real, the district walked door by door"
+    }
+   ],
+   "milestone": "M5"
+  },
+  {
+   "id": "words",
+   "skill": "narrative-designer",
+   "by": "agent",
+   "title": "the cast's voices, the dialogue and every string keyed and measured in its box",
+   "why": "The interface needs the longest line in each box before it can size one.",
+   "reads": [
+    "@design",
+    "narrative/narrative.json"
+   ],
+   "writes": [
+    "narrative/strings.json",
+    "narrative/dialogue/*.json",
+    "narrative/cast/*.md"
+   ],
+   "check": [
+    {
+     "skill": "narrative-designer",
+     "run": [
+      "scripts/lint.py",
+      "--project",
+      "{project}",
+      "--strict"
+     ],
+     "why": "every line inside its box with the real font, every page present"
+    }
+   ],
+   "milestone": "M5"
+  },
+  {
+   "id": "concept",
+   "skill": "concept-artist",
+   "by": "agent",
+   "title": "one concept still per room style, and the cut list sized from the figure",
+   "why": "What is where and how the light falls is decided once, before anything is drawn at the size it ships at.",
+   "reads": [
+    "@design",
+    "@rooms"
+   ],
+   "writes": [
+    "{studio}/sets/*.json"
+   ],
+   "leaves": [
+    "{studio}/source/**"
+   ],
+   "gate": "the concept is the room"
+  },
+  {
+   "id": "cast",
+   "skill": "character-designer",
+   "by": "agent",
+   "title": "every character and enemy from its brief to a sprite sheet with a clip table",
+   "why": "The effects fire over these frames and the integrator writes their clip tables into the scenes.",
+   "reads": [
+    "@design",
+    "@enemies"
+   ],
+   "writes": [
+    "{studio}/cast/*.json",
+    "{studio}/work/*/clips.json",
+    "{game}/assets/sprites/*.png"
+   ],
+   "not": [
+    "{studio}/work/vfx/*/clips.json"
+   ]
+  },
+  {
+   "id": "sets",
+   "skill": "environment-artist",
+   "by": "agent",
+   "title": "the wall ring, the props and the back and outside planes from the cut list",
+   "why": "The dress step places these by name; nothing can be placed before it exists.",
+   "reads": [
+    "@concept"
+   ],
+   "writes": [
+    "{game}/assets/tiles/*.png",
+    "{game}/assets/props/*.png"
+   ]
+  },
+  {
+   "id": "effects",
+   "skill": "vfx-artist",
+   "by": "agent",
+   "title": "the hit sparks, dust and bursts as sheets, and the light and particle presets by name",
+   "why": "The dress file names the presets and the integrator writes the clip tables, so both need these first.",
+   "reads": [
+    "bible/events.json",
+    "@cast"
+   ],
+   "writes": [
+    "{studio}/vfx/*.json",
+    "{studio}/work/vfx/*/clips.json",
+    "{game}/assets/fx/*.png"
+   ]
+  },
+  {
+   "id": "interface",
+   "skill": "ui-artist",
+   "by": "agent",
+   "title": "the theme, the screen furniture and the palette the interface code imports",
+   "why": "It is measured over a real room shot, so it wants the rooms dressed -- but the theme the integrator writes is needed before the build is played.",
+   "reads": [
+    "@design",
+    "@words",
+    "bible/art.json",
+    "ui/ui.json"
+   ],
+   "writes": [
+    "ui/theme.json",
+    "{game}/assets/ui/*.png"
+   ],
+   "check": [
+    {
+     "skill": "ui-artist",
+     "run": [
+      "scripts/lint.py",
+      "--project",
+      "{project}",
+      "--strict"
+     ],
+     "why": "every colour on a role, every text role's contrast over the room behind it"
+    },
+    {
+     "skill": "ui-artist",
+     "run": [
+      "scripts/sprites.py",
+      "--project",
+      "{project}",
+      "--check"
+     ],
+     "why": "the sprites on disk are the ones the grids describe"
+    }
+   ]
+  },
+  {
+   "id": "dress",
+   "skill": "level-artist",
+   "by": "agent",
+   "title": "every room dressed and lit from its assets, shot in the engine and measured",
+   "why": "The first shot is where the look either is the concept or is not, and it is the cheapest place to find out.",
+   "reads": [
+    "@rooms",
+    "@sets",
+    "@effects"
+   ],
+   "writes": [
+    "{rooms}/*.dress.json"
+   ],
+   "gate": "the district reads as one style at 1:1",
+   "milestone": "M8"
+  },
+  {
+   "id": "sfx",
+   "skill": "sound-designer",
+   "by": "agent",
+   "title": "one sound per event, mastered to its class and routed to a bus",
+   "why": "The music is mixed against these, and the integrator checks every id the code plays against the table.",
+   "reads": [
+    "bible/events.json",
+    "audio/audio.json",
+    "audio/sfx/recipes.py"
+   ],
+   "writes": [
+    "audio/sfx/sfx.json",
+    "{game}/assets/audio/sfx/*.wav"
+   ],
+   "leaves": [
+    "audio/sfx/runs/*/report.md"
+   ],
+   "check": [
+    {
+     "skill": "sound-designer",
+     "run": [
+      "scripts/table.py",
+      "--project",
+      "{project}",
+      "--strict"
+     ],
+     "why": "every event with a sound has a file and every file answers an event"
+    }
+   ],
+   "milestone": "M7"
+  },
+  {
+   "id": "music",
+   "skill": "composer",
+   "by": "agent",
+   "title": "a track per mood as stems the engine raises by state, mastered under the effects",
+   "why": "It is mixed against the effects' classes, so the sounds come first.",
+   "reads": [
+    "bible/moods.json",
+    "audio/audio.json",
+    "audio/music/instruments.py",
+    "audio/music/motifs.json",
+    "audio/music/tracks/*.json",
+    "@sfx"
+   ],
+   "writes": [
+    "audio/music/music.json",
+    "{game}/assets/audio/music/**"
+   ],
+   "leaves": [
+    "audio/music/runs/*/report.md"
+   ],
+   "check": [
+    {
+     "skill": "composer",
+     "run": [
+      "scripts/table.py",
+      "--project",
+      "{project}",
+      "--strict"
+     ],
+     "why": "every mood has a track and every stem a state the engine raises"
+    }
+   ],
+   "milestone": "M7"
+  },
+  {
+   "id": "integrate",
+   "skill": "godot-integrator",
+   "by": "script",
+   "title": "every contract file landed in the engine as a resource, and proven to load",
+   "why": "This is the one step where the pipeline's data becomes the game, and it is entirely mechanical.",
+   "reads": [
+    "@cast",
+    "@effects",
+    "@enemies",
+    "@numbers",
+    "@interface",
+    "@sfx",
+    "@music",
+    "{game}/tools/integrator.json"
+   ],
+   "writes": [
+    "{game}/src/enemies/*/*.tres",
+    "{game}/assets/theme/*.tres",
+    "{game}/src/audio/music_table.gd",
+    "{game}/default_bus_layout.tres"
+   ],
+   "run": [
+    {
+     "skill": "godot-integrator",
+     "run": [
+      "scripts/tables.py",
+      "--project",
+      "{game}",
+      "--write"
+     ],
+     "why": "the enemy machines and the stats into their resources"
+    },
+    {
+     "skill": "godot-integrator",
+     "run": [
+      "scripts/frames.py",
+      "--project",
+      "{game}",
+      "--write"
+     ],
+     "why": "the clip tables onto the nodes that play them"
+    },
+    {
+     "skill": "godot-integrator",
+     "run": [
+      "scripts/theme.py",
+      "--project",
+      "{game}",
+      "--write"
+     ],
+     "why": "the theme table into the Theme and the font variations"
+    },
+    {
+     "skill": "godot-integrator",
+     "run": [
+      "scripts/audio.py",
+      "--project",
+      "{game}",
+      "--write"
+     ],
+     "why": "the bus layout from the table, every id the code plays checked"
+    },
+    {
+     "skill": "godot-integrator",
+     "run": [
+      "scripts/imports.py",
+      "--project",
+      "{game}",
+      "--fix"
+     ],
+     "why": "the import flags that keep pixels crisp"
+    }
+   ],
+   "check": [
+    {
+     "skill": "godot-integrator",
+     "run": [
+      "scripts/tables.py",
+      "--project",
+      "{game}"
+     ],
+     "why": "every table in the engine is what the contract says"
+    },
+    {
+     "skill": "godot-integrator",
+     "run": [
+      "scripts/frames.py",
+      "--project",
+      "{game}"
+     ],
+     "why": "every clip table on the node that plays it"
+    },
+    {
+     "skill": "godot-integrator",
+     "run": [
+      "scripts/audio.py",
+      "--project",
+      "{game}"
+     ],
+     "why": "every sound and music id the code plays has a file on the right bus"
+    },
+    {
+     "skill": "godot-integrator",
+     "run": [
+      "scripts/imports.py",
+      "--project",
+      "{game}"
+     ],
+     "why": "every import sidecar against the rules"
+    }
+   ],
+   "leaves": [
+    "{game}/tools/integrator_report.md"
+   ]
+  },
+  {
+   "id": "review",
+   "skill": "art-director",
+   "by": "agent",
+   "title": "every asset measured against the bible, the findings rolled up by cause",
+   "why": "A set made over weeks drifts, and the review is what says how, in numbers, before anyone plays it. Its own checker is its generator, so the chain does not re-run it as a check: the review is the evidence, and its findings go to the skill that owns the assets.",
+   "reads": [
+    "bible/art.json",
+    "@cast",
+    "@sets",
+    "@effects",
+    "@interface"
+   ],
+   "writes": [
+    "art/reviews/*/measure.json",
+    "art/reviews/*/report.md"
+   ],
+   "milestone": "M8"
+  },
+  {
+   "id": "play",
+   "skill": "autoplayer",
+   "by": "script",
+   "title": "the bot plays every room from every arrival door, headless, at fixed step",
+   "why": "It is the only step that finds out whether what the whole chain made can be played.",
+   "reads": [
+    "@integrate",
+    "@dress",
+    "runs/autoplayer.json"
+   ],
+   "writes": [
+    "runs/*/runs.json"
+   ],
+   "leaves": [
+    "runs/*/report.md",
+    "runs/*/heat/heat.md"
+   ],
+   "run": [
+    {
+     "skill": "autoplayer",
+     "run": [
+      "scripts/drive.py",
+      "--project",
+      "{project}"
+     ],
+     "why": "every room from every arrival door, three seeds, at fixed step"
+    }
+   ],
+   "check": [
+    {
+     "skill": "autoplayer",
+     "run": [
+      "scripts/report.py",
+      "--project",
+      "{project}",
+      "--strict"
+     ],
+     "why": "every exit the solver proved, taken by the bot in the engine"
+    }
+   ],
+   "milestone": "M7"
+  },
+  {
+   "id": "ship",
+   "skill": "shipper",
+   "by": "agent",
+   "title": "the gates, the tag, the export from it, the shots, the changelog and the page",
+   "why": "Last, and it refuses to run if the build has not been played since the game last changed.",
+   "reads": [
+    "@play",
+    "@plan",
+    "release/release.json"
+   ],
+   "writes": [
+    "dist/*/receipt.json"
+   ],
+   "leaves": [
+    "dist/*/report.md",
+    "dist/*/changelog.md"
+   ],
+   "check": [
+    {
+     "skill": "shipper",
+     "run": [
+      "scripts/preflight.py",
+      "--project",
+      "{project}"
+     ],
+     "why": "clean, committed, tests green, every milestone before this one, played since the last change"
+    }
+   ],
+   "milestone": "M9"
+  }
+ ]
+}
