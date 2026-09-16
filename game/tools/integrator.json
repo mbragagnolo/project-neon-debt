@@ -105,7 +105,8 @@
         { "regex": "Sfx\\.play\\(&\"([a-z_0-9]+)\"" },
         { "regex": "sfx_requested\\.emit\\(&\"([a-z_0-9]+)\"" },
         { "regex": "(?<![.\\w])play\\(&\"([a-z_0-9]+)\"", "only": "src/audio/sfx.gd" }
-      ]
+      ],
+      "variants": true
     },
     "music": {
       "dir": "assets/audio/music",

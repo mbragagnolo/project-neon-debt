@@ -1,11 +1,13 @@
-"""Every sound effect in the slice, as a recipe (docs/audio/direction.md).
+"""Every sound effect in Neon Debt, as a recipe (docs/audio/direction.md). The sound-designer's
+master.py renders these through the skill's synth, masters each to its class's loudness and writes
+game/assets/audio/sfx/<id>.wav; the table beside this file (sfx.json) says the class, the event and
+how many variations each one gets.
 
-    python tools/audio/make_sfx.py
-
-writes assets/audio/sfx/<name>.wav. The names are the ids `Sfx.play()` takes.
-Short, dry, a little crunchy: the game is pixel art and the sounds agree.
+Short, dry, a little crunchy: square and saw through a lowpass, noise bursts for impacts, a bit-crush
+on anything that dies. The ids are what `Sfx.play()` takes.
 """
 from synth import *  # noqa: F401,F403
+
 
 
 def click(dur=0.012, seed=3):
@@ -15,7 +17,7 @@ def click(dur=0.012, seed=3):
 # --- Movement ------------------------------------------------------------------------------
 
 def jump():
-    body = osc("square", sweep(260, 640, 0.14), 0.14) * adsr(0.14, 0.002, 0.04, 0.5, 0.06)
+    body = osc("square", sweep(jitter(260, 0.06), jitter(640, 0.06), 0.14), 0.14) * adsr(0.14, 0.002, 0.04, 0.5, 0.06)
     return mix(lowpass(body, 3000) * 0.5, click() * 0.4)
 
 
@@ -26,34 +28,34 @@ def wall_jump():
 
 
 def dash():
-    whoosh = bandpass(noise(0.2, 7), 600, 2800) * adsr(0.2, 0.01, 0.06, 0.4, 0.1)
-    tone = osc("sine", sweep(900, 250, 0.2), 0.2) * decay(0.2, 18)
-    return whoosh * 0.8 + tone * 0.3
+    whoosh = bandpass(noise(0.22, 7), 600, 2800) * adsr(0.22, 0.01, 0.06, 0.5, 0.1)
+    tone = osc("sine", sweep(900, 250, 0.22), 0.22) * decay(0.22, 14)
+    return lowpass(distort(whoosh * 0.8 + tone * 0.3, 2.5), 6000)
 
 
 def land():
-    thud = lowpass(noise(0.11, 9), 400) * decay(0.11, 40)
-    low = osc("sine", sweep(120, 55, 0.11), 0.11) * decay(0.11, 30)
-    return thud * 0.7 + low * 0.8
+    thud = lowpass(noise(0.14, 9), 400) * decay(0.14, 30)
+    low = osc("sine", sweep(jitter(120, 0.08), 55, 0.14), 0.14) * decay(0.14, 22)
+    return lowpass(distort(thud * 0.7 + low * 0.8, 3.0), 6000)
 
 
 def swing():
-    w = bandpass(noise(0.16, 11), 400, 3200) * adsr(0.16, 0.01, 0.05, 0.3, 0.08)
-    return lowpass_sweep(w, 4000, 800, 16) * 1.0
+    w = bandpass(noise(0.18, 11), 400, 3200) * adsr(0.18, 0.01, 0.06, 0.5, 0.09)
+    return lowpass(distort(lowpass_sweep(w, jitter(4000, 0.1), 800, 16), 3.0), 6000)
 
 
 def hazard():
     zap = osc("square", sweep(1400, 200, 0.22), 0.22) * decay(0.22, 14)
     splash = highpass(noise(0.25, 13), 1200) * decay(0.25, 12)
-    return mix(bitcrush(zap, 5) * 0.5, splash * 0.5)
+    return lowpass(mix(bitcrush(zap, 5) * 0.5, splash * 0.5), 8000)
 
 
 # --- Combat -------------------------------------------------------------------------------
 
 def hit():
     crack = highpass(noise(0.07, 17), 900) * decay(0.07, 70)
-    body = osc("square", sweep(320, 110, 0.09), 0.09) * decay(0.09, 40)
-    return distort(mix(crack * 0.8, body * 0.6), 3.0)
+    body = osc("square", sweep(jitter(320, 0.08), 110, 0.09), 0.09) * decay(0.09, 40)
+    return lowpass(distort(mix(crack * 0.8, body * 0.6), 5.0), 7000)
 
 
 def hit_heavy():
@@ -63,9 +65,9 @@ def hit_heavy():
 
 
 def hit_guard():
-    ring = osc("sine", 1800, 0.18) * decay(0.18, 25) + osc("sine", 2700, 0.18) * decay(0.18, 40) * 0.5
-    tick = click(0.01, 21)
-    return mix(ring * 0.6, tick)
+    ring = osc("sine", 1800, 0.18) * decay(0.18, 20) + osc("sine", 2700, 0.18) * decay(0.18, 30) * 0.5
+    tick = lowpass(noise(0.012, 21), 6000) * decay(0.012, 300)
+    return lowpass(distort(mix(ring * 0.6, tick * 0.5), 2.5), 8000)
 
 
 def shoot():
@@ -74,9 +76,9 @@ def shoot():
 
 
 def shoot_nail():
-    pop = lowpass(noise(0.06, 25), 2500) * decay(0.06, 90)
-    tone = osc("sine", sweep(700, 200, 0.06), 0.06) * decay(0.06, 60)
-    return pop * 0.8 + tone * 0.5
+    pop = lowpass(noise(0.07, 25), 2500) * decay(0.07, 60)
+    tone = osc("sine", sweep(700, 200, 0.07), 0.07) * decay(0.07, 40)
+    return lowpass(distort(pop * 0.8 + tone * 0.6, 4.0), 7000)
 
 
 def shoot_rivet():
@@ -87,7 +89,7 @@ def shoot_rivet():
 
 def drone_shot():
     zap = osc("saw", sweep(2600, 900, 0.09), 0.09) * decay(0.09, 40)
-    return lowpass(zap, 7000) * 0.6
+    return lowpass(distort(lowpass(zap, 7000) * 0.6, 2.0), 7000)
 
 
 def hurt():
@@ -112,7 +114,7 @@ def mech_die():
     crunch = lowpass(noise(0.45, 35), 2500) * decay(0.45, 9)
     spark = highpass(noise(0.4, 36), 4000) * tremolo(decay(0.4, 8), 40, 0.9)
     tone = osc("saw", sweep(300, 40, 0.5), 0.5) * decay(0.5, 7)
-    return bitcrush(distort(mix(crunch * 0.6, spark * 0.4, tone * 0.5), 2.5), 5)
+    return lowpass(bitcrush(distort(mix(crunch * 0.6, spark * 0.4, tone * 0.5), 2.5), 5), 9000)
 
 
 def tell():
@@ -121,8 +123,8 @@ def tell():
 
 
 def lunge():
-    w = bandpass(noise(0.18, 37), 500, 2500) * adsr(0.18, 0.005, 0.05, 0.4, 0.1)
-    return lowpass_sweep(w, 3500, 600, 12)
+    w = bandpass(noise(0.2, 37), 500, 2500) * adsr(0.2, 0.005, 0.06, 0.6, 0.1)
+    return lowpass(distort(lowpass_sweep(w, 3500, 600, 12), 3.0), 6000)
 
 
 def stun():
@@ -284,7 +286,7 @@ def buy():
 # --- UI ----------------------------------------------------------------------------------------
 
 def ui_move():
-    return lowpass(osc("square", 1100, 0.045), 5000) * decay(0.045, 60) * 0.3
+    return lowpass(distort(osc("square", 1100, 0.05), 2.0), 5000) * decay(0.05, 45) * 0.3
 
 
 def ui_confirm():
@@ -308,7 +310,7 @@ def ui_open():
 def ui_close():
     w = lowpass_sweep(noise(0.18, 58), 5000, 300, 12) * adsr(0.18, 0.01, 0.05, 0.6, 0.08)
     tone = osc("sine", sweep(1000, 450, 0.18), 0.18) * decay(0.18, 14)
-    return w * 0.35 + tone * 0.25
+    return lowpass(distort(w * 0.35 + tone * 0.25, 2.5), 6000)
 
 
 def toast():
@@ -342,6 +344,17 @@ SOUNDS = {
     "toast": toast, "text": text, "bark": bark, "title_start": title_start,
 }
 
-if __name__ == "__main__":
-    for name, recipe in SOUNDS.items():
-        write_wav(name, fade(recipe()), peak=0.85)
+
+# The loudness class per sound (audio/audio.json sfx.classes has the target per class). table.py reads
+# this once to seed sfx.json; after that the table is the truth.
+CLASSES = {
+    "move": ["jump", "wall_jump", "dash", "swing"],
+    "impact": ["land", "hazard", "hit", "hit_heavy", "hit_guard", "hurt", "slam"],
+    "shot": ["shoot", "shoot_nail", "shoot_rivet", "drone_shot"],
+    "death": ["die", "enemy_die", "mech_die"],
+    "enemy": ["tell", "lunge", "stun", "beam_charge", "beam_fire", "roar"],
+    "hack": ["hack_guard", "hack_burst", "hack_pulse", "deny", "hack_acquire"],
+    "stinger": ["pickup", "credits", "stat_up", "level_up", "quest", "save", "buy", "toast", "title_start"],
+    "world": ["door", "breach", "door_pass", "lift"],
+    "ui": ["ui_move", "ui_confirm", "ui_back", "ui_open", "ui_close", "text", "bark"],
+}

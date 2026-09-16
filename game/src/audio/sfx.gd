@@ -6,13 +6,16 @@ extends Node
 ## a small pitch wobble so repeats do not machine-gun, and a floor between
 ## two plays of the same id so ten hits in a frame are one sound.
 ##
-## The ids are the file names in assets/audio/sfx (tools/audio/make_sfx.py).
+## The ids are the file names in assets/audio/sfx (audio/sfx/recipes.py, rendered
+## by the sound-designer). A frequent sound has variations beside it (`hit.wav`,
+## `hit_2.wav`, `hit_3.wav`, as audio/sfx/sfx.json says) and a play picks one.
 
 const DIR := "res://assets/audio/sfx/"
 const POOL := 16
 const MIN_GAP_MS := 35
 
 var _streams: Dictionary = {}
+var _variants: Dictionary = {}
 var _players: Array[AudioStreamPlayer] = []
 var _last: Dictionary = {}
 var _next: int = 0
@@ -51,14 +54,30 @@ func has(id: StringName) -> bool:
 
 
 func _stream(id: StringName) -> AudioStream:
-	if _streams.has(id):
+	if not _streams.has(id):
+		var path: String = DIR + String(id) + ".wav"
+		var stream: AudioStream = load(path) if ResourceLoader.exists(path) else null
+		if stream == null:
+			push_warning("Sfx: no sound named '%s'" % id)
+		_streams[id] = stream
+		var variants: Array[AudioStream] = []
+		if stream != null:
+			variants.append(stream)
+			var k: int = 2
+			while ResourceLoader.exists(DIR + String(id) + "_%d.wav" % k):
+				variants.append(load(DIR + String(id) + "_%d.wav" % k))
+				k += 1
+		_variants[id] = variants
+	var pool: Array[AudioStream] = _variants[id]
+	if pool.size() <= 1:
 		return _streams[id]
-	var path: String = DIR + String(id) + ".wav"
-	var stream: AudioStream = load(path) if ResourceLoader.exists(path) else null
-	if stream == null:
-		push_warning("Sfx: no sound named '%s'" % id)
-	_streams[id] = stream
-	return stream
+	return pool[randi() % pool.size()]
+
+
+## How many files answer `id` (1 for a sound without variations, 0 for none).
+func variant_count(id: StringName) -> int:
+	_stream(id)
+	return (_variants[id] as Array).size()
 
 
 func _free_player() -> AudioStreamPlayer:

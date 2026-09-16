@@ -1,0 +1,41 @@
+{
+  "_doc": [
+    "The audio config for one project: <root>/audio/audio.json (the sound-designer copies this template there on the first run; the composer reads the same file). Paths are relative to the root.",
+    "game: the engine project folder. events: the bible's event table (bible/README.md), optional; every event with `sfx` true wants a sound named by its `sfx_id` (or its key with dots as underscores). beds: the music loops the sounds are auditioned over, as globs; empty when the project has no music yet.",
+    "buses: the gain each bus sits at in the engine's layout, so a sound's margin over a bed is measured where the player hears it. bus_default: the bus a sound goes to when the table does not say.",
+    "sfx.out: where the engine loads sound files from. sfx.recipes: the Python file whose SOUNDS registry maps a sound id to its recipe. sfx.ceiling_dbtp: no file peaks above this, true peak, whatever the class asks. sfx.margin_lu: a sound this far under a bed's level (at the buses) is a finding. sfx.trim_db: leading and trailing silence under this is cut. sfx.fade_in_s / fade_out_s: the ends after the trim.",
+    "sfx.classes: the loudness target per class, momentary max LUFS (reference/loudness.md: how the number is read and why these values). A sound's class is in the table (audio/sfx/sfx.json); `default` is the class of a sound the table does not classify."
+  ],
+  "game": "game",
+  "events": "bible/events.json",
+  "beds": [
+    "game/assets/audio/music/*.ogg"
+  ],
+  "buses": {
+    "Master": 0.0,
+    "Music": -4.0,
+    "SFX": 0.0
+  },
+  "bus_default": "SFX",
+  "sfx": {
+    "out": "game/assets/audio/sfx",
+    "recipes": "audio/sfx/recipes.py",
+    "ceiling_dbtp": -1.0,
+    "margin_lu": 3.0,
+    "trim_db": -60.0,
+    "fade_in_s": 0.005,
+    "fade_out_s": 0.02,
+    "classes": {
+      "default": -16.0,
+      "impact": -14.0,
+      "death": -12.0,
+      "enemy": -14.0,
+      "hack": -14.0,
+      "move": -17.0,
+      "shot": -16.0,
+      "world": -16.0,
+      "stinger": -15.0,
+      "ui": -17.0
+    }
+  }
+}

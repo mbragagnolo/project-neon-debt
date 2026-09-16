@@ -48,3 +48,14 @@ tables.py: 1 tables; 0 fail, 0 warn, 4 note, 1 written
 - NOTE enemies/player.json: no `source.tres` in player.json; not a EnemyConfig contract, skipped
 - wrote `src/enemies/boss_landlord/landlord.tscn`
 
+## 2026-09-15 20:22 audio.py --project F:/Projects/Coding Projects/project-neon-debt/game
+
+audio.py: 45 sound ids, 2 buses; 0 fail, 6 warn, 1 note, 0 written
+
+- WARN sfx: assets/audio/sfx/credits.wav is played by no line of code
+- WARN sfx: assets/audio/sfx/door.wav is played by no line of code
+- WARN sfx: assets/audio/sfx/enemy_die.wav is played by no line of code
+- WARN sfx: assets/audio/sfx/hit.wav is played by no line of code
+- WARN sfx: assets/audio/sfx/hit_2.wav is played by no line of code
+- WARN sfx: assets/audio/sfx/hit_3.wav is played by no line of code
+- NOTE music: the loop is set in src/audio/music.gd, not in the .import (loop=false there is right)
