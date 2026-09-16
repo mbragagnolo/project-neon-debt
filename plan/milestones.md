@@ -12,8 +12,8 @@ Rendered from `plan.json` and `log.md` by the producer skill's `plan.py`; edit t
 | M5 | The district | done |
 | M6 | Enemies and boss | done |
 | M7 | Slice polish | open (shipped 2026-09-06 but sign-off: "external playtesters run it start to finish without guidance" fails now) |
-| M8 | The look | blocked (needs ui-artist, art-director (stubs)) |
-| M9 | Go or no-go | blocked (needs shipper (a stub)) |
+| M8 | The look | open (1 of 7 checks fail) |
+| M9 | Go or no-go | open (4 of 4 checks fail) |
 
 ## M0: Skeleton
 
@@ -195,14 +195,16 @@ Rendered from `plan.json` and `log.md` by the producer skill's `plan.py`; edit t
 - [x] `game/src/ui/hud/hud.gd` exists
 - [x] `game/src/ui/title/title_screen.gd` exists
 - [x] `game/src/core/settings.gd` exists
-- [x] at least 40 of `game/assets/audio/sfx/*.wav`  (49 found)
-- [x] at least 5 of `game/assets/audio/music/*.ogg`  (5 found)
+- [x] at least 40 of `game/assets/audio/sfx/*.wav`  (63 found)
+- [x] at least 5 of `game/assets/audio/music/*.tres`  (5 found)
+- [x] at least 20 of `game/assets/audio/music/*/*.ogg`  (35 found)
 - [x] a commit matching `^feat\(m7\):`  (bf64f8f 2026-09-06)
 - [ ] sign-off: "external playtesters run it start to finish without guidance"  (no signoff row in log.md quotes it)
 
 **Log.**
 
 - 2026-09-06 shipped: art, audio, juice, title screen and settings (bf64f8f)
+- 2026-09-16 note: the music check was a stale glob, not a missing track: it looked for audio/music/*.ogg and the composer writes a folder per track with a stem per layer (5 tres and 35 stems were there all along; the check is now *.tres and */*.ogg)
 
 ## M8: The look
 
@@ -218,7 +220,7 @@ Rendered from `plan.json` and `log.md` by the producer skill's `plan.py`; edit t
 - [x] at least 9 of `game/assets/sprites/*.png`  (9 found)
 - [x] at least 9 of `game/tools/art/cast/*.json`  (9 found)
 - [x] `game/tools/art/sets/unit_14c.json` exists
-- [ ] at least 34 of `game/tools/stacks/*.dress.json`  (1 found)
+- [x] at least 34 of `game/tools/stacks/*.dress.json`  (34 found)
 - [x] at least 3 of `game/tools/art/vfx/*.json`  (3 found)
 - [ ] sign-off: "the district reads as one style at 1:1"  (no signoff row in log.md quotes it)
 
@@ -228,6 +230,7 @@ Rendered from `plan.json` and `log.md` by the producer skill's `plan.py`; edit t
 - 2026-09-07 note: pipeline v2 and seven character sheets: Dani, the Scav, the Elite, the drone, the Riot unit, the Landlord, Stitch and Marisol (2e981c1 to 9b1c445)
 - 2026-09-07 note: 14-C dressed at the figure's scale from its concept; the camera to 1.5x bounded to the air (142b790, 1de7375, 7915d35, cb45ade)
 - 2026-09-08 note: the vfx pass: spark.hit, dust.land and burst.die baked through the character bake, one shot per family (uncommitted in game/tools/art/vfx and game/assets/fx)
+- 2026-09-16 note: the district is lit from a vocabulary, 34 dress files; it still misses the budget and cannot meet it with light (the generic back planes are 0.0025-0.0103 median luma against back_unit_14c's 0.0297; lighting.md step 2 says a wall that stays black is painted too dark, and that is the environment-artist's)
 
 ## M9: Go or no-go
 
@@ -243,6 +246,10 @@ Rendered from `plan.json` and `log.md` by the producer skill's `plan.py`; edit t
 - [ ] sign-off: "a tester asks how do I get up there"  (no signoff row in log.md quotes it)
 - [ ] sign-off: "testers can say why they would pick melee, ranged or hacks"  (no signoff row in log.md quotes it)
 - [ ] sign-off: "someone asks when they can play more"  (no signoff row in log.md quotes it)
+
+**Log.**
+
+- 2026-09-16 note: the playtest build is made: v0.1.0, windows and linux, with a card and a page (f31759e; dist/0.1.0/receipt.json. Not in anybody's hands yet, so no shipped row)
 
 ## Across the plan
 
