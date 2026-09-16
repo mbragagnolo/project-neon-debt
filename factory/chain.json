@@ -4,7 +4,7 @@
   "This default is the whole crew on a 2D side-scroller in Godot, in the order the first project ran them. Cut the steps a project does not want (set \"off\": true, or delete them), change the paths, change the gates' phrases to whatever the producer's plan.json asks a person to sign off.",
   "name: the project, for the reports. timeout_s: the default cap on a check or a run, seconds.",
   "paths: what this project calls each place, relative to the project root. Every {token} in a read, a write, a leave or an argument is one of these; {project} is always the root. The defaults are the first project's: the engine folder under the repo, the studio folder inside it, the district's specs beside it.",
-  "sources: the files a person or the engine puts there that no step in the chain writes -- the pitch, the bible, each skill's own config. chain.py --check names any read that is neither a source nor some step's write, because that is usually a missing @step.",
+  "sources: the files a person or the engine puts there that no step in the chain writes -- the pitch, the bible, each skill's own config. A source is a path, or an object: path, and either `from` (the skill and the template file it is copied from) or `note` (why it has no template). `chain.py --sources` prints the checklist and `--sources --copy` fills in every missing one that has a template. chain.py --check names any read that is neither a source nor some step's write, because that is usually a missing @step.",
   "steps: in order. id is short and permanent (it lands in the ledger). skill is a kiln skill name. title is the sentence the factory hands that skill when the step comes up. why says why the step sits where it sits, for chain.md.",
   "by: agent means the skill is invoked by a person or an agent reading its SKILL.md -- the factory prints the brief and waits. by: script means the step is mechanical and the factory runs `run` itself: the two adapters, the integrator, the bot. A script step needs a run, which is a list of commands in the same shape as check, run in order and stopping at the first that fails; an agent step must not have one.",
   "reads: @other-step (everything that step writes, and the dependency), or a path or glob relative to the project. writes: the hand-off -- the files the steps after it read. leaves: what the step also produces (reports, run folders, boards) -- tracked as the step's own evidence, but not part of any hand-off, so a new dated run folder does not make everything downstream stale. not: patterns taken back out of the three above.",
@@ -22,28 +22,144 @@
   "rooms": "game/tools/stacks"
  },
  "sources": [
-  "DESIGN.md",
-  "bible/art.json",
-  "bible/events.json",
-  "bible/moods.json",
-  "feel/feel.json",
-  "feel/targets.csv",
-  "systems/players.csv",
-  "systems/targets.csv",
-  "systems/godot.json",
-  "narrative/narrative.json",
-  "ui/ui.json",
-  "audio/audio.json",
-  "audio/sfx/recipes.py",
-  "audio/music/instruments.py",
-  "audio/music/motifs.json",
-  "audio/music/tracks/*.json",
-  "release/release.json",
-  "runs/autoplayer.json",
-  "{rooms}/district.json",
-  "{game}/tools/integrator.json",
-  "{game}/src/player/*.tres",
-  "{game}/src/combat/*.tres"
+  {
+   "path": "DESIGN.md"
+  },
+  {
+   "path": "bible/art.json",
+   "from": {
+    "skill": "art-director",
+    "file": "templates/art.json"
+   }
+  },
+  {
+   "path": "bible/events.json",
+   "note": "every event the game fires, read off the code's signal map; sound-designer reference/events.md says which events want a sound"
+  },
+  {
+   "path": "bible/moods.json",
+   "note": "one mood per room style plus the title, and the states the engine raises; composer reference/adaptive.md says what a state may change"
+  },
+  {
+   "path": "feel/feel.json",
+   "from": {
+    "skill": "game-feel",
+    "file": "templates/feel.json"
+   }
+  },
+  {
+   "path": "feel/targets.csv",
+   "from": {
+    "skill": "game-feel",
+    "file": "templates/targets.csv"
+   }
+  },
+  {
+   "path": "systems/players.csv",
+   "from": {
+    "skill": "systems-designer",
+    "file": "templates/players.csv"
+   }
+  },
+  {
+   "path": "systems/targets.csv",
+   "from": {
+    "skill": "systems-designer",
+    "file": "templates/targets.csv"
+   }
+  },
+  {
+   "path": "systems/godot.json",
+   "from": {
+    "skill": "systems-designer",
+    "file": "templates/godot.json"
+   }
+  },
+  {
+   "path": "narrative/narrative.json",
+   "from": {
+    "skill": "narrative-designer",
+    "file": "templates/narrative.json"
+   }
+  },
+  {
+   "path": "ui/ui.json",
+   "from": {
+    "skill": "ui-artist",
+    "file": "templates/ui.json"
+   }
+  },
+  {
+   "path": "audio/audio.json",
+   "from": {
+    "skill": "sound-designer",
+    "file": "templates/audio.json"
+   }
+  },
+  {
+   "path": "audio/sfx/recipes.py",
+   "from": {
+    "skill": "sound-designer",
+    "file": "templates/recipes.py"
+   }
+  },
+  {
+   "path": "audio/music/instruments.py",
+   "from": {
+    "skill": "composer",
+    "file": "templates/instruments.py"
+   }
+  },
+  {
+   "path": "audio/music/motifs.json",
+   "from": {
+    "skill": "composer",
+    "file": "templates/motifs.json"
+   }
+  },
+  {
+   "path": "audio/music/tracks/*.json",
+   "from": {
+    "skill": "composer",
+    "file": "templates/track.json"
+   }
+  },
+  {
+   "path": "release/release.json",
+   "from": {
+    "skill": "shipper",
+    "file": "templates/release.json"
+   }
+  },
+  {
+   "path": "runs/autoplayer.json",
+   "from": {
+    "skill": "autoplayer",
+    "file": "templates/autoplayer.json"
+   }
+  },
+  {
+   "path": "{rooms}/district.json",
+   "from": {
+    "skill": "level-designer",
+    "file": "templates/district.json"
+   }
+  },
+  {
+   "path": "{game}/tools/integrator.json",
+   "from": {
+    "skill": "godot-integrator",
+    "file": "templates/integrator.json"
+   }
+  },
+  {
+   "path": "{game}/src/player/*.tres",
+   "note": "the engine's own: the controller's knobs, from the skeleton the chain does not build"
+  },
+  {
+   "path": "{game}/src/combat/*.tres",
+   "note": "the engine's own: the combat config, from the skeleton"
+  }
  ],
  "steps": [
   {
