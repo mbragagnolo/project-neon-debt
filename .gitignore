@@ -33,3 +33,7 @@ runs/work/
 # game-feel (kiln): the harness samples and scratch
 feel/work/
 feel/runs/*/samples*.jsonl
+
+# composer (kiln): the full mixes are the sound-designer's beds, rebuilt by render.py; the engine plays the stems
+audio/music/mix/
+audio/music/work/

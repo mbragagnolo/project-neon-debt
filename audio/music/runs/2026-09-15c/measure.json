@@ -1,0 +1,910 @@
+{
+ "date": "2026-09-15c",
+ "written": "2026-09-15T23:39:32",
+ "ceiling_dbtp": -1.0,
+ "classes": {
+  "default": -20.0,
+  "bed": -20.0,
+  "fight": -17.0,
+  "title": -19.0
+ },
+ "buses": {
+  "Master": 0.0,
+  "Music": -4.0,
+  "SFX": 0.0
+ },
+ "findings": [],
+ "tracks": [
+  {
+   "name": "boss",
+   "class": "fight",
+   "target": -17.0,
+   "tempo": 128.0,
+   "bars": 16,
+   "beats_per_bar": 4,
+   "seconds": 30.0,
+   "n": 1323000,
+   "gain_db": -0.34,
+   "limited_db": 0.0,
+   "raw_lufs": -16.66,
+   "lufs_full": -17.0,
+   "lufs_base": -28.75,
+   "lufs_momentary_max": -13.78,
+   "true_peak_dbtp": -1.28,
+   "at_bus_full": -21.0,
+   "at_bus_base": -32.75,
+   "mix_file": "audio/music/mix/boss.ogg",
+   "mix_seam": {
+    "step_dbfs": -19.74,
+    "step_ratio": 0.77,
+    "click_db": -2.04,
+    "ok": true
+   },
+   "states": {
+    "fight": {
+     "layers": [
+      "kick",
+      "snare",
+      "hats",
+      "bass",
+      "stabs",
+      "riser"
+     ],
+     "lufs": -18.04,
+     "at_bus": -22.04,
+     "over_base_lu": 10.71
+    },
+    "phase2": {
+     "layers": [
+      "lead"
+     ],
+     "lufs": -22.63,
+     "at_bus": -26.63,
+     "over_base_lu": 6.12
+    },
+    "low": {
+     "layers": [
+      "heart"
+     ],
+     "lufs": -26.14,
+     "at_bus": -30.14,
+     "over_base_lu": 2.61
+    }
+   },
+   "layers": [
+    {
+     "id": "drone",
+     "state": "base",
+     "kind": "texture",
+     "db": -18.0,
+     "file": "game/assets/audio/music/boss/drone.ogg",
+     "lufs": -28.76,
+     "true_peak_dbtp": -16.2,
+     "peak_dbfs": -16.21,
+     "seam": {
+      "step_dbfs": -67.45,
+      "step_ratio": 0.13,
+      "click_db": -11.72,
+      "ok": true
+     },
+     "decoded_n": 1323000,
+     "length_ok": true,
+     "sha1": "e2d742d6a8a8"
+    },
+    {
+     "id": "tick",
+     "state": "base",
+     "kind": "pattern",
+     "db": -26.0,
+     "file": "game/assets/audio/music/boss/tick.ogg",
+     "lufs": -55.15,
+     "true_peak_dbtp": -29.58,
+     "peak_dbfs": -29.59,
+     "seam": {
+      "step_dbfs": -62.2,
+      "step_ratio": 0.07,
+      "click_db": -0.79,
+      "ok": true
+     },
+     "decoded_n": 1323000,
+     "length_ok": true,
+     "sha1": "1a4fa05ebe28"
+    },
+    {
+     "id": "kick",
+     "state": "fight",
+     "kind": "pattern",
+     "db": -6.0,
+     "file": "game/assets/audio/music/boss/kick.ogg",
+     "lufs": -21.31,
+     "true_peak_dbtp": -6.86,
+     "peak_dbfs": -6.86,
+     "seam": {
+      "step_dbfs": -19.29,
+      "step_ratio": 0.95,
+      "click_db": -0.71,
+      "ok": true
+     },
+     "decoded_n": 1323000,
+     "length_ok": true,
+     "sha1": "15c64f3fa2ff"
+    },
+    {
+     "id": "snare",
+     "state": "fight",
+     "kind": "pattern",
+     "db": -12.0,
+     "file": "game/assets/audio/music/boss/snare.ogg",
+     "lufs": -33.19,
+     "true_peak_dbtp": -14.23,
+     "peak_dbfs": -14.27,
+     "seam": {
+      "step_dbfs": -61.94,
+      "step_ratio": 0.03,
+      "click_db": -22.11,
+      "ok": true
+     },
+     "decoded_n": 1323000,
+     "length_ok": true,
+     "sha1": "c4eb4f1a84ac"
+    },
+    {
+     "id": "hats",
+     "state": "fight",
+     "kind": "pattern",
+     "db": -20.0,
+     "file": "game/assets/audio/music/boss/hats.ogg",
+     "lufs": -39.43,
+     "true_peak_dbtp": -18.53,
+     "peak_dbfs": -20.16,
+     "seam": {
+      "step_dbfs": -35.62,
+      "step_ratio": 0.24,
+      "click_db": -1.88,
+      "ok": true
+     },
+     "decoded_n": 1323000,
+     "length_ok": true,
+     "sha1": "2f2aef798ce1"
+    },
+    {
+     "id": "bass",
+     "state": "fight",
+     "kind": "pattern",
+     "db": -9.0,
+     "file": "game/assets/audio/music/boss/bass.ogg",
+     "lufs": -21.89,
+     "true_peak_dbtp": -12.15,
+     "peak_dbfs": -12.16,
+     "seam": {
+      "step_dbfs": -52.06,
+      "step_ratio": 0.09,
+      "click_db": -23.04,
+      "ok": true
+     },
+     "decoded_n": 1323000,
+     "length_ok": true,
+     "sha1": "5dc5a5a3010c"
+    },
+    {
+     "id": "stabs",
+     "state": "fight",
+     "kind": "pattern",
+     "db": -14.0,
+     "file": "game/assets/audio/music/boss/stabs.ogg",
+     "lufs": -34.39,
+     "true_peak_dbtp": -13.42,
+     "peak_dbfs": -13.43,
+     "seam": {
+      "step_dbfs": -71.62,
+      "step_ratio": 0.03,
+      "click_db": -36.24,
+      "ok": true
+     },
+     "decoded_n": 1323000,
+     "length_ok": true,
+     "sha1": "b5ad146338c9"
+    },
+    {
+     "id": "riser",
+     "state": "fight",
+     "kind": "pattern",
+     "db": -18.0,
+     "file": "game/assets/audio/music/boss/riser.ogg",
+     "lufs": -29.97,
+     "true_peak_dbtp": -18.19,
+     "peak_dbfs": -18.29,
+     "seam": {
+      "step_dbfs": -54.42,
+      "step_ratio": 0.07,
+      "click_db": -20.86,
+      "ok": true
+     },
+     "decoded_n": 1323000,
+     "length_ok": true,
+     "sha1": "4b9f5e9191bf"
+    },
+    {
+     "id": "lead",
+     "state": "phase2",
+     "kind": "pattern",
+     "db": -17.0,
+     "file": "game/assets/audio/music/boss/lead.ogg",
+     "lufs": -18.86,
+     "true_peak_dbtp": -9.72,
+     "peak_dbfs": -9.73,
+     "seam": {
+      "step_dbfs": null,
+      "step_ratio": 0.0,
+      "click_db": null,
+      "ok": true
+     },
+     "decoded_n": 1323000,
+     "length_ok": true,
+     "sha1": "ea5c4f99985d"
+    },
+    {
+     "id": "heart",
+     "state": "low",
+     "kind": "pattern",
+     "db": -9.0,
+     "file": "game/assets/audio/music/boss/heart.ogg",
+     "lufs": -27.89,
+     "true_peak_dbtp": -12.99,
+     "peak_dbfs": -12.99,
+     "seam": {
+      "step_dbfs": -78.19,
+      "step_ratio": 0.06,
+      "click_db": -0.85,
+      "ok": true
+     },
+     "decoded_n": 1323000,
+     "length_ok": true,
+     "sha1": "1b855c25a093"
+    }
+   ]
+  },
+  {
+   "name": "gut",
+   "class": "bed",
+   "target": -20.0,
+   "tempo": 60.0,
+   "bars": 8,
+   "beats_per_bar": 4,
+   "seconds": 32.0,
+   "n": 1411200,
+   "gain_db": 0.56,
+   "limited_db": 0.0,
+   "raw_lufs": -20.56,
+   "lufs_full": -20.0,
+   "lufs_base": -21.07,
+   "lufs_momentary_max": -14.4,
+   "true_peak_dbtp": -4.08,
+   "at_bus_full": -24.0,
+   "at_bus_base": -25.07,
+   "mix_file": "audio/music/mix/gut.ogg",
+   "mix_seam": {
+    "step_dbfs": -46.41,
+    "step_ratio": 0.09,
+    "click_db": -40.44,
+    "ok": true
+   },
+   "states": {
+    "combat": {
+     "layers": [
+      "hammer"
+     ],
+     "lufs": -20.35,
+     "at_bus": -24.35,
+     "over_base_lu": 0.72
+    },
+    "low": {
+     "layers": [
+      "heart"
+     ],
+     "lufs": -20.66,
+     "at_bus": -24.66,
+     "over_base_lu": 0.41
+    }
+   },
+   "layers": [
+    {
+     "id": "drone",
+     "state": "base",
+     "kind": "texture",
+     "db": -11.0,
+     "file": "game/assets/audio/music/gut/drone.ogg",
+     "lufs": -21.67,
+     "true_peak_dbtp": -7.52,
+     "peak_dbfs": -7.52,
+     "seam": {
+      "step_dbfs": -66.62,
+      "step_ratio": 0.07,
+      "click_db": -11.06,
+      "ok": true
+     },
+     "decoded_n": 1411200,
+     "length_ok": true,
+     "sha1": "38bd8ea5f443"
+    },
+    {
+     "id": "pad",
+     "state": "base",
+     "kind": "texture",
+     "db": -20.0,
+     "file": "game/assets/audio/music/gut/pad.ogg",
+     "lufs": -34.97,
+     "true_peak_dbtp": -19.88,
+     "peak_dbfs": -19.88,
+     "seam": {
+      "step_dbfs": -74.8,
+      "step_ratio": 0.07,
+      "click_db": -12.44,
+      "ok": true
+     },
+     "decoded_n": 1411200,
+     "length_ok": true,
+     "sha1": "008c4af61c16"
+    },
+    {
+     "id": "throb",
+     "state": "base",
+     "kind": "pattern",
+     "db": -13.0,
+     "file": "game/assets/audio/music/gut/throb.ogg",
+     "lufs": -30.77,
+     "true_peak_dbtp": -15.74,
+     "peak_dbfs": -15.75,
+     "seam": {
+      "step_dbfs": -58.25,
+      "step_ratio": 0.96,
+      "click_db": 0.36,
+      "ok": true
+     },
+     "decoded_n": 1411200,
+     "length_ok": true,
+     "sha1": "824e7a666a20"
+    },
+    {
+     "id": "steam",
+     "state": "base",
+     "kind": "pattern",
+     "db": -27.0,
+     "file": "game/assets/audio/music/gut/steam.ogg",
+     "lufs": -33.32,
+     "true_peak_dbtp": -23.22,
+     "peak_dbfs": -23.45,
+     "seam": {
+      "step_dbfs": null,
+      "step_ratio": 0.0,
+      "click_db": null,
+      "ok": true
+     },
+     "decoded_n": 1411200,
+     "length_ok": true,
+     "sha1": "9d20104603a2"
+    },
+    {
+     "id": "clanks",
+     "state": "base",
+     "kind": "scatter",
+     "db": -24.0,
+     "file": "game/assets/audio/music/gut/clanks.ogg",
+     "lufs": -41.58,
+     "true_peak_dbtp": -23.81,
+     "peak_dbfs": -23.83,
+     "seam": {
+      "step_dbfs": null,
+      "step_ratio": 0.0,
+      "click_db": null,
+      "ok": true
+     },
+     "decoded_n": 1411200,
+     "length_ok": true,
+     "sha1": "3c71d0999fa5"
+    },
+    {
+     "id": "hammer",
+     "state": "combat",
+     "kind": "pattern",
+     "db": -11.0,
+     "file": "game/assets/audio/music/gut/hammer.ogg",
+     "lufs": -21.7,
+     "true_peak_dbtp": -12.99,
+     "peak_dbfs": -13.01,
+     "seam": {
+      "step_dbfs": null,
+      "step_ratio": 0.0,
+      "click_db": null,
+      "ok": true
+     },
+     "decoded_n": 1411200,
+     "length_ok": true,
+     "sha1": "94fae11fb603"
+    },
+    {
+     "id": "heart",
+     "state": "low",
+     "kind": "pattern",
+     "db": -9.0,
+     "file": "game/assets/audio/music/gut/heart.ogg",
+     "lufs": -26.82,
+     "true_peak_dbtp": -12.09,
+     "peak_dbfs": -12.09,
+     "seam": {
+      "step_dbfs": -66.28,
+      "step_ratio": 0.23,
+      "click_db": -0.68,
+      "ok": true
+     },
+     "decoded_n": 1411200,
+     "length_ok": true,
+     "sha1": "43af6bfeef52"
+    }
+   ]
+  },
+  {
+   "name": "roof",
+   "class": "bed",
+   "target": -20.0,
+   "tempo": 64.0,
+   "bars": 8,
+   "beats_per_bar": 4,
+   "seconds": 30.0,
+   "n": 1323000,
+   "gain_db": 7.11,
+   "limited_db": 0.0,
+   "raw_lufs": -27.11,
+   "lufs_full": -20.0,
+   "lufs_base": -23.78,
+   "lufs_momentary_max": -15.96,
+   "true_peak_dbtp": -1.35,
+   "at_bus_full": -24.0,
+   "at_bus_base": -27.78,
+   "mix_file": "audio/music/mix/roof.ogg",
+   "mix_seam": {
+    "step_dbfs": -42.5,
+    "step_ratio": 0.15,
+    "click_db": -17.49,
+    "ok": true
+   },
+   "states": {
+    "combat": {
+     "layers": [
+      "drive"
+     ],
+     "lufs": -21.62,
+     "at_bus": -25.62,
+     "over_base_lu": 2.16
+    },
+    "low": {
+     "layers": [
+      "heart"
+     ],
+     "lufs": -21.46,
+     "at_bus": -25.46,
+     "over_base_lu": 2.32
+    }
+   },
+   "layers": [
+    {
+     "id": "wind",
+     "state": "base",
+     "kind": "texture",
+     "db": -20.0,
+     "file": "game/assets/audio/music/roof/wind.ogg",
+     "lufs": -36.07,
+     "true_peak_dbtp": -20.82,
+     "peak_dbfs": -20.82,
+     "seam": {
+      "step_dbfs": -62.5,
+      "step_ratio": 0.34,
+      "click_db": -1.93,
+      "ok": true
+     },
+     "decoded_n": 1323000,
+     "length_ok": true,
+     "sha1": "9e97bc6a38a5"
+    },
+    {
+     "id": "pad",
+     "state": "base",
+     "kind": "texture",
+     "db": -16.0,
+     "file": "game/assets/audio/music/roof/pad.ogg",
+     "lufs": -24.93,
+     "true_peak_dbtp": -11.46,
+     "peak_dbfs": -11.47,
+     "seam": {
+      "step_dbfs": -44.77,
+      "step_ratio": 0.44,
+      "click_db": -7.14,
+      "ok": true
+     },
+     "decoded_n": 1323000,
+     "length_ok": true,
+     "sha1": "69a4d3e9bec8"
+    },
+    {
+     "id": "bells",
+     "state": "base",
+     "kind": "scatter",
+     "db": -22.0,
+     "file": "game/assets/audio/music/roof/bells.ogg",
+     "lufs": -25.33,
+     "true_peak_dbtp": -13.04,
+     "peak_dbfs": -13.07,
+     "seam": {
+      "step_dbfs": -52.62,
+      "step_ratio": 0.08,
+      "click_db": -31.58,
+      "ok": true
+     },
+     "decoded_n": 1323000,
+     "length_ok": true,
+     "sha1": "954e012ad967"
+    },
+    {
+     "id": "siren",
+     "state": "base",
+     "kind": "pattern",
+     "db": -36.0,
+     "file": "game/assets/audio/music/roof/siren.ogg",
+     "lufs": -37.25,
+     "true_peak_dbtp": -29.04,
+     "peak_dbfs": -29.05,
+     "seam": {
+      "step_dbfs": null,
+      "step_ratio": 0.0,
+      "click_db": null,
+      "ok": true
+     },
+     "decoded_n": 1323000,
+     "length_ok": true,
+     "sha1": "f60df71672ea"
+    },
+    {
+     "id": "drive",
+     "state": "combat",
+     "kind": "pattern",
+     "db": -15.0,
+     "file": "game/assets/audio/music/roof/drive.ogg",
+     "lufs": -25.56,
+     "true_peak_dbtp": -11.06,
+     "peak_dbfs": -11.08,
+     "seam": {
+      "step_dbfs": -67.72,
+      "step_ratio": 0.01,
+      "click_db": -30.93,
+      "ok": true
+     },
+     "decoded_n": 1323000,
+     "length_ok": true,
+     "sha1": "cece23236341"
+    },
+    {
+     "id": "heart",
+     "state": "low",
+     "kind": "pattern",
+     "db": -9.0,
+     "file": "game/assets/audio/music/roof/heart.ogg",
+     "lufs": -20.46,
+     "true_peak_dbtp": -5.54,
+     "peak_dbfs": -5.54,
+     "seam": {
+      "step_dbfs": -58.29,
+      "step_ratio": 0.27,
+      "click_db": -1.16,
+      "ok": true
+     },
+     "decoded_n": 1323000,
+     "length_ok": true,
+     "sha1": "4ced7140bec8"
+    }
+   ]
+  },
+  {
+   "name": "stacks",
+   "class": "bed",
+   "target": -20.0,
+   "tempo": 68.0,
+   "bars": 8,
+   "beats_per_bar": 4,
+   "seconds": 28.235294,
+   "n": 1245176,
+   "gain_db": 1.4,
+   "limited_db": 0.0,
+   "raw_lufs": -21.4,
+   "lufs_full": -20.0,
+   "lufs_base": -23.5,
+   "lufs_momentary_max": -15.56,
+   "true_peak_dbtp": -2.25,
+   "at_bus_full": -24.0,
+   "at_bus_base": -27.5,
+   "mix_file": "audio/music/mix/stacks.ogg",
+   "mix_seam": {
+    "step_dbfs": -48.03,
+    "step_ratio": 0.22,
+    "click_db": -21.9,
+    "ok": true
+   },
+   "states": {
+    "combat": {
+     "layers": [
+      "pulse"
+     ],
+     "lufs": -20.94,
+     "at_bus": -24.94,
+     "over_base_lu": 2.56
+    },
+    "low": {
+     "layers": [
+      "heart"
+     ],
+     "lufs": -22.11,
+     "at_bus": -26.11,
+     "over_base_lu": 1.39
+    }
+   },
+   "layers": [
+    {
+     "id": "pad",
+     "state": "base",
+     "kind": "texture",
+     "db": -13.0,
+     "file": "game/assets/audio/music/stacks/pad.ogg",
+     "lufs": -27.82,
+     "true_peak_dbtp": -11.9,
+     "peak_dbfs": -11.91,
+     "seam": {
+      "step_dbfs": -63.91,
+      "step_ratio": 0.09,
+      "click_db": -9.68,
+      "ok": true
+     },
+     "decoded_n": 1245176,
+     "length_ok": true,
+     "sha1": "2803c195cdf9"
+    },
+    {
+     "id": "rain",
+     "state": "base",
+     "kind": "texture",
+     "db": -30.0,
+     "file": "game/assets/audio/music/stacks/rain.ogg",
+     "lufs": -46.25,
+     "true_peak_dbtp": -37.43,
+     "peak_dbfs": -37.47,
+     "seam": {
+      "step_dbfs": -60.57,
+      "step_ratio": 0.43,
+      "click_db": -2.62,
+      "ok": true
+     },
+     "decoded_n": 1245176,
+     "length_ok": true,
+     "sha1": "dfbbe6244aa3"
+    },
+    {
+     "id": "hum",
+     "state": "base",
+     "kind": "texture",
+     "db": -24.0,
+     "file": "game/assets/audio/music/stacks/hum.ogg",
+     "lufs": -30.82,
+     "true_peak_dbtp": -23.84,
+     "peak_dbfs": -23.84,
+     "seam": {
+      "step_dbfs": -59.33,
+      "step_ratio": 1.57,
+      "click_db": 2.85,
+      "ok": true
+     },
+     "decoded_n": 1245176,
+     "length_ok": true,
+     "sha1": "17425caab4fc"
+    },
+    {
+     "id": "sub",
+     "state": "base",
+     "kind": "pattern",
+     "db": -12.0,
+     "file": "game/assets/audio/music/stacks/sub.ogg",
+     "lufs": -24.95,
+     "true_peak_dbtp": -13.71,
+     "peak_dbfs": -13.72,
+     "seam": {
+      "step_dbfs": -48.58,
+      "step_ratio": 2.13,
+      "click_db": -3.25,
+      "ok": true
+     },
+     "decoded_n": 1245176,
+     "length_ok": true,
+     "sha1": "4d0dd2111557"
+    },
+    {
+     "id": "thump",
+     "state": "base",
+     "kind": "pattern",
+     "db": -16.0,
+     "file": "game/assets/audio/music/stacks/thump.ogg",
+     "lufs": -48.76,
+     "true_peak_dbtp": -31.75,
+     "peak_dbfs": -31.76,
+     "seam": {
+      "step_dbfs": -94.76,
+      "step_ratio": 0.05,
+      "click_db": -29.93,
+      "ok": true
+     },
+     "decoded_n": 1245176,
+     "length_ok": true,
+     "sha1": "fe7a5cf3d9b4"
+    },
+    {
+     "id": "blips",
+     "state": "base",
+     "kind": "scatter",
+     "db": -21.0,
+     "file": "game/assets/audio/music/stacks/blips.ogg",
+     "lufs": -33.63,
+     "true_peak_dbtp": -19.9,
+     "peak_dbfs": -19.92,
+     "seam": {
+      "step_dbfs": -72.27,
+      "step_ratio": 0.02,
+      "click_db": -33.62,
+      "ok": true
+     },
+     "decoded_n": 1245176,
+     "length_ok": true,
+     "sha1": "f0e0e5be6544"
+    },
+    {
+     "id": "pulse",
+     "state": "combat",
+     "kind": "pattern",
+     "db": -12.0,
+     "file": "game/assets/audio/music/stacks/pulse.ogg",
+     "lufs": -23.35,
+     "true_peak_dbtp": -13.45,
+     "peak_dbfs": -13.46,
+     "seam": {
+      "step_dbfs": -78.06,
+      "step_ratio": 0.01,
+      "click_db": -27.66,
+      "ok": true
+     },
+     "decoded_n": 1245176,
+     "length_ok": true,
+     "sha1": "28bea6837066"
+    },
+    {
+     "id": "heart",
+     "state": "low",
+     "kind": "pattern",
+     "db": -9.0,
+     "file": "game/assets/audio/music/stacks/heart.ogg",
+     "lufs": -26.17,
+     "true_peak_dbtp": -11.25,
+     "peak_dbfs": -11.25,
+     "seam": {
+      "step_dbfs": -64.17,
+      "step_ratio": 0.26,
+      "click_db": -0.01,
+      "ok": true
+     },
+     "decoded_n": 1245176,
+     "length_ok": true,
+     "sha1": "550ac4b1c55e"
+    }
+   ]
+  },
+  {
+   "name": "title",
+   "class": "title",
+   "target": -19.0,
+   "tempo": 60.0,
+   "bars": 8,
+   "beats_per_bar": 4,
+   "seconds": 32.0,
+   "n": 1411200,
+   "gain_db": 7.33,
+   "limited_db": 0.0,
+   "raw_lufs": -26.33,
+   "lufs_full": -19.0,
+   "lufs_base": -19.0,
+   "lufs_momentary_max": -13.49,
+   "true_peak_dbtp": -3.32,
+   "at_bus_full": -23.0,
+   "at_bus_base": -23.0,
+   "mix_file": "audio/music/mix/title.ogg",
+   "mix_seam": {
+    "step_dbfs": -68.69,
+    "step_ratio": 0.02,
+    "click_db": -1.49,
+    "ok": true
+   },
+   "states": {},
+   "layers": [
+    {
+     "id": "pad",
+     "state": "base",
+     "kind": "texture",
+     "db": -13.0,
+     "file": "game/assets/audio/music/title/pad.ogg",
+     "lufs": -21.12,
+     "true_peak_dbtp": -3.4,
+     "peak_dbfs": -3.4,
+     "seam": {
+      "step_dbfs": -63.02,
+      "step_ratio": 0.05,
+      "click_db": -10.77,
+      "ok": true
+     },
+     "decoded_n": 1411200,
+     "length_ok": true,
+     "sha1": "ca2634a4fb07"
+    },
+    {
+     "id": "rain",
+     "state": "base",
+     "kind": "texture",
+     "db": -32.0,
+     "file": "game/assets/audio/music/title/rain.ogg",
+     "lufs": -43.91,
+     "true_peak_dbtp": -34.25,
+     "peak_dbfs": -34.26,
+     "seam": {
+      "step_dbfs": -57.2,
+      "step_ratio": 0.56,
+      "click_db": -2.39,
+      "ok": true
+     },
+     "decoded_n": 1411200,
+     "length_ok": true,
+     "sha1": "6453c146de53"
+    },
+    {
+     "id": "theme",
+     "state": "base",
+     "kind": "pattern",
+     "db": -19.0,
+     "file": "game/assets/audio/music/title/theme.ogg",
+     "lufs": -24.63,
+     "true_peak_dbtp": -13.61,
+     "peak_dbfs": -13.61,
+     "seam": {
+      "step_dbfs": -38.11,
+      "step_ratio": 0.9,
+      "click_db": -2.07,
+      "ok": true
+     },
+     "decoded_n": 1411200,
+     "length_ok": true,
+     "sha1": "0404cbc82014"
+    },
+    {
+     "id": "sub",
+     "state": "base",
+     "kind": "pattern",
+     "db": -13.0,
+     "file": "game/assets/audio/music/title/sub.ogg",
+     "lufs": -19.85,
+     "true_peak_dbtp": -8.76,
+     "peak_dbfs": -8.77,
+     "seam": {
+      "step_dbfs": -57.0,
+      "step_ratio": 0.47,
+      "click_db": -0.18,
+      "ok": true
+     },
+     "decoded_n": 1411200,
+     "length_ok": true,
+     "sha1": "92235f085cb7"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,138 @@
+{
+  "_doc": "The pump hall: low throb, metal, steam. D, with a tritone in the pad. The composer's templates/track.json explains every key.",
+  "class": "bed",
+  "tempo": 60,
+  "bars": 8,
+  "beats_per_bar": 4,
+  "key": "D",
+  "layers": [
+    {
+      "id": "drone",
+      "state": "base",
+      "db": -11,
+      "kind": "texture",
+      "instrument": "drone",
+      "fold_s": 2.0,
+      "args": {
+        "notes": [
+          "D1",
+          "D2"
+        ],
+        "gains": [
+          1.0,
+          0.6
+        ],
+        "cutoff": 180,
+        "spread": 0.006
+      }
+    },
+    {
+      "id": "pad",
+      "state": "base",
+      "db": -20,
+      "kind": "texture",
+      "instrument": "pad",
+      "fold_s": 2.0,
+      "args": {
+        "chord": [
+          "D3",
+          "G#3",
+          "D4"
+        ],
+        "cutoff": [
+          250,
+          500
+        ],
+        "lfo_hz": 0.05,
+        "seed": 2
+      }
+    },
+    {
+      "id": "throb",
+      "state": "base",
+      "db": -13,
+      "kind": "pattern",
+      "instrument": "sub",
+      "steps": 4,
+      "bars": [
+        "G1 G1@-5 G1 G1@-5"
+      ],
+      "gate": 0.5,
+      "args": {
+        "fall": 3,
+        "k": 8
+      }
+    },
+    {
+      "id": "steam",
+      "state": "base",
+      "db": -27,
+      "kind": "pattern",
+      "instrument": "hiss",
+      "steps": 8,
+      "bars": [
+        ". . . . . . . .",
+        ". . . x . . . .",
+        ". . . . . . . .",
+        ". . . x . . . ."
+      ],
+      "gate": 3.2,
+      "pan": [
+        0.5,
+        -0.5
+      ],
+      "args": {
+        "seed": 20
+      }
+    },
+    {
+      "id": "clanks",
+      "state": "base",
+      "db": -24,
+      "kind": "scatter",
+      "instrument": "clank",
+      "count": 12,
+      "scale": [
+        "A5",
+        "C6",
+        "E6",
+        "G6",
+        "B6",
+        "D7",
+        "E7"
+      ],
+      "seed": 23,
+      "pan": 0.8,
+      "args": {
+        "seed": 30
+      }
+    },
+    {
+      "id": "hammer",
+      "state": "combat",
+      "db": -11,
+      "kind": "pattern",
+      "instrument": "hammer",
+      "steps": 4,
+      "bars": [
+        ". x . x"
+      ],
+      "gate": 0.6,
+      "args": {
+        "seed": 50
+      }
+    },
+    {
+      "id": "heart",
+      "state": "low",
+      "db": -9,
+      "kind": "pattern",
+      "instrument": "heartbeat",
+      "steps": 4,
+      "bars": [
+        "x . x ."
+      ],
+      "gate": 1.0
+    }
+  ]
+}

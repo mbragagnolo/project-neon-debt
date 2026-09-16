@@ -1,0 +1,29 @@
+[gd_resource type="AudioStreamSynchronized" load_steps=9 format=3]
+
+[ext_resource type="AudioStream" path="res://assets/audio/music/stacks/pad.ogg" id="1_pad"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/stacks/rain.ogg" id="2_rain"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/stacks/hum.ogg" id="3_hum"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/stacks/sub.ogg" id="4_sub"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/stacks/thump.ogg" id="5_thump"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/stacks/blips.ogg" id="6_blips"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/stacks/pulse.ogg" id="7_pulse"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/stacks/heart.ogg" id="8_heart"]
+
+[resource]
+stream_count = 8
+stream_0/stream = ExtResource("1_pad")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("2_rain")
+stream_1/volume = 0.0
+stream_2/stream = ExtResource("3_hum")
+stream_2/volume = 0.0
+stream_3/stream = ExtResource("4_sub")
+stream_3/volume = 0.0
+stream_4/stream = ExtResource("5_thump")
+stream_4/volume = 0.0
+stream_5/stream = ExtResource("6_blips")
+stream_5/volume = 0.0
+stream_6/stream = ExtResource("7_pulse")
+stream_6/volume = -60.0
+stream_7/stream = ExtResource("8_heart")
+stream_7/volume = -60.0

@@ -1,0 +1,17 @@
+[gd_resource type="AudioStreamSynchronized" load_steps=5 format=3]
+
+[ext_resource type="AudioStream" path="res://assets/audio/music/title/pad.ogg" id="1_pad"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/title/rain.ogg" id="2_rain"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/title/theme.ogg" id="3_theme"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/title/sub.ogg" id="4_sub"]
+
+[resource]
+stream_count = 4
+stream_0/stream = ExtResource("1_pad")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("2_rain")
+stream_1/volume = 0.0
+stream_2/stream = ExtResource("3_theme")
+stream_2/volume = 0.0
+stream_3/stream = ExtResource("4_sub")
+stream_3/volume = 0.0

@@ -1,0 +1,26 @@
+[gd_resource type="AudioStreamSynchronized" load_steps=8 format=3]
+
+[ext_resource type="AudioStream" path="res://assets/audio/music/gut/drone.ogg" id="1_drone"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/gut/pad.ogg" id="2_pad"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/gut/throb.ogg" id="3_throb"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/gut/steam.ogg" id="4_steam"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/gut/clanks.ogg" id="5_clanks"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/gut/hammer.ogg" id="6_hammer"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/gut/heart.ogg" id="7_heart"]
+
+[resource]
+stream_count = 7
+stream_0/stream = ExtResource("1_drone")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("2_pad")
+stream_1/volume = 0.0
+stream_2/stream = ExtResource("3_throb")
+stream_2/volume = 0.0
+stream_3/stream = ExtResource("4_steam")
+stream_3/volume = 0.0
+stream_4/stream = ExtResource("5_clanks")
+stream_4/volume = 0.0
+stream_5/stream = ExtResource("6_hammer")
+stream_5/volume = -60.0
+stream_6/stream = ExtResource("7_heart")
+stream_6/volume = -60.0

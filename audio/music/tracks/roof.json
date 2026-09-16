@@ -1,0 +1,116 @@
+{
+  "_doc": "The roof: wind and a thin pad, sparse bells, a siren far off once a loop. E, 64 BPM. The composer's templates/track.json explains every key.",
+  "class": "bed",
+  "tempo": 64,
+  "bars": 8,
+  "beats_per_bar": 4,
+  "key": "E minor",
+  "layers": [
+    {
+      "id": "wind",
+      "state": "base",
+      "db": -20,
+      "kind": "texture",
+      "instrument": "wind",
+      "fold_s": 3.0,
+      "args": {
+        "seed": 40
+      }
+    },
+    {
+      "id": "pad",
+      "state": "base",
+      "db": -16,
+      "kind": "texture",
+      "instrument": "pad",
+      "fold_s": 3.0,
+      "args": {
+        "chord": [
+          "E3",
+          "B3",
+          "D4",
+          "F#4"
+        ],
+        "cutoff": [
+          500,
+          1400
+        ],
+        "lfo_hz": 0.06,
+        "seed": 3
+      }
+    },
+    {
+      "id": "bells",
+      "state": "base",
+      "db": -22,
+      "kind": "scatter",
+      "instrument": "bell",
+      "count": 9,
+      "scale": [
+        "E5",
+        "G5",
+        "B5",
+        "D6",
+        "E6"
+      ],
+      "seed": 31,
+      "pan": 0.8,
+      "args": {
+        "dur": 1.2,
+        "delay_s": 0.47
+      }
+    },
+    {
+      "id": "siren",
+      "state": "base",
+      "db": -36,
+      "kind": "pattern",
+      "instrument": "siren",
+      "repeat": false,
+      "pan": -0.9,
+      "steps": 4,
+      "bars": [
+        ". . . .",
+        ". . . .",
+        ". . . .",
+        ". . . .",
+        ". . . E5",
+        ". . . .",
+        ". . . .",
+        ". . . ."
+      ],
+      "gate": 4.27,
+      "args": {
+        "wobble_hz": 0.75,
+        "depth": 40
+      }
+    },
+    {
+      "id": "drive",
+      "state": "combat",
+      "db": -15,
+      "kind": "pattern",
+      "instrument": "arp",
+      "steps": 16,
+      "bars": [
+        "E2 . E3 . E2 . G3 . E2 . E3 . B2 . D3 ."
+      ],
+      "gate": 0.6,
+      "args": {
+        "cutoff": 2500
+      }
+    },
+    {
+      "id": "heart",
+      "state": "low",
+      "db": -9,
+      "kind": "pattern",
+      "instrument": "heartbeat",
+      "steps": 4,
+      "bars": [
+        "x . x ."
+      ],
+      "gate": 1.0
+    }
+  ]
+}

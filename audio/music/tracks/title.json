@@ -1,0 +1,25 @@
+{
+  "_doc": "The title and the ending: the pad, a sub every bar, Dani's theme one note per two beats over rain. 60 BPM, A minor. The composer's templates/track.json explains every key.",
+  "class": "title",
+  "tempo": 60,
+  "bars": 8,
+  "beats_per_bar": 4,
+  "key": "A minor",
+  "layers": [
+    {
+      "id": "pad", "state": "base", "db": -13, "kind": "texture", "instrument": "pad", "fold_s": 3.0,
+      "args": { "chord": ["A2", "E3", "A3", "C4"], "cutoff": [250, 700], "lfo_hz": 0.05, "seed": 5 }
+    },
+    { "id": "rain", "state": "base", "db": -32, "kind": "texture", "instrument": "rain", "fold_s": 3.0, "args": { "seed": 61, "cutoff": 1400 } },
+    {
+      "id": "theme", "state": "base", "db": -19, "kind": "pattern", "instrument": "tone",
+      "motif": "dani", "motif_restart": true,
+      "steps": 2, "bars": ["x x", "x x", "x x", "x x", ". x", "x x", ". x", ". ."], "gate": 0.8,
+      "pan": [0.2, -0.15, 0.1, -0.2, 0.15], "args": { "delay_s": 0.75 }
+    },
+    {
+      "id": "sub", "state": "base", "db": -13, "kind": "pattern", "instrument": "sub",
+      "steps": 1, "bars": ["A1"], "gate": 0.4, "args": { "fall": 1.7, "k": 2.5 }
+    }
+  ]
+}

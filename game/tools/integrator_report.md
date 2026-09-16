@@ -59,3 +59,123 @@ audio.py: 45 sound ids, 2 buses; 0 fail, 6 warn, 1 note, 0 written
 - WARN sfx: assets/audio/sfx/hit_2.wav is played by no line of code
 - WARN sfx: assets/audio/sfx/hit_3.wav is played by no line of code
 - NOTE music: the loop is set in src/audio/music.gd, not in the .import (loop=false there is right)
+
+## 2026-09-15 23:31 music.py --project F:/Projects/Coding Projects/project-neon-debt/game --write --import
+
+music.py: 5 tracks, 35 stems, 0 missing, 0 import params wrong, 6 written; 0 fail, 0 warn, 36 note, 41 written
+
+- NOTE music: assets/audio/music/boss/drone.ogg.import: loop=false wanted true, bpm=0 wanted 128, beat_count=0 wanted 64, fixed
+- NOTE music: assets/audio/music/boss/tick.ogg.import: loop=false wanted true, bpm=0 wanted 128, beat_count=0 wanted 64, fixed
+- NOTE music: assets/audio/music/boss/kick.ogg.import: loop=false wanted true, bpm=0 wanted 128, beat_count=0 wanted 64, fixed
+- NOTE music: assets/audio/music/boss/snare.ogg.import: loop=false wanted true, bpm=0 wanted 128, beat_count=0 wanted 64, fixed
+- NOTE music: assets/audio/music/boss/hats.ogg.import: loop=false wanted true, bpm=0 wanted 128, beat_count=0 wanted 64, fixed
+- NOTE music: assets/audio/music/boss/bass.ogg.import: loop=false wanted true, bpm=0 wanted 128, beat_count=0 wanted 64, fixed
+- NOTE music: assets/audio/music/boss/stabs.ogg.import: loop=false wanted true, bpm=0 wanted 128, beat_count=0 wanted 64, fixed
+- NOTE music: assets/audio/music/boss/riser.ogg.import: loop=false wanted true, bpm=0 wanted 128, beat_count=0 wanted 64, fixed
+- NOTE music: assets/audio/music/boss/lead.ogg.import: loop=false wanted true, bpm=0 wanted 128, beat_count=0 wanted 64, fixed
+- NOTE music: assets/audio/music/boss/heart.ogg.import: loop=false wanted true, bpm=0 wanted 128, beat_count=0 wanted 64, fixed
+- NOTE music: assets/audio/music/gut/drone.ogg.import: loop=false wanted true, bpm=0 wanted 60, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/gut/pad.ogg.import: loop=false wanted true, bpm=0 wanted 60, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/gut/throb.ogg.import: loop=false wanted true, bpm=0 wanted 60, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/gut/steam.ogg.import: loop=false wanted true, bpm=0 wanted 60, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/gut/clanks.ogg.import: loop=false wanted true, bpm=0 wanted 60, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/gut/hammer.ogg.import: loop=false wanted true, bpm=0 wanted 60, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/gut/heart.ogg.import: loop=false wanted true, bpm=0 wanted 60, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/roof/wind.ogg.import: loop=false wanted true, bpm=0 wanted 64, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/roof/pad.ogg.import: loop=false wanted true, bpm=0 wanted 64, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/roof/bells.ogg.import: loop=false wanted true, bpm=0 wanted 64, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/roof/siren.ogg.import: loop=false wanted true, bpm=0 wanted 64, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/roof/drive.ogg.import: loop=false wanted true, bpm=0 wanted 64, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/roof/heart.ogg.import: loop=false wanted true, bpm=0 wanted 64, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/stacks/pad.ogg.import: loop=false wanted true, bpm=0 wanted 68, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/stacks/rain.ogg.import: loop=false wanted true, bpm=0 wanted 68, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/stacks/hum.ogg.import: loop=false wanted true, bpm=0 wanted 68, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/stacks/sub.ogg.import: loop=false wanted true, bpm=0 wanted 68, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/stacks/thump.ogg.import: loop=false wanted true, bpm=0 wanted 68, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/stacks/blips.ogg.import: loop=false wanted true, bpm=0 wanted 68, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/stacks/pulse.ogg.import: loop=false wanted true, bpm=0 wanted 68, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/stacks/heart.ogg.import: loop=false wanted true, bpm=0 wanted 68, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/title/pad.ogg.import: loop=false wanted true, bpm=0 wanted 60, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/title/rain.ogg.import: loop=false wanted true, bpm=0 wanted 60, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/title/theme.ogg.import: loop=false wanted true, bpm=0 wanted 60, beat_count=0 wanted 32, fixed
+- NOTE music: assets/audio/music/title/sub.ogg.import: loop=false wanted true, bpm=0 wanted 60, beat_count=0 wanted 32, fixed
+- NOTE engine import ran (exit 0, 0 error lines)
+- wrote `assets/audio/music/boss/drone.ogg.import`
+- wrote `assets/audio/music/boss/tick.ogg.import`
+- wrote `assets/audio/music/boss/kick.ogg.import`
+- wrote `assets/audio/music/boss/snare.ogg.import`
+- wrote `assets/audio/music/boss/hats.ogg.import`
+- wrote `assets/audio/music/boss/bass.ogg.import`
+- wrote `assets/audio/music/boss/stabs.ogg.import`
+- wrote `assets/audio/music/boss/riser.ogg.import`
+- wrote `assets/audio/music/boss/lead.ogg.import`
+- wrote `assets/audio/music/boss/heart.ogg.import`
+- wrote `assets/audio/music/boss.tres`
+- wrote `assets/audio/music/gut/drone.ogg.import`
+- wrote `assets/audio/music/gut/pad.ogg.import`
+- wrote `assets/audio/music/gut/throb.ogg.import`
+- wrote `assets/audio/music/gut/steam.ogg.import`
+- wrote `assets/audio/music/gut/clanks.ogg.import`
+- wrote `assets/audio/music/gut/hammer.ogg.import`
+- wrote `assets/audio/music/gut/heart.ogg.import`
+- wrote `assets/audio/music/gut.tres`
+- wrote `assets/audio/music/roof/wind.ogg.import`
+- wrote `assets/audio/music/roof/pad.ogg.import`
+- wrote `assets/audio/music/roof/bells.ogg.import`
+- wrote `assets/audio/music/roof/siren.ogg.import`
+- wrote `assets/audio/music/roof/drive.ogg.import`
+- wrote `assets/audio/music/roof/heart.ogg.import`
+- wrote `assets/audio/music/roof.tres`
+- wrote `assets/audio/music/stacks/pad.ogg.import`
+- wrote `assets/audio/music/stacks/rain.ogg.import`
+- wrote `assets/audio/music/stacks/hum.ogg.import`
+- wrote `assets/audio/music/stacks/sub.ogg.import`
+- wrote `assets/audio/music/stacks/thump.ogg.import`
+- wrote `assets/audio/music/stacks/blips.ogg.import`
+- wrote `assets/audio/music/stacks/pulse.ogg.import`
+- wrote `assets/audio/music/stacks/heart.ogg.import`
+- wrote `assets/audio/music/stacks.tres`
+- wrote `assets/audio/music/title/pad.ogg.import`
+- wrote `assets/audio/music/title/rain.ogg.import`
+- wrote `assets/audio/music/title/theme.ogg.import`
+- wrote `assets/audio/music/title/sub.ogg.import`
+- wrote `assets/audio/music/title.tres`
+- wrote `src/audio/music_table.gd`
+
+## 2026-09-15 23:31 music.py --project F:/Projects/Coding Projects/project-neon-debt/game
+
+music.py: 5 tracks, 35 stems, 0 missing, 0 import params wrong, 0 written; 0 fail, 0 warn, 0 note, 0 written
+
+
+## 2026-09-15 23:31 audio.py --project F:/Projects/Coding Projects/project-neon-debt/game
+
+audio.py: 45 sound ids, 2 buses; 4 fail, 6 warn, 0 note, 0 written
+
+- WARN sfx: assets/audio/sfx/credits.wav is played by no line of code
+- WARN sfx: assets/audio/sfx/door.wav is played by no line of code
+- WARN sfx: assets/audio/sfx/enemy_die.wav is played by no line of code
+- WARN sfx: assets/audio/sfx/hit.wav is played by no line of code
+- WARN sfx: assets/audio/sfx/hit_2.wav is played by no line of code
+- WARN sfx: assets/audio/sfx/hit_3.wav is played by no line of code
+- FAIL music: code plays `collections` (src/audio/music_table.gd) and assets/audio/music/collections.tres does not exist
+- FAIL music: code plays `mezz` (src/audio/music_table.gd) and assets/audio/music/mezz.tres does not exist
+- FAIL music: code plays `residential` (src/audio/music_table.gd) and assets/audio/music/residential.tres does not exist
+- FAIL music: code plays `shaft` (src/audio/music_table.gd) and assets/audio/music/shaft.tres does not exist
+
+## 2026-09-15 23:31 audio.py --project F:/Projects/Coding Projects/project-neon-debt/game
+
+audio.py: 45 sound ids, 2 buses; 0 fail, 6 warn, 0 note, 0 written
+
+- WARN sfx: assets/audio/sfx/credits.wav is played by no line of code
+- WARN sfx: assets/audio/sfx/door.wav is played by no line of code
+- WARN sfx: assets/audio/sfx/enemy_die.wav is played by no line of code
+- WARN sfx: assets/audio/sfx/hit.wav is played by no line of code
+- WARN sfx: assets/audio/sfx/hit_2.wav is played by no line of code
+- WARN sfx: assets/audio/sfx/hit_3.wav is played by no line of code
+
+## 2026-09-15 23:39 music.py --project F:/Projects/Coding Projects/project-neon-debt/game --import
+
+music.py: 5 tracks, 35 stems, 0 missing, 0 import params wrong, 0 written; 0 fail, 0 warn, 1 note, 0 written
+
+- NOTE engine import ran (exit 0, 0 error lines)
+

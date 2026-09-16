@@ -1,0 +1,145 @@
+{
+  "_doc": "The residential floors, the mezz, the shafts: a dark pad, a sub pulse, data blips over rain. The composer's templates/track.json explains every key.",
+  "class": "bed",
+  "tempo": 68,
+  "bars": 8,
+  "beats_per_bar": 4,
+  "key": "A minor",
+  "layers": [
+    {
+      "id": "pad",
+      "state": "base",
+      "db": -13,
+      "kind": "texture",
+      "instrument": "pad",
+      "fold_s": 2.0,
+      "args": {
+        "chord": [
+          "A2",
+          "E3",
+          "A3",
+          "C4",
+          "E4"
+        ],
+        "cutoff": [
+          300,
+          800
+        ],
+        "lfo_hz": 0.07,
+        "seed": 1
+      }
+    },
+    {
+      "id": "rain",
+      "state": "base",
+      "db": -30,
+      "kind": "texture",
+      "instrument": "rain",
+      "fold_s": 2.0,
+      "args": {
+        "seed": 8
+      }
+    },
+    {
+      "id": "hum",
+      "state": "base",
+      "db": -24,
+      "kind": "texture",
+      "instrument": "hum",
+      "fold_s": 0.0,
+      "args": {
+        "f": 50,
+        "cycles": 2
+      }
+    },
+    {
+      "id": "sub",
+      "state": "base",
+      "db": -12,
+      "kind": "pattern",
+      "instrument": "sub",
+      "steps": 4,
+      "bars": [
+        "A1 . A1 ."
+      ],
+      "gate": 1.25,
+      "args": {
+        "fall": 2,
+        "k": 3
+      }
+    },
+    {
+      "id": "thump",
+      "state": "base",
+      "db": -16,
+      "kind": "pattern",
+      "instrument": "thump",
+      "steps": 8,
+      "bars": [
+        ". . . . . . . .",
+        ". . . . . . . .",
+        ". . . . . . . .",
+        ". . . . . . . x"
+      ],
+      "gate": 1.13,
+      "args": {
+        "seed": 9
+      }
+    },
+    {
+      "id": "blips",
+      "state": "base",
+      "db": -21,
+      "kind": "scatter",
+      "instrument": "blip",
+      "count": 14,
+      "scale": [
+        "A5",
+        "C6",
+        "D6",
+        "E6",
+        "G6",
+        "A6",
+        "C7"
+      ],
+      "seed": 11,
+      "pan": 0.7,
+      "args": {
+        "dur": 0.35,
+        "k": 9,
+        "delay_s": 0.66,
+        "feedback": 0.45,
+        "wet": 0.5,
+        "taps": 5
+      }
+    },
+    {
+      "id": "pulse",
+      "state": "combat",
+      "db": -12,
+      "kind": "pattern",
+      "instrument": "pulse",
+      "steps": 8,
+      "bars": [
+        "A1 . A1 A1 . A1 . A1",
+        "A1 . A1 A1 . C2 . G1"
+      ],
+      "gate": 0.5,
+      "args": {
+        "cutoff": 900
+      }
+    },
+    {
+      "id": "heart",
+      "state": "low",
+      "db": -9,
+      "kind": "pattern",
+      "instrument": "heartbeat",
+      "steps": 4,
+      "bars": [
+        "x . x ."
+      ],
+      "gate": 1.0
+    }
+  ]
+}

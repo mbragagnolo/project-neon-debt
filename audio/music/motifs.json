@@ -1,0 +1,7 @@
+{
+  "_doc": [
+    "The motifs: one note list each, named for who or where it belongs to; a track's layer plays them in its own rhythm on its own instrument (the composer's reference/motifs.md). No rhythm here on purpose.",
+    "dani: the game's one tune, Dani's. The title plays it at a note per two beats on the triangle; the boss's lead plays its first seven notes at 128 BPM on a square pair; the Stacks' blips draw from its notes."
+  ],
+  "dani": ["A4", "C5", "B4", "G4", "E4", "G4", "A4", "E5", "C5", "B4", "A4", "E4"]
+}

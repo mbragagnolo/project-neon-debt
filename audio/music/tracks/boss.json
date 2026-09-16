@@ -1,0 +1,199 @@
+{
+  "_doc": "Collections: a drone and a clock while the Landlord's floor is walked; his bar appears and the fight layers come in, a driving 128 BPM pulse under detuned stabs with a riser that rolls into the loop point; his second phase adds Dani's theme on a square lead. The composer's templates/track.json explains every key.",
+  "class": "fight",
+  "tempo": 128,
+  "bars": 16,
+  "beats_per_bar": 4,
+  "key": "A minor",
+  "layers": [
+    {
+      "id": "drone",
+      "state": "base",
+      "db": -18,
+      "kind": "texture",
+      "instrument": "drone",
+      "fold_s": 2.0,
+      "args": {
+        "notes": [
+          "A1",
+          "A2"
+        ],
+        "gains": [
+          1.0,
+          0.5
+        ],
+        "cutoff": 220,
+        "spread": 0.006
+      }
+    },
+    {
+      "id": "tick",
+      "state": "base",
+      "db": -26,
+      "kind": "pattern",
+      "instrument": "tick",
+      "steps": 4,
+      "bars": [
+        "x x x x"
+      ],
+      "pan": [
+        -0.3,
+        0.3
+      ],
+      "args": {
+        "length": 0.02,
+        "seed": 6
+      }
+    },
+    {
+      "id": "kick",
+      "state": "fight",
+      "db": -6,
+      "kind": "pattern",
+      "instrument": "kick",
+      "steps": 4,
+      "bars": [
+        "x x x x"
+      ],
+      "args": {
+        "length": 0.28
+      }
+    },
+    {
+      "id": "snare",
+      "state": "fight",
+      "db": -12,
+      "kind": "pattern",
+      "instrument": "snare",
+      "steps": 16,
+      "args": {
+        "seed": 4
+      },
+      "bars": [
+        ". . . . x . . . . . . . x . . .",
+        ". . . . x . . . . . . . x . . .",
+        ". . . . x . . . . . . . x . . .",
+        ". . . . x . . . . . . . x@-4 x@-3 x@-2 x@-1"
+      ]
+    },
+    {
+      "id": "hats",
+      "state": "fight",
+      "db": -20,
+      "kind": "pattern",
+      "instrument": "hat",
+      "steps": 8,
+      "bars": [
+        "x x@-4 x x@-4 x x@-4 x x@-4"
+      ],
+      "pan": 0.3,
+      "args": {
+        "length": 0.045,
+        "seed": 5
+      }
+    },
+    {
+      "id": "bass",
+      "state": "fight",
+      "db": -9,
+      "kind": "pattern",
+      "instrument": "bass",
+      "steps": 16,
+      "gate": 0.9,
+      "args": {
+        "octave": -1,
+        "drive": 1.8
+      },
+      "bars": [
+        "A2 . A2 A2 . C3 . A2 G2 . A2 . C3 D3 . A2",
+        "A2 . A2 A2 . C3 . A2 G2 . A2 . C3 D3 . A2",
+        "A2 . A2 A2 . C3 . A2 G2 . A2 . C3 D3 . A2",
+        "F2 . F2 F2 . G2 . F2 E2 . F2 . G2 A2 . C3"
+      ]
+    },
+    {
+      "id": "stabs",
+      "state": "fight",
+      "db": -14,
+      "kind": "pattern",
+      "instrument": "stab",
+      "steps": 8,
+      "gate": 1.2,
+      "pan": [
+        -0.4,
+        0.4
+      ],
+      "args": {
+        "spread": 0.006
+      },
+      "bars": [
+        ". . . A3+C4+E4 . . . A3+C4+E4",
+        ". . . A3+C4+E4 . . . A3+C4+E4",
+        ". . . G3+B3+D4 . . . G3+B3+D4",
+        ". . . F3+A3+C4 . . . F3+A3+C4"
+      ]
+    },
+    {
+      "id": "riser",
+      "state": "fight",
+      "db": -18,
+      "kind": "pattern",
+      "instrument": "riser",
+      "repeat": false,
+      "steps": 1,
+      "gate": 1.0,
+      "args": {
+        "seed": 77
+      },
+      "bars": [
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        "x"
+      ]
+    },
+    {
+      "id": "lead",
+      "state": "phase2",
+      "db": -17,
+      "kind": "pattern",
+      "instrument": "lead",
+      "motif": "dani",
+      "motif_restart": true,
+      "at_bar": 8,
+      "steps": 16,
+      "gate": 1.8,
+      "args": {
+        "delay_s": 0.3516
+      },
+      "bars": [
+        "x . x . x . x . x . . x x . . .",
+        ". . . . . . . . . . . . . . . ."
+      ]
+    },
+    {
+      "id": "heart",
+      "state": "low",
+      "db": -9,
+      "kind": "pattern",
+      "instrument": "heartbeat",
+      "steps": 4,
+      "bars": [
+        "x . x ."
+      ],
+      "gate": 1.0
+    }
+  ]
+}

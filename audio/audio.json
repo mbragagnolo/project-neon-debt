@@ -1,15 +1,18 @@
 {
   "_doc": [
-    "The audio config for one project: <root>/audio/audio.json (the sound-designer copies this template there on the first run; the composer reads the same file). Paths are relative to the root.",
-    "game: the engine project folder. events: the bible's event table (bible/README.md), optional; every event with `sfx` true wants a sound named by its `sfx_id` (or its key with dots as underscores). beds: the music loops the sounds are auditioned over, as globs; empty when the project has no music yet.",
-    "buses: the gain each bus sits at in the engine's layout, so a sound's margin over a bed is measured where the player hears it. bus_default: the bus a sound goes to when the table does not say.",
+    "The audio config for one project: <root>/audio/audio.json, shared by the sound-designer (its `sfx` section) and the composer (its `music` section); whichever runs first copies this template there, and the composer adds `music` to a file that lacks it. Paths are relative to the root.",
+    "game: the engine project folder. events: the bible's event table (bible/README.md), optional; every event with `sfx` true wants a sound named by its `sfx_id` (or its key with dots as underscores). moods: the bible's moods table (bible/moods.template.json), default bible/moods.json. beds: the music the sounds are auditioned over, as globs: with the composer built, the full mixes it writes (music.mix), the loudest thing the player hears under an effect.",
+    "buses: the gain each bus sits at in the engine's layout, so a sound's margin over a bed, and a bed's level under the sounds, are measured where the player hears them. bus_default: the bus a sound goes to when the table does not say.",
     "sfx.out: where the engine loads sound files from. sfx.recipes: the Python file whose SOUNDS registry maps a sound id to its recipe. sfx.ceiling_dbtp: no file peaks above this, true peak, whatever the class asks. sfx.margin_lu: a sound this far under a bed's level (at the buses) is a finding. sfx.trim_db: leading and trailing silence under this is cut. sfx.fade_in_s / fade_out_s: the ends after the trim.",
-    "sfx.classes: the loudness target per class, momentary max LUFS (reference/loudness.md: how the number is read and why these values). A sound's class is in the table (audio/sfx/sfx.json); `default` is the class of a sound the table does not classify."
+    "sfx.classes: the loudness target per class, momentary max LUFS (the sound-designer's reference/loudness.md). A sound's class is in the table (audio/sfx/sfx.json); `default` is the class of a sound the table does not classify.",
+    "music.out: where the engine loads the stems from; a track's stems go to <out>/<track>/<layer>.ogg. music.tracks: the folder of track jsons (templates/track.json). music.instruments: the Python file with one function per instrument on the synth (templates/instruments.py). music.motifs: the motifs, a note list each. music.mix: where the full mixes go (not engine files: the bed the sound-designer auditions over; gitignore it, render.py rebuilds it).",
+    "music.classes: the target per track class, integrated LUFS (BS.1770, gated) of the full mix as a file; the engine's Music bus is added when the level is judged against the effects. music.ceiling_dbtp: the full mix's true peak never exceeds this; the gain is held back and the report says by how much. music.silence_db: the volume a stem is faded to when its state is off (the engine's table carries it). music.fade_s: how long the engine takes to bring a layer in or out, for the engine's table."
   ],
   "game": "game",
   "events": "bible/events.json",
+  "moods": "bible/moods.json",
   "beds": [
-    "game/assets/audio/music/*.ogg"
+    "audio/music/mix/*.ogg"
   ],
   "buses": {
     "Master": 0.0,
@@ -36,6 +39,22 @@
       "world": -16.0,
       "stinger": -15.0,
       "ui": -17.0
+    }
+  },
+  "music": {
+    "out": "game/assets/audio/music",
+    "tracks": "audio/music/tracks",
+    "instruments": "audio/music/instruments.py",
+    "motifs": "audio/music/motifs.json",
+    "mix": "audio/music/mix",
+    "ceiling_dbtp": -1.0,
+    "silence_db": -60.0,
+    "fade_s": 1.2,
+    "classes": {
+      "default": -20.0,
+      "bed": -20.0,
+      "fight": -17.0,
+      "title": -19.0
     }
   }
 }

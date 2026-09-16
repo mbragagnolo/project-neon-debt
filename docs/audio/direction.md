@@ -4,8 +4,12 @@
 the kiln sound-designer from `audio/sfx/recipes.py` (the recipes; the synth
 lives in the skill) and mastered to a loudness class per sound
 (`audio/sfx/sfx.json` is the table: event, class, variations, files;
-`audio/sfx/runs/<date>/report.md` has every number). The music is still
-`game/tools/audio/make_music.py` on `synth.py` there, until the composer.
+`audio/sfx/runs/<date>/report.md` has every number). The music is rendered by
+the kiln composer from `audio/music/tracks/*.json` (a track as data:
+layers of patterns and textures on `audio/music/instruments.py`, the tune
+in `audio/music/motifs.json`) into stems the engine layers by state;
+`audio/music/music.json` is the table, `audio/music/runs/<date>/report.md`
+has every number.
 There are no found samples: a sound is a recipe, and a change to one is a
 diff. `bible/events.json` maps every event key to its sound and effect.
 
@@ -15,8 +19,11 @@ Short, dry, a little crunchy. Square and saw waves through a lowpass,
 noise bursts for impacts, a bit-crush on anything that dies — the sounds
 agree with the pixel art. Menus blip, hacks shimmer, the Landlord roars
 through a detuned saw. Music is a bed, not a song: a breathing pad under a
-sub pulse with the district's noises on top, until the boss, who gets a
-128 BPM pulse with a riser that rolls into the loop point.
+sub pulse with the district's noises on top, a pulse that comes in while
+an enemy is on you and a heartbeat under 30 % HP, until the boss, whose
+floor is a drone and a clock until his bar appears and a 128 BPM pulse
+with a riser that rolls into the loop point after, with Dani's theme on a
+square lead in his second phase.
 
 ## Buses
 
@@ -58,28 +65,42 @@ tells.
 
 ## Music (`Music` autoload, `src/audio/music.gd`)
 
-Ogg Vorbis loops in `assets/audio/music/`, crossfaded over 1.8 s, one at a
-time:
+Every track is an `AudioStreamSynchronized` in `assets/audio/music/`
+(`<track>.tres`, written by the godot-integrator's `music.py` from the
+composer's table) whose stems (`<track>/<layer>.ogg`, looping, all the
+loop's exact length) play from one start; a stem is either always on
+(`base`) or belongs to a state the autoload raises, fading in and out
+over 1.2 s. Tracks crossfade over 1.8 s, one at a time. The table the
+autoload reads is the generated `src/audio/music_table.gd`.
 
-| Track | Where | Length |
-|---|---|---|
-| `stacks` | residential floors, the mezz, the shafts, the lobby | 28 s, 68 BPM |
-| `gut` | the pump hall | 32 s, 60 BPM |
-| `roof` | the roof | 30 s, 64 BPM |
-| `boss` | Collections, from the moment his bar appears until he is down | 30 s, 128 BPM |
-| `title` | the title screen and the ending | 32 s, 60 BPM |
+| Track | Where (the moods, `bible/moods.json`) | Length | Base | `combat` | `low` | `fight` | `phase2` |
+|---|---|---|---|---|---|---|---|
+| `stacks` | residential, mezz, shaft | 28.2 s, 68 BPM | pad, rain, hum, sub, thump, blips | pulse | heart | | |
+| `gut` | gut | 32 s, 60 BPM | drone, pad, throb, steam, clanks | hammer | heart | | |
+| `roof` | roof | 30 s, 64 BPM | wind, pad, bells, siren | drive | heart | | |
+| `boss` | collections | 30 s, 128 BPM | drone, tick | | heart | kick, snare, hats, bass, stabs, riser | lead |
+| `title` | title, the ending | 32 s, 60 BPM | pad, rain, theme, sub | | | | |
 
-`room_entered` picks by the room's `style` in `world_graph.tres`;
-`boss_hp_changed` takes over and `boss_defeated` hands back to `title`.
-Every loop wraps its tails around the loop point (`synth.Loop`), so a
-30-second bed sits under a 30-minute run without a seam.
+`room_entered` picks by the room's `style` in `world_graph.tres` through
+the moods table; `boss_hp_changed` takes the boss track over and raises
+`fight`, `boss_phase_changed` raises `phase2`, `boss_defeated` hands back
+to `title`. `combat` is the autoload's own: it polls the enemies group
+four times a second for one in Chase, Windup, Lunge, Aim or Track and
+holds 3 s after the last; `low` follows `hp_changed` at 30 %. Dani's
+theme is one motif, played by the title at a note per two beats and by
+the boss's lead at 128 BPM. Every stem loops on its import flag; the
+composer verifies every seam on the decoded file, and the full mixes it
+writes to `audio/music/mix/` (not engine files) are the beds the
+sound-designer measures the effects over.
 
 ## Regenerating
 
 ```
 python <kiln>/skills/sound-designer/scripts/master.py --project .   # 49 effects, 63 files, the report
-cd game/tools/audio && python make_music.py                          # 5 loops, ~20 s
+python <kiln>/skills/composer/scripts/render.py --project .          # 5 tracks, 35 stems, the report, ~50 s
+python <kiln>/skills/godot-integrator/scripts/music.py --project game --write --import   # the .tres, the table script, the imports
 ```
 
-then let Godot re-import. Recipes are deterministic (seeded noise), so a
-regenerated file is byte-identical unless its recipe changed.
+then let Godot re-import. Recipes and tracks are deterministic (seeded
+noise), so a regenerated file renders the same sound unless its recipe or
+its track changed, and each report's first section says which did.

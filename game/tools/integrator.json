@@ -29,8 +29,7 @@
         "require": { "mipmaps/generate": "false", "compress/mode": "0", "process/fix_alpha_border": "true" },
         "note": { "detect_3d/compress_to": "1" }
       },
-      "wav": { "extensions": [".wav"], "require": { "edit/loop_mode": "0" } },
-      "oggvorbisstr": { "extensions": [".ogg"], "require": { "loop": "false" } }
+      "wav": { "extensions": [".wav"], "require": { "edit/loop_mode": "0" } }
     }
   },
   "tables": [
@@ -110,12 +109,15 @@
     },
     "music": {
       "dir": "assets/audio/music",
-      "ext": ".ogg",
-      "import": { "loop": "false" },
-      "loop_set_in": "src/audio/music.gd",
+      "ext": ".tres",
+      "import": {},
+      "table": "../audio/music/music.json",
+      "script": "src/audio/music_table.gd",
+      "fade_s": 1.2,
+      "stem_import": {},
       "patterns": [
-        { "regex": "return &\"([a-z_0-9]+)\"", "only": "src/audio/music.gd" },
-        { "regex": "play\\(&\"([a-z_0-9]+)\"", "only": "src/audio/music.gd" }
+        { "regex": "play\\(&\"([a-z_0-9]+)\"", "only": "src/audio/music.gd" },
+        { "regex": "\\n\\t&\"([a-z_0-9]+)\": \\{\\n", "only": "src/audio/music_table.gd" }
       ]
     },
     "buses": {
