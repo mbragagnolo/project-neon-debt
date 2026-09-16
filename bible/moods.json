@@ -1,0 +1,50 @@
+{
+  "_doc": [
+    "The moods of Neon Debt: read by the composer (which track plays where, which states the engine raises) and the level-artist. The key is what the Music autoload asks for: a room's style in the world graph, or the title screen.",
+    "moods.<key>: track (audio/music/tracks/<track>.json), states (what the engine may raise while this plays), brief (what it should feel like, for the person writing the track).",
+    "states.<name>: how the Music autoload (game/src/audio/music.gd) raises each. A layer with that state fades in while it is on; `base` layers always play."
+  ],
+  "moods": {
+    "residential": {
+      "track": "stacks",
+      "states": ["combat", "low"],
+      "brief": "the corridors and flats: a dark pad breathing under a sub pulse, data blips over rain, the mains hum; slow, A minor"
+    },
+    "mezz": {
+      "track": "stacks",
+      "states": ["combat", "low"],
+      "brief": "the hub and the market: the same bed as the floors, so a trip to Stitch is not a scene change"
+    },
+    "shaft": {
+      "track": "stacks",
+      "states": ["combat", "low"],
+      "brief": "the lifts and stairwells between floors: the floors' bed, kept, so climbing is one place"
+    },
+    "gut": {
+      "track": "gut",
+      "states": ["combat", "low"],
+      "brief": "the pump hall and the tunnels: a low throb, metal, steam; D with a tritone in the pad, 60 BPM"
+    },
+    "roof": {
+      "track": "roof",
+      "states": ["combat", "low"],
+      "brief": "the roof and the ledges: wind, a thin pad, sparse bells, a siren far off; E, 64 BPM"
+    },
+    "collections": {
+      "track": "boss",
+      "states": ["fight", "phase2", "low"],
+      "brief": "the Landlord's floor: a drone and a clock until his bar appears, then a driving 128 BPM pulse under detuned stabs, and the theme on a square lead in his second phase"
+    },
+    "title": {
+      "track": "title",
+      "states": [],
+      "brief": "the title and the ending: the pad, the sub every bar, and Dani's theme one note at a time over rain; 60 BPM"
+    }
+  },
+  "states": {
+    "combat": "an enemy is chasing, winding up, lunging, aiming or tracking the player: the Music autoload polls the enemies group four times a second; held 3 s after the last one drops back to patrol",
+    "fight": "the boss's bar is up (boss_hp_changed with hp above 0) until boss_defeated",
+    "phase2": "the boss's second phase (boss_phase_changed with phase 2 or more) until the fight ends",
+    "low": "the player's HP at or under 30 % (hp_changed)"
+  }
+}

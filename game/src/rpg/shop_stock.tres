@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="ShopStock" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://src/rpg/shop_stock.gd" id="1_stock"]
+[ext_resource type="Script" path="res://src/rpg/shop_entry.gd" id="2_entry"]
+
+[sub_resource type="Resource" id="entry_jacket"]
+script = ExtResource("2_entry")
+id = &"padded_jacket"
+label = "Utility worker's padded jacket"
+description = "The biggest DEF piece in the Stacks, and the only one you pay for."
+price = 140
+kind = 0
+item_id = &"padded_jacket"
+amount = 0
+once = true
+
+[sub_resource type="Resource" id="entry_hp"]
+script = ExtResource("2_entry")
+id = &"hp_up"
+label = "Dermal weave patch"
+description = "Max HP +5. Stitch swears it is new."
+price = 90
+kind = 1
+item_id = &""
+amount = 5
+once = true
+
+[sub_resource type="Resource" id="entry_ammo_cap"]
+script = ExtResource("2_entry")
+id = &"ammo_cap"
+label = "Extended energy cell"
+description = "Ranged energy cap +4. The only place capacity is sold."
+price = 70
+kind = 2
+item_id = &""
+amount = 4
+once = true
+
+[sub_resource type="Resource" id="entry_refill"]
+script = ExtResource("2_entry")
+id = &"ammo_refill"
+label = "Energy refill"
+description = "Tops the pool up. Cheap, because meleeing is cheaper."
+price = 10
+kind = 3
+item_id = &""
+amount = 0
+once = false
+
+[resource]
+script = ExtResource("1_stock")
+entries = Array[Resource]([SubResource("entry_jacket"), SubResource("entry_hp"), SubResource("entry_ammo_cap"), SubResource("entry_refill")])

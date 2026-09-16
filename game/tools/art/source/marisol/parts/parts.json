@@ -1,0 +1,57 @@
+{
+  "skirt": {
+    "pivot": [
+      79,
+      24
+    ],
+    "origin": [
+      391,
+      506
+    ],
+    "still": null
+  },
+  "feet": {
+    "pivot": [
+      111,
+      42
+    ],
+    "origin": [
+      359,
+      1043
+    ],
+    "still": null
+  },
+  "torso": {
+    "pivot": [
+      133,
+      321
+    ],
+    "origin": [
+      337,
+      199
+    ],
+    "still": null
+  },
+  "head": {
+    "pivot": [
+      79,
+      195
+    ],
+    "origin": [
+      391,
+      20
+    ],
+    "still": null
+  },
+  "hand_point": {
+    "pivot": [
+      228,
+      76
+    ],
+    "origin": [
+      337,
+      264
+    ],
+    "still": null
+  }
+}

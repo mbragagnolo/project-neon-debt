@@ -4,10 +4,17 @@ Shared `Enemy` base (patrol → aggro → attack → stagger, XP + loot on death
 one folder per roster entry (DESIGN.md §3.5, stat blocks and teaching roles in
 `docs/characters/enemies.md`).
 
-- `enemy_base.gd`, `enemy_config.gd`, `states/` — **M2**
-- `scav/` — **M2**, the first fight of the game
+- `enemy_base.gd`, `enemy_config.gd`, `states/` — **M2**; **M6** added
+  flight (`fly_toward`, gravity only when forced) and firing
+  (`fire_toward`), an optional `Facing` child mirrored with the facing, and
+  `after_recover_state()` so the generic Recover/Stagger states serve a boss
+- `scav/` — **M2**, the first fight of the game; **M6** added
+  `elite_scav.tres/.tscn`: the same scene, the same scripts, other numbers
 - `training_dummy/` — **M2**, gym only, never shipped in a room
-- `drone/`, `riot/`, `boss_landlord/` — **M6**
+- `drone/` — **M6.** Flies (`Hover`/`Track`/`Aim` states) and shoots
+- `riot/` — **M6.** The Scav's states with a shield: config only
+- `boss_landlord/` — **M6.** The one subclass: phases, attack picking, the
+  slam, the beam, the sealed arena. Spec: docs/characters/boss-landlord.md
 
 Each enemy exists to teach one thing: Scav = spacing, Watcher drone = vertical
 threat, Riot unit = frontal ranged immunity. The teaching role is the anchor —
@@ -35,6 +42,7 @@ raised. No new script, no subclass, no copy of the state machine.
 | `Lunge` | The commitment, attack box armed at full `attack_power` |
 | `Recover` | **The overcommit** — the punishable window |
 | `Stagger` | Interrupted, entered from anywhere by `Health.staggered` |
+| `Stunned` | **M4.** Breached — only `mechanical` enemies answer `stun()`. Attack and contact boxes disarmed, gravity on, and a hit does *not* end it |
 | `Dead` | Terminal; the machine refuses every transition out of it |
 
 Windup/Lunge/Recover could have been three phases of one attack state. They are

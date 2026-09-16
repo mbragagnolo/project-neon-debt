@@ -1,10 +1,10 @@
 # Enemy roster
 
-**Status: locked** (identities, rules, behaviors, reward ratios). Absolute
-numbers `TUNE`; enemy DEF is set last, after weapon numbers exist
-(stats-and-curves.md tuning warning). Stat block format per
-stats-and-curves.md: hp, flat attack_power, def, xp/credit rewards, drop
-table, binary resistance tags.
+**Status: locked, built (M6).** Absolute numbers `TUNE` in M7; the DEF pass
+was done in M6 against the tuned weapons (see the block below). Stat block
+format per stats-and-curves.md: hp, flat attack_power, def, xp/credit
+rewards, binary resistance tags. Drop tables are deferred: the vendor's
+refill and the melee interlock cover ammo, and V1 ships no drops.
 
 Every enemy exists to teach one thing. The teaching role is the anchor —
 stats serve it, and any tuning change that breaks the lesson is wrong even
@@ -24,17 +24,46 @@ DEF-piercing: the Riot unit ignoring a wrench *is* the lesson.
 
 ## Roster
 
-| | Scav | Watcher drone | Riot unit | Elite Scav |
-|---|---|---|---|---|
-| Teaches | Spacing | Vertical threat, ranged verb | Heavy hits & hacks | The quest-area wall |
-| HP | 16 | 10 | 35 | 40 |
-| attack_power | 6 | 5 (projectile) | 10 | 9 |
-| stagger_threshold | 1 | 1 | 12 | 8 |
-| Tags | — | `mechanical` | `mechanical`, `immune_ranged_frontal` | — |
-| Rewards (× Scav) | 1× | 1.5× | 3× | 4× |
+| | Scav | Watcher drone | Riot unit | Elite Scav | The Landlord |
+|---|---|---|---|---|---|
+| Teaches | Spacing | Vertical threat, ranged verb | Heavy hits & hacks | The quest-area wall | Every verb has a job |
+| HP | 16 | 10 | 35 | 40 | 270 |
+| attack_power | 6 | 5 (projectile) | 10 | 9 | 14 |
+| **DEF** (M6 pass, boss raised 2026-09-15) | 0 | 0 | 3 | 2 | 5 |
+| stagger_threshold | 1 | 1 | 12 | 8 | 16 |
+| Tags | — | `mechanical` | `mechanical`, `immune_ranged_frontal` | — | — |
+| XP / credits | 10 / 5 | 14 / 7 | 22 / 15 | 45 / 25 | 200 / 100 |
+| Placed | 31 | 17 | 7 | 1 | 1 |
 
-All values `TUNE`; ratios between rewards are the locked part — the XP curve
-constants get solved against them once M5 fixes enemy counts.
+Ratios between rewards are the locked part. The placed roster holds 947 XP
+(recounted from the specs 2026-09-14: 31 Scavs and 7 Riot units, not 29 and 8;
+the curve assumes 949, within `test_roster.gd`'s 3 %); the XP curve's `base`
+held at 60 against it (stats-and-curves.md).
+
+The stat block is data in `enemies/stats.csv` (owned by the systems-designer,
+refreshed from the `.tres` files, `placed` counted from `design/rooms.json`).
+Each enemy as a state machine with its tell, commit, recovery and boxes is
+`enemies/<name>.json` (read off the `.tres` files and the boss script by the
+enemy-designer's adapters; the integrator writes the `.tres` back from it), and
+`enemies/matchup.md` is every attack against the player's timings in frames,
+the DEF pass below included.
+
+### The DEF pass (M6)
+
+Set last, after the trio was tuned, at level 5 — the sheet the armoured
+enemies are met with (STR/DEX/INT 17, ×1.6):
+
+| Weapon | vs Riot unit (DEF 3) | vs Landlord (DEF 5) |
+|---|---|---|
+| Wrench 13 | 10 — flinch | 8 — flinch |
+| Blade 8 | 5 — the wrong tool | 3 |
+| Maul 29 | 26 — **interrupts** | 24 — **interrupts** |
+| Rivet gun 24 | pings off the front; 21 from behind | 19 — **interrupts** |
+| Overload 24 | 21 — **interrupts**, through the shield | 19 — **interrupts** |
+
+The Scav and the drone stay at 0: they die to being reached. The Elite's 2
+keeps the wrench (11) over its threshold of 8, so the fight is about the
+missing recovery window, not about armour.
 
 ### Scav — melee rusher
 Human scavenger. Patrols a short beat; on aggro, closes and **lunges with a
@@ -48,6 +77,13 @@ reached — the puzzle is *reaching* it, and the intended answer is the zipgun
 (this is the enemy the ranged verb is taught with). `mechanical`: Breach
 drops it out of the air for a beat.
 
+*Built:* it holds 210px above the player's centre and 240px to one side —
+the side it is already on, so it never crosses over your head when you turn
+— and every 2.2s it stops, lights up for 0.45s, and fires a 340px/s shot at
+where you are when the tell ends. Move during the tell and it misses.
+Stunned or dead it falls; when the stun ends it climbs back. Two zipgun
+shots kill it.
+
 ### Riot unit — the shield wall
 Mechanical crowd-suppression frame behind a full-height shield. Advances
 slowly; frontal `immune_ranged` (nails and rivets ping off the shield);
@@ -56,11 +92,24 @@ the wrench does not). Answers: get behind it (dash through), hit it heavy,
 or hack it — Breach stuns it, Overload ignores the shield entirely. Human
 Scavs shrug at Breach; the Riot unit crumples — tags mean something.
 
+*Built:* the Scav's scene shape with its own numbers — chase 110 against
+the Scav's 235, a 0.6s shield-bash tell, a short heavy lunge. The shield is
+a `Facing` visual that flips with it. Enemies are not solid to the player,
+so "get behind it" is a jump over or a dash through, paid for in contact
+damage the i-frames make fair.
+
 ### Elite Scav — the quest guard
 A Scav that learned. Same silhouette and moveset, faster, and **no
 overcommit** — the lunge recovers safely, so the tutorial answer stops
 working and the player must apply everything else. Guards the memory-chip
 room in the hazard area. Rewards like a miniboss.
+
+*Built:* the Scav scene with `elite_scav.tres` — recovery 0.12s against the
+wrench's 0.16s commit (the punish window is gone), chase 300, lunge 780,
+windup 0.34, cooldown 0.45. It stays dead once killed (`persist_flag`).
+
+### The Landlord
+See [`boss-landlord.md`](boss-landlord.md).
 
 ## Exports
 

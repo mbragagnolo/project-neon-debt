@@ -1,0 +1,23 @@
+[gd_resource type="AudioStreamSynchronized" load_steps=7 format=3]
+
+[ext_resource type="AudioStream" path="res://assets/audio/music/roof/wind.ogg" id="1_wind"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/roof/pad.ogg" id="2_pad"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/roof/bells.ogg" id="3_bells"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/roof/siren.ogg" id="4_siren"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/roof/drive.ogg" id="5_drive"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/roof/heart.ogg" id="6_heart"]
+
+[resource]
+stream_count = 6
+stream_0/stream = ExtResource("1_wind")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("2_pad")
+stream_1/volume = 0.0
+stream_2/stream = ExtResource("3_bells")
+stream_2/volume = 0.0
+stream_3/stream = ExtResource("4_siren")
+stream_3/volume = 0.0
+stream_4/stream = ExtResource("5_drive")
+stream_4/volume = -60.0
+stream_5/stream = ExtResource("6_heart")
+stream_5/volume = -60.0

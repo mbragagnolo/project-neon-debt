@@ -1,0 +1,34 @@
+{
+  "_doc": "Marisol, the neighbour on the Mezz; the fetch quest. The flow is game/src/world/npc.gd `_talk_marisol`: the quest's state picks the branch, in order, first match. No accept button, no branching.",
+  "scene": "marisol",
+  "section": "NPC dialogue",
+  "speaker": "marisol",
+  "speaker_name": "name.neighbour",
+  "box": "dialogue",
+  "branches": [
+    {
+      "id": "marisol.offer",
+      "when": ["quest:memory_chip=unknown"],
+      "pages": ["marisol.offer.1", "marisol.offer.2", "marisol.offer.3", "marisol.offer.4"],
+      "then": ["quest.start:memory_chip"]
+    },
+    {
+      "id": "marisol.complete",
+      "when": ["quest:memory_chip=active", "quest.can_complete:memory_chip"],
+      "pages": ["marisol.complete.1", "marisol.complete.2"],
+      "then": ["quest.complete:memory_chip", "bark:bark.quest_done"]
+    },
+    {
+      "id": "marisol.active",
+      "when": ["quest:memory_chip=active"],
+      "pages": ["marisol.active"],
+      "then": []
+    },
+    {
+      "id": "marisol.after",
+      "when": ["quest:memory_chip=complete"],
+      "pages": ["marisol.after"],
+      "then": []
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+ "sheet": "F:\\Projects\\Coding Projects\\project-neon-debt\\prototype\\vfx_artist\\out\\sheets\\spark.hit.png",
+ "frame_width": 64,
+ "frame_height": 64,
+ "scale": 2,
+ "frames": 6,
+ "row_layout": "one row, left to right",
+ "anchor": [
+  32,
+  32
+ ],
+ "anchor_art_px": [
+  16,
+  16
+ ],
+ "fps": 30,
+ "tag": "hot",
+ "clips": {
+  "play": {
+   "first": 0,
+   "count": 6,
+   "fps": 30,
+   "loop": false
+  }
+ }
+}

@@ -1,0 +1,402 @@
+{
+ "_doc": [
+  "Neon Debt's events by key: code fires the key (docs/audio/direction.md maps the signals), the vfx-artist and the sound-designer look it up, the godot-integrator checks every `sfx` event has its file (kiln bible/README.md).",
+  "sfx_id: the file the Sfx autoload plays (`Sfx.play(&\"id\")`); variations: how many files the sound-designer renders; vfx: the vfx-artist's effect json, when one exists; hitstop_frames: the freeze the hit asks for (light 2, heavy 4)."
+ ],
+ "events": [
+  {
+   "key": "player.jump",
+   "sfx": true,
+   "sfx_id": "jump",
+   "variations": 3,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "player.wall_jump",
+   "sfx": true,
+   "sfx_id": "wall_jump",
+   "variations": 2,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "player.dash",
+   "sfx": true,
+   "sfx_id": "dash",
+   "variations": 2,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "player.land",
+   "sfx": true,
+   "sfx_id": "land",
+   "variations": 3,
+   "bus": "SFX",
+   "vfx": "dust_land"
+  },
+  {
+   "key": "player.swing",
+   "sfx": true,
+   "sfx_id": "swing",
+   "variations": 3,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "player.shoot_bolt",
+   "sfx": true,
+   "sfx_id": "shoot",
+   "variations": 2,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "player.shoot_nail",
+   "sfx": true,
+   "sfx_id": "shoot_nail",
+   "variations": 2,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "player.shoot_rivet",
+   "sfx": true,
+   "sfx_id": "shoot_rivet",
+   "variations": 2,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "player.hurt",
+   "sfx": true,
+   "sfx_id": "hurt",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "player.hurt_guard",
+   "sfx": true,
+   "sfx_id": "hit_guard",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "player.hazard",
+   "sfx": true,
+   "sfx_id": "hazard",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "player.died",
+   "sfx": true,
+   "sfx_id": "die",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "enemy.hit",
+   "sfx": true,
+   "sfx_id": "hit",
+   "variations": 3,
+   "bus": "SFX",
+   "vfx": "spark_hit",
+   "hitstop_frames": 2
+  },
+  {
+   "key": "enemy.hit_heavy",
+   "sfx": true,
+   "sfx_id": "hit_heavy",
+   "variations": 2,
+   "bus": "SFX",
+   "vfx": "spark_hit",
+   "hitstop_frames": 4
+  },
+  {
+   "key": "enemy.die",
+   "sfx": true,
+   "sfx_id": "enemy_die",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": "burst_die"
+  },
+  {
+   "key": "enemy.die_mech",
+   "sfx": true,
+   "sfx_id": "mech_die",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": "burst_die"
+  },
+  {
+   "key": "enemy.tell",
+   "sfx": true,
+   "sfx_id": "tell",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "enemy.lunge",
+   "sfx": true,
+   "sfx_id": "lunge",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "enemy.stun",
+   "sfx": true,
+   "sfx_id": "stun",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "enemy.drone_shot",
+   "sfx": true,
+   "sfx_id": "drone_shot",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "enemy.slam",
+   "sfx": true,
+   "sfx_id": "slam",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "enemy.beam_charge",
+   "sfx": true,
+   "sfx_id": "beam_charge",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "enemy.beam_fire",
+   "sfx": true,
+   "sfx_id": "beam_fire",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "boss.phase",
+   "sfx": true,
+   "sfx_id": "roar",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "hack.firewall",
+   "sfx": true,
+   "sfx_id": "hack_guard",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "hack.overload",
+   "sfx": true,
+   "sfx_id": "hack_burst",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "hack.breach",
+   "sfx": true,
+   "sfx_id": "hack_pulse",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "hack.failed",
+   "sfx": true,
+   "sfx_id": "deny",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "hack.acquired",
+   "sfx": true,
+   "sfx_id": "hack_acquire",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "item.picked_up",
+   "sfx": true,
+   "sfx_id": "pickup",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "shop.credits",
+   "sfx": true,
+   "sfx_id": "credits",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "stat_up.acquired",
+   "sfx": true,
+   "sfx_id": "stat_up",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "quest.completed",
+   "sfx": true,
+   "sfx_id": "quest",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "level.gained",
+   "sfx": true,
+   "sfx_id": "level_up",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "save.activated",
+   "sfx": true,
+   "sfx_id": "save",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "door.opened",
+   "sfx": true,
+   "sfx_id": "breach",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "door.closed",
+   "sfx": true,
+   "sfx_id": "door",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "room.entered",
+   "sfx": true,
+   "sfx_id": "door_pass",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "lift.moved",
+   "sfx": true,
+   "sfx_id": "lift",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "shop.purchased",
+   "sfx": true,
+   "sfx_id": "buy",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "ui.move",
+   "sfx": true,
+   "sfx_id": "ui_move",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "ui.confirm",
+   "sfx": true,
+   "sfx_id": "ui_confirm",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "ui.back",
+   "sfx": true,
+   "sfx_id": "ui_back",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "ui.open",
+   "sfx": true,
+   "sfx_id": "ui_open",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "ui.close",
+   "sfx": true,
+   "sfx_id": "ui_close",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "ui.toast",
+   "sfx": true,
+   "sfx_id": "toast",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "ui.text",
+   "sfx": true,
+   "sfx_id": "text",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "ui.bark",
+   "sfx": true,
+   "sfx_id": "bark",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  },
+  {
+   "key": "ui.title_start",
+   "sfx": true,
+   "sfx_id": "title_start",
+   "variations": 1,
+   "bus": "SFX",
+   "vfx": null
+  }
+ ]
+}

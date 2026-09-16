@@ -1,6 +1,8 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://src/enemies/enemy_base.gd" id="1_enemy"]
+[ext_resource type="Script" path="res://src/art/pixel_anim.gd" id="90_anim"]
+[ext_resource type="Texture2D" path="res://assets/sprites/scav.png" id="91_sheet"]
 [ext_resource type="Resource" path="res://src/enemies/scav/scav.tres" id="2_scav"]
 [ext_resource type="Script" path="res://src/combat/health.gd" id="3_health"]
 [ext_resource type="Script" path="res://src/combat/hurtbox.gd" id="4_hurtbox"]
@@ -14,6 +16,7 @@
 [ext_resource type="Script" path="res://src/enemies/states/recover_state.gd" id="12_recover"]
 [ext_resource type="Script" path="res://src/enemies/states/stagger_state.gd" id="13_stagger"]
 [ext_resource type="Script" path="res://src/enemies/states/dead_state.gd" id="14_dead"]
+[ext_resource type="Script" path="res://src/enemies/states/stunned_state.gd" id="15_stunned"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_scav_body"]
 size = Vector2(44, 80)
@@ -29,12 +32,22 @@ config = ExtResource("2_scav")
 position = Vector2(0, -40)
 shape = SubResource("RectangleShape2D_scav_body")
 
-[node name="Visual" type="ColorRect" parent="."]
-offset_left = -22.0
-offset_top = -80.0
-offset_right = 22.0
-mouse_filter = 2
-color = Color(0.72, 0.36, 0.33, 1)
+[node name="Visual" type="Sprite2D" parent="."]
+position = Vector2(0, -56)
+texture = ExtResource("91_sheet")
+script = ExtResource("90_anim")
+frame_width = 120
+frame_height = 112
+clips = {
+"dead": [15, 1, 0.0, false],
+"idle": [0, 4, 4.0, true],
+"lunge": [12, 1, 0.0, false],
+"recover": [13, 1, 0.0, false],
+"run": [4, 6, 12.0, true],
+"stagger": [14, 1, 0.0, false],
+"windup": [10, 2, 8.0, false]
+}
+autoplay = &"idle"
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_health")
@@ -96,3 +109,6 @@ script = ExtResource("13_stagger")
 
 [node name="Dead" type="Node" parent="StateMachine"]
 script = ExtResource("14_dead")
+
+[node name="Stunned" type="Node" parent="StateMachine"]
+script = ExtResource("15_stunned")

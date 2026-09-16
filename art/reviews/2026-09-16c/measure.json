@@ -1,0 +1,8891 @@
+{
+  "date": "2026-09-16c",
+  "assets": 94,
+  "findings": [
+    {
+      "code": "albedo",
+      "kind": "back",
+      "asset": "tiles/back_collections.png",
+      "text": "median luma 0.0052 against a floor of 0.025: there is nothing here for a light to bring back",
+      "got": 0.0052,
+      "want": 0.025,
+      "rank": 1
+    },
+    {
+      "code": "albedo",
+      "kind": "back",
+      "asset": "tiles/back_gut.png",
+      "text": "median luma 0.0052 against a floor of 0.025: there is nothing here for a light to bring back",
+      "got": 0.0052,
+      "want": 0.025,
+      "rank": 1
+    },
+    {
+      "code": "albedo",
+      "kind": "back",
+      "asset": "tiles/back_mezz.png",
+      "text": "median luma 0.0103 against a floor of 0.025: there is nothing here for a light to bring back",
+      "got": 0.0103,
+      "want": 0.025,
+      "rank": 1
+    },
+    {
+      "code": "albedo",
+      "kind": "back",
+      "asset": "tiles/back_residential.png",
+      "text": "median luma 0.0103 against a floor of 0.025: there is nothing here for a light to bring back",
+      "got": 0.0103,
+      "want": 0.025,
+      "rank": 1
+    },
+    {
+      "code": "albedo",
+      "kind": "back",
+      "asset": "tiles/back_roof.png",
+      "text": "median luma 0.0025 against a floor of 0.025: there is nothing here for a light to bring back",
+      "got": 0.0025,
+      "want": 0.025,
+      "rank": 1
+    },
+    {
+      "code": "albedo",
+      "kind": "back",
+      "asset": "tiles/back_shaft.png",
+      "text": "median luma 0.0103 against a floor of 0.025: there is nothing here for a light to bring back",
+      "got": 0.0103,
+      "want": 0.025,
+      "rank": 1
+    },
+    {
+      "code": "albedo",
+      "kind": "wall",
+      "asset": "tiles/wall_collections.png",
+      "text": "median luma 0.0177 against a floor of 0.03: there is nothing here for a light to bring back",
+      "got": 0.0177,
+      "want": 0.03,
+      "rank": 1
+    },
+    {
+      "code": "albedo",
+      "kind": "wall",
+      "asset": "tiles/wall_gut.png",
+      "text": "median luma 0.0227 against a floor of 0.03: there is nothing here for a light to bring back",
+      "got": 0.0227,
+      "want": 0.03,
+      "rank": 1
+    },
+    {
+      "code": "albedo",
+      "kind": "wall",
+      "asset": "tiles/wall_residential.png",
+      "text": "median luma 0.0000 against a floor of 0.03: there is nothing here for a light to bring back",
+      "got": 0.0,
+      "want": 0.03,
+      "rank": 1
+    },
+    {
+      "code": "albedo",
+      "kind": "wall",
+      "asset": "tiles/wall_roof.png",
+      "text": "median luma 0.0196 against a floor of 0.03: there is nothing here for a light to bring back",
+      "got": 0.0196,
+      "want": 0.03,
+      "rank": 1
+    },
+    {
+      "code": "albedo",
+      "kind": "wall",
+      "asset": "tiles/wall_shaft.png",
+      "text": "median luma 0.0204 against a floor of 0.03: there is nothing here for a light to bring back",
+      "got": 0.0204,
+      "want": 0.03,
+      "rank": 1
+    },
+    {
+      "code": "outline",
+      "kind": "back",
+      "asset": "tiles/back_unit_14c.png",
+      "text": "100% of the silhouette's edge is a near-black line (black); an edge is the darker step of the local colour",
+      "got": 1.0,
+      "want": 0.25,
+      "rank": 2
+    },
+    {
+      "code": "outline",
+      "kind": "prop",
+      "asset": "props/unit_14c_boxes.png",
+      "text": "32% of the silhouette's edge is a near-black line (void); an edge is the darker step of the local colour",
+      "got": 0.32,
+      "want": 0.25,
+      "rank": 2
+    },
+    {
+      "code": "outline",
+      "kind": "prop",
+      "asset": "props/unit_14c_table.png",
+      "text": "46% of the silhouette's edge is a near-black line (void); an edge is the darker step of the local colour",
+      "got": 0.456,
+      "want": 0.25,
+      "rank": 2
+    },
+    {
+      "code": "palette",
+      "kind": "wall",
+      "asset": "tiles/wall_residential.png",
+      "text": "56.2% of the pixels are off the palette, worst 3.9 dE from void",
+      "got": 0.5625,
+      "want": 0.0,
+      "rank": 3
+    },
+    {
+      "code": "contrast",
+      "kind": "character",
+      "asset": "sprites/drone.png",
+      "text": "1.00:1 against tiles/wall_mezz.png, flat, before the room's light",
+      "got": 1.0,
+      "want": 1.1,
+      "rank": 4
+    },
+    {
+      "code": "contrast",
+      "kind": "character",
+      "asset": "sprites/elite_scav.png",
+      "text": "1.08:1 against tiles/wall_mezz.png, flat, before the room's light",
+      "got": 1.08,
+      "want": 1.1,
+      "rank": 4
+    },
+    {
+      "code": "contrast",
+      "kind": "character",
+      "asset": "sprites/landlord.png",
+      "text": "1.00:1 against tiles/wall_roof.png, flat, before the room's light",
+      "got": 1.0,
+      "want": 1.1,
+      "rank": 4
+    },
+    {
+      "code": "contrast",
+      "kind": "character",
+      "asset": "sprites/player.png",
+      "text": "1.08:1 against tiles/wall_mezz.png, flat, before the room's light",
+      "got": 1.08,
+      "want": 1.1,
+      "rank": 4
+    },
+    {
+      "code": "contrast",
+      "kind": "prop",
+      "asset": "props/breach_door.png",
+      "text": "1.00:1 against tiles/wall_mezz.png, flat, before the room's light",
+      "got": 1.0,
+      "want": 1.1,
+      "rank": 4
+    },
+    {
+      "code": "contrast",
+      "kind": "prop",
+      "asset": "props/cable.png",
+      "text": "1.08:1 against tiles/wall_residential.png, flat, before the room's light",
+      "got": 1.08,
+      "want": 1.1,
+      "rank": 4
+    },
+    {
+      "code": "contrast",
+      "kind": "prop",
+      "asset": "props/gadget_crate.png",
+      "text": "1.00:1 against tiles/wall_mezz.png, flat, before the room's light",
+      "got": 1.0,
+      "want": 1.1,
+      "rank": 4
+    },
+    {
+      "code": "contrast",
+      "kind": "prop",
+      "asset": "props/lift_deck.png",
+      "text": "1.00:1 against tiles/wall_mezz.png, flat, before the room's light",
+      "got": 1.0,
+      "want": 1.1,
+      "rank": 4
+    },
+    {
+      "code": "contrast",
+      "kind": "prop",
+      "asset": "props/unit_14c_piano.png",
+      "text": "1.05:1 against tiles/wall_residential.png, flat, before the room's light",
+      "got": 1.05,
+      "want": 1.1,
+      "rank": 4
+    },
+    {
+      "code": "contrast",
+      "kind": "prop",
+      "asset": "props/unit_14c_table.png",
+      "text": "1.00:1 against tiles/wall_gut.png, flat, before the room's light",
+      "got": 1.0,
+      "want": 1.1,
+      "rank": 4
+    },
+    {
+      "code": "flat",
+      "kind": "character",
+      "asset": "sprites/riot_shield.png",
+      "text": "grey is 2 step(s) over 279 art px; a material is 3 to 8",
+      "got": 2,
+      "want": [
+        3,
+        8
+      ],
+      "rank": 5
+    },
+    {
+      "code": "flat",
+      "kind": "emissive",
+      "asset": "props/sign_panel_warn.png",
+      "text": "red is 2 step(s) over 180 art px; a material is 3 to 5",
+      "got": 2,
+      "want": [
+        3,
+        5
+      ],
+      "rank": 5
+    },
+    {
+      "code": "flat",
+      "kind": "emissive",
+      "asset": "props/unit_14c_lamp.png",
+      "text": "black is 2 step(s) over 268 art px; a material is 3 to 5",
+      "got": 2,
+      "want": [
+        3,
+        5
+      ],
+      "rank": 5
+    },
+    {
+      "code": "flat",
+      "kind": "emissive",
+      "asset": "props/window.png",
+      "text": "warm is 1 step(s) over 425 art px; a material is 3 to 5",
+      "got": 1,
+      "want": [
+        3,
+        5
+      ],
+      "rank": 5
+    },
+    {
+      "code": "flat",
+      "kind": "prop",
+      "asset": "props/cable.png",
+      "text": "outline is 1 step(s) over 102 art px; a material is 3 to 5",
+      "got": 1,
+      "want": [
+        3,
+        5
+      ],
+      "rank": 5
+    },
+    {
+      "code": "flat",
+      "kind": "prop",
+      "asset": "props/door_frame.png",
+      "text": "bg is 1 step(s) over 1968 art px; a material is 3 to 5",
+      "got": 1,
+      "want": [
+        3,
+        5
+      ],
+      "rank": 5
+    },
+    {
+      "code": "flat",
+      "kind": "prop",
+      "asset": "props/fan.png",
+      "text": "bg is 1 step(s) over 438 art px; a material is 3 to 5",
+      "got": 1,
+      "want": [
+        3,
+        5
+      ],
+      "rank": 5
+    },
+    {
+      "code": "flat",
+      "kind": "prop",
+      "asset": "props/implant_crate.png",
+      "text": "white is 1 step(s) over 538 art px; a material is 3 to 5",
+      "got": 1,
+      "want": [
+        3,
+        5
+      ],
+      "rank": 5
+    },
+    {
+      "code": "flat",
+      "kind": "prop",
+      "asset": "props/poster_a.png",
+      "text": "magenta is 2 step(s) over 531 art px; a material is 3 to 5",
+      "got": 2,
+      "want": [
+        3,
+        5
+      ],
+      "rank": 5
+    },
+    {
+      "code": "flat",
+      "kind": "prop",
+      "asset": "props/poster_b.png",
+      "text": "cyan is 2 step(s) over 531 art px; a material is 3 to 5",
+      "got": 2,
+      "want": [
+        3,
+        5
+      ],
+      "rank": 5
+    },
+    {
+      "code": "flat",
+      "kind": "prop",
+      "asset": "props/ram_up.png",
+      "text": "violet is 2 step(s) over 140 art px; a material is 3 to 5",
+      "got": 2,
+      "want": [
+        3,
+        5
+      ],
+      "rank": 5
+    },
+    {
+      "code": "flat",
+      "kind": "prop",
+      "asset": "props/unit_14c_piano.png",
+      "text": "void is 1 step(s) over 707 art px; a material is 3 to 5",
+      "got": 1,
+      "want": [
+        3,
+        5
+      ],
+      "rank": 5
+    },
+    {
+      "code": "flat",
+      "kind": "wall",
+      "asset": "tiles/wall_residential.png",
+      "text": "void is 1 step(s) over 35925 art px; a material is 3 to 5",
+      "got": 1,
+      "want": [
+        3,
+        5
+      ],
+      "rank": 5
+    },
+    {
+      "code": "figure",
+      "kind": "character",
+      "asset": "sprites/drone.png",
+      "text": "24 art px is 0.73 m against the figure; the kind is 0.8-3.0 m",
+      "got": 0.73,
+      "want": [
+        0.8,
+        3.0
+      ],
+      "rank": 7
+    }
+  ],
+  "rows": [
+    {
+      "size": [
+        36,
+        8
+      ],
+      "density": 2,
+      "art": [
+        18,
+        4
+      ],
+      "opaque_px": 288,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        36,
+        8
+      ],
+      "silhouette_art": [
+        18,
+        4
+      ],
+      "luma": 0.6415,
+      "palette": {
+        "colors": 2,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "cyan": {
+            "share": 0.5556,
+            "steps": 1,
+            "names": [
+              "cyan"
+            ]
+          },
+          "white": {
+            "share": 0.4444,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "cyan",
+          "white"
+        ],
+        "dominant": "cyan",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "fx/beam.png",
+      "kind": "effect",
+      "plane": "play"
+    },
+    {
+      "size": [
+        18,
+        6
+      ],
+      "density": 2,
+      "art": [
+        9,
+        3
+      ],
+      "opaque_px": 108,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        18,
+        6
+      ],
+      "silhouette_art": [
+        9,
+        3
+      ],
+      "luma": 0.5578,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.1111,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "amber": {
+            "share": 0.7778,
+            "steps": 2,
+            "names": [
+              "amber",
+              "amber_d"
+            ]
+          },
+          "white": {
+            "share": 0.1111,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "amber",
+          "outline",
+          "white"
+        ],
+        "dominant": "amber",
+        "dominant_steps": 2
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "fx/bolt.png",
+      "kind": "effect",
+      "plane": "play"
+    },
+    {
+      "size": [
+        1024,
+        128
+      ],
+      "density": 2,
+      "art": [
+        512,
+        64
+      ],
+      "opaque_px": 10384,
+      "opaque": 0.079,
+      "silhouette": [
+        40,
+        22,
+        956,
+        94
+      ],
+      "silhouette_art": [
+        478,
+        47
+      ],
+      "luma": 0.1884,
+      "palette": {
+        "colors": 10,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "steel": {
+            "share": 0.5589,
+            "steps": 4,
+            "names": [
+              "steel1",
+              "steel2",
+              "steel3",
+              "steel4"
+            ]
+          },
+          "rust": {
+            "share": 0.0216,
+            "steps": 2,
+            "names": [
+              "rust1",
+              "rust2"
+            ]
+          },
+          "white": {
+            "share": 0.0108,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          },
+          "sodium": {
+            "share": 0.0998,
+            "steps": 1,
+            "names": [
+              "sodium"
+            ]
+          },
+          "amber": {
+            "share": 0.1348,
+            "steps": 1,
+            "names": [
+              "amber"
+            ]
+          },
+          "warm": {
+            "share": 0.1741,
+            "steps": 1,
+            "names": [
+              "warm"
+            ]
+          }
+        },
+        "materials": [
+          "amber",
+          "rust",
+          "sodium",
+          "steel",
+          "warm"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 4
+      },
+      "ring": {
+        "px": 2988,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "sodium",
+            "share": 0.266
+          },
+          {
+            "name": "amber",
+            "share": 0.253
+          },
+          {
+            "name": "steel1",
+            "share": 0.179
+          }
+        ]
+      },
+      "asset": "fx/burst_die.png",
+      "kind": "effect",
+      "plane": "play"
+    },
+    {
+      "size": [
+        8,
+        8
+      ],
+      "density": 1,
+      "art": [
+        8,
+        8
+      ],
+      "opaque_px": 32,
+      "opaque": 0.5,
+      "silhouette": [
+        1,
+        1,
+        6,
+        6
+      ],
+      "silhouette_art": [
+        6,
+        6
+      ],
+      "luma": 1.0,
+      "palette": {
+        "colors": 1,
+        "off_px": 32,
+        "off": 1.0,
+        "worst_de": 6.8,
+        "offenders": [
+          {
+            "rgb": [
+              255,
+              255,
+              255
+            ],
+            "px": 32,
+            "nearest": "white",
+            "de": 6.8
+          }
+        ]
+      },
+      "ramps": {
+        "families": {
+          "white": {
+            "share": 1.0,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "white"
+        ],
+        "dominant": "white",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 16,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "white",
+            "share": 1.0
+          }
+        ]
+      },
+      "asset": "fx/dot.png",
+      "kind": "mask",
+      "plane": "free"
+    },
+    {
+      "size": [
+        18,
+        18
+      ],
+      "density": 2,
+      "art": [
+        9,
+        9
+      ],
+      "opaque_px": 276,
+      "opaque": 0.852,
+      "silhouette": [
+        0,
+        0,
+        18,
+        18
+      ],
+      "silhouette_art": [
+        9,
+        9
+      ],
+      "luma": 0.0666,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.4058,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "red": {
+            "share": 0.5797,
+            "steps": 2,
+            "names": [
+              "red",
+              "red_d"
+            ]
+          },
+          "white": {
+            "share": 0.0145,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "outline",
+          "red"
+        ],
+        "dominant": "red",
+        "dominant_steps": 2
+      },
+      "ring": {
+        "px": 28,
+        "dark": 1.0,
+        "line": "outline",
+        "top": [
+          {
+            "name": "outline",
+            "share": 1.0
+          }
+        ]
+      },
+      "asset": "fx/drone_shot.png",
+      "kind": "effect",
+      "plane": "play"
+    },
+    {
+      "size": [
+        2,
+        10
+      ],
+      "density": 1,
+      "art": [
+        2,
+        10
+      ],
+      "opaque_px": 18,
+      "opaque": 0.9,
+      "silhouette": [
+        0,
+        1,
+        2,
+        9
+      ],
+      "silhouette_art": [
+        2,
+        9
+      ],
+      "luma": 0.1884,
+      "palette": {
+        "colors": 2,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "steel": {
+            "share": 1.0,
+            "steps": 2,
+            "names": [
+              "steel3",
+              "steel4"
+            ]
+          }
+        },
+        "materials": [
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 2
+      },
+      "ring": {
+        "px": 2,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "steel3",
+            "share": 0.5
+          },
+          {
+            "name": "steel4",
+            "share": 0.5
+          }
+        ]
+      },
+      "asset": "fx/drop.png",
+      "kind": "mask",
+      "plane": "free"
+    },
+    {
+      "size": [
+        576,
+        40
+      ],
+      "density": 2,
+      "art": [
+        288,
+        20
+      ],
+      "opaque_px": 2684,
+      "opaque": 0.116,
+      "silhouette": [
+        26,
+        22,
+        550,
+        18
+      ],
+      "silhouette_art": [
+        275,
+        9
+      ],
+      "luma": 0.0768,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "steel": {
+            "share": 1.0,
+            "steps": 4,
+            "names": [
+              "steel1",
+              "steel2",
+              "steel3",
+              "steel4"
+            ]
+          }
+        },
+        "materials": [
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 4
+      },
+      "ring": {
+        "px": 604,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "steel1",
+            "share": 0.445
+          },
+          {
+            "name": "steel4",
+            "share": 0.313
+          },
+          {
+            "name": "steel3",
+            "share": 0.134
+          }
+        ]
+      },
+      "asset": "fx/dust_land.png",
+      "kind": "effect",
+      "plane": "play"
+    },
+    {
+      "size": [
+        64,
+        64
+      ],
+      "density": 1,
+      "art": [
+        64,
+        64
+      ],
+      "opaque_px": 2920,
+      "opaque": 0.713,
+      "silhouette": [
+        1,
+        1,
+        62,
+        62
+      ],
+      "silhouette_art": [
+        62,
+        62
+      ],
+      "luma": 1.0,
+      "palette": {
+        "colors": 1,
+        "off_px": 2920,
+        "off": 1.0,
+        "worst_de": 6.8,
+        "offenders": [
+          {
+            "rgb": [
+              255,
+              255,
+              255
+            ],
+            "px": 2920,
+            "nearest": "white",
+            "de": 6.8
+          }
+        ]
+      },
+      "ramps": {
+        "families": {
+          "white": {
+            "share": 1.0,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "white"
+        ],
+        "dominant": "white",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 172,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "white",
+            "share": 1.0
+          }
+        ]
+      },
+      "asset": "fx/light_hard.png",
+      "kind": "mask",
+      "plane": "free"
+    },
+    {
+      "size": [
+        128,
+        128
+      ],
+      "density": 1,
+      "art": [
+        128,
+        128
+      ],
+      "opaque_px": 9936,
+      "opaque": 0.606,
+      "silhouette": [
+        8,
+        8,
+        112,
+        112
+      ],
+      "silhouette_art": [
+        112,
+        112
+      ],
+      "luma": 1.0,
+      "palette": {
+        "colors": 1,
+        "off_px": 9936,
+        "off": 1.0,
+        "worst_de": 6.8,
+        "offenders": [
+          {
+            "rgb": [
+              255,
+              255,
+              255
+            ],
+            "px": 9936,
+            "nearest": "white",
+            "de": 6.8
+          }
+        ]
+      },
+      "ramps": {
+        "families": {
+          "white": {
+            "share": 1.0,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "white"
+        ],
+        "dominant": "white",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 316,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "white",
+            "share": 1.0
+          }
+        ]
+      },
+      "asset": "fx/light_soft.png",
+      "kind": "mask",
+      "plane": "free"
+    },
+    {
+      "size": [
+        12,
+        6
+      ],
+      "density": 2,
+      "art": [
+        6,
+        3
+      ],
+      "opaque_px": 72,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        12,
+        6
+      ],
+      "silhouette_art": [
+        6,
+        3
+      ],
+      "luma": 0.3653,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "grey": {
+            "share": 0.8333,
+            "steps": 2,
+            "names": [
+              "grey",
+              "grey_d"
+            ]
+          },
+          "white": {
+            "share": 0.1667,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "grey",
+          "white"
+        ],
+        "dominant": "grey",
+        "dominant_steps": 2
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "fx/nail.png",
+      "kind": "effect",
+      "plane": "play"
+    },
+    {
+      "size": [
+        16,
+        16
+      ],
+      "density": 1,
+      "art": [
+        16,
+        16
+      ],
+      "opaque_px": 172,
+      "opaque": 0.672,
+      "silhouette": [
+        1,
+        1,
+        14,
+        14
+      ],
+      "silhouette_art": [
+        14,
+        14
+      ],
+      "luma": 1.0,
+      "palette": {
+        "colors": 1,
+        "off_px": 172,
+        "off": 1.0,
+        "worst_de": 6.8,
+        "offenders": [
+          {
+            "rgb": [
+              255,
+              255,
+              255
+            ],
+            "px": 172,
+            "nearest": "white",
+            "de": 6.8
+          }
+        ]
+      },
+      "ramps": {
+        "families": {
+          "white": {
+            "share": 1.0,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "white"
+        ],
+        "dominant": "white",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 40,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "white",
+            "share": 1.0
+          }
+        ]
+      },
+      "asset": "fx/puff.png",
+      "kind": "mask",
+      "plane": "free"
+    },
+    {
+      "size": [
+        24,
+        8
+      ],
+      "density": 2,
+      "art": [
+        12,
+        4
+      ],
+      "opaque_px": 144,
+      "opaque": 0.75,
+      "silhouette": [
+        2,
+        0,
+        20,
+        8
+      ],
+      "silhouette_art": [
+        10,
+        4
+      ],
+      "luma": 0.4646,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.1111,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "amber": {
+            "share": 0.0556,
+            "steps": 1,
+            "names": [
+              "amber_d"
+            ]
+          },
+          "white": {
+            "share": 0.1389,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          },
+          "sodium": {
+            "share": 0.6944,
+            "steps": 1,
+            "names": [
+              "sodium"
+            ]
+          }
+        },
+        "materials": [
+          "amber",
+          "outline",
+          "sodium",
+          "white"
+        ],
+        "dominant": "sodium",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 20,
+        "dark": 0.5,
+        "line": "outline",
+        "top": [
+          {
+            "name": "outline",
+            "share": 0.5
+          },
+          {
+            "name": "white",
+            "share": 0.5
+          }
+        ]
+      },
+      "asset": "fx/rivet.png",
+      "kind": "effect",
+      "plane": "play"
+    },
+    {
+      "size": [
+        12,
+        4
+      ],
+      "density": 2,
+      "art": [
+        6,
+        2
+      ],
+      "opaque_px": 48,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        12,
+        4
+      ],
+      "silhouette_art": [
+        6,
+        2
+      ],
+      "luma": 0.5578,
+      "palette": {
+        "colors": 2,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "amber": {
+            "share": 0.5,
+            "steps": 1,
+            "names": [
+              "amber"
+            ]
+          },
+          "warm": {
+            "share": 0.5,
+            "steps": 1,
+            "names": [
+              "warm"
+            ]
+          }
+        },
+        "materials": [
+          "amber",
+          "warm"
+        ],
+        "dominant": "amber",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "fx/spark.png",
+      "kind": "effect",
+      "plane": "play"
+    },
+    {
+      "size": [
+        384,
+        64
+      ],
+      "density": 2,
+      "art": [
+        192,
+        32
+      ],
+      "opaque_px": 1444,
+      "opaque": 0.059,
+      "silhouette": [
+        22,
+        4,
+        358,
+        52
+      ],
+      "silhouette_art": [
+        179,
+        26
+      ],
+      "luma": 0.5578,
+      "palette": {
+        "colors": 6,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "rust": {
+            "share": 0.0499,
+            "steps": 2,
+            "names": [
+              "rust1",
+              "rust2"
+            ]
+          },
+          "white": {
+            "share": 0.0665,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          },
+          "sodium": {
+            "share": 0.2798,
+            "steps": 1,
+            "names": [
+              "sodium"
+            ]
+          },
+          "amber": {
+            "share": 0.4792,
+            "steps": 1,
+            "names": [
+              "amber"
+            ]
+          },
+          "warm": {
+            "share": 0.1247,
+            "steps": 1,
+            "names": [
+              "warm"
+            ]
+          }
+        },
+        "materials": [
+          "amber",
+          "rust",
+          "sodium",
+          "warm",
+          "white"
+        ],
+        "dominant": "amber",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 820,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "amber",
+            "share": 0.477
+          },
+          {
+            "name": "sodium",
+            "share": 0.401
+          },
+          {
+            "name": "rust2",
+            "share": 0.073
+          }
+        ]
+      },
+      "asset": "fx/spark_hit.png",
+      "kind": "effect",
+      "plane": "play"
+    },
+    {
+      "size": [
+        42,
+        30
+      ],
+      "density": 2,
+      "art": [
+        21,
+        15
+      ],
+      "opaque_px": 1056,
+      "opaque": 0.838,
+      "silhouette": [
+        0,
+        0,
+        42,
+        28
+      ],
+      "silhouette_art": [
+        21,
+        14
+      ],
+      "luma": 0.1565,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.2121,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "amber": {
+            "share": 0.6098,
+            "steps": 2,
+            "names": [
+              "amber",
+              "amber_d"
+            ]
+          },
+          "sodium": {
+            "share": 0.178,
+            "steps": 1,
+            "names": [
+              "sodium"
+            ]
+          }
+        },
+        "materials": [
+          "amber",
+          "outline",
+          "sodium"
+        ],
+        "dominant": "amber",
+        "dominant_steps": 2
+      },
+      "ring": {
+        "px": 82,
+        "dark": 1.0,
+        "line": "outline",
+        "top": [
+          {
+            "name": "outline",
+            "share": 1.0
+          }
+        ]
+      },
+      "asset": "fx/wave.png",
+      "kind": "effect",
+      "plane": "play"
+    },
+    {
+      "size": [
+        180,
+        24
+      ],
+      "density": 2,
+      "art": [
+        90,
+        12
+      ],
+      "opaque_px": 4200,
+      "opaque": 0.972,
+      "silhouette": [
+        0,
+        0,
+        180,
+        24
+      ],
+      "silhouette_art": [
+        90,
+        12
+      ],
+      "luma": 0.2535,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "magenta": {
+            "share": 1.0,
+            "steps": 3,
+            "names": [
+              "magenta",
+              "magenta_d",
+              "magenta_l"
+            ]
+          }
+        },
+        "materials": [
+          "magenta"
+        ],
+        "dominant": "magenta",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 178,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "magenta_d",
+            "share": 0.674
+          },
+          {
+            "name": "magenta_l",
+            "share": 0.326
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 3.38,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/awning.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        36,
+        48
+      ],
+      "density": 2,
+      "art": [
+        18,
+        24
+      ],
+      "opaque_px": 1404,
+      "opaque": 0.812,
+      "silhouette": [
+        4,
+        0,
+        30,
+        48
+      ],
+      "silhouette_art": [
+        15,
+        24
+      ],
+      "luma": 0.0768,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "steel": {
+            "share": 0.6154,
+            "steps": 3,
+            "names": [
+              "steel1",
+              "steel2",
+              "steel3"
+            ]
+          },
+          "concrete": {
+            "share": 0.3846,
+            "steps": 1,
+            "names": [
+              "concrete1"
+            ]
+          }
+        },
+        "materials": [
+          "concrete",
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 104,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "steel3",
+            "share": 0.548
+          },
+          {
+            "name": "steel1",
+            "share": 0.452
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.41,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/barrel.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        96,
+        36
+      ],
+      "density": 2,
+      "art": [
+        48,
+        18
+      ],
+      "opaque_px": 1044,
+      "opaque": 0.302,
+      "silhouette": [
+        12,
+        18,
+        76,
+        18
+      ],
+      "silhouette_art": [
+        38,
+        9
+      ],
+      "luma": 0.0697,
+      "palette": {
+        "colors": 8,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "black": {
+            "share": 0.0843,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "olive": {
+            "share": 0.3257,
+            "steps": 3,
+            "names": [
+              "olive",
+              "olive_d",
+              "olive_l"
+            ]
+          },
+          "rust": {
+            "share": 0.59,
+            "steps": 3,
+            "names": [
+              "rust0",
+              "rust1",
+              "rust2"
+            ]
+          }
+        },
+        "materials": [
+          "black",
+          "olive",
+          "rust"
+        ],
+        "dominant": "rust",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 124,
+        "dark": 0.056,
+        "line": "black",
+        "top": [
+          {
+            "name": "olive_l",
+            "share": 0.339
+          },
+          {
+            "name": "rust2",
+            "share": 0.339
+          },
+          {
+            "name": "black_l",
+            "share": 0.113
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.33,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/body.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        60,
+        174
+      ],
+      "density": 2,
+      "art": [
+        30,
+        87
+      ],
+      "opaque_px": 10440,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        60,
+        174
+      ],
+      "silhouette_art": [
+        30,
+        87
+      ],
+      "luma": 0.0398,
+      "palette": {
+        "colors": 6,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.031,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "steel": {
+            "share": 0.9276,
+            "steps": 3,
+            "names": [
+              "steel0",
+              "steel1",
+              "steel2"
+            ]
+          },
+          "red": {
+            "share": 0.0414,
+            "steps": 2,
+            "names": [
+              "red",
+              "red_d"
+            ]
+          }
+        },
+        "materials": [
+          "outline",
+          "red",
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "contrast": {
+        "worst": 1.0,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/breach_door.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        36,
+        48
+      ],
+      "density": 2,
+      "art": [
+        18,
+        24
+      ],
+      "opaque_px": 1140,
+      "opaque": 0.66,
+      "silhouette": [
+        4,
+        0,
+        30,
+        46
+      ],
+      "silhouette_art": [
+        15,
+        23
+      ],
+      "luma": 0.0768,
+      "palette": {
+        "colors": 7,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.1684,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "steel": {
+            "share": 0.7263,
+            "steps": 3,
+            "names": [
+              "steel1",
+              "steel2",
+              "steel3"
+            ]
+          },
+          "red": {
+            "share": 0.0842,
+            "steps": 2,
+            "names": [
+              "red",
+              "red_d"
+            ]
+          },
+          "amber": {
+            "share": 0.0211,
+            "steps": 1,
+            "names": [
+              "amber"
+            ]
+          }
+        },
+        "materials": [
+          "amber",
+          "outline",
+          "red",
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 130,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "steel1",
+            "share": 0.515
+          },
+          {
+            "name": "steel3",
+            "share": 0.485
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.41,
+        "against": "tiles/wall_mezz.png",
+        "floor": null
+      },
+      "asset": "props/breach_terminal.png",
+      "kind": "emissive",
+      "plane": "play"
+    },
+    {
+      "size": [
+        120,
+        18
+      ],
+      "density": 2,
+      "art": [
+        60,
+        9
+      ],
+      "opaque_px": 408,
+      "opaque": 0.189,
+      "silhouette": [
+        0,
+        4,
+        120,
+        12
+      ],
+      "silhouette_art": [
+        60,
+        6
+      ],
+      "luma": 0.0041,
+      "palette": {
+        "colors": 1,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 1.0,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          }
+        },
+        "materials": [
+          "outline"
+        ],
+        "dominant": "outline",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 252,
+        "dark": 1.0,
+        "line": "outline",
+        "top": [
+          {
+            "name": "outline",
+            "share": 1.0
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.08,
+        "against": "tiles/wall_residential.png",
+        "floor": 1.1
+      },
+      "asset": "props/cable.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        72,
+        54
+      ],
+      "density": 2,
+      "art": [
+        36,
+        27
+      ],
+      "opaque_px": 2816,
+      "opaque": 0.724,
+      "silhouette": [
+        6,
+        4,
+        64,
+        48
+      ],
+      "silhouette_art": [
+        32,
+        24
+      ],
+      "luma": 0.0827,
+      "palette": {
+        "colors": 5,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.0085,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "olive": {
+            "share": 0.9702,
+            "steps": 3,
+            "names": [
+              "olive",
+              "olive_d",
+              "olive_l"
+            ]
+          },
+          "amber": {
+            "share": 0.0213,
+            "steps": 1,
+            "names": [
+              "amber"
+            ]
+          }
+        },
+        "materials": [
+          "amber",
+          "olive"
+        ],
+        "dominant": "olive",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 219,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "olive_l",
+            "share": 0.571
+          },
+          {
+            "name": "olive_d",
+            "share": 0.429
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.48,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/chest.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        36,
+        42
+      ],
+      "density": 2,
+      "art": [
+        18,
+        21
+      ],
+      "opaque_px": 288,
+      "opaque": 0.19,
+      "silhouette": [
+        10,
+        6,
+        16,
+        20
+      ],
+      "silhouette_art": [
+        8,
+        10
+      ],
+      "luma": 0.6415,
+      "palette": {
+        "colors": 6,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "cyan": {
+            "share": 0.6667,
+            "steps": 3,
+            "names": [
+              "cyan",
+              "cyan_d",
+              "cyan_l"
+            ]
+          },
+          "steel": {
+            "share": 0.1111,
+            "steps": 2,
+            "names": [
+              "steel1",
+              "steel3"
+            ]
+          },
+          "white": {
+            "share": 0.2222,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "cyan",
+          "steel",
+          "white"
+        ],
+        "dominant": "cyan",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 80,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "cyan_l",
+            "share": 0.4
+          },
+          {
+            "name": "cyan_d",
+            "share": 0.275
+          },
+          {
+            "name": "steel3",
+            "share": 0.263
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 7.7,
+        "against": "tiles/wall_mezz.png",
+        "floor": null
+      },
+      "asset": "props/chip.png",
+      "kind": "emissive",
+      "plane": "play"
+    },
+    {
+      "size": [
+        72,
+        60
+      ],
+      "density": 2,
+      "art": [
+        36,
+        30
+      ],
+      "opaque_px": 2232,
+      "opaque": 0.517,
+      "silhouette": [
+        0,
+        4,
+        72,
+        38
+      ],
+      "silhouette_art": [
+        36,
+        19
+      ],
+      "luma": 0.0697,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "rust": {
+            "share": 1.0,
+            "steps": 3,
+            "names": [
+              "rust0",
+              "rust1",
+              "rust2"
+            ]
+          }
+        },
+        "materials": [
+          "rust"
+        ],
+        "dominant": "rust",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 170,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "rust2",
+            "share": 0.518
+          },
+          {
+            "name": "rust0",
+            "share": 0.482
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.33,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/crates.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        60,
+        180
+      ],
+      "density": 2,
+      "art": [
+        30,
+        90
+      ],
+      "opaque_px": 10800,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        60,
+        180
+      ],
+      "silhouette_art": [
+        30,
+        90
+      ],
+      "luma": 0.0052,
+      "palette": {
+        "colors": 5,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "bg": {
+            "share": 0.7289,
+            "steps": 1,
+            "names": [
+              "bg0"
+            ]
+          },
+          "cyan": {
+            "share": 0.0089,
+            "steps": 1,
+            "names": [
+              "cyan"
+            ]
+          },
+          "steel": {
+            "share": 0.2622,
+            "steps": 3,
+            "names": [
+              "steel2",
+              "steel3",
+              "steel4"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "steel"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "contrast": {
+        "worst": 1.1,
+        "against": "tiles/wall_residential.png",
+        "floor": 1.1
+      },
+      "asset": "props/door_frame.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        60,
+        60
+      ],
+      "density": 2,
+      "art": [
+        30,
+        30
+      ],
+      "opaque_px": 3360,
+      "opaque": 0.933,
+      "silhouette": [
+        0,
+        0,
+        60,
+        58
+      ],
+      "silhouette_art": [
+        30,
+        29
+      ],
+      "luma": 0.0052,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "bg": {
+            "share": 0.5214,
+            "steps": 1,
+            "names": [
+              "bg0"
+            ]
+          },
+          "steel": {
+            "share": 0.4786,
+            "steps": 3,
+            "names": [
+              "steel1",
+              "steel2",
+              "steel3"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "steel"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 90,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "steel1",
+            "share": 0.667
+          },
+          {
+            "name": "steel3",
+            "share": 0.333
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.1,
+        "against": "tiles/wall_residential.png",
+        "floor": 1.1
+      },
+      "asset": "props/fan.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        72,
+        54
+      ],
+      "density": 2,
+      "art": [
+        36,
+        27
+      ],
+      "opaque_px": 2880,
+      "opaque": 0.741,
+      "silhouette": [
+        4,
+        4,
+        66,
+        44
+      ],
+      "silhouette_art": [
+        33,
+        22
+      ],
+      "luma": 0.0398,
+      "palette": {
+        "colors": 5,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "steel": {
+            "share": 0.8917,
+            "steps": 4,
+            "names": [
+              "steel0",
+              "steel1",
+              "steel2",
+              "steel4"
+            ]
+          },
+          "cyan": {
+            "share": 0.1083,
+            "steps": 1,
+            "names": [
+              "cyan"
+            ]
+          }
+        },
+        "materials": [
+          "cyan",
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 4
+      },
+      "ring": {
+        "px": 212,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "steel2",
+            "share": 0.528
+          },
+          {
+            "name": "steel0",
+            "share": 0.472
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.0,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/gadget_crate.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        60,
+        60
+      ],
+      "density": 2,
+      "art": [
+        30,
+        30
+      ],
+      "opaque_px": 3600,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        60,
+        60
+      ],
+      "silhouette_art": [
+        30,
+        30
+      ],
+      "luma": 0.0768,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.4,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "steel": {
+            "share": 0.6,
+            "steps": 3,
+            "names": [
+              "steel1",
+              "steel2",
+              "steel3"
+            ]
+          }
+        },
+        "materials": [
+          "outline",
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "contrast": {
+        "worst": 1.41,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/grate.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        36,
+        42
+      ],
+      "density": 2,
+      "art": [
+        18,
+        21
+      ],
+      "opaque_px": 560,
+      "opaque": 0.37,
+      "silhouette": [
+        6,
+        4,
+        24,
+        24
+      ],
+      "silhouette_art": [
+        12,
+        12
+      ],
+      "luma": 0.2758,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "red": {
+            "share": 0.8,
+            "steps": 3,
+            "names": [
+              "red",
+              "red_d",
+              "red_l"
+            ]
+          },
+          "white": {
+            "share": 0.2,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "red",
+          "white"
+        ],
+        "dominant": "red",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 88,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "red_l",
+            "share": 0.568
+          },
+          {
+            "name": "red_d",
+            "share": 0.432
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 3.63,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/hp_up.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        72,
+        54
+      ],
+      "density": 2,
+      "art": [
+        36,
+        27
+      ],
+      "opaque_px": 2880,
+      "opaque": 0.741,
+      "silhouette": [
+        4,
+        4,
+        66,
+        44
+      ],
+      "silhouette_art": [
+        33,
+        22
+      ],
+      "luma": 0.8693,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "grey": {
+            "share": 0.1903,
+            "steps": 2,
+            "names": [
+              "grey",
+              "grey_d"
+            ]
+          },
+          "white": {
+            "share": 0.7472,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          },
+          "red": {
+            "share": 0.0625,
+            "steps": 1,
+            "names": [
+              "red"
+            ]
+          }
+        },
+        "materials": [
+          "grey",
+          "red",
+          "white"
+        ],
+        "dominant": "white",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 212,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "white",
+            "share": 0.528
+          },
+          {
+            "name": "grey_d",
+            "share": 0.311
+          },
+          {
+            "name": "grey",
+            "share": 0.16
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 10.24,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/implant_crate.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        24,
+        30
+      ],
+      "density": 2,
+      "art": [
+        12,
+        15
+      ],
+      "opaque_px": 276,
+      "opaque": 0.383,
+      "silhouette": [
+        4,
+        0,
+        18,
+        22
+      ],
+      "silhouette_art": [
+        9,
+        11
+      ],
+      "luma": 0.4646,
+      "palette": {
+        "colors": 5,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "steel": {
+            "share": 0.4348,
+            "steps": 3,
+            "names": [
+              "steel1",
+              "steel2",
+              "steel3"
+            ]
+          },
+          "sodium": {
+            "share": 0.2319,
+            "steps": 1,
+            "names": [
+              "sodium"
+            ]
+          },
+          "warm": {
+            "share": 0.3333,
+            "steps": 1,
+            "names": [
+              "warm"
+            ]
+          }
+        },
+        "materials": [
+          "sodium",
+          "steel",
+          "warm"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 64,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "steel3",
+            "share": 0.375
+          },
+          {
+            "name": "sodium",
+            "share": 0.328
+          },
+          {
+            "name": "warm",
+            "share": 0.234
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 5.73,
+        "against": "tiles/wall_mezz.png",
+        "floor": null
+      },
+      "asset": "props/lamp.png",
+      "kind": "emissive",
+      "plane": "play"
+    },
+    {
+      "size": [
+        60,
+        24
+      ],
+      "density": 2,
+      "art": [
+        30,
+        12
+      ],
+      "opaque_px": 1320,
+      "opaque": 0.917,
+      "silhouette": [
+        0,
+        0,
+        60,
+        22
+      ],
+      "silhouette_art": [
+        30,
+        11
+      ],
+      "luma": 0.0398,
+      "palette": {
+        "colors": 9,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "black": {
+            "share": 0.1091,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "steel": {
+            "share": 0.7273,
+            "steps": 4,
+            "names": [
+              "steel0",
+              "steel1",
+              "steel2",
+              "steel3"
+            ]
+          },
+          "amber": {
+            "share": 0.1636,
+            "steps": 3,
+            "names": [
+              "amber",
+              "amber_d",
+              "amber_l"
+            ]
+          }
+        },
+        "materials": [
+          "amber",
+          "black",
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 4
+      },
+      "ring": {
+        "px": 60,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "steel0",
+            "share": 0.967
+          },
+          {
+            "name": "steel2",
+            "share": 0.033
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.0,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/lift_deck.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        48,
+        36
+      ],
+      "density": 2,
+      "art": [
+        24,
+        18
+      ],
+      "opaque_px": 1536,
+      "opaque": 0.889,
+      "silhouette": [
+        0,
+        0,
+        48,
+        36
+      ],
+      "silhouette_art": [
+        24,
+        18
+      ],
+      "luma": 0.1884,
+      "palette": {
+        "colors": 6,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "green": {
+            "share": 0.3932,
+            "steps": 2,
+            "names": [
+              "green",
+              "green_d"
+            ]
+          },
+          "steel": {
+            "share": 0.5781,
+            "steps": 3,
+            "names": [
+              "steel1",
+              "steel2",
+              "steel3"
+            ]
+          },
+          "white": {
+            "share": 0.0286,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "green",
+          "steel",
+          "white"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 58,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "steel1",
+            "share": 0.655
+          },
+          {
+            "name": "steel3",
+            "share": 0.345
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 2.65,
+        "against": "tiles/wall_mezz.png",
+        "floor": null
+      },
+      "asset": "props/monitor.png",
+      "kind": "emissive",
+      "plane": "play"
+    },
+    {
+      "size": [
+        120,
+        8
+      ],
+      "density": 2,
+      "art": [
+        60,
+        4
+      ],
+      "opaque_px": 960,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        120,
+        8
+      ],
+      "silhouette_art": [
+        60,
+        4
+      ],
+      "luma": 0.6415,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "cyan": {
+            "share": 1.0,
+            "steps": 3,
+            "names": [
+              "cyan",
+              "cyan_d",
+              "cyan_l"
+            ]
+          }
+        },
+        "materials": [
+          "cyan"
+        ],
+        "dominant": "cyan",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "contrast": {
+        "worst": 7.7,
+        "against": "tiles/wall_mezz.png",
+        "floor": null
+      },
+      "asset": "props/neon_tube_c.png",
+      "kind": "emissive",
+      "plane": "play"
+    },
+    {
+      "size": [
+        120,
+        8
+      ],
+      "density": 2,
+      "art": [
+        60,
+        4
+      ],
+      "opaque_px": 960,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        120,
+        8
+      ],
+      "silhouette_art": [
+        60,
+        4
+      ],
+      "luma": 0.2535,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "magenta": {
+            "share": 1.0,
+            "steps": 3,
+            "names": [
+              "magenta",
+              "magenta_d",
+              "magenta_l"
+            ]
+          }
+        },
+        "materials": [
+          "magenta"
+        ],
+        "dominant": "magenta",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "contrast": {
+        "worst": 3.38,
+        "against": "tiles/wall_mezz.png",
+        "floor": null
+      },
+      "asset": "props/neon_tube_m.png",
+      "kind": "emissive",
+      "plane": "play"
+    },
+    {
+      "size": [
+        120,
+        18
+      ],
+      "density": 2,
+      "art": [
+        60,
+        9
+      ],
+      "opaque_px": 1920,
+      "opaque": 0.889,
+      "silhouette": [
+        0,
+        0,
+        120,
+        16
+      ],
+      "silhouette_art": [
+        60,
+        8
+      ],
+      "luma": 0.0768,
+      "palette": {
+        "colors": 5,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "steel": {
+            "share": 1.0,
+            "steps": 5,
+            "names": [
+              "steel0",
+              "steel1",
+              "steel2",
+              "steel3",
+              "steel4"
+            ]
+          }
+        },
+        "materials": [
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 5
+      },
+      "ring": {
+        "px": 120,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "steel0",
+            "share": 0.983
+          },
+          {
+            "name": "steel2",
+            "share": 0.017
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.41,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/pipe_h.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        18,
+        120
+      ],
+      "density": 2,
+      "art": [
+        9,
+        60
+      ],
+      "opaque_px": 2160,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        18,
+        120
+      ],
+      "silhouette_art": [
+        9,
+        60
+      ],
+      "luma": 0.0768,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "steel": {
+            "share": 1.0,
+            "steps": 4,
+            "names": [
+              "steel0",
+              "steel1",
+              "steel2",
+              "steel3"
+            ]
+          }
+        },
+        "materials": [
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 4
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "contrast": {
+        "worst": 1.41,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/pipe_v.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        48,
+        60
+      ],
+      "density": 2,
+      "art": [
+        24,
+        30
+      ],
+      "opaque_px": 2304,
+      "opaque": 0.8,
+      "silhouette": [
+        0,
+        0,
+        48,
+        48
+      ],
+      "silhouette_art": [
+        24,
+        24
+      ],
+      "luma": 0.2535,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "magenta": {
+            "share": 0.9219,
+            "steps": 2,
+            "names": [
+              "magenta",
+              "magenta_d"
+            ]
+          },
+          "white": {
+            "share": 0.0781,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "magenta",
+          "white"
+        ],
+        "dominant": "magenta",
+        "dominant_steps": 2
+      },
+      "ring": {
+        "px": 48,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "magenta_d",
+            "share": 0.958
+          },
+          {
+            "name": "magenta",
+            "share": 0.042
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 3.38,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/poster_a.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        48,
+        60
+      ],
+      "density": 2,
+      "art": [
+        24,
+        30
+      ],
+      "opaque_px": 2304,
+      "opaque": 0.8,
+      "silhouette": [
+        0,
+        0,
+        48,
+        48
+      ],
+      "silhouette_art": [
+        24,
+        24
+      ],
+      "luma": 0.6415,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "cyan": {
+            "share": 0.9219,
+            "steps": 2,
+            "names": [
+              "cyan",
+              "cyan_d"
+            ]
+          },
+          "white": {
+            "share": 0.0781,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "cyan",
+          "white"
+        ],
+        "dominant": "cyan",
+        "dominant_steps": 2
+      },
+      "ring": {
+        "px": 48,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "cyan_d",
+            "share": 0.958
+          },
+          {
+            "name": "cyan",
+            "share": 0.042
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 7.7,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/poster_b.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        60,
+        108
+      ],
+      "density": 2,
+      "art": [
+        30,
+        54
+      ],
+      "opaque_px": 4452,
+      "opaque": 0.687,
+      "silhouette": [
+        6,
+        0,
+        48,
+        106
+      ],
+      "silhouette_art": [
+        24,
+        53
+      ],
+      "luma": 0.0398,
+      "palette": {
+        "colors": 9,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.0863,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "steel": {
+            "share": 0.8239,
+            "steps": 4,
+            "names": [
+              "steel0",
+              "steel1",
+              "steel2",
+              "steel3"
+            ]
+          },
+          "green": {
+            "share": 0.0656,
+            "steps": 2,
+            "names": [
+              "green",
+              "green_d"
+            ]
+          },
+          "white": {
+            "share": 0.0099,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          },
+          "amber": {
+            "share": 0.0144,
+            "steps": 1,
+            "names": [
+              "amber"
+            ]
+          }
+        },
+        "materials": [
+          "green",
+          "outline",
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 4
+      },
+      "ring": {
+        "px": 266,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "steel0",
+            "share": 0.447
+          },
+          {
+            "name": "steel2",
+            "share": 0.312
+          },
+          {
+            "name": "steel3",
+            "share": 0.143
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.0,
+        "against": "tiles/wall_mezz.png",
+        "floor": null
+      },
+      "asset": "props/program_terminal.png",
+      "kind": "emissive",
+      "plane": "play"
+    },
+    {
+      "size": [
+        36,
+        42
+      ],
+      "density": 2,
+      "art": [
+        18,
+        21
+      ],
+      "opaque_px": 720,
+      "opaque": 0.476,
+      "silhouette": [
+        4,
+        2,
+        28,
+        28
+      ],
+      "silhouette_art": [
+        14,
+        14
+      ],
+      "luma": 0.249,
+      "palette": {
+        "colors": 5,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "steel": {
+            "share": 0.0667,
+            "steps": 2,
+            "names": [
+              "steel1",
+              "steel3"
+            ]
+          },
+          "violet": {
+            "share": 0.7778,
+            "steps": 2,
+            "names": [
+              "violet",
+              "violet_d"
+            ]
+          },
+          "white": {
+            "share": 0.1556,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "steel",
+          "violet",
+          "white"
+        ],
+        "dominant": "violet",
+        "dominant_steps": 2
+      },
+      "ring": {
+        "px": 132,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "violet",
+            "share": 0.394
+          },
+          {
+            "name": "violet_d",
+            "share": 0.288
+          },
+          {
+            "name": "steel3",
+            "share": 0.28
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 3.33,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/ram_up.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        72,
+        132
+      ],
+      "density": 2,
+      "art": [
+        36,
+        66
+      ],
+      "opaque_px": 7140,
+      "opaque": 0.751,
+      "silhouette": [
+        6,
+        0,
+        60,
+        132
+      ],
+      "silhouette_art": [
+        30,
+        66
+      ],
+      "luma": 0.0398,
+      "palette": {
+        "colors": 9,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.107,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "cyan": {
+            "share": 0.0857,
+            "steps": 2,
+            "names": [
+              "cyan",
+              "cyan_d"
+            ]
+          },
+          "steel": {
+            "share": 0.7866,
+            "steps": 3,
+            "names": [
+              "steel0",
+              "steel1",
+              "steel2"
+            ]
+          },
+          "white": {
+            "share": 0.0067,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          },
+          "magenta": {
+            "share": 0.0017,
+            "steps": 1,
+            "names": [
+              "magenta"
+            ]
+          },
+          "amber": {
+            "share": 0.0123,
+            "steps": 1,
+            "names": [
+              "amber"
+            ]
+          }
+        },
+        "materials": [
+          "cyan",
+          "outline",
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 272,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "steel2",
+            "share": 0.537
+          },
+          {
+            "name": "steel0",
+            "share": 0.463
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.0,
+        "against": "tiles/wall_mezz.png",
+        "floor": null
+      },
+      "asset": "props/save_terminal.png",
+      "kind": "emissive",
+      "plane": "play"
+    },
+    {
+      "size": [
+        36,
+        36
+      ],
+      "density": 2,
+      "art": [
+        18,
+        18
+      ],
+      "opaque_px": 1296,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        36,
+        36
+      ],
+      "silhouette_art": [
+        18,
+        18
+      ],
+      "luma": 0.0768,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "bg": {
+            "share": 0.4444,
+            "steps": 1,
+            "names": [
+              "bg1"
+            ]
+          },
+          "steel": {
+            "share": 0.5556,
+            "steps": 3,
+            "names": [
+              "steel2",
+              "steel3",
+              "steel4"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "contrast": {
+        "worst": 1.41,
+        "against": "tiles/wall_mezz.png",
+        "floor": null
+      },
+      "asset": "props/sign_panel.png",
+      "kind": "emissive",
+      "plane": "play"
+    },
+    {
+      "size": [
+        36,
+        36
+      ],
+      "density": 2,
+      "art": [
+        18,
+        18
+      ],
+      "opaque_px": 1296,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        36,
+        36
+      ],
+      "silhouette_art": [
+        18,
+        18
+      ],
+      "luma": 0.0666,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "bg": {
+            "share": 0.4444,
+            "steps": 1,
+            "names": [
+              "bg1"
+            ]
+          },
+          "red": {
+            "share": 0.5556,
+            "steps": 2,
+            "names": [
+              "red",
+              "red_d"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "red"
+        ],
+        "dominant": "red",
+        "dominant_steps": 2
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "contrast": {
+        "worst": 1.3,
+        "against": "tiles/wall_mezz.png",
+        "floor": null
+      },
+      "asset": "props/sign_panel_warn.png",
+      "kind": "emissive",
+      "plane": "play"
+    },
+    {
+      "size": [
+        48,
+        48
+      ],
+      "density": 2,
+      "art": [
+        24,
+        24
+      ],
+      "opaque_px": 1884,
+      "opaque": 0.818,
+      "silhouette": [
+        4,
+        0,
+        42,
+        46
+      ],
+      "silhouette_art": [
+        21,
+        23
+      ],
+      "luma": 0.5578,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "cyan": {
+            "share": 0.0191,
+            "steps": 1,
+            "names": [
+              "cyan"
+            ]
+          },
+          "amber": {
+            "share": 0.9809,
+            "steps": 3,
+            "names": [
+              "amber",
+              "amber_d",
+              "amber_l"
+            ]
+          }
+        },
+        "materials": [
+          "amber"
+        ],
+        "dominant": "amber",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 134,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "amber_d",
+            "share": 0.582
+          },
+          {
+            "name": "amber_l",
+            "share": 0.418
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 6.77,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/tease_crate.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        120,
+        24
+      ],
+      "density": 2,
+      "art": [
+        60,
+        12
+      ],
+      "opaque_px": 1948,
+      "opaque": 0.676,
+      "silhouette": [
+        0,
+        0,
+        120,
+        24
+      ],
+      "silhouette_art": [
+        60,
+        12
+      ],
+      "luma": 0.1688,
+      "palette": {
+        "colors": 16,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "void": {
+            "share": 0.0349,
+            "steps": 1,
+            "names": [
+              "void"
+            ]
+          },
+          "bg": {
+            "share": 0.0164,
+            "steps": 4,
+            "names": [
+              "bg0",
+              "bg1",
+              "bg2",
+              "bg3"
+            ]
+          },
+          "black": {
+            "share": 0.0246,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "hair": {
+            "share": 0.0452,
+            "steps": 1,
+            "names": [
+              "hair"
+            ]
+          },
+          "steel": {
+            "share": 0.1437,
+            "steps": 3,
+            "names": [
+              "steel0",
+              "steel1",
+              "steel2"
+            ]
+          },
+          "concrete": {
+            "share": 0.115,
+            "steps": 1,
+            "names": [
+              "concrete0"
+            ]
+          },
+          "olive": {
+            "share": 0.6201,
+            "steps": 4,
+            "names": [
+              "olive",
+              "olive_d",
+              "olive_l",
+              "olive_ll"
+            ]
+          }
+        },
+        "materials": [
+          "black",
+          "concrete",
+          "hair",
+          "olive",
+          "steel",
+          "void"
+        ],
+        "dominant": "olive",
+        "dominant_steps": 4
+      },
+      "ring": {
+        "px": 128,
+        "dark": 0.172,
+        "line": "void",
+        "top": [
+          {
+            "name": "olive_l",
+            "share": 0.5
+          },
+          {
+            "name": "steel2",
+            "share": 0.234
+          },
+          {
+            "name": "void",
+            "share": 0.133
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 2.44,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/unit_14c_bedroll.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        50,
+        32
+      ],
+      "density": 2,
+      "art": [
+        25,
+        16
+      ],
+      "opaque_px": 1208,
+      "opaque": 0.755,
+      "silhouette": [
+        0,
+        0,
+        50,
+        32
+      ],
+      "silhouette_art": [
+        25,
+        16
+      ],
+      "luma": 0.3742,
+      "palette": {
+        "colors": 9,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "void": {
+            "share": 0.0331,
+            "steps": 1,
+            "names": [
+              "void"
+            ]
+          },
+          "hair": {
+            "share": 0.0033,
+            "steps": 1,
+            "names": [
+              "hair"
+            ]
+          },
+          "rust": {
+            "share": 0.7483,
+            "steps": 3,
+            "names": [
+              "rust1",
+              "rust2",
+              "rust3"
+            ]
+          },
+          "olive": {
+            "share": 0.1291,
+            "steps": 2,
+            "names": [
+              "olive_l",
+              "olive_ll"
+            ]
+          },
+          "chrome": {
+            "share": 0.0828,
+            "steps": 1,
+            "names": [
+              "chrome"
+            ]
+          },
+          "white": {
+            "share": 0.0033,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "chrome",
+          "olive",
+          "rust",
+          "void"
+        ],
+        "dominant": "rust",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 114,
+        "dark": 0.088,
+        "line": "void",
+        "top": [
+          {
+            "name": "chrome",
+            "share": 0.333
+          },
+          {
+            "name": "rust1",
+            "share": 0.298
+          },
+          {
+            "name": "olive_l",
+            "share": 0.237
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 4.72,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/unit_14c_box.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        96,
+        100
+      ],
+      "density": 2,
+      "art": [
+        48,
+        50
+      ],
+      "opaque_px": 4532,
+      "opaque": 0.472,
+      "silhouette": [
+        0,
+        0,
+        94,
+        100
+      ],
+      "silhouette_art": [
+        47,
+        50
+      ],
+      "luma": 0.3742,
+      "palette": {
+        "colors": 19,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "void": {
+            "share": 0.1059,
+            "steps": 1,
+            "names": [
+              "void"
+            ]
+          },
+          "bg": {
+            "share": 0.0106,
+            "steps": 1,
+            "names": [
+              "bg0"
+            ]
+          },
+          "black": {
+            "share": 0.0185,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "hair": {
+            "share": 0.0441,
+            "steps": 2,
+            "names": [
+              "hair",
+              "hair_h"
+            ]
+          },
+          "concrete": {
+            "share": 0.0538,
+            "steps": 2,
+            "names": [
+              "concrete0",
+              "concrete1"
+            ]
+          },
+          "olive": {
+            "share": 0.1103,
+            "steps": 4,
+            "names": [
+              "olive",
+              "olive_d",
+              "olive_l",
+              "olive_ll"
+            ]
+          },
+          "rust": {
+            "share": 0.5737,
+            "steps": 4,
+            "names": [
+              "rust0",
+              "rust1",
+              "rust2",
+              "rust3"
+            ]
+          },
+          "grey": {
+            "share": 0.0053,
+            "steps": 1,
+            "names": [
+              "grey"
+            ]
+          },
+          "chrome": {
+            "share": 0.0503,
+            "steps": 1,
+            "names": [
+              "chrome"
+            ]
+          },
+          "white": {
+            "share": 0.0274,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "chrome",
+          "concrete",
+          "hair",
+          "olive",
+          "rust",
+          "void",
+          "white"
+        ],
+        "dominant": "rust",
+        "dominant_steps": 4
+      },
+      "ring": {
+        "px": 369,
+        "dark": 0.32,
+        "line": "void",
+        "top": [
+          {
+            "name": "chrome",
+            "share": 0.276
+          },
+          {
+            "name": "olive_l",
+            "share": 0.146
+          },
+          {
+            "name": "void",
+            "share": 0.138
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 4.72,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/unit_14c_boxes.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        40,
+        40
+      ],
+      "density": 2,
+      "art": [
+        20,
+        20
+      ],
+      "opaque_px": 1324,
+      "opaque": 0.828,
+      "silhouette": [
+        0,
+        0,
+        40,
+        40
+      ],
+      "silhouette_art": [
+        20,
+        20
+      ],
+      "luma": 0.19,
+      "palette": {
+        "colors": 10,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "void": {
+            "share": 0.0211,
+            "steps": 1,
+            "names": [
+              "void"
+            ]
+          },
+          "hair": {
+            "share": 0.1752,
+            "steps": 2,
+            "names": [
+              "hair",
+              "hair_h"
+            ]
+          },
+          "olive": {
+            "share": 0.1571,
+            "steps": 4,
+            "names": [
+              "olive",
+              "olive_d",
+              "olive_l",
+              "olive_ll"
+            ]
+          },
+          "rust": {
+            "share": 0.6465,
+            "steps": 3,
+            "names": [
+              "rust0",
+              "rust2",
+              "rust3"
+            ]
+          }
+        },
+        "materials": [
+          "hair",
+          "olive",
+          "rust",
+          "void"
+        ],
+        "dominant": "rust",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 100,
+        "dark": 0.1,
+        "line": "void",
+        "top": [
+          {
+            "name": "rust3",
+            "share": 0.51
+          },
+          {
+            "name": "olive",
+            "share": 0.23
+          },
+          {
+            "name": "rust0",
+            "share": 0.14
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 2.67,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/unit_14c_crate.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        24,
+        60
+      ],
+      "density": 2,
+      "art": [
+        12,
+        30
+      ],
+      "opaque_px": 836,
+      "opaque": 0.581,
+      "silhouette": [
+        0,
+        8,
+        24,
+        52
+      ],
+      "silhouette_art": [
+        12,
+        26
+      ],
+      "luma": 0.0666,
+      "palette": {
+        "colors": 17,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "void": {
+            "share": 0.2775,
+            "steps": 1,
+            "names": [
+              "void"
+            ]
+          },
+          "bg": {
+            "share": 0.0048,
+            "steps": 1,
+            "names": [
+              "bg0"
+            ]
+          },
+          "black": {
+            "share": 0.067,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "hair": {
+            "share": 0.0335,
+            "steps": 1,
+            "names": [
+              "hair"
+            ]
+          },
+          "concrete": {
+            "share": 0.0861,
+            "steps": 2,
+            "names": [
+              "concrete0",
+              "concrete1"
+            ]
+          },
+          "steel": {
+            "share": 0.0096,
+            "steps": 2,
+            "names": [
+              "steel1",
+              "steel2"
+            ]
+          },
+          "olive": {
+            "share": 0.0191,
+            "steps": 2,
+            "names": [
+              "olive_d",
+              "olive_ll"
+            ]
+          },
+          "red": {
+            "share": 0.0144,
+            "steps": 1,
+            "names": [
+              "red_d"
+            ]
+          },
+          "grey": {
+            "share": 0.0574,
+            "steps": 1,
+            "names": [
+              "grey"
+            ]
+          },
+          "rust": {
+            "share": 0.2967,
+            "steps": 2,
+            "names": [
+              "rust2",
+              "rust3"
+            ]
+          },
+          "chrome": {
+            "share": 0.0335,
+            "steps": 1,
+            "names": [
+              "chrome"
+            ]
+          },
+          "white": {
+            "share": 0.1005,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "black",
+          "chrome",
+          "concrete",
+          "grey",
+          "hair",
+          "rust",
+          "void",
+          "white"
+        ],
+        "dominant": "rust",
+        "dominant_steps": 2
+      },
+      "ring": {
+        "px": 185,
+        "dark": 0.205,
+        "line": "void",
+        "top": [
+          {
+            "name": "rust2",
+            "share": 0.443
+          },
+          {
+            "name": "white",
+            "share": 0.2
+          },
+          {
+            "name": "void",
+            "share": 0.108
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.3,
+        "against": "tiles/wall_mezz.png",
+        "floor": null
+      },
+      "asset": "props/unit_14c_crt.png",
+      "kind": "emissive",
+      "plane": "play"
+    },
+    {
+      "size": [
+        48,
+        426
+      ],
+      "density": 2,
+      "art": [
+        24,
+        213
+      ],
+      "opaque_px": 1308,
+      "opaque": 0.064,
+      "silhouette": [
+        0,
+        0,
+        48,
+        424
+      ],
+      "silhouette_art": [
+        24,
+        212
+      ],
+      "luma": 0.0302,
+      "palette": {
+        "colors": 5,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "black": {
+            "share": 0.8196,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "steel": {
+            "share": 0.1621,
+            "steps": 2,
+            "names": [
+              "steel0",
+              "steel1"
+            ]
+          },
+          "grey": {
+            "share": 0.0183,
+            "steps": 1,
+            "names": [
+              "grey_d"
+            ]
+          }
+        },
+        "materials": [
+          "black",
+          "steel"
+        ],
+        "dominant": "black",
+        "dominant_steps": 2
+      },
+      "ring": {
+        "px": 919,
+        "dark": 0.033,
+        "line": "black",
+        "top": [
+          {
+            "name": "black_l",
+            "share": 0.78
+          },
+          {
+            "name": "steel0",
+            "share": 0.131
+          },
+          {
+            "name": "steel1",
+            "share": 0.046
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.1,
+        "against": "tiles/wall_gut.png",
+        "floor": null
+      },
+      "asset": "props/unit_14c_lamp.png",
+      "kind": "emissive",
+      "plane": "play"
+    },
+    {
+      "size": [
+        24,
+        20
+      ],
+      "density": 2,
+      "art": [
+        12,
+        10
+      ],
+      "opaque_px": 268,
+      "opaque": 0.558,
+      "silhouette": [
+        0,
+        0,
+        24,
+        20
+      ],
+      "silhouette_art": [
+        12,
+        10
+      ],
+      "luma": 0.3653,
+      "palette": {
+        "colors": 7,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "hair": {
+            "share": 0.0299,
+            "steps": 1,
+            "names": [
+              "hair"
+            ]
+          },
+          "concrete": {
+            "share": 0.2985,
+            "steps": 2,
+            "names": [
+              "concrete2",
+              "concrete3"
+            ]
+          },
+          "grey": {
+            "share": 0.2537,
+            "steps": 2,
+            "names": [
+              "grey",
+              "grey_d"
+            ]
+          },
+          "chrome": {
+            "share": 0.1194,
+            "steps": 1,
+            "names": [
+              "chrome"
+            ]
+          },
+          "white": {
+            "share": 0.2985,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "chrome",
+          "concrete",
+          "grey",
+          "hair",
+          "white"
+        ],
+        "dominant": "concrete",
+        "dominant_steps": 2
+      },
+      "ring": {
+        "px": 81,
+        "dark": 0.037,
+        "line": "hair",
+        "top": [
+          {
+            "name": "concrete3",
+            "share": 0.432
+          },
+          {
+            "name": "white",
+            "share": 0.42
+          },
+          {
+            "name": "grey_d",
+            "share": 0.074
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 4.62,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/unit_14c_papers_a.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        64,
+        14
+      ],
+      "density": 2,
+      "art": [
+        32,
+        7
+      ],
+      "opaque_px": 496,
+      "opaque": 0.554,
+      "silhouette": [
+        2,
+        0,
+        60,
+        14
+      ],
+      "silhouette_art": [
+        30,
+        7
+      ],
+      "luma": 0.8693,
+      "palette": {
+        "colors": 6,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "hair": {
+            "share": 0.0403,
+            "steps": 1,
+            "names": [
+              "hair"
+            ]
+          },
+          "rust": {
+            "share": 0.0161,
+            "steps": 1,
+            "names": [
+              "rust0"
+            ]
+          },
+          "concrete": {
+            "share": 0.1129,
+            "steps": 1,
+            "names": [
+              "concrete3"
+            ]
+          },
+          "grey": {
+            "share": 0.121,
+            "steps": 1,
+            "names": [
+              "grey"
+            ]
+          },
+          "chrome": {
+            "share": 0.0484,
+            "steps": 1,
+            "names": [
+              "chrome"
+            ]
+          },
+          "white": {
+            "share": 0.6613,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "chrome",
+          "concrete",
+          "grey",
+          "hair",
+          "white"
+        ],
+        "dominant": "white",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 116,
+        "dark": 0.078,
+        "line": "hair",
+        "top": [
+          {
+            "name": "white",
+            "share": 0.474
+          },
+          {
+            "name": "concrete3",
+            "share": 0.216
+          },
+          {
+            "name": "grey",
+            "share": 0.198
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 10.24,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/unit_14c_papers_b.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        128,
+        104
+      ],
+      "density": 2,
+      "art": [
+        64,
+        52
+      ],
+      "opaque_px": 4868,
+      "opaque": 0.366,
+      "silhouette": [
+        0,
+        0,
+        128,
+        104
+      ],
+      "silhouette_art": [
+        64,
+        52
+      ],
+      "luma": 0.0025,
+      "palette": {
+        "colors": 24,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "void": {
+            "share": 0.5809,
+            "steps": 1,
+            "names": [
+              "void"
+            ]
+          },
+          "bg": {
+            "share": 0.0411,
+            "steps": 2,
+            "names": [
+              "bg0",
+              "bg1"
+            ]
+          },
+          "black": {
+            "share": 0.0263,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "hair": {
+            "share": 0.1241,
+            "steps": 2,
+            "names": [
+              "hair",
+              "hair_h"
+            ]
+          },
+          "concrete": {
+            "share": 0.0772,
+            "steps": 4,
+            "names": [
+              "concrete0",
+              "concrete1",
+              "concrete2",
+              "concrete3"
+            ]
+          },
+          "olive": {
+            "share": 0.0238,
+            "steps": 3,
+            "names": [
+              "olive",
+              "olive_d",
+              "olive_l"
+            ]
+          },
+          "rust": {
+            "share": 0.0871,
+            "steps": 4,
+            "names": [
+              "rust0",
+              "rust1",
+              "rust2",
+              "rust3"
+            ]
+          },
+          "steel": {
+            "share": 0.0107,
+            "steps": 1,
+            "names": [
+              "steel2"
+            ]
+          },
+          "grey": {
+            "share": 0.0173,
+            "steps": 2,
+            "names": [
+              "grey",
+              "grey_d"
+            ]
+          },
+          "red": {
+            "share": 0.0033,
+            "steps": 1,
+            "names": [
+              "red_d"
+            ]
+          },
+          "amber": {
+            "share": 0.0058,
+            "steps": 1,
+            "names": [
+              "amber_d"
+            ]
+          },
+          "white": {
+            "share": 0.0025,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "black",
+          "concrete",
+          "hair",
+          "olive",
+          "rust",
+          "void"
+        ],
+        "dominant": "void",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 812,
+        "dark": 0.842,
+        "line": "void",
+        "top": [
+          {
+            "name": "void",
+            "share": 0.616
+          },
+          {
+            "name": "bg0",
+            "share": 0.107
+          },
+          {
+            "name": "hair",
+            "share": 0.06
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.05,
+        "against": "tiles/wall_residential.png",
+        "floor": 1.1
+      },
+      "asset": "props/unit_14c_piano.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        44,
+        36
+      ],
+      "density": 2,
+      "art": [
+        22,
+        18
+      ],
+      "opaque_px": 456,
+      "opaque": 0.288,
+      "silhouette": [
+        0,
+        0,
+        44,
+        36
+      ],
+      "silhouette_art": [
+        22,
+        18
+      ],
+      "luma": 0.0227,
+      "palette": {
+        "colors": 11,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "void": {
+            "share": 0.307,
+            "steps": 1,
+            "names": [
+              "void"
+            ]
+          },
+          "hair": {
+            "share": 0.1228,
+            "steps": 2,
+            "names": [
+              "hair",
+              "hair_h"
+            ]
+          },
+          "rust": {
+            "share": 0.4474,
+            "steps": 4,
+            "names": [
+              "rust0",
+              "rust1",
+              "rust2",
+              "rust3"
+            ]
+          },
+          "olive": {
+            "share": 0.0263,
+            "steps": 2,
+            "names": [
+              "olive",
+              "olive_l"
+            ]
+          },
+          "amber": {
+            "share": 0.0263,
+            "steps": 1,
+            "names": [
+              "amber_d"
+            ]
+          },
+          "white": {
+            "share": 0.0702,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "amber",
+          "hair",
+          "olive",
+          "rust",
+          "void",
+          "white"
+        ],
+        "dominant": "rust",
+        "dominant_steps": 4
+      },
+      "ring": {
+        "px": 160,
+        "dark": 0.456,
+        "line": "void",
+        "top": [
+          {
+            "name": "void",
+            "share": 0.362
+          },
+          {
+            "name": "rust0",
+            "share": 0.294
+          },
+          {
+            "name": "hair",
+            "share": 0.094
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.0,
+        "against": "tiles/wall_gut.png",
+        "floor": 1.1
+      },
+      "asset": "props/unit_14c_table.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        60,
+        36
+      ],
+      "density": 2,
+      "art": [
+        30,
+        18
+      ],
+      "opaque_px": 2040,
+      "opaque": 0.944,
+      "silhouette": [
+        0,
+        0,
+        60,
+        34
+      ],
+      "silhouette_art": [
+        30,
+        17
+      ],
+      "luma": 0.0768,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "bg": {
+            "share": 0.3765,
+            "steps": 1,
+            "names": [
+              "bg0"
+            ]
+          },
+          "steel": {
+            "share": 0.6235,
+            "steps": 3,
+            "names": [
+              "steel1",
+              "steel2",
+              "steel3"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 60,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "steel1",
+            "share": 0.967
+          },
+          {
+            "name": "steel3",
+            "share": 0.033
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.41,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "props/vent.png",
+      "kind": "prop",
+      "plane": "play"
+    },
+    {
+      "size": [
+        72,
+        48
+      ],
+      "density": 2,
+      "art": [
+        36,
+        24
+      ],
+      "opaque_px": 3312,
+      "opaque": 0.958,
+      "silhouette": [
+        0,
+        0,
+        72,
+        46
+      ],
+      "silhouette_art": [
+        36,
+        23
+      ],
+      "luma": 0.7342,
+      "palette": {
+        "colors": 5,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "steel": {
+            "share": 0.4783,
+            "steps": 3,
+            "names": [
+              "steel2",
+              "steel3",
+              "steel4"
+            ]
+          },
+          "sodium": {
+            "share": 0.0085,
+            "steps": 1,
+            "names": [
+              "sodium"
+            ]
+          },
+          "warm": {
+            "share": 0.5133,
+            "steps": 1,
+            "names": [
+              "warm"
+            ]
+          }
+        },
+        "materials": [
+          "steel",
+          "warm"
+        ],
+        "dominant": "warm",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 72,
+        "dark": 0.0,
+        "line": null,
+        "top": [
+          {
+            "name": "steel2",
+            "share": 0.972
+          },
+          {
+            "name": "steel4",
+            "share": 0.028
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 8.73,
+        "against": "tiles/wall_mezz.png",
+        "floor": null
+      },
+      "asset": "props/window.png",
+      "kind": "emissive",
+      "plane": "play"
+    },
+    {
+      "size": [
+        960,
+        64
+      ],
+      "density": 2,
+      "art": [
+        480,
+        32
+      ],
+      "opaque_px": 10176,
+      "opaque": 0.166,
+      "silhouette": [
+        12,
+        16,
+        944,
+        48
+      ],
+      "silhouette_art": [
+        472,
+        24
+      ],
+      "luma": 0.0398,
+      "palette": {
+        "colors": 19,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.0975,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "black": {
+            "share": 0.2453,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "steel": {
+            "share": 0.316,
+            "steps": 5,
+            "names": [
+              "steel0",
+              "steel1",
+              "steel2",
+              "steel3",
+              "steel4"
+            ]
+          },
+          "concrete": {
+            "share": 0.1667,
+            "steps": 4,
+            "names": [
+              "concrete0",
+              "concrete1",
+              "concrete2",
+              "concrete3"
+            ]
+          },
+          "grey": {
+            "share": 0.0979,
+            "steps": 2,
+            "names": [
+              "grey",
+              "grey_d"
+            ]
+          },
+          "red": {
+            "share": 0.0597,
+            "steps": 3,
+            "names": [
+              "red",
+              "red_d",
+              "red_l"
+            ]
+          },
+          "cyan": {
+            "share": 0.0039,
+            "steps": 1,
+            "names": [
+              "cyan_l"
+            ]
+          },
+          "white": {
+            "share": 0.013,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "black",
+          "concrete",
+          "grey",
+          "outline",
+          "red",
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 5
+      },
+      "ring": {
+        "px": 3311,
+        "dark": 0.223,
+        "line": "concrete0",
+        "top": [
+          {
+            "name": "black_l",
+            "share": 0.333
+          },
+          {
+            "name": "grey_d",
+            "share": 0.174
+          },
+          {
+            "name": "concrete0",
+            "share": 0.109
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.0,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "sprites/drone.png",
+      "kind": "character",
+      "plane": "play"
+    },
+    {
+      "size": [
+        1920,
+        112
+      ],
+      "density": 2,
+      "art": [
+        960,
+        56
+      ],
+      "opaque_px": 36964,
+      "opaque": 0.172,
+      "silhouette": [
+        44,
+        10,
+        1864,
+        102
+      ],
+      "silhouette_art": [
+        932,
+        51
+      ],
+      "luma": 0.047,
+      "palette": {
+        "colors": 22,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.0042,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "black": {
+            "share": 0.0199,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "hair": {
+            "share": 0.1823,
+            "steps": 2,
+            "names": [
+              "hair",
+              "hair_h"
+            ]
+          },
+          "concrete": {
+            "share": 0.6553,
+            "steps": 4,
+            "names": [
+              "concrete0",
+              "concrete1",
+              "concrete2",
+              "concrete3"
+            ]
+          },
+          "rust": {
+            "share": 0.0456,
+            "steps": 2,
+            "names": [
+              "rust0",
+              "rust1"
+            ]
+          },
+          "steel": {
+            "share": 0.0048,
+            "steps": 1,
+            "names": [
+              "steel2"
+            ]
+          },
+          "skin": {
+            "share": 0.0186,
+            "steps": 2,
+            "names": [
+              "skin2",
+              "skin2_d"
+            ]
+          },
+          "grey": {
+            "share": 0.0282,
+            "steps": 2,
+            "names": [
+              "grey",
+              "grey_d"
+            ]
+          },
+          "magenta": {
+            "share": 0.006,
+            "steps": 3,
+            "names": [
+              "magenta",
+              "magenta_d",
+              "magenta_l"
+            ]
+          },
+          "red": {
+            "share": 0.034,
+            "steps": 2,
+            "names": [
+              "red",
+              "red_d"
+            ]
+          },
+          "white": {
+            "share": 0.0011,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "concrete",
+          "grey",
+          "hair",
+          "red",
+          "rust"
+        ],
+        "dominant": "concrete",
+        "dominant_steps": 4
+      },
+      "ring": {
+        "px": 6596,
+        "dark": 0.485,
+        "line": "hair",
+        "top": [
+          {
+            "name": "hair",
+            "share": 0.219
+          },
+          {
+            "name": "concrete0",
+            "share": 0.196
+          },
+          {
+            "name": "concrete2",
+            "share": 0.173
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.08,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "sprites/elite_scav.png",
+      "kind": "character",
+      "plane": "play"
+    },
+    {
+      "size": [
+        5616,
+        176
+      ],
+      "density": 2,
+      "art": [
+        2808,
+        88
+      ],
+      "opaque_px": 173692,
+      "opaque": 0.176,
+      "silhouette": [
+        42,
+        0,
+        5574,
+        176
+      ],
+      "silhouette_art": [
+        2787,
+        88
+      ],
+      "luma": 0.0196,
+      "palette": {
+        "colors": 24,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.119,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "black": {
+            "share": 0.0543,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "hair": {
+            "share": 0.3031,
+            "steps": 3,
+            "names": [
+              "hair",
+              "hair_h",
+              "hair_l"
+            ]
+          },
+          "concrete": {
+            "share": 0.3506,
+            "steps": 4,
+            "names": [
+              "concrete0",
+              "concrete1",
+              "concrete2",
+              "concrete3"
+            ]
+          },
+          "steel": {
+            "share": 0.0045,
+            "steps": 3,
+            "names": [
+              "steel2",
+              "steel3",
+              "steel4"
+            ]
+          },
+          "grey": {
+            "share": 0.0846,
+            "steps": 2,
+            "names": [
+              "grey",
+              "grey_d"
+            ]
+          },
+          "skin": {
+            "share": 0.0014,
+            "steps": 3,
+            "names": [
+              "skin_d",
+              "skin_dd",
+              "skin_l"
+            ]
+          },
+          "chrome": {
+            "share": 0.0214,
+            "steps": 2,
+            "names": [
+              "chrome",
+              "chrome_d"
+            ]
+          },
+          "magenta": {
+            "share": 0.0235,
+            "steps": 3,
+            "names": [
+              "magenta",
+              "magenta_d",
+              "magenta_l"
+            ]
+          },
+          "white": {
+            "share": 0.0376,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "black",
+          "chrome",
+          "concrete",
+          "grey",
+          "hair",
+          "magenta",
+          "outline",
+          "white"
+        ],
+        "dominant": "concrete",
+        "dominant_steps": 4
+      },
+      "ring": {
+        "px": 24397,
+        "dark": 0.56,
+        "line": "outline",
+        "top": [
+          {
+            "name": "outline",
+            "share": 0.222
+          },
+          {
+            "name": "hair",
+            "share": 0.175
+          },
+          {
+            "name": "concrete0",
+            "share": 0.121
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.0,
+        "against": "tiles/wall_roof.png",
+        "floor": 1.1
+      },
+      "asset": "sprites/landlord.png",
+      "kind": "character",
+      "plane": "play"
+    },
+    {
+      "size": [
+        480,
+        120
+      ],
+      "density": 2,
+      "art": [
+        240,
+        60
+      ],
+      "opaque_px": 8932,
+      "opaque": 0.155,
+      "silhouette": [
+        28,
+        16,
+        440,
+        104
+      ],
+      "silhouette_art": [
+        220,
+        52
+      ],
+      "luma": 0.0619,
+      "palette": {
+        "colors": 20,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.0408,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "black": {
+            "share": 0.0345,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "hair": {
+            "share": 0.3171,
+            "steps": 3,
+            "names": [
+              "hair",
+              "hair_h",
+              "hair_l"
+            ]
+          },
+          "concrete": {
+            "share": 0.0793,
+            "steps": 2,
+            "names": [
+              "concrete0",
+              "concrete1"
+            ]
+          },
+          "rust": {
+            "share": 0.2436,
+            "steps": 3,
+            "names": [
+              "rust0",
+              "rust1",
+              "rust3"
+            ]
+          },
+          "violet": {
+            "share": 0.0712,
+            "steps": 2,
+            "names": [
+              "violet",
+              "violet_d"
+            ]
+          },
+          "grey": {
+            "share": 0.0502,
+            "steps": 2,
+            "names": [
+              "grey",
+              "grey_d"
+            ]
+          },
+          "skin": {
+            "share": 0.1496,
+            "steps": 4,
+            "names": [
+              "skin",
+              "skin_d",
+              "skin_dd",
+              "skin_l"
+            ]
+          },
+          "white": {
+            "share": 0.0139,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "black",
+          "concrete",
+          "grey",
+          "hair",
+          "outline",
+          "rust",
+          "skin",
+          "violet"
+        ],
+        "dominant": "hair",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 1668,
+        "dark": 0.374,
+        "line": "hair",
+        "top": [
+          {
+            "name": "hair",
+            "share": 0.179
+          },
+          {
+            "name": "skin_dd",
+            "share": 0.138
+          },
+          {
+            "name": "concrete1",
+            "share": 0.095
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.25,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "sprites/marisol.png",
+      "kind": "character",
+      "plane": "play"
+    },
+    {
+      "size": [
+        1728,
+        128
+      ],
+      "density": 2,
+      "art": [
+        864,
+        64
+      ],
+      "opaque_px": 43124,
+      "opaque": 0.195,
+      "silhouette": [
+        28,
+        0,
+        1692,
+        128
+      ],
+      "silhouette_art": [
+        846,
+        64
+      ],
+      "luma": 0.047,
+      "palette": {
+        "colors": 33,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.2277,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "black": {
+            "share": 0.0947,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "hair": {
+            "share": 0.0331,
+            "steps": 3,
+            "names": [
+              "hair",
+              "hair_h",
+              "hair_l"
+            ]
+          },
+          "navy": {
+            "share": 0.3443,
+            "steps": 4,
+            "names": [
+              "navy",
+              "navy_d",
+              "navy_l",
+              "navy_ll"
+            ]
+          },
+          "bg": {
+            "share": 0.0336,
+            "steps": 2,
+            "names": [
+              "bg2",
+              "bg3"
+            ]
+          },
+          "steel": {
+            "share": 0.0439,
+            "steps": 5,
+            "names": [
+              "steel0",
+              "steel1",
+              "steel2",
+              "steel3",
+              "steel4"
+            ]
+          },
+          "concrete": {
+            "share": 0.1193,
+            "steps": 4,
+            "names": [
+              "concrete0",
+              "concrete1",
+              "concrete2",
+              "concrete3"
+            ]
+          },
+          "grey": {
+            "share": 0.0404,
+            "steps": 2,
+            "names": [
+              "grey",
+              "grey_d"
+            ]
+          },
+          "skin": {
+            "share": 0.008,
+            "steps": 4,
+            "names": [
+              "skin",
+              "skin_d",
+              "skin_dd",
+              "skin_l"
+            ]
+          },
+          "chrome": {
+            "share": 0.0072,
+            "steps": 2,
+            "names": [
+              "chrome",
+              "chrome_d"
+            ]
+          },
+          "magenta": {
+            "share": 0.0267,
+            "steps": 3,
+            "names": [
+              "magenta",
+              "magenta_d",
+              "magenta_l"
+            ]
+          },
+          "white": {
+            "share": 0.0211,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "black",
+          "concrete",
+          "grey",
+          "hair",
+          "magenta",
+          "navy",
+          "outline",
+          "steel",
+          "white"
+        ],
+        "dominant": "navy",
+        "dominant_steps": 4
+      },
+      "ring": {
+        "px": 8206,
+        "dark": 0.488,
+        "line": "outline",
+        "top": [
+          {
+            "name": "outline",
+            "share": 0.299
+          },
+          {
+            "name": "black",
+            "share": 0.078
+          },
+          {
+            "name": "bg3",
+            "share": 0.056
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.08,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "sprites/player.png",
+      "kind": "character",
+      "plane": "play"
+    },
+    {
+      "size": [
+        1632,
+        136
+      ],
+      "density": 2,
+      "art": [
+        816,
+        68
+      ],
+      "opaque_px": 63068,
+      "opaque": 0.284,
+      "silhouette": [
+        24,
+        2,
+        1604,
+        134
+      ],
+      "silhouette_art": [
+        802,
+        67
+      ],
+      "luma": 0.0768,
+      "palette": {
+        "colors": 20,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.0003,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "cyan": {
+            "share": 0.0137,
+            "steps": 3,
+            "names": [
+              "cyan",
+              "cyan_d",
+              "cyan_l"
+            ]
+          },
+          "black": {
+            "share": 0.0618,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "steel": {
+            "share": 0.419,
+            "steps": 5,
+            "names": [
+              "steel0",
+              "steel1",
+              "steel2",
+              "steel3",
+              "steel4"
+            ]
+          },
+          "concrete": {
+            "share": 0.1977,
+            "steps": 4,
+            "names": [
+              "concrete0",
+              "concrete1",
+              "concrete2",
+              "concrete3"
+            ]
+          },
+          "grey": {
+            "share": 0.2861,
+            "steps": 2,
+            "names": [
+              "grey",
+              "grey_d"
+            ]
+          },
+          "amber": {
+            "share": 0.0211,
+            "steps": 2,
+            "names": [
+              "amber",
+              "amber_d"
+            ]
+          },
+          "white": {
+            "share": 0.0003,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "amber",
+          "black",
+          "concrete",
+          "grey",
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 5
+      },
+      "ring": {
+        "px": 7947,
+        "dark": 0.153,
+        "line": "concrete0",
+        "top": [
+          {
+            "name": "concrete1",
+            "share": 0.147
+          },
+          {
+            "name": "steel2",
+            "share": 0.136
+          },
+          {
+            "name": "concrete2",
+            "share": 0.121
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.41,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "sprites/riot.png",
+      "kind": "character",
+      "plane": "play"
+    },
+    {
+      "size": [
+        28,
+        136
+      ],
+      "density": 2,
+      "art": [
+        14,
+        68
+      ],
+      "opaque_px": 2624,
+      "opaque": 0.689,
+      "silhouette": [
+        4,
+        4,
+        20,
+        132
+      ],
+      "silhouette_art": [
+        10,
+        66
+      ],
+      "luma": 0.3653,
+      "palette": {
+        "colors": 12,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.0107,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "black": {
+            "share": 0.0534,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "concrete": {
+            "share": 0.3857,
+            "steps": 4,
+            "names": [
+              "concrete0",
+              "concrete1",
+              "concrete2",
+              "concrete3"
+            ]
+          },
+          "steel": {
+            "share": 0.0412,
+            "steps": 2,
+            "names": [
+              "steel2",
+              "steel4"
+            ]
+          },
+          "grey": {
+            "share": 0.4253,
+            "steps": 2,
+            "names": [
+              "grey",
+              "grey_d"
+            ]
+          },
+          "white": {
+            "share": 0.0838,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "black",
+          "concrete",
+          "grey",
+          "steel",
+          "white"
+        ],
+        "dominant": "grey",
+        "dominant_steps": 2
+      },
+      "ring": {
+        "px": 288,
+        "dark": 0.316,
+        "line": "concrete0",
+        "top": [
+          {
+            "name": "concrete3",
+            "share": 0.292
+          },
+          {
+            "name": "concrete1",
+            "share": 0.233
+          },
+          {
+            "name": "concrete0",
+            "share": 0.16
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 4.62,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "sprites/riot_shield.png",
+      "kind": "character",
+      "plane": "play"
+    },
+    {
+      "size": [
+        1920,
+        112
+      ],
+      "density": 2,
+      "art": [
+        960,
+        56
+      ],
+      "opaque_px": 36060,
+      "opaque": 0.168,
+      "silhouette": [
+        42,
+        14,
+        1866,
+        98
+      ],
+      "silhouette_art": [
+        933,
+        49
+      ],
+      "luma": 0.1177,
+      "palette": {
+        "colors": 27,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.0017,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "black": {
+            "share": 0.0124,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "hair": {
+            "share": 0.0865,
+            "steps": 2,
+            "names": [
+              "hair",
+              "hair_h"
+            ]
+          },
+          "concrete": {
+            "share": 0.0653,
+            "steps": 4,
+            "names": [
+              "concrete0",
+              "concrete1",
+              "concrete2",
+              "concrete3"
+            ]
+          },
+          "steel": {
+            "share": 0.0051,
+            "steps": 2,
+            "names": [
+              "steel1",
+              "steel2"
+            ]
+          },
+          "olive": {
+            "share": 0.5191,
+            "steps": 4,
+            "names": [
+              "olive",
+              "olive_d",
+              "olive_l",
+              "olive_ll"
+            ]
+          },
+          "rust": {
+            "share": 0.2408,
+            "steps": 4,
+            "names": [
+              "rust0",
+              "rust1",
+              "rust2",
+              "rust3"
+            ]
+          },
+          "skin": {
+            "share": 0.0333,
+            "steps": 2,
+            "names": [
+              "skin2",
+              "skin2_d"
+            ]
+          },
+          "grey": {
+            "share": 0.0251,
+            "steps": 2,
+            "names": [
+              "grey",
+              "grey_d"
+            ]
+          },
+          "amber": {
+            "share": 0.005,
+            "steps": 3,
+            "names": [
+              "amber",
+              "amber_d",
+              "amber_l"
+            ]
+          },
+          "white": {
+            "share": 0.0057,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "concrete",
+          "grey",
+          "hair",
+          "olive",
+          "rust",
+          "skin"
+        ],
+        "dominant": "olive",
+        "dominant_steps": 4
+      },
+      "ring": {
+        "px": 5952,
+        "dark": 0.212,
+        "line": "hair",
+        "top": [
+          {
+            "name": "olive_ll",
+            "share": 0.183
+          },
+          {
+            "name": "rust0",
+            "share": 0.179
+          },
+          {
+            "name": "hair",
+            "share": 0.148
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 1.87,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "sprites/scav.png",
+      "kind": "character",
+      "plane": "play"
+    },
+    {
+      "size": [
+        672,
+        120
+      ],
+      "density": 2,
+      "art": [
+        336,
+        60
+      ],
+      "opaque_px": 29360,
+      "opaque": 0.364,
+      "silhouette": [
+        16,
+        0,
+        656,
+        120
+      ],
+      "silhouette_art": [
+        328,
+        60
+      ],
+      "luma": 0.19,
+      "palette": {
+        "colors": 23,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.0418,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "cyan": {
+            "share": 0.048,
+            "steps": 1,
+            "names": [
+              "cyan_d"
+            ]
+          },
+          "black": {
+            "share": 0.0316,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "concrete": {
+            "share": 0.0749,
+            "steps": 4,
+            "names": [
+              "concrete0",
+              "concrete1",
+              "concrete2",
+              "concrete3"
+            ]
+          },
+          "green": {
+            "share": 0.1204,
+            "steps": 1,
+            "names": [
+              "green_d"
+            ]
+          },
+          "navy": {
+            "share": 0.0165,
+            "steps": 2,
+            "names": [
+              "navy",
+              "navy_l"
+            ]
+          },
+          "rust": {
+            "share": 0.3929,
+            "steps": 3,
+            "names": [
+              "rust0",
+              "rust1",
+              "rust2"
+            ]
+          },
+          "steel": {
+            "share": 0.0147,
+            "steps": 2,
+            "names": [
+              "steel2",
+              "steel3"
+            ]
+          },
+          "skin": {
+            "share": 0.1117,
+            "steps": 2,
+            "names": [
+              "skin2",
+              "skin2_d"
+            ]
+          },
+          "grey": {
+            "share": 0.126,
+            "steps": 2,
+            "names": [
+              "grey",
+              "grey_d"
+            ]
+          },
+          "chrome": {
+            "share": 0.0208,
+            "steps": 2,
+            "names": [
+              "chrome",
+              "chrome_d"
+            ]
+          },
+          "white": {
+            "share": 0.0005,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "black",
+          "chrome",
+          "concrete",
+          "cyan",
+          "green",
+          "grey",
+          "outline",
+          "rust",
+          "skin"
+        ],
+        "dominant": "rust",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 2472,
+        "dark": 0.31,
+        "line": "outline",
+        "top": [
+          {
+            "name": "outline",
+            "share": 0.189
+          },
+          {
+            "name": "rust1",
+            "share": 0.132
+          },
+          {
+            "name": "rust0",
+            "share": 0.131
+          }
+        ]
+      },
+      "contrast": {
+        "worst": 2.67,
+        "against": "tiles/wall_mezz.png",
+        "floor": 1.1
+      },
+      "asset": "sprites/stitch.png",
+      "kind": "character",
+      "plane": "play"
+    },
+    {
+      "size": [
+        120,
+        120
+      ],
+      "density": 2,
+      "art": [
+        60,
+        60
+      ],
+      "opaque_px": 14400,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        120,
+        120
+      ],
+      "silhouette_art": [
+        60,
+        60
+      ],
+      "luma": 0.0052,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "bg": {
+            "share": 0.9997,
+            "steps": 2,
+            "names": [
+              "bg0",
+              "bg1"
+            ]
+          },
+          "amber": {
+            "share": 0.0003,
+            "steps": 1,
+            "names": [
+              "amber_d"
+            ]
+          }
+        },
+        "materials": [
+          "bg"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 2
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/back_collections.png",
+      "kind": "back",
+      "plane": "back"
+    },
+    {
+      "size": [
+        120,
+        120
+      ],
+      "density": 2,
+      "art": [
+        60,
+        60
+      ],
+      "opaque_px": 14400,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        120,
+        120
+      ],
+      "silhouette_art": [
+        60,
+        60
+      ],
+      "luma": 0.0052,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "bg": {
+            "share": 0.9653,
+            "steps": 2,
+            "names": [
+              "bg0",
+              "bg1"
+            ]
+          },
+          "rust": {
+            "share": 0.0347,
+            "steps": 1,
+            "names": [
+              "rust0"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "rust"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 2
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/back_gut.png",
+      "kind": "back",
+      "plane": "back"
+    },
+    {
+      "size": [
+        120,
+        120
+      ],
+      "density": 2,
+      "art": [
+        60,
+        60
+      ],
+      "opaque_px": 14400,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        120,
+        120
+      ],
+      "silhouette_art": [
+        60,
+        60
+      ],
+      "luma": 0.0103,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "bg": {
+            "share": 1.0,
+            "steps": 3,
+            "names": [
+              "bg0",
+              "bg1",
+              "bg2"
+            ]
+          }
+        },
+        "materials": [
+          "bg"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/back_mezz.png",
+      "kind": "back",
+      "plane": "back"
+    },
+    {
+      "size": [
+        120,
+        120
+      ],
+      "density": 2,
+      "art": [
+        60,
+        60
+      ],
+      "opaque_px": 14400,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        120,
+        120
+      ],
+      "silhouette_art": [
+        60,
+        60
+      ],
+      "luma": 0.0103,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "bg": {
+            "share": 1.0,
+            "steps": 3,
+            "names": [
+              "bg0",
+              "bg1",
+              "bg2"
+            ]
+          }
+        },
+        "materials": [
+          "bg"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/back_residential.png",
+      "kind": "back",
+      "plane": "back"
+    },
+    {
+      "size": [
+        120,
+        120
+      ],
+      "density": 2,
+      "art": [
+        60,
+        60
+      ],
+      "opaque_px": 14400,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        120,
+        120
+      ],
+      "silhouette_art": [
+        60,
+        60
+      ],
+      "luma": 0.0025,
+      "palette": {
+        "colors": 2,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "void": {
+            "share": 0.9981,
+            "steps": 1,
+            "names": [
+              "void"
+            ]
+          },
+          "steel": {
+            "share": 0.0019,
+            "steps": 1,
+            "names": [
+              "steel1"
+            ]
+          }
+        },
+        "materials": [
+          "void"
+        ],
+        "dominant": "void",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/back_roof.png",
+      "kind": "back",
+      "plane": "back"
+    },
+    {
+      "size": [
+        120,
+        120
+      ],
+      "density": 2,
+      "art": [
+        60,
+        60
+      ],
+      "opaque_px": 14400,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        120,
+        120
+      ],
+      "silhouette_art": [
+        60,
+        60
+      ],
+      "luma": 0.0103,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "bg": {
+            "share": 1.0,
+            "steps": 3,
+            "names": [
+              "bg0",
+              "bg1",
+              "bg2"
+            ]
+          }
+        },
+        "materials": [
+          "bg"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/back_shaft.png",
+      "kind": "back",
+      "plane": "back"
+    },
+    {
+      "size": [
+        1800,
+        600
+      ],
+      "density": 2,
+      "art": [
+        900,
+        300
+      ],
+      "opaque_px": 1009152,
+      "opaque": 0.934,
+      "silhouette": [
+        0,
+        0,
+        1800,
+        600
+      ],
+      "silhouette_art": [
+        900,
+        300
+      ],
+      "luma": 0.0297,
+      "palette": {
+        "colors": 18,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "void": {
+            "share": 0.0016,
+            "steps": 1,
+            "names": [
+              "void"
+            ]
+          },
+          "bg": {
+            "share": 0.6478,
+            "steps": 4,
+            "names": [
+              "bg0",
+              "bg1",
+              "bg2",
+              "bg3"
+            ]
+          },
+          "black": {
+            "share": 0.0168,
+            "steps": 2,
+            "names": [
+              "black",
+              "black_l"
+            ]
+          },
+          "navy": {
+            "share": 0.0002,
+            "steps": 1,
+            "names": [
+              "navy_d"
+            ]
+          },
+          "steel": {
+            "share": 0.328,
+            "steps": 3,
+            "names": [
+              "steel0",
+              "steel1",
+              "steel2"
+            ]
+          },
+          "concrete": {
+            "share": 0.0019,
+            "steps": 3,
+            "names": [
+              "concrete0",
+              "concrete1",
+              "concrete2"
+            ]
+          },
+          "rust": {
+            "share": 0.0025,
+            "steps": 2,
+            "names": [
+              "rust0",
+              "rust1"
+            ]
+          },
+          "grey": {
+            "share": 0.0012,
+            "steps": 2,
+            "names": [
+              "grey",
+              "grey_d"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "steel"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 4
+      },
+      "ring": {
+        "px": 5216,
+        "dark": 1.0,
+        "line": "black",
+        "top": [
+          {
+            "name": "black",
+            "share": 1.0
+          }
+        ]
+      },
+      "asset": "tiles/back_unit_14c.png",
+      "kind": "back",
+      "plane": "back"
+    },
+    {
+      "size": [
+        60,
+        60
+      ],
+      "density": 2,
+      "art": [
+        30,
+        30
+      ],
+      "opaque_px": 3600,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        60,
+        60
+      ],
+      "silhouette_art": [
+        30,
+        30
+      ],
+      "luma": 0.0297,
+      "palette": {
+        "colors": 6,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "cyan": {
+            "share": 0.3944,
+            "steps": 2,
+            "names": [
+              "cyan",
+              "cyan_d"
+            ]
+          },
+          "bg": {
+            "share": 0.6,
+            "steps": 3,
+            "names": [
+              "bg1",
+              "bg2",
+              "bg3"
+            ]
+          },
+          "white": {
+            "share": 0.0056,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "cyan"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/hazard_0.png",
+      "kind": "platform",
+      "plane": "play"
+    },
+    {
+      "size": [
+        60,
+        60
+      ],
+      "density": 2,
+      "art": [
+        30,
+        30
+      ],
+      "opaque_px": 3600,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        60,
+        60
+      ],
+      "silhouette_art": [
+        30,
+        30
+      ],
+      "luma": 0.0297,
+      "palette": {
+        "colors": 6,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "cyan": {
+            "share": 0.3944,
+            "steps": 2,
+            "names": [
+              "cyan",
+              "cyan_d"
+            ]
+          },
+          "bg": {
+            "share": 0.6,
+            "steps": 3,
+            "names": [
+              "bg1",
+              "bg2",
+              "bg3"
+            ]
+          },
+          "white": {
+            "share": 0.0056,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "cyan"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/hazard_1.png",
+      "kind": "platform",
+      "plane": "play"
+    },
+    {
+      "size": [
+        60,
+        60
+      ],
+      "density": 2,
+      "art": [
+        30,
+        30
+      ],
+      "opaque_px": 3600,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        60,
+        60
+      ],
+      "silhouette_art": [
+        30,
+        30
+      ],
+      "luma": 0.0297,
+      "palette": {
+        "colors": 6,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "cyan": {
+            "share": 0.3944,
+            "steps": 2,
+            "names": [
+              "cyan",
+              "cyan_d"
+            ]
+          },
+          "bg": {
+            "share": 0.6,
+            "steps": 3,
+            "names": [
+              "bg1",
+              "bg2",
+              "bg3"
+            ]
+          },
+          "white": {
+            "share": 0.0056,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "cyan"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/hazard_2.png",
+      "kind": "platform",
+      "plane": "play"
+    },
+    {
+      "size": [
+        512,
+        512
+      ],
+      "density": 4,
+      "art": [
+        128,
+        128
+      ],
+      "opaque_px": 262144,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "silhouette_art": [
+        128,
+        128
+      ],
+      "luma": 0.0768,
+      "palette": {
+        "colors": 7,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "cyan": {
+            "share": 0.0023,
+            "steps": 1,
+            "names": [
+              "cyan_d"
+            ]
+          },
+          "bg": {
+            "share": 0.486,
+            "steps": 2,
+            "names": [
+              "bg2",
+              "bg3"
+            ]
+          },
+          "steel": {
+            "share": 0.5093,
+            "steps": 3,
+            "names": [
+              "steel2",
+              "steel3",
+              "steel4"
+            ]
+          },
+          "amber": {
+            "share": 0.0024,
+            "steps": 1,
+            "names": [
+              "amber_d"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/outside_unit_14c.png",
+      "kind": "outside",
+      "plane": "outside"
+    },
+    {
+      "size": [
+        60,
+        12
+      ],
+      "density": 2,
+      "art": [
+        30,
+        6
+      ],
+      "opaque_px": 720,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        60,
+        12
+      ],
+      "silhouette_art": [
+        30,
+        6
+      ],
+      "luma": 0.0768,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "steel": {
+            "share": 1.0,
+            "steps": 4,
+            "names": [
+              "steel0",
+              "steel2",
+              "steel3",
+              "steel4"
+            ]
+          }
+        },
+        "materials": [
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 4
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/platform.png",
+      "kind": "platform",
+      "plane": "play"
+    },
+    {
+      "size": [
+        3,
+        540
+      ],
+      "density": 3,
+      "art": [
+        1,
+        180
+      ],
+      "opaque_px": 1620,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        3,
+        540
+      ],
+      "silhouette_art": [
+        1,
+        180
+      ],
+      "luma": 0.0077,
+      "palette": {
+        "colors": 77,
+        "off_px": 1503,
+        "off": 0.9278,
+        "worst_de": 3.5,
+        "offenders": [
+          {
+            "rgb": [
+              12,
+              15,
+              25
+            ],
+            "px": 45,
+            "nearest": "bg0",
+            "de": 1.3
+          },
+          {
+            "rgb": [
+              22,
+              28,
+              43
+            ],
+            "px": 45,
+            "nearest": "bg1",
+            "de": 2.4
+          },
+          {
+            "rgb": [
+              8,
+              10,
+              18
+            ],
+            "px": 36,
+            "nearest": "outline",
+            "de": 0.9
+          },
+          {
+            "rgb": [
+              10,
+              12,
+              21
+            ],
+            "px": 36,
+            "nearest": "outline",
+            "de": 1.2
+          }
+        ]
+      },
+      "ramps": {
+        "families": {
+          "void": {
+            "share": 0.0778,
+            "steps": 1,
+            "names": [
+              "void"
+            ]
+          },
+          "outline": {
+            "share": 0.1056,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "bg": {
+            "share": 0.5667,
+            "steps": 3,
+            "names": [
+              "bg0",
+              "bg1",
+              "bg2"
+            ]
+          },
+          "black": {
+            "share": 0.0389,
+            "steps": 1,
+            "names": [
+              "black"
+            ]
+          },
+          "navy": {
+            "share": 0.2111,
+            "steps": 1,
+            "names": [
+              "navy_d"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "black",
+          "navy",
+          "outline",
+          "void"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/sky_gradient.png",
+      "kind": "gradient",
+      "plane": "free"
+    },
+    {
+      "size": [
+        960,
+        540
+      ],
+      "density": 4,
+      "art": [
+        240,
+        135
+      ],
+      "opaque_px": 209472,
+      "opaque": 0.404,
+      "silhouette": [
+        0,
+        196,
+        960,
+        344
+      ],
+      "silhouette_art": [
+        240,
+        86
+      ],
+      "luma": 0.0103,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "bg": {
+            "share": 0.9788,
+            "steps": 1,
+            "names": [
+              "bg1"
+            ]
+          },
+          "amber": {
+            "share": 0.0208,
+            "steps": 1,
+            "names": [
+              "amber_d"
+            ]
+          },
+          "red": {
+            "share": 0.0004,
+            "steps": 1,
+            "names": [
+              "red"
+            ]
+          }
+        },
+        "materials": [
+          "amber",
+          "bg"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 4165,
+        "dark": 0.99,
+        "line": "bg1",
+        "top": [
+          {
+            "name": "bg1",
+            "share": 0.99
+          },
+          {
+            "name": "red",
+            "share": 0.01
+          }
+        ]
+      },
+      "asset": "tiles/skyline_far.png",
+      "kind": "outside",
+      "plane": "outside"
+    },
+    {
+      "size": [
+        960,
+        540
+      ],
+      "density": 4,
+      "art": [
+        240,
+        135
+      ],
+      "opaque_px": 285328,
+      "opaque": 0.55,
+      "silhouette": [
+        0,
+        88,
+        960,
+        452
+      ],
+      "silhouette_art": [
+        240,
+        113
+      ],
+      "luma": 0.0177,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "bg": {
+            "share": 0.9703,
+            "steps": 1,
+            "names": [
+              "bg2"
+            ]
+          },
+          "red": {
+            "share": 0.0002,
+            "steps": 1,
+            "names": [
+              "red"
+            ]
+          },
+          "warm": {
+            "share": 0.0296,
+            "steps": 1,
+            "names": [
+              "warm"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "warm"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 7303,
+        "dark": 0.997,
+        "line": "bg2",
+        "top": [
+          {
+            "name": "bg2",
+            "share": 0.997
+          },
+          {
+            "name": "red",
+            "share": 0.003
+          }
+        ]
+      },
+      "asset": "tiles/skyline_near.png",
+      "kind": "outside",
+      "plane": "outside"
+    },
+    {
+      "size": [
+        180,
+        180
+      ],
+      "density": 2,
+      "art": [
+        90,
+        90
+      ],
+      "opaque_px": 32400,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        180,
+        180
+      ],
+      "silhouette_art": [
+        90,
+        90
+      ],
+      "luma": 0.0177,
+      "palette": {
+        "colors": 5,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "bg": {
+            "share": 0.9585,
+            "steps": 3,
+            "names": [
+              "bg1",
+              "bg2",
+              "bg3"
+            ]
+          },
+          "steel": {
+            "share": 0.0207,
+            "steps": 1,
+            "names": [
+              "steel3"
+            ]
+          },
+          "amber": {
+            "share": 0.0207,
+            "steps": 1,
+            "names": [
+              "amber_d"
+            ]
+          }
+        },
+        "materials": [
+          "amber",
+          "bg",
+          "steel"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/wall_collections.png",
+      "kind": "wall",
+      "plane": "play"
+    },
+    {
+      "size": [
+        180,
+        180
+      ],
+      "density": 2,
+      "art": [
+        90,
+        90
+      ],
+      "opaque_px": 32400,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        180,
+        180
+      ],
+      "silhouette_art": [
+        90,
+        90
+      ],
+      "luma": 0.0227,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "bg": {
+            "share": 0.1453,
+            "steps": 1,
+            "names": [
+              "bg0"
+            ]
+          },
+          "rust": {
+            "share": 0.8547,
+            "steps": 3,
+            "names": [
+              "rust0",
+              "rust1",
+              "rust2"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "rust"
+        ],
+        "dominant": "rust",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/wall_gut.png",
+      "kind": "wall",
+      "plane": "play"
+    },
+    {
+      "size": [
+        180,
+        180
+      ],
+      "density": 2,
+      "art": [
+        90,
+        90
+      ],
+      "opaque_px": 32400,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        180,
+        180
+      ],
+      "silhouette_art": [
+        90,
+        90
+      ],
+      "luma": 0.0398,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "steel": {
+            "share": 1.0,
+            "steps": 4,
+            "names": [
+              "steel0",
+              "steel1",
+              "steel2",
+              "steel3"
+            ]
+          }
+        },
+        "materials": [
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 4
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/wall_mezz.png",
+      "kind": "wall",
+      "plane": "play"
+    },
+    {
+      "size": [
+        480,
+        480
+      ],
+      "density": 2,
+      "art": [
+        240,
+        240
+      ],
+      "opaque_px": 230400,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        480,
+        480
+      ],
+      "silhouette_art": [
+        240,
+        240
+      ],
+      "luma": 0.0,
+      "palette": {
+        "colors": 13,
+        "off_px": 129600,
+        "off": 0.5625,
+        "worst_de": 3.9,
+        "offenders": [
+          {
+            "rgb": [
+              0,
+              0,
+              0
+            ],
+            "px": 129600,
+            "nearest": "void",
+            "de": 3.9
+          }
+        ]
+      },
+      "ramps": {
+        "families": {
+          "void": {
+            "share": 0.6237,
+            "steps": 1,
+            "names": [
+              "void"
+            ]
+          },
+          "bg": {
+            "share": 0.0436,
+            "steps": 1,
+            "names": [
+              "bg0"
+            ]
+          },
+          "black": {
+            "share": 0.0119,
+            "steps": 1,
+            "names": [
+              "black"
+            ]
+          },
+          "steel": {
+            "share": 0.0019,
+            "steps": 3,
+            "names": [
+              "steel0",
+              "steel1",
+              "steel2"
+            ]
+          },
+          "concrete": {
+            "share": 0.2805,
+            "steps": 3,
+            "names": [
+              "concrete0",
+              "concrete1",
+              "concrete2"
+            ]
+          },
+          "rust": {
+            "share": 0.0384,
+            "steps": 3,
+            "names": [
+              "rust0",
+              "rust1",
+              "rust2"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "concrete",
+          "rust",
+          "void"
+        ],
+        "dominant": "void",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/wall_residential.png",
+      "kind": "wall",
+      "plane": "play"
+    },
+    {
+      "size": [
+        180,
+        180
+      ],
+      "density": 2,
+      "art": [
+        90,
+        90
+      ],
+      "opaque_px": 32400,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        180,
+        180
+      ],
+      "silhouette_art": [
+        90,
+        90
+      ],
+      "luma": 0.0196,
+      "palette": {
+        "colors": 6,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "bg": {
+            "share": 0.1354,
+            "steps": 1,
+            "names": [
+              "bg1"
+            ]
+          },
+          "concrete": {
+            "share": 0.8404,
+            "steps": 3,
+            "names": [
+              "concrete0",
+              "concrete1",
+              "concrete2"
+            ]
+          },
+          "rust": {
+            "share": 0.0138,
+            "steps": 1,
+            "names": [
+              "rust0"
+            ]
+          },
+          "amber": {
+            "share": 0.0104,
+            "steps": 1,
+            "names": [
+              "amber_d"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "concrete"
+        ],
+        "dominant": "concrete",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/wall_roof.png",
+      "kind": "wall",
+      "plane": "play"
+    },
+    {
+      "size": [
+        180,
+        180
+      ],
+      "density": 2,
+      "art": [
+        90,
+        90
+      ],
+      "opaque_px": 32400,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        180,
+        180
+      ],
+      "silhouette_art": [
+        90,
+        90
+      ],
+      "luma": 0.0204,
+      "palette": {
+        "colors": 4,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "bg": {
+            "share": 0.1491,
+            "steps": 1,
+            "names": [
+              "bg1"
+            ]
+          },
+          "steel": {
+            "share": 0.8509,
+            "steps": 3,
+            "names": [
+              "steel0",
+              "steel1",
+              "steel2"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "steel"
+        ],
+        "dominant": "steel",
+        "dominant_steps": 3
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "tiles/wall_shaft.png",
+      "kind": "wall",
+      "plane": "play"
+    },
+    {
+      "size": [
+        24,
+        24
+      ],
+      "density": 3,
+      "art": [
+        8,
+        8
+      ],
+      "opaque_px": 216,
+      "opaque": 0.375,
+      "silhouette": [
+        0,
+        0,
+        15,
+        24
+      ],
+      "silhouette_art": [
+        5,
+        8
+      ],
+      "luma": 0.0041,
+      "palette": {
+        "colors": 2,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.625,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "white": {
+            "share": 0.375,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          }
+        },
+        "materials": [
+          "outline",
+          "white"
+        ],
+        "dominant": "outline",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 38,
+        "dark": 1.0,
+        "line": "outline",
+        "top": [
+          {
+            "name": "outline",
+            "share": 1.0
+          }
+        ]
+      },
+      "asset": "ui/cursor.png",
+      "kind": "screen",
+      "plane": "screen"
+    },
+    {
+      "size": [
+        24,
+        24
+      ],
+      "density": 3,
+      "art": [
+        8,
+        8
+      ],
+      "opaque_px": 576,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        24,
+        24
+      ],
+      "silhouette_art": [
+        8,
+        8
+      ],
+      "luma": 0.0103,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.0625,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "bg": {
+            "share": 0.5625,
+            "steps": 1,
+            "names": [
+              "bg1"
+            ]
+          },
+          "steel": {
+            "share": 0.375,
+            "steps": 1,
+            "names": [
+              "steel3"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "outline",
+          "steel"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "ui/hud_frame.png",
+      "kind": "screen",
+      "plane": "screen"
+    },
+    {
+      "size": [
+        24,
+        24
+      ],
+      "density": 3,
+      "art": [
+        8,
+        8
+      ],
+      "opaque_px": 468,
+      "opaque": 0.812,
+      "silhouette": [
+        0,
+        0,
+        24,
+        24
+      ],
+      "silhouette_art": [
+        8,
+        8
+      ],
+      "luma": 0.0041,
+      "palette": {
+        "colors": 2,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.5,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "amber": {
+            "share": 0.5,
+            "steps": 1,
+            "names": [
+              "amber"
+            ]
+          }
+        },
+        "materials": [
+          "amber",
+          "outline"
+        ],
+        "dominant": "outline",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 58,
+        "dark": 0.69,
+        "line": "outline",
+        "top": [
+          {
+            "name": "outline",
+            "share": 0.69
+          },
+          {
+            "name": "amber",
+            "share": 0.31
+          }
+        ]
+      },
+      "asset": "ui/lock.png",
+      "kind": "screen",
+      "plane": "screen"
+    },
+    {
+      "size": [
+        24,
+        24
+      ],
+      "density": 3,
+      "art": [
+        8,
+        8
+      ],
+      "opaque_px": 576,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        24,
+        24
+      ],
+      "silhouette_art": [
+        8,
+        8
+      ],
+      "luma": 0.0052,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.1875,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "bg": {
+            "share": 0.5,
+            "steps": 1,
+            "names": [
+              "bg0"
+            ]
+          },
+          "steel": {
+            "share": 0.3125,
+            "steps": 1,
+            "names": [
+              "steel3"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "outline",
+          "steel"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "ui/panel_frame.png",
+      "kind": "screen",
+      "plane": "screen"
+    },
+    {
+      "size": [
+        18,
+        18
+      ],
+      "density": 3,
+      "art": [
+        6,
+        6
+      ],
+      "opaque_px": 324,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        18,
+        18
+      ],
+      "silhouette_art": [
+        6,
+        6
+      ],
+      "luma": 0.0041,
+      "palette": {
+        "colors": 2,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.5556,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "bg": {
+            "share": 0.4444,
+            "steps": 1,
+            "names": [
+              "bg1"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "outline"
+        ],
+        "dominant": "outline",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "ui/pip_off.png",
+      "kind": "screen",
+      "plane": "screen"
+    },
+    {
+      "size": [
+        18,
+        18
+      ],
+      "density": 3,
+      "art": [
+        6,
+        6
+      ],
+      "opaque_px": 324,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        18,
+        18
+      ],
+      "silhouette_art": [
+        6,
+        6
+      ],
+      "luma": 0.0041,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.5556,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "white": {
+            "share": 0.0556,
+            "steps": 1,
+            "names": [
+              "white"
+            ]
+          },
+          "amber": {
+            "share": 0.3889,
+            "steps": 1,
+            "names": [
+              "amber"
+            ]
+          }
+        },
+        "materials": [
+          "amber",
+          "outline",
+          "white"
+        ],
+        "dominant": "outline",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "ui/pip_on.png",
+      "kind": "screen",
+      "plane": "screen"
+    },
+    {
+      "size": [
+        72,
+        72
+      ],
+      "density": 3,
+      "art": [
+        24,
+        24
+      ],
+      "opaque_px": 5184,
+      "opaque": 1.0,
+      "silhouette": [
+        0,
+        0,
+        72,
+        72
+      ],
+      "silhouette_art": [
+        24,
+        24
+      ],
+      "luma": 0.0052,
+      "palette": {
+        "colors": 3,
+        "off_px": 0,
+        "off": 0.0,
+        "worst_de": 0.0,
+        "offenders": []
+      },
+      "ramps": {
+        "families": {
+          "outline": {
+            "share": 0.0069,
+            "steps": 1,
+            "names": [
+              "outline"
+            ]
+          },
+          "bg": {
+            "share": 0.8403,
+            "steps": 1,
+            "names": [
+              "bg0"
+            ]
+          },
+          "steel": {
+            "share": 0.1528,
+            "steps": 1,
+            "names": [
+              "steel3"
+            ]
+          }
+        },
+        "materials": [
+          "bg",
+          "steel"
+        ],
+        "dominant": "bg",
+        "dominant_steps": 1
+      },
+      "ring": {
+        "px": 0,
+        "dark": 0.0,
+        "top": []
+      },
+      "asset": "ui/slot.png",
+      "kind": "screen",
+      "plane": "screen"
+    }
+  ],
+  "planes": {
+    "play": {
+      "texture_px": 2,
+      "_why": "the plane the player and everything it touches is drawn on. Dani bakes at 2; 24 of the 80 assets on this plane are already there and 50 are at 3, so the majority is the drift and not the rule."
+    },
+    "back": {
+      "texture_px": 2,
+      "_why": "the wall behind the play plane. sets/unit_14c.json: 'authored at 2 room px per art px (3 screen px at the 1.5x camera, the play plane's density)'. back_unit_14c.png is the one that obeys it."
+    },
+    "outside": {
+      "texture_px": 4,
+      "_why": "what is seen through a window or over a roof. Coarser on purpose: it is far, it parallaxes, and the shading bar says a far plane drops pixels rather than detail."
+    },
+    "screen": {
+      "texture_px": 3,
+      "_why": "the interface, drawn at the design resolution with no camera between it and the eye. ui/ui.json's scale; not comparable to the world's planes and never judged against them."
+    },
+    "free": {
+      "texture_px": null,
+      "_why": "no density at all: a gradient or an alpha mask has no drawn pixel to measure."
+    }
+  },
+  "figure": {
+    "art_px": 56,
+    "metres": 1.7,
+    "name": "dani"
+  },
+  "palette_entries": 61,
+  "families": 22
+}

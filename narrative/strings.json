@@ -1,0 +1,184 @@
+{
+  "_doc": "Every line by key, read out of game/src/narrative/lines.gd by adapters/godot_lines_gd.py. Keys are stable; renaming one is a migration. The shape is the skill's templates/strings.json.",
+  "strings": {
+    "name.corp": {
+      "text": "VESTA",
+      "box": null,
+      "note": "The creditor. On the terminals, the augs, the Landlord's paperwork."
+    },
+    "name.corp_long": {
+      "text": "VESTA Somatic Finance",
+      "box": null
+    },
+    "name.protagonist": {
+      "text": "OKONKWO, D.",
+      "box": null,
+      "note": "The account holder — how the corp prints it."
+    },
+    "name.protagonist_short": {
+      "text": "Dani",
+      "box": null
+    },
+    "name.account": {
+      "text": "ACCT 14C-0091-77",
+      "box": null
+    },
+    "name.vendor": {
+      "text": "Stitch",
+      "box": null,
+      "note": "The vendor / ripperdoc, ground floor."
+    },
+    "name.neighbour": {
+      "text": "Marisol",
+      "box": null,
+      "note": "The neighbour, 14th floor."
+    },
+    "name.defaulter": {
+      "text": "Ferro",
+      "box": null,
+      "note": "The dead defaulter in the Gut."
+    },
+    "name.boss": {
+      "text": "The Landlord",
+      "box": null,
+      "note": "The enforcer. A title, not a name — the Stacks never learned his."
+    },
+    "bark.wake": {
+      "text": "Fourteen-C. Still mine, as long as the payments clear.",
+      "box": "bark",
+      "speaker": "dani"
+    },
+    "bark.first_save": {
+      "text": "Their terminal. Their body. Every save is a receipt.",
+      "box": "bark",
+      "speaker": "dani"
+    },
+    "bark.mag_hook": {
+      "text": "A tower tech's mag-hook. He's not going to need it.",
+      "box": "bark",
+      "speaker": "dani"
+    },
+    "bark.cyberdeck": {
+      "text": "More room to run their programs. Or mine.",
+      "box": "bark",
+      "speaker": "dani"
+    },
+    "bark.overload": {
+      "text": "Corporate property, pointed the other way.",
+      "box": "bark",
+      "speaker": "dani"
+    },
+    "bark.breach": {
+      "text": "Every door in the Stacks answers to VESTA. Now one of them answers to me.",
+      "box": "bark",
+      "speaker": "dani"
+    },
+    "bark.sidewinder": {
+      "text": "A Sidewinder unit, still sealed. Legs like these need surgery, not a screwdriver.",
+      "box": "bark",
+      "speaker": "dani"
+    },
+    "bark.sidewinder_installed": {
+      "text": "Stitch says it'll hold. Stitch says a lot of things.",
+      "box": "bark",
+      "speaker": "dani"
+    },
+    "bark.chip": {
+      "text": "Ferro's chip. Whatever's on it, he'd rather die down here than let them take it.",
+      "box": "bark",
+      "speaker": "dani"
+    },
+    "bark.quest_done": {
+      "text": "A dead man's hardhat. Fits.",
+      "box": "bark",
+      "speaker": "dani"
+    },
+    "bark.pre_boss": {
+      "text": "He's got the override. I've got a wrench.",
+      "box": "bark",
+      "speaker": "dani"
+    },
+    "bark.post_boss": {
+      "text": "It's not forgiveness. It's the keys.",
+      "box": "bark",
+      "speaker": "dani"
+    },
+    "marisol.offer.1": {
+      "text": "You're 14-C. The one still paying.",
+      "box": "dialogue",
+      "speaker": "marisol"
+    },
+    "marisol.offer.2": {
+      "text": "Ferro ran when Collections hit twelve. Took his chip and went down into the Gut.",
+      "box": "dialogue",
+      "speaker": "marisol"
+    },
+    "marisol.offer.3": {
+      "text": "He's dead down there. I know that. I want the chip back before they repossess what's left of him.",
+      "box": "dialogue",
+      "speaker": "marisol"
+    },
+    "marisol.offer.4": {
+      "text": "Bring it and you can have his hardhat. He'd have hated that. Take it anyway.",
+      "box": "dialogue",
+      "speaker": "marisol"
+    },
+    "marisol.active": {
+      "text": "The Gut. Past the pumps, below the lift. The water's live — VESTA never paid to ground it.",
+      "box": "dialogue",
+      "speaker": "marisol"
+    },
+    "marisol.complete.1": {
+      "text": "That's his. Thank you.",
+      "box": "dialogue",
+      "speaker": "marisol"
+    },
+    "marisol.complete.2": {
+      "text": "The hat's yours. Don't die in it.",
+      "box": "dialogue",
+      "speaker": "marisol"
+    },
+    "marisol.after": {
+      "text": "Go on. The Landlord's got a floor to work, and it's ours.",
+      "box": "dialogue",
+      "speaker": "marisol"
+    },
+    "stitch.greet.1": {
+      "text": "Stitch. Ripperdoc, pawn, whatever the day needs.",
+      "box": "dialogue",
+      "speaker": "stitch"
+    },
+    "stitch.greet.2": {
+      "text": "Credits only. VESTA stopped taking my calls.",
+      "box": "dialogue",
+      "speaker": "stitch"
+    },
+    "stitch.install.1": {
+      "text": "A Sidewinder. Sealed unit, corp stamp and all. Where'd you-- no. Don't tell me.",
+      "box": "dialogue",
+      "speaker": "stitch"
+    },
+    "stitch.install.2": {
+      "text": "Lie down. This won't hurt. The anaesthetic's on your tab.",
+      "box": "dialogue",
+      "speaker": "stitch"
+    },
+    "stitch.after_install": {
+      "text": "Legs feel wrong for a day. Then they feel like yours. That's the trick of it.",
+      "box": "dialogue",
+      "speaker": "stitch"
+    },
+    "notice.repossession": {
+      "text": "{name.corp_long}\n{name.account}\nNOTICE OF DELINQUENCY\nRemote disablement pending.\nCollections has been assigned.",
+      "box": "sign"
+    },
+    "notice.tier": {
+      "text": "{name.corp} FIRMWARE\nTIER 2 · LOCKED",
+      "box": "sign"
+    },
+    "notice.care": {
+      "text": "{name.corp} CARE TERMINAL\nRestoration is a service. Services are billed.",
+      "box": "sign"
+    }
+  }
+}

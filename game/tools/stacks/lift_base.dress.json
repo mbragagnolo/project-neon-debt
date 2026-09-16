@@ -1,0 +1,151 @@
+{
+  "_doc": "East Lift - Base (shaft). Written by tools/stacks/dress.py from dress_vocab.json, which is where the district's lighting is decided. Edit here for this room alone, or in the vocabulary for the whole style; re-running the script overwrites this file.",
+  "decor": "seeded",
+  "_decor": "keep the clutter the generator places from the room id's seed; this file adds light.",
+  "ambient": [
+    0.56,
+    0.6,
+    0.74
+  ],
+  "door_lamp": {
+    "color": [
+      0.7,
+      0.9,
+      1.0
+    ],
+    "energy": 1.15,
+    "scale": 2.8
+  },
+  "lights": [
+    {
+      "name": "lamp_1",
+      "at": [
+        150,
+        930
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_2",
+      "at": [
+        570,
+        930
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_3",
+      "at": [
+        990,
+        930
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_4",
+      "at": [
+        1410,
+        930
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "sign_1",
+      "at": [
+        270,
+        804
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "grate_2",
+      "at": [
+        1770,
+        864
+      ],
+      "color": [
+        0.6,
+        0.7,
+        0.85
+      ],
+      "energy": 0.4,
+      "scale": 1.2
+    },
+    {
+      "name": "grate_3",
+      "at": [
+        1770,
+        924
+      ],
+      "color": [
+        0.6,
+        0.7,
+        0.85
+      ],
+      "energy": 0.4,
+      "scale": 1.2
+    },
+    {
+      "name": "grate_4",
+      "at": [
+        1770,
+        983
+      ],
+      "color": [
+        0.6,
+        0.7,
+        0.85
+      ],
+      "energy": 0.4,
+      "scale": 1.2
+    },
+    {
+      "name": "fill",
+      "at": [
+        960,
+        486
+      ],
+      "color": [
+        0.45,
+        0.55,
+        0.8
+      ],
+      "energy": 0.4,
+      "scale": 9.0,
+      "scale_xy": [
+        1.78,
+        1.0
+      ]
+    }
+  ]
+}

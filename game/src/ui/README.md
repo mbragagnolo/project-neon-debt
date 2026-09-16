@@ -10,7 +10,10 @@ Everything here reads the signal bus; no UI node reaches into gameplay nodes.
   cannot tune "one wrench hit buys one zipgun shot" by feel if the pool is
   imaginary. **M3** grew it by level, XP, credits, DEF, the level-up
   announcement and pickup toasts, every one hanging off a signal declared on
-  the bus in M0. The real HUD is M7's and will hang off exactly these signals.
+  the bus in M0. **M4** added RAM and the quickslot line — which program is
+  loaded, what it costs, the cycle keys, why the last cast was refused, and
+  Firewall's remaining window. The real HUD is M7's and will hang off exactly
+  these signals.
 - `menus/equip_screen.gd` — **M3.** The inventory/equip screen
   (docs/ui/screens.md). Built in code for the same reason the debug HUD is:
   it is greybox, and a `.tscn` would be four hundred lines of node text nobody
@@ -18,5 +21,10 @@ Everything here reads the signal bus; no UI node reaches into gameplay nodes.
   same effective-stats layer the damage pipeline uses — a screen that reads a
   weapon's authored `power` agrees with the item file and disagrees with the
   game.
+- `menus/pause_shell.gd`, `map_screen.gd`, `quest_log.gd` — **M5.** The
+  pause shell and its tabs (docs/ui/screens.md). The equip screen runs
+  inside the shell with `standalone = false`.
+- `menus/shop_screen.gd` — **M5.** Stitch's stall.
+- `dialogue_box.gd`, `bark_box.gd` — **M5.** Pages of NPC dialogue, and the
+  protagonist's one-liners.
 - `hud/` — **M7**, when the real HUD replaces the gym readout
-- `menus/` (pause, quest log), `map_screen/` — **M5**

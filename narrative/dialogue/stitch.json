@@ -1,0 +1,34 @@
+{
+  "_doc": "Stitch, the ripperdoc and vendor on the Mezz. The flow is game/src/world/npc.gd `_talk_stitch`: the branches are tried in order and the first whose `when` holds is said; what the player carries decides, never a choice. Vocabulary: templates/dialogue.json in the narrative-designer skill.",
+  "scene": "stitch",
+  "section": "NPC dialogue",
+  "speaker": "stitch",
+  "speaker_name": "name.vendor",
+  "box": "dialogue",
+  "branches": [
+    {
+      "id": "stitch.install",
+      "when": ["flag:sidewinder_carried", "!ability:sidewinder"],
+      "pages": ["stitch.install.1", "stitch.install.2"],
+      "then": ["grant_ability:sidewinder", "toast:SIDEWINDER INSTALLED — AIR DASH", "bark:bark.sidewinder_installed"]
+    },
+    {
+      "id": "stitch.after_install",
+      "when": ["ability:sidewinder", "!flag:bark.stitch_after_install"],
+      "pages": ["stitch.after_install"],
+      "then": ["set_flag:bark.stitch_after_install", "open:shop"]
+    },
+    {
+      "id": "stitch.greet",
+      "when": ["!flag:bark.stitch_met"],
+      "pages": ["stitch.greet.1", "stitch.greet.2"],
+      "then": ["set_flag:bark.stitch_met", "open:shop"]
+    },
+    {
+      "id": "stitch.stall",
+      "when": [],
+      "pages": [],
+      "then": ["open:shop"]
+    }
+  ]
+}

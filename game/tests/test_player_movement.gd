@@ -19,6 +19,11 @@ var _player: Player
 
 func before_each() -> void:
 	TestArena.release_all_input()
+	# The full kit: wall jump and air dash are gated behind pickups from M5,
+	# and these tests are about how the moves behave, not whether they are
+	# owned (that is test_movement_envelope.gd's job).
+	GameState.grant_ability(GameState.ABILITY_MAG_HOOK)
+	GameState.grant_ability(GameState.ABILITY_SIDEWINDER)
 	_config = load("res://src/player/movement_config.tres")
 	_root = Node2D.new()
 	add_child_autofree(_root)
@@ -26,6 +31,7 @@ func before_each() -> void:
 
 func after_each() -> void:
 	TestArena.release_all_input()
+	GameState.reset()
 
 
 ## Wide floor, player standing in the middle of it.

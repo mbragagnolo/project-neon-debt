@@ -1,0 +1,1622 @@
+{
+ "run": "2026-09-15b",
+ "sounds": [
+  {
+   "id": "bark",
+   "class": "ui",
+   "event": "ui.bark",
+   "bus": "SFX",
+   "target": -20.0,
+   "own_target": true,
+   "note": "an NPC's chirp under the bark box; under the ui",
+   "seconds": 0.09,
+   "lufs": -20.0,
+   "lufs_raw": -23.97,
+   "gain_db": 3.97,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -1.14,
+   "variations": [
+    {
+     "file": "bark.wav",
+     "seconds": 0.09,
+     "lufs": -20.0,
+     "lufs_raw": -23.97,
+     "gain_db": 3.97,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -1.14,
+     "sha1": "448bce845920"
+    }
+   ],
+   "sha1": "448bce845920",
+   "over_bed_lu": 0.28
+  },
+  {
+   "id": "beam_charge",
+   "class": "enemy",
+   "event": "enemy.beam_charge",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.55,
+   "lufs": -14.0,
+   "lufs_raw": -9.2,
+   "gain_db": -4.8,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -4.28,
+   "variations": [
+    {
+     "file": "beam_charge.wav",
+     "seconds": 0.55,
+     "lufs": -14.0,
+     "lufs_raw": -9.2,
+     "gain_db": -4.8,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -4.28,
+     "sha1": "59f532af93cf"
+    }
+   ],
+   "sha1": "59f532af93cf",
+   "over_bed_lu": 6.28
+  },
+  {
+   "id": "beam_fire",
+   "class": "enemy",
+   "event": "enemy.beam_fire",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.7,
+   "lufs": -14.0,
+   "lufs_raw": -9.14,
+   "gain_db": -4.86,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -2.64,
+   "variations": [
+    {
+     "file": "beam_fire.wav",
+     "seconds": 0.7,
+     "lufs": -14.0,
+     "lufs_raw": -9.14,
+     "gain_db": -4.86,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -2.64,
+     "sha1": "929ca6f71097"
+    }
+   ],
+   "sha1": "929ca6f71097",
+   "over_bed_lu": 6.28
+  },
+  {
+   "id": "breach",
+   "class": "world",
+   "event": "door.opened",
+   "bus": "SFX",
+   "target": -16.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.6998,
+   "lufs": -16.0,
+   "lufs_raw": -11.84,
+   "gain_db": -4.16,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -4.34,
+   "variations": [
+    {
+     "file": "breach.wav",
+     "seconds": 0.6998,
+     "lufs": -16.0,
+     "lufs_raw": -11.84,
+     "gain_db": -4.16,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -4.34,
+     "sha1": "d7d2a5879a08"
+    }
+   ],
+   "sha1": "d7d2a5879a08",
+   "over_bed_lu": 4.28
+  },
+  {
+   "id": "buy",
+   "class": "stinger",
+   "event": "shop.purchased",
+   "bus": "SFX",
+   "target": -15.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.24,
+   "lufs": -15.0,
+   "lufs_raw": -16.8,
+   "gain_db": 1.8,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -1.84,
+   "variations": [
+    {
+     "file": "buy.wav",
+     "seconds": 0.24,
+     "lufs": -15.0,
+     "lufs_raw": -16.8,
+     "gain_db": 1.8,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -1.84,
+     "sha1": "ca14dfd1ca38"
+    }
+   ],
+   "sha1": "ca14dfd1ca38",
+   "over_bed_lu": 5.28
+  },
+  {
+   "id": "credits",
+   "class": "stinger",
+   "event": "shop.credits",
+   "bus": "SFX",
+   "target": -15.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.222,
+   "lufs": -15.0,
+   "lufs_raw": -17.68,
+   "gain_db": 2.68,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -4.86,
+   "variations": [
+    {
+     "file": "credits.wav",
+     "seconds": 0.222,
+     "lufs": -15.0,
+     "lufs_raw": -17.68,
+     "gain_db": 2.68,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -4.86,
+     "sha1": "7fe7d8c0da75"
+    }
+   ],
+   "sha1": "7fe7d8c0da75",
+   "over_bed_lu": 5.28
+  },
+  {
+   "id": "dash",
+   "class": "move",
+   "event": "player.dash",
+   "bus": "SFX",
+   "target": -17.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.22,
+   "lufs": -17.0,
+   "lufs_raw": -13.63,
+   "gain_db": -3.37,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -4.2,
+   "variations": [
+    {
+     "file": "dash.wav",
+     "seconds": 0.22,
+     "lufs": -17.0,
+     "lufs_raw": -13.63,
+     "gain_db": -3.37,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -4.2,
+     "sha1": "614ac8ce652c"
+    },
+    {
+     "file": "dash_2.wav",
+     "seconds": 0.22,
+     "lufs": -17.0,
+     "lufs_raw": -13.93,
+     "gain_db": -3.07,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -3.92,
+     "sha1": "ee5145321820"
+    }
+   ],
+   "sha1": "614ac8ce652c",
+   "over_bed_lu": 3.28
+  },
+  {
+   "id": "deny",
+   "class": "hack",
+   "event": "hack.failed",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.24,
+   "lufs": -14.0,
+   "lufs_raw": -16.06,
+   "gain_db": 2.06,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -5.29,
+   "variations": [
+    {
+     "file": "deny.wav",
+     "seconds": 0.24,
+     "lufs": -14.0,
+     "lufs_raw": -16.06,
+     "gain_db": 2.06,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -5.29,
+     "sha1": "a5c70db4d4bc"
+    }
+   ],
+   "sha1": "a5c70db4d4bc",
+   "over_bed_lu": 6.28
+  },
+  {
+   "id": "die",
+   "class": "death",
+   "event": "player.died",
+   "bus": "SFX",
+   "target": -12.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.7,
+   "lufs": -12.0,
+   "lufs_raw": -7.23,
+   "gain_db": -4.77,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -3.21,
+   "variations": [
+    {
+     "file": "die.wav",
+     "seconds": 0.7,
+     "lufs": -12.0,
+     "lufs_raw": -7.23,
+     "gain_db": -4.77,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -3.21,
+     "sha1": "3021af0aa298"
+    }
+   ],
+   "sha1": "3021af0aa298",
+   "over_bed_lu": 8.28
+  },
+  {
+   "id": "door",
+   "class": "world",
+   "event": "door.closed",
+   "bus": "SFX",
+   "target": -16.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.43,
+   "lufs": -16.0,
+   "lufs_raw": -19.78,
+   "gain_db": 3.78,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -4.03,
+   "variations": [
+    {
+     "file": "door.wav",
+     "seconds": 0.43,
+     "lufs": -16.0,
+     "lufs_raw": -19.78,
+     "gain_db": 3.78,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -4.03,
+     "sha1": "1be5b6e5c539"
+    }
+   ],
+   "sha1": "1be5b6e5c539",
+   "over_bed_lu": 4.28
+  },
+  {
+   "id": "door_pass",
+   "class": "world",
+   "event": "room.entered",
+   "bus": "SFX",
+   "target": -16.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.4483,
+   "lufs": -16.12,
+   "lufs_raw": -28.04,
+   "gain_db": 11.92,
+   "limited_db": 0.12,
+   "true_peak_dbtp": -1.0,
+   "variations": [
+    {
+     "file": "door_pass.wav",
+     "seconds": 0.4483,
+     "lufs": -16.12,
+     "lufs_raw": -28.04,
+     "gain_db": 11.92,
+     "limited_db": 0.12,
+     "true_peak_dbtp": -1.0,
+     "sha1": "c9f7b9845989"
+    }
+   ],
+   "sha1": "c9f7b9845989",
+   "over_bed_lu": 4.16
+  },
+  {
+   "id": "drone_shot",
+   "class": "shot",
+   "event": "enemy.drone_shot",
+   "bus": "SFX",
+   "target": -16.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.09,
+   "lufs": -16.25,
+   "lufs_raw": -18.22,
+   "gain_db": 1.97,
+   "limited_db": 0.25,
+   "true_peak_dbtp": -1.0,
+   "variations": [
+    {
+     "file": "drone_shot.wav",
+     "seconds": 0.09,
+     "lufs": -16.25,
+     "lufs_raw": -18.22,
+     "gain_db": 1.97,
+     "limited_db": 0.25,
+     "true_peak_dbtp": -1.0,
+     "sha1": "602f57c9ee73"
+    }
+   ],
+   "sha1": "602f57c9ee73",
+   "over_bed_lu": 4.03
+  },
+  {
+   "id": "enemy_die",
+   "class": "death",
+   "event": "enemy.die",
+   "bus": "SFX",
+   "target": -12.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.35,
+   "lufs": -12.0,
+   "lufs_raw": -10.16,
+   "gain_db": -1.84,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -1.19,
+   "variations": [
+    {
+     "file": "enemy_die.wav",
+     "seconds": 0.35,
+     "lufs": -12.0,
+     "lufs_raw": -10.16,
+     "gain_db": -1.84,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -1.19,
+     "sha1": "7a3248c7c492"
+    }
+   ],
+   "sha1": "7a3248c7c492",
+   "over_bed_lu": 8.28
+  },
+  {
+   "id": "hack_acquire",
+   "class": "hack",
+   "event": "hack.acquired",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 1.3698,
+   "lufs": -14.0,
+   "lufs_raw": -11.77,
+   "gain_db": -2.23,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -3.48,
+   "variations": [
+    {
+     "file": "hack_acquire.wav",
+     "seconds": 1.3698,
+     "lufs": -14.0,
+     "lufs_raw": -11.77,
+     "gain_db": -2.23,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -3.48,
+     "sha1": "6fcd4bda26dc"
+    }
+   ],
+   "sha1": "6fcd4bda26dc",
+   "over_bed_lu": 6.28
+  },
+  {
+   "id": "hack_burst",
+   "class": "hack",
+   "event": "hack.overload",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.45,
+   "lufs": -14.0,
+   "lufs_raw": -8.94,
+   "gain_db": -5.06,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -4.57,
+   "variations": [
+    {
+     "file": "hack_burst.wav",
+     "seconds": 0.45,
+     "lufs": -14.0,
+     "lufs_raw": -8.94,
+     "gain_db": -5.06,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -4.57,
+     "sha1": "7fd82ce0d041"
+    }
+   ],
+   "sha1": "7fd82ce0d041",
+   "over_bed_lu": 6.28
+  },
+  {
+   "id": "hack_guard",
+   "class": "hack",
+   "event": "hack.firewall",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.4,
+   "lufs": -14.31,
+   "lufs_raw": -15.73,
+   "gain_db": 1.42,
+   "limited_db": 0.31,
+   "true_peak_dbtp": -1.0,
+   "variations": [
+    {
+     "file": "hack_guard.wav",
+     "seconds": 0.4,
+     "lufs": -14.31,
+     "lufs_raw": -15.73,
+     "gain_db": 1.42,
+     "limited_db": 0.31,
+     "true_peak_dbtp": -1.0,
+     "sha1": "389bf323506d"
+    }
+   ],
+   "sha1": "389bf323506d",
+   "over_bed_lu": 5.97
+  },
+  {
+   "id": "hack_pulse",
+   "class": "hack",
+   "event": "hack.breach",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.7679,
+   "lufs": -14.23,
+   "lufs_raw": -17.1,
+   "gain_db": 2.87,
+   "limited_db": 0.23,
+   "true_peak_dbtp": -1.0,
+   "variations": [
+    {
+     "file": "hack_pulse.wav",
+     "seconds": 0.7679,
+     "lufs": -14.23,
+     "lufs_raw": -17.1,
+     "gain_db": 2.87,
+     "limited_db": 0.23,
+     "true_peak_dbtp": -1.0,
+     "sha1": "3286d8c2d35f"
+    }
+   ],
+   "sha1": "3286d8c2d35f",
+   "over_bed_lu": 6.05
+  },
+  {
+   "id": "hazard",
+   "class": "impact",
+   "event": "player.hazard",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.25,
+   "lufs": -15.0,
+   "lufs_raw": -15.51,
+   "gain_db": 0.51,
+   "limited_db": 1.0,
+   "true_peak_dbtp": -1.0,
+   "variations": [
+    {
+     "file": "hazard.wav",
+     "seconds": 0.25,
+     "lufs": -15.0,
+     "lufs_raw": -15.51,
+     "gain_db": 0.51,
+     "limited_db": 1.0,
+     "true_peak_dbtp": -1.0,
+     "sha1": "c52bb5d8802f"
+    }
+   ],
+   "sha1": "c52bb5d8802f",
+   "over_bed_lu": 5.28
+  },
+  {
+   "id": "hit",
+   "class": "impact",
+   "event": "enemy.hit",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.09,
+   "lufs": -14.29,
+   "lufs_raw": -12.46,
+   "gain_db": -1.83,
+   "limited_db": 0.29,
+   "true_peak_dbtp": -1.0,
+   "variations": [
+    {
+     "file": "hit.wav",
+     "seconds": 0.09,
+     "lufs": -14.29,
+     "lufs_raw": -12.46,
+     "gain_db": -1.83,
+     "limited_db": 0.29,
+     "true_peak_dbtp": -1.0,
+     "sha1": "ec8b917ffeb6"
+    },
+    {
+     "file": "hit_2.wav",
+     "seconds": 0.09,
+     "lufs": -14.15,
+     "lufs_raw": -12.49,
+     "gain_db": -1.66,
+     "limited_db": 0.15,
+     "true_peak_dbtp": -1.0,
+     "sha1": "13467ff2da08"
+    },
+    {
+     "file": "hit_3.wav",
+     "seconds": 0.09,
+     "lufs": -14.17,
+     "lufs_raw": -12.39,
+     "gain_db": -1.78,
+     "limited_db": 0.17,
+     "true_peak_dbtp": -1.0,
+     "sha1": "e2d4ff0721fb"
+    }
+   ],
+   "sha1": "ec8b917ffeb6",
+   "over_bed_lu": 5.99
+  },
+  {
+   "id": "hit_guard",
+   "class": "impact",
+   "event": "player.hurt_guard",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.18,
+   "lufs": -14.0,
+   "lufs_raw": -11.31,
+   "gain_db": -2.69,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -2.77,
+   "variations": [
+    {
+     "file": "hit_guard.wav",
+     "seconds": 0.18,
+     "lufs": -14.0,
+     "lufs_raw": -11.31,
+     "gain_db": -2.69,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -2.77,
+     "sha1": "3a1913b65178"
+    }
+   ],
+   "sha1": "3a1913b65178",
+   "over_bed_lu": 6.28
+  },
+  {
+   "id": "hit_heavy",
+   "class": "impact",
+   "event": "enemy.hit_heavy",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.16,
+   "lufs": -14.0,
+   "lufs_raw": -9.65,
+   "gain_db": -4.35,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -2.34,
+   "variations": [
+    {
+     "file": "hit_heavy.wav",
+     "seconds": 0.16,
+     "lufs": -14.0,
+     "lufs_raw": -9.65,
+     "gain_db": -4.35,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -2.34,
+     "sha1": "7fad16525b55"
+    },
+    {
+     "file": "hit_heavy_2.wav",
+     "seconds": 0.16,
+     "lufs": -14.0,
+     "lufs_raw": -9.62,
+     "gain_db": -4.38,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -2.39,
+     "sha1": "67fc4a85107d"
+    }
+   ],
+   "sha1": "7fad16525b55",
+   "over_bed_lu": 6.28
+  },
+  {
+   "id": "hurt",
+   "class": "impact",
+   "event": "player.hurt",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.22,
+   "lufs": -14.57,
+   "lufs_raw": -14.24,
+   "gain_db": -0.33,
+   "limited_db": 0.57,
+   "true_peak_dbtp": -1.0,
+   "variations": [
+    {
+     "file": "hurt.wav",
+     "seconds": 0.22,
+     "lufs": -14.57,
+     "lufs_raw": -14.24,
+     "gain_db": -0.33,
+     "limited_db": 0.57,
+     "true_peak_dbtp": -1.0,
+     "sha1": "a42998020859"
+    }
+   ],
+   "sha1": "a42998020859",
+   "over_bed_lu": 5.71
+  },
+  {
+   "id": "jump",
+   "class": "move",
+   "event": "player.jump",
+   "bus": "SFX",
+   "target": -17.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.14,
+   "lufs": -17.0,
+   "lufs_raw": -17.07,
+   "gain_db": 0.07,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -4.99,
+   "variations": [
+    {
+     "file": "jump.wav",
+     "seconds": 0.14,
+     "lufs": -17.0,
+     "lufs_raw": -17.07,
+     "gain_db": 0.07,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -4.99,
+     "sha1": "3c2b237aefd2"
+    },
+    {
+     "file": "jump_2.wav",
+     "seconds": 0.14,
+     "lufs": -17.0,
+     "lufs_raw": -17.08,
+     "gain_db": 0.08,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -4.51,
+     "sha1": "2e2f69b9a653"
+    },
+    {
+     "file": "jump_3.wav",
+     "seconds": 0.14,
+     "lufs": -17.0,
+     "lufs_raw": -17.06,
+     "gain_db": 0.06,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -4.54,
+     "sha1": "ba689278b12e"
+    }
+   ],
+   "sha1": "3c2b237aefd2",
+   "over_bed_lu": 3.28
+  },
+  {
+   "id": "land",
+   "class": "impact",
+   "event": "player.land",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.14,
+   "lufs": -14.25,
+   "lufs_raw": -13.43,
+   "gain_db": -0.82,
+   "limited_db": 0.25,
+   "true_peak_dbtp": -1.0,
+   "variations": [
+    {
+     "file": "land.wav",
+     "seconds": 0.14,
+     "lufs": -14.25,
+     "lufs_raw": -13.43,
+     "gain_db": -0.82,
+     "limited_db": 0.25,
+     "true_peak_dbtp": -1.0,
+     "sha1": "faf95e6ca71e"
+    },
+    {
+     "file": "land_2.wav",
+     "seconds": 0.14,
+     "lufs": -14.31,
+     "lufs_raw": -13.49,
+     "gain_db": -0.82,
+     "limited_db": 0.31,
+     "true_peak_dbtp": -1.0,
+     "sha1": "a98145b9bf0c"
+    },
+    {
+     "file": "land_3.wav",
+     "seconds": 0.14,
+     "lufs": -14.2,
+     "lufs_raw": -13.31,
+     "gain_db": -0.89,
+     "limited_db": 0.2,
+     "true_peak_dbtp": -1.0,
+     "sha1": "c86db560d13b"
+    }
+   ],
+   "sha1": "faf95e6ca71e",
+   "over_bed_lu": 6.03
+  },
+  {
+   "id": "level_up",
+   "class": "stinger",
+   "event": "level.gained",
+   "bus": "SFX",
+   "target": -15.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 1.6958,
+   "lufs": -15.0,
+   "lufs_raw": -10.74,
+   "gain_db": -4.26,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -4.3,
+   "variations": [
+    {
+     "file": "level_up.wav",
+     "seconds": 1.6958,
+     "lufs": -15.0,
+     "lufs_raw": -10.74,
+     "gain_db": -4.26,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -4.3,
+     "sha1": "011df527c194"
+    }
+   ],
+   "sha1": "011df527c194",
+   "over_bed_lu": 5.28
+  },
+  {
+   "id": "lift",
+   "class": "world",
+   "event": "lift.moved",
+   "bus": "SFX",
+   "target": -16.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.6,
+   "lufs": -16.0,
+   "lufs_raw": -17.75,
+   "gain_db": 1.75,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -5.09,
+   "variations": [
+    {
+     "file": "lift.wav",
+     "seconds": 0.6,
+     "lufs": -16.0,
+     "lufs_raw": -17.75,
+     "gain_db": 1.75,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -5.09,
+     "sha1": "4b43733662ce"
+    }
+   ],
+   "sha1": "4b43733662ce",
+   "over_bed_lu": 4.28
+  },
+  {
+   "id": "lunge",
+   "class": "enemy",
+   "event": "enemy.lunge",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.2,
+   "lufs": -14.8,
+   "lufs_raw": -13.57,
+   "gain_db": -1.23,
+   "limited_db": 0.8,
+   "true_peak_dbtp": -1.0,
+   "variations": [
+    {
+     "file": "lunge.wav",
+     "seconds": 0.2,
+     "lufs": -14.8,
+     "lufs_raw": -13.57,
+     "gain_db": -1.23,
+     "limited_db": 0.8,
+     "true_peak_dbtp": -1.0,
+     "sha1": "e9e167906532"
+    }
+   ],
+   "sha1": "e9e167906532",
+   "over_bed_lu": 5.48
+  },
+  {
+   "id": "mech_die",
+   "class": "death",
+   "event": "enemy.die_mech",
+   "bus": "SFX",
+   "target": -12.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.4922,
+   "lufs": -12.31,
+   "lufs_raw": -11.24,
+   "gain_db": -1.07,
+   "limited_db": 0.31,
+   "true_peak_dbtp": -1.0,
+   "variations": [
+    {
+     "file": "mech_die.wav",
+     "seconds": 0.4922,
+     "lufs": -12.31,
+     "lufs_raw": -11.24,
+     "gain_db": -1.07,
+     "limited_db": 0.31,
+     "true_peak_dbtp": -1.0,
+     "sha1": "d671ddf098cf"
+    }
+   ],
+   "sha1": "d671ddf098cf",
+   "over_bed_lu": 7.97
+  },
+  {
+   "id": "pickup",
+   "class": "stinger",
+   "event": "item.picked_up",
+   "bus": "SFX",
+   "target": -15.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.32,
+   "lufs": -15.0,
+   "lufs_raw": -13.4,
+   "gain_db": -1.6,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -6.04,
+   "variations": [
+    {
+     "file": "pickup.wav",
+     "seconds": 0.32,
+     "lufs": -15.0,
+     "lufs_raw": -13.4,
+     "gain_db": -1.6,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -6.04,
+     "sha1": "5fcf5b87e461"
+    }
+   ],
+   "sha1": "5fcf5b87e461",
+   "over_bed_lu": 5.28
+  },
+  {
+   "id": "quest",
+   "class": "stinger",
+   "event": "quest.completed",
+   "bus": "SFX",
+   "target": -15.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 1.3706,
+   "lufs": -15.0,
+   "lufs_raw": -10.65,
+   "gain_db": -4.35,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -5.5,
+   "variations": [
+    {
+     "file": "quest.wav",
+     "seconds": 1.3706,
+     "lufs": -15.0,
+     "lufs_raw": -10.65,
+     "gain_db": -4.35,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -5.5,
+     "sha1": "2b642dcd68b2"
+    }
+   ],
+   "sha1": "2b642dcd68b2",
+   "over_bed_lu": 5.28
+  },
+  {
+   "id": "roar",
+   "class": "enemy",
+   "event": "boss.phase",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.9,
+   "lufs": -14.0,
+   "lufs_raw": -5.75,
+   "gain_db": -8.25,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -8.24,
+   "variations": [
+    {
+     "file": "roar.wav",
+     "seconds": 0.9,
+     "lufs": -14.0,
+     "lufs_raw": -5.75,
+     "gain_db": -8.25,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -8.24,
+     "sha1": "5f8c48b78fd9"
+    }
+   ],
+   "sha1": "5f8c48b78fd9",
+   "over_bed_lu": 6.28
+  },
+  {
+   "id": "save",
+   "class": "stinger",
+   "event": "save.activated",
+   "bus": "SFX",
+   "target": -15.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.8958,
+   "lufs": -15.0,
+   "lufs_raw": -12.53,
+   "gain_db": -2.47,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -5.49,
+   "variations": [
+    {
+     "file": "save.wav",
+     "seconds": 0.8958,
+     "lufs": -15.0,
+     "lufs_raw": -12.53,
+     "gain_db": -2.47,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -5.49,
+     "sha1": "ff8a1a19303c"
+    }
+   ],
+   "sha1": "ff8a1a19303c",
+   "over_bed_lu": 5.28
+  },
+  {
+   "id": "shoot",
+   "class": "shot",
+   "event": "player.shoot_bolt",
+   "bus": "SFX",
+   "target": -16.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.1,
+   "lufs": -16.0,
+   "lufs_raw": -17.16,
+   "gain_db": 1.16,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -1.07,
+   "variations": [
+    {
+     "file": "shoot.wav",
+     "seconds": 0.1,
+     "lufs": -16.0,
+     "lufs_raw": -17.16,
+     "gain_db": 1.16,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -1.07,
+     "sha1": "ed999b4ef95f"
+    },
+    {
+     "file": "shoot_2.wav",
+     "seconds": 0.1,
+     "lufs": -16.0,
+     "lufs_raw": -17.16,
+     "gain_db": 1.16,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -1.14,
+     "sha1": "24e07071eb35"
+    }
+   ],
+   "sha1": "ed999b4ef95f",
+   "over_bed_lu": 4.28
+  },
+  {
+   "id": "shoot_nail",
+   "class": "shot",
+   "event": "player.shoot_nail",
+   "bus": "SFX",
+   "target": -16.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.07,
+   "lufs": -16.0,
+   "lufs_raw": -15.17,
+   "gain_db": -0.83,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -1.03,
+   "variations": [
+    {
+     "file": "shoot_nail.wav",
+     "seconds": 0.07,
+     "lufs": -16.0,
+     "lufs_raw": -15.17,
+     "gain_db": -0.83,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -1.03,
+     "sha1": "9fa284aab194"
+    },
+    {
+     "file": "shoot_nail_2.wav",
+     "seconds": 0.07,
+     "lufs": -16.0,
+     "lufs_raw": -15.05,
+     "gain_db": -0.95,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -1.05,
+     "sha1": "a6cc88ac2a34"
+    }
+   ],
+   "sha1": "9fa284aab194",
+   "over_bed_lu": 4.28
+  },
+  {
+   "id": "shoot_rivet",
+   "class": "shot",
+   "event": "player.shoot_rivet",
+   "bus": "SFX",
+   "target": -16.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.12,
+   "lufs": -16.0,
+   "lufs_raw": -14.2,
+   "gain_db": -1.8,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -1.81,
+   "variations": [
+    {
+     "file": "shoot_rivet.wav",
+     "seconds": 0.12,
+     "lufs": -16.0,
+     "lufs_raw": -14.2,
+     "gain_db": -1.8,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -1.81,
+     "sha1": "a176c1d74715"
+    },
+    {
+     "file": "shoot_rivet_2.wav",
+     "seconds": 0.12,
+     "lufs": -16.0,
+     "lufs_raw": -14.23,
+     "gain_db": -1.77,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -1.85,
+     "sha1": "d21ba9dc8197"
+    }
+   ],
+   "sha1": "a176c1d74715",
+   "over_bed_lu": 4.28
+  },
+  {
+   "id": "slam",
+   "class": "impact",
+   "event": "enemy.slam",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.6,
+   "lufs": -14.0,
+   "lufs_raw": -8.47,
+   "gain_db": -5.53,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -5.41,
+   "variations": [
+    {
+     "file": "slam.wav",
+     "seconds": 0.6,
+     "lufs": -14.0,
+     "lufs_raw": -8.47,
+     "gain_db": -5.53,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -5.41,
+     "sha1": "7b3eea78ef1b"
+    }
+   ],
+   "sha1": "7b3eea78ef1b",
+   "over_bed_lu": 6.28
+  },
+  {
+   "id": "stat_up",
+   "class": "stinger",
+   "event": "stat_up.acquired",
+   "bus": "SFX",
+   "target": -15.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 1.0035,
+   "lufs": -15.0,
+   "lufs_raw": -12.83,
+   "gain_db": -2.17,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -3.2,
+   "variations": [
+    {
+     "file": "stat_up.wav",
+     "seconds": 1.0035,
+     "lufs": -15.0,
+     "lufs_raw": -12.83,
+     "gain_db": -2.17,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -3.2,
+     "sha1": "eeb077a85c88"
+    }
+   ],
+   "sha1": "eeb077a85c88",
+   "over_bed_lu": 5.28
+  },
+  {
+   "id": "stun",
+   "class": "enemy",
+   "event": "enemy.stun",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.4493,
+   "lufs": -14.0,
+   "lufs_raw": -14.73,
+   "gain_db": 0.73,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -2.19,
+   "variations": [
+    {
+     "file": "stun.wav",
+     "seconds": 0.4493,
+     "lufs": -14.0,
+     "lufs_raw": -14.73,
+     "gain_db": 0.73,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -2.19,
+     "sha1": "4b88c3d3388c"
+    }
+   ],
+   "sha1": "4b88c3d3388c",
+   "over_bed_lu": 6.28
+  },
+  {
+   "id": "swing",
+   "class": "move",
+   "event": "player.swing",
+   "bus": "SFX",
+   "target": -17.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.18,
+   "lufs": -17.0,
+   "lufs_raw": -12.31,
+   "gain_db": -4.69,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -4.04,
+   "variations": [
+    {
+     "file": "swing.wav",
+     "seconds": 0.18,
+     "lufs": -17.0,
+     "lufs_raw": -12.31,
+     "gain_db": -4.69,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -4.04,
+     "sha1": "f79a2d8c4065"
+    },
+    {
+     "file": "swing_2.wav",
+     "seconds": 0.18,
+     "lufs": -17.0,
+     "lufs_raw": -12.64,
+     "gain_db": -4.36,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -4.0,
+     "sha1": "e4bed2df7cf7"
+    },
+    {
+     "file": "swing_3.wav",
+     "seconds": 0.18,
+     "lufs": -17.0,
+     "lufs_raw": -11.9,
+     "gain_db": -5.1,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -4.65,
+     "sha1": "0bae0856c872"
+    }
+   ],
+   "sha1": "f79a2d8c4065",
+   "over_bed_lu": 3.28
+  },
+  {
+   "id": "tell",
+   "class": "enemy",
+   "event": "enemy.tell",
+   "bus": "SFX",
+   "target": -14.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.12,
+   "lufs": -14.0,
+   "lufs_raw": -17.59,
+   "gain_db": 3.59,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -2.91,
+   "variations": [
+    {
+     "file": "tell.wav",
+     "seconds": 0.12,
+     "lufs": -14.0,
+     "lufs_raw": -17.59,
+     "gain_db": 3.59,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -2.91,
+     "sha1": "b5eafa61ec6c"
+    }
+   ],
+   "sha1": "b5eafa61ec6c",
+   "over_bed_lu": 6.28
+  },
+  {
+   "id": "text",
+   "class": "ui",
+   "event": "ui.text",
+   "bus": "SFX",
+   "target": -24.0,
+   "own_target": true,
+   "note": "a tick per letter; quiet by design",
+   "seconds": 0.02,
+   "lufs": -24.37,
+   "lufs_raw": -37.68,
+   "gain_db": 13.31,
+   "limited_db": 0.37,
+   "true_peak_dbtp": -1.0,
+   "variations": [
+    {
+     "file": "text.wav",
+     "seconds": 0.02,
+     "lufs": -24.37,
+     "lufs_raw": -37.68,
+     "gain_db": 13.31,
+     "limited_db": 0.37,
+     "true_peak_dbtp": -1.0,
+     "sha1": "4c6f04baac51"
+    }
+   ],
+   "sha1": "4c6f04baac51",
+   "over_bed_lu": -4.09
+  },
+  {
+   "id": "title_start",
+   "class": "stinger",
+   "event": "ui.title_start",
+   "bus": "SFX",
+   "target": -15.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.8,
+   "lufs": -15.0,
+   "lufs_raw": -7.95,
+   "gain_db": -7.05,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -7.21,
+   "variations": [
+    {
+     "file": "title_start.wav",
+     "seconds": 0.8,
+     "lufs": -15.0,
+     "lufs_raw": -7.95,
+     "gain_db": -7.05,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -7.21,
+     "sha1": "f0e20684d71c"
+    }
+   ],
+   "sha1": "f0e20684d71c",
+   "over_bed_lu": 5.28
+  },
+  {
+   "id": "toast",
+   "class": "stinger",
+   "event": "ui.toast",
+   "bus": "SFX",
+   "target": -15.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.25,
+   "lufs": -15.0,
+   "lufs_raw": -18.71,
+   "gain_db": 3.71,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -2.33,
+   "variations": [
+    {
+     "file": "toast.wav",
+     "seconds": 0.25,
+     "lufs": -15.0,
+     "lufs_raw": -18.71,
+     "gain_db": 3.71,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -2.33,
+     "sha1": "5d706c53f28a"
+    }
+   ],
+   "sha1": "5d706c53f28a",
+   "over_bed_lu": 5.28
+  },
+  {
+   "id": "ui_back",
+   "class": "ui",
+   "event": "ui.back",
+   "bus": "SFX",
+   "target": -17.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.16,
+   "lufs": -17.0,
+   "lufs_raw": -22.02,
+   "gain_db": 5.02,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -4.78,
+   "variations": [
+    {
+     "file": "ui_back.wav",
+     "seconds": 0.16,
+     "lufs": -17.0,
+     "lufs_raw": -22.02,
+     "gain_db": 5.02,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -4.78,
+     "sha1": "fe30fb2a0665"
+    }
+   ],
+   "sha1": "fe30fb2a0665",
+   "over_bed_lu": 3.28
+  },
+  {
+   "id": "ui_close",
+   "class": "ui",
+   "event": "ui.close",
+   "bus": "SFX",
+   "target": -17.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.18,
+   "lufs": -17.0,
+   "lufs_raw": -16.68,
+   "gain_db": -0.32,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -1.89,
+   "variations": [
+    {
+     "file": "ui_close.wav",
+     "seconds": 0.18,
+     "lufs": -17.0,
+     "lufs_raw": -16.68,
+     "gain_db": -0.32,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -1.89,
+     "sha1": "a3f15363c6a8"
+    }
+   ],
+   "sha1": "a3f15363c6a8",
+   "over_bed_lu": 3.28
+  },
+  {
+   "id": "ui_confirm",
+   "class": "ui",
+   "event": "ui.confirm",
+   "bus": "SFX",
+   "target": -17.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.16,
+   "lufs": -17.0,
+   "lufs_raw": -20.88,
+   "gain_db": 3.88,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -5.68,
+   "variations": [
+    {
+     "file": "ui_confirm.wav",
+     "seconds": 0.16,
+     "lufs": -17.0,
+     "lufs_raw": -20.88,
+     "gain_db": 3.88,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -5.68,
+     "sha1": "cd84ec409a71"
+    }
+   ],
+   "sha1": "cd84ec409a71",
+   "over_bed_lu": 3.28
+  },
+  {
+   "id": "ui_move",
+   "class": "ui",
+   "event": "ui.move",
+   "bus": "SFX",
+   "target": -17.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.05,
+   "lufs": -17.0,
+   "lufs_raw": -27.29,
+   "gain_db": 10.29,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -1.28,
+   "variations": [
+    {
+     "file": "ui_move.wav",
+     "seconds": 0.05,
+     "lufs": -17.0,
+     "lufs_raw": -27.29,
+     "gain_db": 10.29,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -1.28,
+     "sha1": "68ed5f63e834"
+    }
+   ],
+   "sha1": "68ed5f63e834",
+   "over_bed_lu": 3.28
+  },
+  {
+   "id": "ui_open",
+   "class": "ui",
+   "event": "ui.open",
+   "bus": "SFX",
+   "target": -17.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.22,
+   "lufs": -17.0,
+   "lufs_raw": -25.09,
+   "gain_db": 8.09,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -3.49,
+   "variations": [
+    {
+     "file": "ui_open.wav",
+     "seconds": 0.22,
+     "lufs": -17.0,
+     "lufs_raw": -25.09,
+     "gain_db": 8.09,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -3.49,
+     "sha1": "ce3d8d230ad7"
+    }
+   ],
+   "sha1": "ce3d8d230ad7",
+   "over_bed_lu": 3.28
+  },
+  {
+   "id": "wall_jump",
+   "class": "move",
+   "event": "player.wall_jump",
+   "bus": "SFX",
+   "target": -17.0,
+   "own_target": false,
+   "note": "",
+   "seconds": 0.14,
+   "lufs": -17.0,
+   "lufs_raw": -17.62,
+   "gain_db": 0.62,
+   "limited_db": 0.0,
+   "true_peak_dbtp": -3.39,
+   "variations": [
+    {
+     "file": "wall_jump.wav",
+     "seconds": 0.14,
+     "lufs": -17.0,
+     "lufs_raw": -17.62,
+     "gain_db": 0.62,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -3.39,
+     "sha1": "3dbff78b21dd"
+    },
+    {
+     "file": "wall_jump_2.wav",
+     "seconds": 0.14,
+     "lufs": -17.0,
+     "lufs_raw": -17.67,
+     "gain_db": 0.67,
+     "limited_db": 0.0,
+     "true_peak_dbtp": -3.32,
+     "sha1": "9441305fda8e"
+    }
+   ],
+   "sha1": "3dbff78b21dd",
+   "over_bed_lu": 3.28
+  }
+ ],
+ "beds": [
+  {
+   "file": "game/assets/audio/music/boss.ogg",
+   "seconds": 30.0,
+   "lufs_integrated": -16.28,
+   "lufs_momentary_max": -13.4,
+   "at_bus_integrated": -20.28,
+   "at_bus_momentary_max": -17.4
+  },
+  {
+   "file": "game/assets/audio/music/gut.ogg",
+   "seconds": 32.0,
+   "lufs_integrated": -18.1,
+   "lufs_momentary_max": -11.33,
+   "at_bus_integrated": -22.1,
+   "at_bus_momentary_max": -15.33
+  },
+  {
+   "file": "game/assets/audio/music/roof.ogg",
+   "seconds": 30.0,
+   "lufs_integrated": -18.36,
+   "lufs_momentary_max": -12.08,
+   "at_bus_integrated": -22.36,
+   "at_bus_momentary_max": -16.08
+  },
+  {
+   "file": "game/assets/audio/music/stacks.ogg",
+   "seconds": 28.2353,
+   "lufs_integrated": -17.15,
+   "lufs_momentary_max": -12.93,
+   "at_bus_integrated": -21.15,
+   "at_bus_momentary_max": -16.93
+  },
+  {
+   "file": "game/assets/audio/music/title.ogg",
+   "seconds": 32.0,
+   "lufs_integrated": -18.69,
+   "lufs_momentary_max": -13.39,
+   "at_bus_integrated": -22.69,
+   "at_bus_momentary_max": -17.39
+  }
+ ],
+ "findings": [],
+ "classes": {
+  "default": -16.0,
+  "impact": -14.0,
+  "death": -12.0,
+  "enemy": -14.0,
+  "hack": -14.0,
+  "move": -17.0,
+  "shot": -16.0,
+  "world": -16.0,
+  "stinger": -15.0,
+  "ui": -17.0
+ },
+ "ceiling_dbtp": -1.0
+}

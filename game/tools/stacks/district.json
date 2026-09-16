@@ -1,0 +1,31 @@
+{
+  "_doc": "The Stacks for the level-designer skill (kiln): where the specs are and what their letters mean. reach.json beside it is derived from src/player/movement_config.tres by the skill's Godot adapter.",
+  "specs": ".",
+  "ext": ".room",
+  "reach": "reach.json",
+  "tile_px": 60,
+  "cell_tiles": [32, 18],
+  "start": "unit_14c",
+  "hub": "mezz",
+  "grants": {
+    "ability": {
+      "ability.mag_hook": "mag_hook",
+      "ability.cyberdeck": "cyberdeck",
+      "item.sidewinder_carried": "sidewinder_carried"
+    },
+    "hack": "*"
+  },
+  "installs": [
+    { "carried": "sidewinder_carried", "at": "mezz", "gives": "sidewinder" }
+  ],
+  "enemies": {
+    "e": { "name": "Scav", "intensity": 1 },
+    "d": { "name": "Watcher drone", "intensity": 1 },
+    "r": { "name": "Riot unit", "intensity": 2 },
+    "E": { "name": "Elite Scav", "intensity": 3 },
+    "B": { "name": "the Landlord", "intensity": 6 }
+  },
+  "pickups": ["item", "hack", "ability", "hp_up", "ram_up", "quest_item", "save"],
+  "rests": ["save", "npc"],
+  "lift_marker": "lift"
+}

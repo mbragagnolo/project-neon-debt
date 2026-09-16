@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HackConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/combat/hacks/hack_config.gd" id="1_hack_config"]
+
+[resource]
+script = ExtResource("1_hack_config")
+global_cooldown = 1.0
+ram_regen_per_second = 0.4
+fx_time = 0.35
+failure_flash_time = 0.8

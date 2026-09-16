@@ -39,8 +39,12 @@ static func raw_damage(attack: Attack, config: CombatConfig) -> float:
 ##
 ## Rounds after subtracting, matching the spec's formula literally — `max(1,
 ## 7×1.4 − 3)` is the mental arithmetic a solo tuner does in a spreadsheet.
-static func final_damage(raw: float, defense: int) -> int:
-	return maxi(1, roundi(raw - float(defense)))
+##
+## `guard_mult` is Firewall (docs/combat/hacks.md): applied *after* DEF and
+## *before* the floor, so "halved" is halved against what would actually have
+## landed, and the floor still holds — a guarded target is never unhittable.
+static func final_damage(raw: float, defense: int, guard_mult: float = 1.0) -> int:
+	return maxi(1, roundi((raw - float(defense)) * guard_mult))
 
 
 ## Steps 3–8, minus the application itself. Returns what *would* happen so the
@@ -59,8 +63,8 @@ static func resolve(attack: Attack, health: Health, config: CombatConfig) -> Dam
 	if health.blocks(attack):
 		return DamageResult.rejected(DamageResult.Rejection.IMMUNE)
 
-	# Step 6 — DEF, then the floor.
-	var amount: int = final_damage(raw, health.defense)
+	# Step 6 — DEF, then the guard multiplier, then the floor.
+	var amount: int = final_damage(raw, health.defense, health.guard_mult)
 
 	# Step 8 — one field, one comparison. Contact never staggers.
 	var did_stagger: bool = not attack.is_contact and amount >= health.stagger_threshold

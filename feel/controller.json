@@ -1,0 +1,318 @@
+{
+ "_doc": "Written by adapters/godot_controller.py from the project's resources; regenerate when the controller is retuned. Every key is documented in templates/controller.json. knobs: value, group, source, unit, hands. model: what the arithmetic expects from the knobs, for the measurement to be compared with.",
+ "tick": 60,
+ "body": {
+  "width": 48.0,
+  "height": 88.0
+ },
+ "knobs": {
+  "run_speed": {
+   "value": 450.0,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#run_speed",
+   "unit": "px/s",
+   "hands": "how fast the ground goes by; every horizontal reach scales with it (a running jump is run_speed x airtime). Raise it and every gap in the district gets easier."
+  },
+  "ground_acceleration": {
+   "value": 3600.0,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#ground_acceleration",
+   "unit": "px/s2",
+   "hands": "how long the first step takes: run_speed / this is the seconds to top speed. Under 0.1 s reads as instant, over 0.25 s reads as skating."
+  },
+  "ground_deceleration": {
+   "value": 4800.0,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#ground_deceleration",
+   "unit": "px/s2",
+   "hands": "how far a released stick slides: run_speed^2 / (2 x this) is the stopping distance. Also the rate a hurt knockback bleeds off at."
+  },
+  "air_acceleration": {
+   "value": 2700.0,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#air_acceleration",
+   "unit": "px/s2",
+   "hands": "how much the stick steers a jump; low values make a jump a commitment, high values make every gap forgiving."
+  },
+  "air_deceleration": {
+   "value": 1800.0,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#air_deceleration",
+   "unit": "px/s2",
+   "hands": "how much a jump keeps its speed when the stick is let go; low values carry, high values drop."
+  },
+  "turn_acceleration": {
+   "value": 9000.0,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#turn_acceleration",
+   "unit": "px/s2",
+   "hands": "the reversal: run_speed / this is the seconds a turn takes to cross zero. The design asks for instant; a value several times the ground acceleration keeps a turn a turn without a snap."
+  },
+  "jump_height": {
+   "value": 168.0,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#jump_height",
+   "unit": "px",
+   "hands": "the ceiling of a full hold; a ledge higher than this with no facing wall is a wall. Changing it re-judges every ledge in the district."
+  },
+  "jump_time_to_apex": {
+   "value": 0.36,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#jump_time_to_apex",
+   "unit": "s",
+   "hands": "the snap: short is springy, long is floaty. With the height fixed, gravity falls out of it; the airtime and so every horizontal reach follow."
+  },
+  "fall_gravity_multiplier": {
+   "value": 1.6,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#fall_gravity_multiplier",
+   "unit": "ratio",
+   "hands": "the fall against the rise; above 1 the fall is quicker and the jump lands with weight. 1.0 is a symmetric, floaty arc. The single biggest feel knob."
+  },
+  "jump_cut_multiplier": {
+   "value": 0.45,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#jump_cut_multiplier",
+   "unit": "ratio",
+   "hands": "how much of the rise a released button keeps; low values make a tap a hop, 1.0 removes variable height."
+  },
+  "max_fall_speed": {
+   "value": 1200.0,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#max_fall_speed",
+   "unit": "px/s",
+   "hands": "terminal velocity: how a long drop ends. Low values float down, high values hit the floor."
+  },
+  "coyote_time": {
+   "value": 0.1,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#coyote_time",
+   "unit": "s",
+   "hands": "the grace after walking off a ledge in which a jump still fires; 0.08 to 0.12 s is felt as forgiveness, more is felt as a double jump."
+  },
+  "jump_buffer_time": {
+   "value": 0.15,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#jump_buffer_time",
+   "unit": "s",
+   "hands": "how early a jump can be pressed before landing and still fire; 0.1 to 0.2 s. Also the window a jump pressed during a dash waits in."
+  },
+  "dash_distance": {
+   "value": 288.0,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#dash_distance",
+   "unit": "px",
+   "hands": "how far one dash goes with altitude held; a gap the run cannot cross and the dash can is one dash wide."
+  },
+  "dash_duration": {
+   "value": 0.16,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#dash_duration",
+   "unit": "s",
+   "hands": "the commitment: how long the dash cannot be steered. Under 0.12 s it is a step, over 0.25 s it is a cutscene. A duration not a whole number of frames runs to the next frame."
+  },
+  "dash_cooldown": {
+   "value": 0.5,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#dash_cooldown",
+   "unit": "s",
+   "hands": "the wait before the next ground dash; short makes dashing a way of running."
+  },
+  "dash_grants_iframes": {
+   "value": false,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#dash_grants_iframes",
+   "unit": "bool",
+   "hands": "whether the dash is a dodge; on, every attack can be dashed through and enemies must be designed for it."
+  },
+  "dash_iframe_time": {
+   "value": 0.12,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#dash_iframe_time",
+   "unit": "s",
+   "hands": "how much of the dash is invulnerable when it is a dodge."
+  },
+  "can_dash_in_air": {
+   "value": true,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#can_dash_in_air",
+   "unit": "bool",
+   "hands": "whether the dash exists in the air at all (possession is a flag elsewhere); on, a jump plus a dash is the widest gap."
+  },
+  "wall_slide_speed": {
+   "value": 120.0,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#wall_slide_speed",
+   "unit": "px/s",
+   "hands": "how fast a wall is slid down; slow makes a wall a place to think, fast makes it a fall with friction."
+  },
+  "wall_jump_push": {
+   "value": 420.0,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#wall_jump_push",
+   "unit": "px/s",
+   "hands": "the kick away from the wall; with the lockout it is how far the kick carries before the stick takes over, and so the widest shaft."
+  },
+  "wall_jump_height": {
+   "value": 144.0,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#wall_jump_height",
+   "unit": "px",
+   "hands": "the height each kick gains; a shaft is climbed at this per kick."
+  },
+  "wall_stick_time": {
+   "value": 0.1,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#wall_stick_time",
+   "unit": "s",
+   "hands": "how long the wall keeps the player after the stick lets go, so a turn-and-jump does not drop them."
+  },
+  "wall_jump_lockout_time": {
+   "value": 0.12,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#wall_jump_lockout_time",
+   "unit": "s",
+   "hands": "how long the kick owns the stick; too short and a stick held toward the wall cancels the kick, too long and the jump cannot be steered."
+  },
+  "same_wall_lockout_scale": {
+   "value": 0.85,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#same_wall_lockout_scale",
+   "unit": "ratio",
+   "hands": "how much of the kick's flight the wall just left refuses; at 1.0 a single wall cannot be climbed, below it a single wall is a slow ladder."
+  },
+  "same_wall_lockout_margin": {
+   "value": 0.05,
+   "group": "movement",
+   "source": "game/src/player/movement_config.tres#same_wall_lockout_margin",
+   "unit": "s",
+   "hands": "the extra refusal on top of the scaled flight."
+  },
+  "hitstop_light_frames": {
+   "value": 2,
+   "group": "combat",
+   "source": "game/src/combat/combat_config.tres#hitstop_light_frames",
+   "unit": "frames",
+   "hands": "the freeze on an ordinary hit; 2 to 3 frames reads as contact, more reads as lag."
+  },
+  "hitstop_heavy_frames": {
+   "value": 4,
+   "group": "combat",
+   "source": "game/src/combat/combat_config.tres#hitstop_heavy_frames",
+   "unit": "frames",
+   "hands": "the freeze on a heavy hit; the difference from the light one is what makes weight."
+  },
+  "hitstop_heavy_threshold": {
+   "value": 12,
+   "group": "combat",
+   "source": "game/src/combat/combat_config.tres#hitstop_heavy_threshold",
+   "unit": "damage",
+   "hands": "the damage at which a hit is heavy."
+  },
+  "hitstop_max_seconds": {
+   "value": 0.5,
+   "group": "combat",
+   "source": "game/src/combat/combat_config.tres#hitstop_max_seconds",
+   "unit": "s",
+   "hands": "the longest any freeze can hold, so a stack of hits cannot become a slideshow."
+  },
+  "flinch_knockback_mult": {
+   "value": 0.25,
+   "group": "combat",
+   "source": "game/src/combat/combat_config.tres#flinch_knockback_mult",
+   "unit": "ratio",
+   "hands": "the share of knockback an enemy that flinches (not staggered) takes."
+  },
+  "player_hurt_knockback": {
+   "value": 220.0,
+   "group": "combat",
+   "source": "game/src/combat/combat_config.tres#player_hurt_knockback",
+   "unit": "px/s",
+   "hands": "the speed the player is pushed at when hit; with the ground deceleration it is how many frames of control a hit costs."
+  },
+  "player_iframe_time": {
+   "value": 0.85,
+   "group": "combat",
+   "source": "game/src/combat/combat_config.tres#player_iframe_time",
+   "unit": "s",
+   "hands": "how long after a hit the player cannot be hit again; the breathing room a mistake buys."
+  },
+  "iframe_flash_hz": {
+   "value": 12.0,
+   "group": "combat",
+   "source": "game/src/combat/combat_config.tres#iframe_flash_hz",
+   "unit": "Hz",
+   "hands": "how fast the invulnerable flash blinks."
+  },
+  "contact_damage_mult": {
+   "value": 0.5,
+   "group": "combat",
+   "source": "game/src/combat/combat_config.tres#contact_damage_mult",
+   "unit": "ratio",
+   "hands": "the share of an enemy's power a touch deals."
+  },
+  "stat_max_bonus": {
+   "value": 2.0,
+   "group": "combat",
+   "source": "game/src/combat/combat_config.tres#stat_max_bonus",
+   "unit": "ratio",
+   "hands": "the stat curve's ceiling (the systems-designer's number; read here, tuned there)."
+  },
+  "stat_half_point": {
+   "value": 40.0,
+   "group": "combat",
+   "source": "game/src/combat/combat_config.tres#stat_half_point",
+   "unit": "stat",
+   "hands": "the stat curve's half point (the systems-designer's number; read here, tuned there)."
+  }
+ },
+ "hitstop": {
+  "light_frames": 2,
+  "heavy_frames": 4,
+  "heavy_threshold": 12,
+  "max_seconds": 0.5
+ },
+ "model": {
+  "run_speed": 450.0,
+  "accel_frames": 7.5,
+  "stop_frames": 5.62,
+  "turn_frames": 3.0,
+  "air_accel_frames": 10.0,
+  "air_stop_frames": 15.0,
+  "accel_distance": 28.1,
+  "stop_distance": 21.1,
+  "jump_height": 168.0,
+  "rise_gravity": 2592.6,
+  "fall_gravity": 4148.1,
+  "jump_velocity": -933.3,
+  "rise_frames": 21.6,
+  "fall_frames": 17.08,
+  "airtime_frames": 38.68,
+  "airtime": 0.6447,
+  "flat_jump_distance": 290.1,
+  "jump_cut_multiplier": 0.45,
+  "terminal_velocity": 1200.0,
+  "terminal_frames_from_rest": 17.4,
+  "wall_jump_height": 144.0,
+  "wall_jump_velocity": -864.1,
+  "wall_jump_rise_frames": 20.0,
+  "wall_jump_reach": 265.0,
+  "wall_jump_reach_neutral": 50.4,
+  "coyote_frames": 6.0,
+  "buffer_frames": 9.0,
+  "dash_frames": 9.6,
+  "dash_cooldown_frames": 30.0,
+  "wall_jump_lockout_frames": 7.2,
+  "wall_stick_frames": 6.0,
+  "iframe_frames": 51.0,
+  "dash_iframe_frames": 7.2,
+  "dash_distance": 288.0,
+  "dash_speed": 1800.0,
+  "dash_jump_distance": 578.1,
+  "jump_air_dash_distance": 578.1,
+  "wall_slide_speed": 120.0,
+  "knockback_speed": 220.0,
+  "knockback_frames": 2.75,
+  "knockback_distance": 5.0
+ }
+}

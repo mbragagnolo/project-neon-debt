@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/quests/quest.gd" id="1_quest"]
+
+[resource]
+script = ExtResource("1_quest")
+id = &"memory_chip"
+title = "What He Didn't Want Repossessed"
+giver = "Marisol, 14th floor"
+objective = "Find Ferro's body in the Gut and recover his memory chip. Past the pumps, below the lift. The water is live."
+epilogue = "Marisol has the chip. You have a dead man's hardhat, and it is the best helmet in the Stacks."
+required_flag = &"quest_item.memory_chip"
+reward_item_id = &"scavved_hardhat"
+reward_credits = 60

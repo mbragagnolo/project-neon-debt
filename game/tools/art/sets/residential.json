@@ -1,0 +1,305 @@
+{
+  "name": "residential",
+  "kind": "wall",
+  "look": "docs/art/environment.md#the-brief-for-14-c",
+  "sheet": "tiles/wall_residential.png",
+  "still": {
+    "model": "Laxhar/noobai-XL-1.1",
+    "width": 1024,
+    "height": 1024,
+    "steps": 28,
+    "cfg": 5.5,
+    "scheduler": "euler_a",
+    "prompt": "masterpiece, best quality, very aesthetic, absurdres, no humans, (concrete wall, weathered concrete, stained concrete, grimy wall)1.25, (straight-on, front view, flat wall, wall texture, close-up)1.2, water stains, cracks, dirt, grime, subtle panel seams, dark grey, cold grey, dark navy tint, cyberpunk apartment, interior wall, flat lighting, even lighting, detailed texture, soft shading, cel shading",
+    "negative": "1girl, 1boy, humans, people, character, figure, text, watermark, signature, blurry, lowres, worst quality, low quality, jpeg artifacts, perspective, vanishing point, floor, ceiling, window, door, furniture, room, scenery, sky, bright, white wall, lens flare, light rays, spotlight, gradient, vignette, frame, border, bricks, tiles, wood, graffiti, poster, sign",
+    "_note": "First sweep 2026-09-07. NoobAI is an illustration model; asked for a straight-on stained concrete wall with faint seams, flat light, no fixtures. The tile boundary is hidden by a wrap blend at bake, so the still does not have to be seamless.",
+    "chosen_variant": "dream",
+    "chosen_seed": 3,
+    "_chosen_note": "dream seed 3: calm mottling with one crack; seeds 4 and 5 carry pits that would repeat, 6 a blue seam, 8 a jagged crack. The block offset picks the right-middle of the still, off the crack."
+  },
+  "variants": {
+    "stained": {
+      "prompt": "masterpiece, best quality, absurdres, no humans, (heavily stained concrete wall, mottled concrete, water damage, grime streaks, rust stains, peeling paint, dirty)1.3, (straight-on, flat wall, close-up texture, wall texture)1.2, cracks, dust, scratches, large concrete panels, panel seams, high contrast, dark grey, cold grey, dark navy tint, cyberpunk apartment interior wall, detailed texture, soft shading",
+      "negative": "1girl, 1boy, humans, people, character, figure, text, watermark, signature, blurry, lowres, worst quality, low quality, jpeg artifacts, smooth, clean, plain, flat color, gradient, lit floor, floor, ceiling, perspective, vanishing point, window, door, furniture, room, scenery, sky, bright, white wall, lens flare, light rays, spotlight, vignette, frame, border, bricks, wood, graffiti, poster, sign",
+      "_note": "Second NoobAI prompt: the first (work/sets/residential/) drew smooth plaster with hairline cracks and a lit floor; shape words first and weighted, smooth/clean/gradient/floor in the negative."
+    },
+    "dream": {
+      "family": "sd15",
+      "model": "Lykon/dreamshaper-8",
+      "width": 768,
+      "height": 768,
+      "steps": 30,
+      "cfg": 7.0,
+      "prompt": "close-up texture of a weathered concrete wall, heavily stained, water streaks, grime, rust stains, hairline cracks, large concrete panels with seams, dark grey with a cold blue tint, flat even lighting, straight on, dim cyberpunk apartment interior wall, photographic, high detail, 8k",
+      "negative": "people, person, face, text, watermark, blurry, lowres, smooth, clean, plain, perspective, floor, ceiling, window, door, furniture, room, sky, bright, white, lens flare, light rays, spotlight, vignette, frame, border, bricks, wood, graffiti, poster, sign, cartoon, painting",
+      "_note": "DreamShaper 8 (SD 1.5, 768 px, the swatch is then 6.4 still px per art px). The SDXL base in the HF cache has only its configs, no weights, so it is not a variant."
+    }
+  },
+  "target": {
+    "tile": 30,
+    "scale": 2,
+    "swatch": 200,
+    "k": 2,
+    "lines": {
+      "radius": 7,
+      "delta": 22,
+      "coverage": 0.22,
+      "factor": 0.8
+    },
+    "palette": [
+      "void",
+      "bg0",
+      "bg1",
+      "bg2",
+      "bg3",
+      "steel0",
+      "steel1",
+      "concrete0",
+      "concrete1",
+      "concrete2",
+      "concrete3",
+      "rust0",
+      "rust1",
+      "black",
+      "black_l",
+      "outline"
+    ],
+    "fill": {
+      "offset": [
+        100,
+        60
+      ],
+      "blend": 0.18,
+      "flatten": 0.33
+    },
+    "lip": {
+      "top": [
+        "concrete3",
+        "concrete2"
+      ],
+      "top_highlight": 1.2,
+      "top_face": 1.05,
+      "bottom": [
+        "black",
+        "concrete0"
+      ],
+      "bottom_face": 0.85,
+      "side_lit": 1.15,
+      "side_shade": 0.85
+    },
+    "dark": {
+      "factor": 0.3,
+      "tint": "bg0",
+      "mix": 0.5,
+      "palette": [
+        "void",
+        "bg0",
+        "bg1",
+        "bg2",
+        "black",
+        "concrete0",
+        "steel0",
+        "navy_d"
+      ]
+    },
+    "_note": "tile 30 art px = one 60 px engine tile at 2x. swatch 200 = the 768 still seen as 200 art px (3.8 still px per art px; 120 lost the cracks). block 90 = the seamless material block, three tiles; corners and edge strips are cut from it and the centre is it darkened, so the texture is 150 art px = 300 screen px and NinePatch's 60 px margins give three-tile edge strips with no engine change. levels stretches the still's greys onto concrete0..concrete3 before the snap.",
+    "levels": {
+      "pct": [
+        2,
+        98
+      ],
+      "lo": 26,
+      "hi": 112,
+      "tint": [
+        0.9,
+        0.95,
+        1.1
+      ]
+    },
+    "block": 90
+  },
+  "ring": {
+    "_note": "The Metroid rule (docs/art/environment.md, direction change): a textured ring `tiles` deep around air, void past it. Authored at 2x by ring.py; `method` picks proc / hand / mix. face + fade art px from the air edge: the textured face, then the dithered fall to void. Thresholds on the 0..1 mottle: below `dark` the step under the base, above `light` the step over it.",
+    "method": "mix",
+    "seed": 7,
+    "tiles": 1,
+    "strip": 6,
+    "ramp": [
+      "void",
+      "bg0",
+      "concrete0",
+      "concrete1",
+      "concrete2",
+      "concrete3"
+    ],
+    "base": "concrete1",
+    "face": 20,
+    "fade": 7,
+    "noise": {
+      "cells": [
+        6,
+        12,
+        30
+      ],
+      "weights": [
+        0.45,
+        0.35,
+        0.2
+      ],
+      "grain": 0.1
+    },
+    "dither": {
+      "cells": [
+        3
+      ],
+      "weights": [
+        0.35
+      ],
+      "grain": 0.65
+    },
+    "steps": {
+      "dark": 0.3,
+      "light": 0.82,
+      "under_dark": 0.5,
+      "under_light": 0.95
+    },
+    "lip": {
+      "top": [
+        "concrete3",
+        "concrete2"
+      ],
+      "chip": 0.08,
+      "crease": "concrete0",
+      "crease_row": 3,
+      "crease_cover": 0.6
+    },
+    "edge": {
+      "under": "concrete0",
+      "lit_side": "concrete2",
+      "shade_side": "concrete0"
+    },
+    "seams": {
+      "every": 45,
+      "jitter": 6,
+      "lit_cover": 0.55
+    },
+    "streaks": {
+      "per_tile": 1.2,
+      "length": [
+        4,
+        14
+      ]
+    },
+    "scuffs": {
+      "per_tile": 0.8,
+      "depth": 6
+    },
+    "specks": {
+      "rate": 0.004,
+      "colour": "rust0",
+      "colour2": "rust1"
+    },
+    "hand": "residential_ring",
+    "stamps": [
+      {
+        "name": "stain",
+        "side": "b",
+        "at": [
+          12,
+          98,
+          158
+        ],
+        "depth": 0
+      },
+      {
+        "name": "plate",
+        "side": "l",
+        "at": [
+          52
+        ],
+        "depth": 5
+      },
+      {
+        "name": "plate",
+        "side": "r",
+        "at": [
+          118
+        ],
+        "depth": 5
+      },
+      {
+        "name": "crack",
+        "side": "l",
+        "at": [
+          130
+        ],
+        "depth": 4
+      },
+      {
+        "name": "crack",
+        "side": "r",
+        "at": [
+          20
+        ],
+        "depth": 4
+      },
+      {
+        "name": "crack",
+        "side": "t",
+        "at": [
+          66,
+          150
+        ],
+        "depth": 9
+      }
+    ],
+    "materials": {
+      "_note": "Per-side overrides on the ring block, from the 14-C concept (flat seed 6): near-black boards on the floor, plaster walls, a beam and slats under the ceiling. `band` is how deep a horizontal side owns the corners.",
+      "t": {
+        "band": 8,
+        "base": "concrete0",
+        "steps": {
+          "dark": 0.35,
+          "light": 0.9
+        },
+        "lip": {
+          "top": [
+            "concrete2",
+            "concrete1"
+          ],
+          "chip": 0.0
+        },
+        "boards": {
+          "depth": 8,
+          "base": "rust0",
+          "grain": "rust1",
+          "lit": "rust2",
+          "gap": "bg0",
+          "shadow": "black",
+          "length": [
+            12,
+            22
+          ],
+          "grain_per_tile": 3,
+          "chip": 0.1
+        },
+        "scuffs": null,
+        "seams": null,
+        "specks": null
+      },
+      "b": {
+        "band": 8,
+        "base": "concrete1",
+        "slats": {
+          "beam": "black",
+          "beam_depth": 2,
+          "line": "rust0",
+          "count": 3,
+          "every": 2,
+          "cover": 0.3
+        },
+        "specks": null
+      }
+    }
+  }
+}

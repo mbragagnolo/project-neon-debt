@@ -1,7 +1,16 @@
 # Stats & curves
 
 **Status: LOCKED.** Every section is closed; the file's exports to later
-milestones are listed at the bottom. Constants marked `TUNE` are locked
+milestones are listed at the bottom.
+
+The constants here live as data in `systems/tables/constants.csv` (the
+systems-designer's tables, one row per number with its `.tres` source);
+`systems/report.md` tabulates the curve against the placed district, the
+kill table per enemy at the level it is met, and hits to die bare and
+geared. One correction the report found: the "three big mistakes" and
+"four mistakes against the boss" sentences below hold for a bare sheet;
+with all four clothing pieces worn (DEF 5) a Scav's 6 lands as 1 and the
+Landlord's 14 as 9. Constants marked `TUNE` are locked
 *decisions* whose *values* stay open to tuning — the XP curve's `base` in
 particular is re-solved in M5 against the real roster.
 
@@ -284,14 +293,25 @@ Against that total:
 | Kills everything | 100% (959) | **Level 6**, not halfway to 7 |
 
 Which is DESIGN.md §2's "~level 5–6" for every play style — and level 7 is
-unreachable in the slice by construction (1248 > 959), so the curve needs no
-level cap and V2 can extend it without a cliff.
+out of reach of the district killed once (1248 > 959), so the curve needs no
+level cap and V2 can extend it without a cliff. Enemies come back on every
+room re-entry, so a player who fights on the way back can farm past it: the
+systems-designer's sim puts a thorough player at level 7 at the boss (1493
+XP). Accepted 2026-09-15: farming is allowed, the once-through total is the
+floor the curve is solved against, not a cap.
 
 **The guard is a test, not vigilance.** `tests/test_xp_curve.gd` asserts that
 the cumulative XP to level 6 sits between 70% and 90% of the district budget
-recorded above. When M5 lands real room counts and M6 real `xp_reward`
-values, the test fails loudly and `base` is re-solved — the curve's shape and
-every other number here stay put.
+recorded above, and `tests/test_roster.gd` measures the placed district
+against the recorded premise.
+
+**Re-solved in M6.** The placed roster (stacks.md: 29 Scavs, 17 drones, 8
+Riot units, 1 Elite, the Landlord) holds **949 XP** against the 959 assumed.
+Level 6 costs 792 — 83% of the district — so `base` held at 60 and
+`assumed_district_xp` moved to 949. A thorough player finishes at 6; a
+player who skips what they can lands at 5. Recounted from the specs on
+2026-09-14 by the game-designer's checker: 31 Scavs and 7 Riot units, 947 XP,
+within the test's 3 % of the 949 the curve assumes, so the constant stays.
 
 ## Exports
 

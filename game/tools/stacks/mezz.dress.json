@@ -1,0 +1,291 @@
+{
+  "_doc": "The Mezz (mezz). Written by tools/stacks/dress.py from dress_vocab.json, which is where the district's lighting is decided. Edit here for this room alone, or in the vocabulary for the whole style; re-running the script overwrites this file.",
+  "decor": "seeded",
+  "_decor": "keep the clutter the generator places from the room id's seed; this file adds light.",
+  "ambient": [
+    0.66,
+    0.68,
+    0.84
+  ],
+  "door_lamp": {
+    "color": [
+      0.55,
+      0.92,
+      1.0
+    ],
+    "energy": 1.2,
+    "scale": 2.8
+  },
+  "lights": [
+    {
+      "name": "lamp_1",
+      "at": [
+        990,
+        630
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_2",
+      "at": [
+        1470,
+        630
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_3",
+      "at": [
+        210,
+        930
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_4",
+      "at": [
+        2310,
+        930
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_5",
+      "at": [
+        2790,
+        930
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_6",
+      "at": [
+        3270,
+        930
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_7",
+      "at": [
+        3750,
+        930
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_8",
+      "at": [
+        4410,
+        930
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_9",
+      "at": [
+        4890,
+        930
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_10",
+      "at": [
+        5670,
+        930
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "sign_1",
+      "at": [
+        1230,
+        624
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "sign_2",
+      "at": [
+        5070,
+        744
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "sign_3",
+      "at": [
+        390,
+        804
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "sign_4",
+      "at": [
+        930,
+        804
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "sign_5",
+      "at": [
+        3630,
+        804
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "npc_6",
+      "at": [
+        1230,
+        983
+      ],
+      "color": [
+        1.0,
+        0.85,
+        0.62
+      ],
+      "energy": 0.7,
+      "scale": 1.6
+    },
+    {
+      "name": "npc_7",
+      "at": [
+        4230,
+        983
+      ],
+      "color": [
+        1.0,
+        0.85,
+        0.62
+      ],
+      "energy": 0.7,
+      "scale": 1.6
+    },
+    {
+      "name": "save_8",
+      "at": [
+        5070,
+        983
+      ],
+      "color": [
+        0.35,
+        0.9,
+        1.0
+      ],
+      "energy": 0.9,
+      "scale": 1.8
+    },
+    {
+      "name": "fill",
+      "at": [
+        2880,
+        486
+      ],
+      "color": [
+        0.55,
+        0.5,
+        0.9
+      ],
+      "energy": 0.45,
+      "scale": 9.0,
+      "scale_xy": [
+        5.33,
+        1.0
+      ]
+    }
+  ]
+}

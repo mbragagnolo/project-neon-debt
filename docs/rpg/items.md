@@ -112,7 +112,7 @@ the set quietly demonstrates the whole intertwined kit:
 |---|---|---|---|
 | Body | Utility worker's padded jacket | 2 | **+10 max HP** — survival |
 | Legs | Steel-toe work boots | 1 | dash cooldown −15% — mobility |
-| Hands | Insulated linesman's gloves, deck-jacked | 1 | **+25% RAM regen** — the hack slot |
+| Hands | Insulated linesman's gloves, deck-jacked | 0 | **+25% RAM regen** — the hack slot (DEF 0 since 2026-09-15: the four pieces stacked to 5 and a geared player took fifty Scav hits to die; the stack is 4) |
 | Head | Scavved hardhat, cracked HUD visor | 1 | +1 energy on melee hit — feeds the combat rhythm |
 
 Full-set DEF totals 5 (`TUNE`): against the locked anchors a light hit drops

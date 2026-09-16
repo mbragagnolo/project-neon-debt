@@ -15,3 +15,29 @@ game/.gut_editor_shortcuts.cfg
 .DS_Store
 Thumbs.db
 *.swp
+
+# Python tool caches
+__pycache__/
+
+# Third-party reference screenshots (docs/art/refs/README.md stays tracked; the images do not)
+docs/art/refs/*
+!docs/art/refs/README.md
+
+# Diffusion candidates and intermediates for the art pass (tools/art/gen_still.py)
+game/tools/art/work/
+
+# The autoplayer's per-run logs (megabytes per seed); the report, rows and heat beside them are kept
+runs/*/logs/
+runs/work/
+
+# game-feel (kiln): the harness samples and scratch
+feel/work/
+feel/runs/*/samples*.jsonl
+
+# composer (kiln): the full mixes are the sound-designer's beds, rebuilt by render.py; the engine plays the stems
+audio/music/mix/
+audio/music/work/
+
+# The ui-artist's scratch exports (a constants file written somewhere to diff before it
+# lands, a shot taken to mock over); the mocks beside them are the review and are kept
+ui/work/

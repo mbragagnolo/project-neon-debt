@@ -20,12 +20,12 @@ extends CanvasLayer
 
 const COMBAT_CONFIG_PATH := "res://src/combat/combat_config.tres"
 
-const COL_TEXT := Color(0.78, 0.86, 0.95)
-const COL_DIM := Color(0.45, 0.52, 0.64)
-const COL_SELECTED := Color(1.0, 0.18, 0.58)
-const COL_ACCENT := Color(0.6, 0.95, 1.0)
-const COL_BETTER := Color(0.45, 0.95, 0.6)
-const COL_WORSE := Color(1.0, 0.45, 0.45)
+const COL_TEXT := UiPalette.TEXT
+const COL_DIM := UiPalette.DIM
+const COL_SELECTED := UiPalette.SELECTED
+const COL_ACCENT := UiPalette.ACCENT
+const COL_BETTER := UiPalette.GOOD
+const COL_WORSE := UiPalette.BAD
 
 const SLOT_ORDER: Array[Item.Slot] = [
 	Item.Slot.MELEE,
@@ -37,6 +37,11 @@ const SLOT_ORDER: Array[Item.Slot] = [
 ]
 
 enum Column { SLOTS, ITEMS }
+
+## On its own (the gyms) the screen pauses the tree and answers the keys that
+## open and close it. Inside the pause shell (M5) the shell does both and
+## hands navigation in through `handle_input()`.
+@export var standalone: bool = true
 
 var _config: CombatConfig
 var _slot_index: int = 0
@@ -62,7 +67,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not event.is_pressed() or event.is_echo():
+	if not standalone or not event.is_pressed() or event.is_echo():
 		return
 
 	if event.is_action(&"toggle_inventory"):
@@ -76,7 +81,16 @@ func _input(event: InputEvent) -> void:
 	# that opened it is the classic controller trap.
 	if event.is_action(&"pause"):
 		close()
-	elif event.is_action(&"move_down"):
+	elif not handle_input(event):
+		return
+	get_viewport().set_input_as_handled()
+
+
+## Navigation inside the screen. Returns whether the event meant anything.
+func handle_input(event: InputEvent) -> bool:
+	if not visible:
+		return false
+	if event.is_action(&"move_down"):
 		_move(1)
 	elif event.is_action(&"move_up"):
 		_move(-1)
@@ -88,8 +102,8 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action(&"interact"):
 		_confirm()
 	else:
-		return
-	get_viewport().set_input_as_handled()
+		return false
+	return true
 
 
 # --- Open / close -----------------------------------------------------------
@@ -107,13 +121,15 @@ func open() -> void:
 	_item_index = 0
 	# Nothing is fought behind an open menu, and no comparison is made against
 	# a health bar that is still moving.
-	get_tree().paused = true
+	if standalone:
+		get_tree().paused = true
 	_redraw()
 
 
 func close() -> void:
 	visible = false
-	get_tree().paused = false
+	if standalone:
+		get_tree().paused = false
 
 
 # --- Navigation -------------------------------------------------------------
@@ -143,6 +159,7 @@ func _move(step: int) -> void:
 		var count: int = _candidates().size()
 		if count > 0:
 			_item_index = wrapi(_item_index + step, 0, count)
+	Sfx.play(&"ui_move")
 	_redraw()
 
 
@@ -338,7 +355,7 @@ func _delta_lines(candidate: Item) -> Array:
 
 func _build() -> void:
 	var dim := ColorRect.new()
-	dim.color = Color(0.04, 0.05, 0.08, 0.92)
+	dim.color = Color(UiPalette.PANEL, 0.92)
 	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
 	dim.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(dim)

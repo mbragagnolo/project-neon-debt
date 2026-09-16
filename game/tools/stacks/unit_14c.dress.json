@@ -1,0 +1,296 @@
+{
+  "_note": "Unit 14-C dressed from its concept (tools/art/sets/unit_14c.json, flat seed 6; docs/art/environment.md sections 4 and 6). Room px; a prop stands at `at`, its bottom centre, on the floor at y 1020 or the P ledge at y 900. The window is wall.layout.window: 840..1080 x 600..960, glass 846..1074 x 606..954. The camera shows 1280 x 720 of this room (rows 6 to 18, all of the air and one ring tile), panning 640 across it; the opening view is x 0..1280.",
+  "ambient": [
+    0.46,
+    0.5,
+    0.62
+  ],
+  "planes": [
+    {
+      "name": "outside",
+      "texture": "res://assets/tiles/outside_unit_14c.png",
+      "at": [
+        704,
+        524
+      ],
+      "z": -12,
+      "unlit": true,
+      "parallax": 0.6,
+      "_note": "on the Outside CanvasLayer (unlit by the ambient) under a Parallax2D at 0.6, registered with the camera centred in the room; `at` is written by concept.py planes"
+    },
+    {
+      "name": "back_wall",
+      "texture": "res://assets/tiles/back_unit_14c.png",
+      "at": [
+        60,
+        420
+      ],
+      "z": -10
+    }
+  ],
+  "props": [
+    {
+      "name": "lamp",
+      "texture": "res://assets/props/unit_14c_lamp.png",
+      "at": [
+        500,
+        852
+      ],
+      "z": -3,
+      "_note": "the hanging lamp, dark: its cable runs from the shell's ceiling down past the old ceiling's line, a plumb line that says how tall the room is; left of the notice so the panel does not hide it, its cable crossing the pale rectangle"
+    },
+    {
+      "name": "boxes",
+      "texture": "res://assets/props/unit_14c_boxes.png",
+      "at": [
+        579,
+        1020
+      ],
+      "z": -4
+    },
+    {
+      "name": "box",
+      "texture": "res://assets/props/unit_14c_box.png",
+      "at": [
+        470,
+        1020
+      ],
+      "z": -3
+    },
+    {
+      "name": "crt",
+      "texture": "res://assets/props/unit_14c_crt.png",
+      "at": [
+        880,
+        1020
+      ],
+      "z": -4
+    },
+    {
+      "name": "table",
+      "texture": "res://assets/props/unit_14c_table.png",
+      "at": [
+        1010,
+        1020
+      ],
+      "z": -4
+    },
+    {
+      "name": "piano",
+      "texture": "res://assets/props/unit_14c_piano.png",
+      "at": [
+        1156,
+        1020
+      ],
+      "z": -4
+    },
+    {
+      "name": "crate",
+      "texture": "res://assets/props/unit_14c_crate.png",
+      "at": [
+        1370,
+        1020
+      ],
+      "z": -3
+    },
+    {
+      "name": "bedroll",
+      "texture": "res://assets/props/unit_14c_bedroll.png",
+      "at": [
+        250,
+        900
+      ],
+      "z": -3
+    },
+    {
+      "name": "papers_a",
+      "texture": "res://assets/props/unit_14c_papers_a.png",
+      "at": [
+        700,
+        1020
+      ],
+      "z": -2
+    },
+    {
+      "name": "papers_a2",
+      "texture": "res://assets/props/unit_14c_papers_a.png",
+      "at": [
+        1290,
+        1020
+      ],
+      "z": -2,
+      "flip": true
+    },
+    {
+      "name": "papers_b",
+      "texture": "res://assets/props/unit_14c_papers_b.png",
+      "at": [
+        420,
+        1020
+      ],
+      "z": -2
+    },
+    {
+      "name": "papers_b2",
+      "texture": "res://assets/props/unit_14c_papers_b.png",
+      "at": [
+        960,
+        1020
+      ],
+      "z": -2,
+      "flip": true
+    },
+    {
+      "name": "papers_b3",
+      "texture": "res://assets/props/unit_14c_papers_b.png",
+      "at": [
+        1560,
+        1020
+      ],
+      "z": -2
+    }
+  ],
+  "lights": [
+    {
+      "name": "window",
+      "at": [
+        960,
+        780
+      ],
+      "color": [
+        0.55,
+        0.72,
+        1.0
+      ],
+      "energy": 1.8,
+      "scale": 3.8,
+      "_note": "the cold source: the window at 840..1080 x 600..960"
+    },
+    {
+      "name": "window_floor",
+      "at": [
+        960,
+        1012
+      ],
+      "color": [
+        0.5,
+        0.68,
+        1.0
+      ],
+      "energy": 1.4,
+      "scale": 2.6,
+      "_note": "the lit strip under the window",
+      "scale_xy": [
+        2.4,
+        0.7
+      ]
+    },
+    {
+      "name": "screen",
+      "at": [
+        600,
+        960
+      ],
+      "color": [
+        0.35,
+        0.95,
+        1.0
+      ],
+      "energy": 0.5,
+      "scale": 0.7,
+      "_note": "the cyan screen among the boxes"
+    },
+    {
+      "name": "notice_a",
+      "at": [
+        690,
+        770
+      ],
+      "color": [
+        1.0,
+        0.3,
+        0.3
+      ],
+      "energy": 0.5,
+      "scale": 0.9
+    },
+    {
+      "name": "notice_b",
+      "at": [
+        1170,
+        770
+      ],
+      "color": [
+        1.0,
+        0.3,
+        0.3
+      ],
+      "energy": 0.4,
+      "scale": 0.8
+    }
+  ],
+  "door_lamp": {
+    "color": [
+      1.0,
+      0.72,
+      0.42
+    ],
+    "energy": 1.3,
+    "scale": 3.0,
+    "_note": "the frame's own lamp, warm here: the one warm source, the way out"
+  },
+  "particles": [
+    {
+      "name": "rain",
+      "at": [
+        960,
+        608
+      ],
+      "extents": [
+        112,
+        2
+      ],
+      "velocity": [
+        25,
+        760
+      ],
+      "life": 0.46,
+      "amount": 40,
+      "texture": "drop",
+      "color": [
+        0.75,
+        0.85,
+        1.0,
+        0.45
+      ],
+      "scale": 1.4,
+      "_note": "on the glass: emitted along the top of the window, dying at its sill (350 px at 760 px/s)"
+    },
+    {
+      "name": "motes",
+      "at": [
+        960,
+        850
+      ],
+      "extents": [
+        150,
+        160
+      ],
+      "velocity": [
+        6,
+        -4
+      ],
+      "life": 9.0,
+      "amount": 18,
+      "texture": "dot",
+      "color": [
+        0.75,
+        0.85,
+        1.0,
+        0.3
+      ],
+      "scale": 1.6,
+      "_note": "dust in the window's light"
+    }
+  ]
+}

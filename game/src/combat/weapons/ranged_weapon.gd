@@ -29,3 +29,5 @@ func _init() -> void:
 @export var projectile_gravity: float = 0.0
 @export var projectile_size: Vector2 = Vector2(18.0, 8.0)
 @export var projectile_color: Color = Color(1.0, 0.85, 0.35)
+## The shot's sprite (M7). Without one the shot is a coloured box.
+@export var projectile_texture: Texture2D

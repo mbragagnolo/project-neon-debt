@@ -12,6 +12,8 @@ var _remaining: float = 0.0
 
 func enter(_previous: StringName) -> void:
 	enemy.tint(enemy.config.color_lunge)
+	enemy.play(&"lunge")
+	Events.sfx_requested.emit(&"lunge", enemy.global_position)
 	enemy.start_lunge()
 	_remaining = enemy.config.lunge_time
 

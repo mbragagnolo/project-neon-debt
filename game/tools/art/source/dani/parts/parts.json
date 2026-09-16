@@ -1,0 +1,101 @@
+{
+  "hood": {
+    "pivot": [
+      88,
+      80
+    ],
+    "origin": [
+      147,
+      130
+    ],
+    "still": null
+  },
+  "torso": {
+    "pivot": [
+      128,
+      411
+    ],
+    "origin": [
+      222,
+      199
+    ],
+    "still": null
+  },
+  "leg_near_upper": {
+    "pivot": [
+      39,
+      69
+    ],
+    "origin": [
+      351,
+      551
+    ],
+    "still": null
+  },
+  "leg_near_lower": {
+    "pivot": [
+      44,
+      16
+    ],
+    "origin": [
+      351,
+      789
+    ],
+    "still": null
+  },
+  "foot_near": {
+    "pivot": [
+      53,
+      15
+    ],
+    "origin": [
+      357,
+      1065
+    ],
+    "still": null
+  },
+  "head": {
+    "pivot": [
+      86,
+      126
+    ],
+    "origin": [
+      244,
+      89
+    ],
+    "still": null
+  },
+  "arm_near_upper": {
+    "pivot": [
+      36,
+      82
+    ],
+    "origin": [
+      364,
+      158
+    ],
+    "still": null
+  },
+  "arm_near_lower": {
+    "pivot": [
+      16,
+      53
+    ],
+    "origin": [
+      524,
+      192
+    ],
+    "still": null
+  },
+  "weapon": {
+    "pivot": [
+      109,
+      757
+    ],
+    "origin": [
+      323,
+      173
+    ],
+    "still": "wrench"
+  }
+}

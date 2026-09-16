@@ -80,6 +80,10 @@ static func release_all_input() -> void:
 		"dash",
 		"attack_melee",
 		"attack_ranged",
+		"hack_cast",
+		"hack_next",
+		"hack_prev",
+		"interact",
 	]:
 		if Input.is_action_pressed(action):
 			Input.action_release(action)

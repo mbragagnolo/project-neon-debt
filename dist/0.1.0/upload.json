@@ -1,0 +1,50 @@
+{
+  "version": "0.1.0",
+  "store": "itch",
+  "target": "<your-itch-user>/neon-debt",
+  "pushed": false,
+  "zips": [
+    {
+      "file": "neon-debt-0.1.0-windows.zip",
+      "bytes": 42385179,
+      "sha256": "0495cf878483facd0d20dcb02d85cd6aed57079eee173221d046c19607e3be9b",
+      "preset": "windows"
+    },
+    {
+      "file": "neon-debt-0.1.0-linux.zip",
+      "bytes": 32775751,
+      "sha256": "09f7e73a31caa67daacf021af36d3c05e9bba615f23370ef7b25e2ee1b120740",
+      "preset": "linux"
+    }
+  ],
+  "problems": [],
+  "commands": [
+    {
+      "preset": "windows",
+      "cmd": [
+        "butler",
+        "push",
+        "dist/0.1.0/exports/windows",
+        "<your-itch-user>/neon-debt:windows",
+        "--userversion",
+        "0.1.0"
+      ]
+    },
+    {
+      "preset": "linux",
+      "cmd": [
+        "butler",
+        "push",
+        "dist/0.1.0/exports/linux",
+        "<your-itch-user>/neon-debt:linux",
+        "--userversion",
+        "0.1.0"
+      ]
+    }
+  ],
+  "unconfigured": [
+    "butler is not installed -- https://itch.io/docs/butler/installing.html (or `scoop install butler`)",
+    "the store target is <your-itch-user>/neon-debt: put the real one in release.json"
+  ],
+  "configured": false
+}

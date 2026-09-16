@@ -1,0 +1,327 @@
+{
+ "_doc": [
+  "The music table, the contract with the engine: written by the composer's table.py (and render.py) from audio/music/tracks/*.json and bible/moods.json. Do not edit; edit those.",
+  "tracks.<name>: class (a loudness class in audio.json music.classes), tempo, bars, beats_per_bar, seconds (the loop's exact length; every stem is this long), dir (the stems' folder in the engine), layers in order: id, state (`base` always plays; any other is raised by the engine), db (the level baked into the stem), file.",
+  "moods.<mood>: track (which track the mood plays) and states (the states the engine may raise while this mood plays; a state with no layer in the track does nothing there).",
+  "states.<state>: how the engine raises it, in prose; the code is the engine's.",
+  "silence_db: the volume a stem is faded to when its state is off; 0 dB is on."
+ ],
+ "silence_db": -60.0,
+ "tracks": {
+  "boss": {
+   "class": "fight",
+   "tempo": 128.0,
+   "bars": 16,
+   "beats_per_bar": 4,
+   "seconds": 30.0,
+   "dir": "game/assets/audio/music/boss",
+   "layers": [
+    {
+     "id": "drone",
+     "state": "base",
+     "db": -18.0,
+     "file": "game/assets/audio/music/boss/drone.ogg"
+    },
+    {
+     "id": "tick",
+     "state": "base",
+     "db": -26.0,
+     "file": "game/assets/audio/music/boss/tick.ogg"
+    },
+    {
+     "id": "kick",
+     "state": "fight",
+     "db": -6.0,
+     "file": "game/assets/audio/music/boss/kick.ogg"
+    },
+    {
+     "id": "snare",
+     "state": "fight",
+     "db": -12.0,
+     "file": "game/assets/audio/music/boss/snare.ogg"
+    },
+    {
+     "id": "hats",
+     "state": "fight",
+     "db": -20.0,
+     "file": "game/assets/audio/music/boss/hats.ogg"
+    },
+    {
+     "id": "bass",
+     "state": "fight",
+     "db": -9.0,
+     "file": "game/assets/audio/music/boss/bass.ogg"
+    },
+    {
+     "id": "stabs",
+     "state": "fight",
+     "db": -14.0,
+     "file": "game/assets/audio/music/boss/stabs.ogg"
+    },
+    {
+     "id": "riser",
+     "state": "fight",
+     "db": -18.0,
+     "file": "game/assets/audio/music/boss/riser.ogg"
+    },
+    {
+     "id": "lead",
+     "state": "phase2",
+     "db": -17.0,
+     "file": "game/assets/audio/music/boss/lead.ogg"
+    },
+    {
+     "id": "heart",
+     "state": "low",
+     "db": -9.0,
+     "file": "game/assets/audio/music/boss/heart.ogg"
+    }
+   ]
+  },
+  "gut": {
+   "class": "bed",
+   "tempo": 60.0,
+   "bars": 8,
+   "beats_per_bar": 4,
+   "seconds": 32.0,
+   "dir": "game/assets/audio/music/gut",
+   "layers": [
+    {
+     "id": "drone",
+     "state": "base",
+     "db": -11.0,
+     "file": "game/assets/audio/music/gut/drone.ogg"
+    },
+    {
+     "id": "pad",
+     "state": "base",
+     "db": -20.0,
+     "file": "game/assets/audio/music/gut/pad.ogg"
+    },
+    {
+     "id": "throb",
+     "state": "base",
+     "db": -13.0,
+     "file": "game/assets/audio/music/gut/throb.ogg"
+    },
+    {
+     "id": "steam",
+     "state": "base",
+     "db": -27.0,
+     "file": "game/assets/audio/music/gut/steam.ogg"
+    },
+    {
+     "id": "clanks",
+     "state": "base",
+     "db": -24.0,
+     "file": "game/assets/audio/music/gut/clanks.ogg"
+    },
+    {
+     "id": "hammer",
+     "state": "combat",
+     "db": -11.0,
+     "file": "game/assets/audio/music/gut/hammer.ogg"
+    },
+    {
+     "id": "heart",
+     "state": "low",
+     "db": -9.0,
+     "file": "game/assets/audio/music/gut/heart.ogg"
+    }
+   ]
+  },
+  "roof": {
+   "class": "bed",
+   "tempo": 64.0,
+   "bars": 8,
+   "beats_per_bar": 4,
+   "seconds": 30.0,
+   "dir": "game/assets/audio/music/roof",
+   "layers": [
+    {
+     "id": "wind",
+     "state": "base",
+     "db": -20.0,
+     "file": "game/assets/audio/music/roof/wind.ogg"
+    },
+    {
+     "id": "pad",
+     "state": "base",
+     "db": -16.0,
+     "file": "game/assets/audio/music/roof/pad.ogg"
+    },
+    {
+     "id": "bells",
+     "state": "base",
+     "db": -22.0,
+     "file": "game/assets/audio/music/roof/bells.ogg"
+    },
+    {
+     "id": "siren",
+     "state": "base",
+     "db": -36.0,
+     "file": "game/assets/audio/music/roof/siren.ogg"
+    },
+    {
+     "id": "drive",
+     "state": "combat",
+     "db": -15.0,
+     "file": "game/assets/audio/music/roof/drive.ogg"
+    },
+    {
+     "id": "heart",
+     "state": "low",
+     "db": -9.0,
+     "file": "game/assets/audio/music/roof/heart.ogg"
+    }
+   ]
+  },
+  "stacks": {
+   "class": "bed",
+   "tempo": 68.0,
+   "bars": 8,
+   "beats_per_bar": 4,
+   "seconds": 28.235294,
+   "dir": "game/assets/audio/music/stacks",
+   "layers": [
+    {
+     "id": "pad",
+     "state": "base",
+     "db": -13.0,
+     "file": "game/assets/audio/music/stacks/pad.ogg"
+    },
+    {
+     "id": "rain",
+     "state": "base",
+     "db": -30.0,
+     "file": "game/assets/audio/music/stacks/rain.ogg"
+    },
+    {
+     "id": "hum",
+     "state": "base",
+     "db": -24.0,
+     "file": "game/assets/audio/music/stacks/hum.ogg"
+    },
+    {
+     "id": "sub",
+     "state": "base",
+     "db": -12.0,
+     "file": "game/assets/audio/music/stacks/sub.ogg"
+    },
+    {
+     "id": "thump",
+     "state": "base",
+     "db": -16.0,
+     "file": "game/assets/audio/music/stacks/thump.ogg"
+    },
+    {
+     "id": "blips",
+     "state": "base",
+     "db": -21.0,
+     "file": "game/assets/audio/music/stacks/blips.ogg"
+    },
+    {
+     "id": "pulse",
+     "state": "combat",
+     "db": -12.0,
+     "file": "game/assets/audio/music/stacks/pulse.ogg"
+    },
+    {
+     "id": "heart",
+     "state": "low",
+     "db": -9.0,
+     "file": "game/assets/audio/music/stacks/heart.ogg"
+    }
+   ]
+  },
+  "title": {
+   "class": "title",
+   "tempo": 60.0,
+   "bars": 8,
+   "beats_per_bar": 4,
+   "seconds": 32.0,
+   "dir": "game/assets/audio/music/title",
+   "layers": [
+    {
+     "id": "pad",
+     "state": "base",
+     "db": -13.0,
+     "file": "game/assets/audio/music/title/pad.ogg"
+    },
+    {
+     "id": "rain",
+     "state": "base",
+     "db": -32.0,
+     "file": "game/assets/audio/music/title/rain.ogg"
+    },
+    {
+     "id": "theme",
+     "state": "base",
+     "db": -19.0,
+     "file": "game/assets/audio/music/title/theme.ogg"
+    },
+    {
+     "id": "sub",
+     "state": "base",
+     "db": -13.0,
+     "file": "game/assets/audio/music/title/sub.ogg"
+    }
+   ]
+  }
+ },
+ "moods": {
+  "residential": {
+   "track": "stacks",
+   "states": [
+    "combat",
+    "low"
+   ]
+  },
+  "mezz": {
+   "track": "stacks",
+   "states": [
+    "combat",
+    "low"
+   ]
+  },
+  "shaft": {
+   "track": "stacks",
+   "states": [
+    "combat",
+    "low"
+   ]
+  },
+  "gut": {
+   "track": "gut",
+   "states": [
+    "combat",
+    "low"
+   ]
+  },
+  "roof": {
+   "track": "roof",
+   "states": [
+    "combat",
+    "low"
+   ]
+  },
+  "collections": {
+   "track": "boss",
+   "states": [
+    "fight",
+    "phase2",
+    "low"
+   ]
+  },
+  "title": {
+   "track": "title",
+   "states": []
+  }
+ },
+ "states": {
+  "combat": "an enemy is chasing, winding up, lunging, aiming or tracking the player: the Music autoload polls the enemies group four times a second; held 3 s after the last one drops back to patrol",
+  "fight": "the boss's bar is up (boss_hp_changed with hp above 0) until boss_defeated",
+  "phase2": "the boss's second phase (boss_phase_changed with phase 2 or more) until the fight ends",
+  "low": "the player's HP at or under 30 % (hp_changed)"
+ }
+}

@@ -1,8 +1,9 @@
 # Screens
 
-**Status: the inventory-equip screen is LOCKED for M3.** The map screen and
-quest log are M5, settings is M7; all three slot into the same pause shell
-this file specifies, and each gets its section when its milestone opens.
+**Status: the inventory-equip screen is LOCKED for M3; the pause shell, map
+and quest log are built (M5). The title screen, the save slots and the
+settings tab are built (M7).** All of them slot into the
+same pause shell this file specifies.
 
 ## What the equip screen is for — LOCKED
 
@@ -119,12 +120,76 @@ reads: swap the wrench for the maul, hit the same dummy, watch the number
 change. No new signal is invented for M3 — every one above was declared on
 the bus in M0.
 
-## Exports
+## The pause shell — built (M5)
 
-- **M5:** the map screen and quest log become tabs in this pause shell —
-  rule 1 (pauses) and rule 7 (pad-first) are shell properties, not screen
-  properties, and should be implemented as such.
-- **M7:** restyle only. If the polish pass needs to move a panel, this spec
-  was wrong and should be amended, not silently diverged from.
+One shell, three tabs: **MAP · LOADOUT · QUESTS**. The shell owns what every
+tab shares — pausing the tree, the tab bar, the keys that open, close and
+cycle — and a tab only handles navigation inside itself
+(`src/ui/menus/pause_shell.gd`).
+
+| Key | Closed | Open |
+|---|---|---|
+| `pause` | opens on MAP | closes |
+| `toggle_map` | opens on MAP | closes if on MAP, else switches to it |
+| `toggle_inventory` | opens on LOADOUT | closes if on LOADOUT, else switches |
+| `hack_prev` / `hack_next` (Q/E, shoulders) | — | cycle tabs |
+
+One way in, two ways out, on pad and keyboard. Another screen holding the
+tree — a dialogue, the stall — keeps the shell shut.
+
+The equip screen runs inside the shell with `standalone = false`: the shell
+pauses and answers the open/close keys, the screen only navigates. The gyms
+still run it standalone.
+
+**Map screen.** Draws the `WorldGraph` the district generator wrote: every
+*visited* room as a cell rectangle, doors as notches, `S` on rooms with a
+care terminal, a pulsing diamond on the room you are in, and that room's
+name underneath. Nothing to navigate yet; it is a picture.
+
+**Quest log.** Every quest the tracker knows a state for: title, giver, the
+objective while active or the epilogue once done, and a nudge when the
+objective is met and only the hand-in remains.
+
+**Dialogue and the stall** are not tabs. `DialogueBox` shows a speaker and
+pages, `interact`/`jump` advances, `pause` skips out; `ShopScreen` is a short
+list, `interact` buys, `pause` leaves. Both pause the tree while up.
+
+## The title, the slots, the settings — built (M7)
+
+**Title** (`src/ui/title/title_screen.gd`, `rooms/title.tscn`, the main
+scene): the skyline in the rain, the name in neon, and a short list —
+CONTINUE (only when a slot holds a save), NEW RUN, SETTINGS, QUIT. The
+movement keys walk it, `interact`/`jump` confirm, `pause` backs out; the
+ui_* actions do the same on a pad.
+
+**Slots.** Three cards: `SLOT n` and one line — level, the care terminal
+the save sits at, play time, credits, CLEARED once the Landlord is down —
+or `— EMPTY —`. CONTINUE picks an occupied slot and loads it; NEW RUN picks
+any slot and, over a save, asks a second time before wiping it. Either way
+`GameState.active_slot` is set and the world reads
+`GameState.current_save_point` to know where to wake up: the terminal, or
+14-C for a fresh run.
+
+**Settings** (`src/ui/settings_panel.gd`) is one panel used twice — on the
+title and as the shell's SYSTEM tab. Rows: FULLSCREEN, MASTER / MUSIC /
+SFX VOLUME (ten steps), SCREEN SHAKE, CONTROLS. Left/right change a value,
+`interact` toggles or opens the controls page, which lists every action
+with its keyboard key *and* its pad button read from the input map
+(`InputPrompt.key`, `InputPrompt.pad`). Values live in `Settings`
+(`user://settings.cfg`) and apply immediately.
+
+**SYSTEM tab** (`src/ui/menus/system_tab.gd`): the same panel plus QUIT TO
+TITLE, which asks twice and says what is lost — progress since the last
+care terminal. The ending returns to the title on its own.
+
+## Exports
+- **M7:** restyled with the neon theme (`assets/theme/neon.tres`); no
+  panel moved.
+- **M8:** the look became data. This file keeps owning arrangement and
+  behaviour; every colour, font and frame now lives in [`ui/ui.json`](../../ui/ui.json)
+  as roles, and the code reads `UiPalette` rather than typing a `Color`.
+  `ui/theme.json` generates `assets/theme/neon.tres` through the
+  integrator. Rule 8's "one accent colour" is the `ACCENT` role.
+  The pass and what it found: [`ui/report.md`](../../ui/report.md).
 - **V2:** manual stat allocation and respec land in the sheet panel; rule 5
   is where they attach.

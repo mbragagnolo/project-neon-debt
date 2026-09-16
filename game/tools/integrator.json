@@ -1,0 +1,139 @@
+{
+  "_doc": "The godot-integrator's config for Neon Debt: where every contract lives and what the engine makes of it. Every key is documented in the skill's templates/integrator.json.",
+  "report": "tools/integrator_report.md",
+  "sheets": {
+    "clips_dir": "tools/art/work",
+    "sheet_dir": "res://assets/sprites",
+    "fx_sheet_dir": "res://assets/fx",
+    "anim_script": "res://src/art/pixel_anim.gd",
+    "collider": "CollisionShape2D",
+    "targets": [
+      { "name": "dani", "sheet": "res://assets/sprites/player.png", "scene": "src/player/player.tscn", "node": "Sprite", "parent": "Visual" },
+      { "name": "scav", "scene": "src/enemies/scav/scav.tscn", "node": "Visual" },
+      { "name": "elite_scav", "scene": "src/enemies/scav/elite_scav.tscn", "node": "Visual" },
+      { "name": "drone", "scene": "src/enemies/drone/drone.tscn", "node": "Visual" },
+      { "name": "riot", "scene": "src/enemies/riot/riot.tscn", "node": "Visual" },
+      { "name": "riot_shield", "kind": "static", "frame": [28, 136] },
+      { "name": "landlord", "scene": "src/enemies/boss_landlord/landlord.tscn", "node": "Visual" },
+      { "name": "stitch", "kind": "script", "script": "src/world/npc.gd", "key": "stitch" },
+      { "name": "marisol", "kind": "script", "script": "src/world/npc.gd", "key": "marisol" }
+    ]
+  },
+  "imports": {
+    "roots": ["."],
+    "skip_dirs": ["addons"],
+    "project": { "textures/canvas_textures/default_texture_filter": "0" },
+    "importers": {
+      "texture": {
+        "extensions": [".png"],
+        "require": { "mipmaps/generate": "false", "compress/mode": "0", "process/fix_alpha_border": "true" },
+        "note": { "detect_3d/compress_to": "1" }
+      },
+      "wav": { "extensions": [".wav"], "require": { "edit/loop_mode": "0" } }
+    }
+  },
+  "tables": [
+    {
+      "name": "enemies",
+      "json_dir": "../enemies",
+      "glob": "*.json",
+      "stats": "../enemies/stats.csv",
+      "script": "src/enemies/enemy_config.gd",
+      "script_id": "1_enemy_config",
+      "class": "EnemyConfig",
+      "out": "{tres}",
+      "map": {
+        "display_name": "display_name",
+        "teaches": "teaches",
+        "max_hp": "stats.hp",
+        "attack_power": "stats.attack_power",
+        "defense": "stats.def",
+        "stagger_threshold": "stats.stagger_threshold",
+        "tags": "stats.tags",
+        "xp_reward": "stats.xp",
+        "credit_reward": "stats.credits",
+        "patrol_speed": "locomotion.patrol_speed",
+        "patrol_range": "locomotion.patrol_range",
+        "patrol_pause": "locomotion.patrol_pause",
+        "detection_range": "senses.detection_range",
+        "chase_speed": "locomotion.chase_speed",
+        "give_up_range": "senses.give_up_range",
+        "lunge_range": ["attacks.lunge.range_px", "attacks.baton.range_px"],
+        "windup_time": ["attacks.lunge.tell_seconds", "attacks.baton.tell_seconds"],
+        "lunge_speed": ["attacks.lunge.speed", "attacks.baton.speed"],
+        "lunge_time": ["attacks.lunge.active_seconds", "attacks.baton.active_seconds"],
+        "recover_time": ["attacks.lunge.recovery_seconds", "attacks.baton.recovery_seconds"],
+        "lunge_cooldown": ["attacks.lunge.cooldown_seconds", "attacks.baton.cooldown_seconds"],
+        "attack_size": ["attacks.lunge.hitbox.size", "attacks.baton.hitbox.size"],
+        "attack_offset": ["attacks.lunge.hitbox.offset", "attacks.baton.hitbox.offset"],
+        "lunge_knockback": ["attacks.lunge.knockback", "attacks.baton.knockback"],
+        "flies": "flies",
+        "hover_height": "locomotion.hover_height",
+        "hover_standoff": "locomotion.hover_standoff",
+        "fly_speed": "locomotion.fly_speed",
+        "fly_acceleration": "locomotion.fly_acceleration",
+        "drift_radius": "locomotion.drift_radius",
+        "fires": "any_attack_kind:projectile",
+        "fire_interval": ["attacks.beam.cooldown_seconds", "attacks.shot.cooldown_seconds"],
+        "fire_windup": ["attacks.beam.tell_seconds", "attacks.shot.tell_seconds"],
+        "fire_range": ["attacks.beam.range_px", "attacks.shot.range_px"],
+        "projectile_speed": ["attacks.beam.projectile.speed", "attacks.shot.projectile.speed"],
+        "projectile_lifetime": ["attacks.beam.projectile.lifetime", "attacks.shot.projectile.lifetime"],
+        "projectile_size": ["attacks.beam.projectile.size", "attacks.shot.projectile.size"],
+        "projectile_knockback": ["attacks.beam.knockback", "attacks.shot.knockback"],
+        "stagger_time": "states.Stagger.seconds",
+        "death_time": "states.Dead.seconds"
+      },
+      "mirrors": [
+        {
+          "scene": "{scene}",
+          "node": "Health",
+          "map": { "max_hp": "stats.hp", "defense": "stats.def", "stagger_threshold": "stats.stagger_threshold" },
+          "note": "enemy_base.gd mirrors the config onto Health at ready, so the scene's numbers are dead data; kept equal so a reader is not misled"
+        }
+      ]
+    }
+  ],
+  "audio": {
+    "sources": ["src"],
+    "sfx": {
+      "dir": "assets/audio/sfx",
+      "ext": ".wav",
+      "import": { "edit/loop_mode": "0" },
+      "patterns": [
+        { "regex": "Sfx\\.play\\(&\"([a-z_0-9]+)\"" },
+        { "regex": "sfx_requested\\.emit\\(&\"([a-z_0-9]+)\"" },
+        { "regex": "(?<![.\\w])play\\(&\"([a-z_0-9]+)\"", "only": "src/audio/sfx.gd" }
+      ],
+      "variants": true
+    },
+    "music": {
+      "dir": "assets/audio/music",
+      "ext": ".tres",
+      "import": {},
+      "table": "../audio/music/music.json",
+      "script": "src/audio/music_table.gd",
+      "fade_s": 1.2,
+      "stem_import": {},
+      "patterns": [
+        { "regex": "play\\(&\"([a-z_0-9]+)\"", "only": "src/audio/music.gd" },
+        { "regex": "\\n\\t&\"([a-z_0-9]+)\": \\{\\n", "only": "src/audio/music_table.gd" }
+      ]
+    },
+    "buses": {
+      "layout": "default_bus_layout.tres",
+      "table": [
+        { "name": "Music", "volume_db": -4.0, "send": "Master" },
+        { "name": "SFX", "volume_db": 0.0, "send": "Master" }
+      ],
+      "patterns": [
+        { "regex": "bus = &\"([A-Za-z]+)\"" },
+        { "regex": "_set_bus\\(&\"([A-Za-z]+)\"", "only": "src/core/settings.gd" }
+      ]
+    },
+    "events": "../bible/events.json"
+  },
+  "theme": {
+    "table": "../ui/theme.json"
+  }
+}

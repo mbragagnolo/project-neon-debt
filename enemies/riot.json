@@ -1,0 +1,234 @@
+{
+  "_doc": "Written by adapters/godot_enemy_config.py; every key is documented in templates/enemy.json. Regenerate when the .tres is retuned; edit the brief and encounter blocks by hand.",
+  "name": "riot",
+  "display_name": "Riot unit",
+  "archetype": "wall",
+  "role": "gate",
+  "teaches": "Heavy hits and hacks. Shots ping off the front, light hits only flinch it; get behind it, hit it heavy, or hack it. Mechanical: Breach stuns it, Overload ignores the shield and interrupts it.",
+  "stats": {
+    "table": "stats.csv",
+    "row": "riot"
+  },
+  "tags": [
+    "mechanical",
+    "immune_ranged_frontal"
+  ],
+  "body": {
+    "width": 60,
+    "height": 100
+  },
+  "flies": false,
+  "tick": 60,
+  "senses": {
+    "detection_range": 520.0,
+    "give_up_range": 900.0
+  },
+  "locomotion": {
+    "patrol_speed": 60.0,
+    "patrol_range": 120.0,
+    "patrol_pause": 1.0,
+    "chase_speed": 110.0
+  },
+  "contact": {
+    "armed": "while alive and not stunned",
+    "power": "stats.attack_power x the project's contact_damage_mult"
+  },
+  "initial_state": "Patrol",
+  "states": {
+    "Patrol": {
+      "kind": "idle",
+      "clip": [
+        "idle",
+        "run"
+      ],
+      "note": "a beat of patrol_range px each side of home, patrol_pause s at each end; turns at walls"
+    },
+    "Chase": {
+      "kind": "approach",
+      "clip": "run",
+      "note": "closes at chase_speed; leashes home past give_up_range"
+    },
+    "Windup": {
+      "kind": "tell",
+      "clip": "windup",
+      "seconds": 0.6,
+      "attack": "lunge",
+      "tracks_player": false,
+      "note": "plants, the loudest tint on screen; aims once on entry"
+    },
+    "Lunge": {
+      "kind": "active",
+      "clip": "lunge",
+      "seconds": 0.25,
+      "attack": "lunge"
+    },
+    "Recover": {
+      "kind": "recovery",
+      "clip": "recover",
+      "seconds": 0.5,
+      "attack": "lunge",
+      "note": "drained tint; the punish window"
+    },
+    "Stagger": {
+      "kind": "reaction",
+      "clip": "stagger",
+      "seconds": 0.4,
+      "entered_by": "a hit at or over stagger_threshold, from any state but Stunned and Dead"
+    },
+    "Dead": {
+      "kind": "terminal",
+      "clip": "dead",
+      "seconds": 0.6
+    },
+    "Stunned": {
+      "kind": "reaction",
+      "clip": "stunned",
+      "seconds": "the hack's duration",
+      "entered_by": "Breach, from any state but Dead; hits do not end it; attack and contact boxes disarmed"
+    }
+  },
+  "transitions": [
+    [
+      "Patrol",
+      "Chase",
+      "player within detection_range"
+    ],
+    [
+      "Chase",
+      "Patrol",
+      "player lost, or farther than give_up_range from home"
+    ],
+    [
+      "Chase",
+      "Windup",
+      "player within lunge_range and the lunge cooldown is over"
+    ],
+    [
+      "Windup",
+      "Lunge",
+      "windup_time elapsed"
+    ],
+    [
+      "Lunge",
+      "Recover",
+      "lunge_time elapsed"
+    ],
+    [
+      "Recover",
+      "Chase",
+      "recover_time elapsed and the player is within detection_range"
+    ],
+    [
+      "Recover",
+      "Patrol",
+      "recover_time elapsed otherwise"
+    ],
+    [
+      "Stagger",
+      "Chase",
+      "stagger_time elapsed and the player is within detection_range"
+    ],
+    [
+      "Stagger",
+      "Patrol",
+      "stagger_time elapsed otherwise"
+    ],
+    [
+      "*",
+      "Stagger",
+      "a single hit at or over stagger_threshold"
+    ],
+    [
+      "*",
+      "Dead",
+      "hp reaches 0"
+    ],
+    [
+      "*",
+      "Stunned",
+      "Breach in reach"
+    ],
+    [
+      "Stunned",
+      "Chase",
+      "the stun ends and the player is within detection_range"
+    ],
+    [
+      "Stunned",
+      "Patrol",
+      "the stun ends otherwise"
+    ]
+  ],
+  "attacks": {
+    "lunge": {
+      "kind": "melee",
+      "tell": "Windup",
+      "active": "Lunge",
+      "recovery": "Recover",
+      "tell_seconds": 0.6,
+      "active_seconds": 0.25,
+      "recovery_seconds": 0.5,
+      "cooldown_seconds": 0.9,
+      "power": "stats.attack_power",
+      "hitbox": {
+        "size": [
+          90,
+          90
+        ],
+        "offset": [
+          50,
+          -48
+        ]
+      },
+      "travel_px": 95.0,
+      "speed": 380.0,
+      "range_px": 150.0,
+      "tracks_player": false,
+      "knockback": 340.0
+    }
+  },
+  "phases": [],
+  "brief": {
+    "look": "A crowd-suppression frame, not a robot with a face: a squat, heavy-shouldered chassis in matte steel with hydraulic lines at the joints and a narrow cyan visor slit where a face would be. An amber warning lamp on one shoulder blinks in idle and stays lit in the windup. It carries a full-height polycarbonate riot shield, scuffed and concrete-grey, with VESTA COLLECTIONS stencilled across it. The bash tell is the shield drawn back; the lunge is the shield driven forward with the whole frame behind it. Stunned, it sags at the knees and the visor goes dark.",
+    "silhouette": "A wall with legs. Wider than anything else that walks.",
+    "accent": "amber",
+    "palette": [
+      "steel1",
+      "steel2",
+      "steel3",
+      "cyan",
+      "cyan_d",
+      "amber",
+      "concrete1",
+      "concrete2",
+      "black_l"
+    ],
+    "rig_parts": [
+      "head unit",
+      "torso",
+      "near upper arm",
+      "near forearm",
+      "far arm",
+      "near thigh",
+      "near shin",
+      "far leg",
+      "shield (its own node)"
+    ]
+  },
+  "encounter": {
+    "room": "underpass",
+    "arrival_kit": [
+      "pipe_wrench",
+      "zipgun",
+      "firewall",
+      "mag_hook",
+      "cyberdeck"
+    ],
+    "notes": "First met in the underpass among three Scavs, before Overload and the maul: the wrench flinches it and shots ping off, so the first answer is to get behind it."
+  },
+  "source": {
+    "tres": "src/enemies/riot/riot.tres",
+    "scene": "src/enemies/riot/riot.tscn",
+    "boss_script": ""
+  }
+}

@@ -1,0 +1,133 @@
+[gd_scene load_steps=21 format=3]
+
+[ext_resource type="Script" path="res://src/enemies/boss_landlord/landlord.gd" id="1_landlord"]
+[ext_resource type="Script" path="res://src/art/pixel_anim.gd" id="90_anim"]
+[ext_resource type="Texture2D" path="res://assets/sprites/landlord.png" id="91_sheet"]
+[ext_resource type="Resource" path="res://src/enemies/boss_landlord/landlord.tres" id="2_config"]
+[ext_resource type="Script" path="res://src/combat/health.gd" id="3_health"]
+[ext_resource type="Script" path="res://src/combat/hurtbox.gd" id="4_hurtbox"]
+[ext_resource type="Script" path="res://src/combat/hitbox.gd" id="5_hitbox"]
+[ext_resource type="Resource" path="res://src/combat/combat_config.tres" id="6_combat"]
+[ext_resource type="Script" path="res://src/enemies/states/enemy_state_machine.gd" id="7_machine"]
+[ext_resource type="Script" path="res://src/enemies/boss_landlord/states/boss_approach_state.gd" id="8_approach"]
+[ext_resource type="Script" path="res://src/enemies/states/windup_state.gd" id="9_windup"]
+[ext_resource type="Script" path="res://src/enemies/states/lunge_state.gd" id="10_lunge"]
+[ext_resource type="Script" path="res://src/enemies/states/recover_state.gd" id="11_recover"]
+[ext_resource type="Script" path="res://src/enemies/boss_landlord/states/boss_slam_windup_state.gd" id="12_slam"]
+[ext_resource type="Script" path="res://src/enemies/boss_landlord/states/boss_beam_windup_state.gd" id="13_beam"]
+[ext_resource type="Script" path="res://src/enemies/boss_landlord/states/boss_phase_shift_state.gd" id="14_phase"]
+[ext_resource type="Script" path="res://src/enemies/states/stagger_state.gd" id="15_stagger"]
+[ext_resource type="Script" path="res://src/enemies/states/dead_state.gd" id="16_dead"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boss_body"]
+size = Vector2(72, 124)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boss_hurt"]
+size = Vector2(76, 128)
+
+[node name="Landlord" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 1
+floor_snap_length = 16.0
+script = ExtResource("1_landlord")
+config = ExtResource("2_config")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -62)
+shape = SubResource("RectangleShape2D_boss_body")
+
+[node name="Visual" type="Sprite2D" parent="."]
+position = Vector2(0, -88)
+texture = ExtResource("91_sheet")
+script = ExtResource("90_anim")
+frame_width = 144
+frame_height = 176
+clips = {
+"beam": [17, 1, 0.0, false],
+"dead": [19, 1, 0.0, false],
+"idle": [0, 4, 3.0, true],
+"lunge": [12, 1, 0.0, false],
+"p2_beam": [37, 1, 0.0, false],
+"p2_dead": [38, 1, 0.0, false],
+"p2_idle": [20, 4, 3.0, true],
+"p2_lunge": [32, 1, 0.0, false],
+"p2_recover": [33, 1, 0.0, false],
+"p2_run": [24, 6, 10.0, true],
+"p2_slam_windup": [35, 2, 5.0, false],
+"p2_stagger": [34, 1, 0.0, false],
+"p2_windup": [30, 2, 6.0, false],
+"phase": [18, 1, 0.0, false],
+"recover": [13, 1, 0.0, false],
+"run": [4, 6, 10.0, true],
+"slam_windup": [15, 2, 5.0, false],
+"stagger": [14, 1, 0.0, false],
+"windup": [10, 2, 6.0, false]
+}
+autoplay = &"idle"
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_health")
+max_hp = 270
+defense = 5
+stagger_threshold = 16
+iframe_time = 0.0
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("4_hurtbox")
+config = ExtResource("6_combat")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_boss_hurt")
+
+[node name="AttackHitbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 8
+monitoring = false
+monitorable = false
+script = ExtResource("5_hitbox")
+
+[node name="ContactHitbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 8
+monitoring = false
+monitorable = false
+script = ExtResource("5_hitbox")
+continuous = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHitbox"]
+position = Vector2(0, -62)
+shape = SubResource("RectangleShape2D_boss_body")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("7_machine")
+initial_state = &"Approach"
+
+[node name="Approach" type="Node" parent="StateMachine"]
+script = ExtResource("8_approach")
+
+[node name="Windup" type="Node" parent="StateMachine"]
+script = ExtResource("9_windup")
+
+[node name="Lunge" type="Node" parent="StateMachine"]
+script = ExtResource("10_lunge")
+
+[node name="Recover" type="Node" parent="StateMachine"]
+script = ExtResource("11_recover")
+
+[node name="SlamWindup" type="Node" parent="StateMachine"]
+script = ExtResource("12_slam")
+
+[node name="BeamWindup" type="Node" parent="StateMachine"]
+script = ExtResource("13_beam")
+
+[node name="PhaseShift" type="Node" parent="StateMachine"]
+script = ExtResource("14_phase")
+
+[node name="Stagger" type="Node" parent="StateMachine"]
+script = ExtResource("15_stagger")
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("16_dead")

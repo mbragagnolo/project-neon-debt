@@ -106,7 +106,14 @@ jobs:
             exit "$status"
           fi
           # --quit-after exits 0 even when scripts blew up, so read the log.
-          if grep -qE "SCRIPT ERROR|ERROR:" <<< "$output"; then
+          # One line is engine noise, not ours: "ERROR: N resources still in
+          # use at exit". A stream still playing when the tree is torn down
+          # (the title music here) is only released by the audio thread's next
+          # mix step, and with the headless driver mixing every ~93 ms that
+          # step lands inside the teardown window only by luck. The game
+          # cannot influence it, so it is not a boot failure.
+          errors=$(grep -E "SCRIPT ERROR|ERROR:" <<< "$output" | grep -vE "resources still in use at exit" || true)
+          if [ -n "$errors" ]; then
             echo "::error::the main scene logged errors on boot"
             exit 1
           fi

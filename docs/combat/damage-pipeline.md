@@ -29,7 +29,7 @@ code.
 | 3 | Reject if target is dead or in i-frames | |
 | 4 | `raw = weapon_power × stat_multiplier(stat)` | Enemies skip this — flat `attack_power` |
 | 5 | Reject on positional immunity tags | `immune_ranged_frontal` is checked **here**, before DEF |
-| 6 | `damage = max(1, raw − DEF)` | Floor at 1, universal, zero exceptions |
+| 6 | `damage = max(1, (raw − DEF) × guard)` | Floor at 1, universal, zero exceptions. `guard` is 1.0 unless Firewall is up (M4) |
 | 7 | Apply damage, emit the hit signal | The signal is what HUD, SFX and juice hang off |
 | 8 | `damage ≥ stagger_threshold` → stagger; else flinch | One field, one comparison |
 | 9 | Hitstop, then knockback impulse | Skipped by contact damage, see below |
@@ -206,10 +206,12 @@ and would quietly obsolete the drone's whole vertical-threat lesson.
   and low-end DEF is swingy against light weapons. DEF becomes real in M3.
 - **M3 needs:** `stat_multiplier` wired into step 4 from real stats, and the
   first DEF pass across the roster.
-- **M4 needs:** hacks enter at step 4 with base power in the `weapon_power`
-  role and INT as the stat, and **skip step 5** — the locked "hacks bypass
-  positional immunities, never DEF" rule (hacks.md) is exactly the pipeline
-  running with one step disabled. No new damage path.
+- **M4 shipped:** hacks enter at step 4 with base power in the `weapon_power`
+  role and INT as the stat, and **skip step 5** (`Attack.is_hack`) — the
+  locked "hacks bypass positional immunities, never DEF" rule (hacks.md) is
+  exactly the pipeline running with one step disabled. No new damage path.
+  Firewall lives at step 6 as `Health.guard_mult`, applied after DEF and
+  before the floor (hacks.md, implementation notes).
 - **M6 needs:** step 5's facing check, for the Riot unit's
   `immune_ranged_frontal`; and lingering-hitbox multi-hit, which the
   per-attack target set already covers.
@@ -223,15 +225,12 @@ and would quietly obsolete the drone's whole vertical-threat lesson.
    `ammo_on_hit` were kept at their first values after playtest; i-frame
    duration went to 0.85s, which a three-Scav fight forced and a duel never
    would have.
-2. **`hitstop_heavy_threshold` cannot be closed in M2 and is deferred to M6.**
-   The hardest hit in the slice is the wrench at 8 (zipgun 6, Scav 6), so
-   nothing reaches 12, `hitstop_heavy_frames` never fires, and every hit in
-   the game takes the light path. There is no way to feel the number that
-   isn't guessing. M6 brings the ≥12 weapons (maul, rivet gun) and the Riot
-   unit's threshold-12 armour, and the branch becomes reachable. Lowering it
-   now to make it fire would only encode "wrench = heavy, everything else =
-   light" — a split between the slice's two weapons, not the weight
-   distinction the constant exists for.
-3. Whether floor-1 hits should also suppress knockback and hit SFX, not just
-   hitstop. Deferred until there is an armored enemy to feel it against —
-   the Riot unit is M6.
+2. ~~`hitstop_heavy_threshold` deferred to M6~~ — **closed in M6 at 12.**
+   The maul lands 22+ against every DEF in the slice from level 3 on and the
+   wrench never reaches 12 without armour in the way, so the tier splits the
+   trio by weight as intended (`tests/test_roster.gd`).
+3. ~~Floor-1 knockback~~ — **decided in M6: floor-1 hits keep their flinch
+   knockback (the quarter push) and lose only hitstop.** A hit that moves the
+   body a little but freezes nothing reads as "it landed, it did not matter",
+   which is exactly the wrong-tool message; a hit that moved nothing would
+   read as a miss.

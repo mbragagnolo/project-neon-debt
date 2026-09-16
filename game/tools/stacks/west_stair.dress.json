@@ -1,0 +1,571 @@
+{
+  "_doc": "Stair West (shaft). Written by tools/stacks/dress.py from dress_vocab.json, which is where the district's lighting is decided. Edit here for this room alone, or in the vocabulary for the whole style; re-running the script overwrites this file.",
+  "decor": "seeded",
+  "_decor": "keep the clutter the generator places from the room id's seed; this file adds light.",
+  "ambient": [
+    0.56,
+    0.6,
+    0.74
+  ],
+  "door_lamp": {
+    "color": [
+      0.7,
+      0.9,
+      1.0
+    ],
+    "energy": 1.15,
+    "scale": 2.8
+  },
+  "lights": [
+    {
+      "name": "lamp_1",
+      "at": [
+        1290,
+        930
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_2",
+      "at": [
+        1710,
+        930
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_3",
+      "at": [
+        150,
+        1050
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_4",
+      "at": [
+        570,
+        1050
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_5",
+      "at": [
+        1050,
+        1410
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_6",
+      "at": [
+        1470,
+        1410
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_7",
+      "at": [
+        150,
+        1530
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_8",
+      "at": [
+        570,
+        1530
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_9",
+      "at": [
+        1050,
+        1890
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_10",
+      "at": [
+        1470,
+        1890
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_11",
+      "at": [
+        150,
+        2010
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_12",
+      "at": [
+        570,
+        2010
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_13",
+      "at": [
+        1050,
+        2370
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_14",
+      "at": [
+        1470,
+        2370
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_15",
+      "at": [
+        150,
+        2490
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_16",
+      "at": [
+        570,
+        2490
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_17",
+      "at": [
+        1050,
+        2850
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_18",
+      "at": [
+        1470,
+        2850
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_19",
+      "at": [
+        150,
+        2970
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_20",
+      "at": [
+        570,
+        2970
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "ledge_1",
+      "at": [
+        510,
+        1116
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "ledge_2",
+      "at": [
+        1410,
+        1236
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "ledge_3",
+      "at": [
+        510,
+        1356
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "ledge_4",
+      "at": [
+        1410,
+        1476
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "ledge_5",
+      "at": [
+        510,
+        1596
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "ledge_6",
+      "at": [
+        1410,
+        1716
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "ledge_7",
+      "at": [
+        510,
+        1836
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "ledge_8",
+      "at": [
+        1410,
+        1956
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "ledge_9",
+      "at": [
+        540,
+        2076
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "ledge_10",
+      "at": [
+        1410,
+        2196
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "ledge_11",
+      "at": [
+        510,
+        2316
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "ledge_12",
+      "at": [
+        1410,
+        2436
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "ledge_13",
+      "at": [
+        510,
+        2556
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "ledge_14",
+      "at": [
+        1410,
+        2676
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "ledge_15",
+      "at": [
+        510,
+        2796
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "ledge_16",
+      "at": [
+        1410,
+        2916
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "ledge_17",
+      "at": [
+        510,
+        3036
+      ],
+      "color": [
+        0.8,
+        0.92,
+        1.0
+      ],
+      "energy": 0.6,
+      "scale": 1.7
+    },
+    {
+      "name": "sign_1",
+      "at": [
+        510,
+        744
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "fill",
+      "at": [
+        960,
+        1458
+      ],
+      "color": [
+        0.45,
+        0.55,
+        0.8
+      ],
+      "energy": 0.4,
+      "scale": 9.0,
+      "scale_xy": [
+        0.59,
+        1.0
+      ]
+    }
+  ]
+}

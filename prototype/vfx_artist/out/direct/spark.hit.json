@@ -1,0 +1,66 @@
+{
+ "name": "spark.hit",
+ "tag": "direct",
+ "frame": [
+  32,
+  32
+ ],
+ "anchor": [
+  16,
+  16
+ ],
+ "fps": 30,
+ "clips": {
+  "play": [
+   0,
+   6,
+   30,
+   false
+  ]
+ },
+ "colours_sheet": 6,
+ "frames": [
+  {
+   "colours": 4,
+   "opaque": 123,
+   "off_palette": 0,
+   "rim_dark": 0.4,
+   "rim_light": 0.35
+  },
+  {
+   "colours": 5,
+   "opaque": 137,
+   "off_palette": 0,
+   "rim_dark": 0.38,
+   "rim_light": 0.2
+  },
+  {
+   "colours": 3,
+   "opaque": 85,
+   "off_palette": 0,
+   "rim_dark": 0.35,
+   "rim_light": 0.41
+  },
+  {
+   "colours": 2,
+   "opaque": 35,
+   "off_palette": 0,
+   "rim_dark": 0.09,
+   "rim_light": 0.11
+  },
+  {
+   "colours": 1,
+   "opaque": 15,
+   "off_palette": 0,
+   "rim_dark": 0.0,
+   "rim_light": 0.0
+  },
+  {
+   "colours": 1,
+   "opaque": 4,
+   "off_palette": 0,
+   "rim_dark": 0.0,
+   "rim_light": 0.0
+  }
+ ]
+}

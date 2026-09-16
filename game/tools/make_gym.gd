@@ -70,6 +70,13 @@ func _ready() -> void:
 	_label("WALL SHAFT ↑", Vector2(3130, 1270))
 	_label("HIGH LEDGE — LONG DROP ↓", Vector2(1400, 320))
 
+	# The gym grants every ability so the whole kit is testable here; the
+	# district hands them out as pickups (DESIGN.md §3.1).
+	var grants := Node.new()
+	grants.name = "GymGrants"
+	grants.set_script(load("res://src/world/gym_grants.gd"))
+	_root.add_child(grants)
+
 	var spawn := Marker2D.new()
 	spawn.name = "PlayerSpawn"
 	spawn.position = Vector2(180, 2100)

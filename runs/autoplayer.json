@@ -1,0 +1,113 @@
+{
+  "_doc": [
+    "The autoplayer's config for one project: <root>/runs/autoplayer.json (the skill copies this template there on the first run). Every name the bot needs to touch the game is here, so drive.gd never names a project class: it finds nodes by group, calls methods by name from this file, and reads the input actions it presses from here. A project that spells things differently edits this file, not the script.",
+    "game: the Godot project folder, relative to the root. scene: the scene the bot plays (the world, with the player persistent across rooms). district: the level-designer's district.json, for the specs the planner reads and the door-level gates the walk uses. godot: the binary.",
+    "actions: the input actions the bot presses, by role. groups: the player's and the enemies' groups; interact_groups: groups the bot presses `interact` beside (a save terminal). bus: the autoload that carries the signals below, and the signal names by role: room_entered(room_id), player_died(), hp_changed(current, max), damage_dealt(target, amount, source), enemy_died(enemy, xp, credits), item(item_id), ability(flag), hack(hack_id), travel(room_id, door_id).",
+    "methods: what the bot calls. travel on the scene's root: travel(room_id, door_id) for a per-room run; state_name on the player and on an enemy (its state machine's current state); has_player on an enemy (aggro). attack_states: enemy state names that begin an attack; one entry into any of them is one enemy attack for the calibration count. flags: the autoload and method that grant a kit flag (an ability, a program) so a per-room run arrives with the kit the walk says.",
+    "doors: the node under the room holding one child per door, named by the door digit; the child's `target_room`, `spawn_point` and `side` properties (0 left, 1 right, 2 up, 3 down). start_door: the door id the world uses for a fresh start; save_door: for a terminal.",
+    "kits: the walk's vocabulary to the engine's flags: the room list's kit ids -> the GameState flags set for them. A hack's flag and an ability's flag both live here.",
+    "bot: the controller's numbers, in pixels and seconds. reach_tolerance: how close to a waypoint counts as reached. stuck_seconds: no progress toward the waypoint for this long is a reach failure and the bot moves on. melee_range / ranged_range: when to swing and when to shoot. decide_every: physics frames between the random policy's decisions. ignore_time_scale: hold Engine.time_scale at 1 every frame, so a hitstop or slow-motion that counts wall-clock milliseconds cannot freeze a fixed-step run for a machine-dependent number of frames (the first project's hitstop did, 2.4 simulated seconds per heavy hit).",
+    "talk: who the bot talks to and how. group: the NPCs' group; the bot stands within `range` px and presses interact as an event (a UI's _input never hears Input.action_press). dialogue_group: the node whose is_open() says a dialogue is up; the bot presses `advance` every few frames until it closes; make it an action the NPC itself does not listen to (the first project's dialogue advances on jump or interact and its NPC starts a talk on interact, so advancing with interact re-opened the talk on the last page, forever). menu_groups: nodes whose is_open() says a menu is up (a shop); the bot presses `close`. In a free run every NPC in a room is talked to once before its doors; in a room run the plan's `visits` (the spec's npc markers) come before the first exit. actions.pause is the close key."
+  ],
+  "game": "game",
+  "scene": "res://rooms/world.tscn",
+  "district": "game/tools/stacks/district.json",
+  "godot": "godot",
+  "actions": {
+    "left": "move_left",
+    "right": "move_right",
+    "up": "move_up",
+    "down": "move_down",
+    "jump": "jump",
+    "dash": "dash",
+    "melee": "attack_melee",
+    "ranged": "attack_ranged",
+    "hack": "hack_cast",
+    "interact": "interact",
+    "pause": "pause"
+  },
+  "groups": {
+    "player": "player",
+    "enemies": "enemies",
+    "save_points": "save_points"
+  },
+  "interact_groups": [
+    "save_points"
+  ],
+  "bus": {
+    "autoload": "Events",
+    "room_entered": "room_entered",
+    "player_died": "player_died",
+    "hp_changed": "hp_changed",
+    "damage_dealt": "damage_dealt",
+    "enemy_died": "enemy_died",
+    "item": "item_picked_up",
+    "ability": "ability_granted",
+    "hack": "hack_acquired",
+    "travel": "room_travel_requested",
+    "save": "save_point_activated",
+    "boss_defeated": "boss_defeated"
+  },
+  "methods": {
+    "travel": "travel",
+    "state_name": "state_name",
+    "has_player": "has_player"
+  },
+  "attack_states": [
+    "Windup",
+    "Aim",
+    "SlamWindup",
+    "BeamWindup"
+  ],
+  "flags": {
+    "autoload": "GameState",
+    "set": "set_flag"
+  },
+  "doors": {
+    "node": "Doors",
+    "target_room": "target_room",
+    "spawn_point": "spawn_point",
+    "side": "side"
+  },
+  "start_door": "start",
+  "save_door": "save",
+  "kits": {
+    "mag_hook": [
+      "ability.mag_hook"
+    ],
+    "cyberdeck": [
+      "ability.cyberdeck"
+    ],
+    "sidewinder": [
+      "ability.sidewinder"
+    ],
+    "sidewinder_carried": [
+      "item.sidewinder_carried"
+    ],
+    "overload": [
+      "hack.overload"
+    ],
+    "breach": [
+      "hack.breach"
+    ]
+  },
+  "bot": {
+    "reach_tolerance": 30,
+    "stuck_seconds": 8.0,
+    "melee_range": 130,
+    "ranged_range": 700,
+    "decide_every": 12,
+    "sample_every": 6,
+    "ignore_time_scale": true
+  },
+  "talk": {
+    "group": "npcs",
+    "dialogue_group": "dialogue_box",
+    "menu_groups": [
+      "shop"
+    ],
+    "advance": "jump",
+    "close": "pause",
+    "range": 70
+  }
+}

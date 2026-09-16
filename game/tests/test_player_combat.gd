@@ -317,10 +317,10 @@ func test_knockback_pushes_away_from_the_attacker_and_stays_horizontal() -> void
 
 ## The tell is found rather than exposed: the player does not need a public
 ## accessor just so a test can look at it.
-func _swing_tell() -> ColorRect:
+func _swing_tell() -> SwingTell:
 	for child: Node in _player.melee_hitbox.get_children():
-		if child is ColorRect:
-			return child as ColorRect
+		if child is SwingTell:
+			return child as SwingTell
 	return null
 
 

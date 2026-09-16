@@ -1,0 +1,123 @@
+{
+  "_doc": "Floor 14 - Hall (residential). Written by tools/stacks/dress.py from dress_vocab.json, which is where the district's lighting is decided. Edit here for this room alone, or in the vocabulary for the whole style; re-running the script overwrites this file.",
+  "decor": "seeded",
+  "_decor": "keep the clutter the generator places from the room id's seed; this file adds light.",
+  "ambient": [
+    0.66,
+    0.68,
+    0.8
+  ],
+  "door_lamp": {
+    "color": [
+      1.0,
+      0.76,
+      0.46
+    ],
+    "energy": 1.2,
+    "scale": 2.8
+  },
+  "lights": [
+    {
+      "name": "lamp_1",
+      "at": [
+        270,
+        930
+      ],
+      "color": [
+        1.0,
+        0.74,
+        0.44
+      ],
+      "energy": 1.15,
+      "scale": 3.2
+    },
+    {
+      "name": "lamp_2",
+      "at": [
+        810,
+        930
+      ],
+      "color": [
+        1.0,
+        0.74,
+        0.44
+      ],
+      "energy": 1.15,
+      "scale": 3.2
+    },
+    {
+      "name": "lamp_3",
+      "at": [
+        1770,
+        930
+      ],
+      "color": [
+        1.0,
+        0.74,
+        0.44
+      ],
+      "energy": 1.15,
+      "scale": 3.2
+    },
+    {
+      "name": "lamp_4",
+      "at": [
+        2550,
+        930
+      ],
+      "color": [
+        1.0,
+        0.74,
+        0.44
+      ],
+      "energy": 1.15,
+      "scale": 3.2
+    },
+    {
+      "name": "lamp_5",
+      "at": [
+        3570,
+        930
+      ],
+      "color": [
+        1.0,
+        0.74,
+        0.44
+      ],
+      "energy": 1.15,
+      "scale": 3.2
+    },
+    {
+      "name": "sign_1",
+      "at": [
+        630,
+        744
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "fill",
+      "at": [
+        1920,
+        486
+      ],
+      "color": [
+        0.46,
+        0.56,
+        0.86
+      ],
+      "energy": 0.42,
+      "scale": 9.0,
+      "scale_xy": [
+        3.56,
+        1.0
+      ]
+    }
+  ]
+}

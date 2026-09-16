@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Hack" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/combat/hacks/hack.gd" id="1_hack"]
+
+[resource]
+script = ExtResource("1_hack")
+id = &"overload"
+display_name = "Overload"
+description = "Pushes a target's power regulator past its rating. Ignores shields — there is no front to a voltage spike."
+effect = 1
+ram_cost = 3
+power = 15.0
+knockback = 320.0
+radius = 420.0
+duration = 0.0
+guard_mult = 1.0
+flag = &"hack.overload"
+color = Color(1, 0.55, 0.2, 1)

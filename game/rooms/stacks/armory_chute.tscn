@@ -1,0 +1,367 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/world/room.gd" id="1_s71u5"]
+[ext_resource type="Texture2D" path="res://assets/tiles/back_mezz.png" id="2_jho0l"]
+[ext_resource type="Texture2D" path="res://assets/tiles/wall_mezz.png" id="3_mkiau"]
+[ext_resource type="Script" path="res://src/world/door.gd" id="4_6esj8"]
+[ext_resource type="Texture2D" path="res://assets/props/door_frame.png" id="5_8uftk"]
+[ext_resource type="Texture2D" path="res://assets/fx/light_soft.png" id="6_befhu"]
+[ext_resource type="Script" path="res://src/world/sign.gd" id="7_joucc"]
+[ext_resource type="Script" path="res://src/world/encounter.gd" id="8_qd3yb"]
+[ext_resource type="PackedScene" path="res://src/enemies/scav/scav.tscn" id="9_q3mol"]
+[ext_resource type="Texture2D" path="res://assets/props/barrel.png" id="10_qkmfg"]
+[ext_resource type="Texture2D" path="res://assets/props/vent.png" id="11_3scny"]
+[ext_resource type="Texture2D" path="res://assets/props/poster_a.png" id="12_g0s3f"]
+[ext_resource type="Texture2D" path="res://assets/props/neon_tube_m.png" id="13_m8gqy"]
+[ext_resource type="Texture2D" path="res://assets/fx/dot.png" id="14_gnk63"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2fnj1"]
+size = Vector2(240, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aord1"]
+size = Vector2(1500, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08yov"]
+size = Vector2(60, 780)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pqh00"]
+size = Vector2(60, 1020)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb5od"]
+size = Vector2(1860, 60)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w7sd0"]
+emission_shape = 3
+emission_box_extents = Vector3(960, 540, 1)
+direction = Vector3(8, -6, 0)
+spread = 8.0
+initial_velocity_min = 8.0
+initial_velocity_max = 12.0
+gravity = Vector3(0, 0, 0)
+scale_min = 1.6
+scale_max = 2.24
+
+[node name="ArmoryChute" type="Node2D" unique_id=2118770603]
+script = ExtResource("1_s71u5")
+room_id = &"armory_chute"
+display_name = "Disposal Chute"
+camera_limits = Rect2i(0, 0, 1920, 1080)
+announces_on_ready = false
+
+[node name="Geometry" type="Node2D" parent="." unique_id=183455981]
+
+[node name="Void0" type="ColorRect" parent="Geometry" unique_id=768512792]
+z_index = -50
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 2040.0
+mouse_filter = 2
+color = Color(0.02745098, 0.03137255, 0.05882353, 1)
+
+[node name="Void1" type="ColorRect" parent="Geometry" unique_id=1956275617]
+z_index = -50
+offset_left = -120.0
+offset_top = 1080.0
+offset_right = 2040.0
+offset_bottom = 1200.0
+mouse_filter = 2
+color = Color(0.02745098, 0.03137255, 0.05882353, 1)
+
+[node name="Void2" type="ColorRect" parent="Geometry" unique_id=1890579776]
+z_index = -50
+offset_left = -120.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.02745098, 0.03137255, 0.05882353, 1)
+
+[node name="Void3" type="ColorRect" parent="Geometry" unique_id=1111584935]
+z_index = -50
+offset_left = 1920.0
+offset_right = 2040.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.02745098, 0.03137255, 0.05882353, 1)
+
+[node name="Backdrop" type="TextureRect" parent="Geometry" unique_id=418259517]
+z_index = -10
+texture_filter = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("2_jho0l")
+stretch_mode = 1
+
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=882088000]
+position = Vector2(120, 30)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=1438914325]
+shape = SubResource("RectangleShape2D_2fnj1")
+
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid0" unique_id=1863901019]
+texture_filter = 1
+offset_left = -120.0
+offset_top = -30.0
+offset_right = 120.0
+offset_bottom = 30.0
+texture = ExtResource("3_mkiau")
+region_rect = Rect2(60, 60, 120, 120)
+patch_margin_right = 60
+patch_margin_bottom = 60
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=1724029944]
+position = Vector2(1170, 30)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=1611590102]
+shape = SubResource("RectangleShape2D_aord1")
+
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid1" unique_id=888680407]
+texture_filter = 1
+offset_left = -750.0
+offset_top = -30.0
+offset_right = 750.0
+offset_bottom = 30.0
+texture = ExtResource("3_mkiau")
+region_rect = Rect2(0, 60, 120, 120)
+patch_margin_left = 60
+patch_margin_bottom = 60
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=536999547]
+position = Vector2(30, 450)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=627530109]
+shape = SubResource("RectangleShape2D_08yov")
+
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid2" unique_id=162082212]
+texture_filter = 1
+offset_left = -30.0
+offset_top = -390.0
+offset_right = 30.0
+offset_bottom = 390.0
+texture = ExtResource("3_mkiau")
+region_rect = Rect2(60, 60, 120, 120)
+patch_margin_right = 60
+patch_margin_bottom = 60
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=1242798686]
+position = Vector2(1890, 570)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=736686378]
+shape = SubResource("RectangleShape2D_pqh00")
+
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid3" unique_id=1171276646]
+texture_filter = 1
+offset_left = -30.0
+offset_top = -510.0
+offset_right = 30.0
+offset_bottom = 510.0
+texture = ExtResource("3_mkiau")
+region_rect = Rect2(0, 60, 120, 60)
+patch_margin_left = 60
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=787358473]
+position = Vector2(930, 1050)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=840057648]
+shape = SubResource("RectangleShape2D_pb5od")
+
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid4" unique_id=569775333]
+texture_filter = 1
+offset_left = -930.0
+offset_top = -30.0
+offset_right = 930.0
+offset_bottom = 30.0
+texture = ExtResource("3_mkiau")
+region_rect = Rect2(60, 0, 60, 120)
+patch_margin_top = 60
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Hazards" type="Node2D" parent="." unique_id=1450577322]
+
+[node name="Doors" type="Node2D" parent="." unique_id=2094159300]
+
+[node name="1" type="Area2D" parent="Doors" unique_id=320512315]
+position = Vector2(330, 30)
+script = ExtResource("4_6esj8")
+door_id = &"1"
+target_room = &"armory"
+target_door = &"2"
+side = 2
+size = Vector2(180, 60)
+spawn_point = Vector2(330, 120)
+
+[node name="Frame" type="ColorRect" parent="Doors/1" unique_id=8900858]
+z_index = -2
+offset_left = -90.0
+offset_top = -30.0
+offset_right = 90.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.03, 0.04, 0.07, 1)
+
+[node name="2" type="Area2D" parent="Doors" unique_id=678071667]
+position = Vector2(30, 930)
+script = ExtResource("4_6esj8")
+door_id = &"2"
+target_room = &"lift_base"
+target_door = &"3"
+spawn_point = Vector2(90, 1020)
+
+[node name="Frame" type="Sprite2D" parent="Doors/2" unique_id=557232054]
+z_index = -2
+texture_filter = 1
+texture = ExtResource("5_8uftk")
+
+[node name="Lamp" type="PointLight2D" parent="Doors/2" unique_id=1482399107]
+position = Vector2(0, -80)
+color = Color(0.55, 0.92, 1, 1)
+energy = 1.2
+texture = ExtResource("6_befhu")
+texture_scale = 2.8
+
+[node name="Props" type="Node2D" parent="." unique_id=311720096]
+
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=1797614139]
+position = Vector2(870, 780)
+script = ExtResource("7_joucc")
+text = "DISPOSAL
+EAST LIFT ←"
+width = 200.0
+font_size = 14
+
+[node name="Pickups" type="Node2D" parent="." unique_id=1438766085]
+
+[node name="Scavs" type="Node2D" parent="." unique_id=589784187]
+script = ExtResource("8_qd3yb")
+enemy_scene = ExtResource("9_q3mol")
+respawn_delay = 0.0
+
+[node name="Spawn1" type="Marker2D" parent="Scavs" unique_id=96916832]
+position = Vector2(1230, 1020)
+
+[node name="Clutter" type="Node2D" parent="." unique_id=2092508583]
+z_index = -5
+
+[node name="Barrel_0" type="Sprite2D" parent="Clutter" unique_id=566787482]
+texture_filter = 1
+position = Vector2(1620, 972)
+texture = ExtResource("10_qkmfg")
+centered = false
+
+[node name="Barrel_1" type="Sprite2D" parent="Clutter" unique_id=814220958]
+texture_filter = 1
+position = Vector2(1380, 972)
+texture = ExtResource("10_qkmfg")
+centered = false
+
+[node name="Vent_0" type="Sprite2D" parent="Clutter" unique_id=558433214]
+texture_filter = 1
+position = Vector2(540, 864)
+texture = ExtResource("11_3scny")
+centered = false
+
+[node name="Vent_1" type="Sprite2D" parent="Clutter" unique_id=979910987]
+texture_filter = 1
+position = Vector2(660, 144)
+texture = ExtResource("11_3scny")
+centered = false
+
+[node name="PosterA_2" type="Sprite2D" parent="Clutter" unique_id=2001222860]
+texture_filter = 1
+position = Vector2(540, 420)
+texture = ExtResource("12_g0s3f")
+centered = false
+
+[node name="NeonTubeM_0" type="Sprite2D" parent="Clutter" unique_id=493349740]
+texture_filter = 1
+position = Vector2(1200, 60)
+texture = ExtResource("13_m8gqy")
+centered = false
+
+[node name="Light" type="PointLight2D" parent="Clutter/NeonTubeM_0" unique_id=29147276]
+position = Vector2(60, 4.8)
+color = Color(1, 0.4, 0.75, 1)
+energy = 0.5
+texture = ExtResource("6_befhu")
+texture_scale = 1.6
+
+[node name="NeonTubeM_1" type="Sprite2D" parent="Clutter" unique_id=1195547369]
+texture_filter = 1
+position = Vector2(1740, 60)
+texture = ExtResource("13_m8gqy")
+centered = false
+
+[node name="Light" type="PointLight2D" parent="Clutter/NeonTubeM_1" unique_id=1734557659]
+position = Vector2(60, 4.8)
+color = Color(1, 0.4, 0.75, 1)
+energy = 0.5
+texture = ExtResource("6_befhu")
+texture_scale = 1.6
+
+[node name="Decor" type="Node2D" parent="." unique_id=2041438806]
+z_index = -5
+
+[node name="Lamp1" type="PointLight2D" parent="Decor" unique_id=829794425]
+position = Vector2(150, 930)
+color = Color(0.45, 0.95, 1, 1)
+texture = ExtResource("6_befhu")
+texture_scale = 3.0
+
+[node name="Lamp2" type="PointLight2D" parent="Decor" unique_id=35875129]
+position = Vector2(630, 930)
+color = Color(0.45, 0.95, 1, 1)
+texture = ExtResource("6_befhu")
+texture_scale = 3.0
+
+[node name="Lamp3" type="PointLight2D" parent="Decor" unique_id=1851016637]
+position = Vector2(1110, 930)
+color = Color(0.45, 0.95, 1, 1)
+texture = ExtResource("6_befhu")
+texture_scale = 3.0
+
+[node name="Lamp4" type="PointLight2D" parent="Decor" unique_id=1642423413]
+position = Vector2(1830, 930)
+color = Color(0.45, 0.95, 1, 1)
+texture = ExtResource("6_befhu")
+texture_scale = 3.0
+
+[node name="Sign1" type="PointLight2D" parent="Decor" unique_id=20424853]
+position = Vector2(870, 744)
+color = Color(1, 0.72, 0.25, 1)
+energy = 0.55
+texture = ExtResource("6_befhu")
+texture_scale = 1.2
+
+[node name="Fill" type="PointLight2D" parent="Decor" unique_id=1703083090]
+position = Vector2(960, 486)
+scale = Vector2(1.78, 1)
+color = Color(0.55, 0.5, 0.9, 1)
+energy = 0.45
+texture = ExtResource("6_befhu")
+texture_scale = 9.0
+
+[node name="Ambient" type="CanvasModulate" parent="." unique_id=1521039294]
+color = Color(0.66, 0.68, 0.84, 1)
+
+[node name="Dust" type="GPUParticles2D" parent="." unique_id=1798650332]
+modulate = Color(1, 0.95, 0.85, 0.22)
+z_index = -3
+position = Vector2(960, 540)
+amount = 17
+texture = ExtResource("14_gnk63")
+lifetime = 8.0
+preprocess = 8.0
+process_material = SubResource("ParticleProcessMaterial_w7sd0")

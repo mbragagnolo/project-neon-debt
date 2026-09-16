@@ -7,4 +7,4 @@ script = ExtResource("1_xp_curve")
 base_xp = 60
 growth = 1.5
 max_level = 99
-assumed_district_xp = 959
+assumed_district_xp = 949

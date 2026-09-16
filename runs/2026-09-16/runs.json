@@ -1,0 +1,1773 @@
+{
+ "policy": "route",
+ "seeds": 2,
+ "runs": [
+  {
+   "kind": "room",
+   "room": "armory",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload"
+   ],
+   "log": "logs/armory-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "armory",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload"
+   ],
+   "log": "logs/armory-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "armory_chute",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload"
+   ],
+   "log": "logs/armory_chute-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "armory_chute",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload"
+   ],
+   "log": "logs/armory_chute-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "breach_gate_room",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/breach_gate_room-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "breach_gate_room",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/breach_gate_room-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "collections_lift",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload",
+    "sidewinder",
+    "sidewinder_carried"
+   ],
+   "log": "logs/collections_lift-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "collections_lift",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload",
+    "sidewinder",
+    "sidewinder_carried"
+   ],
+   "log": "logs/collections_lift-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "collections_lift",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload",
+    "sidewinder",
+    "sidewinder_carried"
+   ],
+   "log": "logs/collections_lift-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "collections_lift",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload",
+    "sidewinder",
+    "sidewinder_carried"
+   ],
+   "log": "logs/collections_lift-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "collections_lobby",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload",
+    "sidewinder",
+    "sidewinder_carried"
+   ],
+   "log": "logs/collections_lobby-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "collections_lobby",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload",
+    "sidewinder",
+    "sidewinder_carried"
+   ],
+   "log": "logs/collections_lobby-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "collections_lobby",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload",
+    "sidewinder",
+    "sidewinder_carried"
+   ],
+   "log": "logs/collections_lobby-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "collections_lobby",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload",
+    "sidewinder",
+    "sidewinder_carried"
+   ],
+   "log": "logs/collections_lobby-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "defaulter_den",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload"
+   ],
+   "log": "logs/defaulter_den-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "defaulter_den",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload"
+   ],
+   "log": "logs/defaulter_den-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "defaulter_den",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload"
+   ],
+   "log": "logs/defaulter_den-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "defaulter_den",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload"
+   ],
+   "log": "logs/defaulter_den-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "drain_riser",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload"
+   ],
+   "log": "logs/drain_riser-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "drain_riser",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload"
+   ],
+   "log": "logs/drain_riser-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "east_ledges",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/east_ledges-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "east_ledges",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/east_ledges-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_deep",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload"
+   ],
+   "log": "logs/gut_deep-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_deep",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload"
+   ],
+   "log": "logs/gut_deep-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_lift",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/gut_lift-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_lift",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/gut_lift-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_lift",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/gut_lift-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_lift",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/gut_lift-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_lift",
+   "arrive": "3",
+   "seed": 1,
+   "exits": [
+    "1",
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload"
+   ],
+   "log": "logs/gut_lift-3-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_lift",
+   "arrive": "3",
+   "seed": 2,
+   "exits": [
+    "1",
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload"
+   ],
+   "log": "logs/gut_lift-3-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_pumps",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/gut_pumps-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_pumps",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/gut_pumps-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_pumps",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/gut_pumps-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_pumps",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/gut_pumps-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_pumps",
+   "arrive": "3",
+   "seed": 1,
+   "exits": [
+    "1",
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/gut_pumps-3-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_pumps",
+   "arrive": "3",
+   "seed": 2,
+   "exits": [
+    "1",
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/gut_pumps-3-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_stair",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/gut_stair-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_stair",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/gut_stair-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_stair",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/gut_stair-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "gut_stair",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/gut_stair-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "hall_13",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [],
+   "log": "logs/hall_13-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "hall_13",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [],
+   "log": "logs/hall_13-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "hall_13",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1"
+   ],
+   "kit": [],
+   "log": "logs/hall_13-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "hall_13",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1"
+   ],
+   "kit": [],
+   "log": "logs/hall_13-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "hall_14",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [],
+   "log": "logs/hall_14-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "hall_14",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [],
+   "log": "logs/hall_14-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "hall_14",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1"
+   ],
+   "kit": [],
+   "log": "logs/hall_14-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "hall_14",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1"
+   ],
+   "kit": [],
+   "log": "logs/hall_14-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "lift_base",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/lift_base-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "lift_base",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/lift_base-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "lift_base",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/lift_base-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "lift_base",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/lift_base-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "lift_base",
+   "arrive": "3",
+   "seed": 1,
+   "exits": [
+    "1",
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload"
+   ],
+   "log": "logs/lift_base-3-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "lift_base",
+   "arrive": "3",
+   "seed": 2,
+   "exits": [
+    "1",
+    "2"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload"
+   ],
+   "log": "logs/lift_base-3-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "lift_shaft",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/lift_shaft-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "lift_shaft",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/lift_shaft-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "lift_shaft",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/lift_shaft-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "lift_shaft",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/lift_shaft-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "mezz",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/mezz-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "mezz",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/mezz-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "mezz",
+   "arrive": "3",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/mezz-3-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "mezz",
+   "arrive": "3",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/mezz-3-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "mezz_east",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/mezz_east-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "mezz_east",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/mezz_east-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "mezz_east",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/mezz_east-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "mezz_east",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/mezz_east-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "mezz_east",
+   "arrive": "3",
+   "seed": 1,
+   "exits": [
+    "1",
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/mezz_east-3-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "mezz_east",
+   "arrive": "3",
+   "seed": 2,
+   "exits": [
+    "1",
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/mezz_east-3-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "pawn_back",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/pawn_back-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "pawn_back",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/pawn_back-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "pawn_back",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/pawn_back-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "pawn_back",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/pawn_back-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "roof_access",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/roof_access-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "roof_access",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/roof_access-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "roof_access",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/roof_access-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "roof_access",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/roof_access-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "roof_access",
+   "arrive": "3",
+   "seed": 1,
+   "exits": [
+    "1",
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/roof_access-3-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "roof_access",
+   "arrive": "3",
+   "seed": 2,
+   "exits": [
+    "1",
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/roof_access-3-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "roof_gap",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload",
+    "sidewinder",
+    "sidewinder_carried"
+   ],
+   "log": "logs/roof_gap-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "roof_gap",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "breach",
+    "cyberdeck",
+    "mag_hook",
+    "overload",
+    "sidewinder",
+    "sidewinder_carried"
+   ],
+   "log": "logs/roof_gap-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "roof_span",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/roof_span-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "roof_span",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/roof_span-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "roof_span",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/roof_span-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "roof_span",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/roof_span-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "server_nook",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/server_nook-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "server_nook",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/server_nook-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "server_nook",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/server_nook-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "server_nook",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/server_nook-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "service_tunnel",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/service_tunnel-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "service_tunnel",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/service_tunnel-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "service_tunnel",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/service_tunnel-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "service_tunnel",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/service_tunnel-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "stairwell_east",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2"
+   ],
+   "kit": [],
+   "log": "logs/stairwell_east-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "stairwell_east",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2"
+   ],
+   "kit": [],
+   "log": "logs/stairwell_east-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "stairwell_east",
+   "arrive": "3",
+   "seed": 1,
+   "exits": [
+    "1",
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/stairwell_east-3-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "stairwell_east",
+   "arrive": "3",
+   "seed": 2,
+   "exits": [
+    "1",
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/stairwell_east-3-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "underpass",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/underpass-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "underpass",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/underpass-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "underpass",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/underpass-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "underpass",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/underpass-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "underpass",
+   "arrive": "3",
+   "seed": 1,
+   "exits": [
+    "1",
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/underpass-3-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "underpass",
+   "arrive": "3",
+   "seed": 2,
+   "exits": [
+    "1",
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/underpass-3-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "unit_14c",
+   "arrive": "start",
+   "seed": 1,
+   "exits": [
+    "1"
+   ],
+   "kit": [],
+   "log": "logs/unit_14c-start-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "unit_14c",
+   "arrive": "start",
+   "seed": 2,
+   "exits": [
+    "1"
+   ],
+   "kit": [],
+   "log": "logs/unit_14c-start-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "west_stair",
+   "arrive": "1",
+   "seed": 1,
+   "exits": [
+    "2",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/west_stair-1-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "west_stair",
+   "arrive": "1",
+   "seed": 2,
+   "exits": [
+    "2",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/west_stair-1-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "west_stair",
+   "arrive": "2",
+   "seed": 1,
+   "exits": [
+    "1",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/west_stair-2-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "west_stair",
+   "arrive": "2",
+   "seed": 2,
+   "exits": [
+    "1",
+    "3"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/west_stair-2-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "west_stair",
+   "arrive": "3",
+   "seed": 1,
+   "exits": [
+    "1",
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/west_stair-3-1.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  },
+  {
+   "kind": "room",
+   "room": "west_stair",
+   "arrive": "3",
+   "seed": 2,
+   "exits": [
+    "1",
+    "2"
+   ],
+   "kit": [
+    "mag_hook"
+   ],
+   "log": "logs/west_stair-3-2.jsonl",
+   "exit_code": 0,
+   "engine_errors": []
+  }
+ ],
+ "wall_seconds": 202.2
+}

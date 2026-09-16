@@ -1,0 +1,35 @@
+[gd_resource type="AudioStreamSynchronized" load_steps=11 format=3]
+
+[ext_resource type="AudioStream" path="res://assets/audio/music/boss/drone.ogg" id="1_drone"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/boss/tick.ogg" id="2_tick"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/boss/kick.ogg" id="3_kick"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/boss/snare.ogg" id="4_snare"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/boss/hats.ogg" id="5_hats"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/boss/bass.ogg" id="6_bass"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/boss/stabs.ogg" id="7_stabs"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/boss/riser.ogg" id="8_riser"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/boss/lead.ogg" id="9_lead"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/boss/heart.ogg" id="10_heart"]
+
+[resource]
+stream_count = 10
+stream_0/stream = ExtResource("1_drone")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("2_tick")
+stream_1/volume = 0.0
+stream_2/stream = ExtResource("3_kick")
+stream_2/volume = -60.0
+stream_3/stream = ExtResource("4_snare")
+stream_3/volume = -60.0
+stream_4/stream = ExtResource("5_hats")
+stream_4/volume = -60.0
+stream_5/stream = ExtResource("6_bass")
+stream_5/volume = -60.0
+stream_6/stream = ExtResource("7_stabs")
+stream_6/volume = -60.0
+stream_7/stream = ExtResource("8_riser")
+stream_7/volume = -60.0
+stream_8/stream = ExtResource("9_lead")
+stream_8/volume = -60.0
+stream_9/stream = ExtResource("10_heart")
+stream_9/volume = -60.0

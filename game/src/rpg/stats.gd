@@ -29,6 +29,12 @@ var level: int = 1
 ## from it, so the two cannot disagree.
 var xp: int = 0
 var credits: int = 0
+## Permanent bumps from the world (M5): HP Max Up pickups and the vendor's
+## patch, RAM Max Up pickups, the vendor's energy cell. Accumulated, because
+## unlike levels they have no curve to be derived from.
+var bonus_max_hp: int = 0
+var bonus_max_ram: int = 0
+var bonus_max_ammo: int = 0
 
 
 func _ready() -> void:
@@ -45,6 +51,8 @@ func _ready() -> void:
 	# draws the sheet listens to one signal.
 	Events.item_equipped.connect(_on_equipment_changed)
 	Events.item_unequipped.connect(_on_equipment_changed)
+	# The Cyberdeck moves the RAM ceiling; the sheet republishes when it lands.
+	Events.ability_granted.connect(_on_ability_granted)
 	GameState.register_state(SAVE_KEY, self)
 
 
@@ -81,12 +89,38 @@ func base_max_ram() -> int:
 # anyway. Four modifier reads, four callers, no framework.
 
 func effective_max_hp() -> int:
-	return base_max_hp() + Inventory.max_hp_bonus()
+	return base_max_hp() + Inventory.max_hp_bonus() + bonus_max_hp
 
 
+## Levels, the Cyberdeck, and the RAM Max Up pickups. No gear touches the
+## pool — the gloves move the *regen rate*.
 func effective_max_ram() -> int:
-	# No RAM modifier exists — the gloves move the *regen rate*, not the pool.
-	return base_max_ram()
+	var deck: int = stat_curve.cyberdeck_ram_bonus if GameState.has_ability(GameState.ABILITY_CYBERDECK) else 0
+	return base_max_ram() + deck + bonus_max_ram
+
+
+## The ranged pool's ceiling: the authored base plus the vendor's cells.
+## Capacity is vendor-only (docs/rpg/stats-and-curves.md).
+func effective_max_ammo(base: int) -> int:
+	return base + bonus_max_ammo
+
+
+func add_max_hp(amount: int) -> void:
+	bonus_max_hp += maxi(amount, 0)
+	Events.stat_up_acquired.emit(&"hp", amount)
+	publish()
+
+
+func add_max_ram(amount: int) -> void:
+	bonus_max_ram += maxi(amount, 0)
+	Events.stat_up_acquired.emit(&"ram", amount)
+	publish()
+
+
+func add_max_ammo(amount: int) -> void:
+	bonus_max_ammo += maxi(amount, 0)
+	Events.stat_up_acquired.emit(&"ammo", amount)
+	publish()
 
 
 ## Every point of DEF the player has. Levels contribute nothing, forever.
@@ -171,6 +205,10 @@ func _on_equipment_changed(_slot: StringName, _item_id: StringName) -> void:
 	publish()
 
 
+func _on_ability_granted(_ability: StringName) -> void:
+	publish()
+
+
 # --- Publication ------------------------------------------------------------
 
 ## The whole sheet, as the flat dictionary `Events.stats_changed` carries.
@@ -201,13 +239,19 @@ func publish() -> void:
 ## Three integers. Level is stored rather than re-derived on load so a future
 ## re-tune of the XP curve cannot silently demote a save.
 func snapshot() -> Dictionary:
-	return {"level": level, "xp": xp, "credits": credits}
+	return {
+		"level": level, "xp": xp, "credits": credits,
+		"bonus_max_hp": bonus_max_hp, "bonus_max_ram": bonus_max_ram, "bonus_max_ammo": bonus_max_ammo,
+	}
 
 
 func restore(data: Dictionary) -> void:
 	level = maxi(int(data.get("level", 1)), 1)
 	xp = maxi(int(data.get("xp", 0)), 0)
 	credits = maxi(int(data.get("credits", 0)), 0)
+	bonus_max_hp = maxi(int(data.get("bonus_max_hp", 0)), 0)
+	bonus_max_ram = maxi(int(data.get("bonus_max_ram", 0)), 0)
+	bonus_max_ammo = maxi(int(data.get("bonus_max_ammo", 0)), 0)
 	publish()
 	Events.credits_changed.emit(credits)
 
@@ -216,5 +260,8 @@ func reset() -> void:
 	level = 1
 	xp = 0
 	credits = 0
+	bonus_max_hp = 0
+	bonus_max_ram = 0
+	bonus_max_ammo = 0
 	publish()
 	Events.credits_changed.emit(credits)

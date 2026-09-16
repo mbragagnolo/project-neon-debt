@@ -28,6 +28,11 @@ const RETURN_DEADZONE := 2.0
 @export var defense: int = 0
 ## Single-hit damage needed to interrupt. 1 = everything staggers.
 @export var stagger_threshold: int = 1
+## Binary resistance tags, mirrored onto `Health`. The hack gym uses
+## `mechanical` (Breach stuns it) and `immune_ranged_frontal` (shots ping off,
+## Overload does not) so both halves of hacks.md rule 4 can be felt before M6
+## ships an enemy that carries them.
+@export var tags: Array[StringName] = []
 
 @export_group("Post")
 ## px/s it walks back to its anchor at. Slow enough to read as recovering.
@@ -51,8 +56,14 @@ const RETURN_DEADZONE := 2.0
 @onready var _hp_label: Label = $HpLabel
 @onready var _contact_hitbox: Hitbox = $ContactHitbox
 
+## +1 right, -1 left. Exported so the gym can turn the shielded dummy toward
+## the player: `immune_ranged_frontal` needs a front to be immune from.
+@export var facing: int = 1
+
 var _anchor: Vector2 = Vector2.ZERO
 var _respawn_timer: float = 0.0
+var _stun_timer: float = 0.0
+var _stun_label: Label
 var _gravity: float = 0.0
 var _config: CombatConfig
 var _base_color: Color = Color.WHITE
@@ -63,9 +74,11 @@ func _ready() -> void:
 	_gravity = float(ProjectSettings.get_setting("physics/2d/default_gravity", 980.0))
 	_config = load("res://src/combat/combat_config.tres") as CombatConfig
 
+	add_to_group(&"enemies")
 	health.max_hp = max_hp
 	health.defense = defense
 	health.stagger_threshold = stagger_threshold
+	health.tags = tags
 	# Health._ready has already run (children first), so its hp is sized to the
 	# scene default; restore it against the numbers we just set.
 	health.restore()
@@ -84,6 +97,11 @@ func _physics_process(delta: float) -> void:
 	if health.is_dead():
 		_tick_respawn(delta)
 		return
+
+	if _stun_timer > 0.0:
+		_stun_timer -= delta
+		if _stun_timer <= 0.0:
+			_end_stun()
 
 	velocity.y += _gravity * delta
 
@@ -114,7 +132,43 @@ func reset() -> void:
 	velocity = Vector2.ZERO
 	_visual.modulate.a = 1.0
 	_respawn_timer = 0.0
+	if _stun_timer > 0.0:
+		_end_stun()
 	_refresh_label()
+
+
+# --- Hacks ------------------------------------------------------------------
+
+## Breach's hook, same contract as `Enemy.stun()`: only a `mechanical` dummy
+## answers, and while stunned it stops hurting on contact.
+func stun(seconds: float) -> bool:
+	if health.is_dead() or not health.tags.has(Health.TAG_MECHANICAL):
+		return false
+	_stun_timer = seconds
+	_contact_hitbox.deactivate()
+	_visual.color = Color(0.3, 0.55, 0.7)
+	if _stun_label == null:
+		_stun_label = Label.new()
+		_stun_label.text = "STUNNED"
+		_stun_label.add_theme_font_size_override("font_size", 20)
+		_stun_label.modulate = Color(0.55, 1.0, 0.5)
+		_stun_label.position = Vector2(-50.0, -172.0)
+		add_child(_stun_label)
+	_stun_label.visible = true
+	return true
+
+
+func is_stunned() -> bool:
+	return _stun_timer > 0.0
+
+
+func _end_stun() -> void:
+	_stun_timer = 0.0
+	_visual.color = _base_color
+	if _stun_label != null:
+		_stun_label.visible = false
+	if hurts_on_contact and not health.is_dead():
+		_arm_contact()
 
 
 func _tick_respawn(delta: float) -> void:

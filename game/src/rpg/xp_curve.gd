@@ -11,15 +11,16 @@ extends Resource
 ##
 ## `assumed_district_xp` is stored here rather than left in the doc so the
 ## assumption is executable: `tests/test_xp_curve.gd` checks that reaching
-## level 6 still costs the right *fraction* of the district's XP, and fails
-## loudly when the roster moves. That test is the whole reason it was safe to
-## solve this curve before M5 and M6 exist.
+## level 6 still costs the right *fraction* of the district's XP, and
+## `tests/test_roster.gd` measures the district — every enemy in every room
+## spec times its reward — against it. M6 re-solved it to 949 from the placed
+## roster; `base` held at 60.
 
 ## XP for the first level-up. The knob M5 re-solves.
 @export var base_xp: int = 60
 ## Per-level multiplier on the requirement.
 @export var growth: float = 1.5
-## Backstop only. The slice cannot reach 7 (1248 XP against a 959-XP
+## Backstop only. The slice cannot reach 7 (1248 XP against a 949-XP
 ## district), so this exists to bound the level-up loop, not to cap anything a
 ## player will meet.
 @export var max_level: int = 99

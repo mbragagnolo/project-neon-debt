@@ -1,0 +1,61 @@
+{
+  "_doc": "Neon Debt's theme as data, read back from assets/theme/neon.tres and orbitron_bold.tres and from the nine-patch frames the HUD builds in code. The godot-integrator's theme.py writes the .tres files from this; the ui-artist owns it. Every key is documented in the skill's templates/theme.json.",
+  "out": "assets/theme/neon.tres",
+  "fonts": {
+    "vt": { "path": "res://assets/fonts/VT323-Regular.ttf", "id": "1_vt" }
+  },
+  "default_font": "vt",
+  "default_font_size": 28,
+  "styleboxes": {
+    "panel": {
+      "type": "flat",
+      "bg_color": [0.0431, 0.051, 0.0784, 0.94],
+      "border_width": 2,
+      "border_color": [0.2667, 0.3059, 0.4078, 1.0],
+      "corner_radius": 0,
+      "content_margin": { "left": 14, "top": 10, "right": 14, "bottom": 10 }
+    },
+    "button": {
+      "type": "flat",
+      "bg_color": [0.0784, 0.102, 0.149, 1.0],
+      "border_width": 2,
+      "border_color": [0.2667, 0.3059, 0.4078, 1.0],
+      "content_margin": { "left": 18, "top": 8, "right": 18, "bottom": 8 }
+    },
+    "button_hover": {
+      "type": "flat",
+      "bg_color": [0.1098, 0.1412, 0.2118, 1.0],
+      "border_width": 2,
+      "border_color": [0.1333, 0.902, 1.0, 1.0],
+      "content_margin": { "left": 18, "top": 8, "right": 18, "bottom": 8 }
+    },
+    "slider": {
+      "type": "flat",
+      "bg_color": [0.1294, 0.1608, 0.2392, 1.0],
+      "content_margin": { "top": 4, "bottom": 4 }
+    }
+  },
+  "types": {
+    "Button": {
+      "colors": {
+        "font_color": [0.7804, 0.8588, 0.949, 1.0],
+        "font_focus_color": [0.1333, 0.902, 1.0, 1.0],
+        "font_hover_color": [0.1333, 0.902, 1.0, 1.0],
+        "font_pressed_color": [1.0, 0.1804, 0.5804, 1.0]
+      },
+      "styles": { "focus": "button_hover", "hover": "button_hover", "normal": "button", "pressed": "button_hover" }
+    },
+    "HSlider": { "styles": { "slider": "slider" } },
+    "Label": { "colors": { "font_color": [0.7804, 0.8588, 0.949, 1.0] } },
+    "Panel": { "styles": { "panel": "panel" } },
+    "PanelContainer": { "styles": { "panel": "panel" } }
+  },
+  "variations": {
+    "orbitron_bold": { "out": "assets/theme/orbitron_bold.tres", "base": "res://assets/fonts/Orbitron.ttf", "id": "1_orbitron", "weight": 800 }
+  },
+  "nine_patch": {
+    "hud_frame": { "texture": "res://assets/ui/hud_frame.png", "margins": 6, "used_by": "src/ui/hud/hud.gd _frame()" },
+    "slot": { "texture": "res://assets/ui/slot.png", "margins": 6, "used_by": "src/ui/hud/hud.gd, the quickslot" },
+    "panel_frame": { "texture": "res://assets/ui/panel_frame.png", "margins": 6, "used_by": "" }
+  }
+}

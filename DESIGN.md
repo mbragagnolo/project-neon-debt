@@ -2,6 +2,9 @@
 
 *Working title. Cyberpunk 2D metroidvania with Castlevania-style RPG elements.*
 *V1 goal: one vertical slice district that proves the game is worth building.*
+*As data the kiln skills read: `design/design.md` (the tables), `design/rooms.json`
+(the room list), `design/briefs/` (the cast), `plan/plan.json` and `plan/log.md`
+(the milestones and the pass log). This file stays the record of the decisions.*
 
 ---
 
@@ -68,7 +71,7 @@ The slice succeeds if a stranger playing 30–45 minutes says:
 - Attack while moving and mid-air; no movement lock on melee
 - Tuning lives in one `movement_config.tres` resource so iteration = editing numbers, not code
 - **Tuning vs possession are separate systems.** `MovementConfig` answers "how does the ability behave"; `GameState` ability flags (`has_wall_jump`, `has_air_dash`, `has_breach`, …) answer "does the player have it". States check the flag before offering the move. The gym grants all flags so everything stays testable; the district grants them via pickups.
-- **Anti-exploit requirement:** a single wall must not be climbable by re-sticking after a wall jump off it (push + lockout must guarantee net height loss on the same wall). Cover with a unit test — the double-jump teases depend on it.
+- **Single walls, revised 2026-09-15:** a single wall is a slow ladder, not a wall. The wall just jumped off refuses the player for 85% of the jump's flight (`same_wall_lockout_scale`), so a clean re-stick lands a little above the point of departure and a player who kicks on time climbs at under a wall jump's height per second; a tease ledge reached that way is earned. The unit test measures the rate; the facing wall is always accepted. (Until then the lockout was the whole flight and a single wall was unclimbable by design.) Two more controller rules exist for the gates to hold: a dash that runs off a ledge forfeits the jump at its end, and the air dash does not wait on the ground dash's cooldown (docs/level-design/stacks.md, the envelope).
 
 ### 3.2 Combat
 
@@ -193,8 +196,8 @@ If the slice is good → V2 planning: 2nd and 3rd district, double jump actually
 
 ## 7. Open questions (fine to defer, listed so they're not forgotten)
 
-- Death penalty: none / lose unbanked credits (Souls-lite) / return to save with world reset? *(Slice default: respawn at save point, enemies respawn, keep everything — simplest.)*
+- ~~Death penalty~~ — **decided in M5:** respawn at the last care terminal, enemies respawn (the room reloads), keep everything. No terminal used yet means back to 14-C.
 - ~~Dash from the start vs. found early?~~ **Decided:** ground dash from the start; air dash is the Sidewinder implant, late-slice. Wall jump is the Mag-Hook, first pickup.
 - Dash i-frames on/off — still a playtest call (config flag, currently off).
-- ~~Name, tone and narrative hook~~ — **resolved**: augment-debt premise, feature-locked firmware as gate fiction, the Landlord as lockholder; see [`docs/narrative/hook.md`](docs/narrative/hook.md). (Actual names still open inside its conventions.)
-- Pixel art vs. hand-drawn vs. hi-bit for the eventual art pass.
+- ~~Name, tone and narrative hook~~ — **resolved**: augment-debt premise, feature-locked firmware as gate fiction, the Landlord as lockholder; see [`docs/narrative/hook.md`](docs/narrative/hook.md). Names chosen in M5 (VESTA, Dani Okonkwo, Stitch, Marisol, Ferro).
+- ~~Pixel art vs. hand-drawn vs. hi-bit for the eventual art pass~~ — **decided 2026-09-06: hi-bit pixel art**, aimed at the REPLACED / The Last Night look (pixel sprites at 2×, 64–96 art px characters, real lights composited over). References and what each one pins: [`docs/art/refs/README.md`](docs/art/refs/README.md). **2026-09-07:** the camera looks through a 1.5× zoom (an art pixel is three screen px, the player 15% of the frame, the references' band) and bounds itself to a room's air; environment geometry is sized from the figure in metres, never stretched to the cell ([`docs/art/environment.md`](docs/art/environment.md) section 6).

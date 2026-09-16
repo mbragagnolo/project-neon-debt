@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="RangedWeapon" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="RangedWeapon" load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://src/combat/weapons/ranged_weapon.gd" id="1_ranged"]
+[ext_resource type="Texture2D" path="res://assets/fx/rivet.png" id="2_tex"]
 
 [resource]
 script = ExtResource("1_ranged")
@@ -17,3 +18,4 @@ muzzle_offset = Vector2(34, -46)
 projectile_gravity = 320.0
 projectile_size = Vector2(24, 12)
 projectile_color = Color(1, 0.45, 0.15, 1)
+projectile_texture = ExtResource("2_tex")

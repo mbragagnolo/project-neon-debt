@@ -10,3 +10,6 @@ start_attack_stat = 5
 hp_per_level = 5
 ram_per_level = 2
 attack_stat_per_level = 3
+cyberdeck_ram_bonus = 6
+hp_up_amount = 5
+ram_up_amount = 3

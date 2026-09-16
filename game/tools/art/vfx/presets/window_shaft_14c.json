@@ -1,0 +1,8 @@
+{
+  "_doc": "Unit 14-C's window shaft (docs/art/environment.md; the light spike in prototype/vfx_artist/light). Room px. The glass is wall.layout.window's glass, 846..1074 x 606..954; the floor is 1020. Glow left off: the room has no hot pixels for bloom to catch yet (the emissive convention first), and HDR 2D is a project decision.",
+  "shafts": [
+    {"name": "window_shaft", "source": [846, 606, 228, 348], "floor": 1020, "lean": 240, "spread": 120, "alpha": 0.18, "colour": [0.55, 0.72, 1.0],
+     "bands": [[0.0, 1.0, 0.6], [0.1, 0.24, 1.0], [0.4, 0.54, 1.0], [0.7, 0.84, 1.0]], "slices": 8, "z": 4,
+     "_note": "leans down-left: the light from the upper right outside; the dress file's motes sit in it"}
+  ]
+}

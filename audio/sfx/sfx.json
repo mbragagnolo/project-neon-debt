@@ -1,0 +1,467 @@
+{
+ "_doc": [
+  "The sound table: audio/sfx/sfx.json, one entry per sound id. table.py seeds and refreshes it from the recipes and the bible's events; master.py fills `files` and never touches the rest; the godot-integrator reads it.",
+  "event: the event key the sound answers (from bible/events.json, or the code's own id when the project has no table). class: the loudness class, a key of audio.json sfx.classes. variations: how many files are rendered (1: <id>.wav; 3: <id>.wav, <id>_2.wav, <id>_3.wav), for the engine to pick from at random. bus: the engine bus the sound plays on. files: written by master.py, the files as rendered, relative to sfx.out. note: a word for the person, ignored by the scripts."
+ ],
+ "sounds": {
+  "bark": {
+   "event": "ui.bark",
+   "class": "ui",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "bark.wav"
+   ],
+   "target": -20.0,
+   "note": "an NPC's chirp under the bark box; under the ui"
+  },
+  "beam_charge": {
+   "event": "enemy.beam_charge",
+   "class": "enemy",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "beam_charge.wav"
+   ]
+  },
+  "beam_fire": {
+   "event": "enemy.beam_fire",
+   "class": "enemy",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "beam_fire.wav"
+   ]
+  },
+  "breach": {
+   "event": "door.opened",
+   "class": "world",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "breach.wav"
+   ]
+  },
+  "buy": {
+   "event": "shop.purchased",
+   "class": "stinger",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "buy.wav"
+   ]
+  },
+  "credits": {
+   "event": "shop.credits",
+   "class": "stinger",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "credits.wav"
+   ]
+  },
+  "dash": {
+   "event": "player.dash",
+   "class": "move",
+   "variations": 2,
+   "bus": "SFX",
+   "files": [
+    "dash.wav",
+    "dash_2.wav"
+   ]
+  },
+  "deny": {
+   "event": "hack.failed",
+   "class": "hack",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "deny.wav"
+   ]
+  },
+  "die": {
+   "event": "player.died",
+   "class": "death",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "die.wav"
+   ]
+  },
+  "door": {
+   "event": "door.closed",
+   "class": "world",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "door.wav"
+   ]
+  },
+  "door_pass": {
+   "event": "room.entered",
+   "class": "world",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "door_pass.wav"
+   ]
+  },
+  "drone_shot": {
+   "event": "enemy.drone_shot",
+   "class": "shot",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "drone_shot.wav"
+   ]
+  },
+  "enemy_die": {
+   "event": "enemy.die",
+   "class": "death",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "enemy_die.wav"
+   ]
+  },
+  "hack_acquire": {
+   "event": "hack.acquired",
+   "class": "hack",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "hack_acquire.wav"
+   ]
+  },
+  "hack_burst": {
+   "event": "hack.overload",
+   "class": "hack",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "hack_burst.wav"
+   ]
+  },
+  "hack_guard": {
+   "event": "hack.firewall",
+   "class": "hack",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "hack_guard.wav"
+   ]
+  },
+  "hack_pulse": {
+   "event": "hack.breach",
+   "class": "hack",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "hack_pulse.wav"
+   ]
+  },
+  "hazard": {
+   "event": "player.hazard",
+   "class": "impact",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "hazard.wav"
+   ]
+  },
+  "hit": {
+   "event": "enemy.hit",
+   "class": "impact",
+   "variations": 3,
+   "bus": "SFX",
+   "files": [
+    "hit.wav",
+    "hit_2.wav",
+    "hit_3.wav"
+   ]
+  },
+  "hit_guard": {
+   "event": "player.hurt_guard",
+   "class": "impact",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "hit_guard.wav"
+   ]
+  },
+  "hit_heavy": {
+   "event": "enemy.hit_heavy",
+   "class": "impact",
+   "variations": 2,
+   "bus": "SFX",
+   "files": [
+    "hit_heavy.wav",
+    "hit_heavy_2.wav"
+   ]
+  },
+  "hurt": {
+   "event": "player.hurt",
+   "class": "impact",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "hurt.wav"
+   ]
+  },
+  "jump": {
+   "event": "player.jump",
+   "class": "move",
+   "variations": 3,
+   "bus": "SFX",
+   "files": [
+    "jump.wav",
+    "jump_2.wav",
+    "jump_3.wav"
+   ]
+  },
+  "land": {
+   "event": "player.land",
+   "class": "impact",
+   "variations": 3,
+   "bus": "SFX",
+   "files": [
+    "land.wav",
+    "land_2.wav",
+    "land_3.wav"
+   ]
+  },
+  "level_up": {
+   "event": "level.gained",
+   "class": "stinger",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "level_up.wav"
+   ]
+  },
+  "lift": {
+   "event": "lift.moved",
+   "class": "world",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "lift.wav"
+   ]
+  },
+  "lunge": {
+   "event": "enemy.lunge",
+   "class": "enemy",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "lunge.wav"
+   ]
+  },
+  "mech_die": {
+   "event": "enemy.die_mech",
+   "class": "death",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "mech_die.wav"
+   ]
+  },
+  "pickup": {
+   "event": "item.picked_up",
+   "class": "stinger",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "pickup.wav"
+   ]
+  },
+  "quest": {
+   "event": "quest.completed",
+   "class": "stinger",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "quest.wav"
+   ]
+  },
+  "roar": {
+   "event": "boss.phase",
+   "class": "enemy",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "roar.wav"
+   ]
+  },
+  "save": {
+   "event": "save.activated",
+   "class": "stinger",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "save.wav"
+   ]
+  },
+  "shoot": {
+   "event": "player.shoot_bolt",
+   "class": "shot",
+   "variations": 2,
+   "bus": "SFX",
+   "files": [
+    "shoot.wav",
+    "shoot_2.wav"
+   ]
+  },
+  "shoot_nail": {
+   "event": "player.shoot_nail",
+   "class": "shot",
+   "variations": 2,
+   "bus": "SFX",
+   "files": [
+    "shoot_nail.wav",
+    "shoot_nail_2.wav"
+   ]
+  },
+  "shoot_rivet": {
+   "event": "player.shoot_rivet",
+   "class": "shot",
+   "variations": 2,
+   "bus": "SFX",
+   "files": [
+    "shoot_rivet.wav",
+    "shoot_rivet_2.wav"
+   ]
+  },
+  "slam": {
+   "event": "enemy.slam",
+   "class": "impact",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "slam.wav"
+   ]
+  },
+  "stat_up": {
+   "event": "stat_up.acquired",
+   "class": "stinger",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "stat_up.wav"
+   ]
+  },
+  "stun": {
+   "event": "enemy.stun",
+   "class": "enemy",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "stun.wav"
+   ]
+  },
+  "swing": {
+   "event": "player.swing",
+   "class": "move",
+   "variations": 3,
+   "bus": "SFX",
+   "files": [
+    "swing.wav",
+    "swing_2.wav",
+    "swing_3.wav"
+   ]
+  },
+  "tell": {
+   "event": "enemy.tell",
+   "class": "enemy",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "tell.wav"
+   ]
+  },
+  "text": {
+   "event": "ui.text",
+   "class": "ui",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "text.wav"
+   ],
+   "target": -24.0,
+   "note": "a tick per letter; quiet by design"
+  },
+  "title_start": {
+   "event": "ui.title_start",
+   "class": "stinger",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "title_start.wav"
+   ]
+  },
+  "toast": {
+   "event": "ui.toast",
+   "class": "stinger",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "toast.wav"
+   ]
+  },
+  "ui_back": {
+   "event": "ui.back",
+   "class": "ui",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "ui_back.wav"
+   ]
+  },
+  "ui_close": {
+   "event": "ui.close",
+   "class": "ui",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "ui_close.wav"
+   ]
+  },
+  "ui_confirm": {
+   "event": "ui.confirm",
+   "class": "ui",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "ui_confirm.wav"
+   ]
+  },
+  "ui_move": {
+   "event": "ui.move",
+   "class": "ui",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "ui_move.wav"
+   ]
+  },
+  "ui_open": {
+   "event": "ui.open",
+   "class": "ui",
+   "variations": 1,
+   "bus": "SFX",
+   "files": [
+    "ui_open.wav"
+   ]
+  },
+  "wall_jump": {
+   "event": "player.wall_jump",
+   "class": "move",
+   "variations": 2,
+   "bus": "SFX",
+   "files": [
+    "wall_jump.wav",
+    "wall_jump_2.wav"
+   ]
+  }
+ }
+}

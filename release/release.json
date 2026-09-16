@@ -1,0 +1,186 @@
+{
+  "_doc": [
+    "Neon Debt's release contract (the shipper skill's templates/release.json documents every key). Written 2026-09-16 for v0.1.0, the playtest build M9 asks for: the slice in the hands of three to five people who owe nothing.",
+    "The version is not here. It is project.godot's config/version, and release.py --bump writes it, commits it and tags it.",
+    "The shots travel to a room by its door instead of naming pixels, so the player stands where the game puts them and a moved room cannot silently move a screenshot. Door 1 is the arrival door every room in the district has; unit_14c uses `start`, which is the world's own fresh-start door."
+  ],
+
+  "name": "Neon Debt",
+  "game": "game",
+  "godot": "godot",
+  "dist": "dist",
+
+  "version": {
+    "project_setting": "config/version",
+    "tag_prefix": "v"
+  },
+
+  "reads": {
+    "autoplayer_config": "runs/autoplayer.json",
+    "plan": "plan/plan.json",
+    "log": "plan/log.md",
+    "runs": "runs"
+  },
+
+  "presets": [
+    {
+      "name": "windows",
+      "platform": "Windows Desktop",
+      "binary": "NeonDebt.exe",
+      "pack": "NeonDebt.pck",
+      "exclude": ["tests/*", "tools/*", "addons/gut/*", ".gutconfig.json"],
+      "options": {
+        "binary_format/architecture": "x86_64",
+        "binary_format/embed_pck": false,
+        "texture_format/s3tc_bptc": true,
+        "texture_format/etc2_astc": false,
+        "application/product_name": "Neon Debt",
+        "application/file_description": "Neon Debt -- vertical slice",
+        "application/company_name": "Marcos Bragagnolo",
+        "application/copyright": "(c) 2026 Marcos Bragagnolo"
+      }
+    },
+    {
+      "name": "linux",
+      "platform": "Linux",
+      "binary": "NeonDebt.x86_64",
+      "pack": "NeonDebt.pck",
+      "exclude": ["tests/*", "tools/*", "addons/gut/*", ".gutconfig.json"],
+      "options": {
+        "binary_format/architecture": "x86_64",
+        "binary_format/embed_pck": false,
+        "texture_format/s3tc_bptc": true,
+        "texture_format/etc2_astc": false
+      }
+    }
+  ],
+
+  "pck_must_not_contain": ["tests/", "tools/", "addons/gut/", ".gutconfig.json"],
+
+  "gates": [
+    { "gate": "clean" },
+    { "gate": "branch", "any_of": ["vertical-slice", "main"] },
+    { "gate": "command", "name": "tests" },
+    { "gate": "milestones", "before": "M9", "ignore_signoffs": true },
+    { "gate": "autoplay", "max_engine_errors": 0, "min_rooms": 30, "max_deaths_per_run": 1.0, "played_since_game_changed": true },
+    { "gate": "templates" }
+  ],
+
+  "capture": {
+    "resolution": "1920x1080",
+    "wait": 2.5,
+    "kit": ["ability.mag_hook", "ability.cyberdeck", "ability.sidewinder", "hack.overload", "hack.breach"],
+    "shots": [
+      {
+        "id": "01_title",
+        "kind": "screen",
+        "room": "res://rooms/title.tscn",
+        "wait": 2.0,
+        "caption": "Neon Debt -- a cyberpunk metroidvania about firmware you do not own"
+      },
+      {
+        "id": "02_unit_14c",
+        "travel": "unit_14c:start",
+        "caption": "Unit 14-C. Your apartment, your legs, somebody else's licence"
+      },
+      {
+        "id": "03_mezz",
+        "travel": "mezz:2",
+        "caption": "The mezzanine: the ripperdoc, the vendor and the only save in the district"
+      },
+      {
+        "id": "04_defaulter_den",
+        "travel": "defaulter_den:1",
+        "press": "melee",
+        "caption": "Melee, ranged and hacks share one resource loop; the Scavs make you switch"
+      },
+      {
+        "id": "05_east_ledges",
+        "travel": "east_ledges:1",
+        "caption": "The Mag-Hook turns a wall into a way up"
+      },
+      {
+        "id": "06_collections",
+        "travel": "collections:1",
+        "caption": "The Landlord collects in person"
+      },
+      {
+        "id": "07_map",
+        "kind": "screen",
+        "travel": "mezz:2",
+        "ui": "toggle_map",
+        "caption": "One interconnected district, gated by what you have not stolen yet"
+      },
+      {
+        "id": "08_equip",
+        "kind": "screen",
+        "travel": "mezz:2",
+        "ui": "toggle_inventory",
+        "caption": "Gear and levels: Castlevania's RPG layer on a cyberpunk kit"
+      }
+    ],
+    "clip": {
+      "id": "trailer",
+      "fps": 20,
+      "scale": 2,
+      "seconds": 9.0,
+      "gif_colors": 64,
+      "travel": "east_ledges:1",
+      "wait": 2.0,
+      "tape": [
+        [10, []],
+        [14, ["right"]],
+        [3, ["right", "jump"]],
+        [10, ["right"]],
+        [4, ["right", "dash"]],
+        [12, ["right"]],
+        [3, ["melee"]],
+        [10, []],
+        [12, ["left"]],
+        [3, ["left", "jump"]],
+        [14, ["left"]],
+        [3, ["ranged"]],
+        [12, []],
+        [4, ["right", "dash"]],
+        [16, ["right"]],
+        [20, []]
+      ]
+    }
+  },
+
+  "page": {
+    "tagline": "Your legs are financed. The unlock is stolen authority.",
+    "short": "A cyberpunk metroidvania about hardware you own and firmware you do not. Your wall jump, your air dash and your hacks are all corporate property behind paywalls you cannot pay, so you take the authority instead. One district, 34 rooms, one landlord at the end.",
+    "long": "The Stacks are thirty-four rooms of low-income housing stacked up the side of a megacity, and every way out of them is licensed to somebody else.\n\nYou have legs you are still paying for, a wrench, and Firewall -- the factory-installed hack the corp left on your deck to protect its own collateral. Everything that makes the district climbable is behind a firmware paywall: the Mag-Hook that turns a wall into a staircase, the Cyberdeck that gives you room for a second program, Overload, Breach, the Sidewinder implant that has to be installed by a ripperdoc because gadgets are carried and implants are surgery. Credits never buy an ability in this game. You take the authority instead.\n\nMelee, ranged and hacks share one resource loop, so the enemies force you between them rather than letting you pick a main. Levels and gear are Castlevania's, not an RPG's: numbers you feel in the damage you take, not a build you plan. Two or three ledges are visible and unreachable on purpose -- the double jump is a V2 promise, and you are meant to want it.\n\nThis is the vertical slice: thirty to forty-five minutes, one district, one boss. It exists to answer one question, which is whether the rest is worth building.",
+    "playtest": "Play until you are done or until you are stuck. Then tell us where you stopped, anything you looked at and could not reach, and whether you would pick melee, ranged or a hack if you had to keep only one. If you got stuck, say what you tried.",
+    "genre": "Action / Platformer",
+    "tags": ["metroidvania", "cyberpunk", "pixel-art", "action", "platformer", "rpg"],
+    "price": "free",
+    "controls": [
+      ["move_left", "Move left"],
+      ["move_right", "Move right"],
+      ["move_up", "Up (menus, doors, lifts)"],
+      ["move_down", "Down (menus, drop through)"],
+      ["jump", "Jump (hold for height)"],
+      ["dash", "Dash"],
+      ["attack_melee", "Melee"],
+      ["attack_ranged", "Ranged"],
+      ["hack_cast", "Cast a hack (costs RAM)"],
+      ["hack_next", "Next hack"],
+      ["hack_prev", "Previous hack"],
+      ["interact", "Talk, use, pick up"],
+      ["toggle_map", "Map"],
+      ["toggle_inventory", "Gear and stats"],
+      ["pause", "Pause / back"]
+    ]
+  },
+
+  "store": {
+    "kind": "itch",
+    "target": "<your-itch-user>/neon-debt",
+    "channels": {
+      "windows": "windows",
+      "linux": "linux"
+    }
+  }
+}

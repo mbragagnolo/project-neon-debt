@@ -1,0 +1,183 @@
+{
+  "_doc": "The slice plan as data (the producer skill's templates/plan.json documents every key). Written 2026-09-14 from DESIGN.md sections 2, 5 and 6 after the slice shipped, so the checks are the exit tests made checkable, and M8 and M9 are the work after M7 as the docs describe it.",
+  "name": "Neon Debt",
+  "timeout_s": 600,
+  "commands": {
+    "tests": {
+      "cmd": "godot --headless --path . -s addons/gut/gut_cmdln.gd -gconfig=.gutconfig.json",
+      "cwd": "game",
+      "timeout_s": 600,
+      "fail_if": "Parse Error|Failed to load script|Compile Error",
+      "_doc": "The GUT suite: 468 tests in about 230 s on 2026-09-14; exit 0 when green. fail_if is CI's guard: a script that fails to parse is skipped, not failed, and GUT still prints All tests passed."
+    },
+    "boot": {
+      "cmd": "godot --headless --path . --quit-after 120",
+      "cwd": "game",
+      "timeout_s": 120,
+      "_doc": "The CI boot smoke: the main scene loads headless and quits."
+    }
+  },
+  "milestones": [
+    {
+      "id": "M0",
+      "title": "Skeleton",
+      "deliverable": "A Godot project that runs headless and windowed, with the input map, the signal bus, GUT and CI, and one empty test room.",
+      "risk": "The engine and the agent workflow: text scenes, headless tests, a green CI before any feature exists.",
+      "skills": [],
+      "acceptance": [
+        { "check": "exists", "path": "game/project.godot" },
+        { "check": "exists", "path": ".github/workflows/ci.yml" },
+        { "check": "exists", "path": "game/src/core/events.gd" },
+        { "check": "exists", "path": "game/rooms/test_room.tscn" },
+        { "check": "commit", "match": "^M0:" },
+        { "check": "command", "name": "boot" },
+        { "check": "command", "name": "tests" }
+      ]
+    },
+    {
+      "id": "M1",
+      "title": "Movement feel",
+      "deliverable": "The full controller (run, jump, dash, wall slide, coyote, buffer) tuned from one resource, in a gym with platforming challenges.",
+      "risk": "The genre lives or dies on the jump; nothing downstream is worth building until moving around an empty room is fun.",
+      "skills": ["game-feel"],
+      "acceptance": [
+        { "check": "exists", "path": "game/src/player/movement_config.tres" },
+        { "check": "exists", "path": "game/src/player/movement_envelope.gd" },
+        { "check": "exists", "path": "game/rooms/gym.tscn" },
+        { "check": "exists", "path": "game/tests/test_player_movement.gd" },
+        { "check": "commit", "match": "^M1:" },
+        { "check": "signoff", "what": "moving around an empty room is fun" }
+      ]
+    },
+    {
+      "id": "M2",
+      "title": "Combat core",
+      "deliverable": "Melee and ranged against a training dummy and the Scav: the damage pipeline, hitstop, knockback, i-frames, death, in a lab room.",
+      "risk": "Whether three verbs sharing one pipeline can feel different; whether the first enemy teaches spacing.",
+      "skills": ["systems-designer", "enemy-designer", "game-feel"],
+      "acceptance": [
+        { "check": "exists", "path": "game/src/combat/damage.gd" },
+        { "check": "exists", "path": "game/src/enemies/scav/scav.tres" },
+        { "check": "exists", "path": "game/rooms/combat_gym.tscn" },
+        { "check": "exists", "path": "game/tests/test_damage_pipeline.gd" },
+        { "check": "exists", "path": "game/tests/test_scav.gd" },
+        { "check": "commit", "match": "^M2:" },
+        { "check": "signoff", "what": "fighting three Scavs is legible and satisfying" }
+      ]
+    },
+    {
+      "id": "M3",
+      "title": "RPG layer",
+      "deliverable": "Stats, XP and levels, the ten items as resources, the equip screen, pickups and the level-up moment, in a gear-and-levels lab.",
+      "risk": "Whether a gear swap produces a felt difference without trivialising enemies; the effective-stats layer the pipeline and the screen must share.",
+      "skills": ["systems-designer"],
+      "acceptance": [
+        { "check": "exists", "path": "game/src/rpg/stats.gd" },
+        { "check": "exists", "path": "game/src/rpg/items/catalog.tres" },
+        { "check": "exists", "path": "game/src/ui/menus/equip_screen.gd" },
+        { "check": "exists", "path": "game/rooms/rpg_gym.tscn" },
+        { "check": "exists", "path": "game/tests/test_save_load.gd" },
+        { "check": "commit", "match": "^Merge pull request #5 .*m3-rpg-layer" },
+        { "check": "signoff", "what": "equipping better gear visibly changes combat math" }
+      ]
+    },
+    {
+      "id": "M4",
+      "title": "Hacks",
+      "deliverable": "RAM, the three programs, the quickslot and a Breach-locked door, in a hacks lab.",
+      "risk": "Whether all three verbs get used naturally in one fight, or hacks stay a menu nobody opens.",
+      "skills": ["systems-designer", "game-feel"],
+      "acceptance": [
+        { "check": "exists", "path": "game/src/combat/hacks/breach.tres" },
+        { "check": "exists", "path": "game/src/combat/hacks/firewall.tres" },
+        { "check": "exists", "path": "game/src/combat/hacks/overload.tres" },
+        { "check": "exists", "path": "game/src/world/breach_door.tscn" },
+        { "check": "exists", "path": "game/rooms/hack_gym.tscn" },
+        { "check": "commit", "match": "^M4:" },
+        { "check": "signoff", "what": "all three combat verbs used naturally in one fight" }
+      ]
+    },
+    {
+      "id": "M5",
+      "title": "The district",
+      "deliverable": "The Stacks: 25 to 35 greybox rooms with doors, the map screen, save points, the ability pickups in order, the double-jump teases, the shortcut loop, the hub with Stitch and Marisol, and the fetch quest.",
+      "risk": "Whether the loop plays end to end (explore, unlock, open what it gates, gear up, level, complete the quest) and whether every gate holds against the kit at that point.",
+      "skills": ["game-designer", "level-designer", "narrative-designer"],
+      "acceptance": [
+        { "check": "glob", "pattern": "game/rooms/stacks/*.tscn", "min": 25 },
+        { "check": "exists", "path": "game/tools/stacks/district.json" },
+        { "check": "exists", "path": "game/src/world/world_graph.tres" },
+        { "check": "exists", "path": "game/src/ui/menus/map_screen.gd" },
+        { "check": "exists", "path": "game/src/quests/memory_chip.tres" },
+        { "check": "exists", "path": "game/tests/test_stacks.gd" },
+        { "check": "exists", "path": "game/tests/test_stacks_passage.gd" },
+        { "check": "commit", "match": "^M5:" },
+        { "check": "signoff", "what": "can play the loop" }
+      ]
+    },
+    {
+      "id": "M6",
+      "title": "Enemies and boss",
+      "deliverable": "The Watcher drone, the Riot unit, the Elite Scav, and the Landlord with two phases in a sealed arena, ending the slice.",
+      "risk": "Whether the boss is a wall worth climbing: beatable, demanding every verb, three to eight attempts for a decent player.",
+      "skills": ["enemy-designer", "character-designer"],
+      "acceptance": [
+        { "check": "exists", "path": "game/src/enemies/drone" },
+        { "check": "exists", "path": "game/src/enemies/riot" },
+        { "check": "exists", "path": "game/src/enemies/boss_landlord" },
+        { "check": "exists", "path": "game/src/enemies/scav/elite_scav.tres" },
+        { "check": "exists", "path": "game/tests/test_landlord.gd" },
+        { "check": "commit", "match": "^M6:" },
+        { "check": "signoff", "what": "boss beatable, demands all verbs" }
+      ]
+    },
+    {
+      "id": "M7",
+      "title": "Slice polish",
+      "deliverable": "The balance pass, the sound, the juice, the menus and settings, save and load hardened, a title screen with three slots, and a first art pass.",
+      "risk": "Whether a stranger can run it start to finish without guidance.",
+      "skills": ["sound-designer", "composer", "ui-artist", "vfx-artist"],
+      "acceptance": [
+        { "check": "exists", "path": "game/src/ui/hud/hud.gd" },
+        { "check": "exists", "path": "game/src/ui/title/title_screen.gd" },
+        { "check": "exists", "path": "game/src/core/settings.gd" },
+        { "check": "glob", "pattern": "game/assets/audio/sfx/*.wav", "min": 40 },
+        { "check": "glob", "pattern": "game/assets/audio/music/*.tres", "min": 5,
+          "_doc": "One synchronized stream per track, which is what the engine loads. This check used to be game/assets/audio/music/*.ogg and read 0 from the day the composer landed: it writes a folder per track and a stem per layer, so the oggs are one level deeper. A stale glob, never a missing track." },
+        { "check": "glob", "pattern": "game/assets/audio/music/*/*.ogg", "min": 20,
+          "_doc": "The stems themselves: five tracks carrying at least four layers each." },
+        { "check": "commit", "match": "^feat\\(m7\\):" },
+        { "check": "signoff", "what": "external playtesters run it start to finish without guidance" }
+      ]
+    },
+    {
+      "id": "M8",
+      "title": "The look",
+      "deliverable": "The hi-bit art pass on the slice: every character as a baked sheet, every room dressed and lit from its concept at the figure's scale, the effects baked like the characters, the HUD in the palette, all reviewed against the bible.",
+      "risk": "Whether generated stills, rigs and bakes can hold one style across a cast and a district without a hand-drawn pass.",
+      "skills": ["character-designer", "concept-artist", "environment-artist", "level-artist", "vfx-artist", "ui-artist", "art-director"],
+      "acceptance": [
+        { "check": "exists", "path": "docs/art/direction.md" },
+        { "check": "glob", "pattern": "game/assets/sprites/*.png", "min": 9 },
+        { "check": "glob", "pattern": "game/tools/art/cast/*.json", "min": 9 },
+        { "check": "exists", "path": "game/tools/art/sets/unit_14c.json" },
+        { "check": "glob", "pattern": "game/tools/stacks/*.dress.json", "min": 34 },
+        { "check": "glob", "pattern": "game/tools/art/vfx/*.json", "min": 3 },
+        { "check": "signoff", "what": "the district reads as one style at 1:1" }
+      ]
+    },
+    {
+      "id": "M9",
+      "title": "Go or no-go",
+      "deliverable": "The slice in the hands of three to five people who owe nothing, and the decision to continue to V2 or not.",
+      "risk": "Whether the game is worth building: the loop is readable, the pull works, the verbs are distinguishable, somebody wants more.",
+      "skills": ["shipper"],
+      "acceptance": [
+        { "check": "signoff", "what": "testers finish without being told what to do" },
+        { "check": "signoff", "what": "a tester asks how do I get up there" },
+        { "check": "signoff", "what": "testers can say why they would pick melee, ranged or hacks" },
+        { "check": "signoff", "what": "someone asks when they can play more" }
+      ]
+    }
+  ]
+}

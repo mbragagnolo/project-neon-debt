@@ -1,0 +1,80 @@
+{
+ "name": "burst.die",
+ "tag": "direct",
+ "frame": [
+  64,
+  64
+ ],
+ "anchor": [
+  32,
+  40
+ ],
+ "fps": 24,
+ "clips": {
+  "play": [
+   0,
+   8,
+   24,
+   false
+  ]
+ },
+ "colours_sheet": 9,
+ "frames": [
+  {
+   "colours": 3,
+   "opaque": 420,
+   "off_palette": 0,
+   "rim_dark": 0.46,
+   "rim_light": 0.26
+  },
+  {
+   "colours": 4,
+   "opaque": 296,
+   "off_palette": 0,
+   "rim_dark": 0.28,
+   "rim_light": 0.27
+  },
+  {
+   "colours": 6,
+   "opaque": 383,
+   "off_palette": 0,
+   "rim_dark": 0.37,
+   "rim_light": 0.33
+  },
+  {
+   "colours": 6,
+   "opaque": 477,
+   "off_palette": 0,
+   "rim_dark": 0.35,
+   "rim_light": 0.33
+  },
+  {
+   "colours": 4,
+   "opaque": 397,
+   "off_palette": 0,
+   "rim_dark": 0.24,
+   "rim_light": 0.26
+  },
+  {
+   "colours": 3,
+   "opaque": 344,
+   "off_palette": 0,
+   "rim_dark": 0.27,
+   "rim_light": 0.18
+  },
+  {
+   "colours": 3,
+   "opaque": 222,
+   "off_palette": 0,
+   "rim_dark": 0.17,
+   "rim_light": 0.2
+  },
+  {
+   "colours": 1,
+   "opaque": 98,
+   "off_palette": 0,
+   "rim_dark": 0.0,
+   "rim_light": 0.0
+  }
+ ]
+}

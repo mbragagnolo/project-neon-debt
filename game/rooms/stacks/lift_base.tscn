@@ -1,0 +1,410 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/world/room.gd" id="1_lmnol"]
+[ext_resource type="Texture2D" path="res://assets/tiles/back_shaft.png" id="2_fd1ac"]
+[ext_resource type="Texture2D" path="res://assets/tiles/wall_shaft.png" id="3_yekiu"]
+[ext_resource type="Script" path="res://src/world/door.gd" id="4_k7cvm"]
+[ext_resource type="Texture2D" path="res://assets/props/door_frame.png" id="5_l6qyr"]
+[ext_resource type="Texture2D" path="res://assets/fx/light_soft.png" id="6_728di"]
+[ext_resource type="Script" path="res://src/world/grate.gd" id="7_ep2dn"]
+[ext_resource type="Script" path="res://src/world/sign.gd" id="8_b3xny"]
+[ext_resource type="Texture2D" path="res://assets/props/barrel.png" id="9_j7pio"]
+[ext_resource type="Texture2D" path="res://assets/props/pipe_v.png" id="10_wt0dk"]
+[ext_resource type="Texture2D" path="res://assets/props/vent.png" id="11_dotdx"]
+[ext_resource type="Texture2D" path="res://assets/props/cable.png" id="12_4tnsw"]
+[ext_resource type="Texture2D" path="res://assets/fx/dot.png" id="13_cfwvq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fismf"]
+size = Vector2(840, 780)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67un8"]
+size = Vector2(900, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxmjw"]
+size = Vector2(840, 780)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8eoq"]
+size = Vector2(240, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgrqt"]
+size = Vector2(540, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_leym0"]
+size = Vector2(1920, 60)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7yhml"]
+emission_shape = 3
+emission_box_extents = Vector3(960, 540, 1)
+direction = Vector3(8, -6, 0)
+spread = 8.0
+initial_velocity_min = 8.0
+initial_velocity_max = 12.0
+gravity = Vector3(0, 0, 0)
+scale_min = 1.6
+scale_max = 2.24
+
+[node name="LiftBase" type="Node2D" unique_id=1773871424]
+script = ExtResource("1_lmnol")
+room_id = &"lift_base"
+display_name = "East Lift - Base"
+camera_limits = Rect2i(0, 0, 1920, 1080)
+announces_on_ready = false
+
+[node name="Geometry" type="Node2D" parent="." unique_id=436677718]
+
+[node name="Void0" type="ColorRect" parent="Geometry" unique_id=1149778265]
+z_index = -50
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 2040.0
+mouse_filter = 2
+color = Color(0.02745098, 0.03137255, 0.05882353, 1)
+
+[node name="Void1" type="ColorRect" parent="Geometry" unique_id=875333803]
+z_index = -50
+offset_left = -120.0
+offset_top = 1080.0
+offset_right = 2040.0
+offset_bottom = 1200.0
+mouse_filter = 2
+color = Color(0.02745098, 0.03137255, 0.05882353, 1)
+
+[node name="Void2" type="ColorRect" parent="Geometry" unique_id=517041152]
+z_index = -50
+offset_left = -120.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.02745098, 0.03137255, 0.05882353, 1)
+
+[node name="Void3" type="ColorRect" parent="Geometry" unique_id=1355378692]
+z_index = -50
+offset_left = 1920.0
+offset_right = 2040.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.02745098, 0.03137255, 0.05882353, 1)
+
+[node name="Backdrop" type="TextureRect" parent="Geometry" unique_id=281920731]
+z_index = -10
+texture_filter = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource("2_fd1ac")
+stretch_mode = 1
+
+[node name="Solid0" type="StaticBody2D" parent="Geometry" unique_id=1422744747]
+position = Vector2(420, 390)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid0" unique_id=1774332122]
+shape = SubResource("RectangleShape2D_fismf")
+
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid0" unique_id=400480774]
+texture_filter = 1
+offset_left = -420.0
+offset_top = -390.0
+offset_right = 420.0
+offset_bottom = 390.0
+texture = ExtResource("3_yekiu")
+region_rect = Rect2(60, 60, 120, 120)
+patch_margin_right = 60
+patch_margin_bottom = 60
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Solid1" type="StaticBody2D" parent="Geometry" unique_id=101594982]
+position = Vector2(1470, 30)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid1" unique_id=456359983]
+shape = SubResource("RectangleShape2D_67un8")
+
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid1" unique_id=767518059]
+texture_filter = 1
+offset_left = -450.0
+offset_top = -30.0
+offset_right = 450.0
+offset_bottom = 30.0
+texture = ExtResource("3_yekiu")
+region_rect = Rect2(0, 60, 120, 120)
+patch_margin_left = 60
+patch_margin_bottom = 60
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Solid2" type="StaticBody2D" parent="Geometry" unique_id=1093242646]
+position = Vector2(1500, 450)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid2" unique_id=870232422]
+shape = SubResource("RectangleShape2D_xxmjw")
+
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid2" unique_id=629648636]
+texture_filter = 1
+offset_left = -420.0
+offset_top = -390.0
+offset_right = 420.0
+offset_bottom = 390.0
+texture = ExtResource("3_yekiu")
+region_rect = Rect2(0, 60, 120, 120)
+patch_margin_left = 60
+patch_margin_bottom = 60
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Solid3" type="StaticBody2D" parent="Geometry" unique_id=662421101]
+position = Vector2(120, 810)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid3" unique_id=375959970]
+shape = SubResource("RectangleShape2D_q8eoq")
+
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid3" unique_id=571173074]
+texture_filter = 1
+offset_left = -120.0
+offset_top = -30.0
+offset_right = 120.0
+offset_bottom = 30.0
+texture = ExtResource("3_yekiu")
+region_rect = Rect2(60, 60, 120, 120)
+patch_margin_right = 60
+patch_margin_bottom = 60
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Solid4" type="StaticBody2D" parent="Geometry" unique_id=152280256]
+position = Vector2(570, 810)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid4" unique_id=19752022]
+shape = SubResource("RectangleShape2D_jgrqt")
+
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid4" unique_id=825196075]
+texture_filter = 1
+offset_left = -270.0
+offset_top = -30.0
+offset_right = 270.0
+offset_bottom = 30.0
+texture = ExtResource("3_yekiu")
+region_rect = Rect2(0, 60, 180, 120)
+patch_margin_left = 60
+patch_margin_right = 60
+patch_margin_bottom = 60
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Solid5" type="StaticBody2D" parent="Geometry" unique_id=795587007]
+position = Vector2(960, 1050)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Solid5" unique_id=597465031]
+shape = SubResource("RectangleShape2D_leym0")
+
+[node name="Wall" type="NinePatchRect" parent="Geometry/Solid5" unique_id=1941551776]
+texture_filter = 1
+offset_left = -960.0
+offset_top = -30.0
+offset_right = 960.0
+offset_bottom = 30.0
+texture = ExtResource("3_yekiu")
+region_rect = Rect2(60, 0, 60, 120)
+patch_margin_top = 60
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Hazards" type="Node2D" parent="." unique_id=1107518779]
+
+[node name="Doors" type="Node2D" parent="." unique_id=364711534]
+
+[node name="1" type="Area2D" parent="Doors" unique_id=1733100303]
+position = Vector2(30, 930)
+script = ExtResource("4_k7cvm")
+door_id = &"1"
+target_room = &"underpass"
+target_door = &"2"
+spawn_point = Vector2(90, 1020)
+
+[node name="Frame" type="Sprite2D" parent="Doors/1" unique_id=1298363744]
+z_index = -2
+texture_filter = 1
+texture = ExtResource("5_l6qyr")
+
+[node name="Lamp" type="PointLight2D" parent="Doors/1" unique_id=80273086]
+position = Vector2(0, -80)
+color = Color(0.7, 0.9, 1, 1)
+energy = 1.15
+texture = ExtResource("6_728di")
+texture_scale = 2.8
+
+[node name="2" type="Area2D" parent="Doors" unique_id=2043349096]
+position = Vector2(930, 30)
+script = ExtResource("4_k7cvm")
+door_id = &"2"
+target_room = &"lift_shaft"
+target_door = &"1"
+side = 2
+size = Vector2(180, 60)
+spawn_point = Vector2(930, 120)
+
+[node name="Frame" type="ColorRect" parent="Doors/2" unique_id=824725594]
+z_index = -2
+offset_left = -90.0
+offset_top = -30.0
+offset_right = 90.0
+offset_bottom = 30.0
+mouse_filter = 2
+color = Color(0.03, 0.04, 0.07, 1)
+
+[node name="3" type="Area2D" parent="Doors" unique_id=9846007]
+position = Vector2(1890, 930)
+script = ExtResource("4_k7cvm")
+door_id = &"3"
+target_room = &"armory_chute"
+target_door = &"2"
+side = 1
+spawn_point = Vector2(1830, 1020)
+
+[node name="Frame" type="Sprite2D" parent="Doors/3" unique_id=484106274]
+z_index = -2
+texture_filter = 1
+texture = ExtResource("5_l6qyr")
+
+[node name="Lamp" type="PointLight2D" parent="Doors/3" unique_id=1950402653]
+position = Vector2(0, -80)
+color = Color(0.7, 0.9, 1, 1)
+energy = 1.15
+texture = ExtResource("6_728di")
+texture_scale = 2.8
+
+[node name="Props" type="Node2D" parent="." unique_id=97912915]
+
+[node name="Grate_lift_base_grate" type="StaticBody2D" parent="Props" unique_id=1781434741]
+position = Vector2(1770, 1020)
+script = ExtResource("7_ep2dn")
+grate_id = &"lift_base_grate"
+
+[node name="Sign_s" type="Node2D" parent="Props" unique_id=349199927]
+position = Vector2(270, 840)
+script = ExtResource("8_b3xny")
+text = "EAST LIFT
+OUT OF SERVICE — SHAFT OPEN"
+width = 200.0
+font_size = 14
+
+[node name="Pickups" type="Node2D" parent="." unique_id=711704020]
+
+[node name="Clutter" type="Node2D" parent="." unique_id=503645330]
+z_index = -5
+
+[node name="Barrel_0" type="Sprite2D" parent="Clutter" unique_id=1461195415]
+texture_filter = 1
+position = Vector2(840, 972)
+texture = ExtResource("9_j7pio")
+centered = false
+
+[node name="Barrel_1" type="Sprite2D" parent="Clutter" unique_id=247047546]
+texture_filter = 1
+position = Vector2(1320, 972)
+texture = ExtResource("9_j7pio")
+centered = false
+
+[node name="PipeV_0" type="Sprite2D" parent="Clutter" unique_id=1246532751]
+texture_filter = 1
+position = Vector2(900, 420)
+texture = ExtResource("10_wt0dk")
+centered = false
+
+[node name="PipeV_1" type="Sprite2D" parent="Clutter" unique_id=632452690]
+texture_filter = 1
+position = Vector2(1020, 660)
+texture = ExtResource("10_wt0dk")
+centered = false
+
+[node name="Vent_2" type="Sprite2D" parent="Clutter" unique_id=1154161661]
+texture_filter = 1
+position = Vector2(840, 324)
+texture = ExtResource("11_dotdx")
+centered = false
+
+[node name="Cable_0" type="Sprite2D" parent="Clutter" unique_id=1926587992]
+texture_filter = 1
+position = Vector2(420, 840)
+texture = ExtResource("12_4tnsw")
+centered = false
+
+[node name="Decor" type="Node2D" parent="." unique_id=234079807]
+z_index = -5
+
+[node name="Lamp1" type="PointLight2D" parent="Decor" unique_id=730749507]
+position = Vector2(150, 930)
+color = Color(0.7, 0.86, 1, 1)
+texture = ExtResource("6_728di")
+texture_scale = 2.8
+
+[node name="Lamp2" type="PointLight2D" parent="Decor" unique_id=2070986806]
+position = Vector2(570, 930)
+color = Color(0.7, 0.86, 1, 1)
+texture = ExtResource("6_728di")
+texture_scale = 2.8
+
+[node name="Lamp3" type="PointLight2D" parent="Decor" unique_id=1697528737]
+position = Vector2(990, 930)
+color = Color(0.7, 0.86, 1, 1)
+texture = ExtResource("6_728di")
+texture_scale = 2.8
+
+[node name="Lamp4" type="PointLight2D" parent="Decor" unique_id=1572121919]
+position = Vector2(1410, 930)
+color = Color(0.7, 0.86, 1, 1)
+texture = ExtResource("6_728di")
+texture_scale = 2.8
+
+[node name="Sign1" type="PointLight2D" parent="Decor" unique_id=1951639895]
+position = Vector2(270, 804)
+color = Color(1, 0.72, 0.25, 1)
+energy = 0.55
+texture = ExtResource("6_728di")
+texture_scale = 1.2
+
+[node name="Grate2" type="PointLight2D" parent="Decor" unique_id=2098716106]
+position = Vector2(1770, 864)
+color = Color(0.6, 0.7, 0.85, 1)
+energy = 0.4
+texture = ExtResource("6_728di")
+texture_scale = 1.2
+
+[node name="Grate3" type="PointLight2D" parent="Decor" unique_id=1544551317]
+position = Vector2(1770, 924)
+color = Color(0.6, 0.7, 0.85, 1)
+energy = 0.4
+texture = ExtResource("6_728di")
+texture_scale = 1.2
+
+[node name="Grate4" type="PointLight2D" parent="Decor" unique_id=65520879]
+position = Vector2(1770, 983)
+color = Color(0.6, 0.7, 0.85, 1)
+energy = 0.4
+texture = ExtResource("6_728di")
+texture_scale = 1.2
+
+[node name="Fill" type="PointLight2D" parent="Decor" unique_id=1898328359]
+position = Vector2(960, 486)
+scale = Vector2(1.78, 1)
+color = Color(0.45, 0.55, 0.8, 1)
+energy = 0.4
+texture = ExtResource("6_728di")
+texture_scale = 9.0
+
+[node name="Ambient" type="CanvasModulate" parent="." unique_id=2022566855]
+color = Color(0.56, 0.6, 0.74, 1)
+
+[node name="Dust" type="GPUParticles2D" parent="." unique_id=743053602]
+modulate = Color(1, 0.95, 0.85, 0.22)
+z_index = -3
+position = Vector2(960, 540)
+amount = 17
+texture = ExtResource("13_cfwvq")
+lifetime = 8.0
+preprocess = 8.0
+process_material = SubResource("ParticleProcessMaterial_7yhml")

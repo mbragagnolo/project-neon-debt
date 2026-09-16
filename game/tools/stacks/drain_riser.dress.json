@@ -1,0 +1,151 @@
+{
+  "_doc": "Drain Riser (shaft). Written by tools/stacks/dress.py from dress_vocab.json, which is where the district's lighting is decided. Edit here for this room alone, or in the vocabulary for the whole style; re-running the script overwrites this file.",
+  "decor": "seeded",
+  "_decor": "keep the clutter the generator places from the room id's seed; this file adds light.",
+  "ambient": [
+    0.56,
+    0.6,
+    0.74
+  ],
+  "door_lamp": {
+    "color": [
+      0.7,
+      0.9,
+      1.0
+    ],
+    "energy": 1.15,
+    "scale": 2.8
+  },
+  "lights": [
+    {
+      "name": "lamp_1",
+      "at": [
+        390,
+        4170
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_2",
+      "at": [
+        1110,
+        4170
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "lamp_3",
+      "at": [
+        1830,
+        4170
+      ],
+      "color": [
+        0.7,
+        0.86,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 2.8
+    },
+    {
+      "name": "sign_1",
+      "at": [
+        630,
+        3984
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "grate_2",
+      "at": [
+        210,
+        4104
+      ],
+      "color": [
+        0.6,
+        0.7,
+        0.85
+      ],
+      "energy": 0.4,
+      "scale": 1.2
+    },
+    {
+      "name": "grate_3",
+      "at": [
+        210,
+        4164
+      ],
+      "color": [
+        0.6,
+        0.7,
+        0.85
+      ],
+      "energy": 0.4,
+      "scale": 1.2
+    },
+    {
+      "name": "grate_4",
+      "at": [
+        210,
+        4224
+      ],
+      "color": [
+        0.6,
+        0.7,
+        0.85
+      ],
+      "energy": 0.4,
+      "scale": 1.2
+    },
+    {
+      "name": "lift_5",
+      "at": [
+        1290,
+        4224
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.3
+      ],
+      "energy": 0.7,
+      "scale": 1.8
+    },
+    {
+      "name": "fill",
+      "at": [
+        960,
+        1944
+      ],
+      "color": [
+        0.45,
+        0.55,
+        0.8
+      ],
+      "energy": 0.4,
+      "scale": 9.0,
+      "scale_xy": [
+        0.44,
+        1.0
+      ]
+    }
+  ]
+}

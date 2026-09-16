@@ -1,0 +1,1640 @@
+{
+ "_doc": [
+  "The room list of the slice, one entry per room, in the game-designer's form (kiln, templates/room-brief.md explains every key as prose).",
+  "game, start, hub: the ids. installs: a kit carried from one room and granted at another (surgery at the hub): carried -> found -> at -> gives.",
+  "roster: every enemy the rooms place, by cast id, with the intensity the pacing curve weighs it at (a design claim about how hard it is, 1 for a grunt, 6 for the boss).",
+  "rooms[].id: permanent, it lands in saves. name: what the sign says. style: the dressing family the level-artist keys on (optional). teaches: one verb or system id from design.md.",
+  "rooms[].doors: the rooms this one connects to; symmetric. holds: what the player wants or reads, typed: item:<id>, hack:<id>, ability:<kit>, npc:<id>, quest_item:<id>, save, hp_up, ram_up, tease, notice, grate:<id>, breach_door:<id>, lift.",
+  "rooms[].grants: the kit ids the room gives; each is a verb's kit in design.md or an installs[].carried, and each kit is granted in exactly one room. requires: kit ids needed to pass or use what the room gates; the level-designer proves them.",
+  "rooms[].enemies: cast id -> count. rest: a breath (a save or an npc, no enemies). cell, size: filled by the level-designer once the district is laid out; the design leaves them out.",
+  "rooms[].brief: story (the sentence the concept is prompted from), light (every source as 'what: colour, warm|cold|hot'), left (the props, in order), way_out, window (what it looks onto, or none), eye (the three stops the light budget is measured against)."
+ ],
+ "game": "neon-debt",
+ "start": "unit_14c",
+ "hub": "mezz",
+ "installs": [
+  {
+   "carried": "sidewinder_carried",
+   "found": "gut_deep",
+   "at": "mezz",
+   "gives": "sidewinder"
+  }
+ ],
+ "roster": {
+  "scav": {
+   "intensity": 1
+  },
+  "drone": {
+   "intensity": 1
+  },
+  "riot": {
+   "intensity": 2
+  },
+  "elite_scav": {
+   "intensity": 3
+  },
+  "landlord": {
+   "intensity": 6
+  }
+ },
+ "rooms": [
+  {
+   "id": "armory",
+   "name": "Repossessed Assets",
+   "style": "mezz",
+   "teaches": "stagger",
+   "doors": [
+    "breach_gate_room",
+    "armory_chute"
+   ],
+   "holds": [
+    "item:breaker_maul"
+   ],
+   "grants": [],
+   "requires": [],
+   "enemies": {
+    "riot": 1
+   },
+   "rest": false,
+   "cell": [
+    10,
+    2
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "Repossessed Assets: a holding room for what VESTA took, a Riot unit guarding it. The breaker maul is here, the heavy hit that interrupts what a wrench cannot.",
+    "light": [
+     "a caged lamp: sodium, warm",
+     "the Riot unit's lamp: amber"
+    ],
+    "left": [
+     "shelving of tagged goods",
+     "the maul",
+     "a holding sign"
+    ],
+    "way_out": "armory_chute",
+    "window": "none",
+    "eye": [
+     "the maul",
+     "the Riot unit",
+     "the chute door"
+    ]
+   }
+  },
+  {
+   "id": "armory_chute",
+   "name": "Disposal Chute",
+   "style": "mezz",
+   "teaches": "map",
+   "doors": [
+    "armory",
+    "lift_base"
+   ],
+   "holds": [],
+   "grants": [],
+   "requires": [],
+   "enemies": {
+    "scav": 1
+   },
+   "rest": false,
+   "cell": [
+    10,
+    3
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "The disposal chute, a Scav in it, one way down to the grate above the east lift. Releasing the grate is the first loop back.",
+    "light": [
+     "a chute lamp: amber"
+    ],
+    "left": [
+     "the chute",
+     "the grate mechanism",
+     "a sign"
+    ],
+    "way_out": "lift_base through the grate",
+    "window": "none",
+    "eye": [
+     "the grate",
+     "the Scav",
+     "the drop"
+    ]
+   }
+  },
+  {
+   "id": "breach_gate_room",
+   "name": "Collections Bulkhead",
+   "style": "mezz",
+   "teaches": "breach",
+   "doors": [
+    "east_ledges",
+    "armory"
+   ],
+   "holds": [
+    "breach_door:bulkhead_east",
+    "hack:breach"
+   ],
+   "grants": [
+    "breach"
+   ],
+   "requires": [
+    "breach"
+   ],
+   "enemies": {
+    "scav": 2
+   },
+   "rest": false,
+   "cell": [
+    11,
+    2
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "The Collections bulkhead, sealed, a terminal beside it. Breach is here, two Scavs guard it, and the door it opens is the first use. The way in was a drop; the way on is the door.",
+    "light": [
+     "the sealed door's panel: red, hot",
+     "the terminal: cyan, cold"
+    ],
+    "left": [
+     "the bulkhead",
+     "the terminal",
+     "a sealed sign"
+    ],
+    "way_out": "armory through the bulkhead",
+    "window": "none",
+    "eye": [
+     "the door",
+     "the program",
+     "the Scavs"
+    ]
+   }
+  },
+  {
+   "id": "catwalks",
+   "name": "Service Catwalks",
+   "style": "roof",
+   "teaches": "air_dash",
+   "doors": [
+    "server_nook"
+   ],
+   "holds": [
+    "tease",
+    "item:rivet_gun",
+    "ram_up"
+   ],
+   "grants": [],
+   "requires": [
+    "sidewinder"
+   ],
+   "enemies": {
+    "scav": 2,
+    "drone": 3
+   },
+   "rest": false,
+   "cell": [
+    13,
+    1
+   ],
+   "size": [
+    2,
+    2
+   ],
+   "brief": {
+    "story": "The service catwalks, condemned, the far end collapsed: the second Sidewinder gate, fifteen tiles lip to lip, with the rivet gun past it. Below, the chimney tease and a RAM up. Three drones and two Scavs.",
+    "light": [
+     "the sky: cold",
+     "a condemned sign: red, hot",
+     "the drones' lenses: red"
+    ],
+    "left": [
+     "catwalk grating",
+     "the collapsed end",
+     "the chimney",
+     "the riveter's crate"
+    ],
+    "way_out": "none but back",
+    "window": "the city",
+    "eye": [
+     "the gap",
+     "the drones",
+     "the chimney"
+    ]
+   }
+  },
+  {
+   "id": "collections",
+   "name": "Collections - Floor 40",
+   "style": "collections",
+   "teaches": "damage",
+   "doors": [
+    "collections_lobby"
+   ],
+   "holds": [],
+   "grants": [],
+   "requires": [],
+   "enemies": {
+    "landlord": 1
+   },
+   "rest": false,
+   "cell": [
+    12,
+    -1
+   ],
+   "size": [
+    2,
+    1
+   ],
+   "brief": {
+    "story": "Collections, floor 40: the Landlord's floor, account 14C-0091-77 in person. A flat floor for the slam to own, two one-way ledges and a dais in the middle, nothing to hide behind. The doors seal while he lives.",
+    "light": [
+     "the deck's readout: magenta, hot",
+     "the floor's strip lights: magenta and white, cold"
+    ],
+    "left": [
+     "the dais",
+     "the two ledges",
+     "a desk",
+     "the account board"
+    ],
+    "way_out": "back through reception, over him",
+    "window": "the city, the whole district below",
+    "eye": [
+     "the Landlord",
+     "the dais",
+     "the ledges"
+    ]
+   }
+  },
+  {
+   "id": "collections_lift",
+   "name": "Collections - Private Lift",
+   "style": "shaft",
+   "teaches": "wall_jump",
+   "doors": [
+    "roof_gap",
+    "collections_lobby"
+   ],
+   "holds": [],
+   "grants": [],
+   "requires": [],
+   "enemies": {
+    "drone": 1,
+    "riot": 1
+   },
+   "rest": false,
+   "cell": [
+    10,
+    -1
+   ],
+   "size": [
+    1,
+    2
+   ],
+   "brief": {
+    "story": "The Collections private lift, out of service: a shaft two cells tall with a Riot unit at the bottom and a drone in it, the last climb.",
+    "light": [
+     "the lift's panel: magenta, hot",
+     "shaft lamps: amber"
+    ],
+    "left": [
+     "the lift doors",
+     "a private sign",
+     "cables"
+    ],
+    "way_out": "collections_lobby",
+    "window": "none",
+    "eye": [
+     "the Riot unit",
+     "the drone",
+     "the top"
+    ]
+   }
+  },
+  {
+   "id": "collections_lobby",
+   "name": "Collections - Reception",
+   "style": "collections",
+   "teaches": "save",
+   "doors": [
+    "collections_lift",
+    "collections"
+   ],
+   "holds": [
+    "tease",
+    "save"
+   ],
+   "grants": [],
+   "requires": [],
+   "enemies": {},
+   "rest": true,
+   "cell": [
+    11,
+    -1
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "Collections reception: the third care terminal, the hanging balcony that is the third tease, and a sign that the Landlord is in. The closing shot is here: the balcony's lock turns green.",
+    "light": [
+     "the care terminal: cyan, cold",
+     "the balcony lock: red, then green",
+     "reception signage: magenta"
+    ],
+    "left": [
+     "the reception desk",
+     "the terminal",
+     "the hanging balcony",
+     "the sign"
+    ],
+    "way_out": "collections",
+    "window": "none",
+    "eye": [
+     "the sign",
+     "the terminal",
+     "the balcony"
+    ]
+   }
+  },
+  {
+   "id": "defaulter_den",
+   "name": "The Gut - Sump",
+   "style": "gut",
+   "teaches": "gear",
+   "doors": [
+    "gut_lift",
+    "gut_deep"
+   ],
+   "holds": [
+    "quest_item:memory_chip"
+   ],
+   "grants": [],
+   "requires": [],
+   "enemies": {
+    "scav": 2,
+    "elite_scav": 1
+   },
+   "rest": false,
+   "cell": [
+    3,
+    7
+   ],
+   "size": [
+    2,
+    1
+   ],
+   "brief": {
+    "story": "The sump: Ferro, the defaulter who ran, face down in live water, account closed, remains forfeit. The Elite Scav guards him with two Scavs; the memory chip is what he did not want repossessed.",
+    "light": [
+     "the water: cyan-white, cold",
+     "Ferro's sign: red, hot",
+     "the Elite's eye: magenta"
+    ],
+    "left": [
+     "Ferro's body",
+     "the chip",
+     "the sump",
+     "the sign"
+    ],
+    "way_out": "gut_deep east",
+    "window": "none",
+    "eye": [
+     "the Elite",
+     "Ferro",
+     "the chip"
+    ]
+   }
+  },
+  {
+   "id": "drain_riser",
+   "name": "Drain Riser",
+   "style": "shaft",
+   "teaches": "map",
+   "doors": [
+    "gut_deep",
+    "underpass"
+   ],
+   "holds": [
+    "grate:drain_riser_grate",
+    "lift"
+   ],
+   "grants": [],
+   "requires": [],
+   "enemies": {
+    "scav": 2,
+    "drone": 2
+   },
+   "rest": false,
+   "cell": [
+    6,
+    4
+   ],
+   "size": [
+    1,
+    4
+   ],
+   "brief": {
+    "story": "The drain riser, four cells of shaft with a freight lift in it: release the grate, ride up to the underpass, the second loop back to the hub. Two Scavs and two drones on the way.",
+    "light": [
+     "riser lamps: amber",
+     "the lift's lamp: green, working"
+    ],
+    "left": [
+     "the freight lift",
+     "the grate",
+     "a ride-at-own-risk sign"
+    ],
+    "way_out": "underpass at the top",
+    "window": "none",
+    "eye": [
+     "the lift",
+     "the grate",
+     "the drones"
+    ]
+   }
+  },
+  {
+   "id": "east_ledges",
+   "name": "East Ledges",
+   "style": "roof",
+   "teaches": "jump",
+   "doors": [
+    "lift_shaft",
+    "server_nook",
+    "breach_gate_room"
+   ],
+   "holds": [
+    "item:utility_blade",
+    "hp_up"
+   ],
+   "grants": [],
+   "requires": [],
+   "enemies": {
+    "scav": 2,
+    "drone": 3
+   },
+   "rest": false,
+   "cell": [
+    10,
+    1
+   ],
+   "size": [
+    2,
+    1
+   ],
+   "brief": {
+    "story": "The East Ledges, platforming along the tower's face: two Scavs, three drones, the blade in a chest and an HP up. A sign says watch the gap. The drop off the far edge lands in the Collections bulkhead room.",
+    "light": [
+     "the sky: cold",
+     "a sign: cyan",
+     "the drones' lenses: red"
+    ],
+    "left": [
+     "ledges",
+     "a chest",
+     "the sign",
+     "a broken walkway"
+    ],
+    "way_out": "server_nook east, breach_gate_room below",
+    "window": "the city",
+    "eye": [
+     "the drones",
+     "the chest",
+     "the drop"
+    ]
+   }
+  },
+  {
+   "id": "gut_cistern",
+   "name": "Cistern",
+   "style": "gut",
+   "teaches": "gear",
+   "doors": [
+    "gut_lift"
+   ],
+   "holds": [
+    "item:linesman_gloves",
+    "ram_up"
+   ],
+   "grants": [],
+   "requires": [],
+   "enemies": {},
+   "rest": false,
+   "cell": [
+    1,
+    8
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "The cistern, hidden below the lift: a linesman's kit that was to be returned to VESTA. The gloves and a RAM up.",
+    "light": [
+     "the water's reflection: cyan, cold",
+     "a cistern lamp: green"
+    ],
+    "left": [
+     "the cistern",
+     "the linesman kit",
+     "a sign"
+    ],
+    "way_out": "back up",
+    "window": "none",
+    "eye": [
+     "the gloves",
+     "the water",
+     "the door"
+    ]
+   }
+  },
+  {
+   "id": "gut_deep",
+   "name": "The Gut - Retrieval",
+   "style": "gut",
+   "teaches": "air_dash",
+   "doors": [
+    "defaulter_den",
+    "drain_riser"
+   ],
+   "holds": [
+    "ability:sidewinder_carried"
+   ],
+   "grants": [
+    "sidewinder_carried"
+   ],
+   "requires": [],
+   "enemies": {
+    "scav": 2,
+    "riot": 1
+   },
+   "rest": false,
+   "cell": [
+    5,
+    7
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "Retrieval: a VESTA medical field crate, do not open, with the Sidewinder unit sealed inside. A Riot unit and two Scavs. Legs like these need surgery, so the unit is carried back to Stitch.",
+    "light": [
+     "the crate's seal: magenta, hot",
+     "a lamp: amber"
+    ],
+    "left": [
+     "the medical crate",
+     "a sign",
+     "pipes"
+    ],
+    "way_out": "drain_riser east",
+    "window": "none",
+    "eye": [
+     "the crate",
+     "the Riot unit",
+     "the door"
+    ]
+   }
+  },
+  {
+   "id": "gut_lift",
+   "name": "The Gut - Lift",
+   "style": "shaft",
+   "teaches": "breach",
+   "doors": [
+    "gut_pumps",
+    "gut_cistern",
+    "defaulter_den"
+   ],
+   "holds": [
+    "breach_door:bulkhead_gut"
+   ],
+   "grants": [],
+   "requires": [
+    "breach"
+   ],
+   "enemies": {
+    "drone": 1
+   },
+   "rest": false,
+   "cell": [
+    2,
+    7
+   ],
+   "size": [
+    1,
+    2
+   ],
+   "brief": {
+    "story": "The Gut's lift, two cells down, one drone, the second Breach door on its wall and the cistern door at the bottom. The sump is behind the bulkhead.",
+    "light": [
+     "the bulkhead panel: red, hot",
+     "lift lamps: amber"
+    ],
+    "left": [
+     "the lift cage",
+     "the bulkhead",
+     "the cistern door"
+    ],
+    "way_out": "gut_cistern below, defaulter_den through the bulkhead",
+    "window": "none",
+    "eye": [
+     "the bulkhead",
+     "the drone",
+     "the bottom"
+    ]
+   }
+  },
+  {
+   "id": "gut_pumps",
+   "name": "The Gut - Pump Hall",
+   "style": "gut",
+   "teaches": "wall_jump",
+   "doors": [
+    "service_tunnel",
+    "gut_vent",
+    "gut_lift"
+   ],
+   "holds": [
+    "hp_up"
+   ],
+   "grants": [],
+   "requires": [
+    "mag_hook"
+   ],
+   "enemies": {
+    "scav": 2,
+    "drone": 2,
+    "riot": 1
+   },
+   "rest": false,
+   "cell": [
+    0,
+    6
+   ],
+   "size": [
+    2,
+    2
+   ],
+   "brief": {
+    "story": "The pump hall, two cells square: two Scavs, two drones, a Riot unit, an HP up, and two shafts, one to the vent and one on. The water is live.",
+    "light": [
+     "pump status lamps: green, working",
+     "the water: cyan-white, cold",
+     "one hanging lamp: amber"
+    ],
+    "left": [
+     "pumps",
+     "the water channels",
+     "gantries",
+     "a warning sign"
+    ],
+    "way_out": "gut_vent, gut_lift",
+    "window": "none",
+    "eye": [
+     "the pumps",
+     "the enemies",
+     "the shafts"
+    ]
+   }
+  },
+  {
+   "id": "gut_stair",
+   "name": "The Gut - Stair",
+   "style": "gut",
+   "teaches": "run",
+   "doors": [
+    "mezz",
+    "service_tunnel"
+   ],
+   "holds": [],
+   "grants": [],
+   "requires": [],
+   "enemies": {
+    "scav": 1
+   },
+   "rest": false,
+   "cell": [
+    1,
+    4
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "The Gut's stair, the maintenance level under the Mezz, one Scav and ledges back up. A sign says no entry.",
+    "light": [
+     "a stair lamp: amber",
+     "the Gut's steam: cold grey"
+    ],
+    "left": [
+     "ledges",
+     "a no-entry sign",
+     "pipes"
+    ],
+    "way_out": "service_tunnel down",
+    "window": "none",
+    "eye": [
+     "the sign",
+     "the Scav",
+     "the drop"
+    ]
+   }
+  },
+  {
+   "id": "gut_vent",
+   "name": "Filter Housing",
+   "style": "gut",
+   "teaches": "gear",
+   "doors": [
+    "gut_pumps"
+   ],
+   "holds": [
+    "item:nailgun"
+   ],
+   "grants": [],
+   "requires": [],
+   "enemies": {},
+   "rest": false,
+   "cell": [
+    2,
+    6
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "Filter housing 3, hidden up a shaft: the nailgun, a construction tool with the safety filed off.",
+    "light": [
+     "a filter lamp: green"
+    ],
+    "left": [
+     "the filter housing",
+     "the nailgun",
+     "a sign"
+    ],
+    "way_out": "back down",
+    "window": "none",
+    "eye": [
+     "the nailgun",
+     "the housing",
+     "the drop"
+    ]
+   }
+  },
+  {
+   "id": "hall_13",
+   "name": "Floor 13 - Hall",
+   "style": "residential",
+   "teaches": "save",
+   "doors": [
+    "stairwell_east",
+    "maintenance_closet"
+   ],
+   "holds": [
+    "save"
+   ],
+   "grants": [],
+   "requires": [],
+   "enemies": {
+    "scav": 2
+   },
+   "rest": false,
+   "cell": [
+    6,
+    2
+   ],
+   "size": [
+    2,
+    1
+   ],
+   "brief": {
+    "story": "The thirteenth floor corridor, two Scavs and the first care terminal. The terminal is VESTA's: every save is a receipt, and it says so.",
+    "light": [
+     "the care terminal: cyan, cold, the brightest thing on the floor",
+     "corridor strip lights: sodium, warm"
+    ],
+    "left": [
+     "the care terminal",
+     "door frames",
+     "a floor sign pointing to maintenance"
+    ],
+    "way_out": "the maintenance door, west",
+    "window": "none",
+    "eye": [
+     "the terminal",
+     "the Scavs",
+     "the maintenance sign"
+    ]
+   }
+  },
+  {
+   "id": "hall_14",
+   "name": "Floor 14 - Hall",
+   "style": "residential",
+   "teaches": "melee",
+   "doors": [
+    "unit_14c",
+    "stairwell_east"
+   ],
+   "holds": [],
+   "grants": [],
+   "requires": [],
+   "enemies": {
+    "scav": 1
+   },
+   "rest": false,
+   "cell": [
+    6,
+    1
+   ],
+   "size": [
+    2,
+    1
+   ],
+   "brief": {
+    "story": "The fourteenth floor corridor, one Scav in it: the first fight, and the first lesson, bait the lunge and punish the recovery. The lift has been out of service for years; the sign says use the stairs.",
+    "light": [
+     "corridor strip lights: sodium, warm, half of them dead",
+     "the lift call panel: red, hot"
+    ],
+    "left": [
+     "door frames along the back wall",
+     "the dead lift",
+     "a floor sign",
+     "cable runs"
+    ],
+    "way_out": "the stairwell door, east",
+    "window": "none",
+    "eye": [
+     "the Scav",
+     "the lift sign",
+     "the stair door"
+    ]
+   }
+  },
+  {
+   "id": "lift_base",
+   "name": "East Lift - Base",
+   "style": "shaft",
+   "teaches": "wall_jump",
+   "doors": [
+    "underpass",
+    "lift_shaft",
+    "armory_chute"
+   ],
+   "holds": [
+    "grate:lift_base_grate"
+   ],
+   "grants": [],
+   "requires": [
+    "mag_hook"
+   ],
+   "enemies": {},
+   "rest": false,
+   "cell": [
+    9,
+    3
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "The base of the east lift, out of service and the shaft open. The chute grate on the far wall is solid until something releases it from the other side.",
+    "light": [
+     "the lift's dead panel: red, hot",
+     "a shaft lamp: amber"
+    ],
+    "left": [
+     "the lift doors, open",
+     "the grate",
+     "a call panel"
+    ],
+    "way_out": "lift_shaft up",
+    "window": "none",
+    "eye": [
+     "the shaft",
+     "the grate",
+     "the panel"
+    ]
+   }
+  },
+  {
+   "id": "lift_shaft",
+   "name": "East Lift - Shaft",
+   "style": "shaft",
+   "teaches": "wall_jump",
+   "doors": [
+    "lift_base",
+    "east_ledges"
+   ],
+   "holds": [
+    "ram_up"
+   ],
+   "grants": [],
+   "requires": [],
+   "enemies": {
+    "drone": 1
+   },
+   "rest": false,
+   "cell": [
+    9,
+    1
+   ],
+   "size": [
+    1,
+    2
+   ],
+   "brief": {
+    "story": "The east lift shaft, two cells of climb with one drone in it, and a RAM up at the very top for the player who climbs past the door.",
+    "light": [
+     "shaft lamps: amber, warm",
+     "the drone's lens: red, hot"
+    ],
+    "left": [
+     "the cables",
+     "the counterweight",
+     "a drone"
+    ],
+    "way_out": "east_ledges",
+    "window": "none",
+    "eye": [
+     "the drone",
+     "the door",
+     "the top"
+    ]
+   }
+  },
+  {
+   "id": "maintenance_closet",
+   "name": "Maintenance 13",
+   "style": "residential",
+   "teaches": "wall_jump",
+   "doors": [
+    "hall_13"
+   ],
+   "holds": [
+    "ability:mag_hook"
+   ],
+   "grants": [
+    "mag_hook"
+   ],
+   "requires": [],
+   "enemies": {},
+   "rest": false,
+   "cell": [
+    5,
+    2
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "Maintenance 13, and the tower tech who did not make it out of it, account closed, equipment forfeit. His mag-hook is on the floor next to him. The first ability is a dead man's tool.",
+    "light": [
+     "one work lamp on the floor: amber, warm, low",
+     "the tech's chest unit: cyan, cold, dim"
+    ],
+    "left": [
+     "the tech's body",
+     "the mag-hook",
+     "shelving",
+     "a tool cage",
+     "a mop bucket"
+    ],
+    "way_out": "back into hall_13",
+    "window": "none",
+    "eye": [
+     "the mag-hook",
+     "the body",
+     "the door"
+    ]
+   }
+  },
+  {
+   "id": "mezz",
+   "name": "The Mezz",
+   "style": "mezz",
+   "teaches": "talk",
+   "doors": [
+    "mezz_east",
+    "gut_stair"
+   ],
+   "holds": [
+    "npc:stitch",
+    "npc:marisol",
+    "save"
+   ],
+   "grants": [],
+   "requires": [],
+   "enemies": {},
+   "rest": true,
+   "cell": [
+    1,
+    3
+   ],
+   "size": [
+    3,
+    1
+   ],
+   "brief": {
+    "story": "The Mezz, ground level: the hub. Stitch's pawn and surgery, the tenants' association where Marisol waits, the second care terminal, no enemies. The sign to the Gut says no entry.",
+    "light": [
+     "Stitch's green work lamp: green, working",
+     "the care terminal: cyan, cold",
+     "market signage: sodium and magenta, warm"
+    ],
+    "left": [
+     "Stitch's counter",
+     "Marisol's table",
+     "the care terminal",
+     "market stalls",
+     "shutters",
+     "the Gut sign"
+    ],
+    "way_out": "gut_stair down, mezz_east east",
+    "window": "none",
+    "eye": [
+     "Stitch's lamp",
+     "the terminal",
+     "the Gut sign"
+    ]
+   }
+  },
+  {
+   "id": "mezz_east",
+   "name": "Mezzanine East",
+   "style": "mezz",
+   "teaches": "wall_jump",
+   "doors": [
+    "west_stair",
+    "mezz",
+    "pawn_back"
+   ],
+   "holds": [],
+   "grants": [],
+   "requires": [
+    "mag_hook"
+   ],
+   "enemies": {
+    "scav": 1
+   },
+   "rest": false,
+   "cell": [
+    4,
+    3
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "Mezzanine East, the crossroads under the stair: the market west, Stitch east, the stair up. One Scav. The way up is a shaft; the Hook opens it.",
+    "light": [
+     "the market's spill: sodium, warm",
+     "a directional sign: cyan"
+    ],
+    "left": [
+     "the sign",
+     "a shutter",
+     "crates"
+    ],
+    "way_out": "mezz west, pawn_back east, west_stair up",
+    "window": "none",
+    "eye": [
+     "the sign",
+     "the Scav",
+     "the shaft"
+    ]
+   }
+  },
+  {
+   "id": "pawn_back",
+   "name": "Stitch's Back Room",
+   "style": "mezz",
+   "teaches": "quickslot",
+   "doors": [
+    "mezz_east",
+    "underpass"
+   ],
+   "holds": [
+    "ability:cyberdeck"
+   ],
+   "grants": [
+    "cyberdeck"
+   ],
+   "requires": [],
+   "enemies": {},
+   "rest": false,
+   "cell": [
+    5,
+    3
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "Stitch's back room, not for sale and not for you. The Cyberdeck is on the bench: more room to run their programs, or yours.",
+    "light": [
+     "a bench lamp: green, working",
+     "the deck: cyan, cold"
+    ],
+    "left": [
+     "the bench",
+     "the Cyberdeck",
+     "parts bins",
+     "a curtain"
+    ],
+    "way_out": "underpass east",
+    "window": "none",
+    "eye": [
+     "the deck",
+     "the bench",
+     "the door"
+    ]
+   }
+  },
+  {
+   "id": "roof_access",
+   "name": "Roof Access",
+   "style": "roof",
+   "teaches": "map",
+   "doors": [
+    "stairwell_east",
+    "roof_span",
+    "roof_gap"
+   ],
+   "holds": [],
+   "grants": [],
+   "requires": [],
+   "enemies": {},
+   "rest": false,
+   "cell": [
+    8,
+    0
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "The top of the stairwell shaft and a choice of three ways: the roof west, the gap east toward Collections, the shaft back down. A sign says the east way is VESTA staff only.",
+    "light": [
+     "a roof access lamp: sodium, warm",
+     "the sky: cold"
+    ],
+    "left": [
+     "the access hut",
+     "a VESTA staff sign",
+     "aerials"
+    ],
+    "way_out": "roof_span west, roof_gap east",
+    "window": "the city, far",
+    "eye": [
+     "the Collections sign",
+     "the roof",
+     "the gap"
+    ]
+   }
+  },
+  {
+   "id": "roof_gap",
+   "name": "Between Towers",
+   "style": "roof",
+   "teaches": "air_dash",
+   "doors": [
+    "roof_access",
+    "collections_lift"
+   ],
+   "holds": [],
+   "grants": [],
+   "requires": [
+    "sidewinder"
+   ],
+   "enemies": {
+    "drone": 1
+   },
+   "rest": false,
+   "cell": [
+    9,
+    0
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "Between towers: the first Sidewinder gate, eight tiles over a void. A sign says leg unit override required. Falling short returns the player to the lip with damage, not a death.",
+    "light": [
+     "the sky: cold",
+     "the sign: red, hot",
+     "a drone's lens: red"
+    ],
+    "left": [
+     "the sign",
+     "the broken bridge stubs",
+     "a drone"
+    ],
+    "way_out": "collections_lift east",
+    "window": "the drop between the towers",
+    "eye": [
+     "the gap",
+     "the sign",
+     "the far lip"
+    ]
+   }
+  },
+  {
+   "id": "roof_span",
+   "name": "Tower 7 - Roof",
+   "style": "roof",
+   "teaches": "jump",
+   "doors": [
+    "west_stair",
+    "roof_access"
+   ],
+   "holds": [
+    "tease"
+   ],
+   "grants": [],
+   "requires": [],
+   "enemies": {
+    "scav": 3,
+    "drone": 2
+   },
+   "rest": false,
+   "cell": [
+    5,
+    0
+   ],
+   "size": [
+    3,
+    1
+   ],
+   "brief": {
+    "story": "Tower 7's HVAC deck: three Scavs, two drones, and the water tower, the first double-jump tease, a ledge on a single wall the whole kit will never reach. The Collections tower is visible east.",
+    "light": [
+     "the sky: cold, the main source",
+     "a red aircraft lamp on the water tower: red, hot",
+     "HVAC pilot lamps: green"
+    ],
+    "left": [
+     "HVAC units",
+     "the water tower",
+     "ducting",
+     "a fence",
+     "aerials"
+    ],
+    "way_out": "west_stair west, roof_access east",
+    "window": "the city and the Collections tower, far",
+    "eye": [
+     "the water tower ledge",
+     "the drones",
+     "the Collections tower"
+    ]
+   }
+  },
+  {
+   "id": "server_nook",
+   "name": "Edge Node 7",
+   "style": "mezz",
+   "teaches": "overload",
+   "doors": [
+    "east_ledges",
+    "catwalks"
+   ],
+   "holds": [
+    "hack:overload"
+   ],
+   "grants": [
+    "overload"
+   ],
+   "requires": [],
+   "enemies": {
+    "drone": 1
+   },
+   "rest": false,
+   "cell": [
+    12,
+    1
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "Edge Node 7, a VESTA server closet on the tower's edge, restricted, one drone guarding it. Overload is on the rack: corporate property, pointed the other way.",
+    "light": [
+     "rack lights: green and cyan, working",
+     "the drone's lens: red"
+    ],
+    "left": [
+     "server racks",
+     "a cable loom",
+     "a restricted sign"
+    ],
+    "way_out": "catwalks east",
+    "window": "none",
+    "eye": [
+     "the rack",
+     "the drone",
+     "the door"
+    ]
+   }
+  },
+  {
+   "id": "service_tunnel",
+   "name": "The Gut - Service Tunnel",
+   "style": "gut",
+   "teaches": "dash",
+   "doors": [
+    "gut_stair",
+    "gut_pumps"
+   ],
+   "holds": [],
+   "grants": [],
+   "requires": [
+    "mag_hook"
+   ],
+   "enemies": {
+    "scav": 3,
+    "riot": 2
+   },
+   "rest": false,
+   "cell": [
+    0,
+    5
+   ],
+   "size": [
+    3,
+    1
+   ],
+   "brief": {
+    "story": "The service tunnel, live water in the floor: VESTA never paid to ground it. Three Scavs and two Riot units in a corridor; the shaft back up to the stair is the reason the Gut is no trap before Breach.",
+    "light": [
+     "the water: cyan-white, cold, live",
+     "tunnel lamps: sodium, warm, sparse"
+    ],
+    "left": [
+     "the water channel",
+     "pipes",
+     "a warning sign",
+     "a shaft mouth"
+    ],
+    "way_out": "gut_pumps west",
+    "window": "none",
+    "eye": [
+     "the water",
+     "the Riot units",
+     "the shaft"
+    ]
+   }
+  },
+  {
+   "id": "stairwell_east",
+   "name": "Stairwell East",
+   "style": "shaft",
+   "teaches": "wall_slide",
+   "doors": [
+    "hall_14",
+    "hall_13",
+    "roof_access"
+   ],
+   "holds": [],
+   "grants": [],
+   "requires": [
+    "mag_hook"
+   ],
+   "enemies": {},
+   "rest": false,
+   "cell": [
+    8,
+    1
+   ],
+   "size": [
+    1,
+    2
+   ],
+   "brief": {
+    "story": "The east stairwell, fourteen floors of shaft with the stairs long since stripped for scrap. Dropping down is easy; the way up is two facing walls, which means nothing until the Mag-Hook and everything after.",
+    "light": [
+     "one caged lamp per landing: amber, warm, most dark",
+     "a slit of sky at the very top: cold"
+    ],
+    "left": [
+     "stair stubs",
+     "a fallen handrail",
+     "a painted floor number per landing"
+    ],
+    "way_out": "hall_13 below, the roof above",
+    "window": "none",
+    "eye": [
+     "the drop",
+     "the far wall",
+     "the light above"
+    ]
+   }
+  },
+  {
+   "id": "underpass",
+   "name": "Service Underpass",
+   "style": "mezz",
+   "teaches": "dash",
+   "doors": [
+    "pawn_back",
+    "lift_base",
+    "drain_riser"
+   ],
+   "holds": [
+    "item:work_boots"
+   ],
+   "grants": [],
+   "requires": [],
+   "enemies": {
+    "scav": 3,
+    "riot": 1
+   },
+   "rest": false,
+   "cell": [
+    6,
+    3
+   ],
+   "size": [
+    3,
+    1
+   ],
+   "brief": {
+    "story": "The service underpass under the Mezz, three Scavs and the first Riot unit: get behind the shield or hit it heavy. The work boots are in a chest; the drain riser's hole is in the floor.",
+    "light": [
+     "service lamps: sodium, warm",
+     "the Riot unit's lamp: amber, hot"
+    ],
+    "left": [
+     "a chest",
+     "pipes",
+     "the riser hole",
+     "a maintenance sign"
+    ],
+    "way_out": "lift_base east, drain_riser down",
+    "window": "none",
+    "eye": [
+     "the Riot unit",
+     "the chest",
+     "the hole"
+    ]
+   }
+  },
+  {
+   "id": "unit_14c",
+   "name": "Unit 14-C",
+   "style": "residential",
+   "teaches": "run",
+   "doors": [
+    "hall_14"
+   ],
+   "holds": [
+    "notice"
+   ],
+   "grants": [],
+   "requires": [],
+   "enemies": {},
+   "rest": false,
+   "cell": [
+    5,
+    1
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "Dani's flat, the morning the notices came: water, power and the leg unit suspended in one red line each. Nothing inside works; the room is lit from the street through the window, and the hall's lamp spills warm through the door, so the way out reads as warm.",
+    "light": [
+     "window: cold blue-cyan, cold",
+     "door lamp: amber, warm",
+     "two notice screens: red, hot, local halo only",
+     "ceiling lamp: dark"
+    ],
+    "left": [
+     "the repossession notice",
+     "crates in two sizes",
+     "a bedroll",
+     "a bag pile",
+     "a dead monitor",
+     "the hanging lamp, dark",
+     "a duct along the ceiling lip with one cable"
+    ],
+    "way_out": "the flat's door, right, the hall lamp spilling in",
+    "window": "the block opposite in rain, rows of lit windows",
+    "eye": [
+     "window",
+     "Dani",
+     "door"
+    ]
+   }
+  },
+  {
+   "id": "west_alcove",
+   "name": "Utility 3W",
+   "style": "residential",
+   "teaches": "stats",
+   "doors": [
+    "west_stair"
+   ],
+   "holds": [
+    "hp_up"
+   ],
+   "grants": [],
+   "requires": [],
+   "enemies": {},
+   "rest": false,
+   "cell": [
+    3,
+    1
+   ],
+   "size": [
+    1,
+    1
+   ],
+   "brief": {
+    "story": "Utility 3W, a dermal stock cupboard nobody was meant to remove from. One HP up.",
+    "light": [
+     "a cabinet lamp: green, working"
+    ],
+    "left": [
+     "the dermal cabinet",
+     "shelves"
+    ],
+    "way_out": "back to the stair",
+    "window": "none",
+    "eye": [
+     "the pickup",
+     "the cabinet",
+     "the door"
+    ]
+   }
+  },
+  {
+   "id": "west_stair",
+   "name": "Stair West",
+   "style": "shaft",
+   "teaches": "dash",
+   "doors": [
+    "roof_span",
+    "west_alcove",
+    "mezz_east"
+   ],
+   "holds": [],
+   "grants": [],
+   "requires": [],
+   "enemies": {
+    "scav": 2
+   },
+   "rest": false,
+   "cell": [
+    4,
+    0
+   ],
+   "size": [
+    1,
+    3
+   ],
+   "brief": {
+    "story": "Stair West, a zig-zag of ledges three cells down to the mezzanine, two Scavs on the way and a utility door off the second landing.",
+    "light": [
+     "landing lamps: amber, warm",
+     "the alcove door: green, a working machine"
+    ],
+    "left": [
+     "ledges",
+     "handrails",
+     "a utility door",
+     "graffiti"
+    ],
+    "way_out": "mezz_east at the bottom",
+    "window": "none",
+    "eye": [
+     "the next ledge",
+     "the alcove door",
+     "the bottom"
+    ]
+   }
+  }
+ ]
+}

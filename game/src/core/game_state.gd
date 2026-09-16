@@ -19,6 +19,16 @@ extends Node
 ## version-1 file degrades to a fresh sheet rather than a crash.
 const SAVE_VERSION := 2
 
+## The three ability flags (DESIGN.md §2 progression). Plain flags — this file
+## stays a flag store — but named here so a gate, a pickup and a gym cannot
+## spell the same ability three ways.
+const ABILITY_MAG_HOOK := &"ability.mag_hook"
+const ABILITY_CYBERDECK := &"ability.cyberdeck"
+const ABILITY_SIDEWINDER := &"ability.sidewinder"
+## The Sidewinder as found: carried, not yet installed. Implants are surgery
+## (DESIGN.md §2); the ripperdoc turns this into `ABILITY_SIDEWINDER`.
+const SIDEWINDER_CARRIED := &"item.sidewinder_carried"
+
 ## Arbitrary world flags, e.g. "door.stacks_breach_01" -> true.
 var _flags: Dictionary = {}
 ## Room ids the player has entered at least once (drives the map screen).
@@ -27,6 +37,8 @@ var _visited_rooms: Dictionary = {}
 var current_save_point: StringName = &""
 ## Seconds of play time accumulated across sessions.
 var play_time: float = 0.0
+## Which of the three files this run writes to. Chosen on the title screen.
+var active_slot: int = 0
 ## Systems that serialize themselves, keyed by the save-file key they own.
 ## Each must answer `snapshot()`, `restore(Dictionary)` and `reset()`.
 var _providers: Dictionary = {}
@@ -70,6 +82,22 @@ func has_flag(flag: StringName) -> bool:
 
 func flag_count() -> int:
 	return _flags.size()
+
+
+# --- Abilities --------------------------------------------------------------
+#
+# Possession, not tuning: `MovementConfig` says how a wall jump behaves, these
+# say whether the player has it (DESIGN.md §3.1).
+
+func has_ability(ability: StringName) -> bool:
+	return has_flag(ability)
+
+
+func grant_ability(ability: StringName) -> void:
+	if has_flag(ability):
+		return
+	set_flag(ability)
+	Events.ability_granted.emit(ability)
 
 
 # --- Rooms ------------------------------------------------------------------

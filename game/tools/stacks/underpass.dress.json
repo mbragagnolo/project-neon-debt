@@ -1,0 +1,221 @@
+{
+  "_doc": "Service Underpass (mezz). Written by tools/stacks/dress.py from dress_vocab.json, which is where the district's lighting is decided. Edit here for this room alone, or in the vocabulary for the whole style; re-running the script overwrites this file.",
+  "decor": "seeded",
+  "_decor": "keep the clutter the generator places from the room id's seed; this file adds light.",
+  "ambient": [
+    0.66,
+    0.68,
+    0.84
+  ],
+  "door_lamp": {
+    "color": [
+      0.55,
+      0.92,
+      1.0
+    ],
+    "energy": 1.2,
+    "scale": 2.8
+  },
+  "lights": [
+    {
+      "name": "lamp_1",
+      "at": [
+        2490,
+        690
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_2",
+      "at": [
+        1290,
+        810
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_3",
+      "at": [
+        5310,
+        810
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_4",
+      "at": [
+        150,
+        930
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_5",
+      "at": [
+        630,
+        930
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_6",
+      "at": [
+        2010,
+        930
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_7",
+      "at": [
+        3210,
+        930
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_8",
+      "at": [
+        3750,
+        930
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "lamp_9",
+      "at": [
+        4410,
+        930
+      ],
+      "color": [
+        0.45,
+        0.95,
+        1.0
+      ],
+      "energy": 1.0,
+      "scale": 3.0
+    },
+    {
+      "name": "ledge_1",
+      "at": [
+        2670,
+        756
+      ],
+      "color": [
+        0.55,
+        0.95,
+        1.0
+      ],
+      "energy": 0.5,
+      "scale": 1.5
+    },
+    {
+      "name": "sign_1",
+      "at": [
+        390,
+        744
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "sign_2",
+      "at": [
+        1770,
+        744
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "item_3",
+      "at": [
+        5190,
+        864
+      ],
+      "color": [
+        0.45,
+        1.0,
+        0.6
+      ],
+      "energy": 0.8,
+      "scale": 1.5
+    },
+    {
+      "name": "fill",
+      "at": [
+        2880,
+        486
+      ],
+      "color": [
+        0.55,
+        0.5,
+        0.9
+      ],
+      "energy": 0.45,
+      "scale": 9.0,
+      "scale_xy": [
+        5.33,
+        1.0
+      ]
+    }
+  ]
+}

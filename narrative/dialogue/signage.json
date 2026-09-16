@@ -1,0 +1,12 @@
+{
+  "_doc": "Signs and notices in the world: no speaker, the sign box (a plate sized to the text's newlines, 224 px wide at 12 px). `trigger` names where the sign is placed.",
+  "scene": "signage",
+  "section": "Signage",
+  "speaker": null,
+  "box": "sign",
+  "branches": [
+    { "id": "notice.repossession", "trigger": "make_stacks.gd: the `notice` marker (14-C's door)", "when": [], "pages": ["notice.repossession"], "then": [] },
+    { "id": "notice.tier", "trigger": null, "when": [], "pages": ["notice.tier"], "then": [], "_note": "tease.gd types its own copy of this text instead of reading the table; lint.py --source lists it." },
+    { "id": "notice.care", "trigger": null, "when": [], "pages": ["notice.care"], "then": [], "_note": "save_point.gd prints its own terminal text; the table's line is unread." }
+  ]
+}

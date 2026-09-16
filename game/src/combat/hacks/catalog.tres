@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HackCatalog" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://src/combat/hacks/hack_catalog.gd" id="1_catalog"]
+[ext_resource type="Resource" path="res://src/combat/hacks/firewall.tres" id="2_firewall"]
+[ext_resource type="Resource" path="res://src/combat/hacks/overload.tres" id="3_overload"]
+[ext_resource type="Resource" path="res://src/combat/hacks/breach.tres" id="4_breach"]
+
+[resource]
+script = ExtResource("1_catalog")
+hacks = Array[Hack]([ExtResource("2_firewall"), ExtResource("3_overload"), ExtResource("4_breach")])

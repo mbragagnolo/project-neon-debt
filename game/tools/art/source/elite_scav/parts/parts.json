@@ -1,0 +1,123 @@
+{
+  "coat_back": {
+    "pivot": [
+      105,
+      103
+    ],
+    "origin": [
+      75,
+      552
+    ],
+    "still": null
+  },
+  "hood": {
+    "pivot": [
+      185,
+      95
+    ],
+    "origin": [
+      0,
+      0
+    ],
+    "still": null
+  },
+  "torso": {
+    "pivot": [
+      128,
+      394
+    ],
+    "origin": [
+      127,
+      246
+    ],
+    "still": null
+  },
+  "leg_near_upper": {
+    "pivot": [
+      81,
+      66
+    ],
+    "origin": [
+      219,
+      596
+    ],
+    "still": null
+  },
+  "leg_near_lower": {
+    "pivot": [
+      80,
+      16
+    ],
+    "origin": [
+      220,
+      884
+    ],
+    "still": null
+  },
+  "foot_near": {
+    "pivot": [
+      46,
+      23
+    ],
+    "origin": [
+      254,
+      1029
+    ],
+    "still": null
+  },
+  "head": {
+    "pivot": [
+      76,
+      197
+    ],
+    "origin": [
+      214,
+      65
+    ],
+    "still": null
+  },
+  "arm_near_upper": {
+    "pivot": [
+      30,
+      67
+    ],
+    "origin": [
+      310,
+      273
+    ],
+    "still": null
+  },
+  "arm_near_lower": {
+    "pivot": [
+      16,
+      86
+    ],
+    "origin": [
+      504,
+      264
+    ],
+    "still": null
+  },
+  "hand_near": {
+    "pivot": [
+      10,
+      54
+    ],
+    "origin": [
+      680,
+      288
+    ],
+    "still": null
+  },
+  "weapon": {
+    "pivot": [
+      28,
+      518
+    ],
+    "origin": [
+      272,
+      122
+    ],
+    "still": "cutter"
+  }
+}

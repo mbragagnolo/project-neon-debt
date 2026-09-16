@@ -1,0 +1,105 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="Script" path="res://src/enemies/enemy_base.gd" id="1_enemy"]
+[ext_resource type="Script" path="res://src/art/pixel_anim.gd" id="90_anim"]
+[ext_resource type="Texture2D" path="res://assets/sprites/drone.png" id="91_sheet"]
+[ext_resource type="Resource" path="res://src/enemies/drone/drone.tres" id="2_drone"]
+[ext_resource type="Script" path="res://src/combat/health.gd" id="3_health"]
+[ext_resource type="Script" path="res://src/combat/hurtbox.gd" id="4_hurtbox"]
+[ext_resource type="Script" path="res://src/combat/hitbox.gd" id="5_hitbox"]
+[ext_resource type="Resource" path="res://src/combat/combat_config.tres" id="6_combat"]
+[ext_resource type="Script" path="res://src/enemies/states/enemy_state_machine.gd" id="7_machine"]
+[ext_resource type="Script" path="res://src/enemies/states/hover_state.gd" id="8_hover"]
+[ext_resource type="Script" path="res://src/enemies/states/track_state.gd" id="9_track"]
+[ext_resource type="Script" path="res://src/enemies/states/aim_state.gd" id="10_aim"]
+[ext_resource type="Script" path="res://src/enemies/states/stagger_state.gd" id="11_stagger"]
+[ext_resource type="Script" path="res://src/enemies/states/stunned_state.gd" id="12_stunned"]
+[ext_resource type="Script" path="res://src/enemies/states/dead_state.gd" id="13_dead"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drone_body"]
+size = Vector2(52, 36)
+
+[node name="Drone" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 1
+motion_mode = 1
+script = ExtResource("1_enemy")
+config = ExtResource("2_drone")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_drone_body")
+
+[node name="Visual" type="Sprite2D" parent="."]
+position = Vector2(0, -54)
+texture = ExtResource("91_sheet")
+script = ExtResource("90_anim")
+frame_width = 80
+frame_height = 64
+clips = {
+"aim": [8, 1, 0.0, false],
+"dead": [11, 1, 0.0, false],
+"hover": [4, 4, 8.0, true],
+"idle": [0, 4, 8.0, true],
+"stagger": [9, 1, 0.0, false],
+"stunned": [10, 1, 0.0, false]
+}
+autoplay = &"idle"
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_health")
+max_hp = 10
+defense = 0
+stagger_threshold = 1
+iframe_time = 0.0
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("4_hurtbox")
+config = ExtResource("6_combat")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_drone_body")
+
+[node name="AttackHitbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 8
+monitoring = false
+monitorable = false
+script = ExtResource("5_hitbox")
+
+[node name="ContactHitbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 8
+monitoring = false
+monitorable = false
+script = ExtResource("5_hitbox")
+continuous = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHitbox"]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_drone_body")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("7_machine")
+initial_state = &"Hover"
+
+[node name="Hover" type="Node" parent="StateMachine"]
+script = ExtResource("8_hover")
+
+[node name="Track" type="Node" parent="StateMachine"]
+script = ExtResource("9_track")
+
+[node name="Aim" type="Node" parent="StateMachine"]
+script = ExtResource("10_aim")
+
+[node name="Stagger" type="Node" parent="StateMachine"]
+script = ExtResource("11_stagger")
+
+[node name="Stunned" type="Node" parent="StateMachine"]
+script = ExtResource("12_stunned")
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("13_dead")

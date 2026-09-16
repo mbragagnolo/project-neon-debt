@@ -13,6 +13,7 @@ var _remaining: float = 0.0
 
 func enter(_previous: StringName) -> void:
 	enemy.tint(enemy.config.color_recover)
+	enemy.play(&"recover")
 	_remaining = enemy.config.recover_time
 
 
@@ -29,7 +30,4 @@ func physics_update(delta: float) -> StringName:
 	_remaining -= delta
 	if _remaining > 0.0:
 		return &""
-
-	if enemy.has_player() and enemy.distance_to_player() <= enemy.config.detection_range:
-		return &"Chase"
-	return &"Patrol"
+	return enemy.after_recover_state()

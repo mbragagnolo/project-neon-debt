@@ -1,0 +1,33 @@
+Neon Debt -- v0.1.0
+=====================
+
+KEYS
+----
+  Move left                   A / Left    gamepad: D-pad left
+  Move right                  D / Right    gamepad: D-pad right
+  Up (menus, doors, lifts)    W / Up    gamepad: D-pad up
+  Down (menus, drop through)  S / Down    gamepad: D-pad down
+  Jump (hold for height)      Space    gamepad: A / Cross
+  Dash                        Shift    gamepad: RB
+  Melee                       J    gamepad: X / Square
+  Ranged                      K    gamepad: LB
+  Cast a hack (costs RAM)     L    gamepad: Y / Triangle
+  Next hack                   E    gamepad: RS
+  Previous hack               Q    gamepad: LS
+  Talk, use, pick up          F    gamepad: B / Circle
+  Map                         M
+  Gear and stats              Tab    gamepad: Back
+  Pause / back                Escape    gamepad: Start
+
+A gamepad works; so does the keyboard. Both are listed above.
+
+WHAT WE NEED FROM YOU
+---------------------
+Play until you are done or until you are stuck. Then tell us where you
+stopped, anything you looked at and could not reach, and whether you
+would pick melee, ranged or a hack if you had to keep only one. If you
+got stuck, say what you tried.
+
+This is a vertical slice: one district, one boss, thirty to forty-five
+minutes. Nothing here tells you what to do on purpose -- if you cannot
+work out where to go, that is the thing we need to know.

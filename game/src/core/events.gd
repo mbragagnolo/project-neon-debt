@@ -22,6 +22,12 @@ signal enemy_died(enemy: Node, xp_reward: int, credit_reward: int)
 signal hitstop_requested(frames: int)
 signal camera_shake_requested(strength: float, duration: float)
 
+# --- The boss (M6) -----------------------------------------------------------
+signal boss_hp_changed(display_name: String, hp: int, max_hp: int)
+signal boss_phase_changed(phase: int)
+## The slice's ending hangs off this.
+signal boss_defeated(boss: Node)
+
 # --- Vitals (M2/M3/M4) ------------------------------------------------------
 signal hp_changed(current: int, maximum: int)
 signal ram_changed(current: int, maximum: int)
@@ -40,10 +46,22 @@ signal credits_changed(amount: int)
 signal hack_selected(hack_id: StringName)
 signal hack_cast(hack_id: StringName, ram_cost: int)
 signal hack_failed(hack_id: StringName, reason: StringName)
+## A program was found. Programs are not items, so this is not `item_picked_up`.
+signal hack_acquired(hack_id: StringName)
+## Firewall went up (`active`, with its full duration) or came down.
+signal guard_changed(active: bool, seconds: float)
+## A gadget or implant was granted — the metroidvania gates read these.
+signal ability_granted(ability: StringName)
 
 # --- World / metroidvania (M5) ---------------------------------------------
 signal room_entered(room_id: StringName)
 signal room_exited(room_id: StringName)
+## A door was walked into; the world answers by swapping rooms.
+signal room_travel_requested(room_id: StringName, door_id: StringName)
+## A permanent stat bump was found (`&"hp"` or `&"ram"`).
+signal stat_up_acquired(kind: StringName, amount: int)
+signal quest_item_acquired(item_id: StringName)
+signal shop_purchased(entry_id: StringName)
 signal door_opened(door_id: StringName)
 signal save_point_activated(save_point_id: StringName)
 signal game_saved(slot: int)
@@ -56,3 +74,14 @@ signal quest_completed(quest_id: StringName)
 
 # --- UI ---------------------------------------------------------------------
 signal toast_requested(text: String)
+
+# --- Presentation (M7): what the player did, where, for sound and juice ---
+## The player's verbs as they happen: jump, wall_jump, dash, land, swing,
+## shoot_<weapon>, hurt, hurt_guard, hazard. Position is the feet.
+signal player_action(action: StringName, position: Vector2, direction: int)
+## Anything else that wants a sound by name (docs/audio/direction.md).
+signal sfx_requested(id: StringName, position: Vector2)
+## A shot met a wall.
+signal impact(position: Vector2, colour: Color)
+## One of the protagonist's lines, shown at the bottom for a few seconds.
+signal bark_requested(text: String)

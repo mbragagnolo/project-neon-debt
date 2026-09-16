@@ -1,0 +1,66 @@
+{
+ "name": "dust.land",
+ "tag": "direct",
+ "frame": [
+  48,
+  20
+ ],
+ "anchor": [
+  24,
+  20
+ ],
+ "fps": 20,
+ "clips": {
+  "play": [
+   0,
+   6,
+   20,
+   false
+  ]
+ },
+ "colours_sheet": 4,
+ "frames": [
+  {
+   "colours": 3,
+   "opaque": 116,
+   "off_palette": 0,
+   "rim_dark": 0.28,
+   "rim_light": 0.43
+  },
+  {
+   "colours": 3,
+   "opaque": 170,
+   "off_palette": 0,
+   "rim_dark": 0.5,
+   "rim_light": 0.34
+  },
+  {
+   "colours": 3,
+   "opaque": 171,
+   "off_palette": 0,
+   "rim_dark": 0.2,
+   "rim_light": 0.34
+  },
+  {
+   "colours": 3,
+   "opaque": 135,
+   "off_palette": 0,
+   "rim_dark": 0.36,
+   "rim_light": 0.4
+  },
+  {
+   "colours": 2,
+   "opaque": 67,
+   "off_palette": 0,
+   "rim_dark": 0.32,
+   "rim_light": 0.3
+  },
+  {
+   "colours": 2,
+   "opaque": 28,
+   "off_palette": 0,
+   "rim_dark": 0.21,
+   "rim_light": 0.26
+  }
+ ]
+}

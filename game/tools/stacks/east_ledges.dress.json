@@ -1,0 +1,179 @@
+{
+  "_doc": "East Ledges (roof). Written by tools/stacks/dress.py from dress_vocab.json, which is where the district's lighting is decided. Edit here for this room alone, or in the vocabulary for the whole style; re-running the script overwrites this file.",
+  "decor": "seeded",
+  "_decor": "keep the clutter the generator places from the room id's seed; this file adds light.",
+  "ambient": [
+    0.54,
+    0.6,
+    0.78
+  ],
+  "door_lamp": {
+    "color": [
+      1.0,
+      0.66,
+      0.32
+    ],
+    "energy": 1.2,
+    "scale": 2.8
+  },
+  "lights": [
+    {
+      "name": "lamp_1",
+      "at": [
+        3510,
+        330
+      ],
+      "color": [
+        1.0,
+        0.62,
+        0.28
+      ],
+      "energy": 1.0,
+      "scale": 3.4
+    },
+    {
+      "name": "lamp_2",
+      "at": [
+        2610,
+        450
+      ],
+      "color": [
+        1.0,
+        0.62,
+        0.28
+      ],
+      "energy": 1.0,
+      "scale": 3.4
+    },
+    {
+      "name": "lamp_3",
+      "at": [
+        1410,
+        690
+      ],
+      "color": [
+        1.0,
+        0.62,
+        0.28
+      ],
+      "energy": 1.0,
+      "scale": 3.4
+    },
+    {
+      "name": "lamp_4",
+      "at": [
+        210,
+        930
+      ],
+      "color": [
+        1.0,
+        0.62,
+        0.28
+      ],
+      "energy": 1.0,
+      "scale": 3.4
+    },
+    {
+      "name": "ledge_1",
+      "at": [
+        3600,
+        396
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.4
+      ],
+      "energy": 0.55,
+      "scale": 1.6
+    },
+    {
+      "name": "ledge_2",
+      "at": [
+        2610,
+        516
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.4
+      ],
+      "energy": 0.55,
+      "scale": 1.6
+    },
+    {
+      "name": "ledge_3",
+      "at": [
+        2010,
+        636
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.4
+      ],
+      "energy": 0.55,
+      "scale": 1.6
+    },
+    {
+      "name": "hp_up_1",
+      "at": [
+        3630,
+        384
+      ],
+      "color": [
+        1.0,
+        0.4,
+        0.4
+      ],
+      "energy": 0.8,
+      "scale": 1.4
+    },
+    {
+      "name": "item_2",
+      "at": [
+        3210,
+        504
+      ],
+      "color": [
+        0.45,
+        1.0,
+        0.6
+      ],
+      "energy": 0.8,
+      "scale": 1.5
+    },
+    {
+      "name": "sign_3",
+      "at": [
+        510,
+        744
+      ],
+      "color": [
+        1.0,
+        0.72,
+        0.25
+      ],
+      "energy": 0.55,
+      "scale": 1.2
+    },
+    {
+      "name": "fill",
+      "at": [
+        1920,
+        486
+      ],
+      "color": [
+        0.4,
+        0.52,
+        0.86
+      ],
+      "energy": 0.5,
+      "scale": 11.0,
+      "scale_xy": [
+        3.56,
+        1.0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+ "name": "burst.die",
+ "tag": "bake",
+ "frame": [
+  64,
+  64
+ ],
+ "anchor": [
+  32,
+  40
+ ],
+ "fps": 24,
+ "clips": {
+  "play": [
+   0,
+   8,
+   24,
+   false
+  ]
+ },
+ "colours_sheet": 10,
+ "frames": [
+  {
+   "colours": 5,
+   "opaque": 433,
+   "off_palette": 0,
+   "rim_dark": 0.78,
+   "rim_light": 0.14
+  },
+  {
+   "colours": 5,
+   "opaque": 283,
+   "off_palette": 0,
+   "rim_dark": 0.59,
+   "rim_light": 0.39
+  },
+  {
+   "colours": 9,
+   "opaque": 370,
+   "off_palette": 0,
+   "rim_dark": 0.58,
+   "rim_light": 0.45
+  },
+  {
+   "colours": 8,
+   "opaque": 471,
+   "off_palette": 0,
+   "rim_dark": 0.55,
+   "rim_light": 0.41
+  },
+  {
+   "colours": 7,
+   "opaque": 390,
+   "off_palette": 0,
+   "rim_dark": 0.65,
+   "rim_light": 0.4
+  },
+  {
+   "colours": 6,
+   "opaque": 340,
+   "off_palette": 0,
+   "rim_dark": 0.47,
+   "rim_light": 0.49
+  },
+  {
+   "colours": 4,
+   "opaque": 217,
+   "off_palette": 0,
+   "rim_dark": 0.25,
+   "rim_light": 0.29
+  },
+  {
+   "colours": 2,
+   "opaque": 97,
+   "off_palette": 0,
+   "rim_dark": 0.16,
+   "rim_light": 0.45
+  }
+ ]
+}

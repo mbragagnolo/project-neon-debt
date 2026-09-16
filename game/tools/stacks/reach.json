@@ -1,0 +1,26 @@
+{
+  "_doc": "Derived from game/src/player/movement_config.tres by adapters/godot_movement_config.py; regenerate when the controller is retuned.",
+  "body": {
+    "width": 48.0,
+    "height": 88.0
+  },
+  "run_speed": 450.0,
+  "jump": {
+    "height": 168.0,
+    "time_to_apex": 0.36,
+    "fall_gravity_multiplier": 1.6,
+    "max_fall_speed": 1200.0
+  },
+  "dash": {
+    "distance": 288.0,
+    "duration": 0.16,
+    "in_air_ability": "sidewinder"
+  },
+  "wall_jump": {
+    "height": 144.0,
+    "push": 420.0,
+    "lockout_time": 0.12,
+    "ability": "mag_hook"
+  },
+  "gate_margin": 1.15
+}

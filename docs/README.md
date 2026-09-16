@@ -16,7 +16,9 @@ into DESIGN.md and the detail stays here.
 | [`level-design/`](level-design/) | District topology, room graph, gate & save placement, gym notes | M5 |
 | [`characters/`](characters/) | Enemy stat blocks & behaviors, boss phases, NPC roster | M2, M6 |
 | [`narrative/`](narrative/) | Hook, tone, names, quest & NPC text | M5 (names land everywhere) |
-| [`ui/`](ui/) | HUD layout, pause menu, map screen, inventory screen | M3, M5, M7 |
+| [`ui/`](ui/) | HUD layout, pause menu, map screen, inventory screen, title and settings | M3, M5, M7 |
+| [`art/`](art/) | Palette, sprite pipeline, room dressing, juice | M7 |
+| [`audio/`](audio/) | Synthesised effects and music loops, the bus layout, what plays when | M7 |
 
 A spec is **draft** until its decisions are reflected in DESIGN.md or in a
 merged implementation; mark the status at the top of each file.

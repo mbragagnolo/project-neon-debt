@@ -1,0 +1,193 @@
+{
+  "name": "stitch",
+  "look": "docs/art/cast.md#stitch--ripperdoc-and-pawn",
+  "sheet": "sprites/stitch.png",
+  "still": {
+    "model": "Laxhar/noobai-XL-1.1",
+    "width": 832,
+    "height": 1216,
+    "steps": 28,
+    "cfg": 5.5,
+    "scheduler": "euler_a",
+    "chosen_seed": 8,
+    "prompt": "masterpiece, best quality, very aesthetic, absurdres, 1boy, solo, mature male, old man, bald, shaved head, dark skin, brown skin, broad shoulders, stocky, (sitting, seated at a table, elbows on table, from side, profile)1.25, looking ahead, (simple background, grey background)1.2, (magnifying loupes on forehead, surgical loupes, goggles on head)1.2, green scrubs, sleeveless shirt, (stained canvas apron, brown apron)1.15, nitrile gloves, blue gloves, (one prosthetic arm, mechanical arm, grey metal arm)1.2, ripperdoc, surgeon, cyberpunk, cel shading, anime coloring, soft shading, detailed clothes, clothes wrinkles, highlights, rim lighting, character design",
+    "negative": "nsfw, nude, naked, nipples, underwear, bare shoulders, barefoot, cleavage, worst quality, low quality, blurry, watermark, signature, text, jpeg artifacts, multiple views, multiple girls, multiple boys, cropped, chibi, from behind, back view, gradient background, detailed background, scenery, gun, weapon, holding, flat color, flat shading, monochrome, greyscale, sketch, unfinished, lowres, spotlight, lens flare, light rays, light particles, facing viewer, from front, dynamic pose, young, child, standing, full body, legs, hat, hair, beard, glasses, red, orange",
+    "_prompt_note": "Dani's shading tags and negative as the base, with 'sitting' moved from the negative to the prompt: cast.md seats him behind the counter, four parts, no legs.",
+    "chosen_run": "shaded",
+    "flipped": false,
+    "_chosen_note": "shaded seed 8: seated in profile facing right, leaning in on the counter, the chrome arm on top, loupes up. The desk and the stool are discards; the thighs stay with the torso (cast.md: four parts, no legs)."
+  },
+  "target": {
+    "height_art_px": 60,
+    "scale": 2,
+    "frame": [
+      56,
+      60
+    ],
+    "downscale": "kcentroid",
+    "edge": {
+      "shade": 0.62,
+      "lit": 1.3,
+      "light": [
+        -1,
+        -1
+      ]
+    },
+    "palette": [
+      "green",
+      "green_d",
+      "concrete0",
+      "concrete1",
+      "concrete2",
+      "concrete3",
+      "grey",
+      "grey_d",
+      "skin2",
+      "skin2_d",
+      "rust0",
+      "rust1",
+      "rust2",
+      "chrome",
+      "chrome_d",
+      "steel2",
+      "steel3",
+      "black",
+      "black_l",
+      "white",
+      "cyan_d",
+      "navy",
+      "navy_l",
+      "outline"
+    ],
+    "k": 2,
+    "accent": {
+      "share": 0.25,
+      "chroma": 120,
+      "luma": 200
+    },
+    "lines": {
+      "radius": 7,
+      "delta": 22,
+      "coverage": 0.22,
+      "factor": 0.75
+    },
+    "_settings_note": "Dani's target block. The still's content height counts the desk and the stool, which are discards, so 60 here bakes the man at ~54 art px seated (the cast.md table's 30x54); the frame is 56x60 (112x120 screen) with the anchor 8 px left because the lean puts the chrome arm far in front. rust3 is off the palette: the tan skin snapped to it instead of skin2.",
+    "foot_shift_art_px": -8
+  },
+  "rig": {
+    "_comment": "Joints in still pixels (832x1216, facing right, seated). Four parts: head, torso (with the apron and the thighs), the chrome near arm and the flesh far arm, each arm one part with its elbow on the counter. The desk and the stool are discards.",
+    "root": "torso",
+    "pad": 5,
+    "joint_radius": 18,
+    "joints": {
+      "hip": [
+        250,
+        900
+      ],
+      "neck": [
+        500,
+        430
+      ],
+      "head_top": [
+        500,
+        220
+      ],
+      "shoulder_near": [
+        600,
+        520
+      ],
+      "hand_near": [
+        720,
+        800
+      ],
+      "shoulder_far": [
+        330,
+        560
+      ],
+      "hand_far": [
+        560,
+        830
+      ],
+      "desk_a": [
+        640,
+        900
+      ],
+      "desk_b": [
+        820,
+        1210
+      ],
+      "desk_top_a": [
+        340,
+        885
+      ],
+      "desk_top_b": [
+        830,
+        885
+      ],
+      "stool_a": [
+        150,
+        1080
+      ],
+      "stool_b": [
+        150,
+        1216
+      ]
+    },
+    "prop_joints": {},
+    "parts": [
+      {
+        "name": "x_desk",
+        "pivot": "desk_a",
+        "tip": "desk_b",
+        "discard": true,
+        "joint_radius": 40
+      },
+      {
+        "name": "x_desk_top",
+        "pivot": "desk_top_a",
+        "tip": "desk_top_b",
+        "discard": true,
+        "joint_radius": 14
+      },
+      {
+        "name": "x_stool",
+        "pivot": "stool_a",
+        "tip": "stool_b",
+        "discard": true,
+        "joint_radius": 30
+      },
+      {
+        "name": "arm_far",
+        "pivot": "shoulder_far",
+        "tip": "hand_far",
+        "parent": "torso",
+        "joint_radius": 40,
+        "_why": "the flesh arm, behind the chrome one"
+      },
+      {
+        "name": "torso",
+        "pivot": "hip",
+        "tip": "neck",
+        "parent": null,
+        "weight": 1.2
+      },
+      {
+        "name": "head",
+        "pivot": "neck",
+        "tip": "head_top",
+        "parent": "torso",
+        "weight": 1.3,
+        "joint_radius": 14
+      },
+      {
+        "name": "arm_near",
+        "pivot": "shoulder_near",
+        "tip": "hand_near",
+        "parent": "torso",
+        "joint_radius": 40,
+        "_why": "the prosthetic, drawn on top"
+      }
+    ]
+  },
+  "props": {}
+}

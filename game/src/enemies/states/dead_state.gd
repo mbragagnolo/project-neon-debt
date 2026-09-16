@@ -13,11 +13,13 @@ var _remaining: float = 0.0
 func enter(_previous: StringName) -> void:
 	_remaining = enemy.config.death_time
 	enemy.velocity.x = 0.0
-	enemy.visual.modulate.a = 0.35
+	enemy.play(&"dead")
+	enemy.visual.modulate = Color(0.6, 0.6, 0.6, 0.55)
 
 
 func physics_update(delta: float) -> StringName:
-	enemy.apply_gravity(delta)
+	# Forced: a dead flier falls.
+	enemy.apply_gravity(delta, true)
 	enemy.brake(delta)
 
 	_remaining -= delta
