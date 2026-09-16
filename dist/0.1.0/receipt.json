@@ -1,0 +1,660 @@
+{
+  "name": "Neon Debt",
+  "version": "0.1.0",
+  "tag": "v0.1.0",
+  "date": "2026-09-16",
+  "allowed": null,
+  "steps": [],
+  "ok": true,
+  "gates": {
+    "ok": true,
+    "gates": [
+      {
+        "gate": "clean",
+        "ok": true,
+        "note": "no tracked changes, the contract is committed",
+        "spec": {
+          "gate": "clean"
+        }
+      },
+      {
+        "gate": "branch",
+        "ok": true,
+        "note": "on vertical-slice",
+        "spec": {
+          "gate": "branch",
+          "any_of": [
+            "vertical-slice",
+            "main"
+          ]
+        }
+      },
+      {
+        "gate": "command",
+        "ok": true,
+        "note": "tests: exit 0",
+        "spec": {
+          "gate": "command",
+          "name": "tests"
+        }
+      },
+      {
+        "gate": "milestones",
+        "ok": true,
+        "note": "9 milestone(s) before M9 are done (sign-offs not counted: this release is how they get gathered)",
+        "spec": {
+          "gate": "milestones",
+          "before": "M9",
+          "ignore_signoffs": true
+        }
+      },
+      {
+        "gate": "autoplay",
+        "ok": true,
+        "note": "2026-09-16: 32 rooms, 0 engine errors",
+        "spec": {
+          "gate": "autoplay",
+          "max_engine_errors": 0,
+          "min_rooms": 30,
+          "max_deaths_per_run": 1.0,
+          "played_since_game_changed": true
+        }
+      },
+      {
+        "gate": "templates",
+        "ok": true,
+        "note": "export templates 4.7.2.stable: 35 files",
+        "spec": {
+          "gate": "templates"
+        }
+      }
+    ],
+    "failed": []
+  },
+  "commit": "6aa90b0",
+  "exports": {
+    "version": "0.1.0",
+    "ref": "v0.1.0",
+    "commit": "6aa90b0defcb",
+    "from_tag": true,
+    "engine": "4.7.2.stable",
+    "presets": [
+      {
+        "name": "windows",
+        "platform": "Windows Desktop",
+        "mode": "export-release",
+        "ok": true,
+        "files": [
+          {
+            "file": "NeonDebt.exe",
+            "bytes": 109140480,
+            "sha256": "8d11c339e7ca9f44097143b4866a8ebcf3f4a5442be03ba51861175c2568f295"
+          },
+          {
+            "file": "NeonDebt.pck",
+            "bytes": 6199592,
+            "sha256": "0bde98a57abae9ec6f08d7dbf904e8cc707a423764b0fe72b0e26973128bd889"
+          }
+        ],
+        "dir": "dist/0.1.0/exports/windows",
+        "pack": {
+          "pck": "dist/0.1.0/exports/windows/NeonDebt.pck",
+          "bytes": 6199592,
+          "sha256": "0bde98a57abae9ec6f08d7dbf904e8cc707a423764b0fe72b0e26973128bd889",
+          "format": 4,
+          "engine": "4.7.2",
+          "files": 775,
+          "content_bytes": 6125401,
+          "tops": {
+            ".godot": 283,
+            "assets": 202,
+            "default_bus_layout.tres.remap": 1,
+            "icon.svg": 1,
+            "icon.svg.import": 1,
+            "project.binary": 1,
+            "rooms": 41,
+            "src": 245
+          },
+          "forbidden": {},
+          "ok": true
+        },
+        "boot": {
+          "ok": true,
+          "note": "boots headless and quits"
+        }
+      },
+      {
+        "name": "linux",
+        "platform": "Linux",
+        "mode": "export-release",
+        "ok": true,
+        "files": [
+          {
+            "file": "NeonDebt.pck",
+            "bytes": 6199592,
+            "sha256": "0bde98a57abae9ec6f08d7dbf904e8cc707a423764b0fe72b0e26973128bd889"
+          },
+          {
+            "file": "NeonDebt.x86_64",
+            "bytes": 73519416,
+            "sha256": "d9f79ab89b5ae369aeed11c6052d402e8218cd503bf85b4a235f9c30c46a7c63"
+          }
+        ],
+        "dir": "dist/0.1.0/exports/linux",
+        "pack": {
+          "pck": "dist/0.1.0/exports/linux/NeonDebt.pck",
+          "bytes": 6199592,
+          "sha256": "0bde98a57abae9ec6f08d7dbf904e8cc707a423764b0fe72b0e26973128bd889",
+          "format": 4,
+          "engine": "4.7.2",
+          "files": 775,
+          "content_bytes": 6125401,
+          "tops": {
+            ".godot": 283,
+            "assets": 202,
+            "default_bus_layout.tres.remap": 1,
+            "icon.svg": 1,
+            "icon.svg.import": 1,
+            "project.binary": 1,
+            "rooms": 41,
+            "src": 245
+          },
+          "forbidden": {},
+          "ok": true
+        },
+        "boot": null
+      }
+    ],
+    "ok": true
+  },
+  "engine": "4.7.2.stable",
+  "shots": {
+    "version": "0.1.0",
+    "from": {
+      "pck": "dist/0.1.0/exports/windows/NeonDebt.pck",
+      "sha256": "0bde98a57abae9ec6f08d7dbf904e8cc707a423764b0fe72b0e26973128bd889",
+      "preset": "windows"
+    },
+    "resolution": "1920x1080",
+    "budget": {
+      "dark_max": 0.7,
+      "bright_min": 0.04,
+      "min_distinct": 0.02,
+      "ink_min": 0.02
+    },
+    "shots": [
+      {
+        "id": "01_title",
+        "caption": "Neon Debt -- a cyberpunk metroidvania about firmware you do not own",
+        "file": "01_title.png",
+        "where": {
+          "room": "",
+          "player": "0,0",
+          "camera": "0,0"
+        },
+        "kind": "screen",
+        "size": [
+          1920,
+          1080
+        ],
+        "bytes": 49465,
+        "sha256": "c5768817ecbb97a3ad8305f995d2d4510ad31605280fa642264849d0f6dae605",
+        "notes": [],
+        "findings": [],
+        "dark": 0.965,
+        "mid": 0.011,
+        "bright": 0.024,
+        "warm": 0.038,
+        "cold": 0.896,
+        "ink": 0.8891,
+        "ok": true,
+        "nearest": {
+          "id": "07_map",
+          "diff": 0.1016
+        }
+      },
+      {
+        "id": "02_unit_14c",
+        "caption": "Unit 14-C. Your apartment, your legs, somebody else's licence",
+        "file": "02_unit_14c.png",
+        "where": {
+          "room": "unit_14c",
+          "player": "210,900",
+          "camera": "640,720"
+        },
+        "kind": "room",
+        "size": [
+          1920,
+          1080
+        ],
+        "bytes": 325264,
+        "sha256": "f99d319f2c0e125702878332c19236c42952a6cd8e301082527682f5508679c1",
+        "notes": [],
+        "findings": [
+          "3% bright, under the budget's 4%"
+        ],
+        "dark": 0.675,
+        "mid": 0.298,
+        "bright": 0.027,
+        "warm": 0.071,
+        "cold": 0.731,
+        "ok": true,
+        "nearest": {
+          "id": "04_defaulter_den",
+          "diff": 0.1724
+        }
+      },
+      {
+        "id": "03_mezz",
+        "caption": "The mezzanine: the ripperdoc, the vendor and the only save in the district",
+        "file": "03_mezz.png",
+        "where": {
+          "room": "mezz",
+          "player": "5670,1020",
+          "camera": "5120,720"
+        },
+        "kind": "room",
+        "size": [
+          1920,
+          1080
+        ],
+        "bytes": 207989,
+        "sha256": "69c63d78282a89ca81138bcd20fa5f28407098d62ee2eb976bb44e18f086ee09",
+        "notes": [],
+        "findings": [
+          "79% dark, over the budget's 70%",
+          "1% bright, under the budget's 4%"
+        ],
+        "dark": 0.79,
+        "mid": 0.196,
+        "bright": 0.014,
+        "warm": 0.038,
+        "cold": 0.881,
+        "ok": true,
+        "nearest": {
+          "id": "07_map",
+          "diff": 0.0921
+        }
+      },
+      {
+        "id": "04_defaulter_den",
+        "caption": "Melee, ranged and hacks share one resource loop; the Scavs make you switch",
+        "file": "04_defaulter_den.png",
+        "where": {
+          "room": "defaulter_den",
+          "player": "90,1020",
+          "camera": "640,780"
+        },
+        "kind": "room",
+        "size": [
+          1920,
+          1080
+        ],
+        "bytes": 206279,
+        "sha256": "0b35478b4d8503d63ba5658593faa263f049b20ba6c5b86a577e30784dbff1e0",
+        "notes": [],
+        "findings": [
+          "88% dark, over the budget's 70%",
+          "1% bright, under the budget's 4%"
+        ],
+        "dark": 0.884,
+        "mid": 0.106,
+        "bright": 0.01,
+        "warm": 0.202,
+        "cold": 0.612,
+        "ok": true,
+        "nearest": {
+          "id": "01_title",
+          "diff": 0.1588
+        }
+      },
+      {
+        "id": "05_east_ledges",
+        "caption": "The Mag-Hook turns a wall into a way up",
+        "file": "05_east_ledges.png",
+        "where": {
+          "room": "east_ledges",
+          "player": "86,1019",
+          "camera": "640,720"
+        },
+        "kind": "room",
+        "size": [
+          1920,
+          1080
+        ],
+        "bytes": 85131,
+        "sha256": "26b49d022fbbb98a9588f16d5429f6b6660182eae7687c33ddeb6eb201ef537f",
+        "notes": [],
+        "findings": [
+          "87% dark, over the budget's 70%",
+          "1% bright, under the budget's 4%"
+        ],
+        "dark": 0.872,
+        "mid": 0.119,
+        "bright": 0.01,
+        "warm": 0.26,
+        "cold": 0.431,
+        "ok": true,
+        "nearest": {
+          "id": "06_collections",
+          "diff": 0.0915
+        }
+      },
+      {
+        "id": "06_collections",
+        "caption": "The Landlord collects in person",
+        "file": "06_collections.png",
+        "where": {
+          "room": "collections",
+          "player": "90,1020",
+          "camera": "640,720"
+        },
+        "kind": "room",
+        "size": [
+          1920,
+          1080
+        ],
+        "bytes": 140476,
+        "sha256": "65dff1b5f9a8fbf2f0ee6928a9ff08d4858d62304d0f574d137f51c6d7414528",
+        "notes": [],
+        "findings": [
+          "92% dark, over the budget's 70%",
+          "2% bright, under the budget's 4%"
+        ],
+        "dark": 0.92,
+        "mid": 0.065,
+        "bright": 0.015,
+        "warm": 0.373,
+        "cold": 0.33,
+        "ok": true,
+        "nearest": {
+          "id": "07_map",
+          "diff": 0.0871
+        }
+      },
+      {
+        "id": "07_map",
+        "caption": "One interconnected district, gated by what you have not stolen yet",
+        "file": "07_map.png",
+        "where": {
+          "room": "mezz",
+          "player": "5670,1020",
+          "camera": "5120,720"
+        },
+        "kind": "screen",
+        "size": [
+          1920,
+          1080
+        ],
+        "bytes": 69588,
+        "sha256": "cacf8280e1b106fdc3abc2cec064cac9e608d1cc73bd1225dc61185b6fc7c457",
+        "notes": [],
+        "findings": [],
+        "dark": 0.988,
+        "mid": 0.011,
+        "bright": 0.001,
+        "warm": 0.0,
+        "cold": 0.932,
+        "ink": 0.3126,
+        "ok": true,
+        "nearest": {
+          "id": "08_equip",
+          "diff": 0.0612
+        }
+      },
+      {
+        "id": "08_equip",
+        "caption": "Gear and levels: Castlevania's RPG layer on a cyberpunk kit",
+        "file": "08_equip.png",
+        "where": {
+          "room": "mezz",
+          "player": "5670,1020",
+          "camera": "5120,720"
+        },
+        "kind": "screen",
+        "size": [
+          1920,
+          1080
+        ],
+        "bytes": 45368,
+        "sha256": "626d1e81b4f354007b5c373712856583d42056abafd9712cab10785073f40437",
+        "notes": [],
+        "findings": [],
+        "dark": 0.998,
+        "mid": 0.002,
+        "bright": 0.0,
+        "warm": 0.0,
+        "cold": 1.0,
+        "ink": 0.0594,
+        "ok": true,
+        "nearest": {
+          "id": "07_map",
+          "diff": 0.0612
+        }
+      }
+    ],
+    "clip": {
+      "ok": true,
+      "recorded": 251,
+      "gif": {
+        "file": "trailer.gif",
+        "frames": 142,
+        "fed": 181,
+        "fps": 20.0,
+        "size": [
+          640,
+          360
+        ],
+        "seconds": 9.05,
+        "bytes": 932434,
+        "sha256": "cbf3b5893ba1cc7c89673c21625cdf453747c40c0fcf0b11f505bc2953fd71a5",
+        "colors": 64,
+        "scale": 2,
+        "skipped": 70,
+        "notes": [],
+        "ok": true
+      },
+      "mp4": {
+        "file": "trailer.mp4",
+        "bytes": 752793,
+        "sha256": "f2f1e02052677e1b51b70024ab49430732bb7d7e18ac7b64c2acac6d8463f460",
+        "audio": true
+      },
+      "notes": []
+    },
+    "findings": 9,
+    "ok": true
+  },
+  "changelog": {
+    "version": "0.1.0",
+    "tag": "v0.1.0",
+    "since": null,
+    "since_date": null,
+    "events": 38,
+    "commits": "119",
+    "head": "5ad6815",
+    "findings": [
+      "M8 (The look) has no shipped row in the log",
+      "M9 (Go or no-go) has no shipped row in the log"
+    ]
+  },
+  "page": {
+    "page": "dist/0.1.0/page.md",
+    "controls": 15,
+    "findings": [],
+    "measures": [
+      {
+        "store": "itch",
+        "field": "tagline",
+        "value": 55,
+        "limit": 120,
+        "ok": true,
+        "note": "55/120 chars"
+      },
+      {
+        "store": "itch",
+        "field": "tags",
+        "value": 6,
+        "limit": 10,
+        "ok": true,
+        "note": "6/10 tags"
+      },
+      {
+        "store": "itch",
+        "field": "screenshots",
+        "value": 8,
+        "limit": 3,
+        "ok": true,
+        "note": "8, at least 3"
+      },
+      {
+        "store": "itch",
+        "field": "screenshot weight",
+        "value": 0,
+        "limit": 0,
+        "ok": true,
+        "note": "all under 3.0 MB"
+      },
+      {
+        "store": "steam",
+        "field": "short",
+        "value": 260,
+        "limit": 300,
+        "ok": true,
+        "note": "260/300 chars (not this release's store)"
+      },
+      {
+        "store": "steam",
+        "field": "tags",
+        "value": 6,
+        "limit": 20,
+        "ok": true,
+        "note": "6/20 tags (not this release's store)"
+      },
+      {
+        "store": "steam",
+        "field": "screenshots",
+        "value": 8,
+        "limit": 5,
+        "ok": true,
+        "note": "8, at least 5 (not this release's store)"
+      },
+      {
+        "store": "steam",
+        "field": "screenshot size",
+        "value": 0,
+        "limit": 0,
+        "ok": true,
+        "note": "all at least 1920x1080 (not this release's store)"
+      }
+    ],
+    "cards": [
+      "dist/0.1.0/exports/windows/HOW-TO-PLAY.txt",
+      "dist/0.1.0/exports/linux/HOW-TO-PLAY.txt"
+    ],
+    "ok": true
+  },
+  "upload": {
+    "version": "0.1.0",
+    "store": "itch",
+    "target": "<your-itch-user>/neon-debt",
+    "pushed": false,
+    "zips": [
+      {
+        "file": "neon-debt-0.1.0-windows.zip",
+        "bytes": 42385179,
+        "sha256": "e6dfbc00bad4d7ab8ebc12aaf669709d17dec740e2104c221f47c85d86f8723c",
+        "preset": "windows"
+      },
+      {
+        "file": "neon-debt-0.1.0-linux.zip",
+        "bytes": 32775751,
+        "sha256": "c45ede8f9122d68ad129c677dd90a53caf41561c84887896b18bfe379b6a9d7a",
+        "preset": "linux"
+      }
+    ],
+    "problems": [
+      "butler is not on the PATH -- https://itch.io/docs/butler/installing.html (or `scoop install butler`)",
+      "the store target is still '<your-itch-user>/neon-debt': put the real one in release.json"
+    ],
+    "commands": [
+      {
+        "preset": "windows",
+        "cmd": [
+          "butler",
+          "push",
+          "dist/0.1.0/exports/windows",
+          "<your-itch-user>/neon-debt:windows",
+          "--userversion",
+          "0.1.0"
+        ]
+      },
+      {
+        "preset": "linux",
+        "cmd": [
+          "butler",
+          "push",
+          "dist/0.1.0/exports/linux",
+          "<your-itch-user>/neon-debt:linux",
+          "--userversion",
+          "0.1.0"
+        ]
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "preset": "windows",
+      "file": "NeonDebt.exe",
+      "bytes": 109140480,
+      "sha256": "8d11c339e7ca9f44097143b4866a8ebcf3f4a5442be03ba51861175c2568f295"
+    },
+    {
+      "preset": "windows",
+      "file": "NeonDebt.pck",
+      "bytes": 6199592,
+      "sha256": "0bde98a57abae9ec6f08d7dbf904e8cc707a423764b0fe72b0e26973128bd889"
+    },
+    {
+      "preset": "linux",
+      "file": "NeonDebt.pck",
+      "bytes": 6199592,
+      "sha256": "0bde98a57abae9ec6f08d7dbf904e8cc707a423764b0fe72b0e26973128bd889"
+    },
+    {
+      "preset": "linux",
+      "file": "NeonDebt.x86_64",
+      "bytes": 73519416,
+      "sha256": "d9f79ab89b5ae369aeed11c6052d402e8218cd503bf85b4a235f9c30c46a7c63"
+    },
+    {
+      "file": "neon-debt-0.1.0-windows.zip",
+      "bytes": 42385179,
+      "sha256": "e6dfbc00bad4d7ab8ebc12aaf669709d17dec740e2104c221f47c85d86f8723c",
+      "preset": "windows"
+    },
+    {
+      "file": "neon-debt-0.1.0-linux.zip",
+      "bytes": 32775751,
+      "sha256": "c45ede8f9122d68ad129c677dd90a53caf41561c84887896b18bfe379b6a9d7a",
+      "preset": "linux"
+    }
+  ],
+  "artifact_count": 6,
+  "artifact_bytes": 270220010,
+  "diff": null,
+  "findings": [
+    {
+      "whose": "environment-artist",
+      "what": "5 shot(s) are darker than the level-artist's budget (02_unit_14c, 03_mezz, 04_defaulter_den, 05_east_ledges, 06_collections): the surfaces, not the lights"
+    },
+    {
+      "whose": "producer",
+      "what": "M8 (The look) has no shipped row in the log"
+    },
+    {
+      "whose": "producer",
+      "what": "M9 (Go or no-go) has no shipped row in the log"
+    }
+  ]
+}

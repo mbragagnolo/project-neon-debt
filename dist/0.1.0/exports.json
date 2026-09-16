@@ -1,0 +1,94 @@
+{
+  "version": "0.1.0",
+  "ref": "v0.1.0",
+  "commit": "6aa90b0defcb",
+  "from_tag": true,
+  "engine": "4.7.2.stable",
+  "presets": [
+    {
+      "name": "windows",
+      "platform": "Windows Desktop",
+      "mode": "export-release",
+      "ok": true,
+      "files": [
+        {
+          "file": "NeonDebt.exe",
+          "bytes": 109140480,
+          "sha256": "8d11c339e7ca9f44097143b4866a8ebcf3f4a5442be03ba51861175c2568f295"
+        },
+        {
+          "file": "NeonDebt.pck",
+          "bytes": 6199592,
+          "sha256": "0bde98a57abae9ec6f08d7dbf904e8cc707a423764b0fe72b0e26973128bd889"
+        }
+      ],
+      "dir": "dist/0.1.0/exports/windows",
+      "pack": {
+        "pck": "dist/0.1.0/exports/windows/NeonDebt.pck",
+        "bytes": 6199592,
+        "sha256": "0bde98a57abae9ec6f08d7dbf904e8cc707a423764b0fe72b0e26973128bd889",
+        "format": 4,
+        "engine": "4.7.2",
+        "files": 775,
+        "content_bytes": 6125401,
+        "tops": {
+          ".godot": 283,
+          "assets": 202,
+          "default_bus_layout.tres.remap": 1,
+          "icon.svg": 1,
+          "icon.svg.import": 1,
+          "project.binary": 1,
+          "rooms": 41,
+          "src": 245
+        },
+        "forbidden": {},
+        "ok": true
+      },
+      "boot": {
+        "ok": true,
+        "note": "boots headless and quits"
+      }
+    },
+    {
+      "name": "linux",
+      "platform": "Linux",
+      "mode": "export-release",
+      "ok": true,
+      "files": [
+        {
+          "file": "NeonDebt.pck",
+          "bytes": 6199592,
+          "sha256": "0bde98a57abae9ec6f08d7dbf904e8cc707a423764b0fe72b0e26973128bd889"
+        },
+        {
+          "file": "NeonDebt.x86_64",
+          "bytes": 73519416,
+          "sha256": "d9f79ab89b5ae369aeed11c6052d402e8218cd503bf85b4a235f9c30c46a7c63"
+        }
+      ],
+      "dir": "dist/0.1.0/exports/linux",
+      "pack": {
+        "pck": "dist/0.1.0/exports/linux/NeonDebt.pck",
+        "bytes": 6199592,
+        "sha256": "0bde98a57abae9ec6f08d7dbf904e8cc707a423764b0fe72b0e26973128bd889",
+        "format": 4,
+        "engine": "4.7.2",
+        "files": 775,
+        "content_bytes": 6125401,
+        "tops": {
+          ".godot": 283,
+          "assets": 202,
+          "default_bus_layout.tres.remap": 1,
+          "icon.svg": 1,
+          "icon.svg.import": 1,
+          "project.binary": 1,
+          "rooms": 41,
+          "src": 245
+        },
+        "forbidden": {},
+        "ok": true
+      },
+      "boot": null
+    }
+  ]
+}
