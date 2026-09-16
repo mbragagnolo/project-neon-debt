@@ -14,23 +14,63 @@ L = {"o": "outline", "a": "amber", "A": "amber_d", "w": "white", "y": "grey", "Y
      "n": "sodium", "r": "red", "R": "red_d", "c": "cyan", "C": "cyan_d", "m": "magenta",
      "s": "steel2", "S": "steel3", "t": "steel1", "b": "bg0", "B": "bg1", "d": "bg2", "v": "violet"}
 
+PLAY = 2   # texture px per art px on the play plane (bible/art.json)
+
+# Art pixels at PLAY, so a projectile's pixel is the pixel of the character
+# that fired it. These were drawn at 3 until the art-director's first review
+# (art/reviews/2026-09-16/). An effect may keep its outline -- it fires over
+# an actor's frame and has to read against whatever is behind it -- which is
+# why `o` survives here and not in make_props.py.
 PROJECTILES = {
-    "bolt": ["oaaaaw", "oAaaaw"],
-    "nail": ["yyyw", "YYyw"],
-    "rivet": [".onnnw..", "onnnnnnw", ".oAnnnw."],
-    "drone_shot": [".oooo.", "orRRro", "oRrwro", "oRwwro", "orRRro", ".oooo."],
-    "beam": ["cccccccccccc", "cwwwwwwwwwwc", "cccccccccccc"],
+    "bolt": [
+        "oaaaaaaaw",
+        "oAaaaaaaw",
+        "oAAaaaaaw",
+    ],
+    "nail": [
+        "yyyyyw",
+        "YYyyyw",
+        "YYYyyw",
+    ],
+    "rivet": [   # 12x4: 24x8 texture, one px off the old 9 because 3 is odd
+        "..onnnnnww..",
+        ".onnnnnnnnw.",
+        ".onnnnnnnnw.",
+        "..oAAnnnnw..",
+    ],
+    "drone_shot": [
+        "..ooooo..",
+        ".ooRRRoo.",
+        "orRRRRRro",
+        "oRRrrrRRo",
+        "oRrrwrrRo",
+        "oRRrrrRRo",
+        "orRRRRRro",
+        ".ooRRRoo.",
+        "..ooooo..",
+    ],
+    "beam": [   # 18x4: 36x8 texture, one px off the old 9 for the same reason
+        "cccccccccccccccccc",
+        "cwwwwwwwwwwwwwwwwc",
+        "cwwwwwwwwwwwwwwwwc",
+        "cccccccccccccccccc",
+    ],
     "wave": [
-        ".....oooo.....",
-        "...oonnnnoo...",
-        "..onnnnnnnno..",
-        ".onnAAAAAAnno.",
-        ".onAAaaaaAAno.",
-        "onAaaaaaaaAno.",
-        "onAaaaaaaaAAno",
-        "oAAaaaaaaAAAno",
-        "oAAAAAAAAAAAno",
-        ".oooooooooooo.",
+        "......ooooooooo......",
+        "....oonnnnnnnnnoo....",
+        "..oonnnnnnnnnnnnnoo..",
+        ".onnnAAAAAAAAAAAnnno.",
+        ".onnAAAAaaaaaAAAAnno.",
+        "onnAAAaaaaaaaaaAAAnno",
+        "onnAAaaaaaaaaaaaAAAno",
+        "onAAAaaaaaaaaaaaAAAno",
+        "onAAaaaaaaaaaaaaAAAno",
+        "oAAAaaaaaaaaaaaAAAAno",
+        "oAAAAaaaaaaaaaAAAAAno",
+        "oAAAAAAAAAAAAAAAAAAno",
+        "oAAAAAAAAAAAAAAAAAAno",
+        ".ooooooooooooooooooo.",
+        ".....................",
     ],
 }
 
@@ -58,7 +98,7 @@ def raw_save(img, rel):
 if __name__ == "__main__":
     for name, rows in PROJECTILES.items():
         w = max(len(r) for r in rows)
-        save(draw([r.ljust(w, ".")[:w] for r in rows], L), "fx/%s.png" % name)
+        save(draw([r.ljust(w, ".")[:w] for r in rows], L), "fx/%s.png" % name, scale=PLAY)
     raw_save(radial(128), "fx/light_soft.png")
     raw_save(radial(64, 1.0), "fx/light_hard.png")
     # particle textures: tiny, soft
