@@ -51,14 +51,16 @@
       "plane": "play",
       "outline": "forbidden",
       "steps": [3, 5],
-      "_why": "the wall ring, the band the player runs along. On the play plane because the player touches it."
+      "albedo_min": 0.03,
+      "_why": "the wall ring, the band the player runs along. On the play plane because the player touches it. `albedo_min` is 0.03: wall_mezz at 0.0398 is the one that reads, and a wall the player runs along is lit for a living."
     },
     "back": {
       "globs": ["tiles/back_*.png"],
       "plane": "back",
       "outline": "forbidden",
       "steps": [1, 5],
-      "_why": "the plane behind the air. One step is allowed: the bar says a far plane is a few big soft shapes, and back_roof is a sky."
+      "albedo_min": 0.025,
+      "_why": "the plane behind the air, and the surface the room is mostly made of. `albedo_min` is 0.025 because back_unit_14c is 0.0297 and is the only back plane in a room that ever measured inside the lighting budget; the generic six are 0.0025 to 0.0103, three to twelve times darker, which is why the district cannot be lit. One step is allowed: the bar says a far plane is a few big soft shapes, and back_roof is a sky."
     },
     "platform": {
       "globs": ["tiles/platform.png", "tiles/hazard_*.png"],
@@ -103,7 +105,7 @@
     }
   },
 
-  "_floors": "Where a measurement stops being a number and becomes a finding.",
+  "_floors": "Where a measurement stops being a number and becomes a finding. `albedo_min` is per kind rather than here, because only a surface that is lit for a living has one.",
   "floors": {
     "off_palette_max": 0.0,
     "ring_dark_max": 0.25,
