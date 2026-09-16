@@ -389,7 +389,9 @@ func _build() -> void:
 	add_child(_hint)
 
 	var footer := Label.new()
-	footer.text = "v1 vertical slice"
+	# The version a tester reads back to us has to be the one the release was
+	# tagged from: project.godot's config/version, never a string typed here.
+	footer.text = "v%s vertical slice" % ProjectSettings.get_setting("application/config/version", "0.0.0")
 	footer.anchor_top = 1.0
 	footer.anchor_bottom = 1.0
 	footer.anchor_left = 1.0

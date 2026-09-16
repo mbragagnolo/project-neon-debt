@@ -1,0 +1,5 @@
+# Written by the shipper. The release folder's record is committed:
+# the changelog, the page, the shots, the gif and the receipt. The
+# binaries and the export worktree are rebuilt from the tag.
+*/exports/
+*/work/
