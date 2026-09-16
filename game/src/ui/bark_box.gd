@@ -7,8 +7,8 @@ extends CanvasLayer
 ## anything anywhere can hand the protagonist a line without knowing what a
 ## HUD is.
 
-const COL_NAME := Color(0.6, 0.95, 1.0)
-const COL_TEXT := Color(0.85, 0.9, 0.97)
+const COL_NAME := UiPalette.ACCENT
+const COL_TEXT := UiPalette.TEXT
 const HOLD_SECONDS := 4.5
 
 var _label: Label

@@ -20,12 +20,12 @@ extends CanvasLayer
 
 const COMBAT_CONFIG_PATH := "res://src/combat/combat_config.tres"
 
-const COL_TEXT := Color(0.78, 0.86, 0.95)
-const COL_DIM := Color(0.45, 0.52, 0.64)
-const COL_SELECTED := Color(1.0, 0.18, 0.58)
-const COL_ACCENT := Color(0.6, 0.95, 1.0)
-const COL_BETTER := Color(0.45, 0.95, 0.6)
-const COL_WORSE := Color(1.0, 0.45, 0.45)
+const COL_TEXT := UiPalette.TEXT
+const COL_DIM := UiPalette.DIM
+const COL_SELECTED := UiPalette.SELECTED
+const COL_ACCENT := UiPalette.ACCENT
+const COL_BETTER := UiPalette.GOOD
+const COL_WORSE := UiPalette.BAD
 
 const SLOT_ORDER: Array[Item.Slot] = [
 	Item.Slot.MELEE,
@@ -355,7 +355,7 @@ func _delta_lines(candidate: Item) -> Array:
 
 func _build() -> void:
 	var dim := ColorRect.new()
-	dim.color = Color(0.04, 0.05, 0.08, 0.92)
+	dim.color = Color(UiPalette.PANEL, 0.92)
 	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
 	dim.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(dim)

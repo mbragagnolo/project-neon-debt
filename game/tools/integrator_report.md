@@ -179,3 +179,24 @@ music.py: 5 tracks, 35 stems, 0 missing, 0 import params wrong, 0 written; 0 fai
 
 - NOTE engine import ran (exit 0, 0 error lines)
 
+## 2026-09-16 07:41 theme.py --project F:/Projects/Coding Projects/project-neon-debt/game --table F:/Projects/Coding Projects/project-neon-debt/ui/theme.json
+
+theme.py: 4 styleboxes, 5 types; 0 fail, 2 warn, 0 note, 0 written
+
+- WARN theme: assets/theme/neon.tres differs from the table at line 6: file `bg_color = Color(0.03, 0.04, 0.07, 0.94)` table `bg_color = Color(0.0431, 0.051, 0.0784, 0.94)` (run with --write)
+- WARN nine-patch panel_frame: no script or scene under ['src', 'rooms'] names res://assets/ui/panel_frame.png
+
+## 2026-09-16 07:41 theme.py --project F:/Projects/Coding Projects/project-neon-debt/game --table F:/Projects/Coding Projects/project-neon-debt/ui/theme.json --write
+
+theme.py: 4 styleboxes, 5 types; 0 fail, 1 warn, 1 note, 1 written
+
+- NOTE theme: assets/theme/neon.tres rewritten from the table
+- WARN nine-patch panel_frame: no script or scene under ['src', 'rooms'] names res://assets/ui/panel_frame.png
+- wrote `assets/theme/neon.tres`
+
+## 2026-09-16 08:06 theme.py --project F:/Projects/Coding Projects/project-neon-debt/game --table F:/Projects/Coding Projects/project-neon-debt/ui/theme.json
+
+theme.py: 4 styleboxes, 5 types; 0 fail, 1 warn, 0 note, 0 written
+
+- WARN nine-patch panel_frame: no script or scene under ['src', 'rooms'] names res://assets/ui/panel_frame.png
+

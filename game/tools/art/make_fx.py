@@ -1,4 +1,9 @@
-"""Projectiles, light and particle textures, and the HUD's pixel frames."""
+"""Projectiles, light and particle textures.
+
+The interface's frames used to live here too; they moved to ui/sprites.py in
+M8 and are written by the ui-artist's sprites.py, which draws them from the
+same palette and proves the move byte for byte.
+"""
 import os
 import math
 from PIL import Image
@@ -30,56 +35,6 @@ PROJECTILES = {
 }
 
 # HUD nine-patches at 1x (8x8): a thin steel frame on a dark ground.
-HUD_FRAME = [
-    "oSSSSSSo",
-    "SBBBBBBS",
-    "SBBBBBBS",
-    "SBBBBBBS",
-    "SBBBBBBS",
-    "SBBBBBBS",
-    "SBBBBBBS",
-    "oSSSSSSo",
-]
-PANEL_FRAME = [
-    "ooSSSSoo",
-    "oSbbbbSo",
-    "SbbbbbbS",
-    "SbbbbbbS",
-    "SbbbbbbS",
-    "SbbbbbbS",
-    "oSbbbbSo",
-    "ooSSSSoo",
-]
-PIP_ON = ["oooooo", "oaaaao", "oawwao", "oaaaao", "oaaaao", "oooooo"]
-PIP_OFF = ["oooooo", "oBBBBo", "oBBBBo", "oBBBBo", "oBBBBo", "oooooo"]
-SLOT = [
-    "oSSSSSSSSSSSSSSSSSSSSSSo",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "SbbbbbbbbbbbbbbbbbbbbbbS",
-    "oSSSSSSSSSSSSSSSSSSSSSSo",
-]
-CURSOR = ["o.......", "oo......", "owo.....", "owwo....", "owwwo...", "owwo....", "owo.....", "oo......"]
-LOCK = ["..oooo..", ".oaaaao.", ".oa..ao.", "oaaaaaao", "oaaooaao", "oaaooaao", "oaaaaaao", ".oooooo."]
 
 
 def radial(size, power=1.6):
@@ -120,7 +75,4 @@ if __name__ == "__main__":
     raw_save(upscale(spark, 2), "fx/spark.png")
     puff = radial(16, 0.8)
     raw_save(puff, "fx/puff.png")
-    for name, rows in {"hud_frame": HUD_FRAME, "panel_frame": PANEL_FRAME, "pip_on": PIP_ON,
-                       "pip_off": PIP_OFF, "slot": SLOT, "cursor": CURSOR, "lock": LOCK}.items():
-        save(draw(rows, L), "ui/%s.png" % name)
     print("fx written")

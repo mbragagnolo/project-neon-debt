@@ -3,10 +3,10 @@ extends CanvasLayer
 ## The quest log tab (DESIGN.md §3.7). One quest in the slice; the log still
 ## reads the tracker rather than the quest, so a second one costs no UI.
 
-const COL_TEXT := Color(0.78, 0.86, 0.95)
-const COL_DIM := Color(0.45, 0.52, 0.64)
-const COL_ACCENT := Color(0.6, 0.95, 1.0)
-const COL_GOOD := Color(0.45, 0.95, 0.6)
+const COL_TEXT := UiPalette.TEXT
+const COL_DIM := UiPalette.DIM
+const COL_ACCENT := UiPalette.ACCENT
+const COL_GOOD := UiPalette.GOOD
 
 var _rows: VBoxContainer
 

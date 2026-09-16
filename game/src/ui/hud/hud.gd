@@ -8,15 +8,15 @@ extends CanvasLayer
 ## asks the sheet once at ready. Every signal it hangs off was declared on
 ## the bus in M0.
 
-const COL_HP := Color(1.0, 0.36, 0.36)
-const COL_HP_LOW := Color(1.0, 0.18, 0.58)
-const COL_RAM := Color(0.62, 0.42, 1.0)
-const COL_XP := Color(0.13, 0.9, 1.0)
-const COL_TEXT := Color(0.85, 0.9, 0.97)
-const COL_DIM := Color(0.45, 0.52, 0.64)
-const COL_GOOD := Color(0.45, 0.95, 0.6)
-const COL_BAD := Color(1.0, 0.45, 0.45)
-const COL_HACK := Color(0.75, 0.6, 1.0)
+const COL_HP := UiPalette.HP
+const COL_HP_LOW := UiPalette.HP_LOW
+const COL_RAM := UiPalette.RAM
+const COL_XP := UiPalette.XP
+const COL_TEXT := UiPalette.TEXT
+const COL_DIM := UiPalette.DIM
+const COL_GOOD := UiPalette.GOOD
+const COL_BAD := UiPalette.BAD
+const COL_HACK := UiPalette.HACK
 
 var _hp_fill: ColorRect
 var _hp_text: Label
@@ -234,7 +234,7 @@ func _label(text: String, size: int, colour: Color) -> Label:
 
 func _build() -> void:
 	_vignette = ColorRect.new()
-	_vignette.color = Color(0.7, 0.0, 0.12, 1.0)
+	_vignette.color = UiPalette.VIGNETTE
 	_vignette.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_vignette.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_vignette.modulate.a = 0.0
@@ -308,7 +308,7 @@ func _build() -> void:
 	_xp_fill.size = Vector2(0.0, 6.0)
 	_xp_fill.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	xp_frame.add_child(_xp_fill)
-	_credits = _label("0 cr", 24, Color(1.0, 0.72, 0.2))
+	_credits = _label("0 cr", 24, UiPalette.CREDITS)
 	level_row.add_child(_credits)
 
 	# The boss bar, centred at the top.

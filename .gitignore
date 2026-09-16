@@ -37,3 +37,7 @@ feel/runs/*/samples*.jsonl
 # composer (kiln): the full mixes are the sound-designer's beds, rebuilt by render.py; the engine plays the stems
 audio/music/mix/
 audio/music/work/
+
+# The ui-artist's scratch exports (a constants file written somewhere to diff before it
+# lands, a shot taken to mock over); the mocks beside them are the review and are kept
+ui/work/

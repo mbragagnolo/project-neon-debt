@@ -5,7 +5,7 @@ extends CanvasLayer
 ## not saved, and the row says so.
 
 const TITLE_SCENE := "res://rooms/title.tscn"
-const COL_DIM := Color(0.45, 0.52, 0.64)
+const COL_DIM := UiPalette.DIM
 
 var panel: SettingsPanel
 var _note: Label

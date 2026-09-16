@@ -7,13 +7,13 @@ extends CanvasLayer
 const GRAPH_PATH := "res://src/world/world_graph.tres"
 
 const CELL := 52.0
-const COL_ROOM := Color(0.16, 0.22, 0.34)
-const COL_ROOM_EDGE := Color(0.45, 0.55, 0.75)
-const COL_CURRENT := Color(0.6, 0.95, 1.0)
-const COL_SAVE := Color(0.35, 0.85, 1.0)
-const COL_TEXT := Color(0.78, 0.86, 0.95)
-const COL_DIM := Color(0.45, 0.52, 0.64)
-const COL_DOOR := Color(0.06, 0.07, 0.11)
+const COL_ROOM := UiPalette.ROOM
+const COL_ROOM_EDGE := UiPalette.ROOM_EDGE
+const COL_CURRENT := UiPalette.ACCENT
+const COL_SAVE := UiPalette.SAVE
+const COL_TEXT := UiPalette.TEXT
+const COL_DIM := UiPalette.DIM
+const COL_DOOR := UiPalette.DOOR
 
 var graph: WorldGraph
 var current_room: StringName = &""

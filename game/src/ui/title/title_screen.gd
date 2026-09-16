@@ -13,13 +13,13 @@ enum Page { MAIN, SLOTS, SETTINGS }
 const WORLD_SCENE := "res://rooms/world.tscn"
 const GRAPH_PATH := "res://src/world/world_graph.tres"
 
-const COL_NEON := Color(0.13, 0.9, 1.0)
-const COL_NEON_GLOW := Color(1.0, 0.18, 0.58)
-const COL_TEXT := Color(0.78, 0.86, 0.95)
-const COL_DIM := Color(0.45, 0.52, 0.64)
-const COL_ACTIVE := Color(0.6, 0.95, 1.0)
-const COL_WARN := Color(1.0, 0.45, 0.45)
-const COL_NOTICE := Color(1.0, 0.36, 0.36)
+const COL_NEON := UiPalette.XP
+const COL_NEON_GLOW := UiPalette.SELECTED
+const COL_TEXT := UiPalette.TEXT
+const COL_DIM := UiPalette.DIM
+const COL_ACTIVE := UiPalette.ACCENT
+const COL_WARN := UiPalette.BAD
+const COL_NOTICE := UiPalette.HP
 
 var page: Page = Page.MAIN
 var menu_index: int = 0
@@ -304,8 +304,8 @@ func summary(data: Dictionary) -> String:
 
 func _card_style(selected: bool) -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.03, 0.04, 0.07, 0.85)
-	style.border_color = COL_ACTIVE if selected else Color(0.27, 0.31, 0.41)
+	style.bg_color = Color(UiPalette.PANEL, 0.85)
+	style.border_color = COL_ACTIVE if selected else UiPalette.PANEL_EDGE
 	style.set_border_width_all(2)
 	style.content_margin_left = 18.0
 	style.content_margin_right = 18.0
@@ -438,7 +438,7 @@ func _neon(text: String) -> Label:
 	label.add_theme_font_override("font", font)
 	label.add_theme_font_size_override("font_size", 132)
 	label.add_theme_color_override("font_color", COL_NEON)
-	label.add_theme_color_override("font_outline_color", Color(0.02, 0.05, 0.1))
+	label.add_theme_color_override("font_outline_color", UiPalette.TITLE_OUTLINE)
 	label.add_theme_constant_override("outline_size", 6)
 	label.set_anchors_preset(Control.PRESET_FULL_RECT)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -456,9 +456,9 @@ func _build_backdrop() -> void:
 	sky.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	sky.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(sky)
-	var far := _skyline("res://assets/tiles/skyline_far.png", 3.0, 1080.0 - 540.0 - 120.0, Color(0.55, 0.6, 0.75))
+	var far := _skyline("res://assets/tiles/skyline_far.png", 3.0, 1080.0 - 540.0 - 120.0, UiPalette.SKYLINE_FAR)
 	add_child(far)
-	_near = _skyline("res://assets/tiles/skyline_near.png", 3.0, 1080.0 - 540.0, Color(0.8, 0.85, 1.0))
+	_near = _skyline("res://assets/tiles/skyline_near.png", 3.0, 1080.0 - 540.0, UiPalette.SKYLINE_NEAR)
 	add_child(_near)
 
 	var rain := CPUParticles2D.new()
@@ -475,11 +475,11 @@ func _build_backdrop() -> void:
 	rain.initial_velocity_max = 1100.0
 	rain.texture = load("res://assets/fx/drop.png")
 	rain.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	rain.color = Color(0.6, 0.8, 1.0, 0.35)
+	rain.color = Color(UiPalette.RAIN, 0.35)
 	add_child(rain)
 
 	var ground := ColorRect.new()
-	ground.color = Color(0.03, 0.035, 0.06)
+	ground.color = UiPalette.TITLE_GROUND
 	ground.anchor_top = 1.0
 	ground.anchor_bottom = 1.0
 	ground.anchor_right = 1.0
@@ -487,7 +487,7 @@ func _build_backdrop() -> void:
 	ground.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(ground)
 	var dim := ColorRect.new()
-	dim.color = Color(0.0, 0.0, 0.05, 0.35)
+	dim.color = Color(UiPalette.SCRIM, 0.35)
 	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
 	dim.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(dim)

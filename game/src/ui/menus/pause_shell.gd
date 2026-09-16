@@ -12,8 +12,8 @@ extends CanvasLayer
 enum Tab { MAP, LOADOUT, QUESTS, SYSTEM }
 
 const TAB_NAMES: Array[String] = ["MAP", "LOADOUT", "QUESTS", "SYSTEM"]
-const COL_ACTIVE := Color(0.6, 0.95, 1.0)
-const COL_DIM := Color(0.45, 0.52, 0.64)
+const COL_ACTIVE := UiPalette.ACCENT
+const COL_DIM := UiPalette.DIM
 
 var _open: bool = false
 var _tab: Tab = Tab.MAP
@@ -146,7 +146,7 @@ func _redraw_bar() -> void:
 
 func _build() -> void:
 	var dim := ColorRect.new()
-	dim.color = Color(0.04, 0.05, 0.08, 0.92)
+	dim.color = Color(UiPalette.PANEL, 0.92)
 	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
 	dim.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(dim)

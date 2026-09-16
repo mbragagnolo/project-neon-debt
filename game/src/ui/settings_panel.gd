@@ -13,10 +13,10 @@ extends Control
 signal closed
 signal action(id: StringName)
 
-const COL_TEXT := Color(0.78, 0.86, 0.95)
-const COL_DIM := Color(0.45, 0.52, 0.64)
-const COL_ACTIVE := Color(0.6, 0.95, 1.0)
-const COL_WARN := Color(1.0, 0.55, 0.35)
+const COL_TEXT := UiPalette.TEXT
+const COL_DIM := UiPalette.DIM
+const COL_ACTIVE := UiPalette.ACCENT
+const COL_WARN := UiPalette.WARN
 
 const VOLUME_STEP := 0.1
 

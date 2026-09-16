@@ -8,12 +8,12 @@ extends CanvasLayer
 
 const STOCK_PATH := "res://src/rpg/shop_stock.tres"
 
-const COL_TEXT := Color(0.78, 0.86, 0.95)
-const COL_DIM := Color(0.45, 0.52, 0.64)
-const COL_SELECTED := Color(1.0, 0.18, 0.58)
-const COL_ACCENT := Color(0.6, 0.95, 1.0)
-const COL_GOOD := Color(0.45, 0.95, 0.6)
-const COL_BAD := Color(1.0, 0.45, 0.45)
+const COL_TEXT := UiPalette.TEXT
+const COL_DIM := UiPalette.DIM
+const COL_SELECTED := UiPalette.SELECTED
+const COL_ACCENT := UiPalette.ACCENT
+const COL_GOOD := UiPalette.GOOD
+const COL_BAD := UiPalette.BAD
 
 var stock: ShopStock
 var _index: int = 0
@@ -178,7 +178,7 @@ func _cell(parent: Node, text: String, width: float, colour: Color) -> void:
 
 func _build() -> void:
 	var dim := ColorRect.new()
-	dim.color = Color(0.04, 0.05, 0.08, 0.92)
+	dim.color = Color(UiPalette.PANEL, 0.92)
 	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
 	dim.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(dim)

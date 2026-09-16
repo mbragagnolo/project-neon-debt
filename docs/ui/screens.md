@@ -185,5 +185,11 @@ care terminal. The ending returns to the title on its own.
 ## Exports
 - **M7:** restyled with the neon theme (`assets/theme/neon.tres`); no
   panel moved.
+- **M8:** the look became data. This file keeps owning arrangement and
+  behaviour; every colour, font and frame now lives in [`ui/ui.json`](../../ui/ui.json)
+  as roles, and the code reads `UiPalette` rather than typing a `Color`.
+  `ui/theme.json` generates `assets/theme/neon.tres` through the
+  integrator. Rule 8's "one accent colour" is the `ACCENT` role.
+  The pass and what it found: [`ui/report.md`](../../ui/report.md).
 - **V2:** manual stat allocation and respec land in the sheet panel; rule 5
   is where they attach.

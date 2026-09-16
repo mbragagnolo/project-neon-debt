@@ -9,11 +9,11 @@ extends CanvasLayer
 
 signal dismissed()
 
-const COL_PANEL := Color(0.03, 0.04, 0.07, 0.94)
-const COL_ACCENT := Color(0.6, 0.95, 1.0)
-const COL_TEXT := Color(0.85, 0.9, 0.97)
-const COL_DIM := Color(0.45, 0.52, 0.64)
-const COL_GOOD := Color(0.45, 0.95, 0.6)
+const COL_PANEL := Color(UiPalette.PANEL, 0.94)
+const COL_ACCENT := UiPalette.ACCENT
+const COL_TEXT := UiPalette.TEXT
+const COL_DIM := UiPalette.DIM
+const COL_GOOD := UiPalette.GOOD
 
 var _panel: ColorRect
 var _open: bool = false

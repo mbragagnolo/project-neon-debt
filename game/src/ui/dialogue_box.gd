@@ -9,10 +9,10 @@ extends CanvasLayer
 
 signal finished()
 
-const COL_PANEL := Color(0.05, 0.06, 0.1, 0.94)
-const COL_SPEAKER := Color(0.6, 0.95, 1.0)
-const COL_TEXT := Color(0.85, 0.9, 0.97)
-const COL_HINT := Color(0.45, 0.52, 0.64)
+const COL_PANEL := Color(UiPalette.PANEL, 0.94)
+const COL_SPEAKER := UiPalette.ACCENT
+const COL_TEXT := UiPalette.TEXT
+const COL_HINT := UiPalette.DIM
 
 var _panel: ColorRect
 var _speaker: Label
